@@ -1,0 +1,57 @@
+- Class: meta
+  Course: R_Book
+  Lesson: Introduction to R
+  Author: Tyson S. Barrett
+  Type: Standard
+  Organization: Utah State University
+  Version: 2.4.2
+
+- Class: text
+  Output: Welcome to the introduction to R. This walk-through should get you acquainted with R's language and the basics of using R. This is a companion to "#Rstats for the Health, Behavioral, and Social Sciences".
+
+- Class: cmd_question
+  Output: R can use all the basic operators like + - * and /. These can be used just like in any calculator. So, using R, how can you find the answer to nine times eight minus four?
+  CorrectAnswer: 9*8-4
+  AnswerTests: omnitest(correctExpr='9*8-4')
+  Hint: Just type it in like you would a calculator.
+  
+- Class: text
+  Output: R can use all the basic operators like + - * and /. These can be used just like in any calculator.
+  
+- Class: cmd_question
+  Output: Using R, how can you find the answer to nine times eight minus four?
+  CorrectAnswer: 9*8-4
+  AnswerTests: omnitest(correctExpr='9*8-4')
+  Hint: Just type it in like you would a calculator.
+
+- Class: text
+  Output: "Using the # sign allows you to make a comment. Comments help you understand and organize your code but it is not run by R"
+  
+- Class: text
+  Output: One of R's great strengths is that you can download and use packages created by individuals all over the world. To download a package use install.packages("package"). You only need to do this once. Then, each time you restart R, to load it into memory use the library() function (e.g., library(dplyr))
+
+- Class: cmd_question
+  Output: Install the package "dplyr"
+  CorrectAnswer: install.packages(dplyr)
+  AnswerTests: omnitest(correctExpr='install.packages(dplyr)')
+  Hint: install and packages :)
+  
+- Class: cmd_question
+  Output: Now that you've installed "dplyr", how would you load it into an R session?
+  CorrectAnswer: library(dplyr)
+  AnswerTests: omnitest(correctExpr='library(dplyr)')
+  Hint: library function and put dplyr in it
+
+- Class: mult_question
+  Output: Type your text output here.
+  AnswerChoices: ANS;2;3
+  CorrectAnswer: ANS
+  AnswerTests: omnitest(correctVal='ANS')
+  Hint: Type a hint.
+
+- Class: text_question
+  Output: Type 'Hello'
+  CorrectAnswer: 'Hello'
+  AnswerTests: omnitest(correctVal = 'Hello')
+  Hint: Type a hint.
+  

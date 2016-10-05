@@ -1,0 +1,130 @@
+---
+title: "Rstats for Researchers"
+author: "Tyson S. Barrett"
+date: "`r Sys.Date()`"
+site: "bookdown::bookdown_site"
+output:
+  bookdown::gitbook: default
+documentclass: book
+link-citations: yes
+---
+
+# Chapter 3: Understanding Your Data {-}
+
+We are going to take what we've learned from the previous two chapters and use them together to have simple but powerful ways to understand your data. This chapter will be broken down into:
+
+1. Descriptive Statistics
+2. Visualizations
+
+The two go hand-in-hand in understanding what is happening in your data. We are often most interested in three things when exploring our data: **understanding distributions**, **understanding relationships**, and **looking for outliers or errors**.
+
+## Descriptive Statistics {-}
+
+Several methods of discovering descriptives in a succinct way have been developed for `R`. My favorite (full disclosure: it is one that I made so I may be biased) is the `table1` function in the `furniture` package.
+
+This function has been designed to be simple and complete. It produces a well-formatted table that you can easily export and use as a table in a report or article.[^tab1]
+
+We'll first create a ficticious data set and we'll show the basic build of `table1`.
+
+```{r, message=FALSE, warning=FALSE}
+library(furniture)
+
+df <- data.frame("A"=c(1,2,1,4,3,NA),
+                 "B"=c(1.4,2.1,4.6,2.0,NA,3.4),
+                 "C"=c(0,0,1,1,1,1),
+                 "D"=rnorm(6))
+
+table1(df, A, B, C, D)
+```
+
+This quickly gives you means and standard deviations (or counts and percentages if there were categorical variables).
+
+It turns out, for we want "A" and "C" to be factors.
+
+```{r}
+df$A <- factor(df$A, labels=c("cat1", "cat2", "cat3", "cat4"))
+df$C <- factor(df$C, labels=c("male", "female"))
+
+table1(df, A, B, C, D)
+```
+
+So now we see the counts and percentages for the factor variables. But now we can take a step further and look for relationships. The code below shows the means/standard devaitions or counts/percentages by a grouping variable--in this case, `C`.
+
+```{r}
+table1(df, A, B, D,
+       splitby = ~C)
+```
+
+We can also test for differences by group as well (although this is not particularly good with a sample size of 5). It produces a warning since the $\chi^2$ approximation is not accurate with cells this small.
+
+```{r}
+table1(df, A, B, D,
+       splitby = ~C,
+       test=TRUE)
+```
+
+
+Finally, we can include missingness in the table for factors. 
+
+```{r}
+table1(df, A, B, D,
+       splitby = ~C,
+       test=TRUE,
+       NAkeep = TRUE)
+```
+
+
+So with three or four short lines of code we can get a good idea about variables that may be related to the grouping variable and any missingness in the factor variables. There's much more you can do with `table1` and there are vignettes and tutorials available to learn more.[^tutorials]
+
+Other quick descriptive functions exist; here are a few of them.
+
+```{r, eval=FALSE}
+summary(df)          ## descriptives for each variable in the data
+
+library(psych)       ## install first
+describe(df)         ## produces summary statistics for continuous variables
+
+library(Hmisc)       ## install first
+Hmisc::describe(df)  ## gives summary for each variable separately
+```
+
+
+## Visualizations {-}
+
+Understanding your data, in my experience, generally requires visualizations. If we are going to use a model of some sort, understanding the distributions and relationships beforehand are very helpful in interpreting the model and catching errors in the data. Also finding any outliers or errors that could be highly influencing the modeling should be understood beforehand.
+
+For simple but appealing visualizations we are going to be using `ggplot2`. This package is used to produce professional level plots for many journalism organizations (e.g. five-thrity-eight). These plots are quickly presentation quality and can be used to impress your boss, your advisor, or your friends.
+
+### `ggplot2` {-}
+
+This package has a straight-forward syntax. It is built by adding layers to the plot. 
+
+```{r}
+library(ggplot2)   ## first install using install.packages("ggplot2")
+```
+
+First, we have a nice `qplot` function that is short for "quick plot." It quickly decides what kind of plot is useful given the data and variables you provide.
+
+
+```{r}
+#qplot()
+```
+
+
+For a bit more control over the plot, you can use the `ggplot` function.
+
+```{r}
+#ggplot()
+```
+
+
+
+
+
+
+[^tab1]: It is called "table1" because a nice descriptive table is often found in the first table of many academic papers.
+
+[^tutorials]: [tysonstanley.github.io](tysonstanley.github.io)
+
+
+

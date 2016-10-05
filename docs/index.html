@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Rstats for Researchers</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta name="description" content="Rstats for Researchers">
+  <meta name="generator" content="bookdown 0.1 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Rstats for Researchers" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Rstats for Researchers" />
+  
+  
+  
+
+<meta name="author" content="Tyson S. Barrett">
+
+<meta name="date" content="2016-10-05">
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+
+<link rel="next" href="chapter-1-the-basics.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#part-i"><i class="fa fa-check"></i>Part I</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#part-ii"><i class="fa fa-check"></i>Part II</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#part-iii"><i class="fa fa-check"></i>Part III</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#download-r-and-rstudio"><i class="fa fa-check"></i>Download R and RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html"><i class="fa fa-check"></i><b>1</b> Chapter 1: The Basics</a></li>
+<li class="chapter" data-level="2" data-path="chapter-2-the-tidyverse.html"><a href="chapter-2-the-tidyverse.html"><i class="fa fa-check"></i><b>2</b> Chapter 2: The Tidyverse</a></li>
+<li class="chapter" data-level="3" data-path="chapter-3-understanding-your-data.html"><a href="chapter-3-understanding-your-data.html"><i class="fa fa-check"></i><b>3</b> Chapter 3: Understanding Your Data</a></li>
+<li class="chapter" data-level="4" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html"><i class="fa fa-check"></i><b>4</b> Chapter 4: Basic Analyses</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Rstats for Researchers</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Rstats for Researchers</h1>
+<h4 class="author"><em>Tyson S. Barrett</em></h4>
+<h4 class="date"><em>2016-10-05</em></h4>
+</div>
+<div id="preface" class="section level1 unnumbered">
+<h1>Preface</h1>
+<blockquote>
+<p>“If I have seen further, it is by standing on the shoulders of giants.”</p>
+<p>— Isaac Newton, circa 1676</p>
+</blockquote>
+<p>Science. It is built on replication and construction. Once an idea is established and well replicated, the next steps are to build on to it. This is a major aspect of science. We try to build from a foundation established by others. It should also be how we analyze our data, not only in methodology but also in software. Lucky for us, <code>R</code> is how we do just that.</p>
+<p>This book is for beginners in <code>R</code>; especially those in health, behavioral and social sciences. <code>R</code> is unique. It is an open source project and improvements—known as packages—are being made by smart individuals across the globe.</p>
+<p>I’ll introduce you to many ways in which <code>R</code> can be used in your work. You’ll find that it can help in all facets of your data analysis and communication. In the long run, taking some time to learn a knew tool will save you time, energy, and probably most importantly, frustration. It will also increase the replicability of your analyses.</p>
+<p>We will quickly, and succinctly, introduce the newest, easiest, and most understandable ways of working with your data.</p>
+<div id="part-i" class="section level2 unnumbered">
+<h2>Part I</h2>
+<ol style="list-style-type: decimal">
+<li>Chapter 1: Introduces the basics of the language</li>
+<li>Chapter 2: Manipulate Your Data (reshape, subset, join)</li>
+<li>Chapter 3: Understanding your data (summary statistics, ggplot2)</li>
+</ol>
+</div>
+<div id="part-ii" class="section level2 unnumbered">
+<h2>Part II</h2>
+<ol start="4" style="list-style-type: decimal">
+<li>Chapter 4: Basic Analyses (ANOVA, Linear Regression)</li>
+<li>Chapter 5: Generalized Linear Models</li>
+<li>Chapter 6: Mulilevel Modeling</li>
+<li>Chapter 7: Other Modeling Techniques</li>
+</ol>
+</div>
+<div id="part-iii" class="section level2 unnumbered">
+<h2>Part III</h2>
+<ol start="8" style="list-style-type: decimal">
+<li>Chapter 8: Advanced data manipulation</li>
+<li>Chapter 9: Advanced plotting</li>
+<li>Chapter 10: Where to go from here</li>
+</ol>
+<p>At the end of the book, you should be able to: 1) use <code>R</code> to perform your data manipulation and data analyses, 2) understand online helps (e.g. www.stackoverflow.com, www.r-bloggers.com).</p>
+</div>
+<div id="download-r-and-rstudio" class="section level2 unnumbered">
+<h2>Download R and RStudio</h2>
+<p>To begin, you will need to download the <code>R</code> software <a href="https://www.r-project.org/">www.r-project.org</a> and then the RStudio software <a href="https://www.rstudio.com/">www.rstudio.com</a>. <code>R</code> is the brains and <code>RStudio</code><a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> is an IDE (something that helps us work with <code>R</code> much more easily).</p>
+<p>Once both are installed (helps on installing the software can be found on <a href="https://www.rstudio.com/">www.rstudio.com</a>, <a href="www.r-bloggers.com" class="uri">www.r-bloggers.com</a>, and <a href="www.statmethods.net" class="uri">www.statmethods.net</a>) you are good to go. The remainder of the book will be about actually using it.</p>
+<p>Enjoy!</p>
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>Get the free version of <code>Rstudio</code>. Believe me, it doesn’t feel like it should be free software.<a href="index.html#fnref1">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="chapter-1-the-basics.html" class="navigation navigation-next navigation-unique" aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,138 @@
+---
+title: "Rstats for Researchers"
+author: "Tyson S. Barrett"
+date: "`r Sys.Date()`"
+site: "bookdown::bookdown_site"
+output:
+  bookdown::gitbook: default
+documentclass: book
+link-citations: yes
+---
+
+```{r, echo=FALSE}
+## Run but not shown
+## Getting data ready for the examples
+library(foreign)
+library(dplyr)
+dem_df <- read.xport("~/Box Sync/GitHub/blog_rstats/assets/Data/NHANES_demographics_11.xpt")
+med_df <- read.xport("~/Box Sync/GitHub/blog_rstats/assets/Data/NHANES_MedHeath_11.xpt")
+men_df <- read.xport("~/Box Sync/GitHub/blog_rstats/assets/Data/NHANES_MentHealth_11.xpt")
+act_df <- read.xport("~/Box Sync/GitHub/blog_rstats/assets/Data/NHANES_PhysActivity_11.xpt")
+names(dem_df) <- tolower(names(dem_df))
+names(med_df) <- tolower(names(med_df))
+names(men_df) <- tolower(names(men_df))
+names(act_df) <- tolower(names(act_df))
+df <- dem_df %>%
+  full_join(med_df, by="seqn") %>%
+  full_join(men_df, by="seqn") %>%
+  full_join(act_df, by="seqn")
+
+
+```
+
+
+
+# Chapter 4: Basic Analyses {-}
+
+In this chapter we are going to demonstrate basic modeling in `R`. Lucky for us, `R` is built for these analyses. It is actually quite straight-forward to run these types of models and analyze the output. Not only that, but there are simple ways to compare models.
+
+We will go through the **ANOVA** family of analyses, the **linear regression** framework, and look at **diagnostics** of each.
+
+
+## ANOVA {-}
+
+ANOVA stands for **an**alysis **o**f **va**riance. It is a family of methods (e.g. ANCOVA, MANOVA) that all share the fact that they compare a continuous dependent variable by a grouping factor variable (and may have multiple outcomes or other covariates). 
+
+$$
+Y_i = \alpha_0 + \alpha_1 \text{Group}_i + e_i
+$$
+Since the groups are compared using "effect coding," the $\alpha_0$ is the grand mean and each of the group level means are compared to it. For more information on the ANOVA family of methods, please refer to ...
+
+To run an ANOVA model, you can simply use the `aov` function. In the example below, we are analyzing whether family size (although not fully continuous it is still useful for the example) differs by race.
+
+```{r}
+df$race <- factor(df$ridreth1, labels=c("white", "black", "mexicanamerican", "asian", "other"))
+df$famsize <- as.numeric(df$dmdfmsiz)
+
+fit <- aov(famsize ~ race, df)
+anova(fit)
+```
+
+We make sure the variables are the right type, then we use the `aov` function. Inside of the function we have what is called a formula. It has the general structure: `leftside ~ rightside`. Generally, the left side is an outcome variable and the right side is the predictor (i.e. independent) variable. Here, we have `race` predicting `famsize`. We assign the model to the name `fit` which is a common way of denoting it is a model. Finally, we use the `anova` function to output a nice ANOVA table. 
+
+In the output we see the normal ANOVA table and we can see the p-value (`Pr(>F)`) is very, very small and thus is quite significant. We can look at how the groups relate using a box plot. We will be using some of the practice you got in Chapter 3 using `ggplot2` for this.
+
+```{r}
+library(ggplot2)
+
+
+
+```
+
+We also would like to make sure the assumptions look like they are being met. In `R` we can get some simple graphical checks using `plot`.
+
+```{r}
+
+```
+
+
+
+## Linear Modeling {-}
+
+Linear regression is nearly identical to ANOVA. In fact, the
+
+**How it relates to ANOVA**
+
+**Assumptions**
+
+**Compare Models**
+
+**Do it in R**
+
+
+
+
+
+
+
+
+## When Assumptions Fail {-}
+
+There are many things we can try when our assumptions fail. In my opinion, the best and most interpretable way is to use a Generalized Linear Model (GLM) which is discussed in the next chapter. There are a few other things you can try which I'll show here. But, keep in mind that these things can cause other problems. For example, to fix normality we may accidentally cause heteroskedasticity. With that in mind, here are some common methods to help a model fit better.
+
+### Log-Linear, Log-Log, Linear-Log, Other
+
+Sounds like a great tongue-twister? Well, it is but it's also three ways of specifying (i.e. deciding what is in) your model better.
+
+**Log-Linear** is where we adjust the outcome variable by a natural log transformation. This is done easily in `R`:
+
+```{r, eval=FALSE}
+df$log_outcome <- log(df$outcome)
+
+lm(log_outcome ~ var1, data=df)
+```
+
+**Log-Log** is where we adjust both the outcome and the predictor variable with a log transformation. This is also easily done:
+
+```{r, eval=FALSE}
+df$log_outcome <- log(df$outcome)
+df$log_var1    <- log(df$var1)
+
+lm(log_outcome ~ log_var1, data=df)
+```
+
+
+**Linear-Log** is where we adjsut just the predictor variable with a log transformation. And, you guessed it, this is easily done in `R`:
+
+```{r, eval=FALSE}
+df$log_var1 <- log(df$var1)
+
+lm(outcome ~ log_var1 + var2, data=df)
+```
+
+**Other** methods such as square rooting the outcome or using some power function (e.g. square, cube) are also quite common. There are functions that look for the best transformation to use. However, I will not cover it here since I think GLM's are better. So if you want to learn about other ways to help your linear model go to the next chapter.
+
+
+
+
+

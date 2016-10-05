@@ -1,0 +1,233 @@
+---
+title: "Rstats for Researchers"
+author: "Tyson S. Barrett"
+date: "`r Sys.Date()`"
+site: "bookdown::bookdown_site"
+output:
+  bookdown::gitbook: default
+documentclass: book
+link-citations: yes
+---
+
+# Chapter 1: The Basics {-}
+
+Let's jump right into it. 
+
+`R` is an open source statistical software made by statisticians. This means it generally speaks the language of statistics. This is very helpful when it comes running analyses but can be confusing when starting to understand the code. 
+
+> Advice: Don't get overwhelmed. It may feel like there is a lot to learn, but taking things one at a time will work surprisingly quickly. I've designed this book to discuss what you need to know from the beginning. Other topics that are not discussed are things you can learn later and do not need to be of your immediate concern.
+
+Because learning code is best through experience, we'll start with a simple walk-through of data types, functions, and objects.
+
+
+## Data Types {-}
+
+In `R` there are three main data types that you'll work with in research:
+
+- numeric
+- factor
+- character
+
+The first, **numeric**, is just that: numbers. In `R`, you can make a numeric variable with the code below:
+
+```{r numeric-example}
+x <- c(10.1, 2.1, 4.6, 2.3, 8.9)
+```
+
+The `c()` is a **function** [^function] that stands for "concatenate" which basically glues the values inside the paratheses together into one. We use `<-` to put it into `x`. So in this case, `x` (which we could have named anything) is saving those values so we can work with them[^obj].
+
+A **factor** variable is a categorical variable (i.e., only a limited number of options exist). For example, race/ethnicity is a factor variable.
+
+```{r}
+race <- c(1, 3, 2, 1, 1, 2, 1, 3, 4, 2)
+```
+
+The code above actually produces a numeric vector (since it was only provided numbers). We can quickly tell `R` that it is indeed supposed to be a factor.
+
+```{r}
+race <- factor(race, labels = c("white", "black", "hispanic", "asian"))
+```
+
+The `factor()` function tells `R` that the first thing `race` is actually a factor. The additional argument `labels` tells `R` what each of the values means. If we print out `race` we see that `R` has replaced the numeric values with the labels.
+
+```{r}
+race
+```
+
+Finally, and maybe less relevantly, there are character variables. These are words (known as strings). In research this is often where subjects give open responses to a question.
+
+```{r}
+ch <- c("I think this is great.", "I would suggest you learn R.", "You seem quite smart.")
+```
+
+When we combine multiple variables into one, we create a **data.frame**. A data frame is like a spreadsheet table, like the ones you have probably seen in excel and SPSS. Here's a simple example:
+
+```{r}
+df <- data.frame("A"=c(1,2,1,4,3),
+                 "B"=c(1.4,2.1,4.6,2.0,8.2),
+                 "C"=c(0,0,1,1,1))
+df
+```
+
+We can do quite a bit with the `data.frame` that we called `df`[^df]. Once again, we could have called this data frame anything, although I recommend short names. If "A" and "C" are factors we can tell `R` by:
+
+```{r}
+df$A <- factor(df$A, labels = c("level1", "level2", "level3", "level4"))
+df$C <- factor(df$C, labels = c("Male", "Female"))
+```
+
+In the above code, the `$` reaches into `df` to grab a variable (or column). The following code does the exact same thing:
+
+```{r, eval=FALSE}
+df[["A"]] <- factor(df$A, labels = c("level1", "level2", "level3", "level4"))
+df[["C"]] <- factor(df$C, labels = c("Male", "Female"))
+```
+
+and so is the following: 
+
+```{r, eval=FALSE}
+df[, "A"] <- factor(df$A, labels = c("level1", "level2", "level3", "level4"))
+df[, "C"] <- factor(df$C, labels = c("Male", "Female"))
+```
+
+`df[["A"]]` grabs the `A` variable just like `df$A`. The last example shows that we can grab both columns and rows. In `df[, "C"]` we have a spot just a head of the comma. It works like this: `df[rows, columns]`. So we could specifically grab certain rows and certain columns.
+
+```{r, eval=FALSE}
+df[1:3, "A"]
+df[1:3, 1]
+```
+
+Both lines of the above code grabs rows 1 thorugh 3 and column "A".
+
+Finally, we can combine the `c()` function to grab different rows and columns. To grab rows 1 and 5 and columns "B" and "C" you can do the following:
+
+```{r, eval=FALSE}
+df[c(1,5), c("B", "C")]
+```
+
+We may also want to get more information about the data frame before we do any subsetting. There are a few nice functions to get information that can help us know what we should do next with our data.
+
+```{r}
+## Get the variable names
+names(df)
+
+## Know what type of variable it is
+class(df$A)
+
+## Get quick summary statistics for each variable
+summary(df)
+
+## Get the first 10 columns of your data
+head(df, n=10)
+```
+
+I'll admit that the last one is a bit pointless since our data frame is only a few lines long. However, these functions can give you quick information about your data with hardly any effort on your part.
+
+
+## Objects {-}
+
+`R` uses objects and operators. An object, just like in the physical world, is something you can do things with. 
+
+In the real world, we have objects that we use regularly. For example, we have chairs. Chairs are great for some things (sitting, sleeping) and horrible at others (driving, flying). Similarly, in `R` each type of object is useful for certain things. The data types we just discussed are certain types of objects. The data frames objects are a very good way to store data in an easily analyzable format.
+
+Because this is so analogous to the real world, it becomes quite natural to work with. You can have many objects in memory, which allows flexbility in analyzing many different things simply within a single `R` session.
+
+
+## Importing Data {-}
+
+Most of the time you'll want to import data into `R` rather than manually entering it line by line, variable by variable.
+
+There are some built in ways to import many delimited[^delim] data types (e.g. comma delimited--also called a CSV, tab delimited, space delimited). Other **packages**[^packages] have been developed to help with this as well. 
+
+The first, if it is an `R` data file in the form `.rda` or `.RData` simply use:
+
+```{r, eval=FALSE}
+load("file.rda")
+```
+
+Note that you don't assign this to a name such as `df`. Instead, it loads whatever `R` objects were saved to it.
+
+### Delimited Files {-}
+
+Most delimited files are saved as `.csv`, `.txt`, or `.dat`. As long as you know the delimiter, this process is easy.
+
+```{r, eval=FALSE}
+df <- read.table("file.csv", sep = ",", header=TRUE)   ## for csv
+df <- read.table("file.txt", sep = "\t", header=TRUE)  ## for tab delimited
+df <- read.table("file.txt", sep = " ", header=TRUE)   ## for space delimited
+```
+
+The argument `sep` tells the function what kind of delimiter the data has and `header` tells `R` if the first row contains the variable names (you can change it to `FALSE` if the first row isn't).
+
+Note that at the end of the lines you see that I left a **comment** using `#`. I used two for stylistic purposes but only one is necessary. Anything after a `#` is not read by the computer; it's just for us humans.
+
+> Heads up! Note that unless you are using the `load` function, you need to assign what is being read in to a name. In the examples, all were called `df`. In real life, you won't run a bunch of different `read` functions to the same name because only the last one run would be saved (the others would be written over). However, if you have multiple data files to import you can assign them to different names and later merge them. Merging, also called joining, is something we'll discuss in the next chapter.
+
+### Other Data Formats {-}
+
+Data from other statistical software such as SAS, SPSS, or Stata are also easy to get into `R`. We will use two powerful packages:
+
+1. `haven`
+2. `foreign`
+
+To install, simply run:
+```{r, eval=FALSE}
+install.packages("packagename")
+```
+
+This only needs to be run once on a computer. Then, to use it in a single `R` session (i.e. from when you open `R` to when you close it) run:
+```{r, eval=FALSE}
+library(packagename)
+```
+
+Using these packages, I will show you simple ways to bring your data in from other formats.
+
+```{r, eval=FALSE}
+library(haven)
+df <- read_dta("file.dta")       ## for Stata data
+df <- read_spss("file.sav")      ## for SPSS data
+df <- read_sas("file.sas7bdat")  ## for this type of SAS file
+```
+
+```{r, eval=FALSE}
+library(foreign)
+df <- read.xport("file.xpt")     ## for export SAS files
+```
+
+If you have another type of data file to import, online helps found on sites like www.stackoverflow.com and www.r-bloggers.com often have the solution.
+
+## Saving Data {-}
+
+Finally, there are many ways to save data. Most of the `read...` functions have a corresponding `write...` function.
+
+```{r, eval=FALSE}
+write.table(df, file="file.csv", sep = ",")  ## to create a CSV data file
+```
+
+`R` automatically saves missing data as `NA` since that is what it is in `R`. But often when we write a CSV file, we might want it as blank or some other value. If that's the case, we can add another argument `na = " "` after the sep argument.
+
+If you ever have questions about the specific arguments that a certain function has, you can simply run:
+
+```{r, eval=FALSE}
+?functionname
+```
+
+So, if you were curious about the different arguments in `write.table` simply run: `?write.table`. In the pane with the files, plots, packages, etc. a document will show up to give you more informaton.
+
+
+## Conclusions {-}
+
+`R` is designed to be flexible and do just about anything with data that you'll need to do as a researcher. With this chapter under your belt, you can now read basic `R` code, import and save your data. The next chapter will introduce the "tidyverse" of methods that can help you join, reshape, summarize, group, and much more.
+
+
+
+[^function]: `R` is all about functions. Functions tell `R` what to do with the data. You'll see many more examples throughout the book.
+
+[^obj]: This is a great feature of `R`. It is called "object oriented" which basically means `R` creates objects to work with. I discuss this more in 1.2.
+
+[^df]: I used this name since `df` is common in online helps and other resources.
+
+[^packages]: A package is an extension to `R` that gives you more functions--abilities--to work with data. Anyone can write a package, although to get it on the Comprehensive R Archive Network (CRAN) it needs to be vetted to a large degree. In fact, after some practice, you could write a package to help you more easily do your work.
+
+[^delim]: The delimiter is what separtes the pieces of data.
+

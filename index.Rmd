@@ -1,0 +1,61 @@
+---
+title: "Rstats for Researchers"
+author: "Tyson S. Barrett"
+date: "`r Sys.Date()`"
+site: "bookdown::bookdown_site"
+output:
+  bookdown::gitbook: default
+documentclass: book
+link-citations: yes
+---
+
+# Preface {-}
+
+> "If I have seen further, it is by standing on the shoulders of giants."
+>
+> --- Isaac Newton, circa 1676
+
+Science. It is built on replication and construction. Once an idea is established and well replicated, the next steps are to build on to it. This is a major aspect of science. We try to build from a foundation established by others. It should also be how we analyze our data, not only in methodology but also in software. Lucky for us, `R` is how we do just that.
+
+This book is for beginners in `R`; especially those in health, behavioral and social sciences. `R` is unique. It is an open source project and improvements---known as packages---are being made by smart individuals across the globe.  
+
+I'll introduce you to many ways in which `R` can be used in your work. You'll find that it can help in all facets of your data analysis and communication. In the long run, taking some time to learn a knew tool will save you time, energy, and probably most importantly, frustration. It will also increase the replicability of your analyses.
+
+We will quickly, and succinctly, introduce the newest, easiest, and most understandable ways of working with your data. 
+
+## Part I {-}
+
+1. Chapter 1: Introduces the basics of the language
+2. Chapter 2: Manipulate Your Data (reshape, subset, join)
+3. Chapter 3: Understanding your data (summary statistics, ggplot2)
+
+## Part II {-}
+
+4. Chapter 4: Basic Analyses (ANOVA, Linear Regression)
+5. Chapter 5: Generalized Linear Models
+6. Chapter 6: Mulilevel Modeling
+7. Chapter 7: Other Modeling Techniques
+
+## Part III {-}
+
+8. Chapter 8: Advanced data manipulation
+9. Chapter 9: Advanced plotting
+10. Chapter 10: Where to go from here
+
+At the end of the book, you should be able to: 1) use `R` to perform your data manipulation and data analyses, 2) understand online helps (e.g. www.stackoverflow.com, www.r-bloggers.com).
+
+
+## Download R and RStudio {-}
+
+To begin, you will need to download the `R` software [www.r-project.org](https://www.r-project.org/) and then the RStudio software [www.rstudio.com](https://www.rstudio.com/). `R` is the brains and `RStudio`[^free] is an IDE (something that helps us work with `R` much more easily). 
+
+Once both are installed (helps on installing the software can be found on [www.rstudio.com](https://www.rstudio.com/), [www.r-bloggers.com](www.r-bloggers.com), and [www.statmethods.net](www.statmethods.net)) you are good to go. The remainder of the book will be about actually using it.
+
+Enjoy!
+
+
+[^free]: Get the free version of `Rstudio`. Believe me, it doesn't feel like it should be free software. 
+
+
+
+
