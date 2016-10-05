@@ -51,10 +51,12 @@ To begin, you will need to download the `R` software [www.r-project.org](https:/
 
 Once both are installed (helps on installing the software can be found on [www.rstudio.com](https://www.rstudio.com/), [www.r-bloggers.com](www.r-bloggers.com), and [www.statmethods.net](www.statmethods.net)) you are good to go. The remainder of the book will be about actually using it.
 
-Enjoy!
+Enjoy![^return]
 
 
 [^free]: Get the free version of `Rstudio`. Believe me, it doesn't feel like it should be free software. 
+
+[^return]: Note that to return to the blog, you can click [here](tysonstanley.github.io)
 
 
 
