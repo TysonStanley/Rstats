@@ -56,8 +56,9 @@ Enjoy![^return]
 
 [^free]: Get the free version of `Rstudio`. Believe me, it doesn't feel like it should be free software. 
 
-[^return]: Note that to return to the blog, you can click [here](https://tysonstanley.github.io/)
+[^return]: Note that to return to the blog, you can click [here][blog]
 
+[blog]: https://tysonstanley.github.io
 
 
 
