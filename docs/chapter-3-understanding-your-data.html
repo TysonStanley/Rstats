@@ -268,23 +268,23 @@ Hmisc::<span class="kw">describe</span>(df)  ## gives summary for each variable 
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)   ## first install using install.packages(&quot;ggplot2&quot;)</code></pre></div>
 <p>First, we have a nice <code>qplot</code> function that is short for “quick plot.” It quickly decides what kind of plot is useful given the data and variables you provide.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qplot</span>(df$A)  ## Makes a simple histogram</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><img src="https://github.com/TysonStanley/Rstats/_main_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qplot</span>(df$D, df$B)  ## Makes a scatterplot</code></pre></div>
 <pre><code>## Warning: Removed 1 rows containing missing values (geom_point).</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-8-2.png" width="672" /></p>
+<p><img src="https://github.com/TysonStanley/Rstats/_main_files/figure-html/unnamed-chunk-8-2.png" width="672" /></p>
 <p>For a bit more control over the plot, you can use the <code>ggplot</code> function. The first piece is the <code>ggplot</code> piece. From there, we add layers. These layers generally start with <code>geom_</code> then have the type of plot.</p>
 <p>Below, we start with telling <code>ggplot</code> the basics of the plot and then build a boxplot. The x-axis is the variable “C” and the y-axis is the variable “D” and then we color it by variable “C” as well.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x=</span>C, <span class="dt">y=</span>D)) +
 <span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">color =</span> C))</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p><img src="https://github.com/TysonStanley/Rstats/_main_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <p>Here’s a few more examples:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x=</span>C)) +
 <span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;count&quot;</span>, <span class="kw">aes</span>(<span class="dt">fill =</span> C))</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p><img src="https://github.com/TysonStanley/Rstats/_main_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x=</span>B, <span class="dt">y=</span>D)) +
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> C))</code></pre></div>
 <pre><code>## Warning: Removed 1 rows containing missing values (geom_point).</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p><img src="https://github.com/TysonStanley/Rstats/_main_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 <p><em>Note that the warning that says it removed a row is because we had a missing value in “C”.</em></p>
 <p>We are going to make the first one again but with some aesthetic adjustments. Notice that we just added two extra lines telling <code>ggplot2</code> how we want some things to look.<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x=</span>C, <span class="dt">y=</span>D)) +
