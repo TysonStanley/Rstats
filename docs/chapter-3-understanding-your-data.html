@@ -154,7 +154,7 @@ df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class=
 
 <span class="kw">table1</span>(df, A, B, C, D)</code></pre></div>
 <pre><code>## 
-## |=================================
+## |==================================
 ##               Mean/Count (SD/%)
 ##  Observations 6                
 ##  A                             
@@ -164,8 +164,8 @@ df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class=
 ##  C                             
 ##               0.67 (0.52)      
 ##  D                             
-##               0.01 (1.26)      
-## |=================================</code></pre>
+##               -0.02 (1.76)     
+## |==================================</code></pre>
 <p>This quickly gives you means and standard deviations (or counts and percentages if there were categorical variables).</p>
 <p>It turns out, for we want “A” and “C” to be factors.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df$A &lt;-<span class="st"> </span><span class="kw">factor</span>(df$A, <span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;cat1&quot;</span>, <span class="st">&quot;cat2&quot;</span>, <span class="st">&quot;cat3&quot;</span>, <span class="st">&quot;cat4&quot;</span>))
@@ -173,7 +173,7 @@ df$C &lt;-<span class="st"> </span><span class="kw">factor</span>(df$C, <span cl
 
 <span class="kw">table1</span>(df, A, B, C, D)</code></pre></div>
 <pre><code>## 
-## |=================================
+## |==================================
 ##               Mean/Count (SD/%)
 ##  Observations 6                
 ##  A                             
@@ -187,8 +187,8 @@ df$C &lt;-<span class="st"> </span><span class="kw">factor</span>(df$C, <span cl
 ##     male      2 (33.3%)        
 ##     female    4 (66.7%)        
 ##  D                             
-##               0.01 (1.26)      
-## |=================================</code></pre>
+##               -0.02 (1.76)     
+## |==================================</code></pre>
 <p>So now we see the counts and percentages for the factor variables. But now we can take a step further and look for relationships. The code below shows the means/standard devaitions or counts/percentages by a grouping variable–in this case, <code>C</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table1</span>(df, A, B, D,
        <span class="dt">splitby =</span> ~C)</code></pre></div>
@@ -204,7 +204,7 @@ df$C &lt;-<span class="st"> </span><span class="kw">factor</span>(df$C, <span cl
 ##  B                                   
 ##               1.75 (0.5)  3.33 (1.3) 
 ##  D                                   
-##               -0.6 (1.03) 0.31 (1.39)
+##               0.55 (0.53) -0.3 (2.18)
 ## |============================================</code></pre>
 <p>We can also test for differences by group as well (although this is not particularly good with a sample size of 5). It produces a warning since the <span class="math inline">\(\chi^2\)</span> approximation is not accurate with cells this small.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table1</span>(df, A, B, D,
@@ -223,8 +223,8 @@ df$C &lt;-<span class="st"> </span><span class="kw">factor</span>(df$C, <span cl
 ##     cat4      0 (0%)      1 (33.3%)          
 ##  B                                    0.162  
 ##               1.75 (0.5)  3.33 (1.3)         
-##  D                                    0.436  
-##               -0.6 (1.03) 0.31 (1.39)        
+##  D                                    0.504  
+##               0.55 (0.53) -0.3 (2.18)        
 ## |=================================================</code></pre>
 <p>Finally, we can include missingness in the table for factors.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table1</span>(df, A, B, D,
@@ -245,8 +245,8 @@ df$C &lt;-<span class="st"> </span><span class="kw">factor</span>(df$C, <span cl
 ##     NA        0 (0%)      1 (25%)            
 ##  B                                    0.162  
 ##               1.75 (0.5)  3.33 (1.3)         
-##  D                                    0.436  
-##               -0.6 (1.03) 0.31 (1.39)        
+##  D                                    0.504  
+##               0.55 (0.53) -0.3 (2.18)        
 ## |=================================================</code></pre>
 <p>So with three or four short lines of code we can get a good idea about variables that may be related to the grouping variable and any missingness in the factor variables. There’s much more you can do with <code>table1</code> and there are vignettes and tutorials available to learn more.<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a></p>
 <p>Other quick descriptive functions exist; here are a few of them.</p>
@@ -267,9 +267,33 @@ Hmisc::<span class="kw">describe</span>(df)  ## gives summary for each variable 
 <p>This package has a straight-forward syntax. It is built by adding layers to the plot.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)   ## first install using install.packages(&quot;ggplot2&quot;)</code></pre></div>
 <p>First, we have a nice <code>qplot</code> function that is short for “quick plot.” It quickly decides what kind of plot is useful given the data and variables you provide.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#qplot()</span></code></pre></div>
-<p>For a bit more control over the plot, you can use the <code>ggplot</code> function.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#ggplot()</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qplot</span>(df$A)  ## Makes a simple histogram</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qplot</span>(df$D, df$B)  ## Makes a scatterplot</code></pre></div>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_point).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-8-2.png" width="672" /></p>
+<p>For a bit more control over the plot, you can use the <code>ggplot</code> function. The first piece is the <code>ggplot</code> piece. From there, we add layers. These layers generally start with <code>geom_</code> then have the type of plot.</p>
+<p>Below, we start with telling <code>ggplot</code> the basics of the plot and then build a boxplot. The x-axis is the variable “C” and the y-axis is the variable “D” and then we color it by variable “C” as well.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x=</span>C, <span class="dt">y=</span>D)) +
+<span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">color =</span> C))</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>Here’s a few more examples:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x=</span>C)) +
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;count&quot;</span>, <span class="kw">aes</span>(<span class="dt">fill =</span> C))</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x=</span>B, <span class="dt">y=</span>D)) +
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> C))</code></pre></div>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_point).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p><em>Note that the warning that says it removed a row is because we had a missing value in “C”.</em></p>
+<p>We are going to make the first one again but with some aesthetic adjustments. Notice that we just added two extra lines telling <code>ggplot2</code> how we want some things to look.<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x=</span>C, <span class="dt">y=</span>D)) +
+<span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">color =</span> C)) +
+<span class="st">  </span><span class="kw">theme_bw</span>() +
+<span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;dodgerblue4&quot;</span>, <span class="st">&quot;coral2&quot;</span>))</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p>The <code>theme_bw()</code> makes the background white, the <code>scale_color_manual()</code> allows us to change the colors in the plot. You can get a good idea of how many types of plots you can do by going to <a href="http://docs.ggplot2.org/current/">http://docs.ggplot2.org/current</a>. Almost any informative plot that you need to do as a researcher is possible with <code>ggplot2</code>.</p>
+<p>We will be using <code>ggplot2</code> extensively in the book to help understand our data and our models as well as communicate our results.</p>
 
 </div>
 </div>
@@ -279,6 +303,7 @@ Hmisc::<span class="kw">describe</span>(df)  ## gives summary for each variable 
 <ol start="1">
 <li id="fn1"><p>It is called “table1” because a nice descriptive table is often found in the first table of many academic papers.<a href="chapter-3-understanding-your-data.html#fnref1">↩</a></p></li>
 <li id="fn2"><p><a href="tysonstanley.github.io" class="uri">tysonstanley.github.io</a><a href="chapter-3-understanding-your-data.html#fnref2">↩</a></p></li>
+<li id="fn3"><p>This is just scratching the surface of what we can change in the plots.<a href="chapter-3-understanding-your-data.html#fnref3">↩</a></p></li>
 </ol>
 </div>
             </section>

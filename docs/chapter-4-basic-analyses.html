@@ -25,7 +25,7 @@
 
 <meta name="author" content="Tyson S. Barrett">
 
-<meta name="date" content="2016-10-05">
+<meta name="date" content="2016-10-06">
 
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
@@ -110,10 +110,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="chapter-2-manipulating-your-data.html"><a href="chapter-2-manipulating-your-data.html"><i class="fa fa-check"></i>Chapter 2: Manipulating Your Data</a></li>
 <li class="chapter" data-level="" data-path="chapter-3-understanding-your-data.html"><a href="chapter-3-understanding-your-data.html"><i class="fa fa-check"></i>Chapter 3: Understanding Your Data</a></li>
 <li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html"><i class="fa fa-check"></i>Chapter 4: Basic Analyses</a><ul>
-<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#anova"><i class="fa fa-check"></i>ANOVA</a></li>
-<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#linear-modeling"><i class="fa fa-check"></i>Linear Modeling</a></li>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#anova"><i class="fa fa-check"></i>ANOVA</a><ul>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#assumptions"><i class="fa fa-check"></i>Assumptions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#linear-modeling"><i class="fa fa-check"></i>Linear Modeling</a><ul>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#assumptions-1"><i class="fa fa-check"></i>Assumptions</a></li>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#comparing-models"><i class="fa fa-check"></i>Comparing Models</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#when-assumptions-fail"><i class="fa fa-check"></i>When Assumptions Fail</a><ul>
-<li class="chapter" data-level="0.0.1" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#log-linear-log-log-linear-log-other"><i class="fa fa-check"></i><b>0.0.1</b> Log-Linear, Log-Log, Linear-Log, Other</a></li>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#log-linear-log-log-linear-log-other"><i class="fa fa-check"></i>Log-Linear, Log-Log, Linear-Log, Other</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -142,9 +147,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>ANOVA stands for <strong>an</strong>alysis <strong>o</strong>f <strong>va</strong>riance. It is a family of methods (e.g. ANCOVA, MANOVA) that all share the fact that they compare a continuous dependent variable by a grouping factor variable (and may have multiple outcomes or other covariates).</p>
 <p><span class="math display">\[
 Y_i = \alpha_0 + \alpha_1 \text{Group}_i + e_i
-\]</span> Since the groups are compared using “effect coding,” the <span class="math inline">\(\alpha_0\)</span> is the grand mean and each of the group level means are compared to it. For more information on the ANOVA family of methods, please refer to …</p>
+\]</span> Since the groups are compared using “effect coding,” the <span class="math inline">\(\alpha_0\)</span> is the grand mean and each of the group level means are compared to it.</p>
 <p>To run an ANOVA model, you can simply use the <code>aov</code> function. In the example below, we are analyzing whether family size (although not fully continuous it is still useful for the example) differs by race.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df$race &lt;-<span class="st"> </span><span class="kw">factor</span>(df$ridreth1, <span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;white&quot;</span>, <span class="st">&quot;black&quot;</span>, <span class="st">&quot;mexicanamerican&quot;</span>, <span class="st">&quot;asian&quot;</span>, <span class="st">&quot;other&quot;</span>))
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df$race &lt;-<span class="st"> </span><span class="kw">factor</span>(df$ridreth1, <span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;MexicanAmerican&quot;</span>, <span class="st">&quot;OtherHispanic&quot;</span>, <span class="st">&quot;White&quot;</span>, <span class="st">&quot;Black&quot;</span>, <span class="st">&quot;Other&quot;</span>))
 df$famsize &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(df$dmdfmsiz)
 
 fit &lt;-<span class="st"> </span><span class="kw">aov</span>(famsize ~<span class="st"> </span>race, df)
@@ -159,22 +164,81 @@ fit &lt;-<span class="st"> </span><span class="kw">aov</span>(famsize ~<span cla
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>We make sure the variables are the right type, then we use the <code>aov</code> function. Inside of the function we have what is called a formula. It has the general structure: <code>leftside ~ rightside</code>. Generally, the left side is an outcome variable and the right side is the predictor (i.e. independent) variable. Here, we have <code>race</code> predicting <code>famsize</code>. We assign the model to the name <code>fit</code> which is a common way of denoting it is a model. Finally, we use the <code>anova</code> function to output a nice ANOVA table.</p>
 <p>In the output we see the normal ANOVA table and we can see the p-value (<code>Pr(&gt;F)</code>) is very, very small and thus is quite significant. We can look at how the groups relate using a box plot. We will be using some of the practice you got in Chapter 3 using <code>ggplot2</code> for this.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)</code></pre></div>
-<p>We also would like to make sure the assumptions look like they are being met. In <code>R</code> we can get some simple graphical checks using <code>plot</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
+
+<span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x=</span>race, <span class="dt">y=</span>famsize)) +
+<span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">color=</span>race)) +
+<span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">guide=</span><span class="ot">FALSE</span>, 
+                     <span class="dt">values=</span><span class="kw">c</span>(<span class="st">&quot;dodgerblue3&quot;</span>, <span class="st">&quot;coral2&quot;</span>, <span class="st">&quot;chartreuse4&quot;</span>, <span class="st">&quot;darkorchid&quot;</span>, <span class="st">&quot;firebrick2&quot;</span>)) +
+<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>This immediately gives us an idea of where some differences may be occuring. It would appear that “White” and “MexicanAmerican” groups are different in family size.</p>
+<div id="assumptions" class="section level3 unnumbered">
+<h3>Assumptions</h3>
+<p>We also would like to make sure the assumptions look like they are being met. In ANOVA, we want the residuals to be distributed normally, the variance of each group should be approximately the same, the groups are assumed to be randomly assigned, and the sample should be randomly selected as well.</p>
+<p>In <code>R</code> we can get some simple graphical checks using <code>plot</code>. All we provide is our ANOVA object (here it is <code>fit</code>). The line before it <code>par(mfrow=c(1,2))</code> tells <code>R</code> to have two plots per row (the 1 means one row, 2 means two columns).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))
+<span class="kw">plot</span>(fit)</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-4-1.png" width="672" /><img src="_main_files/figure-html/unnamed-chunk-4-2.png" width="672" /></p>
+<p>Here, it looks like we have a problem with normality (see the Normal Q-Q plot). Those dots should approximately follow the dotted line, which is not the case. In the first plot (Residuals vs. Fitted) suggests we have approximate homoskedasticity.</p>
+</div>
 </div>
 <div id="linear-modeling" class="section level2 unnumbered">
 <h2>Linear Modeling</h2>
-<p>Linear regression is nearly identical to ANOVA. In fact, the</p>
-<p><strong>How it relates to ANOVA</strong></p>
-<p><strong>Assumptions</strong></p>
-<p><strong>Compare Models</strong></p>
-<p><strong>Do it in R</strong></p>
+<p>Linear regression is nearly identical to ANOVA. In fact, a linear regression with a continuous outcome and categorical predictor is exactly the same (if we use effect coding). For example, if we run the same model but with the linear regression function <code>lm</code> we get the same ANOVA table.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fit2 &lt;-<span class="st"> </span><span class="kw">lm</span>(famsize ~<span class="st"> </span>race, df)
+<span class="kw">anova</span>(fit2)</code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: famsize
+##             Df Sum Sq Mean Sq F value    Pr(&gt;F)    
+## race         4   1735  433.76  146.87 &lt; 2.2e-16 ***
+## Residuals 9751  28798    2.95                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>Surprise! It is the same as before. Here we can also use the <code>summary</code> function and we get the coefficients in the model as well (using dummy coding). The first level of the categorical variable is the reference group (the group that the others are compared to). We also get the intercept (in this case, the average value of the reference group).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(fit2)</code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = famsize ~ race, data = df)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -3.4487 -1.4487 -0.1097  1.3415  3.8903 
+## 
+## Coefficients:
+##                   Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)        4.44871    0.04669  95.290   &lt;2e-16 ***
+## raceOtherHispanic -0.66339    0.07017  -9.454   &lt;2e-16 ***
+## raceWhite         -1.33905    0.05633 -23.772   &lt;2e-16 ***
+## raceBlack         -0.87845    0.05727 -15.338   &lt;2e-16 ***
+## raceOther         -0.79023    0.06284 -12.575   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.719 on 9751 degrees of freedom
+## Multiple R-squared:  0.05683,    Adjusted R-squared:  0.05644 
+## F-statistic: 146.9 on 4 and 9751 DF,  p-value: &lt; 2.2e-16</code></pre>
+<div id="assumptions-1" class="section level3 unnumbered">
+<h3>Assumptions</h3>
+</div>
+<div id="comparing-models" class="section level3 unnumbered">
+<h3>Comparing Models</h3>
+<p>Often when running linear regression, we want to compare models and see if one fits significantly better than another. We also often want to present all the models in a table to let our readers compare the models. We will demonstrate both.</p>
+<div id="compare-statistically" class="section level4 unnumbered">
+<h4>Compare Statistically</h4>
+</div>
+<div id="compare-in-a-table" class="section level4 unnumbered">
+<h4>Compare in a Table</h4>
+<p>Two main packages allow us to compare models.</p>
+</div>
+</div>
 </div>
 <div id="when-assumptions-fail" class="section level2 unnumbered">
 <h2>When Assumptions Fail</h2>
 <p>There are many things we can try when our assumptions fail. In my opinion, the best and most interpretable way is to use a Generalized Linear Model (GLM) which is discussed in the next chapter. There are a few other things you can try which I’ll show here. But, keep in mind that these things can cause other problems. For example, to fix normality we may accidentally cause heteroskedasticity. With that in mind, here are some common methods to help a model fit better.</p>
-<div id="log-linear-log-log-linear-log-other" class="section level3">
-<h3><span class="header-section-number">0.0.1</span> Log-Linear, Log-Log, Linear-Log, Other</h3>
+<div id="log-linear-log-log-linear-log-other" class="section level3 unnumbered">
+<h3>Log-Linear, Log-Log, Linear-Log, Other</h3>
 <p>Sounds like a great tongue-twister? Well, it is but it’s also three ways of specifying (i.e. deciding what is in) your model better.</p>
 <p><strong>Log-Linear</strong> is where we adjust the outcome variable by a natural log transformation. This is done easily in <code>R</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df$log_outcome &lt;-<span class="st"> </span><span class="kw">log</span>(df$outcome)

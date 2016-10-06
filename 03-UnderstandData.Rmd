@@ -107,16 +107,45 @@ First, we have a nice `qplot` function that is short for "quick plot." It quickl
 
 
 ```{r}
-#qplot()
+qplot(df$A)  ## Makes a simple histogram
+qplot(df$D, df$B)  ## Makes a scatterplot
 ```
 
 
-For a bit more control over the plot, you can use the `ggplot` function.
+For a bit more control over the plot, you can use the `ggplot` function. The first piece is the `ggplot` piece. From there, we add layers. These layers generally start with `geom_` then have the type of plot. 
+
+Below, we start with telling `ggplot` the basics of the plot and then build a boxplot. The x-axis is the variable "C" and the y-axis is the variable "D" and then we color it by variable "C" as well.
 
 ```{r}
-#ggplot()
+ggplot(df, aes(x=C, y=D)) +
+  geom_boxplot(aes(color = C))
 ```
 
+Here's a few more examples:
+```{r}
+ggplot(df, aes(x=C)) +
+  geom_bar(stat="count", aes(fill = C))
+```
+
+```{r}
+ggplot(df, aes(x=B, y=D)) +
+  geom_point(aes(color = C))
+```
+
+*Note that the warning that says it removed a row is because we had a missing value in "C".*
+
+We are going to make the first one again but with some aesthetic adjustments. Notice that we just added two extra lines telling `ggplot2` how we want some things to look.[^look] 
+
+```{r}
+ggplot(df, aes(x=C, y=D)) +
+  geom_boxplot(aes(color = C)) +
+  theme_bw() +
+  scale_color_manual(values = c("dodgerblue4", "coral2"))
+```
+
+The `theme_bw()` makes the background white, the `scale_color_manual()` allows us to change the colors in the plot. You can get a good idea of how many types of plots you can do by going to [http://docs.ggplot2.org/current][ggplot2]. Almost any informative plot that you need to do as a researcher is possible with `ggplot2`.
+
+We will be using `ggplot2` extensively in the book to help understand our data and our models as well as communicate our results.
 
 
 
@@ -126,5 +155,6 @@ For a bit more control over the plot, you can use the `ggplot` function.
 
 [^tutorials]: [tysonstanley.github.io](tysonstanley.github.io)
 
+[ggplot2]: http://docs.ggplot2.org/current/
 
-
+[^look]: This is just scratching the surface of what we can change in the plots.
