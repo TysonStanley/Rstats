@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Rstats for Researchers</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta name="description" content="Rstats for Researchers">
+  <meta name="generator" content="bookdown 0.1 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Rstats for Researchers" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Rstats for Researchers" />
+  
+  
+  
+
+<meta name="author" content="Tyson S. Barrett">
+
+<meta name="date" content="2016-10-08">
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="chapter-5-generalized-linear-models.html">
+<link rel="next" href="chapter-7-other-modeling-techniques.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html"><i class="fa fa-check"></i>Chapter 1: The Basics</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-manipulating-your-data.html"><a href="chapter-2-manipulating-your-data.html"><i class="fa fa-check"></i>Chapter 2: Manipulating Your Data</a></li>
+<li class="chapter" data-level="" data-path="chapter-3-understanding-your-data.html"><a href="chapter-3-understanding-your-data.html"><i class="fa fa-check"></i>Chapter 3: Understanding Your Data</a></li>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html"><i class="fa fa-check"></i>Chapter 4: Basic Analyses</a></li>
+<li class="chapter" data-level="" data-path="chapter-5-generalized-linear-models.html"><a href="chapter-5-generalized-linear-models.html"><i class="fa fa-check"></i>Chapter 5: Generalized Linear Models</a></li>
+<li class="chapter" data-level="" data-path="chapter-6-multilevel-modeling.html"><a href="chapter-6-multilevel-modeling.html"><i class="fa fa-check"></i>Chapter 6: Multilevel Modeling</a></li>
+<li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html"><i class="fa fa-check"></i>Chapter 7: Other Modeling Techniques</a></li>
+<li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html"><i class="fa fa-check"></i>Chapter 8: Advanced Data Manipulation</a></li>
+<li class="chapter" data-level="" data-path="chapter-9-advanced-plotting.html"><a href="chapter-9-advanced-plotting.html"><i class="fa fa-check"></i>Chapter 9: Advanced Plotting</a></li>
+<li class="chapter" data-level="" data-path="chapter-10-where-to-go-from-here.html"><a href="chapter-10-where-to-go-from-here.html"><i class="fa fa-check"></i>Chapter 10: Where to go from here</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Rstats for Researchers</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="chapter-6-multilevel-modeling" class="section level1 unnumbered">
+<h1>Chapter 6: Multilevel Modeling</h1>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="chapter-5-generalized-linear-models.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="chapter-7-other-modeling-techniques.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

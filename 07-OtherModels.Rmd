@@ -1,0 +1,42 @@
+---
+title: "Rstats for Researchers"
+author: "Tyson S. Barrett"
+date: "`r Sys.Date()`"
+site: "bookdown::bookdown_site"
+output:
+  bookdown::gitbook: default
+documentclass: book
+link-citations: yes
+---
+
+```{r, echo=FALSE}
+## Run but not shown
+## Getting data ready for the examples
+library(foreign)
+library(dplyr)
+dem_df <- read.xport("~/Box Sync/GitHub/blog_rstats/assets/Data/NHANES_demographics_11.xpt")
+med_df <- read.xport("~/Box Sync/GitHub/blog_rstats/assets/Data/NHANES_MedHeath_11.xpt")
+men_df <- read.xport("~/Box Sync/GitHub/blog_rstats/assets/Data/NHANES_MentHealth_11.xpt")
+act_df <- read.xport("~/Box Sync/GitHub/blog_rstats/assets/Data/NHANES_PhysActivity_11.xpt")
+names(dem_df) <- tolower(names(dem_df))
+names(med_df) <- tolower(names(med_df))
+names(men_df) <- tolower(names(men_df))
+names(act_df) <- tolower(names(act_df))
+df <- dem_df %>%
+  full_join(med_df, by="seqn") %>%
+  full_join(men_df, by="seqn") %>%
+  full_join(act_df, by="seqn")
+```
+
+
+
+# Chapter 7: Other Modeling Techniques {-}
+
+
+
+```{r}
+
+```
+
+
+
