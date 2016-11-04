@@ -9,7 +9,7 @@ documentclass: book
 link-citations: yes
 ---
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, message=FALSE}
 ## Run but not shown
 ## Getting data ready for the examples
 library(foreign)
@@ -34,7 +34,7 @@ df <- dem_df %>%
 
 In this chapter we are going to demonstrate basic modeling in `R`. Lucky for us, `R` is built for these analyses. It is actually quite straight-forward to run these types of models and analyze the output. Not only that, but there are simple ways to compare models.
 
-We will go through the **ANOVA** family of analyses, the **linear regression** framework, and look at **diagnostics** of each.
+We will go through the **ANOVA** family of analyses, the **linear regression** models, and look at **diagnostics** of each.
 
 
 ## ANOVA {-}
@@ -91,7 +91,7 @@ Here, it looks like we have a problem with normality (see the Normal Q-Q plot). 
 Linear regression is nearly identical to ANOVA. In fact, a linear regression with a continuous outcome and categorical predictor is exactly the same (if we use effect coding). For example, if we run the same model but with the linear regression function `lm` we get the same ANOVA table.
 
 ```{r}
-fit2 <- lm(famsize ~ race, df)
+fit2 <- lm(famsize ~ race, data=df)
 anova(fit2)
 ```
 
@@ -114,13 +114,44 @@ Often when running linear regression, we want to compare models and see if one f
 
 #### Compare Statistically {-}
 
+Using the `anova()` function, we can compare models statistically.
+
+```{r}
+anova(fit, fit2)
+```
+
+
+**********************************
+HERE
+**********************************
+
+Not surprisingly, when we compared the ANOVA and the simple linear model, they are *exactly* the same. For a more interesting comparison, lets run a new model and then make a comparison.
+
+```{r}
+fit3 = lm(famsize ~ race + dmdmartl, data=df)
+summary(fit3)
+```
+
+Notice that the variable is associated with the outcome according to the t-test seen in the summary. So we would expect that `fit3` is better than `fit2` at explaining the outcome.
+
+```{r}
+anova(fit2, fit3)
+```
 
 
 
 #### Compare in a Table {-}
 
-Two main packages allow us to compare models.
+Two main packages allow us to compare models:
 
+1. `stargazer`
+2. `texreg`
+
+Both provide simple functions to compare multiple models.
+
+```{r}
+
+```
 
 
 
