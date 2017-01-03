@@ -32,6 +32,65 @@ df <- dem_df %>%
 
 # Chapter 8: Advanced Data Manipulation {-}
 
+There's so much more we can do with data in `R` than what we've presented. One of the main ways that `R` can help you in your research is by looping. Looping, for our purposes, refers to the ability to repeat something across many variables or data sets. There's many ways of doing this but some are better than others.
+
+We will introduce:
+
+1. Vectorized
+2. `for` loops,
+3. The `apply` family of functions, and
+4. The `purrr` package.
+
+But first, we need to discuss how to create your own functions. This is very useful for things you do a lot and reduces errors and redundancies in your code. 
+
+## Your Own Functions {-}
+
+Let's create a function that estimates the mean (although it is completely unnecessary since there is already a perfectly good `mean()` function). 
+```{r}
+mean2 <- function(x){
+  n <- length(x)
+  m <- (1/n) * sum(x)
+  return(m)
+}
+```
+
+We create a function using the `function()` function.[^That seemed like excessive use of the word...] Within the `function()` we put an `x`. This is the argument that the function will ask for. Here, it is a numeric vector that we want to take the mean of. We then provide the meat of the function between the `{}`. Here, we did a simple mean calculation using the `length(x)` which gives us the number of observations, and `sum()` which sums the numbers in `x`.
+
+Let's give it a try:
+```{r}
+v1 <- c(1,3,2,4,2,1,2,1,1,1)
+mean2(v1)
+mean(v1)
+```
+
+Looks good! These functions that you create can do whatever you need them to (within the bounds that `R` can do). I recommend by starting outside of a function that then put it into a function. For example, we would start with:
+```{r}
+n <- length(v1)
+m <- (1/n) * sum(v1)
+m
+```
+and once things look good, we would put it into a function like we had before with `mean2`. It is an easy way to develop a good function and test it while developing it.
+
+By creating your own function, you can simplify your workflow and can use them in loops.
+
+
+## Vectorized {-}
+
+By construction, `R` is the fastest when we use the vectorized form of doing things.
+
+## For Loops {-}
+
+For loops have a bad reputation in the `R` world. This is because, in general, they are slow. It is among the slowest of ways to iterate (i.e., repeat) functions. We start here to show you, in essence, what the `apply` family of functions and the `purrr` package are doing in a much faster way.
+
+
+
+## The `apply` family {-}
+
+
+
+## The `purrr` package {-}
+
+
 
 
 ```{r}

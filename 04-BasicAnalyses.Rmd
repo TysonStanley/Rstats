@@ -15,6 +15,8 @@ We use this code to get the data ready for the rest of the chapter. We use this 
 ## Getting data ready for the examples
 library(foreign)
 library(dplyr)
+library(furniture)
+library(anteo)
 dem_df <- read.xport("~/Box Sync/GitHub/blog_rstats/assets/Data/NHANES_demographics_11.xpt")
 med_df <- read.xport("~/Box Sync/GitHub/blog_rstats/assets/Data/NHANES_MedHeath_11.xpt")
 men_df <- read.xport("~/Box Sync/GitHub/blog_rstats/assets/Data/NHANES_MentHealth_11.xpt")
@@ -27,6 +29,10 @@ df <- dem_df %>%
   full_join(med_df, by="seqn") %>%
   full_join(men_df, by="seqn") %>%
   full_join(act_df, by="seqn") %>%
+  mutate(dmdmartl = washer(dmdmartl, 77,99)) %>%
+  mutate(dmdmartl = factor(dmdmartl,
+                           labels = c("Married", "Widowed", "Divorced", "Separated", 
+                                      "Never Married", "Partner"))) %>%
   filter(complete.cases(dmdmartl))
 ```
 
@@ -82,7 +88,7 @@ We also would like to make sure the assumptions look like they are being met. In
 
 In `R` we can get some simple graphical checks using `plot`. All we provide is our ANOVA object (here it is `fit`). The line before it `par(mfrow=c(1,2))` tells `R` to have two plots per row (the 1 means one row, 2 means two columns).
 
-```{r}
+```{r, fig.height=2, fig.width=4}
 par(mfrow=c(1,2))
 plot(fit)
 ```
@@ -108,8 +114,17 @@ summary(fit2)
 
 ### Assumptions {-}
 
+Linear regression has a few important assumptions, often called "Gauss-Markov Assumptions". These include:
 
+1. The model is linear in parameters.
+2. Homoskedasticity (i.e. the variance of the residual is roughly uniform across the values of the independents).
+3. Normality of residuals.
 
+Numbers 2 and 3 are fairly easy to assess using the `plot()` function on the model object as we did with the ANOVA model. The linear in parameters suggests that the relationship between the outcome and independents is linear.
+```{r, fig.height=2, fig.width=4}
+par(mfrow=c(1,2))
+plot(fit2)
+```
 
 
 ### Comparing Models {-}
@@ -192,6 +207,62 @@ lm(outcome ~ log_var1 + var2, data=df)
 **Other** methods such as square rooting the outcome or using some power function (e.g. square, cube) are also quite common. There are functions that look for the best transformation to use. However, I will not cover it here since I think GLM's are better. So if you want to learn about other ways to help your linear model go to the next chapter.
 
 
+## Interactions {-}
+
+Many times hypotheses dealing with human beings include interactions between effects. Interactions are when the effect of one variable depends on another variable. For example, the effect of marital status on family size may depend on whether the individual is a minority. In fact, this is the hypothesis we'll test below.
+
+Including interactions in ANOVA and regression type models are very simple in `R`. Since interpretations of interaction effects are often best through plots, we will also show simple methods to visualize the interactions as well.
+
+### Interactions in ANOVA {-}
+
+In general, we refer to ANOVA's with interactions as "2-way Factorial ANOVA's". We interact race and marriage status in this ANOVA. For simplicity, we created a binary race variable called minority using the `ifelse()` function. We explain this in more depth in Chapter 5.
+```{r}
+df$minority <- factor(ifelse(df$race == "White", 0, 1), 
+                      labels = c("White", "Minority"))
+fit_anova <- aov(famsize ~ minority*dmdmartl, df)
+anova(fit_anova)
+```
+Notice two things: First, the interaction is significant (p = .003). This is important since we are going to try to interpret this interaction. Second, by including `minority*dmdmartl` we get both the main effects and the interaction. This is very important for interpretation purposes so you can thank `R` for making it a bit more easy on you. 
+
+We can check the assumptions the same way as before:
+```{r, fig.height=2, fig.width=4}
+par(mfrow=c(1,2))
+plot(fit_anova)
+```
+Again, the assumptions are not met for this model. But, if we ignore that for now, we can quickly find a way to interpret the interaction.
+
+We first create a new data set that is composed of every possible combination of the variables in the model. This allows us to get unbiased estimates for the plotting.
+```{r}
+newdata <- expand.grid(minority = levels(df$minority),
+                       dmdmartl = levels(df$dmdmartl))
+newdata$preds <- predict(fit_anova, newdata=newdata)
+```
+
+We now use `ggplot2` just as before.
+```{r}
+ggplot(newdata, aes(x = dmdmartl, y = preds, group = minority)) +
+  geom_line(aes(color = minority)) +
+  geom_point(aes(color = minority)) +
+  labs(y = "Predicted Family Size",
+       x = "Marital Status") +
+  scale_color_manual(name = "",
+                     values = c("dodgerblue3", "chartreuse3")) +
+  theme_anteo_wh()           ## from anteo package
+```
+
+The plot tells use a handful of things. For example, we see minorities generally have more children across marital statuses. However, the difference is smaller for married and divorced individuals compared to widowed, separated, never married, and living with a partner. There's certainly more to gleen from the plot, but we won't waste your time.
+
+
+### Interactions in Linear Regression {-}
+
+Interactions in linear regression is nearly identical as in ANOVA, except we use dummy coding. It provides a bit more information. For example, we get the coefficients from the linear regression whereas the ANOVA does not provide this. We can run a regression model via:
+```{r}
+fit_reg <- lm(famsize ~ minority*dmdmartl, df)
+summary(fit_reg)
+```
+We used `summary()` to see the coefficients. If we used `anova()` it would have been the same as the one for the ANOVA. 
+
+We can use the exact same methods here as we did with the ANOVA, including checking assumptions, creating a new data set, and using `ggplot2` to check the interaction. We won't repeat it here so you can move on to Chapter 5.
 
 
 

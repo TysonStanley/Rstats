@@ -33,10 +33,38 @@ df <- dem_df %>%
 # Chapter 7: Other Modeling Techniques {-}
 
 
+## Mediation Modeling {-}
 
 ```{r}
 
 ```
+
+
+
+## Structural Equation Modeling {-}
+
+
+
+
+
+
+
+## Machine Learning Techniques {-}
+
+We are briefly going to introduce some machine learning techniques that may be of interest to researchers. We will quickly introduce and demonstrate:
+
+1. Ridge, Lasso and Elastic Net
+2. Random Forests
+
+### Ridge, Lasso and Elastic Net {-}
+
+
+
+
+### Random Forests {-}
+
+
+
 
 
 

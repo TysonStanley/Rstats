@@ -32,6 +32,8 @@ df <- dem_df %>%
 
 # Chapter 10: Where to go from here {-}
 
+There are many resources that can aid in developing your `R` skills from here. We have introduced the basics of `R`, focusing on the ones that are most important for researchers in the health, social, and behavioral sciences. 
+
 
 
 ```{r}

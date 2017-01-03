@@ -30,7 +30,17 @@ df <- dem_df %>%
   mutate(race = factor(ridreth1, 
                        labels=c("MexicanAmerican", "OtherHispanic", 
                                 "White", "Black", "Other"))) %>%
-  mutate(famsize = as.numeric(dmdfmsiz))
+  mutate(famsize = as.numeric(dmdfmsiz)) %>%
+  mutate(dpq010 = washer(dpq010, 7,9),
+         dpq020 = washer(dpq020, 7,9),
+         dpq030 = washer(dpq030, 7,9),
+         dpq040 = washer(dpq040, 7,9),
+         dpq050 = washer(dpq050, 7,9),
+         dpq060 = washer(dpq060, 7,9),
+         dpq070 = washer(dpq070, 7,9),
+         dpq080 = washer(dpq080, 7,9),
+         dpq090 = washer(dpq090, 7,9),
+         dpq100 = washer(dpq100, 7,9))
 ```
 
 
@@ -61,14 +71,14 @@ Luckily, running a logistic regression is simple in `R`. We first create the bin
 ## First creating binary depression variable
 df <- df %>%
   mutate(dep = dpq010 + dpq020 + dpq030 + dpq040 + dpq050 +
-               dpq060 + dpq070 + dpq080 + dpq090 + dpq100) %>%
-  mutate(dep2 = ifelse(dep >= 16, 1,
-                ifelse(dep < 16, 0, NA)))
+               dpq060 + dpq070 + dpq080 + dpq090) %>%
+  mutate(dep2 = ifelse(dep >= 10, 1,
+                ifelse(dep < 10, 0, NA)))
 ```
 Note that we added the values from the ten variables that give us an overall depression score (`dep`). We then use `ifelse()` to create a binary version of depression called `dep2` with a cutoff of $\geq 16$ meaning depressed. Because there are missing values denoted as "NA" in this variable, we use a "nested ifelse" to say:
 
-1. IF depression $\geq 16$ then dep2 is 1, 
-2. IF dpression $< 16$, then dep2 is 0, 
+1. IF depression $\geq 10$ then dep2 is 1, 
+2. IF dpression $< 10$, then dep2 is 0, 
 3. ELSE dep2 is NA.
 
 Note that these nested `ifelse()` statements can be as long as you want. We further need to clean up the asthma and sedentary variables.
@@ -131,15 +141,14 @@ We are going to use the `pscl` package to run a hurdle model. These models are b
 To run a hurdle model, we are going to make a sedentary variable with many more zeros to illustrate and then we will run a hurdle model.
 ```{r}
 ## Zero inflated sedentary (don't worry too much about the specifics)
-df$sed_zero = ifelse(sample(1:100, 
-                            size = length(df$sed), 
-                            replace=TRUE) %in% c(5,10,11,20:25), 
-                     0, 
-                     df$sed)
+df$sed_zero <- ifelse(sample(1:100, 
+                             size = length(df$sed), 
+                             replace=TRUE) %in% c(5,10,11,20:25), 0, 
+                      df$sed)
 ## Hurdle model
 library(pscl)
 h_fit = hurdle(sed_zero ~ asthma + race + famsize,
-             data = df)
+               data = df)
 summary(h_fit)
 ```
 Notice that the output has two parts: "Count model coefficients (truncated poisson with log link):" and "Zero hurdle model coefficients (binomial with logit link):". Together they tell us about the relationship between the predictors and a count variable with many zeros.
@@ -147,16 +156,35 @@ Notice that the output has two parts: "Count model coefficients (truncated poiss
 
 ### Negative Binomial {-}
 
-Similar to that above, negative binomial is for zero-inflated counts. It makes slightly different assumptions than the hurdle.
-
-
+Similar to that above, negative binomial is for zero-inflated count variables. It makes slightly different assumptions than the hurdle and doesn't use a two-part approach. In order to run a negative binomial model we'll use the `MASS` package and the `glm.nb()` function.
+```{r, eval=FALSE, warning=FALSE, message=FALSE}
+library(MASS)
+fit_nb <- glm.nb(sed_zero ~ asthma + race + famsize,
+                 data = df)
+summary(fit_nb)
+```
+Note that this model is not really appropriate because our data is somewhat contrived. 
 
 
 ## Beta Regression {-}
 
+For outcomes that are bound between a lower and upper bound, Beta Regression is a great method. For example, if we are looking at test scores that are bound between 0 and 100. It is a very flexible method and allows for some extra analysis regarding the variation. 
 
+For this, we are going to use the `betareg` package. But first, we are going to reach a little and create a ficticiously bound variable in the data set.
+```{r}
+## Variable bound between 0 and 1
+df$beta_var <- sample(seq(.05, .99, by = .01), 
+                      size = length(df$asthma),
+                      replace = TRUE)
+library(betareg)
+fit_beta <- betareg(beta_var ~ asthma + race + famsize,
+                    data = df)
+summary(fit_beta)
+```
 
+The output provides coefficients and the "Phi" coefficients. Both are important parts of using beta regression but we are not going to discuss it here. 
 
+There are many resources available to learn more about beta regression and each of these GLM's. As for now, we are going to move on to more complex modeling where there are clustering or repeated measures in the data. 
 
 
 [^logistic]: Technically, logistic regression is a linear regression model.

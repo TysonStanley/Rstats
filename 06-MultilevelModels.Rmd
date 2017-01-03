@@ -32,6 +32,17 @@ df <- dem_df %>%
 
 # Chapter 6: Multilevel Modeling {-}
 
+There are two general forms of multilevel modeling: 
+
+1. Generalized Estimating Equations (GEE)
+2. Mixed effects (i.e., hierarchical linear modeling, multilevel modeling)
+
+## GEE {-}
+
+
+
+## Mixed Effects {-}
+
 
 
 ```{r}
