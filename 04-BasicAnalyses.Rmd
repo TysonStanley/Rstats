@@ -9,7 +9,8 @@ documentclass: book
 link-citations: yes
 ---
 
-```{r, echo=FALSE, message=FALSE}
+We use this code to get the data ready for the rest of the chapter. We use this code for the data for each chapter hereafter.
+```{r, message=FALSE}
 ## Run but not shown
 ## Getting data ready for the examples
 library(foreign)
@@ -25,7 +26,8 @@ names(act_df) <- tolower(names(act_df))
 df <- dem_df %>%
   full_join(med_df, by="seqn") %>%
   full_join(men_df, by="seqn") %>%
-  full_join(act_df, by="seqn")
+  full_join(act_df, by="seqn") %>%
+  filter(complete.cases(dmdmartl))
 ```
 
 
@@ -49,7 +51,8 @@ Since the groups are compared using "effect coding," the $\alpha_0$ is the grand
 To run an ANOVA model, you can simply use the `aov` function. In the example below, we are analyzing whether family size (although not fully continuous it is still useful for the example) differs by race.
 
 ```{r}
-df$race <- factor(df$ridreth1, labels=c("MexicanAmerican", "OtherHispanic", "White", "Black", "Other"))
+df$race <- factor(df$ridreth1, 
+                  labels=c("MexicanAmerican", "OtherHispanic", "White", "Black", "Other"))
 df$famsize <- as.numeric(df$dmdfmsiz)
 
 fit <- aov(famsize ~ race, df)
@@ -66,7 +69,8 @@ library(ggplot2)
 ggplot(df, aes(x=race, y=famsize)) +
   geom_boxplot(aes(color=race)) +
   scale_color_manual(guide=FALSE, 
-                     values=c("dodgerblue3", "coral2", "chartreuse4", "darkorchid", "firebrick2")) +
+                     values=c("dodgerblue3", "coral2", "chartreuse4", 
+                              "darkorchid", "firebrick2")) +
   theme_bw()
 ```
 
@@ -120,43 +124,35 @@ Using the `anova()` function, we can compare models statistically.
 anova(fit, fit2)
 ```
 
-
-**********************************
-HERE
-**********************************
-
-Not surprisingly, when we compared the ANOVA and the simple linear model, they are *exactly* the same. For a more interesting comparison, lets run a new model and then make a comparison.
+The `anova()` function works with all sorts of modeling schemes and can help in model selection. Not surprisingly, when we compared the ANOVA and the simple linear model, they are *exactly* the same in overall model terms (the only difference is in how the cateogrical variable is coded---either effect coding in ANOVA or dummy coding in regression). For a more interesting comparison, lets run a new model with an additional variable and then make a comparison.
 
 ```{r}
 fit3 = lm(famsize ~ race + dmdmartl, data=df)
 summary(fit3)
 ```
 
-Notice that the variable is associated with the outcome according to the t-test seen in the summary. So we would expect that `fit3` is better than `fit2` at explaining the outcome.
+Notice that the variable is associated with the outcome according to the t-test seen in the summary. So we would expect that `fit3` is better than `fit2` at explaining the outcome, which we see in the output below.
 
 ```{r}
 anova(fit2, fit3)
 ```
 
 
-
 #### Compare in a Table {-}
 
+We can also compare the models in a well-formatted table that makes many aspects easy to compare.
 Two main packages allow us to compare models:
 
 1. `stargazer`
 2. `texreg`
 
-Both provide simple functions to compare multiple models.
+Both provide simple functions to compare multiple models. For example, `stargazer` provides:
 
 ```{r}
-
+library(stargazer)
+stargazer(fit2, fit3,
+          type = "text")
 ```
-
-
-
-
-
 
 
 ## When Assumptions Fail {-}

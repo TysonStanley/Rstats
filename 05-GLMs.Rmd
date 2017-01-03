@@ -25,23 +25,129 @@ names(act_df) <- tolower(names(act_df))
 df <- dem_df %>%
   full_join(med_df, by="seqn") %>%
   full_join(men_df, by="seqn") %>%
-  full_join(act_df, by="seqn")
+  full_join(act_df, by="seqn") %>%
+  filter(complete.cases(dmdmartl)) %>%
+  mutate(race = factor(ridreth1, 
+                       labels=c("MexicanAmerican", "OtherHispanic", 
+                                "White", "Black", "Other"))) %>%
+  mutate(famsize = as.numeric(dmdfmsiz))
 ```
 
 
 
 # Chapter 5: Generalized Linear Models {-}
 
-Generalized Linear Models (GLM's) are extensions of linear regression to areas where assumptions of normality and homoskedasticity do not hold. There are several versions of GLM's, each for different types and distributions of outcomes. We are going to go through several of the most common.
+Generalized Linear Models (GLM's) are extensions of linear regression to areas where assumptions of normality and homoskedasticity do not hold. There are several versions of GLM's, each for different types and distributions of outcomes. We are going to go through several of the most common. 
+
+This chapter is to introduce the method very briefly and demonstrate how to perform one in `R`. We do not delve into the details of each method much, but rather focus on showing the quirks of the coding.
+
+We discuss:
+
+1. Logistic Regression
+2. Poisson Regression
+3. GLM with Gamma distribution
+4. Negative binomial
+5. Beta Regression
 
 ## Logistic Regression {-}
 
+For binary outcomes (e.g., yes or no, correct or incorrect, sick or healthy), logistic regression is a fantastic tool that provides useful and interpretable information. Much like simple and multiple linear regression, logistic regression[^logistic] uses dummy coding and provides coefficients that tell us the relationship between the outcome and the independent variables.
 
+Since the outcome is binary, we use a statistical transformation to make things work well. This makes it so the outcome is in "log-odds." A simple exponentiation of the coefficients and we get very useful "odds ratios." These are very common in many fields using binary data.
 
+Luckily, running a logistic regression is simple in `R`. We first create the binary outcome variable called `dep`. We use a new function called `mutate` to create a new variable (we could do this a number of ways but this is probably the cleanest way).
+
+```{r}
+## First creating binary depression variable
+df <- df %>%
+  mutate(dep = dpq010 + dpq020 + dpq030 + dpq040 + dpq050 +
+               dpq060 + dpq070 + dpq080 + dpq090 + dpq100) %>%
+  mutate(dep2 = ifelse(dep >= 16, 1,
+                ifelse(dep < 16, 0, NA)))
+```
+Note that we added the values from the ten variables that give us an overall depression score (`dep`). We then use `ifelse()` to create a binary version of depression called `dep2` with a cutoff of $\geq 16$ meaning depressed. Because there are missing values denoted as "NA" in this variable, we use a "nested ifelse" to say:
+
+1. IF depression $\geq 16$ then dep2 is 1, 
+2. IF dpression $< 16$, then dep2 is 0, 
+3. ELSE dep2 is NA.
+
+Note that these nested `ifelse()` statements can be as long as you want. We further need to clean up the asthma and sedentary variables.
+```{r}
+## Fix some placeholders
+df <- df %>%
+  mutate(asthma = washer(mcq010, 9),
+         asthma = washer(asthma, 2, value = 0)) %>%
+  mutate(sed = washer(pad680, 9999, 7777))
+```
+
+Now let's run the logistic regression:
+```{r}
+l_fit <- glm(dep2 ~ asthma + sed + race + famsize,
+             data = df,
+             family = "binomial")
+summary(l_fit)
+```
+
+We used `glm()` (stands for generalized linear model). The key to making it logistic, since you can use `glm()` for a linear model using maximum likelihood instead of `lm()` with least squares, is `family = "binomial"`. This tells `R` to do a logistic regression.
 
 
 ## Poisson Regression {-}
 
+As we did in logistic regression, we will use the `glm()` function. The difference here is we will be using an outcome that is a count variable. For example, the sedentary variable (`sed`) that we have in `df` is a count of the minutes of sedentary activity.
+
+```{r}
+p_fit <- glm(sed ~ asthma + race + famsize,
+             data = df,
+             family = "poisson")
+summary(p_fit)
+```
+
+Sedentary may be over-dispersed (see plot)
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+qplot(df$sed, alpha = .75, binwidth = 75) + 
+  theme_bw() +
+  labs(x = "Minutes of Sedentary Behavior") +
+  scale_alpha(guide=FALSE)
+```
+and so other methods related to poisson may be necessary. For this book, we are not going to be delving into these in depth but we will introduce some below.
+
+
+### Gamma {-}
+
+Regression with a gamma distribution are often found when analyzing costs in dollars. It is very similar to poisson but does not require integers and can handle more dispersion. However, the outcome must have values $> 0$. Just for demonstration:
+```{r}
+## Adjust sed
+df$sed_gamma <- df$sed + .01
+g_fit <- glm(sed_gamma ~ asthma + race + famsize,
+             data = df,
+             family = "Gamma")
+summary(g_fit)
+```
+
+### Two-Part or Hurdle Models {-}
+
+We are going to use the `pscl` package to run a hurdle model. These models are built for situations where there is a count variable with many zeros ("zero-inflated"). The hurdle model makes slightly different assumptions regarding the zeros than the pure negative binomial that we present next. The hurdle consists of two models: one for whether the person had a zero or more (binomial) and if more than zero, how many (poisson).
+
+To run a hurdle model, we are going to make a sedentary variable with many more zeros to illustrate and then we will run a hurdle model.
+```{r}
+## Zero inflated sedentary (don't worry too much about the specifics)
+df$sed_zero = ifelse(sample(1:100, 
+                            size = length(df$sed), 
+                            replace=TRUE) %in% c(5,10,11,20:25), 
+                     0, 
+                     df$sed)
+## Hurdle model
+library(pscl)
+h_fit = hurdle(sed_zero ~ asthma + race + famsize,
+             data = df)
+summary(h_fit)
+```
+Notice that the output has two parts: "Count model coefficients (truncated poisson with log link):" and "Zero hurdle model coefficients (binomial with logit link):". Together they tell us about the relationship between the predictors and a count variable with many zeros.
+
+
+### Negative Binomial {-}
+
+Similar to that above, negative binomial is for zero-inflated counts. It makes slightly different assumptions than the hurdle.
 
 
 
@@ -53,21 +159,4 @@ Generalized Linear Models (GLM's) are extensions of linear regression to areas w
 
 
 
-## Two-Part Models {-}
-
-
-
-
-
-
-## Other Useful Models {-}
-
-
-
-
-```{r}
-
-```
-
-
-
+[^logistic]: Technically, logistic regression is a linear regression model.

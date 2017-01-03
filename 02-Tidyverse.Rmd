@@ -42,12 +42,12 @@ That's a bit of an aside, but know that you can always get at a function even if
 
 I'm introducing this to you for a couple reasons.
 
-1. It simplifies the code and makes the code more readable. As Hadley Wickham says, there are always at least two collaborators on any project: you and future you.
+1. It simplifies the code and makes the code more readable. As the saying goes, there are always at least two collaborators on any project: you and future you.
 2. It is the cutting edge. The most influential individuals in the `R` world, including the makers and maintainers of `RStudio`, use these methods and syntax.
 
 The majority of what you'll need to do with data as a researcher will be covered by these functions. 
 
-The goal of these functions is to help tidy up your data. Tidy data is based on columns being variables and rows being observations. It is the form that data needs to be in to analyze it, whether that analysis is by graphical, model, or other means.
+The goal of these functions is to help tidy up your data. Tidy data is based on columns being variables and rows being observations. It is the form that data needs to be in to analyze it, whether that analysis is by graphing, modeling, or other means.
 
 There are several methods that help create tidy data:
 
@@ -61,7 +61,7 @@ To help illustrate each aspect, we are going to use real data from the National 
 
 Let's quickly read that data in so we can use it throughout the remainder of this chapter. First, we will set our working directory with `setwd`. This tells `R` where to look for files, including your data files. My specific file location is below so you will need to adjust it to wherever you saved the NHANES data.
 ```{r, eval=FALSE}
-setwd("~/Box Sync/GitHub/blog_rstats/assets/Data/")
+setwd("~/Dropbox/GitHub/blog_rstats/assets/Data/")
 ```
 
 ```{r, echo=FALSE}
@@ -112,7 +112,42 @@ So the above code takes the data frame `df` and puts it into the `summary` funct
 
 ## Select and Filter {-}
 
+We often want to subset our data in some way before we do many of our analyses. This can make our cognitive load of the data much lighter but it can also be very important in the actual analyses. The code below show the two main ways to subset your data: 1) selecting variables and 2) filtering observations.
 
+To select three variables (i.e. gender ["riagendr"], age ["ridageyr"], and ethnicity ["ridreth1"]) we:
+```{r, eval = FALSE}
+selected_dem <- dem_df %>%
+  select(riagendr, ridageyr, ridreth1)
+```
+
+Now, `selected_dem` has three variables and all the observations.
+
+We can also filter (i.e. take out observations we don't want):
+```{r, eval = FALSE}
+filtered_dem <- dem_df %>%
+  filter(riagendr == 1)
+```
+
+Since when `riagendr == 1` the individual is male, `filtered_dem` only has male participants. We can add multiple filtering options as well:
+```{r, eval = FALSE}
+filtered_dem <- dem_df %>%
+  filter(riagendr == 1 & ridageyr > 16)
+```
+
+We now have only males that are older than 16 years old. We used `&` to say we want **both** conditions to be met. Alternatively, we could:
+```{r, eval = FALSE}
+filtered_dem <- dem_df %>%
+  filter(riagendr == 1 | ridageyr > 16)
+```
+which, using `|` we are saying we want males **or** individuals older than 16. In other words, if either are met, that observation will be kept.
+
+Finally, we can do all of these in one step:
+```{r, eval = FALSE}
+filtered_dem <- dem_df %>%
+  select(riagendr, ridageyr, ridreth1) %>%
+  filter(riagendr == 1 & ridageyr > 16)
+```
+where we use two `%>%` operators to grab `dem_df`, select the three variables, and then filter the rows that we want.
 
 ## Grouping and Summarizing {-}
 

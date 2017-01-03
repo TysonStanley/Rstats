@@ -15,12 +15,25 @@ Let's jump right into it.
 
 `R` is an open source statistical software made by statisticians. This means it generally speaks the language of statistics. This is very helpful when it comes running analyses but can be confusing when starting to understand the code. 
 
-> Advice: Don't get overwhelmed. It may feel like there is a lot to learn, but taking things one at a time will work surprisingly quickly. I've designed this book to discuss what you need to know from the beginning. Other topics that are not discussed are things you can learn later and do not need to be of your immediate concern.
+> Early Advice: Don't get overwhelmed. It may feel like there is a lot to learn, but taking things one at a time will work surprisingly quickly. I've designed this book to discuss what you need to know from the beginning. Other topics that are not discussed are things you can learn later and do not need to be of your immediate concern.
 
 Because learning code is best through experience, we'll start with a simple walk-through of data types, functions, and objects.
 
 
-## Data Types {-}
+## Objects, Data Types and Functions {-}
+
+### Objects {-}
+
+`R` uses objects and operators. An object, just like in the physical world, is something you can do things with. 
+
+In the real world, we have objects that we use regularly. For example, we have chairs. Chairs are great for some things (sitting, sleeping) and horrible at others (driving, flying). Similarly, in `R` each type of object is useful for certain things. The data types we just discussed are certain types of objects. The data frames objects are a very good way to store data in an easily analyzable format.
+
+Because this is so analogous to the real world, it becomes quite natural to work with. You can have many objects in memory, which allows flexbility in analyzing many different things simply within a single `R` session.
+
+For your work, the first thing you work with will be data in various forms. Below, we explain the different data types and how they can combine into what is known as a `data.frame`.
+
+
+### Data Types {-}
 
 In `R` there are three main data types that you'll work with in research:
 
@@ -45,7 +58,8 @@ race <- c(1, 3, 2, 1, 1, 2, 1, 3, 4, 2)
 The code above actually produces a numeric vector (since it was only provided numbers). We can quickly tell `R` that it is indeed supposed to be a factor.
 
 ```{r}
-race <- factor(race, labels = c("white", "black", "hispanic", "asian"))
+race <- factor(race, 
+               labels = c("white", "black", "hispanic", "asian"))
 ```
 
 The `factor()` function tells `R` that the first thing `race` is actually a factor. The additional argument `labels` tells `R` what each of the values means. If we print out `race` we see that `R` has replaced the numeric values with the labels.
@@ -57,7 +71,9 @@ race
 Finally, and maybe less relevantly, there are character variables. These are words (known as strings). In research this is often where subjects give open responses to a question.
 
 ```{r}
-ch <- c("I think this is great.", "I would suggest you learn R.", "You seem quite smart.")
+ch <- c("I think this is great.", 
+        "I would suggest you learn R.", 
+        "You seem quite smart.")
 ```
 
 When we combine multiple variables into one, we create a **data.frame**. A data frame is like a spreadsheet table, like the ones you have probably seen in excel and SPSS. Here's a simple example:
@@ -121,17 +137,21 @@ summary(df)
 head(df, n=10)
 ```
 
-I'll admit that the last one is a bit pointless since our data frame is only a few lines long. However, these functions can give you quick information about your data with hardly any effort on your part.
+We admit that the last one is a bit pointless since our data frame is only a few lines long. However, these functions can give you quick information about your data with hardly any effort on your part.
 
+### Functions {-}
 
-## Objects {-}
+Earlier we mentioned that `c()` was a "function." Functions are how we do things we our data. There are probably hundreds of thousands of functions at your reach. In fact, you can create your own! We'll discuss that more later.
 
-`R` uses objects and operators. An object, just like in the physical world, is something you can do things with. 
+For now, know that each function has a name (the function name of `c()` is "c"), arguments, and output of some sort. Arguments are the information that you provide the function (e.g. we gave `c()` a bunch of numbers). Output from a function varies to a massive degree but, in general, the output is what you are using the function for (e.g., for `c()` we wanted to create a vector---a variable---of data). At any point, by typing:
 
-In the real world, we have objects that we use regularly. For example, we have chairs. Chairs are great for some things (sitting, sleeping) and horrible at others (driving, flying). Similarly, in `R` each type of object is useful for certain things. The data types we just discussed are certain types of objects. The data frames objects are a very good way to store data in an easily analyzable format.
+```{r, eval=FALSE}
+?functionname
+```
 
-Because this is so analogous to the real world, it becomes quite natural to work with. You can have many objects in memory, which allows flexbility in analyzing many different things simply within a single `R` session.
+we get information in the "Help" window providing the arguments and output.
 
+Below we show you several functions for both importing and saving data. Note that each have a name, arguments, and output. 
 
 ## Importing Data {-}
 
@@ -229,5 +249,5 @@ So, if you were curious about the different arguments in `write.table` simply ru
 
 [^packages]: A package is an extension to `R` that gives you more functions--abilities--to work with data. Anyone can write a package, although to get it on the Comprehensive R Archive Network (CRAN) it needs to be vetted to a large degree. In fact, after some practice, you could write a package to help you more easily do your work.
 
-[^delim]: The delimiter is what separtes the pieces of data.
+[^delim]: The delimiter is what separates the pieces of data.
 

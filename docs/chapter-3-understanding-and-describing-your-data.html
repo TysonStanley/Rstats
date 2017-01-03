@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Rstats for Researchers</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta name="description" content="Rstats for Researchers">
+  <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Rstats for Researchers" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Rstats for Researchers" />
+  
+  
+  
+
+<meta name="author" content="Tyson S. Barrett">
+
+
+<meta name="date" content="2017-01-02">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="chapter-2-manipulating-your-data.html">
+<link rel="next" href="chapter-4-basic-analyses.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+</head>
+
+<body>
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#part-i"><i class="fa fa-check"></i>Part I</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#part-ii"><i class="fa fa-check"></i>Part II</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#part-iii"><i class="fa fa-check"></i>Part III</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#download-r-and-rstudio"><i class="fa fa-check"></i>Download R and RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html"><i class="fa fa-check"></i>Chapter 1: The Basics</a><ul>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html#objects-data-types-and-functions"><i class="fa fa-check"></i>Objects, Data Types and Functions</a><ul>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html#objects"><i class="fa fa-check"></i>Objects</a></li>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html#data-types"><i class="fa fa-check"></i>Data Types</a></li>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html#functions"><i class="fa fa-check"></i>Functions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html#importing-data"><i class="fa fa-check"></i>Importing Data</a><ul>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html#delimited-files"><i class="fa fa-check"></i>Delimited Files</a></li>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html#other-data-formats"><i class="fa fa-check"></i>Other Data Formats</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html#saving-data"><i class="fa fa-check"></i>Saving Data</a></li>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html#conclusions"><i class="fa fa-check"></i>Conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-2-manipulating-your-data.html"><a href="chapter-2-manipulating-your-data.html"><i class="fa fa-check"></i>Chapter 2: Manipulating Your Data</a><ul>
+<li class="chapter" data-level="" data-path="chapter-2-manipulating-your-data.html"><a href="chapter-2-manipulating-your-data.html#tidy-methods"><i class="fa fa-check"></i>Tidy Methods</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-manipulating-your-data.html"><a href="chapter-2-manipulating-your-data.html#piping"><i class="fa fa-check"></i>Piping</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-manipulating-your-data.html"><a href="chapter-2-manipulating-your-data.html#select-and-filter"><i class="fa fa-check"></i>Select and Filter</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-manipulating-your-data.html"><a href="chapter-2-manipulating-your-data.html#grouping-and-summarizing"><i class="fa fa-check"></i>Grouping and Summarizing</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-manipulating-your-data.html"><a href="chapter-2-manipulating-your-data.html#reshaping"><i class="fa fa-check"></i>Reshaping</a><ul>
+<li class="chapter" data-level="" data-path="chapter-2-manipulating-your-data.html"><a href="chapter-2-manipulating-your-data.html#wide-form"><i class="fa fa-check"></i>Wide Form</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-manipulating-your-data.html"><a href="chapter-2-manipulating-your-data.html#long-form"><i class="fa fa-check"></i>Long Form</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-2-manipulating-your-data.html"><a href="chapter-2-manipulating-your-data.html#joining-merging"><i class="fa fa-check"></i>Joining (merging)</a><ul>
+<li class="chapter" data-level="" data-path="chapter-2-manipulating-your-data.html"><a href="chapter-2-manipulating-your-data.html#inner-join"><i class="fa fa-check"></i>Inner Join</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-manipulating-your-data.html"><a href="chapter-2-manipulating-your-data.html#left-or-right-join"><i class="fa fa-check"></i>Left or Right Join</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-manipulating-your-data.html"><a href="chapter-2-manipulating-your-data.html#full-join"><i class="fa fa-check"></i>Full Join</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html"><i class="fa fa-check"></i>Chapter 3: Understanding and Describing Your Data</a><ul>
+<li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#descriptive-statistics"><i class="fa fa-check"></i>Descriptive Statistics</a></li>
+<li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#visualizations"><i class="fa fa-check"></i>Visualizations</a><ul>
+<li class="chapter" data-level="0.0.1" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#ggplot2"><i class="fa fa-check"></i><b>0.0.1</b> <code class="unnumbered">ggplot2</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html"><i class="fa fa-check"></i>Chapter 4: Basic Analyses</a><ul>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#anova"><i class="fa fa-check"></i>ANOVA</a><ul>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#assumptions"><i class="fa fa-check"></i>Assumptions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#linear-modeling"><i class="fa fa-check"></i>Linear Modeling</a><ul>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#assumptions-1"><i class="fa fa-check"></i>Assumptions</a></li>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#comparing-models"><i class="fa fa-check"></i>Comparing Models</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#when-assumptions-fail"><i class="fa fa-check"></i>When Assumptions Fail</a><ul>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#log-linear-log-log-linear-log-other"><i class="fa fa-check"></i>Log-Linear, Log-Log, Linear-Log, Other</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-5-generalized-linear-models.html"><a href="chapter-5-generalized-linear-models.html"><i class="fa fa-check"></i>Chapter 5: Generalized Linear Models</a><ul>
+<li class="chapter" data-level="" data-path="chapter-5-generalized-linear-models.html"><a href="chapter-5-generalized-linear-models.html#logistic-regression"><i class="fa fa-check"></i>Logistic Regression</a></li>
+<li class="chapter" data-level="" data-path="chapter-5-generalized-linear-models.html"><a href="chapter-5-generalized-linear-models.html#poisson-regression"><i class="fa fa-check"></i>Poisson Regression</a><ul>
+<li class="chapter" data-level="" data-path="chapter-5-generalized-linear-models.html"><a href="chapter-5-generalized-linear-models.html#gamma"><i class="fa fa-check"></i>Gamma</a></li>
+<li class="chapter" data-level="" data-path="chapter-5-generalized-linear-models.html"><a href="chapter-5-generalized-linear-models.html#two-part-or-hurdle-models"><i class="fa fa-check"></i>Two-Part or Hurdle Models</a></li>
+<li class="chapter" data-level="" data-path="chapter-5-generalized-linear-models.html"><a href="chapter-5-generalized-linear-models.html#negative-binomial"><i class="fa fa-check"></i>Negative Binomial</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-5-generalized-linear-models.html"><a href="chapter-5-generalized-linear-models.html#beta-regression"><i class="fa fa-check"></i>Beta Regression</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-6-multilevel-modeling.html"><a href="chapter-6-multilevel-modeling.html"><i class="fa fa-check"></i>Chapter 6: Multilevel Modeling</a></li>
+<li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html"><i class="fa fa-check"></i>Chapter 7: Other Modeling Techniques</a></li>
+<li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html"><i class="fa fa-check"></i>Chapter 8: Advanced Data Manipulation</a></li>
+<li class="chapter" data-level="" data-path="chapter-9-advanced-plotting.html"><a href="chapter-9-advanced-plotting.html"><i class="fa fa-check"></i>Chapter 9: Advanced Plotting</a></li>
+<li class="chapter" data-level="" data-path="chapter-10-where-to-go-from-here.html"><a href="chapter-10-where-to-go-from-here.html"><i class="fa fa-check"></i>Chapter 10: Where to go from here</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Rstats for Researchers</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="chapter-3-understanding-and-describing-your-data" class="section level1 unnumbered">
+<h1>Chapter 3: Understanding and Describing Your Data</h1>
+<p>We are going to take what we’ve learned from the previous two chapters and use them together to have simple but powerful ways to understand your data. This chapter will be broken down into:</p>
+<ol style="list-style-type: decimal">
+<li>Descriptive Statistics</li>
+<li>Visualizations</li>
+</ol>
+<p>The two go hand-in-hand in understanding what is happening in your data. We are often most interested in three things when exploring our data: <strong>understanding distributions</strong>, <strong>understanding relationships</strong>, and <strong>looking for outliers or errors</strong>.</p>
+<div id="descriptive-statistics" class="section level2 unnumbered">
+<h2>Descriptive Statistics</h2>
+<p>Several methods of discovering descriptives in a succinct way have been developed for <code>R</code>. My favorite (full disclosure: it is one that I made so I may be biased) is the <code>table1</code> function in the <code>furniture</code> package.</p>
+<p>This function has been designed to be simple and complete. It produces a well-formatted table that you can easily export and use as a table in a report or article.<a href="#fn12" class="footnoteRef" id="fnref12"><sup>12</sup></a></p>
+<p>We’ll first create a ficticious data set and we’ll show the basic build of <code>table1</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(furniture)
+
+df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="st">&quot;A&quot;</span>=<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">3</span>,<span class="ot">NA</span>),
+                 <span class="st">&quot;B&quot;</span>=<span class="kw">c</span>(<span class="fl">1.4</span>,<span class="fl">2.1</span>,<span class="fl">4.6</span>,<span class="fl">2.0</span>,<span class="ot">NA</span>,<span class="fl">3.4</span>),
+                 <span class="st">&quot;C&quot;</span>=<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>),
+                 <span class="st">&quot;D&quot;</span>=<span class="kw">rnorm</span>(<span class="dv">6</span>))
+
+<span class="kw">table1</span>(df, A, B, C, D)</code></pre></div>
+<pre><code>## 
+## |==============================|
+##               Mean/Count (SD/%)
+##  Observations 6                
+##  A                             
+##               2.20 (1.30)      
+##  B                             
+##               2.70 (1.29)      
+##  C                             
+##               0.67 (0.52)      
+##  D                             
+##               -0.29 (1.15)     
+## |==============================|</code></pre>
+<p>This quickly gives you means and standard deviations (or counts and percentages if there were categorical variables). We could have also used the pipe operator here if we wanted via:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df %&gt;%
+<span class="st">  </span><span class="kw">table1</span>(A, B, C, D)</code></pre></div>
+<pre><code>## 
+## |==============================|
+##               Mean/Count (SD/%)
+##  Observations 6                
+##  A                             
+##               2.20 (1.30)      
+##  B                             
+##               2.70 (1.29)      
+##  C                             
+##               0.67 (0.52)      
+##  D                             
+##               -0.29 (1.15)     
+## |==============================|</code></pre>
+<p>It turns out, for we want “A” and “C” to be factors.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df$A &lt;-<span class="st"> </span><span class="kw">factor</span>(df$A, <span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;cat1&quot;</span>, <span class="st">&quot;cat2&quot;</span>, <span class="st">&quot;cat3&quot;</span>, <span class="st">&quot;cat4&quot;</span>))
+df$C &lt;-<span class="st"> </span><span class="kw">factor</span>(df$C, <span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;male&quot;</span>, <span class="st">&quot;female&quot;</span>))
+
+<span class="kw">table1</span>(df, A, B, C, D)</code></pre></div>
+<pre><code>## Warning in table1(df, A, B, C, D): Tests are less robust to non-normality
+## if N in any group is less than 20
+
+## Warning in table1(df, A, B, C, D): Tests are less robust to non-normality
+## if N in any group is less than 20</code></pre>
+<pre><code>## 
+## |==============================|
+##               Mean/Count (SD/%)
+##  Observations 6                
+##  A                             
+##     cat1      2 (40%)          
+##     cat2      1 (20%)          
+##     cat3      1 (20%)          
+##     cat4      1 (20%)          
+##  B                             
+##               2.70 (1.29)      
+##  C                             
+##     male      2 (33.3%)        
+##     female    4 (66.7%)        
+##  D                             
+##               -0.29 (1.15)     
+## |==============================|</code></pre>
+<p>So now we see the counts and percentages for the factor variables. But now we can take a step further and look for relationships. The code below shows the means/standard devaitions or counts/percentages by a grouping variable–in this case, <code>C</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table1</span>(df, A, B, D,
+       <span class="dt">splitby =</span> ~C)</code></pre></div>
+<pre><code>## Warning in table1(df, A, B, D, splitby = ~C): Tests are less robust to non-
+## normality if N in any group is less than 20
+
+## Warning in table1(df, A, B, D, splitby = ~C): Tests are less robust to non-
+## normality if N in any group is less than 20</code></pre>
+<pre><code>## 
+## |======================================|
+##               male         female      
+##  Observations 2            4           
+##  A                                     
+##     cat1      1 (50%)      1 (33.3%)   
+##     cat2      1 (50%)      0 (0%)      
+##     cat3      0 (0%)       1 (33.3%)   
+##     cat4      0 (0%)       1 (33.3%)   
+##  B                                     
+##               1.75 (0.49)  3.33 (1.30) 
+##  D                                     
+##               -0.03 (2.16) -0.41 (0.77)
+## |======================================|</code></pre>
+<p>We can also test for differences by group as well (although this is not particularly good with a sample size of 5). It produces a warning since the <span class="math inline">\(\chi^2\)</span> approximation is not accurate with cells this small.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table1</span>(df, A, B, D,
+       <span class="dt">splitby =</span> ~C,
+       <span class="dt">test=</span><span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>## Warning in chisq.test(d$split, d[, i]): Chi-squared approximation may be
+## incorrect</code></pre>
+<pre><code>## Warning in table1(df, A, B, D, splitby = ~C, test = TRUE): Tests are less
+## robust to non-normality if N in any group is less than 20
+
+## Warning in table1(df, A, B, D, splitby = ~C, test = TRUE): Tests are less
+## robust to non-normality if N in any group is less than 20</code></pre>
+<pre><code>## 
+## |==============================================|
+##               male         female       P-Value
+##  Observations 2            4                   
+##  A                                      0.405  
+##     cat1      1 (50%)      1 (33.3%)           
+##     cat2      1 (50%)      0 (0%)              
+##     cat3      0 (0%)       1 (33.3%)           
+##     cat4      0 (0%)       1 (33.3%)           
+##  B                                      0.162  
+##               1.75 (0.49)  3.33 (1.30)         
+##  D                                      0.843  
+##               -0.03 (2.16) -0.41 (0.77)        
+## |==============================================|</code></pre>
+<p>Finally, we can include missingness in the table for factors.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table1</span>(df, A, B, D,
+       <span class="dt">splitby =</span> ~C,
+       <span class="dt">test=</span><span class="ot">TRUE</span>,
+       <span class="dt">NAkeep =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>## Warning in chisq.test(d$split, d[, i]): Chi-squared approximation may be
+## incorrect</code></pre>
+<pre><code>## Warning in table1(df, A, B, D, splitby = ~C, test = TRUE, NAkeep = TRUE):
+## Tests are less robust to non-normality if N in any group is less than 20
+
+## Warning in table1(df, A, B, D, splitby = ~C, test = TRUE, NAkeep = TRUE):
+## Tests are less robust to non-normality if N in any group is less than 20</code></pre>
+<pre><code>## 
+## |==============================================|
+##               male         female       P-Value
+##  Observations 2            4                   
+##  A                                      0.405  
+##     cat1      1 (50%)      1 (25%)             
+##     cat2      1 (50%)      0 (0%)              
+##     cat3      0 (0%)       1 (25%)             
+##     cat4      0 (0%)       1 (25%)             
+##     NA        0 (0%)       1 (25%)             
+##  B                                      0.162  
+##               1.75 (0.49)  3.33 (1.30)         
+##  D                                      0.843  
+##               -0.03 (2.16) -0.41 (0.77)        
+## |==============================================|</code></pre>
+<p>So with three or four short lines of code we can get a good idea about variables that may be related to the grouping variable and any missingness in the factor variables. There’s much more you can do with <code>table1</code> and there are vignettes and tutorials available to learn more.<a href="#fn13" class="footnoteRef" id="fnref13"><sup>13</sup></a></p>
+<p>Other quick descriptive functions exist; here are a few of them.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(df)          ## descriptives for each variable in the data
+
+<span class="kw">library</span>(psych)       ## install first
+<span class="kw">describe</span>(df)         ## produces summary statistics for continuous variables
+
+<span class="kw">library</span>(Hmisc)       ## install first
+Hmisc::<span class="kw">describe</span>(df)  ## gives summary for each variable separately</code></pre></div>
+</div>
+<div id="visualizations" class="section level2 unnumbered">
+<h2>Visualizations</h2>
+<p>Understanding your data, in my experience, generally requires visualizations. If we are going to use a model of some sort, understanding the distributions and relationships beforehand are very helpful in interpreting the model and catching errors in the data. Also finding any outliers or errors that could be highly influencing the modeling should be understood beforehand.</p>
+<p>For simple but appealing visualizations we are going to be using <code>ggplot2</code>. This package is used to produce professional level plots for many journalism organizations (e.g. five-thrity-eight). These plots are quickly presentation quality and can be used to impress your boss, your advisor, or your friends.</p>
+<div id="ggplot2" class="section level3">
+<h3><span class="header-section-number">0.0.1</span> <code class="unnumbered">ggplot2</code></h3>
+<p>This package has a straight-forward syntax. It is built by adding layers to the plot.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)   ## first install using install.packages(&quot;ggplot2&quot;)</code></pre></div>
+<p>First, we have a nice <code>qplot</code> function that is short for “quick plot.” It quickly decides what kind of plot is useful given the data and variables you provide.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qplot</span>(df$A)  ## Makes a simple histogram</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-55-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qplot</span>(df$D, df$B)  ## Makes a scatterplot</code></pre></div>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_point).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-55-2.png" width="672" /></p>
+<p>For a bit more control over the plot, you can use the <code>ggplot</code> function. The first piece is the <code>ggplot</code> piece. From there, we add layers. These layers generally start with <code>geom_</code> then have the type of plot.</p>
+<p>Below, we start with telling <code>ggplot</code> the basics of the plot and then build a boxplot. The x-axis is the variable “C” and the y-axis is the variable “D” and then we color it by variable “C” as well.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x=</span>C, <span class="dt">y=</span>D)) +
+<span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">color =</span> C))</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-56-1.png" width="672" /></p>
+<p>Here’s a few more examples:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x=</span>C)) +
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;count&quot;</span>, <span class="kw">aes</span>(<span class="dt">fill =</span> C))</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-57-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x=</span>B, <span class="dt">y=</span>D)) +
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> C))</code></pre></div>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_point).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-58-1.png" width="672" /></p>
+<p><em>Note that the warning that says it removed a row is because we had a missing value in “C”.</em></p>
+<p>We are going to make the first one again but with some aesthetic adjustments. Notice that we just added two extra lines telling <code>ggplot2</code> how we want some things to look.<a href="#fn14" class="footnoteRef" id="fnref14"><sup>14</sup></a></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x=</span>C, <span class="dt">y=</span>D)) +
+<span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">color =</span> C)) +
+<span class="st">  </span><span class="kw">theme_bw</span>() +
+<span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;dodgerblue4&quot;</span>, <span class="st">&quot;coral2&quot;</span>))</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-59-1.png" width="672" /></p>
+<p>The <code>theme_bw()</code> makes the background white, the <code>scale_color_manual()</code> allows us to change the colors in the plot. You can get a good idea of how many types of plots you can do by going to <a href="http://docs.ggplot2.org/current/">http://docs.ggplot2.org/current</a>. Almost any informative plot that you need to do as a researcher is possible with <code>ggplot2</code>.</p>
+<p>We will be using <code>ggplot2</code> extensively in the book to help understand our data and our models as well as communicate our results.</p>
+
+<p>We use this code to get the data ready for the rest of the chapter. We use this code for the data for each chapter hereafter.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Run but not shown
+## Getting data ready for the examples
+<span class="kw">library</span>(foreign)
+<span class="kw">library</span>(dplyr)
+dem_df &lt;-<span class="st"> </span><span class="kw">read.xport</span>(<span class="st">&quot;~/Box Sync/GitHub/blog_rstats/assets/Data/NHANES_demographics_11.xpt&quot;</span>)
+med_df &lt;-<span class="st"> </span><span class="kw">read.xport</span>(<span class="st">&quot;~/Box Sync/GitHub/blog_rstats/assets/Data/NHANES_MedHeath_11.xpt&quot;</span>)
+men_df &lt;-<span class="st"> </span><span class="kw">read.xport</span>(<span class="st">&quot;~/Box Sync/GitHub/blog_rstats/assets/Data/NHANES_MentHealth_11.xpt&quot;</span>)
+act_df &lt;-<span class="st"> </span><span class="kw">read.xport</span>(<span class="st">&quot;~/Box Sync/GitHub/blog_rstats/assets/Data/NHANES_PhysActivity_11.xpt&quot;</span>)
+<span class="kw">names</span>(dem_df) &lt;-<span class="st"> </span><span class="kw">tolower</span>(<span class="kw">names</span>(dem_df))
+<span class="kw">names</span>(med_df) &lt;-<span class="st"> </span><span class="kw">tolower</span>(<span class="kw">names</span>(med_df))
+<span class="kw">names</span>(men_df) &lt;-<span class="st"> </span><span class="kw">tolower</span>(<span class="kw">names</span>(men_df))
+<span class="kw">names</span>(act_df) &lt;-<span class="st"> </span><span class="kw">tolower</span>(<span class="kw">names</span>(act_df))
+df &lt;-<span class="st"> </span>dem_df %&gt;%
+<span class="st">  </span><span class="kw">full_join</span>(med_df, <span class="dt">by=</span><span class="st">&quot;seqn&quot;</span>) %&gt;%
+<span class="st">  </span><span class="kw">full_join</span>(men_df, <span class="dt">by=</span><span class="st">&quot;seqn&quot;</span>) %&gt;%
+<span class="st">  </span><span class="kw">full_join</span>(act_df, <span class="dt">by=</span><span class="st">&quot;seqn&quot;</span>) %&gt;%
+<span class="st">  </span><span class="kw">filter</span>(<span class="kw">complete.cases</span>(dmdmartl))</code></pre></div>
+</div>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="12">
+<li id="fn12"><p>It is called “table1” because a nice descriptive table is often found in the first table of many academic papers.<a href="chapter-3-understanding-and-describing-your-data.html#fnref12">↩</a></p></li>
+<li id="fn13"><p><a href="tysonstanley.github.io" class="uri">tysonstanley.github.io</a><a href="chapter-3-understanding-and-describing-your-data.html#fnref13">↩</a></p></li>
+<li id="fn14"><p>This is just scratching the surface of what we can change in the plots.<a href="chapter-3-understanding-and-describing-your-data.html#fnref14">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="chapter-2-manipulating-your-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="chapter-4-basic-analyses.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

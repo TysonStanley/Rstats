@@ -9,7 +9,7 @@ documentclass: book
 link-citations: yes
 ---
 
-# Chapter 3: Understanding Your Data {-}
+# Chapter 3: Understanding and Describing Your Data {-}
 
 We are going to take what we've learned from the previous two chapters and use them together to have simple but powerful ways to understand your data. This chapter will be broken down into:
 
@@ -37,7 +37,11 @@ df <- data.frame("A"=c(1,2,1,4,3,NA),
 table1(df, A, B, C, D)
 ```
 
-This quickly gives you means and standard deviations (or counts and percentages if there were categorical variables).
+This quickly gives you means and standard deviations (or counts and percentages if there were categorical variables). We could have also used the pipe operator here if we wanted via:
+```{r, message=FALSE, warning=FALSE}
+df %>%
+  table1(A, B, C, D)
+```
 
 It turns out, for we want "A" and "C" to be factors.
 
@@ -72,7 +76,6 @@ table1(df, A, B, D,
        test=TRUE,
        NAkeep = TRUE)
 ```
-
 
 So with three or four short lines of code we can get a good idea about variables that may be related to the grouping variable and any missingness in the factor variables. There's much more you can do with `table1` and there are vignettes and tutorials available to learn more.[^tutorials]
 

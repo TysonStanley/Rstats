@@ -8,7 +8,7 @@
   <title>Rstats for Researchers</title>
   <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
   <meta name="description" content="Rstats for Researchers">
-  <meta name="generator" content="bookdown 0.1 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
 
   <meta property="og:title" content="Rstats for Researchers" />
   <meta property="og:type" content="book" />
@@ -25,20 +25,15 @@
 
 <meta name="author" content="Tyson S. Barrett">
 
-<meta name="date" content="2016-10-08">
 
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  TeX: { equationNumbers: { autoNumber: "AMS" } }
-});
-</script>
+<meta name="date" content="2017-01-02">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="chapter-3-understanding-your-data.html">
+<link rel="prev" href="chapter-3-understanding-and-describing-your-data.html">
 <link rel="next" href="chapter-5-generalized-linear-models.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
@@ -105,10 +100,46 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
-<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html"><i class="fa fa-check"></i>Chapter 1: The Basics</a></li>
-<li class="chapter" data-level="" data-path="chapter-2-manipulating-your-data.html"><a href="chapter-2-manipulating-your-data.html"><i class="fa fa-check"></i>Chapter 2: Manipulating Your Data</a></li>
-<li class="chapter" data-level="" data-path="chapter-3-understanding-your-data.html"><a href="chapter-3-understanding-your-data.html"><i class="fa fa-check"></i>Chapter 3: Understanding Your Data</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#part-i"><i class="fa fa-check"></i>Part I</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#part-ii"><i class="fa fa-check"></i>Part II</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#part-iii"><i class="fa fa-check"></i>Part III</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#download-r-and-rstudio"><i class="fa fa-check"></i>Download R and RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html"><i class="fa fa-check"></i>Chapter 1: The Basics</a><ul>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html#objects-data-types-and-functions"><i class="fa fa-check"></i>Objects, Data Types and Functions</a><ul>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html#objects"><i class="fa fa-check"></i>Objects</a></li>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html#data-types"><i class="fa fa-check"></i>Data Types</a></li>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html#functions"><i class="fa fa-check"></i>Functions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html#importing-data"><i class="fa fa-check"></i>Importing Data</a><ul>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html#delimited-files"><i class="fa fa-check"></i>Delimited Files</a></li>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html#other-data-formats"><i class="fa fa-check"></i>Other Data Formats</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html#saving-data"><i class="fa fa-check"></i>Saving Data</a></li>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html#conclusions"><i class="fa fa-check"></i>Conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-2-manipulating-your-data.html"><a href="chapter-2-manipulating-your-data.html"><i class="fa fa-check"></i>Chapter 2: Manipulating Your Data</a><ul>
+<li class="chapter" data-level="" data-path="chapter-2-manipulating-your-data.html"><a href="chapter-2-manipulating-your-data.html#tidy-methods"><i class="fa fa-check"></i>Tidy Methods</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-manipulating-your-data.html"><a href="chapter-2-manipulating-your-data.html#piping"><i class="fa fa-check"></i>Piping</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-manipulating-your-data.html"><a href="chapter-2-manipulating-your-data.html#select-and-filter"><i class="fa fa-check"></i>Select and Filter</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-manipulating-your-data.html"><a href="chapter-2-manipulating-your-data.html#grouping-and-summarizing"><i class="fa fa-check"></i>Grouping and Summarizing</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-manipulating-your-data.html"><a href="chapter-2-manipulating-your-data.html#reshaping"><i class="fa fa-check"></i>Reshaping</a><ul>
+<li class="chapter" data-level="" data-path="chapter-2-manipulating-your-data.html"><a href="chapter-2-manipulating-your-data.html#wide-form"><i class="fa fa-check"></i>Wide Form</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-manipulating-your-data.html"><a href="chapter-2-manipulating-your-data.html#long-form"><i class="fa fa-check"></i>Long Form</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-2-manipulating-your-data.html"><a href="chapter-2-manipulating-your-data.html#joining-merging"><i class="fa fa-check"></i>Joining (merging)</a><ul>
+<li class="chapter" data-level="" data-path="chapter-2-manipulating-your-data.html"><a href="chapter-2-manipulating-your-data.html#inner-join"><i class="fa fa-check"></i>Inner Join</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-manipulating-your-data.html"><a href="chapter-2-manipulating-your-data.html#left-or-right-join"><i class="fa fa-check"></i>Left or Right Join</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-manipulating-your-data.html"><a href="chapter-2-manipulating-your-data.html#full-join"><i class="fa fa-check"></i>Full Join</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html"><i class="fa fa-check"></i>Chapter 3: Understanding and Describing Your Data</a><ul>
+<li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#descriptive-statistics"><i class="fa fa-check"></i>Descriptive Statistics</a></li>
+<li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#visualizations"><i class="fa fa-check"></i>Visualizations</a><ul>
+<li class="chapter" data-level="0.0.1" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#ggplot2"><i class="fa fa-check"></i><b>0.0.1</b> <code class="unnumbered">ggplot2</code></a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html"><i class="fa fa-check"></i>Chapter 4: Basic Analyses</a><ul>
 <li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#anova"><i class="fa fa-check"></i>ANOVA</a><ul>
 <li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#assumptions"><i class="fa fa-check"></i>Assumptions</a></li>
@@ -121,7 +152,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#log-linear-log-log-linear-log-other"><i class="fa fa-check"></i>Log-Linear, Log-Log, Linear-Log, Other</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="chapter-5-generalized-linear-models.html"><a href="chapter-5-generalized-linear-models.html"><i class="fa fa-check"></i>Chapter 5: Generalized Linear Models</a></li>
+<li class="chapter" data-level="" data-path="chapter-5-generalized-linear-models.html"><a href="chapter-5-generalized-linear-models.html"><i class="fa fa-check"></i>Chapter 5: Generalized Linear Models</a><ul>
+<li class="chapter" data-level="" data-path="chapter-5-generalized-linear-models.html"><a href="chapter-5-generalized-linear-models.html#logistic-regression"><i class="fa fa-check"></i>Logistic Regression</a></li>
+<li class="chapter" data-level="" data-path="chapter-5-generalized-linear-models.html"><a href="chapter-5-generalized-linear-models.html#poisson-regression"><i class="fa fa-check"></i>Poisson Regression</a><ul>
+<li class="chapter" data-level="" data-path="chapter-5-generalized-linear-models.html"><a href="chapter-5-generalized-linear-models.html#gamma"><i class="fa fa-check"></i>Gamma</a></li>
+<li class="chapter" data-level="" data-path="chapter-5-generalized-linear-models.html"><a href="chapter-5-generalized-linear-models.html#two-part-or-hurdle-models"><i class="fa fa-check"></i>Two-Part or Hurdle Models</a></li>
+<li class="chapter" data-level="" data-path="chapter-5-generalized-linear-models.html"><a href="chapter-5-generalized-linear-models.html#negative-binomial"><i class="fa fa-check"></i>Negative Binomial</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-5-generalized-linear-models.html"><a href="chapter-5-generalized-linear-models.html#beta-regression"><i class="fa fa-check"></i>Beta Regression</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="chapter-6-multilevel-modeling.html"><a href="chapter-6-multilevel-modeling.html"><i class="fa fa-check"></i>Chapter 6: Multilevel Modeling</a></li>
 <li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html"><i class="fa fa-check"></i>Chapter 7: Other Modeling Techniques</a></li>
 <li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html"><i class="fa fa-check"></i>Chapter 8: Advanced Data Manipulation</a></li>
@@ -147,7 +186,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="chapter-4-basic-analyses" class="section level1 unnumbered">
 <h1>Chapter 4: Basic Analyses</h1>
 <p>In this chapter we are going to demonstrate basic modeling in <code>R</code>. Lucky for us, <code>R</code> is built for these analyses. It is actually quite straight-forward to run these types of models and analyze the output. Not only that, but there are simple ways to compare models.</p>
-<p>We will go through the <strong>ANOVA</strong> family of analyses, the <strong>linear regression</strong> framework, and look at <strong>diagnostics</strong> of each.</p>
+<p>We will go through the <strong>ANOVA</strong> family of analyses, the <strong>linear regression</strong> models, and look at <strong>diagnostics</strong> of each.</p>
 <div id="anova" class="section level2 unnumbered">
 <h2>ANOVA</h2>
 <p>ANOVA stands for <strong>an</strong>alysis <strong>o</strong>f <strong>va</strong>riance. It is a family of methods (e.g. ANCOVA, MANOVA) that all share the fact that they compare a continuous dependent variable by a grouping factor variable (and may have multiple outcomes or other covariates).</p>
@@ -155,7 +194,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 Y_i = \alpha_0 + \alpha_1 \text{Group}_i + e_i
 \]</span> Since the groups are compared using “effect coding,” the <span class="math inline">\(\alpha_0\)</span> is the grand mean and each of the group level means are compared to it.</p>
 <p>To run an ANOVA model, you can simply use the <code>aov</code> function. In the example below, we are analyzing whether family size (although not fully continuous it is still useful for the example) differs by race.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df$race &lt;-<span class="st"> </span><span class="kw">factor</span>(df$ridreth1, <span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;MexicanAmerican&quot;</span>, <span class="st">&quot;OtherHispanic&quot;</span>, <span class="st">&quot;White&quot;</span>, <span class="st">&quot;Black&quot;</span>, <span class="st">&quot;Other&quot;</span>))
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df$race &lt;-<span class="st"> </span><span class="kw">factor</span>(df$ridreth1, 
+                  <span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;MexicanAmerican&quot;</span>, <span class="st">&quot;OtherHispanic&quot;</span>, <span class="st">&quot;White&quot;</span>, <span class="st">&quot;Black&quot;</span>, <span class="st">&quot;Other&quot;</span>))
 df$famsize &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(df$dmdfmsiz)
 
 fit &lt;-<span class="st"> </span><span class="kw">aov</span>(famsize ~<span class="st"> </span>race, df)
@@ -163,9 +203,9 @@ fit &lt;-<span class="st"> </span><span class="kw">aov</span>(famsize ~<span cla
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: famsize
-##             Df Sum Sq Mean Sq F value    Pr(&gt;F)    
-## race         4   1735  433.76  146.87 &lt; 2.2e-16 ***
-## Residuals 9751  28798    2.95                      
+##             Df  Sum Sq Mean Sq F value    Pr(&gt;F)    
+## race         4   749.8 187.462  69.353 &lt; 2.2e-16 ***
+## Residuals 5555 15015.3   2.703                      
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>We make sure the variables are the right type, then we use the <code>aov</code> function. Inside of the function we have what is called a formula. It has the general structure: <code>leftside ~ rightside</code>. Generally, the left side is an outcome variable and the right side is the predictor (i.e. independent) variable. Here, we have <code>race</code> predicting <code>famsize</code>. We assign the model to the name <code>fit</code> which is a common way of denoting it is a model. Finally, we use the <code>anova</code> function to output a nice ANOVA table.</p>
@@ -175,9 +215,10 @@ fit &lt;-<span class="st"> </span><span class="kw">aov</span>(famsize ~<span cla
 <span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x=</span>race, <span class="dt">y=</span>famsize)) +
 <span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">color=</span>race)) +
 <span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">guide=</span><span class="ot">FALSE</span>, 
-                     <span class="dt">values=</span><span class="kw">c</span>(<span class="st">&quot;dodgerblue3&quot;</span>, <span class="st">&quot;coral2&quot;</span>, <span class="st">&quot;chartreuse4&quot;</span>, <span class="st">&quot;darkorchid&quot;</span>, <span class="st">&quot;firebrick2&quot;</span>)) +
+                     <span class="dt">values=</span><span class="kw">c</span>(<span class="st">&quot;dodgerblue3&quot;</span>, <span class="st">&quot;coral2&quot;</span>, <span class="st">&quot;chartreuse4&quot;</span>, 
+                              <span class="st">&quot;darkorchid&quot;</span>, <span class="st">&quot;firebrick2&quot;</span>)) +
 <span class="st">  </span><span class="kw">theme_bw</span>()</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-62-1.png" width="672" /></p>
 <p>This immediately gives us an idea of where some differences may be occuring. It would appear that “White” and “MexicanAmerican” groups are different in family size.</p>
 <div id="assumptions" class="section level3 unnumbered">
 <h3>Assumptions</h3>
@@ -185,21 +226,21 @@ fit &lt;-<span class="st"> </span><span class="kw">aov</span>(famsize ~<span cla
 <p>In <code>R</code> we can get some simple graphical checks using <code>plot</code>. All we provide is our ANOVA object (here it is <code>fit</code>). The line before it <code>par(mfrow=c(1,2))</code> tells <code>R</code> to have two plots per row (the 1 means one row, 2 means two columns).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))
 <span class="kw">plot</span>(fit)</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-4-1.png" width="672" /><img src="_main_files/figure-html/unnamed-chunk-4-2.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-63-1.png" width="672" /><img src="_main_files/figure-html/unnamed-chunk-63-2.png" width="672" /></p>
 <p>Here, it looks like we have a problem with normality (see the Normal Q-Q plot). Those dots should approximately follow the dotted line, which is not the case. In the first plot (Residuals vs. Fitted) suggests we have approximate homoskedasticity.</p>
 </div>
 </div>
 <div id="linear-modeling" class="section level2 unnumbered">
 <h2>Linear Modeling</h2>
 <p>Linear regression is nearly identical to ANOVA. In fact, a linear regression with a continuous outcome and categorical predictor is exactly the same (if we use effect coding). For example, if we run the same model but with the linear regression function <code>lm</code> we get the same ANOVA table.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fit2 &lt;-<span class="st"> </span><span class="kw">lm</span>(famsize ~<span class="st"> </span>race, df)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fit2 &lt;-<span class="st"> </span><span class="kw">lm</span>(famsize ~<span class="st"> </span>race, <span class="dt">data=</span>df)
 <span class="kw">anova</span>(fit2)</code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: famsize
-##             Df Sum Sq Mean Sq F value    Pr(&gt;F)    
-## race         4   1735  433.76  146.87 &lt; 2.2e-16 ***
-## Residuals 9751  28798    2.95                      
+##             Df  Sum Sq Mean Sq F value    Pr(&gt;F)    
+## race         4   749.8 187.462  69.353 &lt; 2.2e-16 ***
+## Residuals 5555 15015.3   2.703                      
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>Surprise! It is the same as before. Here we can also use the <code>summary</code> function and we get the coefficients in the model as well (using dummy coding). The first level of the categorical variable is the reference group (the group that the others are compared to). We also get the intercept (in this case, the average value of the reference group).</p>
@@ -209,22 +250,22 @@ fit &lt;-<span class="st"> </span><span class="kw">aov</span>(famsize ~<span cla
 ## lm(formula = famsize ~ race, data = df)
 ## 
 ## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -3.4487 -1.4487 -0.1097  1.3415  3.8903 
+##    Min     1Q Median     3Q    Max 
+## -2.752 -1.535 -0.535  1.140  4.465 
 ## 
 ## Coefficients:
 ##                   Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)        4.44871    0.04669  95.290   &lt;2e-16 ***
-## raceOtherHispanic -0.66339    0.07017  -9.454   &lt;2e-16 ***
-## raceWhite         -1.33905    0.05633 -23.772   &lt;2e-16 ***
-## raceBlack         -0.87845    0.05727 -15.338   &lt;2e-16 ***
-## raceOther         -0.79023    0.06284 -12.575   &lt;2e-16 ***
+## (Intercept)        3.75185    0.07075  53.029  &lt; 2e-16 ***
+## raceOtherHispanic -0.61690    0.09840  -6.269 3.90e-10 ***
+## raceWhite         -1.21682    0.07956 -15.294  &lt; 2e-16 ***
+## raceBlack         -0.89206    0.08285 -10.768  &lt; 2e-16 ***
+## raceOther         -0.61760    0.08867  -6.965 3.67e-12 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 1.719 on 9751 degrees of freedom
-## Multiple R-squared:  0.05683,    Adjusted R-squared:  0.05644 
-## F-statistic: 146.9 on 4 and 9751 DF,  p-value: &lt; 2.2e-16</code></pre>
+## Residual standard error: 1.644 on 5555 degrees of freedom
+## Multiple R-squared:  0.04756,    Adjusted R-squared:  0.04688 
+## F-statistic: 69.35 on 4 and 5555 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div id="assumptions-1" class="section level3 unnumbered">
 <h3>Assumptions</h3>
 </div>
@@ -233,10 +274,96 @@ fit &lt;-<span class="st"> </span><span class="kw">aov</span>(famsize ~<span cla
 <p>Often when running linear regression, we want to compare models and see if one fits significantly better than another. We also often want to present all the models in a table to let our readers compare the models. We will demonstrate both.</p>
 <div id="compare-statistically" class="section level4 unnumbered">
 <h4>Compare Statistically</h4>
+<p>Using the <code>anova()</code> function, we can compare models statistically.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">anova</span>(fit, fit2)</code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Model 1: famsize ~ race
+## Model 2: famsize ~ race
+##   Res.Df   RSS Df Sum of Sq F Pr(&gt;F)
+## 1   5555 15015                      
+## 2   5555 15015  0         0</code></pre>
+<p>The <code>anova()</code> function works with all sorts of modeling schemes and can help in model selection. Not surprisingly, when we compared the ANOVA and the simple linear model, they are <em>exactly</em> the same in overall model terms (the only difference is in how the cateogrical variable is coded—either effect coding in ANOVA or dummy coding in regression). For a more interesting comparison, lets run a new model with an additional variable and then make a comparison.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fit3 =<span class="st"> </span><span class="kw">lm</span>(famsize ~<span class="st"> </span>race +<span class="st"> </span>dmdmartl, <span class="dt">data=</span>df)
+<span class="kw">summary</span>(fit3)</code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = famsize ~ race + dmdmartl, data = df)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -2.8529 -1.3157 -0.5024  1.0076  6.4705 
+## 
+## Coefficients:
+##                    Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)        3.915115   0.072292  54.157  &lt; 2e-16 ***
+## raceOtherHispanic -0.590393   0.097666  -6.045 1.59e-09 ***
+## raceWhite         -1.226109   0.078943 -15.532  &lt; 2e-16 ***
+## raceBlack         -0.857295   0.082278 -10.420  &lt; 2e-16 ***
+## raceOther         -0.621376   0.087978  -7.063 1.83e-12 ***
+## dmdmartl          -0.062217   0.006587  -9.445  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.631 on 5554 degrees of freedom
+## Multiple R-squared:  0.06262,    Adjusted R-squared:  0.06178 
+## F-statistic:  74.2 on 5 and 5554 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>Notice that the variable is associated with the outcome according to the t-test seen in the summary. So we would expect that <code>fit3</code> is better than <code>fit2</code> at explaining the outcome, which we see in the output below.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">anova</span>(fit2, fit3)</code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Model 1: famsize ~ race
+## Model 2: famsize ~ race + dmdmartl
+##   Res.Df   RSS Df Sum of Sq      F    Pr(&gt;F)    
+## 1   5555 15015                                  
+## 2   5554 14778  1    237.36 89.207 &lt; 2.2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 </div>
 <div id="compare-in-a-table" class="section level4 unnumbered">
 <h4>Compare in a Table</h4>
-<p>Two main packages allow us to compare models.</p>
+<p>We can also compare the models in a well-formatted table that makes many aspects easy to compare. Two main packages allow us to compare models:</p>
+<ol style="list-style-type: decimal">
+<li><code>stargazer</code></li>
+<li><code>texreg</code></li>
+</ol>
+<p>Both provide simple functions to compare multiple models. For example, <code>stargazer</code> provides:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(stargazer)
+<span class="kw">stargazer</span>(fit2, fit3,
+          <span class="dt">type =</span> <span class="st">&quot;text&quot;</span>)</code></pre></div>
+<pre><code>## 
+## =====================================================================
+##                                    Dependent variable:               
+##                     -------------------------------------------------
+##                                          famsize                     
+##                               (1)                      (2)           
+## ---------------------------------------------------------------------
+## raceOtherHispanic          -0.617***                -0.590***        
+##                             (0.098)                  (0.098)         
+##                                                                      
+## raceWhite                  -1.217***                -1.226***        
+##                             (0.080)                  (0.079)         
+##                                                                      
+## raceBlack                  -0.892***                -0.857***        
+##                             (0.083)                  (0.082)         
+##                                                                      
+## raceOther                  -0.618***                -0.621***        
+##                             (0.089)                  (0.088)         
+##                                                                      
+## dmdmartl                                            -0.062***        
+##                                                      (0.007)         
+##                                                                      
+## Constant                    3.752***                 3.915***        
+##                             (0.071)                  (0.072)         
+##                                                                      
+## ---------------------------------------------------------------------
+## Observations                 5,560                    5,560          
+## R2                           0.048                    0.063          
+## Adjusted R2                  0.047                    0.062          
+## Residual Std. Error    1.644 (df = 5555)        1.631 (df = 5554)    
+## F Statistic         69.353*** (df = 4; 5555) 74.204*** (df = 5; 5554)
+## =====================================================================
+## Note:                                     *p&lt;0.1; **p&lt;0.05; ***p&lt;0.01</code></pre>
 </div>
 </div>
 </div>
@@ -269,7 +396,7 @@ df$log_var1    &lt;-<span class="st"> </span><span class="kw">log</span>(df$var1
           </div>
         </div>
       </div>
-<a href="chapter-3-understanding-your-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="chapter-3-understanding-and-describing-your-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="chapter-5-generalized-linear-models.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
 
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -283,6 +410,7 @@ df$log_var1    &lt;-<span class="st"> </span><span class="kw">log</span>(df$var1
 require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
+"github": false,
 "facebook": true,
 "twitter": true,
 "google": false,
