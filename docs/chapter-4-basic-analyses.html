@@ -137,7 +137,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html"><i class="fa fa-check"></i>Chapter 3: Understanding and Describing Your Data</a><ul>
 <li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#descriptive-statistics"><i class="fa fa-check"></i>Descriptive Statistics</a></li>
 <li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#visualizations"><i class="fa fa-check"></i>Visualizations</a><ul>
-<li class="chapter" data-level="0.0.1" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#ggplot2"><i class="fa fa-check"></i><b>0.0.1</b> <code class="unnumbered">ggplot2</code></a></li>
+<li class="chapter" data-level="0.0.1" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#using-ggplot2"><i class="fa fa-check"></i><b>0.0.1</b> Using <code class="unnumbered">ggplot2</code></a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html"><i class="fa fa-check"></i>Chapter 4: Basic Analyses</a><ul>
@@ -368,8 +368,12 @@ fit &lt;-<span class="st"> </span><span class="kw">aov</span>(famsize ~<span cla
 <li><code>texreg</code></li>
 </ol>
 <p>Both provide simple functions to compare multiple models. For example, <code>stargazer</code> provides:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(stargazer)
-<span class="kw">stargazer</span>(fit2, fit3,
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(stargazer)</code></pre></div>
+<pre><code>## 
+## Please cite as:</code></pre>
+<pre><code>##  Hlavac, Marek (2015). stargazer: Well-Formatted Regression and Summary Statistics Tables.</code></pre>
+<pre><code>##  R package version 5.2. http://CRAN.R-project.org/package=stargazer</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">stargazer</span>(fit2, fit3,
           <span class="dt">type =</span> <span class="st">&quot;text&quot;</span>)</code></pre></div>
 <pre><code>## 
 ## =======================================================================

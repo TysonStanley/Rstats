@@ -137,7 +137,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html"><i class="fa fa-check"></i>Chapter 3: Understanding and Describing Your Data</a><ul>
 <li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#descriptive-statistics"><i class="fa fa-check"></i>Descriptive Statistics</a></li>
 <li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#visualizations"><i class="fa fa-check"></i>Visualizations</a><ul>
-<li class="chapter" data-level="0.0.1" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#ggplot2"><i class="fa fa-check"></i><b>0.0.1</b> <code class="unnumbered">ggplot2</code></a></li>
+<li class="chapter" data-level="0.0.1" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#using-ggplot2"><i class="fa fa-check"></i><b>0.0.1</b> Using <code class="unnumbered">ggplot2</code></a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html"><i class="fa fa-check"></i>Chapter 4: Basic Analyses</a><ul>
@@ -241,7 +241,7 @@ df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class=
 ##  C                             
 ##               0.67 (0.52)      
 ##  D                             
-##               -0.34 (1.25)     
+##               -0.07 (0.54)     
 ## |==============================|</code></pre>
 <p>This quickly gives you means and standard deviations (or counts and percentages if there were categorical variables). We could have also used the pipe operator here if we wanted via:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df %&gt;%
@@ -257,18 +257,13 @@ df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class=
 ##  C                             
 ##               0.67 (0.52)      
 ##  D                             
-##               -0.34 (1.25)     
+##               -0.07 (0.54)     
 ## |==============================|</code></pre>
 <p>It turns out, for we want “A” and “C” to be factors.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df$A &lt;-<span class="st"> </span><span class="kw">factor</span>(df$A, <span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;cat1&quot;</span>, <span class="st">&quot;cat2&quot;</span>, <span class="st">&quot;cat3&quot;</span>, <span class="st">&quot;cat4&quot;</span>))
 df$C &lt;-<span class="st"> </span><span class="kw">factor</span>(df$C, <span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;male&quot;</span>, <span class="st">&quot;female&quot;</span>))
 
 <span class="kw">table1</span>(df, A, B, C, D)</code></pre></div>
-<pre><code>## Warning in table1(df, A, B, C, D): Tests are less robust to non-normality
-## if N in any group is less than 20
-
-## Warning in table1(df, A, B, C, D): Tests are less robust to non-normality
-## if N in any group is less than 20</code></pre>
 <pre><code>## 
 ## |==============================|
 ##               Mean/Count (SD/%)
@@ -284,82 +279,63 @@ df$C &lt;-<span class="st"> </span><span class="kw">factor</span>(df$C, <span cl
 ##     male      2 (33.3%)        
 ##     female    4 (66.7%)        
 ##  D                             
-##               -0.34 (1.25)     
+##               -0.07 (0.54)     
 ## |==============================|</code></pre>
 <p>So now we see the counts and percentages for the factor variables. But now we can take a step further and look for relationships. The code below shows the means/standard devaitions or counts/percentages by a grouping variable–in this case, <code>C</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table1</span>(df, A, B, D,
        <span class="dt">splitby =</span> ~C)</code></pre></div>
-<pre><code>## Warning in table1(df, A, B, D, splitby = ~C): Tests are less robust to non-
-## normality if N in any group is less than 20
-
-## Warning in table1(df, A, B, D, splitby = ~C): Tests are less robust to non-
-## normality if N in any group is less than 20</code></pre>
 <pre><code>## 
-## |======================================|
-##               male         female      
-##  Observations 2            4           
-##  A                                     
-##     cat1      1 (50%)      1 (33.3%)   
-##     cat2      1 (50%)      0 (0%)      
-##     cat3      0 (0%)       1 (33.3%)   
-##     cat4      0 (0%)       1 (33.3%)   
-##  B                                     
-##               1.75 (0.49)  3.33 (1.30) 
-##  D                                     
-##               -0.57 (2.18) -0.23 (0.98)
-## |======================================|</code></pre>
+## |=====================================|
+##               male        female      
+##  Observations 2           4           
+##  A                                    
+##     cat1      1 (50%)     1 (33.3%)   
+##     cat2      1 (50%)     0 (0%)      
+##     cat3      0 (0%)      1 (33.3%)   
+##     cat4      0 (0%)      1 (33.3%)   
+##  B                                    
+##               1.75 (0.49) 3.33 (1.30) 
+##  D                                    
+##               0.23 (0.52) -0.22 (0.56)
+## |=====================================|</code></pre>
 <p>We can also test for differences by group as well (although this is not particularly good with a sample size of 5). It produces a warning since the <span class="math inline">\(\chi^2\)</span> approximation is not accurate with cells this small.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table1</span>(df, A, B, D,
        <span class="dt">splitby =</span> ~C,
        <span class="dt">test=</span><span class="ot">TRUE</span>)</code></pre></div>
-<pre><code>## Warning in chisq.test(d$split, d[, i]): Chi-squared approximation may be
-## incorrect</code></pre>
-<pre><code>## Warning in table1(df, A, B, D, splitby = ~C, test = TRUE): Tests are less
-## robust to non-normality if N in any group is less than 20
-
-## Warning in table1(df, A, B, D, splitby = ~C, test = TRUE): Tests are less
-## robust to non-normality if N in any group is less than 20</code></pre>
 <pre><code>## 
-## |==============================================|
-##               male         female       P-Value
-##  Observations 2            4                   
-##  A                                      0.405  
-##     cat1      1 (50%)      1 (33.3%)           
-##     cat2      1 (50%)      0 (0%)              
-##     cat3      0 (0%)       1 (33.3%)           
-##     cat4      0 (0%)       1 (33.3%)           
-##  B                                      0.162  
-##               1.75 (0.49)  3.33 (1.30)         
-##  D                                      0.865  
-##               -0.57 (2.18) -0.23 (0.98)        
-## |==============================================|</code></pre>
+## |=============================================|
+##               male        female       P-Value
+##  Observations 2           4                   
+##  A                                     0.405  
+##     cat1      1 (50%)     1 (33.3%)           
+##     cat2      1 (50%)     0 (0%)              
+##     cat3      0 (0%)      1 (33.3%)           
+##     cat4      0 (0%)      1 (33.3%)           
+##  B                                     0.162  
+##               1.75 (0.49) 3.33 (1.30)         
+##  D                                     0.417  
+##               0.23 (0.52) -0.22 (0.56)        
+## |=============================================|</code></pre>
 <p>Finally, we can include missingness in the table for factors.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table1</span>(df, A, B, D,
        <span class="dt">splitby =</span> ~C,
        <span class="dt">test=</span><span class="ot">TRUE</span>,
        <span class="dt">NAkeep =</span> <span class="ot">TRUE</span>)</code></pre></div>
-<pre><code>## Warning in chisq.test(d$split, d[, i]): Chi-squared approximation may be
-## incorrect</code></pre>
-<pre><code>## Warning in table1(df, A, B, D, splitby = ~C, test = TRUE, NAkeep = TRUE):
-## Tests are less robust to non-normality if N in any group is less than 20
-
-## Warning in table1(df, A, B, D, splitby = ~C, test = TRUE, NAkeep = TRUE):
-## Tests are less robust to non-normality if N in any group is less than 20</code></pre>
 <pre><code>## 
-## |==============================================|
-##               male         female       P-Value
-##  Observations 2            4                   
-##  A                                      0.405  
-##     cat1      1 (50%)      1 (25%)             
-##     cat2      1 (50%)      0 (0%)              
-##     cat3      0 (0%)       1 (25%)             
-##     cat4      0 (0%)       1 (25%)             
-##     NA        0 (0%)       1 (25%)             
-##  B                                      0.162  
-##               1.75 (0.49)  3.33 (1.30)         
-##  D                                      0.865  
-##               -0.57 (2.18) -0.23 (0.98)        
-## |==============================================|</code></pre>
+## |=============================================|
+##               male        female       P-Value
+##  Observations 2           4                   
+##  A                                     0.405  
+##     cat1      1 (50%)     1 (25%)             
+##     cat2      1 (50%)     0 (0%)              
+##     cat3      0 (0%)      1 (25%)             
+##     cat4      0 (0%)      1 (25%)             
+##     NA        0 (0%)      1 (25%)             
+##  B                                     0.162  
+##               1.75 (0.49) 3.33 (1.30)         
+##  D                                     0.417  
+##               0.23 (0.52) -0.22 (0.56)        
+## |=============================================|</code></pre>
 <p>So with three or four short lines of code we can get a good idea about variables that may be related to the grouping variable and any missingness in the factor variables. There’s much more you can do with <code>table1</code> and there are vignettes and tutorials available to learn more.<a href="#fn13" class="footnoteRef" id="fnref13"><sup>13</sup></a></p>
 <p>Other quick descriptive functions exist; here are a few of them.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(df)          ## descriptives for each variable in the data
@@ -374,8 +350,8 @@ Hmisc::<span class="kw">describe</span>(df)  ## gives summary for each variable 
 <h2>Visualizations</h2>
 <p>Understanding your data, in my experience, generally requires visualizations. If we are going to use a model of some sort, understanding the distributions and relationships beforehand are very helpful in interpreting the model and catching errors in the data. Also finding any outliers or errors that could be highly influencing the modeling should be understood beforehand.</p>
 <p>For simple but appealing visualizations we are going to be using <code>ggplot2</code>. This package is used to produce professional level plots for many journalism organizations (e.g. five-thrity-eight). These plots are quickly presentation quality and can be used to impress your boss, your advisor, or your friends.</p>
-<div id="ggplot2" class="section level3">
-<h3><span class="header-section-number">0.0.1</span> <code class="unnumbered">ggplot2</code></h3>
+<div id="using-ggplot2" class="section level3">
+<h3><span class="header-section-number">0.0.1</span> Using <code class="unnumbered">ggplot2</code></h3>
 <p>This package has a straight-forward syntax. It is built by adding layers to the plot.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)   ## first install using install.packages(&quot;ggplot2&quot;)</code></pre></div>
 <p>First, we have a nice <code>qplot</code> function that is short for “quick plot.” It quickly decides what kind of plot is useful given the data and variables you provide.</p>

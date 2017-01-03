@@ -45,7 +45,7 @@ df %>%
 
 It turns out, for we want "A" and "C" to be factors.
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 df$A <- factor(df$A, labels=c("cat1", "cat2", "cat3", "cat4"))
 df$C <- factor(df$C, labels=c("male", "female"))
 
@@ -54,14 +54,14 @@ table1(df, A, B, C, D)
 
 So now we see the counts and percentages for the factor variables. But now we can take a step further and look for relationships. The code below shows the means/standard devaitions or counts/percentages by a grouping variable--in this case, `C`.
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 table1(df, A, B, D,
        splitby = ~C)
 ```
 
 We can also test for differences by group as well (although this is not particularly good with a sample size of 5). It produces a warning since the $\chi^2$ approximation is not accurate with cells this small.
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 table1(df, A, B, D,
        splitby = ~C,
        test=TRUE)
@@ -70,7 +70,7 @@ table1(df, A, B, D,
 
 Finally, we can include missingness in the table for factors. 
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 table1(df, A, B, D,
        splitby = ~C,
        test=TRUE,
@@ -98,7 +98,7 @@ Understanding your data, in my experience, generally requires visualizations. If
 
 For simple but appealing visualizations we are going to be using `ggplot2`. This package is used to produce professional level plots for many journalism organizations (e.g. five-thrity-eight). These plots are quickly presentation quality and can be used to impress your boss, your advisor, or your friends.
 
-### `ggplot2` {-}
+### Using `ggplot2` {-}
 
 This package has a straight-forward syntax. It is built by adding layers to the plot. 
 

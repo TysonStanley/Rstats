@@ -137,7 +137,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html"><i class="fa fa-check"></i>Chapter 3: Understanding and Describing Your Data</a><ul>
 <li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#descriptive-statistics"><i class="fa fa-check"></i>Descriptive Statistics</a></li>
 <li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#visualizations"><i class="fa fa-check"></i>Visualizations</a><ul>
-<li class="chapter" data-level="0.0.1" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#ggplot2"><i class="fa fa-check"></i><b>0.0.1</b> <code class="unnumbered">ggplot2</code></a></li>
+<li class="chapter" data-level="0.0.1" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#using-ggplot2"><i class="fa fa-check"></i><b>0.0.1</b> Using <code class="unnumbered">ggplot2</code></a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html"><i class="fa fa-check"></i>Chapter 4: Basic Analyses</a><ul>
@@ -367,8 +367,21 @@ df$sed_zero &lt;-<span class="st"> </span><span class="kw">ifelse</span>(<span c
                              <span class="dt">replace=</span><span class="ot">TRUE</span>) %in%<span class="st"> </span><span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">11</span>,<span class="dv">20</span>:<span class="dv">25</span>), <span class="dv">0</span>, 
                       df$sed)
 ## Hurdle model
-<span class="kw">library</span>(pscl)
-h_fit =<span class="st"> </span><span class="kw">hurdle</span>(sed_zero ~<span class="st"> </span>asthma +<span class="st"> </span>race +<span class="st"> </span>famsize,
+<span class="kw">library</span>(pscl)</code></pre></div>
+<pre><code>## Loading required package: MASS</code></pre>
+<pre><code>## 
+## Attaching package: &#39;MASS&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
+## 
+##     select</code></pre>
+<pre><code>## Loading required package: lattice</code></pre>
+<pre><code>## Classes and Methods for R developed in the</code></pre>
+<pre><code>## Political Science Computational Laboratory</code></pre>
+<pre><code>## Department of Political Science</code></pre>
+<pre><code>## Stanford University</code></pre>
+<pre><code>## Simon Jackman</code></pre>
+<pre><code>## hurdle and zeroinfl functions by Achim Zeileis</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">h_fit =<span class="st"> </span><span class="kw">hurdle</span>(sed_zero ~<span class="st"> </span>asthma +<span class="st"> </span>race +<span class="st"> </span>famsize,
                <span class="dt">data =</span> df)
 <span class="kw">summary</span>(h_fit)</code></pre></div>
 <pre><code>## 
@@ -377,31 +390,31 @@ h_fit =<span class="st"> </span><span class="kw">hurdle</span>(sed_zero ~<span c
 ## 
 ## Pearson residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -3.6495 -1.5230 -0.2363  1.3338 10.2213 
+## -3.8108 -1.5452 -0.2864  1.3340 10.7509 
 ## 
 ## Count model coefficients (truncated poisson with log link):
 ##                     Estimate Std. Error z value Pr(&gt;|z|)    
-## (Intercept)        5.6666695  0.0032756 1729.98   &lt;2e-16 ***
-## asthma             0.0724045  0.0020399   35.49   &lt;2e-16 ***
-## raceOtherHispanic  0.1435607  0.0037454   38.33   &lt;2e-16 ***
-## raceWhite          0.3667245  0.0030884  118.74   &lt;2e-16 ***
-## raceBlack          0.3397541  0.0031733  107.07   &lt;2e-16 ***
-## raceOther          0.3391527  0.0033232  102.06   &lt;2e-16 ***
-## famsize           -0.0301828  0.0004598  -65.64   &lt;2e-16 ***
+## (Intercept)        5.6650569  0.0032419 1747.47   &lt;2e-16 ***
+## asthma             0.0666169  0.0020518   32.47   &lt;2e-16 ***
+## raceOtherHispanic  0.1367077  0.0037292   36.66   &lt;2e-16 ***
+## raceWhite          0.3559260  0.0030612  116.27   &lt;2e-16 ***
+## raceBlack          0.3410419  0.0031413  108.57   &lt;2e-16 ***
+## raceOther          0.3427495  0.0032908  104.15   &lt;2e-16 ***
+## famsize           -0.0287543  0.0004573  -62.88   &lt;2e-16 ***
 ## Zero hurdle model coefficients (binomial with logit link):
 ##                   Estimate Std. Error z value Pr(&gt;|z|)    
-## (Intercept)        2.24427    0.18619  12.054   &lt;2e-16 ***
-## asthma             0.01273    0.13575   0.094    0.925    
-## raceOtherHispanic  0.25586    0.22260   1.149    0.250    
-## raceWhite          0.07402    0.17466   0.424    0.672    
-## raceBlack         -0.08269    0.17753  -0.466    0.641    
-## raceOther          0.03983    0.19122   0.208    0.835    
-## famsize            0.02087    0.02915   0.716    0.474    
+## (Intercept)        2.41327    0.20111  12.000   &lt;2e-16 ***
+## asthma            -0.10807    0.13270  -0.814    0.415    
+## raceOtherHispanic -0.02521    0.23214  -0.109    0.914    
+## raceWhite         -0.18916    0.18902  -1.001    0.317    
+## raceBlack         -0.22166    0.19378  -1.144    0.253    
+## raceOther         -0.09888    0.20776  -0.476    0.634    
+## famsize            0.04716    0.03019   1.562    0.118    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1 
 ## 
 ## Number of iterations in BFGS optimization: 12 
-## Log-likelihood: -2.94e+05 on 14 Df</code></pre>
+## Log-likelihood: -2.941e+05 on 14 Df</code></pre>
 <p>Notice that the output has two parts: “Count model coefficients (truncated poisson with log link):” and “Zero hurdle model coefficients (binomial with logit link):”. Together they tell us about the relationship between the predictors and a count variable with many zeros.</p>
 </div>
 <div id="negative-binomial" class="section level3 unnumbered">
@@ -432,28 +445,28 @@ fit_beta &lt;-<span class="st"> </span><span class="kw">betareg</span>(beta_var 
 ## 
 ## Standardized weighted residuals 2:
 ##     Min      1Q  Median      3Q     Max 
-## -2.0644 -0.6697 -0.0485  0.6108  2.9660 
+## -2.0188 -0.7043 -0.0473  0.6324  2.9636 
 ## 
 ## Coefficients (mean model with logit link):
 ##                    Estimate Std. Error z value Pr(&gt;|z|)  
-## (Intercept)        0.029735   0.054608   0.545   0.5861  
-## asthma            -0.010711   0.038068  -0.281   0.7784  
-## raceOtherHispanic  0.107472   0.062058   1.732   0.0833 .
-## raceWhite          0.044380   0.051061   0.869   0.3848  
-## raceBlack          0.079095   0.052626   1.503   0.1328  
-## raceOther          0.112253   0.055909   2.008   0.0447 *
-## famsize            0.003882   0.008418   0.461   0.6447  
+## (Intercept)        0.115952   0.054814   2.115   0.0344 *
+## asthma            -0.044460   0.038203  -1.164   0.2445  
+## raceOtherHispanic -0.056658   0.062271  -0.910   0.3629  
+## raceWhite         -0.019716   0.051250  -0.385   0.7005  
+## raceBlack          0.018593   0.052819   0.352   0.7248  
+## raceOther          0.020014   0.056107   0.357   0.7213  
+## famsize           -0.005359   0.008447  -0.634   0.5258  
 ## 
 ## Phi coefficients (precision model with identity link):
 ##       Estimate Std. Error z value Pr(&gt;|z|)    
-## (phi)   2.5222     0.0412   61.22   &lt;2e-16 ***
+## (phi)  2.49273    0.04066   61.31   &lt;2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1 
 ## 
 ## Type of estimator: ML (maximum likelihood)
-## Log-likelihood: 118.8 on 8 Df
-## Pseudo R-squared: 0.0012
-## Number of iterations: 28 (BFGS) + 1 (Fisher scoring)</code></pre>
+## Log-likelihood:   103 on 8 Df
+## Pseudo R-squared: 0.0009184
+## Number of iterations: 18 (BFGS) + 2 (Fisher scoring)</code></pre>
 <p>The output provides coefficients and the “Phi” coefficients. Both are important parts of using beta regression but we are not going to discuss it here.</p>
 <p>There are many resources available to learn more about beta regression and each of these GLM’s. As for now, we are going to move on to more complex modeling where there are clustering or repeated measures in the data.</p>
 
