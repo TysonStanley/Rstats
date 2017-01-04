@@ -26,7 +26,7 @@
 <meta name="author" content="Tyson S. Barrett">
 
 
-<meta name="date" content="2017-01-03">
+<meta name="date" content="2017-01-04">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -168,9 +168,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="chapter-6-multilevel-modeling.html"><a href="chapter-6-multilevel-modeling.html"><i class="fa fa-check"></i>Chapter 6: Multilevel Modeling</a><ul>
 <li class="chapter" data-level="" data-path="chapter-6-multilevel-modeling.html"><a href="chapter-6-multilevel-modeling.html#gee"><i class="fa fa-check"></i>GEE</a></li>
 <li class="chapter" data-level="" data-path="chapter-6-multilevel-modeling.html"><a href="chapter-6-multilevel-modeling.html#mixed-effects"><i class="fa fa-check"></i>Mixed Effects</a></li>
+<li class="chapter" data-level="" data-path="chapter-6-multilevel-modeling.html"><a href="chapter-6-multilevel-modeling.html#conclusions-1"><i class="fa fa-check"></i>Conclusions</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html"><i class="fa fa-check"></i>Chapter 7: Other Modeling Techniques</a><ul>
 <li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#mediation-modeling"><i class="fa fa-check"></i>Mediation Modeling</a></li>
+<li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#mixture-modeling"><i class="fa fa-check"></i>Mixture Modeling</a></li>
 <li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#structural-equation-modeling"><i class="fa fa-check"></i>Structural Equation Modeling</a></li>
 <li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#machine-learning-techniques"><i class="fa fa-check"></i>Machine Learning Techniques</a><ul>
 <li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#ridge-lasso-and-elastic-net"><i class="fa fa-check"></i>Ridge, Lasso and Elastic Net</a></li>
@@ -241,7 +243,7 @@ df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class=
 ##  C                             
 ##               0.67 (0.52)      
 ##  D                             
-##               -0.07 (0.54)     
+##               -0.28 (1.25)     
 ## |==============================|</code></pre>
 <p>This quickly gives you means and standard deviations (or counts and percentages if there were categorical variables). We could have also used the pipe operator here if we wanted via:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df %&gt;%
@@ -257,7 +259,7 @@ df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class=
 ##  C                             
 ##               0.67 (0.52)      
 ##  D                             
-##               -0.07 (0.54)     
+##               -0.28 (1.25)     
 ## |==============================|</code></pre>
 <p>It turns out, for we want “A” and “C” to be factors.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df$A &lt;-<span class="st"> </span><span class="kw">factor</span>(df$A, <span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;cat1&quot;</span>, <span class="st">&quot;cat2&quot;</span>, <span class="st">&quot;cat3&quot;</span>, <span class="st">&quot;cat4&quot;</span>))
@@ -279,24 +281,24 @@ df$C &lt;-<span class="st"> </span><span class="kw">factor</span>(df$C, <span cl
 ##     male      2 (33.3%)        
 ##     female    4 (66.7%)        
 ##  D                             
-##               -0.07 (0.54)     
+##               -0.28 (1.25)     
 ## |==============================|</code></pre>
 <p>So now we see the counts and percentages for the factor variables. But now we can take a step further and look for relationships. The code below shows the means/standard devaitions or counts/percentages by a grouping variable–in this case, <code>C</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table1</span>(df, A, B, D,
        <span class="dt">splitby =</span> ~C)</code></pre></div>
 <pre><code>## 
 ## |=====================================|
-##               male        female      
-##  Observations 2           4           
+##               male         female     
+##  Observations 2            4          
 ##  A                                    
-##     cat1      1 (50%)     1 (33.3%)   
-##     cat2      1 (50%)     0 (0%)      
-##     cat3      0 (0%)      1 (33.3%)   
-##     cat4      0 (0%)      1 (33.3%)   
+##     cat1      1 (50%)      1 (33.3%)  
+##     cat2      1 (50%)      0 (0%)     
+##     cat3      0 (0%)       1 (33.3%)  
+##     cat4      0 (0%)       1 (33.3%)  
 ##  B                                    
-##               1.75 (0.49) 3.33 (1.30) 
+##               1.75 (0.49)  3.33 (1.30)
 ##  D                                    
-##               0.23 (0.52) -0.22 (0.56)
+##               -1.03 (2.44) 0.09 (0.26)
 ## |=====================================|</code></pre>
 <p>We can also test for differences by group as well (although this is not particularly good with a sample size of 5). It produces a warning since the <span class="math inline">\(\chi^2\)</span> approximation is not accurate with cells this small.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table1</span>(df, A, B, D,
@@ -304,17 +306,17 @@ df$C &lt;-<span class="st"> </span><span class="kw">factor</span>(df$C, <span cl
        <span class="dt">test=</span><span class="ot">TRUE</span>)</code></pre></div>
 <pre><code>## 
 ## |=============================================|
-##               male        female       P-Value
-##  Observations 2           4                   
+##               male         female      P-Value
+##  Observations 2            4                  
 ##  A                                     0.405  
-##     cat1      1 (50%)     1 (33.3%)           
-##     cat2      1 (50%)     0 (0%)              
-##     cat3      0 (0%)      1 (33.3%)           
-##     cat4      0 (0%)      1 (33.3%)           
+##     cat1      1 (50%)      1 (33.3%)          
+##     cat2      1 (50%)      0 (0%)             
+##     cat3      0 (0%)       1 (33.3%)          
+##     cat4      0 (0%)       1 (33.3%)          
 ##  B                                     0.162  
-##               1.75 (0.49) 3.33 (1.30)         
-##  D                                     0.417  
-##               0.23 (0.52) -0.22 (0.56)        
+##               1.75 (0.49)  3.33 (1.30)        
+##  D                                     0.634  
+##               -1.03 (2.44) 0.09 (0.26)        
 ## |=============================================|</code></pre>
 <p>Finally, we can include missingness in the table for factors.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table1</span>(df, A, B, D,
@@ -323,18 +325,18 @@ df$C &lt;-<span class="st"> </span><span class="kw">factor</span>(df$C, <span cl
        <span class="dt">NAkeep =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <pre><code>## 
 ## |=============================================|
-##               male        female       P-Value
-##  Observations 2           4                   
+##               male         female      P-Value
+##  Observations 2            4                  
 ##  A                                     0.405  
-##     cat1      1 (50%)     1 (25%)             
-##     cat2      1 (50%)     0 (0%)              
-##     cat3      0 (0%)      1 (25%)             
-##     cat4      0 (0%)      1 (25%)             
-##     NA        0 (0%)      1 (25%)             
+##     cat1      1 (50%)      1 (25%)            
+##     cat2      1 (50%)      0 (0%)             
+##     cat3      0 (0%)       1 (25%)            
+##     cat4      0 (0%)       1 (25%)            
+##     NA        0 (0%)       1 (25%)            
 ##  B                                     0.162  
-##               1.75 (0.49) 3.33 (1.30)         
-##  D                                     0.417  
-##               0.23 (0.52) -0.22 (0.56)        
+##               1.75 (0.49)  3.33 (1.30)        
+##  D                                     0.634  
+##               -1.03 (2.44) 0.09 (0.26)        
 ## |=============================================|</code></pre>
 <p>So with three or four short lines of code we can get a good idea about variables that may be related to the grouping variable and any missingness in the factor variables. There’s much more you can do with <code>table1</code> and there are vignettes and tutorials available to learn more.<a href="#fn13" class="footnoteRef" id="fnref13"><sup>13</sup></a></p>
 <p>Other quick descriptive functions exist; here are a few of them.</p>
@@ -387,7 +389,7 @@ Hmisc::<span class="kw">describe</span>(df)  ## gives summary for each variable 
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Run but not shown
 ## Getting data ready for the examples
 <span class="kw">library</span>(foreign)
-<span class="kw">library</span>(dplyr)
+<span class="kw">library</span>(tidyverse)
 <span class="kw">library</span>(furniture)
 <span class="kw">library</span>(anteo)
 dem_df &lt;-<span class="st"> </span><span class="kw">read.xport</span>(<span class="st">&quot;~/Box Sync/GitHub/blog_rstats/assets/Data/NHANES_demographics_11.xpt&quot;</span>)
@@ -406,6 +408,7 @@ df &lt;-<span class="st"> </span>dem_df %&gt;%
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">dmdmartl =</span> <span class="kw">factor</span>(dmdmartl,
                            <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Married&quot;</span>, <span class="st">&quot;Widowed&quot;</span>, <span class="st">&quot;Divorced&quot;</span>, <span class="st">&quot;Separated&quot;</span>, 
                                       <span class="st">&quot;Never Married&quot;</span>, <span class="st">&quot;Partner&quot;</span>))) %&gt;%
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">dmdfmsiz =</span> <span class="kw">washer</span>(dmdfmsiz, <span class="dv">7</span>, <span class="dv">9</span>)) %&gt;%
 <span class="st">  </span><span class="kw">filter</span>(<span class="kw">complete.cases</span>(dmdmartl))</code></pre></div>
 </div>
 </div>

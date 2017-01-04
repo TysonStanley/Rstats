@@ -9,11 +9,12 @@ documentclass: book
 link-citations: yes
 ---
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
 ## Run but not shown
 ## Getting data ready for the examples
 library(foreign)
-library(dplyr)
+library(tidyverse)
+library(furniture)
 dem_df <- read.xport("~/Box Sync/GitHub/blog_rstats/assets/Data/NHANES_demographics_11.xpt")
 med_df <- read.xport("~/Box Sync/GitHub/blog_rstats/assets/Data/NHANES_MedHeath_11.xpt")
 men_df <- read.xport("~/Box Sync/GitHub/blog_rstats/assets/Data/NHANES_MentHealth_11.xpt")
@@ -25,9 +26,32 @@ names(act_df) <- tolower(names(act_df))
 df <- dem_df %>%
   full_join(med_df, by="seqn") %>%
   full_join(men_df, by="seqn") %>%
-  full_join(act_df, by="seqn")
+  full_join(act_df, by="seqn") %>%
+  filter(complete.cases(dmdmartl)) %>%
+  mutate(race = factor(ridreth1, 
+                       labels=c("MexicanAmerican", "OtherHispanic", 
+                                "White", "Black", "Other"))) %>%
+  mutate(famsize = as.numeric(washer(dmdfmsiz, 7,9))) %>%
+  mutate(dpq010 = washer(dpq010, 7,9),
+         dpq020 = washer(dpq020, 7,9),
+         dpq030 = washer(dpq030, 7,9),
+         dpq040 = washer(dpq040, 7,9),
+         dpq050 = washer(dpq050, 7,9),
+         dpq060 = washer(dpq060, 7,9),
+         dpq070 = washer(dpq070, 7,9),
+         dpq080 = washer(dpq080, 7,9),
+         dpq090 = washer(dpq090, 7,9),
+         dpq100 = washer(dpq100, 7,9)) %>%
+  mutate(dep = dpq010 + dpq020 + dpq030 + dpq040 + dpq050 +
+               dpq060 + dpq070 + dpq080 + dpq090) %>%
+  mutate(dep2 = ifelse(dep >= 10, 1,
+                ifelse(dep < 10, 0, NA)))
+df <- df %>%
+  mutate(asthma = washer(mcq010, 9),
+         asthma = washer(asthma, 2, value = 0)) %>%
+  mutate(sed = washer(pad680, 9999, 7777)) %>%
+  mutate(cluster = sdmvstra - 89)
 ```
-
 
 
 # Chapter 6: Multilevel Modeling {-}
@@ -35,19 +59,116 @@ df <- dem_df %>%
 There are two general forms of multilevel modeling: 
 
 1. Generalized Estimating Equations (GEE)
-2. Mixed effects (i.e., hierarchical linear modeling, multilevel modeling)
+2. Mixed effects (ME; i.e., hierarchical linear modeling, multilevel modeling)
+
+Several similarities and differences should be noted briefly. As for similarities, they both attempt to control for the lack of independence within clusters, although they do it in different ways. Also, they are both built on linear regression which makes them flexible and powerful at finding relationships in the data.
+
+The differences are subtle but important. First, the interpretation is somewhat different between the two. GEE is a population-averaged (e.g., marginal) model whereas ME is subject specific. In other words, *GEE is the average effect* while *ME is the effect found in the average person*. In a linear model, these coefficients are the same but when we use different forms such as logistic or poisson, these can be quite different (although in my experience they generally tell a similar story). Second, ME models are much more complex than the GEE models and can struggle with convergence compared to the GEE. This also means that GEE's are generally fitted much more quickly. Still the choice of the modeling technique should be driven by your hypotheses and not totally dependent on speed of the computation.
+
+First, if we needed to, we'd reshape our data so that it is ready for the analyses. For both modeling techniques we want our data in long form[^longform]. What this implies is that each row is an observation. What this actually means about the data depends on the data. For example, if you have repeated measures, then often data is stored in wide form---a row is an individual. To make this long, we want each time point within a person to be a row---a single individual can have multiple rows but each row is a unique observation.
+
+Currently, our data is in long form since we are working within community clusters within this data. So, each row is an observation and each cluster has multiple rows. Note that although these analyses will be within community clusters instead of within subjects (i.e. repeated measures), the overall steps will be the exact same.
+
+This chapter certainly does not cover all of multilevel modeling in `R`. Entire books are dedicated to that single subject. Rather, we are introducing the methods and the packages that can be used to start using these methods. 
 
 ## GEE {-}
 
+There are two packages, intimately related, that allow us to perform GEE modeling---`gee` and `geepack`. These have some great features and make running a fairly complex model pretty simple. However, as great as they are, there are some annoying shortcomings. We'll get to a few of them throughout this section.
+
+GEE's, in general, want a few pieces of information from you. First, the outcome and predictors. This is just as in linear regression and GLM's. Second, we need to provide a correlation structure. This tells the model the approximate pattern of correlations between the time points or clusters. It also wants a variable that tells the cluster ID's. Finally, it also wants the family (i.e. the type of distribution).
+
+Since this is not longitudinal, but rather clustered within communities, we'll assume for this analysis an unstructured correlation structure. It is the most flexible and we have enough power for it here.
+
+For `geepack` to work, we need to filter out the missing values for the variables that will be in the model.
+```{r, message=FALSE, warning=FALSE}
+df2 <- df %>%
+  filter(complete.cases(dep, famsize, sed, race, asthma))
+```
+
+Now, we'll build the model with both packages (just for demonstration). We predict depression with asthma, family size, minutes of sedentary behavior, and the subject's race.
+```{r, message=FALSE, warning=FALSE}
+library(gee)
+fit_gee <- gee(dep ~ asthma + famsize + sed + race,
+               data = df2,
+               id = df2$sdmvstra,
+               corstr = "unstructured")
+summary(fit_gee)$coef
+
+library(geepack)
+fit_geeglm <- geeglm(dep ~ asthma + famsize + sed + race,
+                     data = df2,
+                     id = df2$sdmvstra,
+                     corstr = "unstructured")
+summary(fit_geeglm)
+```
+
+The `gee` package doesn't directly provide p-values but provides the z-scores, which can be used to find the p-values. The `geepack` provides the p-values in the way you'll see in the `lm()` and `glm()` functions.
+
+These models are interpreted just as the regular GLM. It has adjusted for the correlations within the clusters and provides valid standard errors and p-values.
 
 
 ## Mixed Effects {-}
 
+Mixed effects models require a bit more thinking about the effects. It is called "mixed effects" because we include both fixed and random effects into the model simultaneously. The random effects are those that we don't necessarily care about the specific values but want to control for it and/or estimate the variance. The fixed effects are those we are used to estimating in linear models and GLM's. 
 
+These are a bit more clear with an example. We will do the same overall model as we did with the GEE but we'll use ME. To do so, we'll use the `lme4` package. In the model below, we predict depression with asthma, family size, minutes of sedentary behavior, and the subject's race. We have a random intercept (which allows the intercept to vary across clusters).
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
+library(lme4)
+fit_me <- lmer(dep ~ asthma + famsize + sed + race + (1 | cluster),
+               data = df2,
+               REML = FALSE)
+summary(fit_me)
+```
 
+You'll see that there are no p-values provided here. This is because p-values are not well-defined in the ME framework. A good way to test it can be through the `anova()` function, comparing models. Let's compare a model with and without `asthma` to see if the model is significantly better with it in.
+
+```{r, message=FALSE, warning=FALSE}
+fit_me1 <- lmer(dep ~ famsize + sed + race + (1 | cluster),
+               data = df2,
+               REML = FALSE)
+
+anova(fit_me, fit_me1)
+```
+
+This comparison strongly suggests that `asthma` is a significant predictor ($\chi^2 = 50.5$, p < .001). We can do this with both fixed and random effects, as below:
+
+```{r, message=FALSE, warning=FALSE}
+fit_me2 <- lmer(dep ~ famsize + sed + race + (1 | cluster),
+               data = df2,
+               REML = TRUE)
+fit_me3 <- lmer(dep ~ famsize + sed + race + (1 + asthma | cluster),
+               data = df2,
+               REML = TRUE)
+anova(fit_me2, fit_me3, refit = FALSE)
+```
+
+Here, including random slopes for asthma appears to be significant ($\chi^2 = 36.9$, p < .001).
+
+Linear mixed effects models converge pretty well. You'll see that the conclusions and estimates are very similar to that of the GEE. For generalized versions of ME, the convergence can be harder and more picky. As we'll see below, it complains about large eigenvalues and tells us to rescale some of the variables.
+
+```{r, message=FALSE}
+library(lme4)
+fit_gme <- glmer(dep2 ~ asthma + famsize + sed + race + (1 | cluster),
+                 data = df2,
+                 family = "binomial")
+```
+
+After a quick check, we can see that `sed` is huge compared to the other variables. If we simply rescale it, using the `I()` function within the model formula, we can rescale it by 1,000. Here, that is all it needed to converge.
+
+```{r, message=FALSE, warning=FALSE}
+library(lme4)
+fit_gme <- glmer(dep2 ~ asthma + famsize + I(sed/1000) + race + (1 | cluster),
+                 data = df2,
+                 family = "binomial")
+summary(fit_gme)
 ```
 
 
+## Conclusions {-}
+
+This has been a really brief introduction into a thriving, large field of statistical analyses. These are the general methods for using `R` to analyze multilevel data. Our next chapter will discuss more modeling techniques in `R`, including mediation, mixture, and structural equation modeling.
+
+
+[^longform]: We discuss what this means in much more depth and demonstrate reshaping of data in Chapter 8. It is an important tool to understand if you are working with data in various forms. Although many reshape their data by copying-and-pasting in a spreadsheet, what we present in Chapter 8 is much more efficient, cleaner, less error-prone, and replicatable. 
 

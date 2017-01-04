@@ -54,7 +54,7 @@ mean2 <- function(x){
 }
 ```
 
-We create a function using the `function()` function.[^That seemed like excessive use of the word...] Within the `function()` we put an `x`. This is the argument that the function will ask for. Here, it is a numeric vector that we want to take the mean of. We then provide the meat of the function between the `{}`. Here, we did a simple mean calculation using the `length(x)` which gives us the number of observations, and `sum()` which sums the numbers in `x`.
+We create a function using the `function()` function.[^functions] Within the `function()` we put an `x`. This is the argument that the function will ask for. Here, it is a numeric vector that we want to take the mean of. We then provide the meat of the function between the `{}`. Here, we did a simple mean calculation using the `length(x)` which gives us the number of observations, and `sum()` which sums the numbers in `x`.
 
 Let's give it a try:
 ```{r}
@@ -98,4 +98,6 @@ For loops have a bad reputation in the `R` world. This is because, in general, t
 ```
 
 
+
+[^functions]: That seemed like excessive use of the word function... It is important though. So, get used to it!
 

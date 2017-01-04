@@ -26,7 +26,7 @@
 <meta name="author" content="Tyson S. Barrett">
 
 
-<meta name="date" content="2017-01-03">
+<meta name="date" content="2017-01-04">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -168,9 +168,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="chapter-6-multilevel-modeling.html"><a href="chapter-6-multilevel-modeling.html"><i class="fa fa-check"></i>Chapter 6: Multilevel Modeling</a><ul>
 <li class="chapter" data-level="" data-path="chapter-6-multilevel-modeling.html"><a href="chapter-6-multilevel-modeling.html#gee"><i class="fa fa-check"></i>GEE</a></li>
 <li class="chapter" data-level="" data-path="chapter-6-multilevel-modeling.html"><a href="chapter-6-multilevel-modeling.html#mixed-effects"><i class="fa fa-check"></i>Mixed Effects</a></li>
+<li class="chapter" data-level="" data-path="chapter-6-multilevel-modeling.html"><a href="chapter-6-multilevel-modeling.html#conclusions-1"><i class="fa fa-check"></i>Conclusions</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html"><i class="fa fa-check"></i>Chapter 7: Other Modeling Techniques</a><ul>
 <li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#mediation-modeling"><i class="fa fa-check"></i>Mediation Modeling</a></li>
+<li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#mixture-modeling"><i class="fa fa-check"></i>Mixture Modeling</a></li>
 <li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#structural-equation-modeling"><i class="fa fa-check"></i>Structural Equation Modeling</a></li>
 <li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#machine-learning-techniques"><i class="fa fa-check"></i>Machine Learning Techniques</a><ul>
 <li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#ridge-lasso-and-elastic-net"><i class="fa fa-check"></i>Ridge, Lasso and Elastic Net</a></li>
@@ -214,15 +216,238 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>There are two general forms of multilevel modeling:</p>
 <ol style="list-style-type: decimal">
 <li>Generalized Estimating Equations (GEE)</li>
-<li>Mixed effects (i.e., hierarchical linear modeling, multilevel modeling)</li>
+<li>Mixed effects (ME; i.e., hierarchical linear modeling, multilevel modeling)</li>
 </ol>
+<p>Several similarities and differences should be noted briefly. As for similarities, they both attempt to control for the lack of independence within clusters, although they do it in different ways. Also, they are both built on linear regression which makes them flexible and powerful at finding relationships in the data.</p>
+<p>The differences are subtle but important. First, the interpretation is somewhat different between the two. GEE is a population-averaged (e.g., marginal) model whereas ME is subject specific. In other words, <em>GEE is the average effect</em> while <em>ME is the effect found in the average person</em>. In a linear model, these coefficients are the same but when we use different forms such as logistic or poisson, these can be quite different (although in my experience they generally tell a similar story). Second, ME models are much more complex than the GEE models and can struggle with convergence compared to the GEE. This also means that GEE’s are generally fitted much more quickly. Still the choice of the modeling technique should be driven by your hypotheses and not totally dependent on speed of the computation.</p>
+<p>First, if we needed to, we’d reshape our data so that it is ready for the analyses. For both modeling techniques we want our data in long form<a href="#fn16" class="footnoteRef" id="fnref16"><sup>16</sup></a>. What this implies is that each row is an observation. What this actually means about the data depends on the data. For example, if you have repeated measures, then often data is stored in wide form—a row is an individual. To make this long, we want each time point within a person to be a row—a single individual can have multiple rows but each row is a unique observation.</p>
+<p>Currently, our data is in long form since we are working within community clusters within this data. So, each row is an observation and each cluster has multiple rows. Note that although these analyses will be within community clusters instead of within subjects (i.e. repeated measures), the overall steps will be the exact same.</p>
+<p>This chapter certainly does not cover all of multilevel modeling in <code>R</code>. Entire books are dedicated to that single subject. Rather, we are introducing the methods and the packages that can be used to start using these methods.</p>
 <div id="gee" class="section level2 unnumbered">
 <h2>GEE</h2>
+<p>There are two packages, intimately related, that allow us to perform GEE modeling—<code>gee</code> and <code>geepack</code>. These have some great features and make running a fairly complex model pretty simple. However, as great as they are, there are some annoying shortcomings. We’ll get to a few of them throughout this section.</p>
+<p>GEE’s, in general, want a few pieces of information from you. First, the outcome and predictors. This is just as in linear regression and GLM’s. Second, we need to provide a correlation structure. This tells the model the approximate pattern of correlations between the time points or clusters. It also wants a variable that tells the cluster ID’s. Finally, it also wants the family (i.e. the type of distribution).</p>
+<p>Since this is not longitudinal, but rather clustered within communities, we’ll assume for this analysis an unstructured correlation structure. It is the most flexible and we have enough power for it here.</p>
+<p>For <code>geepack</code> to work, we need to filter out the missing values for the variables that will be in the model.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df2 &lt;-<span class="st"> </span>df %&gt;%
+<span class="st">  </span><span class="kw">filter</span>(<span class="kw">complete.cases</span>(dep, famsize, sed, race, asthma))</code></pre></div>
+<p>Now, we’ll build the model with both packages (just for demonstration). We predict depression with asthma, family size, minutes of sedentary behavior, and the subject’s race.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(gee)
+fit_gee &lt;-<span class="st"> </span><span class="kw">gee</span>(dep ~<span class="st"> </span>asthma +<span class="st"> </span>famsize +<span class="st"> </span>sed +<span class="st"> </span>race,
+               <span class="dt">data =</span> df2,
+               <span class="dt">id =</span> df2$sdmvstra,
+               <span class="dt">corstr =</span> <span class="st">&quot;unstructured&quot;</span>)</code></pre></div>
+<pre><code>##       (Intercept)            asthma           famsize               sed 
+##           2.49981           1.35080          -0.04252           0.00137 
+## raceOtherHispanic         raceWhite         raceBlack         raceOther 
+##           1.17758           0.11300           0.09553          -0.54310</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(fit_gee)$coef</code></pre></div>
+<pre><code>##                   Estimate Naive S.E. Naive z Robust S.E. Robust z
+## (Intercept)        2.49512   0.286751   8.701    0.268956    9.277
+## asthma             1.34822   0.186602   7.225    0.213515    6.314
+## famsize           -0.03985   0.046169  -0.863    0.045731   -0.871
+## sed                0.00137   0.000336   4.062    0.000355    3.847
+## raceOtherHispanic  1.18503   0.307467   3.854    0.330601    3.584
+## raceWhite          0.11520   0.253204   0.455    0.227971    0.505
+## raceBlack          0.09216   0.262588   0.351    0.235979    0.391
+## raceOther         -0.54271   0.280925  -1.932    0.240890   -2.253</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(geepack)
+fit_geeglm &lt;-<span class="st"> </span><span class="kw">geeglm</span>(dep ~<span class="st"> </span>asthma +<span class="st"> </span>famsize +<span class="st"> </span>sed +<span class="st"> </span>race,
+                     <span class="dt">data =</span> df2,
+                     <span class="dt">id =</span> df2$sdmvstra,
+                     <span class="dt">corstr =</span> <span class="st">&quot;unstructured&quot;</span>)
+<span class="kw">summary</span>(fit_geeglm)</code></pre></div>
+<pre><code>## 
+## Call:
+## geeglm(formula = dep ~ asthma + famsize + sed + race, data = df2, 
+##     id = df2$sdmvstra, corstr = &quot;unstructured&quot;)
+## 
+##  Coefficients:
+##                    Estimate   Std.err  Wald Pr(&gt;|W|)    
+## (Intercept)        2.557345  0.269972 89.73  &lt; 2e-16 ***
+## asthma             1.344424  0.215328 38.98  4.3e-10 ***
+## famsize           -0.045007  0.045691  0.97  0.32461    
+## sed                0.001309  0.000355 13.63  0.00022 ***
+## raceOtherHispanic  1.167554  0.331537 12.40  0.00043 ***
+## raceWhite          0.079791  0.229559  0.12  0.72815    
+## raceBlack          0.059616  0.236249  0.06  0.80077    
+## raceOther         -0.577781  0.241566  5.72  0.01677 *  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Estimated Scale Parameters:
+##             Estimate Std.err
+## (Intercept)     19.5   0.784
+## 
+## Correlation: Structure = unstructured  Link = identity 
+## 
+## Estimated Correlation Parameters:
+##           Estimate Std.err
+## alpha.1:2   0.1251  0.0165
+## alpha.1:3   0.4198  0.1032
+## alpha.1:4   2.8985  1.0676
+## alpha.1:5  -1.8480  0.2025
+## alpha.2:3   0.1222  0.0633
+## alpha.2:4  -0.0892  0.2021
+## alpha.2:5   0.2043  0.0371
+## alpha.3:4  -0.4963  0.1121
+## alpha.3:5   0.2493  0.0387
+## alpha.4:5  -0.6676  0.0875
+## Number of clusters:   4112   Maximum cluster size: 5</code></pre>
+<p>The <code>gee</code> package doesn’t directly provide p-values but provides the z-scores, which can be used to find the p-values. The <code>geepack</code> provides the p-values in the way you’ll see in the <code>lm()</code> and <code>glm()</code> functions.</p>
+<p>These models are interpreted just as the regular GLM. It has adjusted for the correlations within the clusters and provides valid standard errors and p-values.</p>
 </div>
 <div id="mixed-effects" class="section level2 unnumbered">
 <h2>Mixed Effects</h2>
+<p>Mixed effects models require a bit more thinking about the effects. It is called “mixed effects” because we include both fixed and random effects into the model simultaneously. The random effects are those that we don’t necessarily care about the specific values but want to control for it and/or estimate the variance. The fixed effects are those we are used to estimating in linear models and GLM’s.</p>
+<p>These are a bit more clear with an example. We will do the same overall model as we did with the GEE but we’ll use ME. To do so, we’ll use the <code>lme4</code> package. In the model below, we predict depression with asthma, family size, minutes of sedentary behavior, and the subject’s race. We have a random intercept (which allows the intercept to vary across clusters).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(lme4)
+fit_me &lt;-<span class="st"> </span><span class="kw">lmer</span>(dep ~<span class="st"> </span>asthma +<span class="st"> </span>famsize +<span class="st"> </span>sed +<span class="st"> </span>race +<span class="st"> </span>(<span class="dv">1</span> |<span class="st"> </span>cluster),
+               <span class="dt">data =</span> df2,
+               <span class="dt">REML =</span> <span class="ot">FALSE</span>)
+<span class="kw">summary</span>(fit_me)</code></pre></div>
+<pre><code>## Linear mixed model fit by maximum likelihood t-tests use Satterthwaite
+##   approximations to degrees of freedom [lmerMod]
+## Formula: dep ~ asthma + famsize + sed + race + (1 | cluster)
+##    Data: df2
+## 
+##      AIC      BIC   logLik deviance df.resid 
+##    25805    25869   -12892    25785     4431 
+## 
+## Scaled residuals: 
+##    Min     1Q Median     3Q    Max 
+## -1.323 -0.636 -0.355  0.271  5.436 
+## 
+## Random effects:
+##  Groups   Name        Variance Std.Dev.
+##  cluster  (Intercept)  0.104   0.322   
+##  Residual             19.398   4.404   
+## Number of obs: 4441, groups:  cluster, 14
+## 
+## Fixed effects:
+##                    Estimate Std. Error        df t value Pr(&gt;|t|)    
+## (Intercept)        2.49e+00   3.03e-01  5.38e+02    8.23  1.3e-15 ***
+## asthma             1.33e+00   1.87e-01  4.44e+03    7.13  1.2e-12 ***
+## famsize           -4.32e-02   4.63e-02  4.42e+03   -0.93    0.351    
+## sed                1.43e-03   3.37e-04  4.44e+03    4.26  2.1e-05 ***
+## raceOtherHispanic  1.28e+00   3.20e-01  2.17e+03    4.00  6.4e-05 ***
+## raceWhite          9.30e-03   2.59e-01  3.28e+03    0.04    0.971    
+## raceBlack          1.68e-01   2.73e-01  2.18e+03    0.62    0.538    
+## raceOther         -5.40e-01   2.85e-01  3.91e+03   -1.89    0.059 .  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Correlation of Fixed Effects:
+##             (Intr) asthma famsiz sed    rcOthH racWht rcBlck
+## asthma      -0.042                                          
+## famsize     -0.510 -0.003                                   
+## sed         -0.324 -0.044  0.051                            
+## rcOthrHspnc -0.557 -0.034  0.052 -0.037                     
+## raceWhite   -0.680 -0.038  0.135 -0.148  0.640              
+## raceBlack   -0.644 -0.057  0.094 -0.131  0.625  0.776       
+## raceOther   -0.580  0.000  0.049 -0.135  0.590  0.725  0.694</code></pre>
+<p>You’ll see that there are no p-values provided here. This is because p-values are not well-defined in the ME framework. A good way to test it can be through the <code>anova()</code> function, comparing models. Let’s compare a model with and without <code>asthma</code> to see if the model is significantly better with it in.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fit_me1 &lt;-<span class="st"> </span><span class="kw">lmer</span>(dep ~<span class="st"> </span>famsize +<span class="st"> </span>sed +<span class="st"> </span>race +<span class="st"> </span>(<span class="dv">1</span> |<span class="st"> </span>cluster),
+               <span class="dt">data =</span> df2,
+               <span class="dt">REML =</span> <span class="ot">FALSE</span>)
+
+<span class="kw">anova</span>(fit_me, fit_me1)</code></pre></div>
+<pre><code>## Data: df2
+## Models:
+## ..1: dep ~ famsize + sed + race + (1 | cluster)
+## object: dep ~ asthma + famsize + sed + race + (1 | cluster)
+##        Df   AIC   BIC logLik deviance Chisq Chi Df Pr(&gt;Chisq)    
+## ..1     9 25853 25911 -12918    25835                            
+## object 10 25805 25869 -12892    25785  50.5      1    1.2e-12 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>This comparison strongly suggests that <code>asthma</code> is a significant predictor (<span class="math inline">\(\chi^2 = 50.5\)</span>, p &lt; .001). We can do this with both fixed and random effects, as below:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fit_me2 &lt;-<span class="st"> </span><span class="kw">lmer</span>(dep ~<span class="st"> </span>famsize +<span class="st"> </span>sed +<span class="st"> </span>race +<span class="st"> </span>(<span class="dv">1</span> |<span class="st"> </span>cluster),
+               <span class="dt">data =</span> df2,
+               <span class="dt">REML =</span> <span class="ot">TRUE</span>)
+fit_me3 &lt;-<span class="st"> </span><span class="kw">lmer</span>(dep ~<span class="st"> </span>famsize +<span class="st"> </span>sed +<span class="st"> </span>race +<span class="st"> </span>(<span class="dv">1</span> +<span class="st"> </span>asthma |<span class="st"> </span>cluster),
+               <span class="dt">data =</span> df2,
+               <span class="dt">REML =</span> <span class="ot">TRUE</span>)
+<span class="kw">anova</span>(fit_me2, fit_me3, <span class="dt">refit =</span> <span class="ot">FALSE</span>)</code></pre></div>
+<pre><code>## Data: df2
+## Models:
+## object: dep ~ famsize + sed + race + (1 | cluster)
+## ..1: dep ~ famsize + sed + race + (1 + asthma | cluster)
+##        Df   AIC   BIC logLik deviance Chisq Chi Df Pr(&gt;Chisq)    
+## object  9 25879 25937 -12931    25861                            
+## ..1    11 25847 25917 -12912    25825  36.9      2    9.8e-09 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>Here, including random slopes for asthma appears to be significant (<span class="math inline">\(\chi^2 = 36.9\)</span>, p &lt; .001).</p>
+<p>Linear mixed effects models converge pretty well. You’ll see that the conclusions and estimates are very similar to that of the GEE. For generalized versions of ME, the convergence can be harder and more picky. As we’ll see below, it complains about large eigenvalues and tells us to rescale some of the variables.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(lme4)
+fit_gme &lt;-<span class="st"> </span><span class="kw">glmer</span>(dep2 ~<span class="st"> </span>asthma +<span class="st"> </span>famsize +<span class="st"> </span>sed +<span class="st"> </span>race +<span class="st"> </span>(<span class="dv">1</span> |<span class="st"> </span>cluster),
+                 <span class="dt">data =</span> df2,
+                 <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>)</code></pre></div>
+<pre><code>## Warning in checkConv(attr(opt, &quot;derivs&quot;), opt$par, ctrl = control
+## $checkConv, : Model failed to converge with max|grad| = 0.0118968 (tol =
+## 0.001, component 1)</code></pre>
+<pre><code>## Warning in checkConv(attr(opt, &quot;derivs&quot;), opt$par, ctrl = control$checkConv, : Model is nearly unidentifiable: very large eigenvalue
+##  - Rescale variables?;Model is nearly unidentifiable: large eigenvalue ratio
+##  - Rescale variables?</code></pre>
+<p>After a quick check, we can see that <code>sed</code> is huge compared to the other variables. If we simply rescale it, using the <code>I()</code> function within the model formula, we can rescale it by 1,000. Here, that is all it needed to converge.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(lme4)
+fit_gme &lt;-<span class="st"> </span><span class="kw">glmer</span>(dep2 ~<span class="st"> </span>asthma +<span class="st"> </span>famsize +<span class="st"> </span><span class="kw">I</span>(sed/<span class="dv">1000</span>) +<span class="st"> </span>race +<span class="st"> </span>(<span class="dv">1</span> |<span class="st"> </span>cluster),
+                 <span class="dt">data =</span> df2,
+                 <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>)
+<span class="kw">summary</span>(fit_gme)</code></pre></div>
+<pre><code>## Generalized linear mixed model fit by maximum likelihood (Laplace
+##   Approximation) [glmerMod]
+##  Family: binomial  ( logit )
+## Formula: dep2 ~ asthma + famsize + I(sed/1000) + race + (1 | cluster)
+##    Data: df2
+## 
+##      AIC      BIC   logLik deviance df.resid 
+##     2672     2729    -1327     2654     4432 
+## 
+## Scaled residuals: 
+##    Min     1Q Median     3Q    Max 
+## -0.632 -0.329 -0.295 -0.258  4.971 
+## 
+## Random effects:
+##  Groups  Name        Variance Std.Dev.
+##  cluster (Intercept) 0.022    0.148   
+## Number of obs: 4441, groups:  cluster, 14
+## 
+## Fixed effects:
+##                   Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept)        -2.6282     0.2431  -10.81  &lt; 2e-16 ***
+## asthma              0.5570     0.1280    4.35  1.4e-05 ***
+## famsize            -0.0349     0.0374   -0.93   0.3501    
+## I(sed/1000)         0.5877     0.2614    2.25   0.0246 *  
+## raceOtherHispanic   0.7517     0.2419    3.11   0.0019 ** 
+## raceWhite           0.0965     0.2157    0.45   0.6546    
+## raceBlack           0.0505     0.2276    0.22   0.8245    
+## raceOther          -0.4689     0.2576   -1.82   0.0687 .  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Correlation of Fixed Effects:
+##             (Intr) asthma famsiz I(/100 rcOthH racWht rcBlck
+## asthma      -0.057                                          
+## famsize     -0.491 -0.011                                   
+## I(sed/1000) -0.324 -0.041  0.031                            
+## rcOthrHspnc -0.655 -0.032  0.045 -0.028                     
+## raceWhite   -0.716 -0.036  0.132 -0.148  0.709              
+## raceBlack   -0.685 -0.064  0.089 -0.123  0.715  0.780       
+## raceOther   -0.575 -0.003  0.047 -0.123  0.608  0.691  0.656</code></pre>
+</div>
+<div id="conclusions-1" class="section level2 unnumbered">
+<h2>Conclusions</h2>
+<p>This has been a really brief introduction into a thriving, large field of statistical analyses. These are the general methods for using <code>R</code> to analyze multilevel data. Our next chapter will discuss more modeling techniques in <code>R</code>, including mediation, mixture, and structural equation modeling.</p>
 
 </div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="16">
+<li id="fn16"><p>We discuss what this means in much more depth and demonstrate reshaping of data in Chapter 8. It is an important tool to understand if you are working with data in various forms. Although many reshape their data by copying-and-pasting in a spreadsheet, what we present in Chapter 8 is much more efficient, cleaner, less error-prone, and replicatable.<a href="chapter-6-multilevel-modeling.html#fnref16">↩</a></p></li>
+</ol>
 </div>
             </section>
 

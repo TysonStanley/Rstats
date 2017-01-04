@@ -26,7 +26,7 @@
 <meta name="author" content="Tyson S. Barrett">
 
 
-<meta name="date" content="2017-01-03">
+<meta name="date" content="2017-01-04">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -168,9 +168,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="chapter-6-multilevel-modeling.html"><a href="chapter-6-multilevel-modeling.html"><i class="fa fa-check"></i>Chapter 6: Multilevel Modeling</a><ul>
 <li class="chapter" data-level="" data-path="chapter-6-multilevel-modeling.html"><a href="chapter-6-multilevel-modeling.html#gee"><i class="fa fa-check"></i>GEE</a></li>
 <li class="chapter" data-level="" data-path="chapter-6-multilevel-modeling.html"><a href="chapter-6-multilevel-modeling.html#mixed-effects"><i class="fa fa-check"></i>Mixed Effects</a></li>
+<li class="chapter" data-level="" data-path="chapter-6-multilevel-modeling.html"><a href="chapter-6-multilevel-modeling.html#conclusions-1"><i class="fa fa-check"></i>Conclusions</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html"><i class="fa fa-check"></i>Chapter 7: Other Modeling Techniques</a><ul>
 <li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#mediation-modeling"><i class="fa fa-check"></i>Mediation Modeling</a></li>
+<li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#mixture-modeling"><i class="fa fa-check"></i>Mixture Modeling</a></li>
 <li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#structural-equation-modeling"><i class="fa fa-check"></i>Structural Equation Modeling</a></li>
 <li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#machine-learning-techniques"><i class="fa fa-check"></i>Machine Learning Techniques</a><ul>
 <li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#ridge-lasso-and-elastic-net"><i class="fa fa-check"></i>Ridge, Lasso and Elastic Net</a></li>
@@ -255,28 +257,28 @@ df &lt;-<span class="st"> </span>df %&gt;%
 ##     data = df)
 ## 
 ## Deviance Residuals: 
-##     Min       1Q   Median       3Q      Max  
-## -0.7902  -0.4447  -0.4075  -0.3615   2.5295  
+##    Min      1Q  Median      3Q     Max  
+## -0.781  -0.449  -0.408  -0.366   2.538  
 ## 
 ## Coefficients:
-##                     Estimate Std. Error z value Pr(&gt;|z|)    
-## (Intercept)       -2.6659567  0.2307249 -11.555  &lt; 2e-16 ***
-## asthma             0.6095489  0.1239428   4.918 8.74e-07 ***
-## sed                0.0005068  0.0002569   1.973 0.048519 *  
-## raceOtherHispanic  0.7551749  0.2258438   3.344 0.000826 ***
-## raceWhite          0.1654024  0.2063433   0.802 0.422791    
-## raceBlack          0.0729926  0.2139302   0.341 0.732954    
-## raceOther         -0.4316306  0.2496803  -1.729 0.083857 .  
-## famsize           -0.0225742  0.0324544  -0.696 0.486700    
+##                    Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept)       -2.616404   0.237915  -11.00  &lt; 2e-16 ***
+## asthma             0.564068   0.127550    4.42  9.8e-06 ***
+## sed                0.000569   0.000261    2.18   0.0291 *  
+## raceOtherHispanic  0.711974   0.232854    3.06   0.0022 ** 
+## raceWhite          0.127317   0.211625    0.60   0.5474    
+## raceBlack          0.016217   0.220530    0.07   0.9414    
+## raceOther         -0.464466   0.255621   -1.82   0.0692 .  
+## famsize           -0.033267   0.037275   -0.89   0.3721    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## (Dispersion parameter for binomial family taken to be 1)
 ## 
-##     Null deviance: 2819.1  on 4617  degrees of freedom
-## Residual deviance: 2756.0  on 4610  degrees of freedom
-##   (942 observations deleted due to missingness)
-## AIC: 2772
+##     Null deviance: 2711.6  on 4440  degrees of freedom
+## Residual deviance: 2654.9  on 4433  degrees of freedom
+##   (1119 observations deleted due to missingness)
+## AIC: 2671
 ## 
 ## Number of Fisher Scoring iterations: 5</code></pre>
 <p>We used <code>glm()</code> (stands for generalized linear model). The key to making it logistic, since you can use <code>glm()</code> for a linear model using maximum likelihood instead of <code>lm()</code> with least squares, is <code>family = &quot;binomial&quot;</code>. This tells <code>R</code> to do a logistic regression.</p>
@@ -294,27 +296,27 @@ df &lt;-<span class="st"> </span>df %&gt;%
 ##     data = df)
 ## 
 ## Deviance Residuals: 
-##     Min       1Q   Median       3Q      Max  
-## -27.542   -8.595   -1.587    6.169   36.690  
+##    Min      1Q  Median      3Q     Max  
+## -27.40   -8.52   -1.54    6.01   36.95  
 ## 
 ## Coefficients:
 ##                    Estimate Std. Error z value Pr(&gt;|z|)    
-## (Intercept)        5.663921   0.003127 1811.08   &lt;2e-16 ***
-## asthma             0.065415   0.001953   33.49   &lt;2e-16 ***
-## raceOtherHispanic  0.146163   0.003595   40.65   &lt;2e-16 ***
-## raceWhite          0.365433   0.002954  123.70   &lt;2e-16 ***
-## raceBlack          0.350219   0.003029  115.64   &lt;2e-16 ***
-## raceOther          0.351388   0.003174  110.72   &lt;2e-16 ***
-## famsize           -0.030385   0.000439  -69.21   &lt;2e-16 ***
+## (Intercept)        5.663256   0.003250  1742.5   &lt;2e-16 ***
+## asthma             0.065090   0.001984    32.8   &lt;2e-16 ***
+## raceOtherHispanic  0.128639   0.003711    34.7   &lt;2e-16 ***
+## raceWhite          0.349709   0.003048   114.8   &lt;2e-16 ***
+## raceBlack          0.334284   0.003134   106.7   &lt;2e-16 ***
+## raceOther          0.340376   0.003279   103.8   &lt;2e-16 ***
+## famsize           -0.023425   0.000501   -46.8   &lt;2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## (Dispersion parameter for poisson family taken to be 1)
 ## 
-##     Null deviance: 632927  on 5526  degrees of freedom
-## Residual deviance: 598697  on 5520  degrees of freedom
-##   (33 observations deleted due to missingness)
-## AIC: 640377
+##     Null deviance: 599886  on 5287  degrees of freedom
+## Residual deviance: 573124  on 5281  degrees of freedom
+##   (272 observations deleted due to missingness)
+## AIC: 613079
 ## 
 ## Number of Fisher Scoring iterations: 5</code></pre>
 <p>Sedentary may be over-dispersed (see plot) <img src="_main_files/figure-html/unnamed-chunk-84-1.png" width="672" /> and so other methods related to poisson may be necessary. For this book, we are not going to be delving into these in depth but we will introduce some below.</p>
@@ -333,27 +335,27 @@ g_fit &lt;-<span class="st"> </span><span class="kw">glm</span>(sed_gamma ~<span
 ##     data = df)
 ## 
 ## Deviance Residuals: 
-##     Min       1Q   Median       3Q      Max  
-## -4.3508  -0.4796  -0.0821   0.3150   1.7234  
+##    Min      1Q  Median      3Q     Max  
+## -4.355  -0.470  -0.078   0.304   1.683  
 ## 
 ## Coefficients:
-##                     Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)        3.563e-03  1.029e-04  34.627  &lt; 2e-16 ***
-## asthma            -1.725e-04  5.459e-05  -3.161  0.00158 ** 
-## raceOtherHispanic -5.365e-04  1.186e-04  -4.524 6.20e-06 ***
-## raceWhite         -1.173e-03  9.817e-05 -11.952  &lt; 2e-16 ***
-## raceBlack         -1.134e-03  1.001e-04 -11.335  &lt; 2e-16 ***
-## raceOther         -1.139e-03  1.037e-04 -10.988  &lt; 2e-16 ***
-## famsize            8.474e-05  1.289e-05   6.574 5.34e-11 ***
+##                    Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)        3.53e-03   1.04e-04   33.88  &lt; 2e-16 ***
+## asthma            -1.70e-04   5.48e-05   -3.11  0.00188 ** 
+## raceOtherHispanic -4.57e-04   1.20e-04   -3.81  0.00014 ***
+## raceWhite         -1.10e-03   9.90e-05  -11.07  &lt; 2e-16 ***
+## raceBlack         -1.06e-03   1.01e-04  -10.44  &lt; 2e-16 ***
+## raceOther         -1.07e-03   1.05e-04  -10.25  &lt; 2e-16 ***
+## famsize            6.38e-05   1.43e-05    4.45  8.8e-06 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## (Dispersion parameter for Gamma family taken to be 0.3038675)
+## (Dispersion parameter for Gamma family taken to be 0.298)
 ## 
-##     Null deviance: 2162.0  on 5526  degrees of freedom
-## Residual deviance: 2061.3  on 5520  degrees of freedom
-##   (33 observations deleted due to missingness)
-## AIC: 73594
+##     Null deviance: 2030.7  on 5287  degrees of freedom
+## Residual deviance: 1953.0  on 5281  degrees of freedom
+##   (272 observations deleted due to missingness)
+## AIC: 70512
 ## 
 ## Number of Fisher Scoring iterations: 5</code></pre>
 </div>
@@ -367,21 +369,8 @@ df$sed_zero &lt;-<span class="st"> </span><span class="kw">ifelse</span>(<span c
                              <span class="dt">replace=</span><span class="ot">TRUE</span>) %in%<span class="st"> </span><span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">11</span>,<span class="dv">20</span>:<span class="dv">25</span>), <span class="dv">0</span>, 
                       df$sed)
 ## Hurdle model
-<span class="kw">library</span>(pscl)</code></pre></div>
-<pre><code>## Loading required package: MASS</code></pre>
-<pre><code>## 
-## Attaching package: &#39;MASS&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
-## 
-##     select</code></pre>
-<pre><code>## Loading required package: lattice</code></pre>
-<pre><code>## Classes and Methods for R developed in the</code></pre>
-<pre><code>## Political Science Computational Laboratory</code></pre>
-<pre><code>## Department of Political Science</code></pre>
-<pre><code>## Stanford University</code></pre>
-<pre><code>## Simon Jackman</code></pre>
-<pre><code>## hurdle and zeroinfl functions by Achim Zeileis</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">h_fit =<span class="st"> </span><span class="kw">hurdle</span>(sed_zero ~<span class="st"> </span>asthma +<span class="st"> </span>race +<span class="st"> </span>famsize,
+<span class="kw">library</span>(pscl)
+h_fit =<span class="st"> </span><span class="kw">hurdle</span>(sed_zero ~<span class="st"> </span>asthma +<span class="st"> </span>race +<span class="st"> </span>famsize,
                <span class="dt">data =</span> df)
 <span class="kw">summary</span>(h_fit)</code></pre></div>
 <pre><code>## 
@@ -389,32 +378,32 @@ df$sed_zero &lt;-<span class="st"> </span><span class="kw">ifelse</span>(<span c
 ## hurdle(formula = sed_zero ~ asthma + race + famsize, data = df)
 ## 
 ## Pearson residuals:
-##     Min      1Q  Median      3Q     Max 
-## -3.8108 -1.5452 -0.2864  1.3340 10.7509 
+##    Min     1Q Median     3Q    Max 
+## -3.541 -1.567 -0.231  1.290 10.025 
 ## 
 ## Count model coefficients (truncated poisson with log link):
-##                     Estimate Std. Error z value Pr(&gt;|z|)    
-## (Intercept)        5.6650569  0.0032419 1747.47   &lt;2e-16 ***
-## asthma             0.0666169  0.0020518   32.47   &lt;2e-16 ***
-## raceOtherHispanic  0.1367077  0.0037292   36.66   &lt;2e-16 ***
-## raceWhite          0.3559260  0.0030612  116.27   &lt;2e-16 ***
-## raceBlack          0.3410419  0.0031413  108.57   &lt;2e-16 ***
-## raceOther          0.3427495  0.0032908  104.15   &lt;2e-16 ***
-## famsize           -0.0287543  0.0004573  -62.88   &lt;2e-16 ***
+##                    Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept)        5.678500   0.003380  1680.2   &lt;2e-16 ***
+## asthma             0.046853   0.002117    22.1   &lt;2e-16 ***
+## raceOtherHispanic  0.115828   0.003872    29.9   &lt;2e-16 ***
+## raceWhite          0.338589   0.003166   107.0   &lt;2e-16 ***
+## raceBlack          0.317691   0.003260    97.5   &lt;2e-16 ***
+## raceOther          0.319385   0.003407    93.7   &lt;2e-16 ***
+## famsize           -0.023442   0.000524   -44.7   &lt;2e-16 ***
 ## Zero hurdle model coefficients (binomial with logit link):
 ##                   Estimate Std. Error z value Pr(&gt;|z|)    
-## (Intercept)        2.41327    0.20111  12.000   &lt;2e-16 ***
-## asthma            -0.10807    0.13270  -0.814    0.415    
-## raceOtherHispanic -0.02521    0.23214  -0.109    0.914    
-## raceWhite         -0.18916    0.18902  -1.001    0.317    
-## raceBlack         -0.22166    0.19378  -1.144    0.253    
-## raceOther         -0.09888    0.20776  -0.476    0.634    
-## famsize            0.04716    0.03019   1.562    0.118    
+## (Intercept)         2.5283     0.2018   12.53   &lt;2e-16 ***
+## asthma             -0.3118     0.1250   -2.49    0.013 *  
+## raceOtherHispanic  -0.1642     0.2225   -0.74    0.461    
+## raceWhite          -0.1557     0.1866   -0.83    0.404    
+## raceBlack          -0.1410     0.1927   -0.73    0.464    
+## raceOther           0.0562     0.2094    0.27    0.788    
+## famsize            -0.0210     0.0331   -0.63    0.526    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1 
 ## 
 ## Number of iterations in BFGS optimization: 12 
-## Log-likelihood: -2.941e+05 on 14 Df</code></pre>
+## Log-likelihood: -2.78e+05 on 14 Df</code></pre>
 <p>Notice that the output has two parts: “Count model coefficients (truncated poisson with log link):” and “Zero hurdle model coefficients (binomial with logit link):”. Together they tell us about the relationship between the predictors and a count variable with many zeros.</p>
 </div>
 <div id="negative-binomial" class="section level3 unnumbered">
@@ -444,29 +433,29 @@ fit_beta &lt;-<span class="st"> </span><span class="kw">betareg</span>(beta_var 
 ## betareg(formula = beta_var ~ asthma + race + famsize, data = df)
 ## 
 ## Standardized weighted residuals 2:
-##     Min      1Q  Median      3Q     Max 
-## -2.0188 -0.7043 -0.0473  0.6324  2.9636 
+##    Min     1Q Median     3Q    Max 
+## -2.003 -0.702 -0.046  0.636  2.922 
 ## 
 ## Coefficients (mean model with logit link):
-##                    Estimate Std. Error z value Pr(&gt;|z|)  
-## (Intercept)        0.115952   0.054814   2.115   0.0344 *
-## asthma            -0.044460   0.038203  -1.164   0.2445  
-## raceOtherHispanic -0.056658   0.062271  -0.910   0.3629  
-## raceWhite         -0.019716   0.051250  -0.385   0.7005  
-## raceBlack          0.018593   0.052819   0.352   0.7248  
-## raceOther          0.020014   0.056107   0.357   0.7213  
-## famsize           -0.005359   0.008447  -0.634   0.5258  
+##                   Estimate Std. Error z value Pr(&gt;|z|)  
+## (Intercept)        0.12089    0.05779    2.09    0.036 *
+## asthma            -0.02640    0.03897   -0.68    0.498  
+## raceOtherHispanic -0.01321    0.06502   -0.20    0.839  
+## raceWhite         -0.03372    0.05350   -0.63    0.528  
+## raceBlack          0.00441    0.05539    0.08    0.937  
+## raceOther         -0.02206    0.05873   -0.38    0.707  
+## famsize           -0.00438    0.00982   -0.45    0.656  
 ## 
 ## Phi coefficients (precision model with identity link):
 ##       Estimate Std. Error z value Pr(&gt;|z|)    
-## (phi)  2.49273    0.04066   61.31   &lt;2e-16 ***
+## (phi)   2.4792     0.0413      60   &lt;2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1 
 ## 
 ## Type of estimator: ML (maximum likelihood)
-## Log-likelihood:   103 on 8 Df
-## Pseudo R-squared: 0.0009184
-## Number of iterations: 18 (BFGS) + 2 (Fisher scoring)</code></pre>
+## Log-likelihood: 93.6 on 8 Df
+## Pseudo R-squared: 0.000358
+## Number of iterations: 17 (BFGS) + 1 (Fisher scoring)</code></pre>
 <p>The output provides coefficients and the “Phi” coefficients. Both are important parts of using beta regression but we are not going to discuss it here.</p>
 <p>There are many resources available to learn more about beta regression and each of these GLM’s. As for now, we are going to move on to more complex modeling where there are clustering or repeated measures in the data.</p>
 

@@ -14,7 +14,7 @@ We use this code to get the data ready for the rest of the chapter. We use this 
 ## Run but not shown
 ## Getting data ready for the examples
 library(foreign)
-library(dplyr)
+library(tidyverse)
 library(furniture)
 library(anteo)
 dem_df <- read.xport("~/Box Sync/GitHub/blog_rstats/assets/Data/NHANES_demographics_11.xpt")
@@ -33,6 +33,7 @@ df <- dem_df %>%
   mutate(dmdmartl = factor(dmdmartl,
                            labels = c("Married", "Widowed", "Divorced", "Separated", 
                                       "Never Married", "Partner"))) %>%
+  mutate(dmdfmsiz = washer(dmdfmsiz, 7, 9)) %>%
   filter(complete.cases(dmdmartl))
 ```
 
@@ -88,7 +89,7 @@ We also would like to make sure the assumptions look like they are being met. In
 
 In `R` we can get some simple graphical checks using `plot`. All we provide is our ANOVA object (here it is `fit`). The line before it `par(mfrow=c(1,2))` tells `R` to have two plots per row (the 1 means one row, 2 means two columns).
 
-```{r, fig.height=2, fig.width=4}
+```{r, fig.height=4, fig.width=5}
 par(mfrow=c(1,2))
 plot(fit)
 ```
@@ -121,7 +122,7 @@ Linear regression has a few important assumptions, often called "Gauss-Markov As
 3. Normality of residuals.
 
 Numbers 2 and 3 are fairly easy to assess using the `plot()` function on the model object as we did with the ANOVA model. The linear in parameters suggests that the relationship between the outcome and independents is linear.
-```{r, fig.height=2, fig.width=4}
+```{r, fig.height=4, fig.width=5}
 par(mfrow=c(1,2))
 plot(fit2)
 ```
@@ -225,7 +226,7 @@ anova(fit_anova)
 Notice two things: First, the interaction is significant (p = .003). This is important since we are going to try to interpret this interaction. Second, by including `minority*dmdmartl` we get both the main effects and the interaction. This is very important for interpretation purposes so you can thank `R` for making it a bit more easy on you. 
 
 We can check the assumptions the same way as before:
-```{r, fig.height=2, fig.width=4}
+```{r, fig.height=4, fig.width=5}
 par(mfrow=c(1,2))
 plot(fit_anova)
 ```

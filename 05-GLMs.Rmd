@@ -9,11 +9,12 @@ documentclass: book
 link-citations: yes
 ---
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
 ## Run but not shown
 ## Getting data ready for the examples
 library(foreign)
-library(dplyr)
+library(tidyverse)
+library(furniture)
 dem_df <- read.xport("~/Box Sync/GitHub/blog_rstats/assets/Data/NHANES_demographics_11.xpt")
 med_df <- read.xport("~/Box Sync/GitHub/blog_rstats/assets/Data/NHANES_MedHeath_11.xpt")
 men_df <- read.xport("~/Box Sync/GitHub/blog_rstats/assets/Data/NHANES_MentHealth_11.xpt")
@@ -30,7 +31,7 @@ df <- dem_df %>%
   mutate(race = factor(ridreth1, 
                        labels=c("MexicanAmerican", "OtherHispanic", 
                                 "White", "Black", "Other"))) %>%
-  mutate(famsize = as.numeric(dmdfmsiz)) %>%
+  mutate(famsize = as.numeric(washer(dmdfmsiz, 7,9))) %>%
   mutate(dpq010 = washer(dpq010, 7,9),
          dpq020 = washer(dpq020, 7,9),
          dpq030 = washer(dpq030, 7,9),
@@ -82,7 +83,7 @@ Note that we added the values from the ten variables that give us an overall dep
 3. ELSE dep2 is NA.
 
 Note that these nested `ifelse()` statements can be as long as you want. We further need to clean up the asthma and sedentary variables.
-```{r}
+```{r, message=FALSE, warning=FALSE}
 ## Fix some placeholders
 df <- df %>%
   mutate(asthma = washer(mcq010, 9),
@@ -91,7 +92,7 @@ df <- df %>%
 ```
 
 Now let's run the logistic regression:
-```{r}
+```{r, message=FALSE, warning=FALSE}
 l_fit <- glm(dep2 ~ asthma + sed + race + famsize,
              data = df,
              family = "binomial")
@@ -105,7 +106,7 @@ We used `glm()` (stands for generalized linear model). The key to making it logi
 
 As we did in logistic regression, we will use the `glm()` function. The difference here is we will be using an outcome that is a count variable. For example, the sedentary variable (`sed`) that we have in `df` is a count of the minutes of sedentary activity.
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 p_fit <- glm(sed ~ asthma + race + famsize,
              data = df,
              family = "poisson")
@@ -125,7 +126,7 @@ and so other methods related to poisson may be necessary. For this book, we are 
 ### Gamma {-}
 
 Regression with a gamma distribution are often found when analyzing costs in dollars. It is very similar to poisson but does not require integers and can handle more dispersion. However, the outcome must have values $> 0$. Just for demonstration:
-```{r}
+```{r, message=FALSE, warning=FALSE}
 ## Adjust sed
 df$sed_gamma <- df$sed + .01
 g_fit <- glm(sed_gamma ~ asthma + race + famsize,
@@ -139,7 +140,7 @@ summary(g_fit)
 We are going to use the `pscl` package to run a hurdle model. These models are built for situations where there is a count variable with many zeros ("zero-inflated"). The hurdle model makes slightly different assumptions regarding the zeros than the pure negative binomial that we present next. The hurdle consists of two models: one for whether the person had a zero or more (binomial) and if more than zero, how many (poisson).
 
 To run a hurdle model, we are going to make a sedentary variable with many more zeros to illustrate and then we will run a hurdle model.
-```{r}
+```{r, message=FALSE, warning=FALSE}
 ## Zero inflated sedentary (don't worry too much about the specifics)
 df$sed_zero <- ifelse(sample(1:100, 
                              size = length(df$sed), 
@@ -171,7 +172,7 @@ Note that this model is not really appropriate because our data is somewhat cont
 For outcomes that are bound between a lower and upper bound, Beta Regression is a great method. For example, if we are looking at test scores that are bound between 0 and 100. It is a very flexible method and allows for some extra analysis regarding the variation. 
 
 For this, we are going to use the `betareg` package. But first, we are going to reach a little and create a ficticiously bound variable in the data set.
-```{r}
+```{r, message=FALSE, warning=FALSE}
 ## Variable bound between 0 and 1
 df$beta_var <- sample(seq(.05, .99, by = .01), 
                       size = length(df$asthma),

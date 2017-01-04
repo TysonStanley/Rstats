@@ -214,7 +214,7 @@ library(foreign)
 df <- read.xport("file.xpt")     ## for export SAS files
 ```
 
-If you have another type of data file to import, online helps found on sites like www.stackoverflow.com and www.r-bloggers.com often have the solution.
+If you have another type of data file to import, online helps found on sites like [www.stackoverflow.com](www.stackoverflow.com) and [www.r-bloggers.com](www.r-bloggers.com) often have the solution.
 
 ## Saving Data {-}
 
