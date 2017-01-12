@@ -9,36 +9,55 @@ documentclass: book
 link-citations: yes
 ---
 
-```{r, echo=FALSE}
-## Run but not shown
-## Getting data ready for the examples
-library(foreign)
-library(dplyr)
-dem_df <- read.xport("~/Box Sync/GitHub/blog_rstats/assets/Data/NHANES_demographics_11.xpt")
-med_df <- read.xport("~/Box Sync/GitHub/blog_rstats/assets/Data/NHANES_MedHeath_11.xpt")
-men_df <- read.xport("~/Box Sync/GitHub/blog_rstats/assets/Data/NHANES_MentHealth_11.xpt")
-act_df <- read.xport("~/Box Sync/GitHub/blog_rstats/assets/Data/NHANES_PhysActivity_11.xpt")
-names(dem_df) <- tolower(names(dem_df))
-names(med_df) <- tolower(names(med_df))
-names(men_df) <- tolower(names(men_df))
-names(act_df) <- tolower(names(act_df))
-df <- dem_df %>%
-  full_join(med_df, by="seqn") %>%
-  full_join(men_df, by="seqn") %>%
-  full_join(act_df, by="seqn")
-```
 
-
-
-# Chapter 10: Where to go from here {-}
+# Chapter 10: Where to Go from Here and Common Pitfalls {-}
 
 There are many resources that can aid in developing your `R` skills from here. We have introduced the basics of `R`, focusing on the ones that are most important for researchers in the health, social, and behavioral sciences. 
 
+Since this has been a primer, we hope that you will continue your learning of `R` via the various sources available at little to no cost. Just like this book, many `R` books are available online as well as in print. This allows you to explore and learn online at your own pace without having to buy a bunch of books or other resources.
+
+Below, we list a handful of `R` references that we have found to be useful:
+
+1. R for Data Science by Hadley Wickham
+2. ...
 
 
-```{r}
+## Common Pitfalls {-}
 
+To end, we wanted to highlight some pitfalls that can plague any beginner to `R`. We list a few that we've encountered, although others surely exist.
+
+1. Document your work.
+
+
+## Quiz {-}
+
+As a final note, we thought we would give you a quiz to test your memory of the topics we've covered. Don't worry; no pressure to get them all. We've included some tougher ones. Regardless of how well you do, we hope you'll continue improving in your `R` programming skills.
+
+#### Question 1 {-}
+
+If the following code were part of your script would you:
+
+a. scream in fear
+b. be as proud as could be
+c. neither; I would fix it
+d. neither; it works but it isn't pretty
+```{r, eval=FALSE}
+df <- df +
+  mutate(newvar = ifelse(oldvar == 1, 1, 0))
 ```
 
+If it is broken, how would you fix it?
+
+#### Question 2 {-}
 
 
+
+
+
+
+
+
+
+
+
+Thanks!

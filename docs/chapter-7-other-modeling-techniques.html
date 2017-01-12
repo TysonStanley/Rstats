@@ -26,7 +26,7 @@
 <meta name="author" content="Tyson S. Barrett">
 
 
-<meta name="date" content="2017-01-04">
+<meta name="date" content="2017-01-12">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -172,12 +172,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html"><i class="fa fa-check"></i>Chapter 7: Other Modeling Techniques</a><ul>
 <li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#mediation-modeling"><i class="fa fa-check"></i>Mediation Modeling</a></li>
-<li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#mixture-modeling"><i class="fa fa-check"></i>Mixture Modeling</a></li>
 <li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#structural-equation-modeling"><i class="fa fa-check"></i>Structural Equation Modeling</a></li>
 <li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#machine-learning-techniques"><i class="fa fa-check"></i>Machine Learning Techniques</a><ul>
 <li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#ridge-lasso-and-elastic-net"><i class="fa fa-check"></i>Ridge, Lasso and Elastic Net</a></li>
 <li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#random-forests"><i class="fa fa-check"></i>Random Forests</a></li>
 </ul></li>
+<li class="chapter" data-level="0.1" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#conclusions-2"><i class="fa fa-check"></i><b>0.1</b> Conclusions</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html"><i class="fa fa-check"></i>Chapter 8: Advanced Data Manipulation</a><ul>
 <li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#your-own-functions"><i class="fa fa-check"></i>Your Own Functions</a></li>
@@ -193,7 +193,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="chapter-9-advanced-plotting.html"><a href="chapter-9-advanced-plotting.html#labels-and-titles"><i class="fa fa-check"></i>Labels and Titles</a></li>
 <li class="chapter" data-level="" data-path="chapter-9-advanced-plotting.html"><a href="chapter-9-advanced-plotting.html#facetting"><i class="fa fa-check"></i>Facetting</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="chapter-10-where-to-go-from-here.html"><a href="chapter-10-where-to-go-from-here.html"><i class="fa fa-check"></i>Chapter 10: Where to go from here</a></li>
+<li class="chapter" data-level="" data-path="chapter-10-where-to-go-from-here-and-common-pitfalls.html"><a href="chapter-10-where-to-go-from-here-and-common-pitfalls.html"><i class="fa fa-check"></i>Chapter 10: Where to Go from Here and Common Pitfalls</a><ul>
+<li class="chapter" data-level="" data-path="chapter-10-where-to-go-from-here-and-common-pitfalls.html"><a href="chapter-10-where-to-go-from-here-and-common-pitfalls.html#common-pitfalls"><i class="fa fa-check"></i>Common Pitfalls</a></li>
+<li class="chapter" data-level="" data-path="chapter-10-where-to-go-from-here-and-common-pitfalls.html"><a href="chapter-10-where-to-go-from-here-and-common-pitfalls.html#quiz"><i class="fa fa-check"></i>Quiz</a></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -213,14 +216,258 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="chapter-7-other-modeling-techniques" class="section level1 unnumbered">
 <h1>Chapter 7: Other Modeling Techniques</h1>
+<p>In this chapter we cover, however briefly, mediation and moderation modeling, methods relating to structural equation modeling (SEM), and methods applicable to our field from machine learning. Although these machine learning may appear very different than mediation and SEM, they each have advantages that can help in different situations. For example, SEM is useful when we know there is a high degree of measurement error or our data has multiple indicators for each construct. On the other hand, regularized regression and random forests–two popular forms of machine learning–are great to explore patterns and relationships there are hundreds or thousands of variables that may predict an outcome.</p>
+<p>Mediation modeling, although often used within SEM, can help us understand pathways of effect from one variable to another. It is especially useful with moderating variables (i.e., variables that interact with another).</p>
+<p>So we’ll start with discussing mediation, then we’ll move on to SEM, followed by machine learning.</p>
 <div id="mediation-modeling" class="section level2 unnumbered">
 <h2>Mediation Modeling</h2>
-</div>
-<div id="mixture-modeling" class="section level2 unnumbered">
-<h2>Mixture Modeling</h2>
+<p>Mediation modeling can be done via several packages. For now, we recommend using <code>lavaan</code> (stands for “latent variable analysis”)<a href="#fn17" class="footnoteRef" id="fnref17"><sup>17</sup></a>. Although it is technically still a “beta” version, it performs very well especially for more simple models. It makes mediation modeling straightforward.</p>
+<p>Below, we model the following mediation model: <span class="math display">\[
+depression = \beta_0 + \beta_1 asthma + \epsilon_1
+\]</span></p>
+<p><span class="math display">\[
+time_{Sedentary} = \lambda_0 + \lambda_1 asthma + \lambda_2 depression + \epsilon_2
+\]</span></p>
+<p>In essence, we believe that asthma increases depression which in turn increases the amount of time spent being sedentary.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(lavaan)
+df$sed_hr =<span class="st"> </span>df$sed/<span class="dv">60</span>  ## in hours instead of minutes
+
+## Our model
+model1 &lt;-<span class="st"> &#39;</span>
+<span class="st">  dep ~ asthma</span>
+<span class="st">  sed_hr ~ dep + asthma</span>
+<span class="st">&#39;</span>
+## sem function to run the model
+fit &lt;-<span class="st"> </span><span class="kw">sem</span>(model1, <span class="dt">data =</span> df)
+<span class="kw">summary</span>(fit)</code></pre></div>
+<pre><code>## lavaan (0.5-22) converged normally after  30 iterations
+## 
+##                                                   Used       Total
+##   Number of observations                          4618        5560
+## 
+##   Estimator                                         ML
+##   Minimum Function Test Statistic                0.000
+##   Degrees of freedom                                 0
+##   Minimum Function Value               0.0000000000000
+## 
+## Parameter Estimates:
+## 
+##   Information                                 Expected
+##   Standard Errors                             Standard
+## 
+## Regressions:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##   dep ~                                               
+##     asthma            1.474    0.183    8.064    0.000
+##   sed_hr ~                                            
+##     dep               0.044    0.011    3.951    0.000
+##     asthma            0.406    0.139    2.922    0.003
+## 
+## Variances:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##    .dep              19.602    0.408   48.052    0.000
+##    .sed_hr           11.167    0.232   48.052    0.000</code></pre>
+<p>From the output we see asthma does predict depression and depression does predict time being sedentary. There is also a direct effect of asthma on sedentary behavior even after controlling for depression. We can further specify the model to have it give us the indirect effect and direct effects tested.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Our model
+model2 &lt;-<span class="st"> &#39;</span>
+<span class="st">  dep ~ a*asthma</span>
+<span class="st">  sed_hr ~ b*dep + c*asthma</span>
+<span class="st"> </span>
+<span class="st">  indirect := a*b</span>
+<span class="st">  total := c + a*b</span>
+<span class="st">&#39;</span>
+## sem function to run the model
+fit2 &lt;-<span class="st"> </span><span class="kw">sem</span>(model2, <span class="dt">data =</span> df)
+<span class="kw">summary</span>(fit2)</code></pre></div>
+<pre><code>## lavaan (0.5-22) converged normally after  30 iterations
+## 
+##                                                   Used       Total
+##   Number of observations                          4618        5560
+## 
+##   Estimator                                         ML
+##   Minimum Function Test Statistic                0.000
+##   Degrees of freedom                                 0
+##   Minimum Function Value               0.0000000000000
+## 
+## Parameter Estimates:
+## 
+##   Information                                 Expected
+##   Standard Errors                             Standard
+## 
+## Regressions:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##   dep ~                                               
+##     asthma     (a)    1.474    0.183    8.064    0.000
+##   sed_hr ~                                            
+##     dep        (b)    0.044    0.011    3.951    0.000
+##     asthma     (c)    0.406    0.139    2.922    0.003
+## 
+## Variances:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##    .dep              19.602    0.408   48.052    0.000
+##    .sed_hr           11.167    0.232   48.052    0.000
+## 
+## Defined Parameters:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##     indirect          0.065    0.018    3.548    0.000
+##     total             0.471    0.138    3.406    0.001</code></pre>
+<p>We defined a few things in the model. First, we gave the coefficients labels of <code>a</code>, <code>b</code>, and <code>c</code>. Doing so allows us to define the <code>indirect</code> and <code>total</code> effects. Here we see the indirect effect, although small, is significant at <span class="math inline">\(p &lt; .001\)</span>. The total effect is larger (not surprising) and is also significant.</p>
+<p>Also note that we can make the regression equations have other covariates as well if we needed to (i.e. control for age or gender) just as we do in regular regression. In this final example, we show that you can do moderation as part of the mediation model.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Our model
+model2<span class="fl">.1</span> &lt;-<span class="st"> &#39;</span>
+<span class="st">  dep ~ asthma + ridageyr + asthma:ridageyr</span>
+<span class="st">  sed_hr ~ dep + asthma + ridageyr + asthma:ridageyr</span>
+<span class="st">&#39;</span>
+## sem function to run the model
+fit2<span class="fl">.1</span> &lt;-<span class="st"> </span><span class="kw">sem</span>(model2<span class="fl">.1</span>, <span class="dt">data =</span> df)
+<span class="kw">summary</span>(fit2<span class="fl">.1</span>)</code></pre></div>
+<pre><code>## lavaan (0.5-22) converged normally after  46 iterations
+## 
+##                                                   Used       Total
+##   Number of observations                          4618        5560
+## 
+##   Estimator                                         ML
+##   Minimum Function Test Statistic                0.000
+##   Degrees of freedom                                 0
+## 
+## Parameter Estimates:
+## 
+##   Information                                 Expected
+##   Standard Errors                             Standard
+## 
+## Regressions:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##   dep ~                                               
+##     asthma            0.909    0.514    1.769    0.077
+##     ridageyr         -0.007    0.004   -1.643    0.100
+##     asthma:ridagyr    0.012    0.010    1.142    0.254
+##   sed_hr ~                                            
+##     dep               0.044    0.011    3.933    0.000
+##     asthma            0.067    0.388    0.174    0.862
+##     ridageyr         -0.001    0.003   -0.436    0.663
+##     asthma:ridagyr    0.007    0.008    0.932    0.351
+## 
+## Variances:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##    .dep              19.589    0.408   48.052    0.000
+##    .sed_hr           11.165    0.232   48.052    0.000</code></pre>
 </div>
 <div id="structural-equation-modeling" class="section level2 unnumbered">
 <h2>Structural Equation Modeling</h2>
+<p>Instead of summing our depression variable, we can use SEM to run the mediation model from above but use the latent variable of depression instead.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Our model
+model3 &lt;-<span class="st"> &#39;</span>
+<span class="st">  dep1 =~ dpq010 + dpq020 + dpq030 + dpq040 + dpq050 + dpq060 + dpq070 + dpq080 + dpq090</span>
+<span class="st">  dep1 ~ a*asthma</span>
+<span class="st">  sed_hr ~ b*dep1 + c*asthma</span>
+
+<span class="st">  indirect := a*b</span>
+<span class="st">  total := c + a*b</span>
+<span class="st">&#39;</span>
+## sem function to run the model
+fit3 &lt;-<span class="st"> </span><span class="kw">sem</span>(model3, <span class="dt">data =</span> df)
+<span class="kw">summary</span>(fit3)</code></pre></div>
+<pre><code>## lavaan (0.5-22) converged normally after  47 iterations
+## 
+##                                                   Used       Total
+##   Number of observations                          4618        5560
+## 
+##   Estimator                                         ML
+##   Minimum Function Test Statistic             1060.130
+##   Degrees of freedom                                43
+##   P-value (Chi-square)                           0.000
+## 
+## Parameter Estimates:
+## 
+##   Information                                 Expected
+##   Standard Errors                             Standard
+## 
+## Latent Variables:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##   dep1 =~                                             
+##     dpq010            1.000                           
+##     dpq020            1.095    0.024   45.195    0.000
+##     dpq030            1.130    0.031   36.891    0.000
+##     dpq040            1.146    0.030   38.056    0.000
+##     dpq050            0.934    0.025   36.837    0.000
+##     dpq060            0.929    0.022   42.150    0.000
+##     dpq070            0.869    0.022   39.766    0.000
+##     dpq080            0.687    0.019   36.370    0.000
+##     dpq090            0.307    0.011   28.546    0.000
+## 
+## Regressions:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##   dep1 ~                                              
+##     asthma     (a)    0.172    0.023    7.636    0.000
+##   sed_hr ~                                            
+##     dep1       (b)    0.344    0.104    3.296    0.001
+##     asthma     (c)    0.411    0.139    2.955    0.003
+## 
+## Variances:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##    .dpq010            0.306    0.007   42.005    0.000
+##    .dpq020            0.212    0.006   37.552    0.000
+##    .dpq030            0.560    0.013   43.845    0.000
+##    .dpq040            0.515    0.012   43.339    0.000
+##    .dpq050            0.384    0.009   43.867    0.000
+##    .dpq060            0.221    0.005   40.824    0.000
+##    .dpq070            0.249    0.006   42.455    0.000
+##    .dpq080            0.217    0.005   44.050    0.000
+##    .dpq090            0.090    0.002   46.128    0.000
+##    .sed_hr           11.174    0.233   48.033    0.000
+##    .dep1              0.256    0.010   24.692    0.000
+## 
+## Defined Parameters:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##     indirect          0.059    0.020    3.034    0.002
+##     total             0.471    0.138    3.406    0.001</code></pre>
+<p>We defined <code>dep1</code> as a latent variable using <code>=~</code>. The regression, indirect, and total results are very similar the summed score version. Although the model does not fit the data well–“<code>P-value (Chi-square) = 0.000</code>”–it is informative for demonstration. We would likely need to find out how the measurement model (<code>dep1 =~ dpq010 + dpq020 + dpq030 +</code>) actually fits before throwing it into a mediation model. We can do that via:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">model4 &lt;-<span class="st"> &#39;</span>
+<span class="st">  dep1 =~ dpq010 + dpq020 + dpq030 + dpq040 + dpq050 + dpq060 + dpq070 + dpq080 + dpq090</span>
+<span class="st">&#39;</span>
+fit4 &lt;-<span class="st"> </span><span class="kw">cfa</span>(model4, <span class="dt">data=</span>df)
+<span class="kw">summary</span>(fit4)</code></pre></div>
+<pre><code>## lavaan (0.5-22) converged normally after  28 iterations
+## 
+##                                                   Used       Total
+##   Number of observations                          4639        5560
+## 
+##   Estimator                                         ML
+##   Minimum Function Test Statistic              989.323
+##   Degrees of freedom                                27
+##   P-value (Chi-square)                           0.000
+## 
+## Parameter Estimates:
+## 
+##   Information                                 Expected
+##   Standard Errors                             Standard
+## 
+## Latent Variables:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##   dep1 =~                                             
+##     dpq010            1.000                           
+##     dpq020            1.095    0.024   45.418    0.000
+##     dpq030            1.126    0.030   36.926    0.000
+##     dpq040            1.142    0.030   38.105    0.000
+##     dpq050            0.928    0.025   36.677    0.000
+##     dpq060            0.930    0.022   42.317    0.000
+##     dpq070            0.868    0.022   39.931    0.000
+##     dpq080            0.682    0.019   36.387    0.000
+##     dpq090            0.306    0.011   28.610    0.000
+## 
+## Variances:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##    .dpq010            0.306    0.007   42.069    0.000
+##    .dpq020            0.211    0.006   37.483    0.000
+##    .dpq030            0.562    0.013   43.962    0.000
+##    .dpq040            0.516    0.012   43.453    0.000
+##    .dpq050            0.391    0.009   44.061    0.000
+##    .dpq060            0.222    0.005   40.863    0.000
+##    .dpq070            0.249    0.006   42.508    0.000
+##    .dpq080            0.217    0.005   44.173    0.000
+##    .dpq090            0.090    0.002   46.231    0.000
+##     dep1              0.261    0.011   24.788    0.000</code></pre>
+<p>As we can see, there is a lack of fit in the measurement model. It is possible that these depression questions could be measuring more than one factor. We could explore this using exploratory factor analysis. We don’t demonstrate that here, but know that it is possible to do in <code>R</code> with a few other packages.</p>
 </div>
 <div id="machine-learning-techniques" class="section level2 unnumbered">
 <h2>Machine Learning Techniques</h2>
@@ -231,12 +478,101 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ol>
 <div id="ridge-lasso-and-elastic-net" class="section level3 unnumbered">
 <h3>Ridge, Lasso and Elastic Net</h3>
+<p>In order to do either ridge, lasso, or elastic net regression, we can use the fantastic <code>glmnet</code> package. Using the <code>cv.glmnet()</code> function we can run the ridge (<span class="math inline">\(alpha = 0\)</span>), lasso (<span class="math inline">\(alpha = 1\)</span> which is default), and elastic net (<span class="math inline">\(0 \leq alpha \leq 1\)</span>).</p>
+<p>Lasso and elastic net can do variable selection in addition to the estimates. Ridge is great at handling correlated predictors. Each of them are better than conventional methods at prediction and each of them can handle large numbers of predictors. To learn more see “Introduction to Statistical Learning” by Daniela Witten, Gareth James, Robert Tibshirani, and Trevor Hastie. A feww PDF is available on their website.</p>
+<p>To use the package, it wants the data in a very specific form. First, we need to remove any missingness. We use <code>na.omit()</code> to do this. We take all the predictors (without the outcome) and put it in a data matrix object. We only include a few for the demonstration but you can include <em>many</em> predictors. We name ours <code>X</code>. <code>Y</code> is our outcome.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df2 &lt;-<span class="st"> </span>df %&gt;%
+<span class="st">  </span>dplyr::<span class="kw">select</span>(riagendr, ridageyr, ridreth3, race, famsize, dep, asthma, sed_hr) %&gt;%
+<span class="st">  </span>na.omit
+X &lt;-<span class="st"> </span>df2 %&gt;%
+<span class="st">  </span>dplyr::<span class="kw">select</span>(-sed_hr) %&gt;%
+<span class="st">  </span>data.matrix
+Y &lt;-<span class="st"> </span>df2$sed_hr</code></pre></div>
+<p>Then we use the <code>cv.glmnet()</code> function to fit the different models. The “cv” refers to cross-validation<a href="#fn18" class="footnoteRef" id="fnref18"><sup>18</sup></a>, which we don’t discuss here, but it an important topic to become familiar with. Below we fit a ridge, a lasso, and an elastic net model.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(glmnet)
+
+fit_ridge &lt;-<span class="st"> </span><span class="kw">cv.glmnet</span>(X, Y, <span class="dt">alpha =</span> <span class="dv">0</span>)
+fit_lasso &lt;-<span class="st"> </span><span class="kw">cv.glmnet</span>(X, Y, <span class="dt">alpha =</span> <span class="dv">1</span>)
+fit_enet  &lt;-<span class="st"> </span><span class="kw">cv.glmnet</span>(X, Y, <span class="dt">alpha =</span> .<span class="dv">8</span>)</code></pre></div>
+<p>The plots below show where appropriate <code>lambda</code> values are based on the mean squared error of the cross-validated prediction. The vertical dashed lines show a reasonable range of lambda values that can be used.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))  ## put plots together on 2 x 2 grid
+<span class="kw">plot</span>(fit_ridge)
+<span class="kw">plot</span>(fit_lasso)
+<span class="kw">plot</span>(fit_enet)</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-105-1.png" width="672" /></p>
+<p>We can get the coefficients at a reasonable <code>lambda</code>. Specifically, we use the “1-SE rule” (near the right hand side vertical dashed lines in the above plots).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coef</span>(fit_ridge, <span class="dt">s =</span> <span class="st">&quot;lambda.1se&quot;</span>)</code></pre></div>
+<pre><code>## 8 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
+##                     1
+## (Intercept)  5.821033
+## riagendr     0.031077
+## ridageyr    -0.000392
+## ridreth3     0.038893
+## race         0.063137
+## famsize     -0.027690
+## dep          0.007346
+## asthma       0.070334</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coef</span>(fit_lasso, <span class="dt">s =</span> <span class="st">&quot;lambda.1se&quot;</span>)</code></pre></div>
+<pre><code>## 8 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
+##                    1
+## (Intercept)  5.35046
+## riagendr     .      
+## ridageyr     .      
+## ridreth3     .      
+## race         0.26366
+## famsize     -0.03152
+## dep          0.00473
+## asthma       .</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coef</span>(fit_enet, <span class="dt">s =</span> <span class="st">&quot;lambda.1se&quot;</span>)</code></pre></div>
+<pre><code>## 8 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
+##                    1
+## (Intercept)  5.32733
+## riagendr     .      
+## ridageyr     .      
+## ridreth3     .      
+## race         0.27554
+## famsize     -0.04213
+## dep          0.00854
+## asthma       .</code></pre>
+<p>Although we briefly introduce these regression methods, they are indeed very important. We highly recommend learning more about them.</p>
 </div>
 <div id="random-forests" class="section level3 unnumbered">
 <h3>Random Forests</h3>
+<p>Random forests is another machine learning method that can do fantastic prediction. It is built in a very different way than the methods we have discussed up to this point. It is not built on a linear modeling scheme; rather, it is built on classification and regression trees. Again, “Introduction to Statistical Learning” is a great resource to learn more.</p>
+<p>Conveniently, we can use the <code>randomForest</code> package. We specify the model by the formula <code>sed_hr ~ .</code> which means we want <code>sed_hr</code> to be the outcome and all the rest of the variables to be predictors.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(randomForest)
+
+fit_rf &lt;-<span class="st"> </span><span class="kw">randomForest</span>(sed_hr ~<span class="st"> </span>., <span class="dt">data =</span> df2)
+fit_rf</code></pre></div>
+<pre><code>## 
+## Call:
+##  randomForest(formula = sed_hr ~ ., data = df2) 
+##                Type of random forest: regression
+##                      Number of trees: 500
+## No. of variables tried at each split: 2
+## 
+##           Mean of squared residuals: 10.8
+##                     % Var explained: 3.78</code></pre>
+<p>We can find out which variables were important in the model via:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))  ## back to one plot per page
+<span class="kw">varImpPlot</span>(fit_rf)</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-108-1.png" width="672" /></p>
+<p>We can see that age (<code>ridageyr</code>) is the most important variable, depression (<code>dep</code>) follows, with the family size (<code>famsize</code>) the third most important in the random forests model.</p>
+</div>
+</div>
+<div id="conclusions-2" class="section level2">
+<h2><span class="header-section-number">0.1</span> Conclusions</h2>
+<p>Although we only discussed these methods briefly, that does not mean they are less important. On the contrary, they are essential upper level statistical methods. This brief introduction hopefully helped you know what <code>R</code> is capable of across a wide range of methods.</p>
+<p>The next chapter begins our “advanced” topics, starting with “Advanced Data Manipulation”.</p>
 
 </div>
 </div>
+<div class="footnotes">
+<hr />
+<ol start="17">
+<li id="fn17"><p>The <code>lavaan</code> package has some great vignettes at <a href="http://lavaan.ugent.be/" class="uri">http://lavaan.ugent.be/</a> to help with the other types of models it can handle.<a href="chapter-7-other-modeling-techniques.html#fnref17">↩</a></p></li>
+<li id="fn18"><p>Cross-validation is a common way to reduce over-fitting and make sure your model is generalizable.<a href="chapter-7-other-modeling-techniques.html#fnref18">↩</a></p></li>
+</ol>
 </div>
             </section>
 

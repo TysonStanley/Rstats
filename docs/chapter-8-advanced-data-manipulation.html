@@ -26,7 +26,7 @@
 <meta name="author" content="Tyson S. Barrett">
 
 
-<meta name="date" content="2017-01-04">
+<meta name="date" content="2017-01-12">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -172,12 +172,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html"><i class="fa fa-check"></i>Chapter 7: Other Modeling Techniques</a><ul>
 <li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#mediation-modeling"><i class="fa fa-check"></i>Mediation Modeling</a></li>
-<li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#mixture-modeling"><i class="fa fa-check"></i>Mixture Modeling</a></li>
 <li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#structural-equation-modeling"><i class="fa fa-check"></i>Structural Equation Modeling</a></li>
 <li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#machine-learning-techniques"><i class="fa fa-check"></i>Machine Learning Techniques</a><ul>
 <li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#ridge-lasso-and-elastic-net"><i class="fa fa-check"></i>Ridge, Lasso and Elastic Net</a></li>
 <li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#random-forests"><i class="fa fa-check"></i>Random Forests</a></li>
 </ul></li>
+<li class="chapter" data-level="0.1" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#conclusions-2"><i class="fa fa-check"></i><b>0.1</b> Conclusions</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html"><i class="fa fa-check"></i>Chapter 8: Advanced Data Manipulation</a><ul>
 <li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#your-own-functions"><i class="fa fa-check"></i>Your Own Functions</a></li>
@@ -193,7 +193,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="chapter-9-advanced-plotting.html"><a href="chapter-9-advanced-plotting.html#labels-and-titles"><i class="fa fa-check"></i>Labels and Titles</a></li>
 <li class="chapter" data-level="" data-path="chapter-9-advanced-plotting.html"><a href="chapter-9-advanced-plotting.html#facetting"><i class="fa fa-check"></i>Facetting</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="chapter-10-where-to-go-from-here.html"><a href="chapter-10-where-to-go-from-here.html"><i class="fa fa-check"></i>Chapter 10: Where to go from here</a></li>
+<li class="chapter" data-level="" data-path="chapter-10-where-to-go-from-here-and-common-pitfalls.html"><a href="chapter-10-where-to-go-from-here-and-common-pitfalls.html"><i class="fa fa-check"></i>Chapter 10: Where to Go from Here and Common Pitfalls</a><ul>
+<li class="chapter" data-level="" data-path="chapter-10-where-to-go-from-here-and-common-pitfalls.html"><a href="chapter-10-where-to-go-from-here-and-common-pitfalls.html#common-pitfalls"><i class="fa fa-check"></i>Common Pitfalls</a></li>
+<li class="chapter" data-level="" data-path="chapter-10-where-to-go-from-here-and-common-pitfalls.html"><a href="chapter-10-where-to-go-from-here-and-common-pitfalls.html#quiz"><i class="fa fa-check"></i>Quiz</a></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -230,7 +233,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   m &lt;-<span class="st"> </span>(<span class="dv">1</span>/n) *<span class="st"> </span><span class="kw">sum</span>(x)
   <span class="kw">return</span>(m)
 }</code></pre></div>
-<p>We create a function using the <code>function()</code> function.<a href="#fn17" class="footnoteRef" id="fnref17"><sup>17</sup></a> Within the <code>function()</code> we put an <code>x</code>. This is the argument that the function will ask for. Here, it is a numeric vector that we want to take the mean of. We then provide the meat of the function between the <code>{}</code>. Here, we did a simple mean calculation using the <code>length(x)</code> which gives us the number of observations, and <code>sum()</code> which sums the numbers in <code>x</code>.</p>
+<p>We create a function using the <code>function()</code> function.<a href="#fn19" class="footnoteRef" id="fnref19"><sup>19</sup></a> Within the <code>function()</code> we put an <code>x</code>. This is the argument that the function will ask for. Here, it is a numeric vector that we want to take the mean of. We then provide the meat of the function between the <code>{}</code>. Here, we did a simple mean calculation using the <code>length(x)</code> which gives us the number of observations, and <code>sum()</code> which sums the numbers in <code>x</code>.</p>
 <p>Let’s give it a try:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">v1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>)
 <span class="kw">mean2</span>(v1)</code></pre></div>
@@ -263,8 +266,8 @@ m</code></pre></div>
 </div>
 <div class="footnotes">
 <hr />
-<ol start="17">
-<li id="fn17"><p>That seemed like excessive use of the word function… It is important though. So, get used to it!<a href="chapter-8-advanced-data-manipulation.html#fnref17">↩</a></p></li>
+<ol start="19">
+<li id="fn19"><p>That seemed like excessive use of the word function… It is important though. So, get used to it!<a href="chapter-8-advanced-data-manipulation.html#fnref19">↩</a></p></li>
 </ol>
 </div>
             </section>

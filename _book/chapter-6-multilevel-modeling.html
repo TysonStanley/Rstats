@@ -26,7 +26,7 @@
 <meta name="author" content="Tyson S. Barrett">
 
 
-<meta name="date" content="2017-01-04">
+<meta name="date" content="2017-01-12">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -172,12 +172,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html"><i class="fa fa-check"></i>Chapter 7: Other Modeling Techniques</a><ul>
 <li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#mediation-modeling"><i class="fa fa-check"></i>Mediation Modeling</a></li>
-<li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#mixture-modeling"><i class="fa fa-check"></i>Mixture Modeling</a></li>
 <li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#structural-equation-modeling"><i class="fa fa-check"></i>Structural Equation Modeling</a></li>
 <li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#machine-learning-techniques"><i class="fa fa-check"></i>Machine Learning Techniques</a><ul>
 <li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#ridge-lasso-and-elastic-net"><i class="fa fa-check"></i>Ridge, Lasso and Elastic Net</a></li>
 <li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#random-forests"><i class="fa fa-check"></i>Random Forests</a></li>
 </ul></li>
+<li class="chapter" data-level="0.1" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#conclusions-2"><i class="fa fa-check"></i><b>0.1</b> Conclusions</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html"><i class="fa fa-check"></i>Chapter 8: Advanced Data Manipulation</a><ul>
 <li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#your-own-functions"><i class="fa fa-check"></i>Your Own Functions</a></li>
@@ -193,7 +193,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="chapter-9-advanced-plotting.html"><a href="chapter-9-advanced-plotting.html#labels-and-titles"><i class="fa fa-check"></i>Labels and Titles</a></li>
 <li class="chapter" data-level="" data-path="chapter-9-advanced-plotting.html"><a href="chapter-9-advanced-plotting.html#facetting"><i class="fa fa-check"></i>Facetting</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="chapter-10-where-to-go-from-here.html"><a href="chapter-10-where-to-go-from-here.html"><i class="fa fa-check"></i>Chapter 10: Where to go from here</a></li>
+<li class="chapter" data-level="" data-path="chapter-10-where-to-go-from-here-and-common-pitfalls.html"><a href="chapter-10-where-to-go-from-here-and-common-pitfalls.html"><i class="fa fa-check"></i>Chapter 10: Where to Go from Here and Common Pitfalls</a><ul>
+<li class="chapter" data-level="" data-path="chapter-10-where-to-go-from-here-and-common-pitfalls.html"><a href="chapter-10-where-to-go-from-here-and-common-pitfalls.html#common-pitfalls"><i class="fa fa-check"></i>Common Pitfalls</a></li>
+<li class="chapter" data-level="" data-path="chapter-10-where-to-go-from-here-and-common-pitfalls.html"><a href="chapter-10-where-to-go-from-here-and-common-pitfalls.html#quiz"><i class="fa fa-check"></i>Quiz</a></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -306,8 +309,7 @@ fit_me &lt;-<span class="st"> </span><span class="kw">lmer</span>(dep ~<span cla
                <span class="dt">data =</span> df2,
                <span class="dt">REML =</span> <span class="ot">FALSE</span>)
 <span class="kw">summary</span>(fit_me)</code></pre></div>
-<pre><code>## Linear mixed model fit by maximum likelihood t-tests use Satterthwaite
-##   approximations to degrees of freedom [lmerMod]
+<pre><code>## Linear mixed model fit by maximum likelihood  [&#39;lmerMod&#39;]
 ## Formula: dep ~ asthma + famsize + sed + race + (1 | cluster)
 ##    Data: df2
 ## 
@@ -325,17 +327,15 @@ fit_me &lt;-<span class="st"> </span><span class="kw">lmer</span>(dep ~<span cla
 ## Number of obs: 4441, groups:  cluster, 14
 ## 
 ## Fixed effects:
-##                    Estimate Std. Error        df t value Pr(&gt;|t|)    
-## (Intercept)        2.49e+00   3.03e-01  5.38e+02    8.23  1.3e-15 ***
-## asthma             1.33e+00   1.87e-01  4.44e+03    7.13  1.2e-12 ***
-## famsize           -4.32e-02   4.63e-02  4.42e+03   -0.93    0.351    
-## sed                1.43e-03   3.37e-04  4.44e+03    4.26  2.1e-05 ***
-## raceOtherHispanic  1.28e+00   3.20e-01  2.17e+03    4.00  6.4e-05 ***
-## raceWhite          9.30e-03   2.59e-01  3.28e+03    0.04    0.971    
-## raceBlack          1.68e-01   2.73e-01  2.18e+03    0.62    0.538    
-## raceOther         -5.40e-01   2.85e-01  3.91e+03   -1.89    0.059 .  
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+##                    Estimate Std. Error t value
+## (Intercept)        2.489894   0.302638    8.23
+## asthma             1.329994   0.186533    7.13
+## famsize           -0.043237   0.046320   -0.93
+## sed                0.001433   0.000337    4.26
+## raceOtherHispanic  1.283057   0.320393    4.00
+## raceWhite          0.009298   0.259480    0.04
+## raceBlack          0.168175   0.273351    0.62
+## raceOther         -0.540119   0.285494   -1.89
 ## 
 ## Correlation of Fixed Effects:
 ##             (Intr) asthma famsiz sed    rcOthH racWht rcBlck
@@ -354,11 +354,11 @@ fit_me &lt;-<span class="st"> </span><span class="kw">lmer</span>(dep ~<span cla
 <span class="kw">anova</span>(fit_me, fit_me1)</code></pre></div>
 <pre><code>## Data: df2
 ## Models:
-## ..1: dep ~ famsize + sed + race + (1 | cluster)
-## object: dep ~ asthma + famsize + sed + race + (1 | cluster)
-##        Df   AIC   BIC logLik deviance Chisq Chi Df Pr(&gt;Chisq)    
-## ..1     9 25853 25911 -12918    25835                            
-## object 10 25805 25869 -12892    25785  50.5      1    1.2e-12 ***
+## fit_me1: dep ~ famsize + sed + race + (1 | cluster)
+## fit_me: dep ~ asthma + famsize + sed + race + (1 | cluster)
+##         Df   AIC   BIC logLik deviance Chisq Chi Df Pr(&gt;Chisq)    
+## fit_me1  9 25853 25911 -12918    25835                            
+## fit_me  10 25805 25869 -12892    25785  50.5      1    1.2e-12 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>This comparison strongly suggests that <code>asthma</code> is a significant predictor (<span class="math inline">\(\chi^2 = 50.5\)</span>, p &lt; .001). We can do this with both fixed and random effects, as below:</p>
@@ -371,11 +371,11 @@ fit_me3 &lt;-<span class="st"> </span><span class="kw">lmer</span>(dep ~<span cl
 <span class="kw">anova</span>(fit_me2, fit_me3, <span class="dt">refit =</span> <span class="ot">FALSE</span>)</code></pre></div>
 <pre><code>## Data: df2
 ## Models:
-## object: dep ~ famsize + sed + race + (1 | cluster)
-## ..1: dep ~ famsize + sed + race + (1 + asthma | cluster)
-##        Df   AIC   BIC logLik deviance Chisq Chi Df Pr(&gt;Chisq)    
-## object  9 25879 25937 -12931    25861                            
-## ..1    11 25847 25917 -12912    25825  36.9      2    9.8e-09 ***
+## fit_me2: dep ~ famsize + sed + race + (1 | cluster)
+## fit_me3: dep ~ famsize + sed + race + (1 + asthma | cluster)
+##         Df   AIC   BIC logLik deviance Chisq Chi Df Pr(&gt;Chisq)    
+## fit_me2  9 25879 25937 -12931    25861                            
+## fit_me3 11 25847 25917 -12912    25825  36.9      2    9.8e-09 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>Here, including random slopes for asthma appears to be significant (<span class="math inline">\(\chi^2 = 36.9\)</span>, p &lt; .001).</p>

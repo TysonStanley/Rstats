@@ -26,7 +26,7 @@
 <meta name="author" content="Tyson S. Barrett">
 
 
-<meta name="date" content="2017-01-04">
+<meta name="date" content="2017-01-12">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -172,12 +172,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html"><i class="fa fa-check"></i>Chapter 7: Other Modeling Techniques</a><ul>
 <li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#mediation-modeling"><i class="fa fa-check"></i>Mediation Modeling</a></li>
-<li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#mixture-modeling"><i class="fa fa-check"></i>Mixture Modeling</a></li>
 <li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#structural-equation-modeling"><i class="fa fa-check"></i>Structural Equation Modeling</a></li>
 <li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#machine-learning-techniques"><i class="fa fa-check"></i>Machine Learning Techniques</a><ul>
 <li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#ridge-lasso-and-elastic-net"><i class="fa fa-check"></i>Ridge, Lasso and Elastic Net</a></li>
 <li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#random-forests"><i class="fa fa-check"></i>Random Forests</a></li>
 </ul></li>
+<li class="chapter" data-level="0.1" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#conclusions-2"><i class="fa fa-check"></i><b>0.1</b> Conclusions</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html"><i class="fa fa-check"></i>Chapter 8: Advanced Data Manipulation</a><ul>
 <li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#your-own-functions"><i class="fa fa-check"></i>Your Own Functions</a></li>
@@ -193,7 +193,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="chapter-9-advanced-plotting.html"><a href="chapter-9-advanced-plotting.html#labels-and-titles"><i class="fa fa-check"></i>Labels and Titles</a></li>
 <li class="chapter" data-level="" data-path="chapter-9-advanced-plotting.html"><a href="chapter-9-advanced-plotting.html#facetting"><i class="fa fa-check"></i>Facetting</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="chapter-10-where-to-go-from-here.html"><a href="chapter-10-where-to-go-from-here.html"><i class="fa fa-check"></i>Chapter 10: Where to go from here</a></li>
+<li class="chapter" data-level="" data-path="chapter-10-where-to-go-from-here-and-common-pitfalls.html"><a href="chapter-10-where-to-go-from-here-and-common-pitfalls.html"><i class="fa fa-check"></i>Chapter 10: Where to Go from Here and Common Pitfalls</a><ul>
+<li class="chapter" data-level="" data-path="chapter-10-where-to-go-from-here-and-common-pitfalls.html"><a href="chapter-10-where-to-go-from-here-and-common-pitfalls.html#common-pitfalls"><i class="fa fa-check"></i>Common Pitfalls</a></li>
+<li class="chapter" data-level="" data-path="chapter-10-where-to-go-from-here-and-common-pitfalls.html"><a href="chapter-10-where-to-go-from-here-and-common-pitfalls.html#quiz"><i class="fa fa-check"></i>Quiz</a></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -243,7 +246,7 @@ df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class=
 ##  C                             
 ##               0.67 (0.52)      
 ##  D                             
-##               -0.28 (1.25)     
+##               -0.00 (0.77)     
 ## |==============================|</code></pre>
 <p>This quickly gives you means and standard deviations (or counts and percentages if there were categorical variables). We could have also used the pipe operator here if we wanted via:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df %&gt;%
@@ -259,7 +262,7 @@ df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class=
 ##  C                             
 ##               0.67 (0.52)      
 ##  D                             
-##               -0.28 (1.25)     
+##               -0.00 (0.77)     
 ## |==============================|</code></pre>
 <p>It turns out, for we want “A” and “C” to be factors.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df$A &lt;-<span class="st"> </span><span class="kw">factor</span>(df$A, <span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;cat1&quot;</span>, <span class="st">&quot;cat2&quot;</span>, <span class="st">&quot;cat3&quot;</span>, <span class="st">&quot;cat4&quot;</span>))
@@ -281,7 +284,7 @@ df$C &lt;-<span class="st"> </span><span class="kw">factor</span>(df$C, <span cl
 ##     male      2 (33.3%)        
 ##     female    4 (66.7%)        
 ##  D                             
-##               -0.28 (1.25)     
+##               -0.00 (0.77)     
 ## |==============================|</code></pre>
 <p>So now we see the counts and percentages for the factor variables. But now we can take a step further and look for relationships. The code below shows the means/standard devaitions or counts/percentages by a grouping variable–in this case, <code>C</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table1</span>(df, A, B, D,
@@ -298,7 +301,7 @@ df$C &lt;-<span class="st"> </span><span class="kw">factor</span>(df$C, <span cl
 ##  B                                    
 ##               1.75 (0.49)  3.33 (1.30)
 ##  D                                    
-##               -1.03 (2.44) 0.09 (0.26)
+##               -0.08 (0.29) 0.04 (0.98)
 ## |=====================================|</code></pre>
 <p>We can also test for differences by group as well (although this is not particularly good with a sample size of 5). It produces a warning since the <span class="math inline">\(\chi^2\)</span> approximation is not accurate with cells this small.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table1</span>(df, A, B, D,
@@ -315,8 +318,8 @@ df$C &lt;-<span class="st"> </span><span class="kw">factor</span>(df$C, <span cl
 ##     cat4      0 (0%)       1 (33.3%)          
 ##  B                                     0.162  
 ##               1.75 (0.49)  3.33 (1.30)        
-##  D                                     0.634  
-##               -1.03 (2.44) 0.09 (0.26)        
+##  D                                     0.842  
+##               -0.08 (0.29) 0.04 (0.98)        
 ## |=============================================|</code></pre>
 <p>Finally, we can include missingness in the table for factors.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table1</span>(df, A, B, D,
@@ -335,8 +338,8 @@ df$C &lt;-<span class="st"> </span><span class="kw">factor</span>(df$C, <span cl
 ##     NA        0 (0%)       1 (25%)            
 ##  B                                     0.162  
 ##               1.75 (0.49)  3.33 (1.30)        
-##  D                                     0.634  
-##               -1.03 (2.44) 0.09 (0.26)        
+##  D                                     0.842  
+##               -0.08 (0.29) 0.04 (0.98)        
 ## |=============================================|</code></pre>
 <p>So with three or four short lines of code we can get a good idea about variables that may be related to the grouping variable and any missingness in the factor variables. There’s much more you can do with <code>table1</code> and there are vignettes and tutorials available to learn more.<a href="#fn13" class="footnoteRef" id="fnref13"><sup>13</sup></a></p>
 <p>Other quick descriptive functions exist; here are a few of them.</p>
