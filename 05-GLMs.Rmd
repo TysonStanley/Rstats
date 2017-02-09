@@ -203,4 +203,9 @@ The output provides coefficients and the "Phi" coefficients. Both are important 
 There are many resources available to learn more about beta regression and each of these GLM's. As for now, we are going to move on to more complex modeling where there are clustering or repeated measures in the data. 
 
 
+## Conclusions {-}
+
+One of the great things about `R` is that most modeling is very similar to the basic `lm()` function. In all of these GLM's the arguments are nearly all the same: a formula, the data, and family of model. As you'll see for Multilevel and Other Models chapters, this does not change much. Having a good start with basic models and GLM's gets you ready for nearly every other modeling type in `R`.
+
+
 [^logistic]: Technically, logistic regression is a linear regression model.
