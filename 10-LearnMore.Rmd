@@ -19,7 +19,8 @@ Since this has been a primer, we hope that you will continue your learning of `R
 Below, we list a handful of `R` references that we have found to be useful:
 
 1. R for Data Science by Hadley Wickham
-2. ...
+2. Efficient Programming in R ...
+3. The R Cookbook ...
 
 
 ## Common Pitfalls {-}
@@ -27,6 +28,11 @@ Below, we list a handful of `R` references that we have found to be useful:
 To end, we wanted to highlight some pitfalls that can plague any beginner to `R`. We list a few that we've encountered, although others surely exist.
 
 1. Document your work.
+2. Don't override objects unless it is on purpose. Changing objects can be hard to keep track of in bigger projects.
+3. Don't shy away from asking questions. `R` is very flexible and, although this can make it overwhelming to master, there are people who have figured out easy ways to do complex stuff.
+4. Plan out the steps of your data manipulation and analyses. A few minutes of planning can help you not get lost in the technology and lose sight of the goal.
+5. Understand the statistics before throughing data in the model.
+6. Do exploratory data analysis (EDA) to understand your data. R is made for this so use it. Otherwise, your model may be completely wrong and have many violated assumptions.
 
 
 ## Quiz {-}
@@ -41,6 +47,7 @@ a. scream in fear
 b. be as proud as could be
 c. neither; I would fix it
 d. neither; it works but it isn't pretty
+e. it is pretty and functional
 ```{r, eval=FALSE}
 df <- df +
   mutate(newvar = ifelse(oldvar == 1, 1, 0))
@@ -58,6 +65,6 @@ If it is broken, how would you fix it?
 
 
 
+## Goodbye and Good Luck {-}
 
-
-Thanks!
+I hope this has been a useful primer to get you into `R`. If you still feel rusty, feel free to go through the book again or look at other online resources. `R` is very flexible and can ease the data and analysis burden of research. Implement good practices and your work will become easier to track, easier to document, and easier to communicate. Good luck on your journey using `R` in your research!

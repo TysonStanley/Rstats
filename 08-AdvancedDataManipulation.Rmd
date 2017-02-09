@@ -147,7 +147,7 @@ We now have the means by each group. This, however, is probably replaced by the 
 
 These functions are useful in many situations, especially where there are no vectorized functions. You can always get an idea of whether to use a `for` loop or an `apply` function by giving it a try on a small subset of data to see if one is better and/or faster.
 
-### Speed Comparison
+### Speed Comparison {-}
 
 We can test to see how fast functions are with the `microbenchmark` package. Since it wants functions, we will create a function that uses the `for` looop.
 ```{r}
@@ -169,7 +169,7 @@ microbenchmark(forloop(v1, v2),
 ```
 Of course, as it says the units are in nanoseconds. Whether a function takes 200 or 200,000 nanoseconds probably won't change your life. However, if the function is being used repeatedly or on on large data sets, this can make a difference.
 
-## Using "Anonymous Functions" in Apply
+## Using "Anonymous Functions" in Apply {-}
 
 Last thing to know here is that you don't need to create a named function everytime you want to use `apply`. We can use what is called "Anonymous" functions. Below, we use one to get at the N and mean of the data.
 ```{r}
@@ -188,7 +188,7 @@ The last two examples also show something important regarding the output:
 1. The output will be at the level of the anonymous function. The first had two numbers per variable because the function produced two summary statistics for each variable. The second we multiplied `y` by 2 (so it is still at the individual observation level) and then divide by the SD. This keeps it at the observation level so we get ten values for every variable.
 2. We can name the argument anything we want (as long as it is one word). We used `x` in the first and `y` in the second but as long as it is the same within the function, it doesn't matter what you use.
 
-## Conclusions
+## Conclusions {-}
 
 These are useful tools to use in your own data manipulation beyond that what we discussed with `dplyr`. It takes time to get used to making your own functions so be patient with yourself as you learn how to get `R` to do exactly what you want in a condensed, replicable format. 
 

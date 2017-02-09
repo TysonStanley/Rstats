@@ -235,7 +235,7 @@ varImpPlot(fit_rf)
 We can see that age (`ridageyr`) is the most important variable, depression (`dep`) follows, with the family size (`famsize`) the third most important in the random forests model.
 
 
-## Conclusions
+## Conclusions {-}
 
 Although we only discussed these methods briefly, that does not mean they are less important. On the contrary, they are essential upper level statistical methods. This brief introduction hopefully helped you know what `R` is capable of across a wide range of methods.
 
