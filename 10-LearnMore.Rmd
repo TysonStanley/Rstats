@@ -20,23 +20,26 @@ There are many resources that can aid in developing your `R` skills from here. W
 
 Since this has been a primer, we hope that you will continue your learning of `R` via the various sources available at little to no cost. Just like this book, many `R` books are available online as well as in print. This allows you to explore and learn online at your own pace without having to buy a bunch of books or other resources.
 
-Below, we list a handful of `R` references that we have found to be useful:
+Below, we list a few `R` books that we have found to be useful. Most are available free in some form.
 
-1. R for Data Science by Hadley Wickham
-2. Efficient Programming in R ...
-3. The R Cookbook ...
+1. [R for Data Science by Hadley Wickham and Garrett Grolemund](http://r4ds.had.co.nz/)
+2. [Efficient R Programming by Colin gillespie and Robin Lovelace](https://csgillespie.github.io/efficientR/)
+3. [The R Cookbook](http://www.cookbook-r.com/)
+4. [An Introduction to Statistical Learning](http://www-bcf.usc.edu/~gareth/ISL/)
 
+There are *many, many* books that talk about `R` in various forms so by no means is this a complete list.
 
 ## Common Pitfalls {-}
 
 To end, we wanted to highlight some pitfalls that can plague any beginner to `R`. We list a few that we've encountered, although others surely exist.
 
 1. Document your work.
-2. Don't override objects unless it is on purpose. Changing objects can be hard to keep track of in bigger projects.
-3. Don't shy away from asking questions. `R` is very flexible and, although this can make it overwhelming to master, there are people who have figured out easy ways to do complex stuff.
+2. Avoid overriding objects unless it is on purpose. Changing objects can be hard to keep track of in bigger projects.
+3. Ask questions. `R` is very flexible; this can make it overwhelming to learn since there are many ways to perform the same task. However, there are people who have figured out easy ways to do complex stuff and most are willing to answer an email.
 4. Plan out the steps of your data manipulation and analyses. A few minutes of planning can help you not get lost in the technology and lose sight of the goal.
-5. Understand the statistics before throughing data in the model.
-6. Do exploratory data analysis (EDA) to understand your data. R is made for this so use it. Otherwise, your model may be completely wrong and have many violated assumptions.
+5. Understand the statistics before throwing data in a model. This can lead to major problems in science. At the very least, understand the assumptions of the modeling type and when it can and should be used.
+6. Do exploratory data analysis (EDA) to understand your data. `R` is made for this--so use it. Otherwise, your model may be completely wrong and have many violated assumptions.
+7. Be transparent in your writing. If you use the `R` scripts correctly, you can provide your code as part of any publication. This will greatly increase replicability of our important research findings.
 
 
 ## Quiz {-}
@@ -44,29 +47,99 @@ To end, we wanted to highlight some pitfalls that can plague any beginner to `R`
 As a final note, we thought we would give you a quiz to test your memory of the topics we've covered. Don't worry; no pressure to get them all. We've included some tougher ones. Regardless of how well you do, we hope you'll continue improving in your `R` programming skills.
 
 #### Question 1 {-}
+What kind of vector is this?
+```{r, eval=FALSE}
+x <- c(10.1, 2.1, 4.6, 2.3, 8.9)
+```
 
-If the following code were part of your script would you:
+#### Question 2 {-}
+What does this line of code do?
+```{r, eval=FALSE}
+df[c(1,5), c("B", "C")]
+```
 
-a. scream in fear
-b. be as proud as could be
-c. neither; I would fix it
-d. neither; it works but it isn't pretty
-e. it is pretty and functional
+#### Question 3 {-}
+In the `tidyverse` there are four join functions. What are they?
+
+#### Question 4 {-}
+What functions are used in the "three step summary" as described in Chapter 2?
+
+#### Question 5 {-}
+What does the following code do?
+```{r, eval=FALSE}
+ggplot(df, aes(x=C, y=D)) +
+  geom_boxplot(aes(color = C)) +
+  theme_bw() +
+  scale_color_manual(values = c("dodgerblue4", "coral2"))
+```
+
+#### Question 6 {-}
+Name three functions you can use to summarize your data in an informative way.
+
+#### Question 7 {-}
+What type of model does `aov()` perform?
+
+#### Question 8 {-}
+What are the differences between `aov()` and `lm()`?
+
+#### Question 9 {-}
+What assumptions of normality and heteroskedasticity fail, what function can be used to fit logistic and poisson regressions?
+
+#### Question 10 {-}
+If you were trying to perform logistic regression, what arguments are necessary?
+
+#### Question 11 {-}
+In multilevel modeling, which functions can be used to fit a Generalized Estimating Equations model?
+
+#### Question 12 {-}
+When comparing mixed effects models, what does `anova()` do?
+
+#### Question 13 {-}
+Can `R` do structural equation modeling? If so, what package(s) are useful?
+
+#### Question 14 {-}
+What types of models can `glmnet()` perform? How can you do a cross-validated "glmnet" model?
+
+#### Question 15 {-}
+Is the following data in wide or long form? How do you know? 
+```{r, echo=FALSE}
+data.frame("ID"=c(1:10), "Var_Time1"=rnorm(10), "Var_Time2"=runif(10)) %>%
+  gather("measures", "values", 2:3)
+```
+To make your data long form but it is currently in wide form, what function(s) can you use?
+
+#### Question 16 {-}
+What form of looping is the fastest? What does `apply()` do? Can you do for loops in `R`?
+
+#### Question 17 {-}
+What is the following code doing?
+```{r, eval=FALSE}
+sandwhich <- function(pb, jam){
+  s <- pb + jam
+  return(s)
+}
+```
+
+Question 18 {-}
+What is wrong with this chunk of code?
 ```{r, eval=FALSE}
 df <- df +
   mutate(newvar = ifelse(oldvar == 1, 1, 0))
 ```
 
-If it is broken, how would you fix it?
+#### Question 19 {-}
+What is your favorite built in theme or how would you make your favorite custom theme?
 
-#### Question 2 {-}
-
-
-
-
-
-
-
+#### Question 20 {-}
+What kind of plot does the following make?
+```{r, message=FALSE, warning=FALSE}
+pos = position_dodge(width = .1)
+ggplot(summed_data, aes(x = dep2, y = sed, group = asthma, color = asthma)) +
+  geom_line(position = pos) +
+  geom_errorbar(aes(ymin = sed - s_se, ymax = sed + s_se), 
+                width = .1, 
+                position = pos)
+```
 
 
 ## Goodbye and Good Luck {-}

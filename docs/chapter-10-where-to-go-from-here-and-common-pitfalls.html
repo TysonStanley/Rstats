@@ -181,13 +181,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#conclusions-3"><i class="fa fa-check"></i>Conclusions</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html"><i class="fa fa-check"></i>Chapter 8: Advanced Data Manipulation</a><ul>
+<li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#reshaping-your-data"><i class="fa fa-check"></i>Reshaping Your Data</a></li>
+<li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#repeating-actions-looping"><i class="fa fa-check"></i>Repeating Actions (Looping)</a><ul>
 <li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#your-own-functions"><i class="fa fa-check"></i>Your Own Functions</a></li>
 <li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#vectorized"><i class="fa fa-check"></i>Vectorized</a></li>
 <li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#for-loops"><i class="fa fa-check"></i>For Loops</a></li>
-<li><a href="chapter-8-advanced-data-manipulation.html#the-apply-family">The <code>apply</code> family</a><ul>
-<li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#speed-comparison"><i class="fa fa-check"></i>Speed Comparison</a></li>
-</ul></li>
+<li><a href="chapter-8-advanced-data-manipulation.html#the-apply-family">The <code>apply</code> family</a></li>
 <li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#using-anonymous-functions-in-apply"><i class="fa fa-check"></i>Using “Anonymous Functions” in Apply</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#conclusions-4"><i class="fa fa-check"></i>Conclusions</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-9-advanced-plotting.html"><a href="chapter-9-advanced-plotting.html"><i class="fa fa-check"></i>Chapter 9: Advanced Plotting</a><ul>
@@ -233,22 +234,25 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </blockquote>
 <p>There are many resources that can aid in developing your <code>R</code> skills from here. We have introduced the basics of <code>R</code>, helping you take a few steps on your journey of understanding <code>R</code>. We have focused on the ones that are most important for researchers in the health, behavioral, and social sciences.</p>
 <p>Since this has been a primer, we hope that you will continue your learning of <code>R</code> via the various sources available at little to no cost. Just like this book, many <code>R</code> books are available online as well as in print. This allows you to explore and learn online at your own pace without having to buy a bunch of books or other resources.</p>
-<p>Below, we list a handful of <code>R</code> references that we have found to be useful:</p>
+<p>Below, we list a few <code>R</code> books that we have found to be useful. Most are available free in some form.</p>
 <ol style="list-style-type: decimal">
-<li>R for Data Science by Hadley Wickham</li>
-<li>Efficient Programming in R …</li>
-<li>The R Cookbook …</li>
+<li><a href="http://r4ds.had.co.nz/">R for Data Science by Hadley Wickham and Garrett Grolemund</a></li>
+<li><a href="https://csgillespie.github.io/efficientR/">Efficient R Programming by Colin gillespie and Robin Lovelace</a></li>
+<li><a href="http://www.cookbook-r.com/">The R Cookbook</a></li>
+<li><a href="http://www-bcf.usc.edu/~gareth/ISL/">An Introduction to Statistical Learning</a></li>
 </ol>
+<p>There are <em>many, many</em> books that talk about <code>R</code> in various forms so by no means is this a complete list.</p>
 <div id="common-pitfalls" class="section level2 unnumbered">
 <h2>Common Pitfalls</h2>
 <p>To end, we wanted to highlight some pitfalls that can plague any beginner to <code>R</code>. We list a few that we’ve encountered, although others surely exist.</p>
 <ol style="list-style-type: decimal">
 <li>Document your work.</li>
-<li>Don’t override objects unless it is on purpose. Changing objects can be hard to keep track of in bigger projects.</li>
-<li>Don’t shy away from asking questions. <code>R</code> is very flexible and, although this can make it overwhelming to master, there are people who have figured out easy ways to do complex stuff.</li>
+<li>Avoid overriding objects unless it is on purpose. Changing objects can be hard to keep track of in bigger projects.</li>
+<li>Ask questions. <code>R</code> is very flexible; this can make it overwhelming to learn since there are many ways to perform the same task. However, there are people who have figured out easy ways to do complex stuff and most are willing to answer an email.</li>
 <li>Plan out the steps of your data manipulation and analyses. A few minutes of planning can help you not get lost in the technology and lose sight of the goal.</li>
-<li>Understand the statistics before throughing data in the model.</li>
-<li>Do exploratory data analysis (EDA) to understand your data. R is made for this so use it. Otherwise, your model may be completely wrong and have many violated assumptions.</li>
+<li>Understand the statistics before throwing data in a model. This can lead to major problems in science. At the very least, understand the assumptions of the modeling type and when it can and should be used.</li>
+<li>Do exploratory data analysis (EDA) to understand your data. <code>R</code> is made for this–so use it. Otherwise, your model may be completely wrong and have many violated assumptions.</li>
+<li>Be transparent in your writing. If you use the <code>R</code> scripts correctly, you can provide your code as part of any publication. This will greatly increase replicability of our important research findings.</li>
 </ol>
 </div>
 <div id="quiz" class="section level2 unnumbered">
@@ -256,20 +260,121 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>As a final note, we thought we would give you a quiz to test your memory of the topics we’ve covered. Don’t worry; no pressure to get them all. We’ve included some tougher ones. Regardless of how well you do, we hope you’ll continue improving in your <code>R</code> programming skills.</p>
 <div id="question-1" class="section level4 unnumbered">
 <h4>Question 1</h4>
-<p>If the following code were part of your script would you:</p>
-<ol style="list-style-type: lower-alpha">
-<li>scream in fear</li>
-<li>be as proud as could be</li>
-<li>neither; I would fix it</li>
-<li>neither; it works but it isn’t pretty</li>
-<li>it is pretty and functional</li>
-</ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span>df +
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">newvar =</span> <span class="kw">ifelse</span>(oldvar ==<span class="st"> </span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>))</code></pre></div>
-<p>If it is broken, how would you fix it?</p>
+<p>What kind of vector is this?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">10.1</span>, <span class="fl">2.1</span>, <span class="fl">4.6</span>, <span class="fl">2.3</span>, <span class="fl">8.9</span>)</code></pre></div>
 </div>
 <div id="question-2" class="section level4 unnumbered">
 <h4>Question 2</h4>
+<p>What does this line of code do?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">5</span>), <span class="kw">c</span>(<span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>)]</code></pre></div>
+</div>
+<div id="question-3" class="section level4 unnumbered">
+<h4>Question 3</h4>
+<p>In the <code>tidyverse</code> there are four join functions. What are they?</p>
+</div>
+<div id="question-4" class="section level4 unnumbered">
+<h4>Question 4</h4>
+<p>What functions are used in the “three step summary” as described in Chapter 2?</p>
+</div>
+<div id="question-5" class="section level4 unnumbered">
+<h4>Question 5</h4>
+<p>What does the following code do?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x=</span>C, <span class="dt">y=</span>D)) +
+<span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">color =</span> C)) +
+<span class="st">  </span><span class="kw">theme_bw</span>() +
+<span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;dodgerblue4&quot;</span>, <span class="st">&quot;coral2&quot;</span>))</code></pre></div>
+</div>
+<div id="question-6" class="section level4 unnumbered">
+<h4>Question 6</h4>
+<p>Name three functions you can use to summarize your data in an informative way.</p>
+</div>
+<div id="question-7" class="section level4 unnumbered">
+<h4>Question 7</h4>
+<p>What type of model does <code>aov()</code> perform?</p>
+</div>
+<div id="question-8" class="section level4 unnumbered">
+<h4>Question 8</h4>
+<p>What are the differences between <code>aov()</code> and <code>lm()</code>?</p>
+</div>
+<div id="question-9" class="section level4 unnumbered">
+<h4>Question 9</h4>
+<p>What assumptions of normality and heteroskedasticity fail, what function can be used to fit logistic and poisson regressions?</p>
+</div>
+<div id="question-10" class="section level4 unnumbered">
+<h4>Question 10</h4>
+<p>If you were trying to perform logistic regression, what arguments are necessary?</p>
+</div>
+<div id="question-11" class="section level4 unnumbered">
+<h4>Question 11</h4>
+<p>In multilevel modeling, which functions can be used to fit a Generalized Estimating Equations model?</p>
+</div>
+<div id="question-12" class="section level4 unnumbered">
+<h4>Question 12</h4>
+<p>When comparing mixed effects models, what does <code>anova()</code> do?</p>
+</div>
+<div id="question-13" class="section level4 unnumbered">
+<h4>Question 13</h4>
+<p>Can <code>R</code> do structural equation modeling? If so, what package(s) are useful?</p>
+</div>
+<div id="question-14" class="section level4 unnumbered">
+<h4>Question 14</h4>
+<p>What types of models can <code>glmnet()</code> perform? How can you do a cross-validated “glmnet” model?</p>
+</div>
+<div id="question-15" class="section level4 unnumbered">
+<h4>Question 15</h4>
+<p>Is the following data in wide or long form? How do you know?</p>
+<pre><code>##    ID  measures   values
+## 1   1 Var_Time1  1.43583
+## 2   2 Var_Time1 -0.23298
+## 3   3 Var_Time1 -1.10139
+## 4   4 Var_Time1  0.34984
+## 5   5 Var_Time1  1.13165
+## 6   6 Var_Time1 -0.06718
+## 7   7 Var_Time1 -1.20899
+## 8   8 Var_Time1  0.24708
+## 9   9 Var_Time1  0.12015
+## 10 10 Var_Time1 -1.44401
+## 11  1 Var_Time2  0.75513
+## 12  2 Var_Time2  0.59183
+## 13  3 Var_Time2  0.85950
+## 14  4 Var_Time2  0.19253
+## 15  5 Var_Time2  0.44780
+## 16  6 Var_Time2  0.84614
+## 17  7 Var_Time2  0.03641
+## 18  8 Var_Time2  0.78805
+## 19  9 Var_Time2  0.51541
+## 20 10 Var_Time2  0.69500</code></pre>
+<p>To make your data long form but it is currently in wide form, what function(s) can you use?</p>
+</div>
+<div id="question-16" class="section level4 unnumbered">
+<h4>Question 16</h4>
+<p>What form of looping is the fastest? What does <code>apply()</code> do? Can you do for loops in <code>R</code>?</p>
+</div>
+<div id="question-17" class="section level4 unnumbered">
+<h4>Question 17</h4>
+<p>What is the following code doing?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sandwhich &lt;-<span class="st"> </span>function(pb, jam){
+  s &lt;-<span class="st"> </span>pb +<span class="st"> </span>jam
+  <span class="kw">return</span>(s)
+}</code></pre></div>
+<p>Question 18 {-} What is wrong with this chunk of code?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span>df +
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">newvar =</span> <span class="kw">ifelse</span>(oldvar ==<span class="st"> </span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>))</code></pre></div>
+</div>
+<div id="question-19" class="section level4 unnumbered">
+<h4>Question 19</h4>
+<p>What is your favorite built in theme or how would you make your favorite custom theme?</p>
+</div>
+<div id="question-20" class="section level4 unnumbered">
+<h4>Question 20</h4>
+<p>What kind of plot does the following make?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pos =<span class="st"> </span><span class="kw">position_dodge</span>(<span class="dt">width =</span> .<span class="dv">1</span>)
+<span class="kw">ggplot</span>(summed_data, <span class="kw">aes</span>(<span class="dt">x =</span> dep2, <span class="dt">y =</span> sed, <span class="dt">group =</span> asthma, <span class="dt">color =</span> asthma)) +
+<span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">position =</span> pos) +
+<span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="kw">aes</span>(<span class="dt">ymin =</span> sed -<span class="st"> </span>s_se, <span class="dt">ymax =</span> sed +<span class="st"> </span>s_se), 
+                <span class="dt">width =</span> .<span class="dv">1</span>, 
+                <span class="dt">position =</span> pos)</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-160-1.png" width="672" /></p>
 </div>
 </div>
 <div id="goodbye-and-good-luck" class="section level2 unnumbered">

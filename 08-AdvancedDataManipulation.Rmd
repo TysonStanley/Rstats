@@ -15,17 +15,51 @@ link-citations: yes
 >
 > --- Jeff Bezos
 
-There's so much more we can do with data in `R` than what we've presented. One of the main ways that `R` can help you in your research is by looping. Looping, for our purposes, refers to the ability to repeat something across many variables or data sets. There's many ways of doing this but some are better than others.
+There's so much more we can do with data in `R` than what we've presented. Two main topics we need to clarify here are:
 
-We will introduce:
+1. How do you reshape your data from wide to long form or vice versa?
+2. How do can we simplify tasks that we need done many times?
+
+We will introduce both ideas to you in this chapter. To discuss the first, we will introduce two functions to help you reshape your data: `gather()` and `spread()`. For the second, we need to talk about loops. Looping, for our purposes, refers to the ability to repeat something across many variables or data sets. There's many ways of doing this but some are better than others. For looping, we'll talk about:
 
 1. vectorized functions,
 2. `for` loops, and
 3. the `apply` family of functions.
 
-But first, we need to discuss how to create your own functions. This is very useful for things you do a lot and reduces errors and redundancies in your code. 
+## Reshaping Your Data {-}
 
-## Your Own Functions {-}
+We introduced you to wide form and long form of your data in Chapter 2. In reality, data can take on nearly infinite forms but for most data in health, behavior, and social science, these two forms are sufficient to know. But the question is, how to change the form of your data?
+
+In the `tidyverse` functions known as `gather` and `spread` can help with this in a simple way. To show you, we will use the fake data we started with in Chapter 2.
+
+```{r, echo=FALSE}
+d1 <- data.frame("ID"=c(1:10), "Var_Time1"=rnorm(10), "Var_Time2"=runif(10))
+d1
+```
+
+Notice that this data frame is in wide format (each ID is one row and there are multiple times or measurements per person). To change this to wide format, we'll use `gather()`. The first argument is the data.frame, followed by two variable names (names that we go into the new long form), and then the numbers of the columns that are the measures (in this case, `Var_Time1` and `Var_Time2`).
+```{r}
+library(tidyverse)
+long_form <- gather(d1, "measures", "values", 2:3)
+long_form
+```
+
+As you can see, it took the variable names and put that in our first variable that we called "measures". The actual values of the variables are now in the variable we called "values". Finally, notice that each ID now has two rows (one for each measure).
+
+To go in the opposite direction (long to wide) we can use the `spread()` function. All we do is provide the long formed data frame, the measured variable (`measures`) and the variable with the values (`values`).
+```{r}
+wide_form <- spread(long_form, measures, values)
+wide_form
+```
+And we are back to the wide form.
+
+These steps can be followed for situations where there are many measures per person, many people per cluster, etc. In most cases, this is the way multilevel data analysis occurs (as we discussed in Chapter 6) and is a nice way to get our data ready for plotting.
+
+## Repeating Actions (Looping) {-}
+
+To fully go into looping, understanding how to write your own functions is needed.
+
+### Your Own Functions {-}
 
 Let's create a function that estimates the mean (although it is completely unnecessary since there is already a perfectly good `mean()` function). 
 ```{r}
@@ -87,7 +121,7 @@ important_statistics2(v1)
 We will come back to this function and use it in some loops and see what else we can do with it.
 
 
-## Vectorized {-}
+### Vectorized {-}
 
 By construction, `R` is the fastest when we use the vectorized form of doing things. For example, when we want to add two variables together, we can use the `+` operator. Like most functions in `R`, it is vectorized and so it is fast. Below we create a new vector using the `rnorm()` function that produces normally distributed random variables. First argument in the function is the length of the vector, followed by the mean and SD.
 ```{r}
@@ -97,7 +131,7 @@ round(add1, 3)
 ```
 We will compare the speed of this to other ways of adding two variables together and see it is the simplest and quickest.
 
-## For Loops {-}
+### For Loops {-}
 
 For loops have a bad reputation in the `R` world. This is because, in general, they are slow. It is among the slowest of ways to iterate (i.e., repeat) functions. We start here to show you, in essence, what the `apply` family of functions are doing, often, in a faster way.
 
@@ -114,7 +148,7 @@ round(add2, 3)
 Same results! But, we'll see later that the speed is much than the vectorized function.
 
 
-## The `apply` family {-}
+### The `apply` family {-}
 
 The `apply` family of functions that we'll introduce are:
 
@@ -151,7 +185,7 @@ We now have the means by each group. This, however, is probably replaced by the 
 
 These functions are useful in many situations, especially where there are no vectorized functions. You can always get an idea of whether to use a `for` loop or an `apply` function by giving it a try on a small subset of data to see if one is better and/or faster.
 
-### Speed Comparison {-}
+#### Speed Comparison {-}
 
 We can test to see how fast functions are with the `microbenchmark` package. Since it wants functions, we will create a function that uses the `for` looop.
 ```{r}
@@ -173,7 +207,7 @@ microbenchmark(forloop(v1, v2),
 ```
 Of course, as it says the units are in nanoseconds. Whether a function takes 200 or 200,000 nanoseconds probably won't change your life. However, if the function is being used repeatedly or on on large data sets, this can make a difference.
 
-## Using "Anonymous Functions" in Apply {-}
+### Using "Anonymous Functions" in Apply {-}
 
 Last thing to know here is that you don't need to create a named function everytime you want to use `apply`. We can use what is called "Anonymous" functions. Below, we use one to get at the N and mean of the data.
 ```{r}
@@ -191,6 +225,7 @@ The last two examples also show something important regarding the output:
 
 1. The output will be at the level of the anonymous function. The first had two numbers per variable because the function produced two summary statistics for each variable. The second we multiplied `y` by 2 (so it is still at the individual observation level) and then divide by the SD. This keeps it at the observation level so we get ten values for every variable.
 2. We can name the argument anything we want (as long as it is one word). We used `x` in the first and `y` in the second but as long as it is the same within the function, it doesn't matter what you use.
+
 
 ## Conclusions {-}
 

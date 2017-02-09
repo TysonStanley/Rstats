@@ -181,13 +181,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#conclusions-3"><i class="fa fa-check"></i>Conclusions</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html"><i class="fa fa-check"></i>Chapter 8: Advanced Data Manipulation</a><ul>
+<li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#reshaping-your-data"><i class="fa fa-check"></i>Reshaping Your Data</a></li>
+<li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#repeating-actions-looping"><i class="fa fa-check"></i>Repeating Actions (Looping)</a><ul>
 <li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#your-own-functions"><i class="fa fa-check"></i>Your Own Functions</a></li>
 <li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#vectorized"><i class="fa fa-check"></i>Vectorized</a></li>
 <li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#for-loops"><i class="fa fa-check"></i>For Loops</a></li>
-<li><a href="chapter-8-advanced-data-manipulation.html#the-apply-family">The <code>apply</code> family</a><ul>
-<li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#speed-comparison"><i class="fa fa-check"></i>Speed Comparison</a></li>
-</ul></li>
+<li><a href="chapter-8-advanced-data-manipulation.html#the-apply-family">The <code>apply</code> family</a></li>
 <li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#using-anonymous-functions-in-apply"><i class="fa fa-check"></i>Using “Anonymous Functions” in Apply</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#conclusions-4"><i class="fa fa-check"></i>Conclusions</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-9-advanced-plotting.html"><a href="chapter-9-advanced-plotting.html"><i class="fa fa-check"></i>Chapter 9: Advanced Plotting</a><ul>
@@ -396,32 +397,32 @@ h_fit =<span class="st"> </span><span class="kw">hurdle</span>(sed_zero ~<span c
 ## hurdle(formula = sed_zero ~ asthma + race + famsize, data = df)
 ## 
 ## Pearson residuals:
-##     Min      1Q  Median      3Q     Max 
-## -3.5827 -1.4863 -0.2549  1.2779  9.3707 
+##    Min     1Q Median     3Q    Max 
+## -3.757 -1.558 -0.243  1.285 10.849 
 ## 
 ## Count model coefficients (truncated poisson with log link):
 ##                     Estimate Std. Error z value Pr(&gt;|z|)    
-## (Intercept)        5.6587846  0.0037437 1511.54   &lt;2e-16 ***
-## asthma             0.0595449  0.0022412   26.57   &lt;2e-16 ***
-## raceOtherHispanic  0.1402821  0.0042800   32.78   &lt;2e-16 ***
-## raceWhite          0.3446876  0.0035170   98.01   &lt;2e-16 ***
-## raceBlack          0.3374144  0.0036181   93.26   &lt;2e-16 ***
-## raceOther          0.3562197  0.0038116   93.46   &lt;2e-16 ***
-## famsize           -0.0203670  0.0005766  -35.32   &lt;2e-16 ***
+## (Intercept)        5.6569422  0.0036838 1535.63   &lt;2e-16 ***
+## asthma             0.0673757  0.0022490   29.96   &lt;2e-16 ***
+## raceOtherHispanic  0.1310127  0.0042793   30.62   &lt;2e-16 ***
+## raceWhite          0.3433510  0.0034659   99.07   &lt;2e-16 ***
+## raceBlack          0.3255786  0.0035734   91.11   &lt;2e-16 ***
+## raceOther          0.3491235  0.0037652   92.72   &lt;2e-16 ***
+## famsize           -0.0195062  0.0005751  -33.92   &lt;2e-16 ***
 ## Zero hurdle model coefficients (binomial with logit link):
 ##                   Estimate Std. Error z value Pr(&gt;|z|)    
-## (Intercept)        2.34074    0.20797  11.255   &lt;2e-16 ***
-## asthma             0.04261    0.15025   0.284    0.777    
-## raceOtherHispanic  0.29714    0.24788   1.199    0.231    
-## raceWhite          0.06432    0.19112   0.337    0.736    
-## raceBlack          0.11812    0.19986   0.591    0.555    
-## raceOther          0.05818    0.21298   0.273    0.785    
-## famsize           -0.04320    0.03615  -1.195    0.232    
+## (Intercept)        2.75857    0.23117  11.933   &lt;2e-16 ***
+## asthma            -0.06882    0.14478  -0.475    0.635    
+## raceOtherHispanic -0.45475    0.25004  -1.819    0.069 .  
+## raceWhite         -0.30217    0.21573  -1.401    0.161    
+## raceBlack         -0.27675    0.22287  -1.242    0.214    
+## raceOther         -0.22208    0.23789  -0.934    0.351    
+## famsize           -0.05624    0.03606  -1.560    0.119    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1 
 ## 
 ## Number of iterations in BFGS optimization: 12 
-## Log-likelihood: -2.333e+05 on 14 Df</code></pre>
+## Log-likelihood: -2.346e+05 on 14 Df</code></pre>
 <p>Notice that the output has two parts: “Count model coefficients (truncated poisson with log link):” and “Zero hurdle model coefficients (binomial with logit link):”. Together they tell us about the relationship between the predictors and a count variable with many zeros.</p>
 </div>
 <div id="negative-binomial" class="section level3 unnumbered">
@@ -452,28 +453,28 @@ fit_beta &lt;-<span class="st"> </span><span class="kw">betareg</span>(beta_var 
 ## 
 ## Standardized weighted residuals 2:
 ##     Min      1Q  Median      3Q     Max 
-## -1.9923 -0.6759 -0.0294  0.6121  2.8682 
+## -2.1049 -0.6940 -0.0680  0.6227  2.9130 
 ## 
 ## Coefficients (mean model with logit link):
-##                    Estimate Std. Error z value Pr(&gt;|z|)  
-## (Intercept)        0.111924   0.063393   1.766   0.0775 .
-## asthma            -0.033495   0.043802  -0.765   0.4445  
-## raceOtherHispanic -0.017532   0.072166  -0.243   0.8081  
-## raceWhite          0.005352   0.058874   0.091   0.9276  
-## raceBlack          0.017511   0.061122   0.286   0.7745  
-## raceOther         -0.010144   0.065509  -0.155   0.8769  
-## famsize           -0.003112   0.010846  -0.287   0.7742  
+##                   Estimate Std. Error z value Pr(&gt;|z|)  
+## (Intercept)        0.05315    0.06351   0.837   0.4027  
+## asthma             0.07945    0.04392   1.809   0.0704 .
+## raceOtherHispanic  0.08198    0.07231   1.134   0.2569  
+## raceWhite          0.10480    0.05899   1.777   0.0756 .
+## raceBlack          0.07572    0.06123   1.237   0.2162  
+## raceOther          0.16031    0.06565   2.442   0.0146 *
+## famsize           -0.01151    0.01087  -1.059   0.2896  
 ## 
 ## Phi coefficients (precision model with identity link):
 ##       Estimate Std. Error z value Pr(&gt;|z|)    
-## (phi)  2.45111    0.04458   54.98   &lt;2e-16 ***
+## (phi)   2.4356     0.0443   54.98   &lt;2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1 
 ## 
 ## Type of estimator: ML (maximum likelihood)
-## Log-likelihood:  75.8 on 8 Df
-## Pseudo R-squared: 0.0002709
-## Number of iterations: 17 (BFGS) + 1 (Fisher scoring)</code></pre>
+## Log-likelihood: 85.86 on 8 Df
+## Pseudo R-squared: 0.002641
+## Number of iterations: 16 (BFGS) + 2 (Fisher scoring)</code></pre>
 <p>The output provides coefficients and the “Phi” coefficients. Both are important parts of using beta regression but we are not going to discuss it here.</p>
 <p>There are many resources available to learn more about beta regression and each of these GLM’s. As for now, we are going to move on to more complex modeling where there are clustering or repeated measures in the data.</p>
 </div>
