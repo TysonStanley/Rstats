@@ -251,28 +251,19 @@ fit_gee &lt;-<span class="st"> </span><span class="kw">gee</span>(dep ~<span cla
                <span class="dt">id =</span> df2$sdmvstra,
                <span class="dt">corstr =</span> <span class="st">&quot;unstructured&quot;</span>)</code></pre></div>
 <pre><code>##       (Intercept)            asthma           famsize               sed 
-##       2.499812759       1.350795482      -0.042520715       0.001369803 
+##           2.49981           1.35080          -0.04252           0.00137 
 ## raceOtherHispanic         raceWhite         raceBlack         raceOther 
-##       1.177577726       0.113001672       0.095534279      -0.543096022</code></pre>
+##           1.17758           0.11300           0.09553          -0.54310</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(fit_gee)$coef</code></pre></div>
-<pre><code>##                       Estimate   Naive S.E.    Naive z  Robust S.E.
-## (Intercept)        2.495119852 0.2867514061  8.7013343 0.2689564560
-## asthma             1.348220554 0.1866015623  7.2251300 0.2135146310
-## famsize           -0.039849976 0.0461694874 -0.8631236 0.0457307042
-## sed                0.001365896 0.0003362213  4.0624923 0.0003550921
-## raceOtherHispanic  1.185033848 0.3074667438  3.8541854 0.3306006443
-## raceWhite          0.115201897 0.2532041878  0.4549763 0.2279712534
-## raceBlack          0.092164385 0.2625882796  0.3509844 0.2359792297
-## raceOther         -0.542714277 0.2809252595 -1.9318814 0.2408902491
-##                     Robust z
-## (Intercept)        9.2770402
-## asthma             6.3144176
-## famsize           -0.8714053
-## sed                3.8465974
-## raceOtherHispanic  3.5844874
-## raceWhite          0.5053352
-## raceBlack          0.3905614
-## raceOther         -2.2529525</code></pre>
+<pre><code>##                    Estimate Naive S.E. Naive z Robust S.E. Robust z
+## (Intercept)        2.495120  0.2867514  8.7013   0.2689565   9.2770
+## asthma             1.348221  0.1866016  7.2251   0.2135146   6.3144
+## famsize           -0.039850  0.0461695 -0.8631   0.0457307  -0.8714
+## sed                0.001366  0.0003362  4.0625   0.0003551   3.8466
+## raceOtherHispanic  1.185034  0.3074667  3.8542   0.3306006   3.5845
+## raceWhite          0.115202  0.2532042  0.4550   0.2279713   0.5053
+## raceBlack          0.092164  0.2625883  0.3510   0.2359792   0.3906
+## raceOther         -0.542714  0.2809253 -1.9319   0.2408902  -2.2530</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(geepack)
 fit_geeglm &lt;-<span class="st"> </span><span class="kw">geeglm</span>(dep ~<span class="st"> </span>asthma +<span class="st"> </span>famsize +<span class="st"> </span>sed +<span class="st"> </span>race,
                      <span class="dt">data =</span> df2,
@@ -285,36 +276,36 @@ fit_geeglm &lt;-<span class="st"> </span><span class="kw">geeglm</span>(dep ~<sp
 ##     id = df2$sdmvstra, corstr = &quot;unstructured&quot;)
 ## 
 ##  Coefficients:
-##                     Estimate    Std.err   Wald Pr(&gt;|W|)    
-## (Intercept)        2.5573448  0.2699723 89.731  &lt; 2e-16 ***
-## asthma             1.3444243  0.2153281 38.983 4.28e-10 ***
-## famsize           -0.0450065  0.0456910  0.970 0.324614    
-## sed                0.0013094  0.0003547 13.627 0.000223 ***
-## raceOtherHispanic  1.1675544  0.3315368 12.402 0.000429 ***
-## raceWhite          0.0797913  0.2295588  0.121 0.728151    
-## raceBlack          0.0596164  0.2362489  0.064 0.800774    
-## raceOther         -0.5777808  0.2415656  5.721 0.016765 *  
+##                    Estimate   Std.err  Wald Pr(&gt;|W|)    
+## (Intercept)        2.557345  0.269972 89.73  &lt; 2e-16 ***
+## asthma             1.344424  0.215328 38.98  4.3e-10 ***
+## famsize           -0.045007  0.045691  0.97  0.32461    
+## sed                0.001309  0.000355 13.63  0.00022 ***
+## raceOtherHispanic  1.167554  0.331537 12.40  0.00043 ***
+## raceWhite          0.079791  0.229559  0.12  0.72815    
+## raceBlack          0.059616  0.236249  0.06  0.80077    
+## raceOther         -0.577781  0.241566  5.72  0.01677 *  
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## Estimated Scale Parameters:
 ##             Estimate Std.err
-## (Intercept)    19.49  0.7839
+## (Intercept)     19.5   0.784
 ## 
 ## Correlation: Structure = unstructured  Link = identity 
 ## 
 ## Estimated Correlation Parameters:
 ##           Estimate Std.err
-## alpha.1:2  0.12510 0.01653
-## alpha.1:3  0.41982 0.10324
-## alpha.1:4  2.89847 1.06759
-## alpha.1:5 -1.84796 0.20251
-## alpha.2:3  0.12222 0.06326
-## alpha.2:4 -0.08924 0.20207
-## alpha.2:5  0.20431 0.03709
-## alpha.3:4 -0.49626 0.11213
-## alpha.3:5  0.24935 0.03868
-## alpha.4:5 -0.66763 0.08755
+## alpha.1:2   0.1251  0.0165
+## alpha.1:3   0.4198  0.1032
+## alpha.1:4   2.8985  1.0676
+## alpha.1:5  -1.8480  0.2025
+## alpha.2:3   0.1222  0.0633
+## alpha.2:4  -0.0892  0.2021
+## alpha.2:5   0.2043  0.0371
+## alpha.3:4  -0.4963  0.1121
+## alpha.3:5   0.2493  0.0387
+## alpha.4:5  -0.6676  0.0875
 ## Number of clusters:   4112   Maximum cluster size: 5</code></pre>
 <p>The <code>gee</code> package doesn’t directly provide p-values but provides the z-scores, which can be used to find the p-values. The <code>geepack</code> provides the p-values in the way you’ll see in the <code>lm()</code> and <code>glm()</code> functions.</p>
 <p>These models are interpreted just as the regular GLM. It has adjusted for the correlations within the clusters and provides valid standard errors and p-values.</p>
