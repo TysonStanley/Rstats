@@ -9,13 +9,13 @@ documentclass: book
 link-citations: yes
 ---
 
-We use this code to get the data ready for the rest of the chapter. We use this code for the data for each chapter hereafter.
-```{r, message=FALSE}
+The following code is used for this chapter, chapters 5 - 7 and 9 to prep the data for the subsequent analyses.
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
 ## Run but not shown
 ## Getting data ready for the examples
 library(foreign)
-library(tidyverse)
 library(furniture)
+library(tidyverse)
 library(anteo)
 dem_df <- read.xport("~/Box Sync/GitHub/blog_rstats/assets/Data/NHANES_demographics_11.xpt")
 med_df <- read.xport("~/Box Sync/GitHub/blog_rstats/assets/Data/NHANES_MedHeath_11.xpt")
@@ -29,17 +29,41 @@ df <- dem_df %>%
   full_join(med_df, by="seqn") %>%
   full_join(men_df, by="seqn") %>%
   full_join(act_df, by="seqn") %>%
-  mutate(dmdmartl = washer(dmdmartl, 77,99)) %>%
-  mutate(dmdmartl = factor(dmdmartl,
-                           labels = c("Married", "Widowed", "Divorced", "Separated", 
-                                      "Never Married", "Partner"))) %>%
-  mutate(dmdfmsiz = washer(dmdfmsiz, 7, 9)) %>%
-  filter(complete.cases(dmdmartl))
+  mutate(marriage = factor(washer(dmdmartl, 77, 99))) %>%
+  filter(complete.cases(marriage)) %>%
+  mutate(race = factor(ridreth1, 
+                       labels=c("MexicanAmerican", "OtherHispanic", 
+                                "White", "Black", "Other"))) %>%
+  mutate(famsize = as.numeric(washer(dmdfmsiz, 7,9))) %>%
+  mutate(dpq010 = washer(dpq010, 7,9),
+         dpq020 = washer(dpq020, 7,9),
+         dpq030 = washer(dpq030, 7,9),
+         dpq040 = washer(dpq040, 7,9),
+         dpq050 = washer(dpq050, 7,9),
+         dpq060 = washer(dpq060, 7,9),
+         dpq070 = washer(dpq070, 7,9),
+         dpq080 = washer(dpq080, 7,9),
+         dpq090 = washer(dpq090, 7,9),
+         dpq100 = washer(dpq100, 7,9)) %>%
+  mutate(dep = dpq010 + dpq020 + dpq030 + dpq040 + dpq050 +
+               dpq060 + dpq070 + dpq080 + dpq090) %>%
+  mutate(dep2 = factor(ifelse(dep >= 10, 1,
+                       ifelse(dep < 10, 0, NA))))
+df <- df %>%
+  mutate(asthma = washer(mcq010, 9, 7),
+         asthma = factor(washer(asthma, 2, value = 0),
+                         labels = c("No Asthma", "Asthma"))) %>%
+  mutate(sed = washer(pad680, 9999, 7777)) %>%
+  mutate(cluster = sdmvstra - 89) %>%
+  filter(complete.cases(asthma) & complete.cases(dep2)) 
 ```
 
 
-
 # Chapter 4: Basic Analyses {-}
+
+> "The goal is to turn data into information, and information into insight." 
+>
+> --- Carly Fiorina
 
 In this chapter we are going to demonstrate basic modeling in `R`. Lucky for us, `R` is built for these analyses. It is actually quite straight-forward to run these types of models and analyze the output. Not only that, but there are simple ways to compare models.
 
@@ -143,7 +167,7 @@ anova(fit, fit2)
 The `anova()` function works with all sorts of modeling schemes and can help in model selection. Not surprisingly, when we compared the ANOVA and the simple linear model, they are *exactly* the same in overall model terms (the only difference is in how the cateogrical variable is coded---either effect coding in ANOVA or dummy coding in regression). For a more interesting comparison, lets run a new model with an additional variable and then make a comparison.
 
 ```{r}
-fit3 = lm(famsize ~ race + dmdmartl, data=df)
+fit3 = lm(famsize ~ race + marriage, data=df)
 summary(fit3)
 ```
 
@@ -220,10 +244,10 @@ In general, we refer to ANOVA's with interactions as "2-way Factorial ANOVA's". 
 ```{r}
 df$minority <- factor(ifelse(df$race == "White", 0, 1), 
                       labels = c("White", "Minority"))
-fit_anova <- aov(famsize ~ minority*dmdmartl, df)
+fit_anova <- aov(famsize ~ minority*marriage, df)
 anova(fit_anova)
 ```
-Notice two things: First, the interaction is significant (p = .003). This is important since we are going to try to interpret this interaction. Second, by including `minority*dmdmartl` we get both the main effects and the interaction. This is very important for interpretation purposes so you can thank `R` for making it a bit more easy on you. 
+Notice two things: First, the interaction is significant (p = .003). This is important since we are going to try to interpret this interaction. Second, by including `minority*marriage` we get both the main effects and the interaction. This is very important for interpretation purposes so you can thank `R` for making it a bit more easy on you. 
 
 We can check the assumptions the same way as before:
 ```{r, fig.height=4, fig.width=5}
@@ -235,13 +259,13 @@ Again, the assumptions are not met for this model. But, if we ignore that for no
 We first create a new data set that is composed of every possible combination of the variables in the model. This allows us to get unbiased estimates for the plotting.
 ```{r}
 newdata <- expand.grid(minority = levels(df$minority),
-                       dmdmartl = levels(df$dmdmartl))
+                       marriage = levels(df$marriage))
 newdata$preds <- predict(fit_anova, newdata=newdata)
 ```
 
 We now use `ggplot2` just as before.
 ```{r}
-ggplot(newdata, aes(x = dmdmartl, y = preds, group = minority)) +
+ggplot(newdata, aes(x = marriage, y = preds, group = minority)) +
   geom_line(aes(color = minority)) +
   geom_point(aes(color = minority)) +
   labs(y = "Predicted Family Size",
@@ -258,7 +282,7 @@ The plot tells use a handful of things. For example, we see minorities generally
 
 Interactions in linear regression is nearly identical as in ANOVA, except we use dummy coding. It provides a bit more information. For example, we get the coefficients from the linear regression whereas the ANOVA does not provide this. We can run a regression model via:
 ```{r}
-fit_reg <- lm(famsize ~ minority*dmdmartl, df)
+fit_reg <- lm(famsize ~ minority*marriage, df)
 summary(fit_reg)
 ```
 We used `summary()` to see the coefficients. If we used `anova()` it would have been the same as the one for the ANOVA. 

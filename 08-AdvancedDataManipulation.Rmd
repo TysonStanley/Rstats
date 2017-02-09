@@ -11,6 +11,10 @@ link-citations: yes
 
 # Chapter 8: Advanced Data Manipulation {-}
 
+> "Every new thing creates two new questions and two new opportunities."
+>
+> --- Jeff Bezos
+
 There's so much more we can do with data in `R` than what we've presented. One of the main ways that `R` can help you in your research is by looping. Looping, for our purposes, refers to the ability to repeat something across many variables or data sets. There's many ways of doing this but some are better than others.
 
 We will introduce:

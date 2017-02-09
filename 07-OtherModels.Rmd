@@ -9,12 +9,12 @@ documentclass: book
 link-citations: yes
 ---
 
-```{r, echo=FALSE, message = FALSE, warning=FALSE}
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
 ## Run but not shown
 ## Getting data ready for the examples
 library(foreign)
-library(tidyverse)
 library(furniture)
+library(tidyverse)
 dem_df <- read.xport("~/Box Sync/GitHub/blog_rstats/assets/Data/NHANES_demographics_11.xpt")
 med_df <- read.xport("~/Box Sync/GitHub/blog_rstats/assets/Data/NHANES_MedHeath_11.xpt")
 men_df <- read.xport("~/Box Sync/GitHub/blog_rstats/assets/Data/NHANES_MentHealth_11.xpt")
@@ -27,7 +27,8 @@ df <- dem_df %>%
   full_join(med_df, by="seqn") %>%
   full_join(men_df, by="seqn") %>%
   full_join(act_df, by="seqn") %>%
-  filter(complete.cases(dmdmartl)) %>%
+  mutate(marriage = factor(washer(dmdmartl, 77, 99))) %>%
+  filter(complete.cases(marriage)) %>%
   mutate(race = factor(ridreth1, 
                        labels=c("MexicanAmerican", "OtherHispanic", 
                                 "White", "Black", "Other"))) %>%
@@ -44,20 +45,25 @@ df <- dem_df %>%
          dpq100 = washer(dpq100, 7,9)) %>%
   mutate(dep = dpq010 + dpq020 + dpq030 + dpq040 + dpq050 +
                dpq060 + dpq070 + dpq080 + dpq090) %>%
-  mutate(dep2 = ifelse(dep >= 10, 1,
-                ifelse(dep < 10, 0, NA)))
+  mutate(dep2 = factor(ifelse(dep >= 10, 1,
+                       ifelse(dep < 10, 0, NA))))
 df <- df %>%
-  mutate(asthma = washer(mcq010, 9),
-         asthma = washer(asthma, 2, value = 0)) %>%
+  mutate(asthma = washer(mcq010, 9, 7),
+         asthma = factor(washer(asthma, 2, value = 0),
+                         labels = c("No Asthma", "Asthma"))) %>%
   mutate(sed = washer(pad680, 9999, 7777)) %>%
-  mutate(cluster = sdmvstra - 89)
+  mutate(cluster = sdmvstra - 89) %>%
+  filter(complete.cases(asthma) & complete.cases(dep2)) 
 ```
-
 
 
 # Chapter 7: Other Modeling Techniques {-}
 
-In this chapter we cover, however briefly, mediation and moderation modeling, methods relating to structural equation modeling (SEM), and methods applicable to our field from machine learning. Although these machine learning may appear very different than mediation and SEM, they each have advantages that can help in different situations. For example, SEM is useful when we know there is a high degree of measurement error or our data has multiple indicators for each construct. On the other hand, regularized regression and random forests--two popular forms of machine learning--are great to explore patterns and relationships there are hundreds or thousands of variables that may predict an outcome. 
+> "Simplicity is the ultimate sophistication."
+>
+> --- Leonardo da Vinci
+
+In this chapter we cover, however briefly, modeling techniques that are especially useful to make complex relationships easier to interpret. We will focus on mediation and moderation modeling, methods relating to structural equation modeling (SEM), and methods applicable to our field from machine learning. Although these machine learning may appear very different than mediation and SEM, they each have advantages that can help in different situations. For example, SEM is useful when we know there is a high degree of measurement error or our data has multiple indicators for each construct. On the other hand, regularized regression and random forests--two popular forms of machine learning--are great to explore patterns and relationships there are hundreds or thousands of variables that may predict an outcome. 
 
 Mediation modeling, although often used within SEM, can help us understand pathways of effect from one variable to another. It is especially useful with moderating variables (i.e., variables that interact with another).
 
@@ -111,19 +117,20 @@ summary(fit2)
 
 We defined a few things in the model. First, we gave the coefficients labels of `a`, `b`, and `c`. Doing so allows us to define the `indirect` and `total` effects. Here we see the indirect effect, although small, is significant at $p < .001$. The total effect is larger (not surprising) and is also significant.
 
-Also note that we can make the regression equations have other covariates as well if we needed to (i.e. control for age or gender) just as we do in regular regression. In this final example, we show that you can do moderation as part of the mediation model.
+Also note that we can make the regression equations have other covariates as well if we needed to (i.e. control for age or gender) just as we do in regular regression. 
 
 ```{r, message=FALSE, warning=FALSE}
 ## Our model
 model2.1 <- '
-  dep ~ asthma + ridageyr + asthma:ridageyr
-  sed_hr ~ dep + asthma + ridageyr + asthma:ridageyr
+  dep ~ asthma + ridageyr
+  sed_hr ~ dep + asthma + ridageyr
 '
 ## sem function to run the model
 fit2.1 <- sem(model2.1, data = df)
 summary(fit2.1)
 ```
 
+Although we don't show it here, we can also do moderation ("interactions") as part of the mediation model.
 
 ## Structural Equation Modeling {-}
 

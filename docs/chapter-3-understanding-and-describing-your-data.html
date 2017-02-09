@@ -26,7 +26,7 @@
 <meta name="author" content="Tyson S. Barrett">
 
 
-<meta name="date" content="2017-02-08">
+<meta name="date" content="2017-02-09">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -226,6 +226,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="chapter-3-understanding-and-describing-your-data" class="section level1 unnumbered">
 <h1>Chapter 3: Understanding and Describing Your Data</h1>
+<blockquote>
+<p>“If you can’t explain it simply, you don’t understand it well enough.”</p>
+<p>— Albert Einstein</p>
+</blockquote>
 <p>We are going to take what we’ve learned from the previous two chapters and use them together to have simple but powerful ways to understand your data. This chapter will be broken down into:</p>
 <ol style="list-style-type: decimal">
 <li>Descriptive Statistics</li>
@@ -256,7 +260,7 @@ df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class=
 ##  C                             
 ##               0.67 (0.52)      
 ##  D                             
-##               0.21 (1.09)      
+##               -0.44 (0.76)     
 ## |==============================|</code></pre>
 <p>This quickly gives you means and standard deviations (or counts and percentages if there were categorical variables). We could have also used the pipe operator here if we wanted via:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df %&gt;%
@@ -272,7 +276,7 @@ df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class=
 ##  C                             
 ##               0.67 (0.52)      
 ##  D                             
-##               0.21 (1.09)      
+##               -0.44 (0.76)     
 ## |==============================|</code></pre>
 <p>It turns out, for we want “A” and “C” to be factors.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df$A &lt;-<span class="st"> </span><span class="kw">factor</span>(df$A, <span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;cat1&quot;</span>, <span class="st">&quot;cat2&quot;</span>, <span class="st">&quot;cat3&quot;</span>, <span class="st">&quot;cat4&quot;</span>))
@@ -294,63 +298,63 @@ df$C &lt;-<span class="st"> </span><span class="kw">factor</span>(df$C, <span cl
 ##     male      2 (33.3%)        
 ##     female    4 (66.7%)        
 ##  D                             
-##               0.21 (1.09)      
+##               -0.44 (0.76)     
 ## |==============================|</code></pre>
 <p>So now we see the counts and percentages for the factor variables. But now we can take a step further and look for relationships. The code below shows the means/standard devaitions or counts/percentages by a grouping variable–in this case, <code>C</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table1</span>(df, A, B, D,
        <span class="dt">splitby =</span> ~C)</code></pre></div>
 <pre><code>## 
-## |=====================================|
-##               male        female      
-##  Observations 2           4           
-##  A                                    
-##     cat1      1 (50%)     1 (33.3%)   
-##     cat2      1 (50%)     0 (0%)      
-##     cat3      0 (0%)      1 (33.3%)   
-##     cat4      0 (0%)      1 (33.3%)   
-##  B                                    
-##               1.75 (0.49) 3.33 (1.30) 
-##  D                                    
-##               0.73 (1.89) -0.05 (0.71)
-## |=====================================|</code></pre>
+## |======================================|
+##               male         female      
+##  Observations 2            4           
+##  A                                     
+##     cat1      1 (50%)      1 (33.3%)   
+##     cat2      1 (50%)      0 (0%)      
+##     cat3      0 (0%)       1 (33.3%)   
+##     cat4      0 (0%)       1 (33.3%)   
+##  B                                     
+##               1.75 (0.49)  3.33 (1.30) 
+##  D                                     
+##               -0.37 (0.18) -0.48 (0.97)
+## |======================================|</code></pre>
 <p>We can also test for differences by group as well (although this is not particularly good with a sample size of 5). It produces a warning since the <span class="math inline">\(\chi^2\)</span> approximation is not accurate with cells this small.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table1</span>(df, A, B, D,
        <span class="dt">splitby =</span> ~C,
        <span class="dt">test=</span><span class="ot">TRUE</span>)</code></pre></div>
 <pre><code>## 
-## |=============================================|
-##               male        female       P-Value
-##  Observations 2           4                   
-##  A                                     0.405  
-##     cat1      1 (50%)     1 (33.3%)           
-##     cat2      1 (50%)     0 (0%)              
-##     cat3      0 (0%)      1 (33.3%)           
-##     cat4      0 (0%)      1 (33.3%)           
-##  B                                     0.162  
-##               1.75 (0.49) 3.33 (1.30)         
-##  D                                     0.661  
-##               0.73 (1.89) -0.05 (0.71)        
-## |=============================================|</code></pre>
+## |==============================================|
+##               male         female       P-Value
+##  Observations 2            4                   
+##  A                                      0.405  
+##     cat1      1 (50%)      1 (33.3%)           
+##     cat2      1 (50%)      0 (0%)              
+##     cat3      0 (0%)       1 (33.3%)           
+##     cat4      0 (0%)       1 (33.3%)           
+##  B                                      0.162  
+##               1.75 (0.49)  3.33 (1.30)         
+##  D                                      0.847  
+##               -0.37 (0.18) -0.48 (0.97)        
+## |==============================================|</code></pre>
 <p>Finally, we can include missingness in the table for factors.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table1</span>(df, A, B, D,
        <span class="dt">splitby =</span> ~C,
        <span class="dt">test=</span><span class="ot">TRUE</span>,
        <span class="dt">NAkeep =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <pre><code>## 
-## |=============================================|
-##               male        female       P-Value
-##  Observations 2           4                   
-##  A                                     0.405  
-##     cat1      1 (50%)     1 (25%)             
-##     cat2      1 (50%)     0 (0%)              
-##     cat3      0 (0%)      1 (25%)             
-##     cat4      0 (0%)      1 (25%)             
-##     NA        0 (0%)      1 (25%)             
-##  B                                     0.162  
-##               1.75 (0.49) 3.33 (1.30)         
-##  D                                     0.661  
-##               0.73 (1.89) -0.05 (0.71)        
-## |=============================================|</code></pre>
+## |==============================================|
+##               male         female       P-Value
+##  Observations 2            4                   
+##  A                                      0.405  
+##     cat1      1 (50%)      1 (25%)             
+##     cat2      1 (50%)      0 (0%)              
+##     cat3      0 (0%)       1 (25%)             
+##     cat4      0 (0%)       1 (25%)             
+##     NA        0 (0%)       1 (25%)             
+##  B                                      0.162  
+##               1.75 (0.49)  3.33 (1.30)         
+##  D                                      0.847  
+##               -0.37 (0.18) -0.48 (0.97)        
+## |==============================================|</code></pre>
 <p>So with three or four short lines of code we can get a good idea about variables that may be related to the grouping variable and any missingness in the factor variables. There’s much more you can do with <code>table1</code> and there are vignettes and tutorials available to learn more.<a href="#fn13" class="footnoteRef" id="fnref13"><sup>13</sup></a></p>
 <p>Other quick descriptive functions exist; here are a few of them.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(df)          ## descriptives for each variable in the data
@@ -398,31 +402,7 @@ Hmisc::<span class="kw">describe</span>(df)  ## gives summary for each variable 
 <p>The <code>theme_bw()</code> makes the background white, the <code>scale_color_manual()</code> allows us to change the colors in the plot. You can get a good idea of how many types of plots you can do by going to <a href="http://docs.ggplot2.org/current/">http://docs.ggplot2.org/current</a>. Almost any informative plot that you need to do as a researcher is possible with <code>ggplot2</code>.</p>
 <p>We will be using <code>ggplot2</code> extensively in the book to help understand our data and our models as well as communicate our results.</p>
 
-<p>We use this code to get the data ready for the rest of the chapter. We use this code for the data for each chapter hereafter.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Run but not shown
-## Getting data ready for the examples
-<span class="kw">library</span>(foreign)
-<span class="kw">library</span>(tidyverse)
-<span class="kw">library</span>(furniture)
-<span class="kw">library</span>(anteo)
-dem_df &lt;-<span class="st"> </span><span class="kw">read.xport</span>(<span class="st">&quot;~/Box Sync/GitHub/blog_rstats/assets/Data/NHANES_demographics_11.xpt&quot;</span>)
-med_df &lt;-<span class="st"> </span><span class="kw">read.xport</span>(<span class="st">&quot;~/Box Sync/GitHub/blog_rstats/assets/Data/NHANES_MedHeath_11.xpt&quot;</span>)
-men_df &lt;-<span class="st"> </span><span class="kw">read.xport</span>(<span class="st">&quot;~/Box Sync/GitHub/blog_rstats/assets/Data/NHANES_MentHealth_11.xpt&quot;</span>)
-act_df &lt;-<span class="st"> </span><span class="kw">read.xport</span>(<span class="st">&quot;~/Box Sync/GitHub/blog_rstats/assets/Data/NHANES_PhysActivity_11.xpt&quot;</span>)
-<span class="kw">names</span>(dem_df) &lt;-<span class="st"> </span><span class="kw">tolower</span>(<span class="kw">names</span>(dem_df))
-<span class="kw">names</span>(med_df) &lt;-<span class="st"> </span><span class="kw">tolower</span>(<span class="kw">names</span>(med_df))
-<span class="kw">names</span>(men_df) &lt;-<span class="st"> </span><span class="kw">tolower</span>(<span class="kw">names</span>(men_df))
-<span class="kw">names</span>(act_df) &lt;-<span class="st"> </span><span class="kw">tolower</span>(<span class="kw">names</span>(act_df))
-df &lt;-<span class="st"> </span>dem_df %&gt;%
-<span class="st">  </span><span class="kw">full_join</span>(med_df, <span class="dt">by=</span><span class="st">&quot;seqn&quot;</span>) %&gt;%
-<span class="st">  </span><span class="kw">full_join</span>(men_df, <span class="dt">by=</span><span class="st">&quot;seqn&quot;</span>) %&gt;%
-<span class="st">  </span><span class="kw">full_join</span>(act_df, <span class="dt">by=</span><span class="st">&quot;seqn&quot;</span>) %&gt;%
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">dmdmartl =</span> <span class="kw">washer</span>(dmdmartl, <span class="dv">77</span>,<span class="dv">99</span>)) %&gt;%
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">dmdmartl =</span> <span class="kw">factor</span>(dmdmartl,
-                           <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Married&quot;</span>, <span class="st">&quot;Widowed&quot;</span>, <span class="st">&quot;Divorced&quot;</span>, <span class="st">&quot;Separated&quot;</span>, 
-                                      <span class="st">&quot;Never Married&quot;</span>, <span class="st">&quot;Partner&quot;</span>))) %&gt;%
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">dmdfmsiz =</span> <span class="kw">washer</span>(dmdfmsiz, <span class="dv">7</span>, <span class="dv">9</span>)) %&gt;%
-<span class="st">  </span><span class="kw">filter</span>(<span class="kw">complete.cases</span>(dmdmartl))</code></pre></div>
+<p>The following code is used for this chapter, chapters 5 - 7 and 9 to prep the data for the subsequent analyses.</p>
 </div>
 </div>
 </div>

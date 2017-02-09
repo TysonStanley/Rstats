@@ -11,6 +11,10 @@ link-citations: yes
 
 # Chapter 3: Understanding and Describing Your Data {-}
 
+> "If you can’t explain it simply, you don’t understand it well enough."
+>
+> --- Albert Einstein
+
 We are going to take what we've learned from the previous two chapters and use them together to have simple but powerful ways to understand your data. This chapter will be broken down into:
 
 1. Descriptive Statistics

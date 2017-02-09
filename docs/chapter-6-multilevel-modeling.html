@@ -26,7 +26,7 @@
 <meta name="author" content="Tyson S. Barrett">
 
 
-<meta name="date" content="2017-02-08">
+<meta name="date" content="2017-02-09">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -226,7 +226,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="chapter-6-multilevel-modeling" class="section level1 unnumbered">
 <h1>Chapter 6: Multilevel Modeling</h1>
-<p>There are two general forms of multilevel modeling:</p>
+<blockquote>
+<p>“Simplicity does not precede complexity, but follows it.”</p>
+<p>— Alan Perlis</p>
+</blockquote>
+<p>Multilevel data are more complex and don’t meet the assumptions of regular linear or generalized linear models. But with the right modeling schemes, the results can be very interpretable and actionable. Two powerful forms of multilevel modeling are:</p>
 <ol style="list-style-type: decimal">
 <li>Generalized Estimating Equations (GEE)</li>
 <li>Mixed effects (ME; i.e., hierarchical linear modeling, multilevel modeling)</li>
@@ -250,20 +254,29 @@ fit_gee &lt;-<span class="st"> </span><span class="kw">gee</span>(dep ~<span cla
                <span class="dt">data =</span> df2,
                <span class="dt">id =</span> df2$sdmvstra,
                <span class="dt">corstr =</span> <span class="st">&quot;unstructured&quot;</span>)</code></pre></div>
-<pre><code>##       (Intercept)            asthma           famsize               sed 
-##           2.49981           1.35080          -0.04252           0.00137 
+<pre><code>##       (Intercept)      asthmaAsthma           famsize               sed 
+##       2.500022059       1.356081567      -0.042132178       0.001362226 
 ## raceOtherHispanic         raceWhite         raceBlack         raceOther 
-##           1.17758           0.11300           0.09553          -0.54310</code></pre>
+##       1.184995689       0.113949209       0.100536695      -0.555478773</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(fit_gee)$coef</code></pre></div>
-<pre><code>##                    Estimate Naive S.E. Naive z Robust S.E. Robust z
-## (Intercept)        2.495120  0.2867514  8.7013   0.2689565   9.2770
-## asthma             1.348221  0.1866016  7.2251   0.2135146   6.3144
-## famsize           -0.039850  0.0461695 -0.8631   0.0457307  -0.8714
-## sed                0.001366  0.0003362  4.0625   0.0003551   3.8466
-## raceOtherHispanic  1.185034  0.3074667  3.8542   0.3306006   3.5845
-## raceWhite          0.115202  0.2532042  0.4550   0.2279713   0.5053
-## raceBlack          0.092164  0.2625883  0.3510   0.2359792   0.3906
-## raceOther         -0.542714  0.2809253 -1.9319   0.2408902  -2.2530</code></pre>
+<pre><code>##                       Estimate   Naive S.E.    Naive z  Robust S.E.
+## (Intercept)        2.495509790 0.2867816215  8.7017773 0.2690426648
+## asthmaAsthma       1.353039007 0.1867101195  7.2467363 0.2137975620
+## famsize           -0.039489294 0.0461945052 -0.8548483 0.0457474654
+## sed                0.001358042 0.0003362291  4.0390382 0.0003551901
+## raceOtherHispanic  1.192481318 0.3075562837  3.8772783 0.3309608614
+## raceWhite          0.116185743 0.2531554533  0.4589502 0.2279687738
+## raceBlack          0.096800821 0.2625826864  0.3686489 0.2360498473
+## raceOther         -0.555053605 0.2809301544 -1.9757708 0.2406566044
+##                     Robust z
+## (Intercept)        9.2755169
+## asthmaAsthma       6.3285989
+## famsize           -0.8632018
+## sed                3.8234244
+## raceOtherHispanic  3.6030886
+## raceWhite          0.5096564
+## raceBlack          0.4100864
+## raceOther         -2.3064133</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(geepack)
 fit_geeglm &lt;-<span class="st"> </span><span class="kw">geeglm</span>(dep ~<span class="st"> </span>asthma +<span class="st"> </span>famsize +<span class="st"> </span>sed +<span class="st"> </span>race,
                      <span class="dt">data =</span> df2,
@@ -276,37 +289,37 @@ fit_geeglm &lt;-<span class="st"> </span><span class="kw">geeglm</span>(dep ~<sp
 ##     id = df2$sdmvstra, corstr = &quot;unstructured&quot;)
 ## 
 ##  Coefficients:
-##                    Estimate   Std.err  Wald Pr(&gt;|W|)    
-## (Intercept)        2.557345  0.269972 89.73  &lt; 2e-16 ***
-## asthma             1.344424  0.215328 38.98  4.3e-10 ***
-## famsize           -0.045007  0.045691  0.97  0.32461    
-## sed                0.001309  0.000355 13.63  0.00022 ***
-## raceOtherHispanic  1.167554  0.331537 12.40  0.00043 ***
-## raceWhite          0.079791  0.229559  0.12  0.72815    
-## raceBlack          0.059616  0.236249  0.06  0.80077    
-## raceOther         -0.577781  0.241566  5.72  0.01677 *  
+##                     Estimate    Std.err   Wald Pr(&gt;|W|)    
+## (Intercept)        2.5579361  0.2700717 89.706  &lt; 2e-16 ***
+## asthmaAsthma       1.3492892  0.2156202 39.159 3.91e-10 ***
+## famsize           -0.0446716  0.0457087  0.955 0.328415    
+## sed                0.0013015  0.0003548 13.454 0.000244 ***
+## raceOtherHispanic  1.1750373  0.3318983 12.534 0.000400 ***
+## raceWhite          0.0806377  0.2295661  0.123 0.725392    
+## raceBlack          0.0642028  0.2363255  0.074 0.785875    
+## raceOther         -0.5902049  0.2413379  5.981 0.014463 *  
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## Estimated Scale Parameters:
 ##             Estimate Std.err
-## (Intercept)     19.5   0.784
+## (Intercept)    19.49  0.7843
 ## 
 ## Correlation: Structure = unstructured  Link = identity 
 ## 
 ## Estimated Correlation Parameters:
 ##           Estimate Std.err
-## alpha.1:2   0.1251  0.0165
-## alpha.1:3   0.4198  0.1032
-## alpha.1:4   2.8985  1.0676
-## alpha.1:5  -1.8480  0.2025
-## alpha.2:3   0.1222  0.0633
-## alpha.2:4  -0.0892  0.2021
-## alpha.2:5   0.2043  0.0371
-## alpha.3:4  -0.4963  0.1121
-## alpha.3:5   0.2493  0.0387
-## alpha.4:5  -0.6676  0.0875
-## Number of clusters:   4112   Maximum cluster size: 5</code></pre>
+## alpha.1:2  0.12480 0.01654
+## alpha.1:3  0.42070 0.10339
+## alpha.1:4  2.89640 1.06678
+## alpha.1:5 -1.85447 0.20276
+## alpha.2:3  0.12238 0.06330
+## alpha.2:4 -0.08935 0.20229
+## alpha.2:5  0.20541 0.03720
+## alpha.3:4 -0.49597 0.11227
+## alpha.3:5  0.25045 0.03879
+## alpha.4:5 -0.66939 0.08761
+## Number of clusters:   4109   Maximum cluster size: 5</code></pre>
 <p>The <code>gee</code> package doesn’t directly provide p-values but provides the z-scores, which can be used to find the p-values. The <code>geepack</code> provides the p-values in the way you’ll see in the <code>lm()</code> and <code>glm()</code> functions.</p>
 <p>These models are interpreted just as the regular GLM. It has adjusted for the correlations within the clusters and provides valid standard errors and p-values.</p>
 </div>
@@ -324,38 +337,38 @@ fit_me &lt;-<span class="st"> </span><span class="kw">lmer</span>(dep ~<span cla
 ##    Data: df2
 ## 
 ##      AIC      BIC   logLik deviance df.resid 
-##    25805    25869   -12892    25785     4431 
+##    25780    25844   -12880    25760     4427 
 ## 
 ## Scaled residuals: 
 ##    Min     1Q Median     3Q    Max 
-## -1.323 -0.636 -0.355  0.271  5.436 
+## -1.327 -0.635 -0.355  0.272  5.435 
 ## 
 ## Random effects:
 ##  Groups   Name        Variance Std.Dev.
-##  cluster  (Intercept)  0.104   0.322   
-##  Residual             19.398   4.404   
-## Number of obs: 4441, groups:  cluster, 14
+##  cluster  (Intercept)  0.105   0.324   
+##  Residual             19.389   4.403   
+## Number of obs: 4437, groups:  cluster, 14
 ## 
 ## Fixed effects:
 ##                    Estimate Std. Error t value
-## (Intercept)        2.489894   0.302638    8.23
-## asthma             1.329994   0.186533    7.13
-## famsize           -0.043237   0.046320   -0.93
-## sed                0.001433   0.000337    4.26
-## raceOtherHispanic  1.283057   0.320393    4.00
-## raceWhite          0.009298   0.259480    0.04
-## raceBlack          0.168175   0.273351    0.62
-## raceOther         -0.540119   0.285494   -1.89
+## (Intercept)        2.491678   0.302768    8.23
+## asthmaAsthma       1.335445   0.186618    7.16
+## famsize           -0.042857   0.046341   -0.92
+## sed                0.001425   0.000337    4.23
+## raceOtherHispanic  1.289890   0.320595    4.02
+## raceWhite          0.008348   0.259449    0.03
+## raceBlack          0.171658   0.273382    0.63
+## raceOther         -0.552746   0.285512   -1.94
 ## 
 ## Correlation of Fixed Effects:
-##             (Intr) asthma famsiz sed    rcOthH racWht rcBlck
-## asthma      -0.042                                          
-## famsize     -0.510 -0.003                                   
+##             (Intr) asthmA famsiz sed    rcOthH racWht rcBlck
+## asthmaAsthm -0.042                                          
+## famsize     -0.510 -0.004                                   
 ## sed         -0.324 -0.044  0.051                            
-## rcOthrHspnc -0.557 -0.034  0.052 -0.037                     
-## raceWhite   -0.680 -0.038  0.135 -0.148  0.640              
-## raceBlack   -0.644 -0.057  0.094 -0.131  0.625  0.776       
-## raceOther   -0.580  0.000  0.049 -0.135  0.590  0.725  0.694</code></pre>
+## rcOthrHspnc -0.556 -0.032  0.051 -0.038                     
+## raceWhite   -0.680 -0.038  0.135 -0.148  0.639              
+## raceBlack   -0.643 -0.057  0.094 -0.131  0.624  0.775       
+## raceOther   -0.580  0.000  0.048 -0.135  0.589  0.725  0.693</code></pre>
 <p>You’ll see that there are no p-values provided here. This is because p-values are not well-defined in the ME framework. A good way to test it can be through the <code>anova()</code> function, comparing models. Let’s compare a model with and without <code>asthma</code> to see if the model is significantly better with it in.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fit_me1 &lt;-<span class="st"> </span><span class="kw">lmer</span>(dep ~<span class="st"> </span>famsize +<span class="st"> </span>sed +<span class="st"> </span>race +<span class="st"> </span>(<span class="dv">1</span> |<span class="st"> </span>cluster),
                <span class="dt">data =</span> df2,
@@ -367,8 +380,8 @@ fit_me &lt;-<span class="st"> </span><span class="kw">lmer</span>(dep ~<span cla
 ## fit_me1: dep ~ famsize + sed + race + (1 | cluster)
 ## fit_me: dep ~ asthma + famsize + sed + race + (1 | cluster)
 ##         Df   AIC   BIC logLik deviance Chisq Chi Df Pr(&gt;Chisq)    
-## fit_me1  9 25853 25911 -12918    25835                            
-## fit_me  10 25805 25869 -12892    25785  50.5      1    1.2e-12 ***
+## fit_me1  9 25829 25886 -12905    25811                            
+## fit_me  10 25780 25844 -12880    25760  50.9      1    9.9e-13 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>This comparison strongly suggests that <code>asthma</code> is a significant predictor (<span class="math inline">\(\chi^2 = 50.5\)</span>, p &lt; .001). We can do this with both fixed and random effects, as below:</p>
@@ -384,8 +397,8 @@ fit_me3 &lt;-<span class="st"> </span><span class="kw">lmer</span>(dep ~<span cl
 ## fit_me2: dep ~ famsize + sed + race + (1 | cluster)
 ## fit_me3: dep ~ famsize + sed + race + (1 + asthma | cluster)
 ##         Df   AIC   BIC logLik deviance Chisq Chi Df Pr(&gt;Chisq)    
-## fit_me2  9 25879 25937 -12931    25861                            
-## fit_me3 11 25847 25917 -12912    25825  36.9      2    9.8e-09 ***
+## fit_me2  9 25855 25912 -12918    25837                            
+## fit_me3 11 25821 25892 -12900    25799  37.3      2      8e-09 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>Here, including random slopes for asthma appears to be significant (<span class="math inline">\(\chi^2 = 36.9\)</span>, p &lt; .001).</p>
@@ -395,7 +408,7 @@ fit_gme &lt;-<span class="st"> </span><span class="kw">glmer</span>(dep2 ~<span 
                  <span class="dt">data =</span> df2,
                  <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>)</code></pre></div>
 <pre><code>## Warning in checkConv(attr(opt, &quot;derivs&quot;), opt$par, ctrl = control
-## $checkConv, : Model failed to converge with max|grad| = 0.0118968 (tol =
+## $checkConv, : Model failed to converge with max|grad| = 0.00854237 (tol =
 ## 0.001, component 1)</code></pre>
 <pre><code>## Warning in checkConv(attr(opt, &quot;derivs&quot;), opt$par, ctrl = control$checkConv, : Model is nearly unidentifiable: very large eigenvalue
 ##  - Rescale variables?;Model is nearly unidentifiable: large eigenvalue ratio
@@ -413,39 +426,39 @@ fit_gme &lt;-<span class="st"> </span><span class="kw">glmer</span>(dep2 ~<span 
 ##    Data: df2
 ## 
 ##      AIC      BIC   logLik deviance df.resid 
-##     2672     2729    -1327     2654     4432 
+##     2665     2722    -1323     2647     4428 
 ## 
 ## Scaled residuals: 
 ##    Min     1Q Median     3Q    Max 
-## -0.632 -0.329 -0.295 -0.258  4.971 
+## -0.635 -0.329 -0.295 -0.258  5.032 
 ## 
 ## Random effects:
 ##  Groups  Name        Variance Std.Dev.
-##  cluster (Intercept) 0.022    0.148   
-## Number of obs: 4441, groups:  cluster, 14
+##  cluster (Intercept) 0.0232   0.152   
+## Number of obs: 4437, groups:  cluster, 14
 ## 
 ## Fixed effects:
 ##                   Estimate Std. Error z value Pr(&gt;|z|)    
-## (Intercept)        -2.6282     0.2431  -10.81  &lt; 2e-16 ***
-## asthma              0.5570     0.1280    4.35  1.4e-05 ***
-## famsize            -0.0349     0.0374   -0.93   0.3501    
-## I(sed/1000)         0.5877     0.2614    2.25   0.0246 *  
-## raceOtherHispanic   0.7517     0.2419    3.11   0.0019 ** 
-## raceWhite           0.0965     0.2157    0.45   0.6546    
-## raceBlack           0.0505     0.2276    0.22   0.8245    
-## raceOther          -0.4689     0.2576   -1.82   0.0687 .  
+## (Intercept)        -2.6316     0.2435  -10.81  &lt; 2e-16 ***
+## asthmaAsthma        0.5619     0.1281    4.39  1.2e-05 ***
+## famsize            -0.0336     0.0374   -0.90   0.3696    
+## I(sed/1000)         0.5835     0.2618    2.23   0.0258 *  
+## raceOtherHispanic   0.7564     0.2421    3.12   0.0018 ** 
+## raceWhite           0.0955     0.2159    0.44   0.6581    
+## raceBlack           0.0531     0.2277    0.23   0.8155    
+## raceOther          -0.4950     0.2591   -1.91   0.0560 .  
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## Correlation of Fixed Effects:
-##             (Intr) asthma famsiz I(/100 rcOthH racWht rcBlck
-## asthma      -0.057                                          
-## famsize     -0.491 -0.011                                   
-## I(sed/1000) -0.324 -0.041  0.031                            
-## rcOthrHspnc -0.655 -0.032  0.045 -0.028                     
-## raceWhite   -0.716 -0.036  0.132 -0.148  0.709              
-## raceBlack   -0.685 -0.064  0.089 -0.123  0.715  0.780       
-## raceOther   -0.575 -0.003  0.047 -0.123  0.608  0.691  0.656</code></pre>
+##             (Intr) asthmA famsiz I(/100 rcOthH racWht rcBlck
+## asthmaAsthm -0.057                                          
+## famsize     -0.491 -0.012                                   
+## I(sed/1000) -0.324 -0.042  0.031                            
+## rcOthrHspnc -0.653 -0.031  0.044 -0.029                     
+## raceWhite   -0.715 -0.037  0.132 -0.148  0.709              
+## raceBlack   -0.684 -0.064  0.088 -0.124  0.715  0.781       
+## raceOther   -0.571 -0.003  0.046 -0.122  0.606  0.688  0.653</code></pre>
 </div>
 <div id="conclusions-1" class="section level2 unnumbered">
 <h2>Conclusions</h2>

@@ -9,12 +9,12 @@ documentclass: book
 link-citations: yes
 ---
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE}
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
 ## Run but not shown
 ## Getting data ready for the examples
 library(foreign)
-library(tidyverse)
 library(furniture)
+library(tidyverse)
 dem_df <- read.xport("~/Box Sync/GitHub/blog_rstats/assets/Data/NHANES_demographics_11.xpt")
 med_df <- read.xport("~/Box Sync/GitHub/blog_rstats/assets/Data/NHANES_MedHeath_11.xpt")
 men_df <- read.xport("~/Box Sync/GitHub/blog_rstats/assets/Data/NHANES_MentHealth_11.xpt")
@@ -27,7 +27,8 @@ df <- dem_df %>%
   full_join(med_df, by="seqn") %>%
   full_join(men_df, by="seqn") %>%
   full_join(act_df, by="seqn") %>%
-  filter(complete.cases(dmdmartl)) %>%
+  mutate(marriage = factor(washer(dmdmartl, 77, 99))) %>%
+  filter(complete.cases(marriage)) %>%
   mutate(race = factor(ridreth1, 
                        labels=c("MexicanAmerican", "OtherHispanic", 
                                 "White", "Black", "Other"))) %>%
@@ -41,12 +42,26 @@ df <- dem_df %>%
          dpq070 = washer(dpq070, 7,9),
          dpq080 = washer(dpq080, 7,9),
          dpq090 = washer(dpq090, 7,9),
-         dpq100 = washer(dpq100, 7,9))
+         dpq100 = washer(dpq100, 7,9)) %>%
+  mutate(dep = dpq010 + dpq020 + dpq030 + dpq040 + dpq050 +
+               dpq060 + dpq070 + dpq080 + dpq090) %>%
+  mutate(dep2 = factor(ifelse(dep >= 10, 1,
+                       ifelse(dep < 10, 0, NA))))
+df <- df %>%
+  mutate(asthma = washer(mcq010, 9, 7),
+         asthma = factor(washer(asthma, 2, value = 0),
+                         labels = c("No Asthma", "Asthma"))) %>%
+  mutate(sed = washer(pad680, 9999, 7777)) %>%
+  mutate(cluster = sdmvstra - 89) %>%
+  filter(complete.cases(asthma) & complete.cases(dep2)) 
 ```
 
 
-
 # Chapter 5: Generalized Linear Models {-}
+
+> "You must stick to your conviction, but be ready to abandon your assumptions."
+>
+> --- Dennis Waitley
 
 Generalized Linear Models (GLM's) are extensions of linear regression to areas where assumptions of normality and homoskedasticity do not hold. There are several versions of GLM's, each for different types and distributions of outcomes. We are going to go through several of the most common. 
 

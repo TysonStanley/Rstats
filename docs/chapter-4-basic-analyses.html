@@ -26,7 +26,7 @@
 <meta name="author" content="Tyson S. Barrett">
 
 
-<meta name="date" content="2017-02-08">
+<meta name="date" content="2017-02-09">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -226,6 +226,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="chapter-4-basic-analyses" class="section level1 unnumbered">
 <h1>Chapter 4: Basic Analyses</h1>
+<blockquote>
+<p>“The goal is to turn data into information, and information into insight.”</p>
+<p>— Carly Fiorina</p>
+</blockquote>
 <p>In this chapter we are going to demonstrate basic modeling in <code>R</code>. Lucky for us, <code>R</code> is built for these analyses. It is actually quite straight-forward to run these types of models and analyze the output. Not only that, but there are simple ways to compare models.</p>
 <p>We will go through the <strong>ANOVA</strong> family of analyses, the <strong>linear regression</strong> models, and look at <strong>diagnostics</strong> of each.</p>
 <div id="anova" class="section level2 unnumbered">
@@ -244,9 +248,9 @@ fit &lt;-<span class="st"> </span><span class="kw">aov</span>(famsize ~<span cla
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: famsize
-##             Df Sum Sq Mean Sq F value Pr(&gt;F)    
-## race         4    417   104.3    49.8 &lt;2e-16 ***
-## Residuals 5308  11121     2.1                   
+##             Df  Sum Sq Mean Sq F value    Pr(&gt;F)    
+## race         4   541.2 135.300  51.367 &lt; 2.2e-16 ***
+## Residuals 4627 12187.5   2.634                      
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>We make sure the variables are the right type, then we use the <code>aov</code> function. Inside of the function we have what is called a formula. It has the general structure: <code>leftside ~ rightside</code>. Generally, the left side is an outcome variable and the right side is the predictor (i.e. independent) variable. Here, we have <code>race</code> predicting <code>famsize</code>. We assign the model to the name <code>fit</code> which is a common way of denoting it is a model. Finally, we use the <code>anova</code> function to output a nice ANOVA table.</p>
@@ -259,7 +263,6 @@ fit &lt;-<span class="st"> </span><span class="kw">aov</span>(famsize ~<span cla
                      <span class="dt">values=</span><span class="kw">c</span>(<span class="st">&quot;dodgerblue3&quot;</span>, <span class="st">&quot;coral2&quot;</span>, <span class="st">&quot;chartreuse4&quot;</span>, 
                               <span class="st">&quot;darkorchid&quot;</span>, <span class="st">&quot;firebrick2&quot;</span>)) +
 <span class="st">  </span><span class="kw">theme_bw</span>()</code></pre></div>
-<pre><code>## Warning: Removed 240 rows containing non-finite values (stat_boxplot).</code></pre>
 <p><img src="_main_files/figure-html/unnamed-chunk-62-1.png" width="672" /></p>
 <p>This immediately gives us an idea of where some differences may be occuring. It would appear that “White” and “MexicanAmerican” groups are different in family size.</p>
 <div id="assumptions" class="section level3 unnumbered">
@@ -280,9 +283,9 @@ fit &lt;-<span class="st"> </span><span class="kw">aov</span>(famsize ~<span cla
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: famsize
-##             Df Sum Sq Mean Sq F value Pr(&gt;F)    
-## race         4    417   104.3    49.8 &lt;2e-16 ***
-## Residuals 5308  11121     2.1                   
+##             Df  Sum Sq Mean Sq F value    Pr(&gt;F)    
+## race         4   541.2 135.300  51.367 &lt; 2.2e-16 ***
+## Residuals 4627 12187.5   2.634                      
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>Surprise! It is the same as before. Here we can also use the <code>summary</code> function and we get the coefficients in the model as well (using dummy coding). The first level of the categorical variable is the reference group (the group that the others are compared to). We also get the intercept (in this case, the average value of the reference group).</p>
@@ -292,23 +295,22 @@ fit &lt;-<span class="st"> </span><span class="kw">aov</span>(famsize ~<span cla
 ## lm(formula = famsize ~ race, data = df)
 ## 
 ## Residuals:
-##    Min     1Q Median     3Q    Max 
-## -2.353 -1.445 -0.445  1.071  3.555 
+##     Min      1Q  Median      3Q     Max 
+## -2.6193 -1.4932 -0.4932  0.9539  4.5068 
 ## 
 ## Coefficients:
 ##                   Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)         3.3534     0.0660   50.81  &lt; 2e-16 ***
-## raceOtherHispanic  -0.4249     0.0905   -4.69  2.8e-06 ***
-## raceWhite          -0.9079     0.0735  -12.35  &lt; 2e-16 ***
-## raceBlack          -0.6880     0.0766   -8.98  &lt; 2e-16 ***
-## raceOther          -0.4079     0.0818   -4.99  6.3e-07 ***
+## (Intercept)        3.61927    0.07773  46.565  &lt; 2e-16 ***
+## raceOtherHispanic -0.51841    0.10814  -4.794 1.69e-06 ***
+## raceWhite         -1.12604    0.08676 -12.978  &lt; 2e-16 ***
+## raceBlack         -0.79795    0.09056  -8.812  &lt; 2e-16 ***
+## raceOther         -0.57320    0.09803  -5.847 5.35e-09 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 1.45 on 5308 degrees of freedom
-##   (240 observations deleted due to missingness)
-## Multiple R-squared:  0.0362, Adjusted R-squared:  0.0354 
-## F-statistic: 49.8 on 4 and 5308 DF,  p-value: &lt;2e-16</code></pre>
+## Residual standard error: 1.623 on 4627 degrees of freedom
+## Multiple R-squared:  0.04252,    Adjusted R-squared:  0.04169 
+## F-statistic: 51.37 on 4 and 4627 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div id="assumptions-1" class="section level3 unnumbered">
 <h3>Assumptions</h3>
 <p>Linear regression has a few important assumptions, often called “Gauss-Markov Assumptions”. These include:</p>
@@ -334,47 +336,46 @@ fit &lt;-<span class="st"> </span><span class="kw">aov</span>(famsize ~<span cla
 ## Model 1: famsize ~ race
 ## Model 2: famsize ~ race
 ##   Res.Df   RSS Df Sum of Sq F Pr(&gt;F)
-## 1   5308 11121                      
-## 2   5308 11121  0         0</code></pre>
+## 1   4627 12188                      
+## 2   4627 12188  0         0</code></pre>
 <p>The <code>anova()</code> function works with all sorts of modeling schemes and can help in model selection. Not surprisingly, when we compared the ANOVA and the simple linear model, they are <em>exactly</em> the same in overall model terms (the only difference is in how the cateogrical variable is coded—either effect coding in ANOVA or dummy coding in regression). For a more interesting comparison, lets run a new model with an additional variable and then make a comparison.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fit3 =<span class="st"> </span><span class="kw">lm</span>(famsize ~<span class="st"> </span>race +<span class="st"> </span>dmdmartl, <span class="dt">data=</span>df)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fit3 =<span class="st"> </span><span class="kw">lm</span>(famsize ~<span class="st"> </span>race +<span class="st"> </span>marriage, <span class="dt">data=</span>df)
 <span class="kw">summary</span>(fit3)</code></pre></div>
 <pre><code>## 
 ## Call:
-## lm(formula = famsize ~ race + dmdmartl, data = df)
+## lm(formula = famsize ~ race + marriage, data = df)
 ## 
 ## Residuals:
-##    Min     1Q Median     3Q    Max 
-## -2.728 -1.081 -0.328  0.901  4.294 
+##     Min      1Q  Median      3Q     Max 
+## -2.9689 -1.1774 -0.4101  1.0311  5.2870 
 ## 
 ## Coefficients:
-##                       Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)             3.7277     0.0649   57.43  &lt; 2e-16 ***
-## raceOtherHispanic      -0.3264     0.0854   -3.82  0.00013 ***
-## raceWhite              -0.8191     0.0697  -11.75  &lt; 2e-16 ***
-## raceBlack              -0.4444     0.0731   -6.08  1.3e-09 ***
-## raceOther              -0.4001     0.0776   -5.15  2.7e-07 ***
-## dmdmartlWidowed        -1.2024     0.0700  -17.18  &lt; 2e-16 ***
-## dmdmartlDivorced       -1.1841     0.0643  -18.41  &lt; 2e-16 ***
-## dmdmartlSeparated      -0.6244     0.1043   -5.98  2.3e-09 ***
-## dmdmartlNever Married  -0.9042     0.0492  -18.36  &lt; 2e-16 ***
-## dmdmartlPartner        -0.5234     0.0727   -7.20  6.7e-13 ***
+##                   Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)        3.96893    0.07790  50.952  &lt; 2e-16 ***
+## raceOtherHispanic -0.41181    0.10368  -3.972 7.23e-05 ***
+## raceWhite         -1.02681    0.08364 -12.277  &lt; 2e-16 ***
+## raceBlack         -0.55881    0.08791  -6.357 2.26e-10 ***
+## raceOther         -0.56242    0.09461  -5.945 2.97e-09 ***
+## marriage2         -1.22909    0.08666 -14.183  &lt; 2e-16 ***
+## marriage3         -1.20245    0.07784 -15.447  &lt; 2e-16 ***
+## marriage4         -0.47750    0.12529  -3.811  0.00014 ***
+## marriage5         -0.80932    0.05970 -13.556  &lt; 2e-16 ***
+## marriage6         -0.49213    0.08866  -5.551 3.00e-08 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 1.36 on 5303 degrees of freedom
-##   (240 observations deleted due to missingness)
-## Multiple R-squared:  0.146,  Adjusted R-squared:  0.145 
-## F-statistic:  101 on 9 and 5303 DF,  p-value: &lt;2e-16</code></pre>
+## Residual standard error: 1.552 on 4622 degrees of freedom
+## Multiple R-squared:  0.1255, Adjusted R-squared:  0.1238 
+## F-statistic: 73.73 on 9 and 4622 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>Notice that the variable is associated with the outcome according to the t-test seen in the summary. So we would expect that <code>fit3</code> is better than <code>fit2</code> at explaining the outcome, which we see in the output below.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">anova</span>(fit2, fit3)</code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Model 1: famsize ~ race
-## Model 2: famsize ~ race + dmdmartl
-##   Res.Df   RSS Df Sum of Sq   F Pr(&gt;F)    
-## 1   5308 11121                            
-## 2   5303  9850  5      1271 137 &lt;2e-16 ***
+## Model 2: famsize ~ race + marriage
+##   Res.Df   RSS Df Sum of Sq      F    Pr(&gt;F)    
+## 1   4627 12188                                  
+## 2   4622 11131  5    1056.8 87.765 &lt; 2.2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 </div>
@@ -386,54 +387,58 @@ fit &lt;-<span class="st"> </span><span class="kw">aov</span>(famsize ~<span cla
 <li><code>texreg</code></li>
 </ol>
 <p>Both provide simple functions to compare multiple models. For example, <code>stargazer</code> provides:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(stargazer)
-<span class="kw">stargazer</span>(fit2, fit3,
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(stargazer)</code></pre></div>
+<pre><code>## 
+## Please cite as:</code></pre>
+<pre><code>##  Hlavac, Marek (2015). stargazer: Well-Formatted Regression and Summary Statistics Tables.</code></pre>
+<pre><code>##  R package version 5.2. http://CRAN.R-project.org/package=stargazer</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">stargazer</span>(fit2, fit3,
           <span class="dt">type =</span> <span class="st">&quot;text&quot;</span>)</code></pre></div>
 <pre><code>## 
-## ========================================================================
-##                                      Dependent variable:                
-##                       --------------------------------------------------
-##                                            famsize                      
-##                                 (1)                       (2)           
-## ------------------------------------------------------------------------
-## raceOtherHispanic            -0.425***                 -0.326***        
-##                               (0.091)                   (0.085)         
-##                                                                         
-## raceWhite                    -0.908***                 -0.819***        
-##                               (0.074)                   (0.070)         
-##                                                                         
-## raceBlack                    -0.688***                 -0.444***        
-##                               (0.077)                   (0.073)         
-##                                                                         
-## raceOther                    -0.408***                 -0.400***        
-##                               (0.082)                   (0.078)         
-##                                                                         
-## dmdmartlWidowed                                        -1.202***        
-##                                                         (0.070)         
-##                                                                         
-## dmdmartlDivorced                                       -1.184***        
-##                                                         (0.064)         
-##                                                                         
-## dmdmartlSeparated                                      -0.624***        
-##                                                         (0.104)         
-##                                                                         
-## dmdmartlNever Married                                  -0.904***        
-##                                                         (0.049)         
-##                                                                         
-## dmdmartlPartner                                        -0.523***        
-##                                                         (0.073)         
-##                                                                         
-## Constant                      3.353***                 3.728***         
-##                               (0.066)                   (0.065)         
-##                                                                         
-## ------------------------------------------------------------------------
-## Observations                   5,313                     5,313          
-## R2                             0.036                     0.146          
-## Adjusted R2                    0.035                     0.145          
-## Residual Std. Error      1.447 (df = 5308)         1.363 (df = 5303)    
-## F Statistic           49.790*** (df = 4; 5308) 101.000*** (df = 9; 5303)
-## ========================================================================
-## Note:                                        *p&lt;0.1; **p&lt;0.05; ***p&lt;0.01</code></pre>
+## =====================================================================
+##                                    Dependent variable:               
+##                     -------------------------------------------------
+##                                          famsize                     
+##                               (1)                      (2)           
+## ---------------------------------------------------------------------
+## raceOtherHispanic          -0.518***                -0.412***        
+##                             (0.108)                  (0.104)         
+##                                                                      
+## raceWhite                  -1.126***                -1.027***        
+##                             (0.087)                  (0.084)         
+##                                                                      
+## raceBlack                  -0.798***                -0.559***        
+##                             (0.091)                  (0.088)         
+##                                                                      
+## raceOther                  -0.573***                -0.562***        
+##                             (0.098)                  (0.095)         
+##                                                                      
+## marriage2                                           -1.229***        
+##                                                      (0.087)         
+##                                                                      
+## marriage3                                           -1.202***        
+##                                                      (0.078)         
+##                                                                      
+## marriage4                                           -0.477***        
+##                                                      (0.125)         
+##                                                                      
+## marriage5                                           -0.809***        
+##                                                      (0.060)         
+##                                                                      
+## marriage6                                           -0.492***        
+##                                                      (0.089)         
+##                                                                      
+## Constant                    3.619***                 3.969***        
+##                             (0.078)                  (0.078)         
+##                                                                      
+## ---------------------------------------------------------------------
+## Observations                 4,632                    4,632          
+## R2                           0.043                    0.126          
+## Adjusted R2                  0.042                    0.124          
+## Residual Std. Error    1.623 (df = 4627)        1.552 (df = 4622)    
+## F Statistic         51.367*** (df = 4; 4627) 73.729*** (df = 9; 4622)
+## =====================================================================
+## Note:                                     *p&lt;0.1; **p&lt;0.05; ***p&lt;0.01</code></pre>
 </div>
 </div>
 </div>
@@ -468,29 +473,29 @@ df$log_var1    &lt;-<span class="st"> </span><span class="kw">log</span>(df$var1
 <p>In general, we refer to ANOVA’s with interactions as “2-way Factorial ANOVA’s”. We interact race and marriage status in this ANOVA. For simplicity, we created a binary race variable called minority using the <code>ifelse()</code> function. We explain this in more depth in Chapter 5.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df$minority &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">ifelse</span>(df$race ==<span class="st"> &quot;White&quot;</span>, <span class="dv">0</span>, <span class="dv">1</span>), 
                       <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;White&quot;</span>, <span class="st">&quot;Minority&quot;</span>))
-fit_anova &lt;-<span class="st"> </span><span class="kw">aov</span>(famsize ~<span class="st"> </span>minority*dmdmartl, df)
+fit_anova &lt;-<span class="st"> </span><span class="kw">aov</span>(famsize ~<span class="st"> </span>minority*marriage, df)
 <span class="kw">anova</span>(fit_anova)</code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: famsize
-##                     Df Sum Sq Mean Sq F value Pr(&gt;F)    
-## minority             1    241   240.6  128.79 &lt;2e-16 ***
-## dmdmartl             5   1376   275.1  147.30 &lt;2e-16 ***
-## minority:dmdmartl    5     21     4.2    2.24  0.048 *  
-## Residuals         5301   9901     1.9                   
+##                     Df  Sum Sq Mean Sq  F value  Pr(&gt;F)    
+## minority             1   334.9  334.92 137.9637 &lt; 2e-16 ***
+## marriage             5  1153.3  230.65  95.0112 &lt; 2e-16 ***
+## minority:marriage    5    24.9    4.98   2.0527 0.06831 .  
+## Residuals         4620 11215.6    2.43                     
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<p>Notice two things: First, the interaction is significant (p = .003). This is important since we are going to try to interpret this interaction. Second, by including <code>minority*dmdmartl</code> we get both the main effects and the interaction. This is very important for interpretation purposes so you can thank <code>R</code> for making it a bit more easy on you.</p>
+<p>Notice two things: First, the interaction is significant (p = .003). This is important since we are going to try to interpret this interaction. Second, by including <code>minority*marriage</code> we get both the main effects and the interaction. This is very important for interpretation purposes so you can thank <code>R</code> for making it a bit more easy on you.</p>
 <p>We can check the assumptions the same way as before:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))
 <span class="kw">plot</span>(fit_anova)</code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-75-1.png" width="480" /><img src="_main_files/figure-html/unnamed-chunk-75-2.png" width="480" /> Again, the assumptions are not met for this model. But, if we ignore that for now, we can quickly find a way to interpret the interaction.</p>
 <p>We first create a new data set that is composed of every possible combination of the variables in the model. This allows us to get unbiased estimates for the plotting.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">newdata &lt;-<span class="st"> </span><span class="kw">expand.grid</span>(<span class="dt">minority =</span> <span class="kw">levels</span>(df$minority),
-                       <span class="dt">dmdmartl =</span> <span class="kw">levels</span>(df$dmdmartl))
+                       <span class="dt">marriage =</span> <span class="kw">levels</span>(df$marriage))
 newdata$preds &lt;-<span class="st"> </span><span class="kw">predict</span>(fit_anova, <span class="dt">newdata=</span>newdata)</code></pre></div>
 <p>We now use <code>ggplot2</code> just as before.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(newdata, <span class="kw">aes</span>(<span class="dt">x =</span> dmdmartl, <span class="dt">y =</span> preds, <span class="dt">group =</span> minority)) +
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(newdata, <span class="kw">aes</span>(<span class="dt">x =</span> marriage, <span class="dt">y =</span> preds, <span class="dt">group =</span> minority)) +
 <span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">color =</span> minority)) +
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> minority)) +
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="st">&quot;Predicted Family Size&quot;</span>,
@@ -504,50 +509,36 @@ newdata$preds &lt;-<span class="st"> </span><span class="kw">predict</span>(fit_
 <div id="interactions-in-linear-regression" class="section level3 unnumbered">
 <h3>Interactions in Linear Regression</h3>
 <p>Interactions in linear regression is nearly identical as in ANOVA, except we use dummy coding. It provides a bit more information. For example, we get the coefficients from the linear regression whereas the ANOVA does not provide this. We can run a regression model via:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fit_reg &lt;-<span class="st"> </span><span class="kw">lm</span>(famsize ~<span class="st"> </span>minority*dmdmartl, df)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fit_reg &lt;-<span class="st"> </span><span class="kw">lm</span>(famsize ~<span class="st"> </span>minority*marriage, df)
 <span class="kw">summary</span>(fit_reg)</code></pre></div>
 <pre><code>## 
 ## Call:
-## lm(formula = famsize ~ minority * dmdmartl, data = df)
+## lm(formula = famsize ~ minority * marriage, data = df)
 ## 
 ## Residuals:
-##    Min     1Q Median     3Q    Max 
-## -2.347 -1.156 -0.347  0.844  4.431 
+##     Min      1Q  Median      3Q     Max 
+## -2.4794 -1.1957 -0.4794  0.9805  5.4353 
 ## 
 ## Coefficients:
-##                                        Estimate Std. Error t value
-## (Intercept)                              2.9770     0.0423   70.31
-## minorityMinority                         0.3704     0.0549    6.74
-## dmdmartlWidowed                         -1.4077     0.1066  -13.20
-## dmdmartlDivorced                        -1.2339     0.0958  -12.88
-## dmdmartlSeparated                       -0.6627     0.2349   -2.82
-## dmdmartlNever Married                   -1.1395     0.0873  -13.05
-## dmdmartlPartner                         -0.5705     0.1177   -4.85
-## minorityMinority:dmdmartlWidowed         0.3133     0.1409    2.22
-## minorityMinority:dmdmartlDivorced        0.0422     0.1288    0.33
-## minorityMinority:dmdmartlSeparated       0.0836     0.2622    0.32
-## minorityMinority:dmdmartlNever Married   0.2988     0.1055    2.83
-## minorityMinority:dmdmartlPartner         0.1305     0.1493    0.87
-##                                        Pr(&gt;|t|)    
-## (Intercept)                             &lt; 2e-16 ***
-## minorityMinority                        1.7e-11 ***
-## dmdmartlWidowed                         &lt; 2e-16 ***
-## dmdmartlDivorced                        &lt; 2e-16 ***
-## dmdmartlSeparated                        0.0048 ** 
-## dmdmartlNever Married                   &lt; 2e-16 ***
-## dmdmartlPartner                         1.3e-06 ***
-## minorityMinority:dmdmartlWidowed         0.0263 *  
-## minorityMinority:dmdmartlDivorced        0.7433    
-## minorityMinority:dmdmartlSeparated       0.7500    
-## minorityMinority:dmdmartlNever Married   0.0046 ** 
-## minorityMinority:dmdmartlPartner         0.3820    
+##                            Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)                 3.01952    0.05131  58.846  &lt; 2e-16 ***
+## minorityMinority            0.45989    0.06723   6.841 8.89e-12 ***
+## marriage2                  -1.45482    0.13005 -11.187  &lt; 2e-16 ***
+## marriage3                  -1.24374    0.11627 -10.697  &lt; 2e-16 ***
+## marriage4                  -0.51952    0.28906  -1.797   0.0724 .  
+## marriage5                  -1.01614    0.10409  -9.762  &lt; 2e-16 ***
+## marriage6                  -0.69891    0.14548  -4.804 1.60e-06 ***
+## minorityMinority:marriage2  0.35455    0.17408   2.037   0.0417 *  
+## minorityMinority:marriage3  0.02632    0.15609   0.169   0.8661    
+## minorityMinority:marriage4  0.09808    0.32098   0.306   0.7599    
+## minorityMinority:marriage5  0.25181    0.12680   1.986   0.0471 *  
+## minorityMinority:marriage6  0.41515    0.18332   2.265   0.0236 *  
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 1.37 on 5301 degrees of freedom
-##   (240 observations deleted due to missingness)
-## Multiple R-squared:  0.142,  Adjusted R-squared:  0.14 
-## F-statistic: 79.7 on 11 and 5301 DF,  p-value: &lt;2e-16</code></pre>
+## Residual standard error: 1.558 on 4620 degrees of freedom
+## Multiple R-squared:  0.1189, Adjusted R-squared:  0.1168 
+## F-statistic: 56.66 on 11 and 4620 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>We used <code>summary()</code> to see the coefficients. If we used <code>anova()</code> it would have been the same as the one for the ANOVA.</p>
 <p>We can use the exact same methods here as we did with the ANOVA, including checking assumptions, creating a new data set, and using <code>ggplot2</code> to check the interaction. We won’t repeat it here so you can move on to Chapter 5.</p>
 

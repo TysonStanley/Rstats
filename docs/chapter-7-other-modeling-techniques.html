@@ -26,7 +26,7 @@
 <meta name="author" content="Tyson S. Barrett">
 
 
-<meta name="date" content="2017-02-08">
+<meta name="date" content="2017-02-09">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -226,7 +226,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="chapter-7-other-modeling-techniques" class="section level1 unnumbered">
 <h1>Chapter 7: Other Modeling Techniques</h1>
-<p>In this chapter we cover, however briefly, mediation and moderation modeling, methods relating to structural equation modeling (SEM), and methods applicable to our field from machine learning. Although these machine learning may appear very different than mediation and SEM, they each have advantages that can help in different situations. For example, SEM is useful when we know there is a high degree of measurement error or our data has multiple indicators for each construct. On the other hand, regularized regression and random forests–two popular forms of machine learning–are great to explore patterns and relationships there are hundreds or thousands of variables that may predict an outcome.</p>
+<blockquote>
+<p>“Simplicity is the ultimate sophistication.”</p>
+<p>— Leonardo da Vinci</p>
+</blockquote>
+<p>In this chapter we cover, however briefly, modeling techniques that are especially useful to make complex relationships easier to interpret. We will focus on mediation and moderation modeling, methods relating to structural equation modeling (SEM), and methods applicable to our field from machine learning. Although these machine learning may appear very different than mediation and SEM, they each have advantages that can help in different situations. For example, SEM is useful when we know there is a high degree of measurement error or our data has multiple indicators for each construct. On the other hand, regularized regression and random forests–two popular forms of machine learning–are great to explore patterns and relationships there are hundreds or thousands of variables that may predict an outcome.</p>
 <p>Mediation modeling, although often used within SEM, can help us understand pathways of effect from one variable to another. It is especially useful with moderating variables (i.e., variables that interact with another).</p>
 <p>So we’ll start with discussing mediation, then we’ll move on to SEM, followed by machine learning.</p>
 <div id="mediation-modeling" class="section level2 unnumbered">
@@ -253,12 +257,11 @@ fit &lt;-<span class="st"> </span><span class="kw">sem</span>(model1, <span clas
 <pre><code>## lavaan (0.5-22) converged normally after  30 iterations
 ## 
 ##                                                   Used       Total
-##   Number of observations                          4618        5560
+##   Number of observations                          4614        4632
 ## 
 ##   Estimator                                         ML
 ##   Minimum Function Test Statistic                0.000
 ##   Degrees of freedom                                 0
-##   Minimum Function Value               0.0000000000000
 ## 
 ## Parameter Estimates:
 ## 
@@ -268,15 +271,15 @@ fit &lt;-<span class="st"> </span><span class="kw">sem</span>(model1, <span clas
 ## Regressions:
 ##                    Estimate  Std.Err  z-value  P(&gt;|z|)
 ##   dep ~                                               
-##     asthma            1.474    0.183    8.064    0.000
+##     asthma            1.478    0.183    8.084    0.000
 ##   sed_hr ~                                            
-##     dep               0.044    0.011    3.951    0.000
-##     asthma            0.406    0.139    2.922    0.003
+##     dep               0.044    0.011    3.929    0.000
+##     asthma            0.412    0.139    2.965    0.003
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(&gt;|z|)
-##    .dep              19.602    0.408   48.052    0.000
-##    .sed_hr           11.167    0.232   48.052    0.000</code></pre>
+##    .dep              19.597    0.408   48.031    0.000
+##    .sed_hr           11.171    0.233   48.031    0.000</code></pre>
 <p>From the output we see asthma does predict depression and depression does predict time being sedentary. There is also a direct effect of asthma on sedentary behavior even after controlling for depression. We can further specify the model to have it give us the indirect effect and direct effects tested.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Our model
 model2 &lt;-<span class="st"> &#39;</span>
@@ -292,7 +295,48 @@ fit2 &lt;-<span class="st"> </span><span class="kw">sem</span>(model2, <span cla
 <pre><code>## lavaan (0.5-22) converged normally after  30 iterations
 ## 
 ##                                                   Used       Total
-##   Number of observations                          4618        5560
+##   Number of observations                          4614        4632
+## 
+##   Estimator                                         ML
+##   Minimum Function Test Statistic                0.000
+##   Degrees of freedom                                 0
+## 
+## Parameter Estimates:
+## 
+##   Information                                 Expected
+##   Standard Errors                             Standard
+## 
+## Regressions:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##   dep ~                                               
+##     asthma     (a)    1.478    0.183    8.084    0.000
+##   sed_hr ~                                            
+##     dep        (b)    0.044    0.011    3.929    0.000
+##     asthma     (c)    0.412    0.139    2.965    0.003
+## 
+## Variances:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##    .dep              19.597    0.408   48.031    0.000
+##    .sed_hr           11.171    0.233   48.031    0.000
+## 
+## Defined Parameters:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##     indirect          0.065    0.018    3.534    0.000
+##     total             0.477    0.138    3.448    0.001</code></pre>
+<p>We defined a few things in the model. First, we gave the coefficients labels of <code>a</code>, <code>b</code>, and <code>c</code>. Doing so allows us to define the <code>indirect</code> and <code>total</code> effects. Here we see the indirect effect, although small, is significant at <span class="math inline">\(p &lt; .001\)</span>. The total effect is larger (not surprising) and is also significant.</p>
+<p>Also note that we can make the regression equations have other covariates as well if we needed to (i.e. control for age or gender) just as we do in regular regression.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Our model
+model2<span class="fl">.1</span> &lt;-<span class="st"> &#39;</span>
+<span class="st">  dep ~ asthma + ridageyr</span>
+<span class="st">  sed_hr ~ dep + asthma + ridageyr</span>
+<span class="st">&#39;</span>
+## sem function to run the model
+fit2<span class="fl">.1</span> &lt;-<span class="st"> </span><span class="kw">sem</span>(model2<span class="fl">.1</span>, <span class="dt">data =</span> df)
+<span class="kw">summary</span>(fit2<span class="fl">.1</span>)</code></pre></div>
+<pre><code>## lavaan (0.5-22) converged normally after  33 iterations
+## 
+##                                                   Used       Total
+##   Number of observations                          4614        4632
 ## 
 ##   Estimator                                         ML
 ##   Minimum Function Test Statistic                0.000
@@ -307,60 +351,18 @@ fit2 &lt;-<span class="st"> </span><span class="kw">sem</span>(model2, <span cla
 ## Regressions:
 ##                    Estimate  Std.Err  z-value  P(&gt;|z|)
 ##   dep ~                                               
-##     asthma     (a)    1.474    0.183    8.064    0.000
+##     asthma            1.462    0.183    7.980    0.000
+##     ridageyr         -0.005    0.004   -1.330    0.183
 ##   sed_hr ~                                            
-##     dep        (b)    0.044    0.011    3.951    0.000
-##     asthma     (c)    0.406    0.139    2.922    0.003
+##     dep               0.044    0.011    3.927    0.000
+##     asthma            0.412    0.139    2.956    0.003
+##     ridageyr         -0.000    0.003   -0.063    0.950
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(&gt;|z|)
-##    .dep              19.602    0.408   48.052    0.000
-##    .sed_hr           11.167    0.232   48.052    0.000
-## 
-## Defined Parameters:
-##                    Estimate  Std.Err  z-value  P(&gt;|z|)
-##     indirect          0.065    0.018    3.548    0.000
-##     total             0.471    0.138    3.406    0.001</code></pre>
-<p>We defined a few things in the model. First, we gave the coefficients labels of <code>a</code>, <code>b</code>, and <code>c</code>. Doing so allows us to define the <code>indirect</code> and <code>total</code> effects. Here we see the indirect effect, although small, is significant at <span class="math inline">\(p &lt; .001\)</span>. The total effect is larger (not surprising) and is also significant.</p>
-<p>Also note that we can make the regression equations have other covariates as well if we needed to (i.e. control for age or gender) just as we do in regular regression. In this final example, we show that you can do moderation as part of the mediation model.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Our model
-model2<span class="fl">.1</span> &lt;-<span class="st"> &#39;</span>
-<span class="st">  dep ~ asthma + ridageyr + asthma:ridageyr</span>
-<span class="st">  sed_hr ~ dep + asthma + ridageyr + asthma:ridageyr</span>
-<span class="st">&#39;</span>
-## sem function to run the model
-fit2<span class="fl">.1</span> &lt;-<span class="st"> </span><span class="kw">sem</span>(model2<span class="fl">.1</span>, <span class="dt">data =</span> df)
-<span class="kw">summary</span>(fit2<span class="fl">.1</span>)</code></pre></div>
-<pre><code>## lavaan (0.5-22) converged normally after  46 iterations
-## 
-##                                                   Used       Total
-##   Number of observations                          4618        5560
-## 
-##   Estimator                                         ML
-##   Minimum Function Test Statistic                0.000
-##   Degrees of freedom                                 0
-## 
-## Parameter Estimates:
-## 
-##   Information                                 Expected
-##   Standard Errors                             Standard
-## 
-## Regressions:
-##                    Estimate  Std.Err  z-value  P(&gt;|z|)
-##   dep ~                                               
-##     asthma            0.909    0.514    1.769    0.077
-##     ridageyr         -0.007    0.004   -1.643    0.100
-##     asthma:ridagyr    0.012    0.010    1.142    0.254
-##   sed_hr ~                                            
-##     dep               0.044    0.011    3.933    0.000
-##     asthma            0.067    0.388    0.174    0.862
-##     ridageyr         -0.001    0.003   -0.436    0.663
-##     asthma:ridagyr    0.007    0.008    0.932    0.351
-## 
-## Variances:
-##                    Estimate  Std.Err  z-value  P(&gt;|z|)
-##    .dep              19.589    0.408   48.052    0.000
-##    .sed_hr           11.165    0.232   48.052    0.000</code></pre>
+##    .dep              19.590    0.408   48.031    0.000
+##    .sed_hr           11.171    0.233   48.031    0.000</code></pre>
+<p>Although we don’t show it here, we can also do moderation (“interactions”) as part of the mediation model.</p>
 </div>
 <div id="structural-equation-modeling" class="section level2 unnumbered">
 <h2>Structural Equation Modeling</h2>
@@ -380,10 +382,10 @@ fit3 &lt;-<span class="st"> </span><span class="kw">sem</span>(model3, <span cla
 <pre><code>## lavaan (0.5-22) converged normally after  47 iterations
 ## 
 ##                                                   Used       Total
-##   Number of observations                          4618        5560
+##   Number of observations                          4614        4632
 ## 
 ##   Estimator                                         ML
-##   Minimum Function Test Statistic             1060.130
+##   Minimum Function Test Statistic             1065.848
 ##   Degrees of freedom                                43
 ##   P-value (Chi-square)                           0.000
 ## 
@@ -396,54 +398,53 @@ fit3 &lt;-<span class="st"> </span><span class="kw">sem</span>(model3, <span cla
 ##                    Estimate  Std.Err  z-value  P(&gt;|z|)
 ##   dep1 =~                                             
 ##     dpq010            1.000                           
-##     dpq020            1.095    0.024   45.195    0.000
-##     dpq030            1.130    0.031   36.891    0.000
-##     dpq040            1.146    0.030   38.056    0.000
-##     dpq050            0.934    0.025   36.837    0.000
-##     dpq060            0.929    0.022   42.150    0.000
-##     dpq070            0.869    0.022   39.766    0.000
-##     dpq080            0.687    0.019   36.370    0.000
-##     dpq090            0.307    0.011   28.546    0.000
+##     dpq020            1.096    0.024   45.136    0.000
+##     dpq030            1.133    0.031   36.908    0.000
+##     dpq040            1.149    0.030   38.066    0.000
+##     dpq050            0.933    0.025   36.773    0.000
+##     dpq060            0.929    0.022   42.107    0.000
+##     dpq070            0.871    0.022   39.760    0.000
+##     dpq080            0.686    0.019   36.325    0.000
+##     dpq090            0.308    0.011   28.544    0.000
 ## 
 ## Regressions:
 ##                    Estimate  Std.Err  z-value  P(&gt;|z|)
 ##   dep1 ~                                              
-##     asthma     (a)    0.172    0.023    7.636    0.000
+##     asthma     (a)    0.173    0.023    7.656    0.000
 ##   sed_hr ~                                            
-##     dep1       (b)    0.344    0.104    3.296    0.001
-##     asthma     (c)    0.411    0.139    2.955    0.003
+##     dep1       (b)    0.342    0.105    3.275    0.001
+##     asthma     (c)    0.418    0.139    2.998    0.003
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(&gt;|z|)
-##    .dpq010            0.306    0.007   42.005    0.000
-##    .dpq020            0.212    0.006   37.552    0.000
-##    .dpq030            0.560    0.013   43.845    0.000
-##    .dpq040            0.515    0.012   43.339    0.000
-##    .dpq050            0.384    0.009   43.867    0.000
-##    .dpq060            0.221    0.005   40.824    0.000
-##    .dpq070            0.249    0.006   42.455    0.000
-##    .dpq080            0.217    0.005   44.050    0.000
-##    .dpq090            0.090    0.002   46.128    0.000
-##    .sed_hr           11.174    0.233   48.033    0.000
-##    .dep1              0.256    0.010   24.692    0.000
+##    .dpq010            0.306    0.007   42.008    0.000
+##    .dpq020            0.212    0.006   37.549    0.000
+##    .dpq030            0.559    0.013   43.807    0.000
+##    .dpq040            0.514    0.012   43.302    0.000
+##    .dpq050            0.384    0.009   43.862    0.000
+##    .dpq060            0.221    0.005   40.808    0.000
+##    .dpq070            0.249    0.006   42.420    0.000
+##    .dpq080            0.217    0.005   44.038    0.000
+##    .dpq090            0.090    0.002   46.106    0.000
+##    .sed_hr           11.179    0.233   48.012    0.000
+##    .dep1              0.256    0.010   24.657    0.000
 ## 
 ## Defined Parameters:
 ##                    Estimate  Std.Err  z-value  P(&gt;|z|)
-##     indirect          0.059    0.020    3.034    0.002
-##     total             0.471    0.138    3.406    0.001</code></pre>
+##     indirect          0.059    0.020    3.019    0.003
+##     total             0.477    0.138    3.448    0.001</code></pre>
 <p>We defined <code>dep1</code> as a latent variable using <code>=~</code>. The regression, indirect, and total results are very similar the summed score version. Although the model does not fit the data well–“<code>P-value (Chi-square) = 0.000</code>”–it is informative for demonstration. We would likely need to find out how the measurement model (<code>dep1 =~ dpq010 + dpq020 + dpq030 +</code>) actually fits before throwing it into a mediation model. We can do that via:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">model4 &lt;-<span class="st"> &#39;</span>
 <span class="st">  dep1 =~ dpq010 + dpq020 + dpq030 + dpq040 + dpq050 + dpq060 + dpq070 + dpq080 + dpq090</span>
 <span class="st">&#39;</span>
 fit4 &lt;-<span class="st"> </span><span class="kw">cfa</span>(model4, <span class="dt">data=</span>df)
 <span class="kw">summary</span>(fit4)</code></pre></div>
-<pre><code>## lavaan (0.5-22) converged normally after  28 iterations
+<pre><code>## lavaan (0.5-22) converged normally after  29 iterations
 ## 
-##                                                   Used       Total
-##   Number of observations                          4639        5560
+##   Number of observations                          4632
 ## 
 ##   Estimator                                         ML
-##   Minimum Function Test Statistic              989.323
+##   Minimum Function Test Statistic              985.831
 ##   Degrees of freedom                                27
 ##   P-value (Chi-square)                           0.000
 ## 
@@ -456,27 +457,27 @@ fit4 &lt;-<span class="st"> </span><span class="kw">cfa</span>(model4, <span cla
 ##                    Estimate  Std.Err  z-value  P(&gt;|z|)
 ##   dep1 =~                                             
 ##     dpq010            1.000                           
-##     dpq020            1.095    0.024   45.418    0.000
-##     dpq030            1.126    0.030   36.926    0.000
-##     dpq040            1.142    0.030   38.105    0.000
-##     dpq050            0.928    0.025   36.677    0.000
-##     dpq060            0.930    0.022   42.317    0.000
-##     dpq070            0.868    0.022   39.931    0.000
-##     dpq080            0.682    0.019   36.387    0.000
-##     dpq090            0.306    0.011   28.610    0.000
+##     dpq020            1.097    0.024   45.383    0.000
+##     dpq030            1.128    0.031   36.962    0.000
+##     dpq040            1.145    0.030   38.136    0.000
+##     dpq050            0.927    0.025   36.630    0.000
+##     dpq060            0.930    0.022   42.294    0.000
+##     dpq070            0.870    0.022   39.941    0.000
+##     dpq080            0.681    0.019   36.350    0.000
+##     dpq090            0.307    0.011   28.609    0.000
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(&gt;|z|)
-##    .dpq010            0.306    0.007   42.069    0.000
-##    .dpq020            0.211    0.006   37.483    0.000
-##    .dpq030            0.562    0.013   43.962    0.000
-##    .dpq040            0.516    0.012   43.453    0.000
-##    .dpq050            0.391    0.009   44.061    0.000
-##    .dpq060            0.222    0.005   40.863    0.000
-##    .dpq070            0.249    0.006   42.508    0.000
-##    .dpq080            0.217    0.005   44.173    0.000
-##    .dpq090            0.090    0.002   46.231    0.000
-##     dep1              0.261    0.011   24.788    0.000</code></pre>
+##    .dpq010            0.306    0.007   42.051    0.000
+##    .dpq020            0.211    0.006   37.470    0.000
+##    .dpq030            0.560    0.013   43.909    0.000
+##    .dpq040            0.515    0.012   43.400    0.000
+##    .dpq050            0.390    0.009   44.041    0.000
+##    .dpq060            0.221    0.005   40.835    0.000
+##    .dpq070            0.249    0.006   42.461    0.000
+##    .dpq080            0.216    0.005   44.149    0.000
+##    .dpq090            0.090    0.002   46.195    0.000
+##     dep1              0.261    0.011   24.765    0.000</code></pre>
 <p>As we can see, there is a lack of fit in the measurement model. It is possible that these depression questions could be measuring more than one factor. We could explore this using exploratory factor analysis. We don’t demonstrate that here, but know that it is possible to do in <code>R</code> with a few other packages.</p>
 </div>
 <div id="machine-learning-techniques" class="section level2 unnumbered">
@@ -513,36 +514,36 @@ fit_enet  &lt;-<span class="st"> </span><span class="kw">cv.glmnet</span>(X, Y, 
 <p>We can get the coefficients at a reasonable <code>lambda</code>. Specifically, we use the “1-SE rule” (near the right hand side vertical dashed lines in the above plots) by <code>s = &quot;lambda.1se&quot;</code>. You can directly tell it what <code>lambda</code> value you’d like but this is a simple rule of thumb.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coef</span>(fit_ridge, <span class="dt">s =</span> <span class="st">&quot;lambda.1se&quot;</span>)</code></pre></div>
 <pre><code>## 8 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
-##                     1
-## (Intercept)  5.919676
-## riagendr     0.021182
-## ridageyr    -0.000256
-## ridreth3     0.027560
-## race         0.043773
-## famsize     -0.018582
-## dep          0.004910
-## asthma       0.047551</code></pre>
+##                      1
+## (Intercept)  5.6943973
+## riagendr     0.0357622
+## ridageyr    -0.0004537
+## ridreth3     0.0440060
+## race         0.0723550
+## famsize     -0.0324891
+## dep          0.0085448
+## asthma       0.0827901</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coef</span>(fit_lasso, <span class="dt">s =</span> <span class="st">&quot;lambda.1se&quot;</span>)</code></pre></div>
 <pre><code>## 8 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
-##                 1
-## (Intercept) 5.536
-## riagendr    .    
-## ridageyr    .    
-## ridreth3    .    
-## race        0.187
-## famsize     .    
-## dep         .    
+##                  1
+## (Intercept) 5.6183
+## riagendr    .     
+## ridageyr    .     
+## ridreth3    .     
+## race        0.1622
+## famsize     .     
+## dep         .     
 ## asthma      .</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coef</span>(fit_enet, <span class="dt">s =</span> <span class="st">&quot;lambda.1se&quot;</span>)</code></pre></div>
 <pre><code>## 8 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
-##                    1
-## (Intercept)  5.32733
-## riagendr     .      
-## ridageyr     .      
-## ridreth3     .      
-## race         0.27554
-## famsize     -0.04213
-## dep          0.00854
+##                      1
+## (Intercept)  5.4071934
+## riagendr     .        
+## ridageyr     .        
+## ridreth3     .        
+## race         0.2424455
+## famsize     -0.0206231
+## dep          0.0002651
 ## asthma       .</code></pre>
 <p>Although we briefly introduce these regression methods, they are indeed very important. We highly recommend learning more about them.</p>
 </div>
@@ -550,9 +551,18 @@ fit_enet  &lt;-<span class="st"> </span><span class="kw">cv.glmnet</span>(X, Y, 
 <h3>Random Forests</h3>
 <p>Random forests is another machine learning method that can do fantastic prediction. It is built in a very different way than the methods we have discussed up to this point. It is not built on a linear modeling scheme; rather, it is built on classification and regression trees (CART). Again, “Introduction to Statistical Learning” is a great resource to learn more.</p>
 <p>Conveniently, we can use the <code>randomForest</code> package. We specify the model by the formula <code>sed_hr ~ .</code> which means we want <code>sed_hr</code> to be the outcome and all the rest of the variables to be predictors.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(randomForest)
-
-fit_rf &lt;-<span class="st"> </span><span class="kw">randomForest</span>(sed_hr ~<span class="st"> </span>., <span class="dt">data =</span> df2)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(randomForest)</code></pre></div>
+<pre><code>## randomForest 4.6-12</code></pre>
+<pre><code>## Type rfNews() to see new features/changes/bug fixes.</code></pre>
+<pre><code>## 
+## Attaching package: &#39;randomForest&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
+## 
+##     combine</code></pre>
+<pre><code>## The following object is masked from &#39;package:ggplot2&#39;:
+## 
+##     margin</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fit_rf &lt;-<span class="st"> </span><span class="kw">randomForest</span>(sed_hr ~<span class="st"> </span>., <span class="dt">data =</span> df2)
 fit_rf</code></pre></div>
 <pre><code>## 
 ## Call:
@@ -561,8 +571,8 @@ fit_rf</code></pre></div>
 ##                      Number of trees: 500
 ## No. of variables tried at each split: 2
 ## 
-##           Mean of squared residuals: 10.8
-##                     % Var explained: 3.91</code></pre>
+##           Mean of squared residuals: 10.86
+##                     % Var explained: 3.35</code></pre>
 <p>We can find out which variables were important in the model via:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))  ## back to one plot per page
 <span class="kw">varImpPlot</span>(fit_rf)</code></pre></div>

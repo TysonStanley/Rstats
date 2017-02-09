@@ -11,6 +11,10 @@ link-citations: yes
 
 # Chapter 2: Manipulating Your Data {-}
 
+> "Organizing is what you do before you do something, so that when you do it, it is not all mixed up."
+>
+> --- A. A. Milne
+
 In order to manipulate your data in the cleanest, most up-to-date manner, we are going to be using the "tidyverse" group of methods. The tidyverse[^hadley] is a group of packages[^pack] that provide a simple syntax that can do many basic (and complex) data manipulating. The group of packages can be downloaded via:
 
 ```{r, eval=FALSE}
