@@ -1,5 +1,5 @@
 ---
-title: "Rstats for Researchers"
+title: "R for Health, Behavioral, and Social Scientists"
 author: "Tyson S. Barrett"
 date: "`r Sys.Date()`"
 site: "bookdown::bookdown_site"

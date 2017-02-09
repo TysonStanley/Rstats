@@ -1,5 +1,5 @@
 ---
-title: "Rstats for Researchers"
+title: "R for Health, Behavioral, and Social Scientists"
 author: "Tyson S. Barrett"
 date: "`r Sys.Date()`"
 site: "bookdown::bookdown_site"
@@ -166,9 +166,9 @@ We are briefly going to introduce some machine learning techniques that may be o
 
 ### Ridge, Lasso and Elastic Net {-}
 
-In order to do either ridge, lasso, or elastic net regression, we can use the fantastic `glmnet` package. Using the `cv.glmnet()` function we can run the ridge ($alpha = 0$), lasso ($alpha = 1$ which is default), and elastic net ($0 \leq alpha \leq 1$). 
+In order to do either ridge, lasso, or elastic net regression, we can use the fantastic `glmnet` package. Using the `cv.glmnet()` function we can run the ridge ($alpha = 0$), lasso ($alpha = 1$ which is default), and elastic net ($0 \leq alpha \leq 1$). It turns out that elastic net is the combination of the ridge and lasso methods and the closer `alpha` is to 1 the more it acts like lasso and the closer it is to 0 the more it acts like ridge.
 
-Lasso and elastic net can do variable selection in addition to the estimates. Ridge is great at handling correlated predictors. Each of them are better than conventional methods at prediction and each of them can handle large numbers of predictors. To learn more see "Introduction to Statistical Learning" by Daniela Witten, Gareth James, Robert Tibshirani, and Trevor Hastie. A feww PDF is available on their website.
+Lasso and elastic net can do variable selection in addition to estimation. Ridge is great at handling correlated predictors. Each of them are better than conventional methods at prediction and each of them can handle large numbers of predictors. To learn more see "Introduction to Statistical Learning" by Daniela Witten, Gareth James, Robert Tibshirani, and Trevor Hastie. A feww PDF is available on their website.
 
 To use the package, it wants the data in a very specific form. First, we need to remove any missingness. We use `na.omit()` to do this. We take all the predictors (without the outcome) and put it in a data matrix object. We only include a few for the demonstration but you can include *many* predictors. We name ours `X`. `Y` is our outcome.
 
@@ -182,7 +182,7 @@ X <- df2 %>%
 Y <- df2$sed_hr
 ```
 
-Then we use the `cv.glmnet()` function to fit the different models. The "cv" refers to cross-validation[^crossval], which we don't discuss here, but it an important topic to become familiar with. Below we fit a ridge, a lasso, and an elastic net model.
+Then we use the `cv.glmnet()` function to fit the different models. The "cv" refers to cross-validation[^crossval], which we don't discuss here, but it an important topic to become familiar with. Below we fit a ridge, a lasso, and an elastic net model. The elastic net model uses more of the lasso penalty because the `alpha` is closer to 1 than 0.
 
 ```{r, message=FALSE, warning=FALSE}
 library(glmnet)
@@ -201,7 +201,7 @@ plot(fit_lasso)
 plot(fit_enet)
 ```
 
-We can get the coefficients at a reasonable `lambda`. Specifically, we use the "1-SE rule" (near the right hand side vertical dashed lines in the above plots).
+We can get the coefficients at a reasonable `lambda`. Specifically, we use the "1-SE rule" (near the right hand side vertical dashed lines in the above plots) by `s = "lambda.1se"`. You can directly tell it what `lambda` value you'd like but this is a simple rule of thumb.
 
 ```{r}
 coef(fit_ridge, s = "lambda.1se")
@@ -214,7 +214,7 @@ Although we briefly introduce these regression methods, they are indeed very imp
 
 ### Random Forests {-}
 
-Random forests is another machine learning method that can do fantastic prediction. It is built in a very different way than the methods we have discussed up to this point. It is not built on a linear modeling scheme; rather, it is built on classification and regression trees. Again, "Introduction to Statistical Learning" is a great resource to learn more.
+Random forests is another machine learning method that can do fantastic prediction. It is built in a very different way than the methods we have discussed up to this point. It is not built on a linear modeling scheme; rather, it is built on classification and regression trees (CART). Again, "Introduction to Statistical Learning" is a great resource to learn more.
 
 Conveniently, we can use the `randomForest` package. We specify the model by the formula `sed_hr ~ .` which means we want `sed_hr` to be the outcome and all the rest of the variables to be predictors.
 
@@ -243,4 +243,4 @@ The next chapter begins our "advanced" topics, starting with "Advanced Data Mani
 
 [^lavaa]: The `lavaan` package has some great vignettes at [http://lavaan.ugent.be/](http://lavaan.ugent.be/) to help with the other types of models it can handle.
 
-[^crossval]: Cross-validation is a common way to reduce over-fitting and make sure your model is generalizable.
+[^crossval]: Cross-validation is a common way to reduce over-fitting and make sure your model is generalizable. Generally, you split your data into training and testing sets. It is very common in machine learning and is beginning to be practiced in academic fields as well. We recommend using it as often as you can, especially with these methods but also to make sure your other models are accurate on new data as well.

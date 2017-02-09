@@ -5,12 +5,12 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Rstats for Researchers</title>
+  <title>R for Health, Behavioral, and Social Scientists</title>
   <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
-  <meta name="description" content="Rstats for Researchers">
+  <meta name="description" content="R for Health, Behavioral, and Social Scientists">
   <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
 
-  <meta property="og:title" content="Rstats for Researchers" />
+  <meta property="og:title" content="R for Health, Behavioral, and Social Scientists" />
   <meta property="og:type" content="book" />
   
   
@@ -18,7 +18,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Rstats for Researchers" />
+  <meta name="twitter:title" content="R for Health, Behavioral, and Social Scientists" />
   
   
   
@@ -26,7 +26,7 @@
 <meta name="author" content="Tyson S. Barrett">
 
 
-<meta name="date" content="2017-01-12">
+<meta name="date" content="2017-02-08">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -183,15 +183,24 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#your-own-functions"><i class="fa fa-check"></i>Your Own Functions</a></li>
 <li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#vectorized"><i class="fa fa-check"></i>Vectorized</a></li>
 <li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#for-loops"><i class="fa fa-check"></i>For Loops</a></li>
-<li><a href="chapter-8-advanced-data-manipulation.html#the-apply-family">The <code>apply</code> family</a></li>
-<li><a href="chapter-8-advanced-data-manipulation.html#the-purrr-package">The <code>purrr</code> package</a></li>
+<li><a href="chapter-8-advanced-data-manipulation.html#the-apply-family">The <code>apply</code> family</a><ul>
+<li class="chapter" data-level="0.1.1" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#speed-comparison"><i class="fa fa-check"></i><b>0.1.1</b> Speed Comparison</a></li>
+</ul></li>
+<li class="chapter" data-level="0.2" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#using-anonymous-functions-in-apply"><i class="fa fa-check"></i><b>0.2</b> Using “Anonymous Functions” in Apply</a></li>
+<li class="chapter" data-level="0.3" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#conclusions-3"><i class="fa fa-check"></i><b>0.3</b> Conclusions</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-9-advanced-plotting.html"><a href="chapter-9-advanced-plotting.html"><i class="fa fa-check"></i>Chapter 9: Advanced Plotting</a><ul>
-<li class="chapter" data-level="" data-path="chapter-9-advanced-plotting.html"><a href="chapter-9-advanced-plotting.html#types-of-plots"><i class="fa fa-check"></i>Types of Plots</a></li>
+<li class="chapter" data-level="" data-path="chapter-9-advanced-plotting.html"><a href="chapter-9-advanced-plotting.html#types-of-plots"><i class="fa fa-check"></i>Types of Plots</a><ul>
+<li class="chapter" data-level="" data-path="chapter-9-advanced-plotting.html"><a href="chapter-9-advanced-plotting.html#scatterplots"><i class="fa fa-check"></i>Scatterplots</a></li>
+<li class="chapter" data-level="" data-path="chapter-9-advanced-plotting.html"><a href="chapter-9-advanced-plotting.html#boxplots"><i class="fa fa-check"></i>Boxplots</a></li>
+<li class="chapter" data-level="" data-path="chapter-9-advanced-plotting.html"><a href="chapter-9-advanced-plotting.html#bar-plots"><i class="fa fa-check"></i>Bar Plots</a></li>
+<li class="chapter" data-level="" data-path="chapter-9-advanced-plotting.html"><a href="chapter-9-advanced-plotting.html#line-plots"><i class="fa fa-check"></i>Line Plots</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="chapter-9-advanced-plotting.html"><a href="chapter-9-advanced-plotting.html#color-schemes"><i class="fa fa-check"></i>Color Schemes</a></li>
 <li class="chapter" data-level="" data-path="chapter-9-advanced-plotting.html"><a href="chapter-9-advanced-plotting.html#themes"><i class="fa fa-check"></i>Themes</a></li>
 <li class="chapter" data-level="" data-path="chapter-9-advanced-plotting.html"><a href="chapter-9-advanced-plotting.html#labels-and-titles"><i class="fa fa-check"></i>Labels and Titles</a></li>
 <li class="chapter" data-level="" data-path="chapter-9-advanced-plotting.html"><a href="chapter-9-advanced-plotting.html#facetting"><i class="fa fa-check"></i>Facetting</a></li>
+<li class="chapter" data-level="" data-path="chapter-9-advanced-plotting.html"><a href="chapter-9-advanced-plotting.html#conclusions-4"><i class="fa fa-check"></i>Conclusions</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-10-where-to-go-from-here-and-common-pitfalls.html"><a href="chapter-10-where-to-go-from-here-and-common-pitfalls.html"><i class="fa fa-check"></i>Chapter 10: Where to Go from Here and Common Pitfalls</a><ul>
 <li class="chapter" data-level="" data-path="chapter-10-where-to-go-from-here-and-common-pitfalls.html"><a href="chapter-10-where-to-go-from-here-and-common-pitfalls.html#common-pitfalls"><i class="fa fa-check"></i>Common Pitfalls</a></li>
@@ -206,7 +215,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Rstats for Researchers</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R for Health, Behavioral, and Social Scientists</a>
           </h1>
         </div>
 
@@ -478,8 +487,8 @@ fit4 &lt;-<span class="st"> </span><span class="kw">cfa</span>(model4, <span cla
 </ol>
 <div id="ridge-lasso-and-elastic-net" class="section level3 unnumbered">
 <h3>Ridge, Lasso and Elastic Net</h3>
-<p>In order to do either ridge, lasso, or elastic net regression, we can use the fantastic <code>glmnet</code> package. Using the <code>cv.glmnet()</code> function we can run the ridge (<span class="math inline">\(alpha = 0\)</span>), lasso (<span class="math inline">\(alpha = 1\)</span> which is default), and elastic net (<span class="math inline">\(0 \leq alpha \leq 1\)</span>).</p>
-<p>Lasso and elastic net can do variable selection in addition to the estimates. Ridge is great at handling correlated predictors. Each of them are better than conventional methods at prediction and each of them can handle large numbers of predictors. To learn more see “Introduction to Statistical Learning” by Daniela Witten, Gareth James, Robert Tibshirani, and Trevor Hastie. A feww PDF is available on their website.</p>
+<p>In order to do either ridge, lasso, or elastic net regression, we can use the fantastic <code>glmnet</code> package. Using the <code>cv.glmnet()</code> function we can run the ridge (<span class="math inline">\(alpha = 0\)</span>), lasso (<span class="math inline">\(alpha = 1\)</span> which is default), and elastic net (<span class="math inline">\(0 \leq alpha \leq 1\)</span>). It turns out that elastic net is the combination of the ridge and lasso methods and the closer <code>alpha</code> is to 1 the more it acts like lasso and the closer it is to 0 the more it acts like ridge.</p>
+<p>Lasso and elastic net can do variable selection in addition to estimation. Ridge is great at handling correlated predictors. Each of them are better than conventional methods at prediction and each of them can handle large numbers of predictors. To learn more see “Introduction to Statistical Learning” by Daniela Witten, Gareth James, Robert Tibshirani, and Trevor Hastie. A feww PDF is available on their website.</p>
 <p>To use the package, it wants the data in a very specific form. First, we need to remove any missingness. We use <code>na.omit()</code> to do this. We take all the predictors (without the outcome) and put it in a data matrix object. We only include a few for the demonstration but you can include <em>many</em> predictors. We name ours <code>X</code>. <code>Y</code> is our outcome.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df2 &lt;-<span class="st"> </span>df %&gt;%
 <span class="st">  </span>dplyr::<span class="kw">select</span>(riagendr, ridageyr, ridreth3, race, famsize, dep, asthma, sed_hr) %&gt;%
@@ -488,7 +497,7 @@ X &lt;-<span class="st"> </span>df2 %&gt;%
 <span class="st">  </span>dplyr::<span class="kw">select</span>(-sed_hr) %&gt;%
 <span class="st">  </span>data.matrix
 Y &lt;-<span class="st"> </span>df2$sed_hr</code></pre></div>
-<p>Then we use the <code>cv.glmnet()</code> function to fit the different models. The “cv” refers to cross-validation<a href="#fn18" class="footnoteRef" id="fnref18"><sup>18</sup></a>, which we don’t discuss here, but it an important topic to become familiar with. Below we fit a ridge, a lasso, and an elastic net model.</p>
+<p>Then we use the <code>cv.glmnet()</code> function to fit the different models. The “cv” refers to cross-validation<a href="#fn18" class="footnoteRef" id="fnref18"><sup>18</sup></a>, which we don’t discuss here, but it an important topic to become familiar with. Below we fit a ridge, a lasso, and an elastic net model. The elastic net model uses more of the lasso penalty because the <code>alpha</code> is closer to 1 than 0.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(glmnet)
 
 fit_ridge &lt;-<span class="st"> </span><span class="kw">cv.glmnet</span>(X, Y, <span class="dt">alpha =</span> <span class="dv">0</span>)
@@ -500,49 +509,58 @@ fit_enet  &lt;-<span class="st"> </span><span class="kw">cv.glmnet</span>(X, Y, 
 <span class="kw">plot</span>(fit_lasso)
 <span class="kw">plot</span>(fit_enet)</code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-105-1.png" width="672" /></p>
-<p>We can get the coefficients at a reasonable <code>lambda</code>. Specifically, we use the “1-SE rule” (near the right hand side vertical dashed lines in the above plots).</p>
+<p>We can get the coefficients at a reasonable <code>lambda</code>. Specifically, we use the “1-SE rule” (near the right hand side vertical dashed lines in the above plots) by <code>s = &quot;lambda.1se&quot;</code>. You can directly tell it what <code>lambda</code> value you’d like but this is a simple rule of thumb.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coef</span>(fit_ridge, <span class="dt">s =</span> <span class="st">&quot;lambda.1se&quot;</span>)</code></pre></div>
 <pre><code>## 8 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
-##                     1
-## (Intercept)  5.821033
-## riagendr     0.031077
-## ridageyr    -0.000392
-## ridreth3     0.038893
-## race         0.063137
-## famsize     -0.027690
-## dep          0.007346
-## asthma       0.070334</code></pre>
+##                    1
+## (Intercept)  5.49371
+## riagendr     0.06927
+## ridageyr    -0.00107
+## ridreth3     0.07304
+## race         0.13586
+## famsize     -0.06634
+## dep          0.01772
+## asthma       0.16212</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coef</span>(fit_lasso, <span class="dt">s =</span> <span class="st">&quot;lambda.1se&quot;</span>)</code></pre></div>
 <pre><code>## 8 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
-##                    1
-## (Intercept)  5.35046
-## riagendr     .      
-## ridageyr     .      
-## ridreth3     .      
-## race         0.26366
-## famsize     -0.03152
-## dep          0.00473
-## asthma       .</code></pre>
+##                  1
+## (Intercept) 5.7047
+## riagendr    .     
+## ridageyr    .     
+## ridreth3    .     
+## race        0.1356
+## famsize     .     
+## dep         .     
+## asthma      .</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coef</span>(fit_enet, <span class="dt">s =</span> <span class="st">&quot;lambda.1se&quot;</span>)</code></pre></div>
 <pre><code>## 8 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
-##                    1
-## (Intercept)  5.32733
-## riagendr     .      
-## ridageyr     .      
-## ridreth3     .      
-## race         0.27554
-## famsize     -0.04213
-## dep          0.00854
-## asthma       .</code></pre>
+##                  1
+## (Intercept) 5.8111
+## riagendr    .     
+## ridageyr    .     
+## ridreth3    .     
+## race        0.1034
+## famsize     .     
+## dep         .     
+## asthma      .</code></pre>
 <p>Although we briefly introduce these regression methods, they are indeed very important. We highly recommend learning more about them.</p>
 </div>
 <div id="random-forests" class="section level3 unnumbered">
 <h3>Random Forests</h3>
-<p>Random forests is another machine learning method that can do fantastic prediction. It is built in a very different way than the methods we have discussed up to this point. It is not built on a linear modeling scheme; rather, it is built on classification and regression trees. Again, “Introduction to Statistical Learning” is a great resource to learn more.</p>
+<p>Random forests is another machine learning method that can do fantastic prediction. It is built in a very different way than the methods we have discussed up to this point. It is not built on a linear modeling scheme; rather, it is built on classification and regression trees (CART). Again, “Introduction to Statistical Learning” is a great resource to learn more.</p>
 <p>Conveniently, we can use the <code>randomForest</code> package. We specify the model by the formula <code>sed_hr ~ .</code> which means we want <code>sed_hr</code> to be the outcome and all the rest of the variables to be predictors.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(randomForest)
-
-fit_rf &lt;-<span class="st"> </span><span class="kw">randomForest</span>(sed_hr ~<span class="st"> </span>., <span class="dt">data =</span> df2)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(randomForest)</code></pre></div>
+<pre><code>## randomForest 4.6-12</code></pre>
+<pre><code>## Type rfNews() to see new features/changes/bug fixes.</code></pre>
+<pre><code>## 
+## Attaching package: &#39;randomForest&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:ggplot2&#39;:
+## 
+##     margin</code></pre>
+<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
+## 
+##     combine</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fit_rf &lt;-<span class="st"> </span><span class="kw">randomForest</span>(sed_hr ~<span class="st"> </span>., <span class="dt">data =</span> df2)
 fit_rf</code></pre></div>
 <pre><code>## 
 ## Call:
@@ -552,7 +570,7 @@ fit_rf</code></pre></div>
 ## No. of variables tried at each split: 2
 ## 
 ##           Mean of squared residuals: 10.8
-##                     % Var explained: 3.78</code></pre>
+##                     % Var explained: 3.84</code></pre>
 <p>We can find out which variables were important in the model via:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))  ## back to one plot per page
 <span class="kw">varImpPlot</span>(fit_rf)</code></pre></div>
@@ -571,7 +589,7 @@ fit_rf</code></pre></div>
 <hr />
 <ol start="17">
 <li id="fn17"><p>The <code>lavaan</code> package has some great vignettes at <a href="http://lavaan.ugent.be/" class="uri">http://lavaan.ugent.be/</a> to help with the other types of models it can handle.<a href="chapter-7-other-modeling-techniques.html#fnref17">↩</a></p></li>
-<li id="fn18"><p>Cross-validation is a common way to reduce over-fitting and make sure your model is generalizable.<a href="chapter-7-other-modeling-techniques.html#fnref18">↩</a></p></li>
+<li id="fn18"><p>Cross-validation is a common way to reduce over-fitting and make sure your model is generalizable. Generally, you split your data into training and testing sets. It is very common in machine learning and is beginning to be practiced in academic fields as well. We recommend using it as often as you can, especially with these methods but also to make sure your other models are accurate on new data as well.<a href="chapter-7-other-modeling-techniques.html#fnref18">↩</a></p></li>
 </ol>
 </div>
             </section>

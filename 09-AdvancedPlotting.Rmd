@@ -1,5 +1,5 @@
 ---
-title: "Rstats for Researchers"
+title: "R for Health, Behavioral, and Social Scientists"
 author: "Tyson S. Barrett"
 date: "`r Sys.Date()`"
 site: "bookdown::bookdown_site"
@@ -9,11 +9,12 @@ documentclass: book
 link-citations: yes
 ---
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
 ## Run but not shown
 ## Getting data ready for the examples
 library(foreign)
-library(dplyr)
+library(furniture)
+library(tidyverse)
 dem_df <- read.xport("~/Box Sync/GitHub/blog_rstats/assets/Data/NHANES_demographics_11.xpt")
 med_df <- read.xport("~/Box Sync/GitHub/blog_rstats/assets/Data/NHANES_MedHeath_11.xpt")
 men_df <- read.xport("~/Box Sync/GitHub/blog_rstats/assets/Data/NHANES_MentHealth_11.xpt")
@@ -25,10 +26,34 @@ names(act_df) <- tolower(names(act_df))
 df <- dem_df %>%
   full_join(med_df, by="seqn") %>%
   full_join(men_df, by="seqn") %>%
-  full_join(act_df, by="seqn")
+  full_join(act_df, by="seqn") %>%
+  filter(complete.cases(dmdmartl)) %>%
+  mutate(race = factor(ridreth1, 
+                       labels=c("MexicanAmerican", "OtherHispanic", 
+                                "White", "Black", "Other"))) %>%
+  mutate(famsize = as.numeric(washer(dmdfmsiz, 7,9))) %>%
+  mutate(dpq010 = washer(dpq010, 7,9),
+         dpq020 = washer(dpq020, 7,9),
+         dpq030 = washer(dpq030, 7,9),
+         dpq040 = washer(dpq040, 7,9),
+         dpq050 = washer(dpq050, 7,9),
+         dpq060 = washer(dpq060, 7,9),
+         dpq070 = washer(dpq070, 7,9),
+         dpq080 = washer(dpq080, 7,9),
+         dpq090 = washer(dpq090, 7,9),
+         dpq100 = washer(dpq100, 7,9)) %>%
+  mutate(dep = dpq010 + dpq020 + dpq030 + dpq040 + dpq050 +
+               dpq060 + dpq070 + dpq080 + dpq090) %>%
+  mutate(dep2 = factor(ifelse(dep >= 10, 1,
+                       ifelse(dep < 10, 0, NA))))
+df <- df %>%
+  mutate(asthma = washer(mcq010, 9, 7),
+         asthma = factor(washer(asthma, 2, value = 0),
+                         labels = c("No Asthma", "Asthma"))) %>%
+  mutate(sed = washer(pad680, 9999, 7777)) %>%
+  mutate(cluster = sdmvstra - 89) %>%
+  filter(complete.cases(asthma) & complete.cases(dep2)) 
 ```
-
-
 
 # Chapter 9: Advanced Plotting {-}
 
@@ -42,11 +67,121 @@ We will go through several aspects of the code that makes plotting in `R` flexib
 4. Labels and titles
 5. Facetting
 
+To highlight these features we'll be using our NHANES data again; specifically, sedentary behavior, depression, asthma, family size, and race. As this is only an introduction, refer to [http://docs.ggplot2.org/current/](http://docs.ggplot2.org/current/) for more information on `ggplot2`.
+
+To begin, it needs to be understood that the first line where we actually use the `ggplot` function, will then apply to all subsequent laters (e.g., `geom_point()`). For example,
+```{r, eval=FALSE}
+ggplot(df, aes(x = dep, y = sed, group = asthma))
+```
+means for the rest of the layers, unless we over-ride it, each will use `df` with `dep` as the x variable, `sed` as the y, and a grouping on `asthma`. So when many layers are going to use the same command put it in this so you don't have to write the same argument many times. A common one here could be:
+```{r, eval=FALSE}
+ggplot(df, aes(x = dep, y = sed, group = asthma, color = asthma))
+```
+since we often want to color by our grouping variable.
+
+Before going forward, a nice feature of `ggplot2` allows us to use an "incomplete" plot to add on to. For example, if we have a good idea of the main structure of the plot but want to explore some changes, we can do the following:
+```{r}
+p1 <- ggplot(df, aes(x = dep, y = sed, group = asthma)) +
+  geom_point()
+p1
+```
+So now `p1` has the information for this basic, and honestly fairly uninformative, plot. We'll use this feature to build on plots that we like. 
+
+Some of our figures will also need summary data so we'll start that here as well:
+```{r}
+summed_data <- df %>%
+  group_by(asthma, dep2) %>%
+  summarize(s_se = sd(sed, na.rm=TRUE)/sqrt(n()),
+            sed  = mean(sed, na.rm=TRUE),
+            N    = n())
+```
+As you hopefully recognize a bit, we are summarizing the time spent being sedentary by both asthma and the dichotomous depression variables. If it doesn't make sense at first, read it line by line to see what I did. This will be useful for several types of plots.
+
+
 ## Types of Plots {-}
+### Scatterplots {-}
+We'll start with a scatterplot--one of the most simple yet informative plots.
+```{r}
+ggplot(df, aes(x = dep, y = sed, group = asthma)) +
+  geom_point(aes(color = asthma))
+```
+It's not amazing. There looks to be a lot of overlap of the points. Also, it would be nice to know general trend lines for each group. Below, `alpha` refers to how transparent the points are, `method = "lm"` refers to how the line should be fit, and `se=FALSE` tells it not to include error ribbons.
+```{r}
+ggplot(df, aes(x = dep, y = sed, group = asthma)) +
+  geom_jitter(aes(color = asthma), alpha = .5) +
+  geom_smooth(aes(color = asthma), method = "lm", se=FALSE)
+```
+It's getting better but we could still use some more features. We'll come back to this in the next sections.
+
+### Boxplots {-}
+Box plots are great ways to assess the variability in your data. Below, we create a boxplot but change `p1`'s x variable so that it is the factor version of depression.
+```{r}
+ggplot(df, aes(x = factor(dep2), y = sed)) +
+  geom_boxplot()
+```
+This is alright. But there's more we can do.
+```{r}
+ggplot(df, aes(x = factor(dep2), y = jitter(sed, 100))) +
+  geom_jitter(alpha = .1, color = "chartreuse4") +
+  geom_boxplot(alpha = .75, color = "dodgerblue4") 
+```
+This now provides the (jittered) raw data points as well to hightlight the noise and the number of observations in each group.
 
 
+### Bar Plots {-}
+Bar plots are great ways to look at means and standard deviations for groups.
+```{r}
+ggplot(summed_data, aes(x = dep2, y = sed, group = asthma)) +
+  geom_bar(aes(fill = asthma), stat = "identity", position = "dodge")
+```
+We used `stat = "identity"` to make it based on the mean (default is `count`), and `position = "dodge"` makes it so the bars are next to each other as opposed to stacked. Let's also add error bars.
+
+```{r}
+p = position_dodge(width = .9)
+ggplot(summed_data, aes(x = dep2, y = sed, group = asthma)) +
+  geom_bar(aes(fill = asthma), 
+           stat = "identity", 
+           position = p,
+           alpha = .8) +
+  geom_errorbar(aes(ymin = sed - s_se, ymax = sed + s_se,
+                    color = asthma), 
+                position = p,
+                width = .3)
+```
+There's a lot in there but much of it is what you've seen before. For example, we use `alpha` in the `geom_bar()` to tell it to be slightly transparent so we can see the error bars better. We used the `position_dodge()` function to specify exactly how much dodge we wanted. In this way, we are able to line up the error bars and the bars. If we just use `position = "dodge"` we have less flexibility and control. 
+
+Much more can be done to clean this up, which we'll show in later sections.
+
+### Line Plots {-}
+Line plots are particularly good at showing trends and relationships. Below we we use it to highlight the relationship between depression, sedentary behavior, and asthma.
+```{r}
+ggplot(summed_data, aes(x = dep2, y = sed, group = asthma)) +
+  geom_line(aes(color = asthma))
+```
+Good start, but let's add some features.
+```{r}
+pos = position_dodge(width = .1)
+ggplot(summed_data, aes(x = dep2, y = sed, group = asthma, color = asthma)) +
+  geom_line(position = pos) +
+  geom_point(position = pos) +
+  geom_errorbar(aes(ymin = sed - s_se, ymax = sed + s_se), 
+                width = .1, 
+                position = pos)
+```
+That looks a bit better. From here, let's go on to color schemes to make the plots a bit better.
 
 ## Color Schemes {-}
+
+We'll start by using the scatterplot we made above but we will change the colors a bit using `scale_color_manual()`.
+```{r}
+ggplot(df, aes(x = dep, y = sed, group = asthma)) +
+  geom_jitter(aes(color = asthma), alpha = .5) +
+  geom_smooth(aes(color = asthma), method = "lm", se=FALSE) +
+  scale_color_manual(values = c("dodgerblue4", "chartreuse4"))
+```
+Depending on your personal taste, you can adjust it with any color. On my blog, I've [posted](tysonstanley.github.io) the colors available in R (there are many). 
+
+> Advice: Don't get too lost in selecting colors but it can add a nice touch to any plot. The nuances of plot design can be invigorating but also time consuming to be smart about how long you spend using it.
 
 
 
@@ -60,6 +195,11 @@ We will go through several aspects of the code that makes plotting in `R` flexib
 
 ## Facetting {-}
 
+When you are faced with trying to plot more than three dimensions of data (e.g., height, weight, gender, and race), it is often useful--and beautiful--to use facetting. Facetting splits the data based on some grouping variable (e.g., gender) to highlight differences in the relationship.
+```{r}
+
+```
+
 
 
 
@@ -69,5 +209,6 @@ We will go through several aspects of the code that makes plotting in `R` flexib
 
 ```
 
+## Conclusions {-}
 
-
+In the end, exploring and communicating the data through plots is simply something you need to practice at. With time, you can picture the types of plots that will highlight things in your data, the ways you can adjust it, and how you need to manipulate your data to make it plot ready. Be patient and have fun trying things. In my experience, almost anytime I think "Can R do this?", it can, so try to do cool stuff and you'll find that you can.

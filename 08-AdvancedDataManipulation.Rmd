@@ -1,5 +1,5 @@
 ---
-title: "Rstats for Researchers"
+title: "R for Health, Behavioral, and Social Scientists"
 author: "Tyson S. Barrett"
 date: "`r Sys.Date()`"
 site: "bookdown::bookdown_site"
@@ -9,37 +9,15 @@ documentclass: book
 link-citations: yes
 ---
 
-```{r, echo=FALSE}
-## Run but not shown
-## Getting data ready for the examples
-library(foreign)
-library(dplyr)
-dem_df <- read.xport("~/Box Sync/GitHub/blog_rstats/assets/Data/NHANES_demographics_11.xpt")
-med_df <- read.xport("~/Box Sync/GitHub/blog_rstats/assets/Data/NHANES_MedHeath_11.xpt")
-men_df <- read.xport("~/Box Sync/GitHub/blog_rstats/assets/Data/NHANES_MentHealth_11.xpt")
-act_df <- read.xport("~/Box Sync/GitHub/blog_rstats/assets/Data/NHANES_PhysActivity_11.xpt")
-names(dem_df) <- tolower(names(dem_df))
-names(med_df) <- tolower(names(med_df))
-names(men_df) <- tolower(names(men_df))
-names(act_df) <- tolower(names(act_df))
-df <- dem_df %>%
-  full_join(med_df, by="seqn") %>%
-  full_join(men_df, by="seqn") %>%
-  full_join(act_df, by="seqn")
-```
-
-
-
 # Chapter 8: Advanced Data Manipulation {-}
 
 There's so much more we can do with data in `R` than what we've presented. One of the main ways that `R` can help you in your research is by looping. Looping, for our purposes, refers to the ability to repeat something across many variables or data sets. There's many ways of doing this but some are better than others.
 
 We will introduce:
 
-1. Vectorized
-2. `for` loops,
-3. The `apply` family of functions, and
-4. The `purrr` package.
+1. vectorized functions,
+2. `for` loops, and
+3. the `apply` family of functions.
 
 But first, we need to discuss how to create your own functions. This is very useful for things you do a lot and reduces errors and redundancies in your code. 
 
@@ -58,9 +36,9 @@ We create a function using the `function()` function.[^functions] Within the `fu
 
 Let's give it a try:
 ```{r}
-v1 <- c(1,3,2,4,2,1,2,1,1,1)
-mean2(v1)
-mean(v1)
+v1 <- c(1,3,2,4,2,1,2,1,1,1)   ## vector to try
+mean2(v1)                      ## our function
+mean(v1)                       ## the base R function
 ```
 
 Looks good! These functions that you create can do whatever you need them to (within the bounds that `R` can do). I recommend by starting outside of a function that then put it into a function. For example, we would start with:
@@ -71,32 +49,150 @@ m
 ```
 and once things look good, we would put it into a function like we had before with `mean2`. It is an easy way to develop a good function and test it while developing it.
 
-By creating your own function, you can simplify your workflow and can use them in loops.
+By creating your own function, you can simplify your workflow and can use them in loops, the `apply` functions and the `purrr` package.
+
+For practice, we will write one more function. Let's make a function that takes a vector and gives us the N, the mean, and the standard deviation.
+```{r}
+important_statistics <- function(x, na.rm=FALSE){
+  N  <- length(x)
+  M  <- mean(x, na.rm=na.rm)
+  SD <- sd(x, na.rm=na.rm)
+  
+  final <- c(N, M, SD)
+  return(final)
+}
+```
+One of the first things you should note is that we included a second argument in the function seen as `na.rm=FALSE` (you can have as many arguments as you want within reason). This argument has a default that we provide as `FALSE` as it is in most functions that use the `na.rm` argument. We take what is provided in the `na.rm` and give that to both the `mean()` and `sd()` functions. Finally, you should notice that we took several pieces of information and combined them into the `final` object and returned that.
+
+Let's try it out with the vector we created earlier.
+```{r}
+important_statistics(v1)
+```
+Looks good but we may want to change a few aesthetics. In the following code, we adjust it so we have each one labeled.
+```{r}
+important_statistics2 <- function(x, na.rm=FALSE){
+  N  <- length(x)
+  M  <- mean(x, na.rm=na.rm)
+  SD <- sd(x, na.rm=na.rm)
+  
+  final <- data.frame(N, "Mean"=M, "SD"=SD)
+  return(final)
+}
+important_statistics2(v1)
+```
+We will come back to this function and use it in some loops and see what else we can do with it.
 
 
 ## Vectorized {-}
 
-By construction, `R` is the fastest when we use the vectorized form of doing things.
+By construction, `R` is the fastest when we use the vectorized form of doing things. For example, when we want to add two variables together, we can use the `+` operator. Like most functions in `R`, it is vectorized and so it is fast. Below we create a new vector using the `rnorm()` function that produces normally distributed random variables. First argument in the function is the length of the vector, followed by the mean and SD.
+```{r}
+v2 <- rnorm(10, mean=5, sd=2)
+add1 <- v1 + v2
+round(add1, 3)
+```
+We will compare the speed of this to other ways of adding two variables together and see it is the simplest and quickest.
 
 ## For Loops {-}
 
-For loops have a bad reputation in the `R` world. This is because, in general, they are slow. It is among the slowest of ways to iterate (i.e., repeat) functions. We start here to show you, in essence, what the `apply` family of functions and the `purrr` package are doing in a much faster way.
+For loops have a bad reputation in the `R` world. This is because, in general, they are slow. It is among the slowest of ways to iterate (i.e., repeat) functions. We start here to show you, in essence, what the `apply` family of functions are doing, often, in a faster way.
 
+At times, it is easiest to develop a for loop and then take it and use it within the `apply` or `purrr` functions. It can help you think through the pieces that need to be done in order to get your desired result.
+
+For demonstration, we are using the `for` loop to add two variables together. The code between the `()`'s tells `R` information about how many loops it should do. Here, we are looping through `1:10` since there are ten observations in each vector. We could also specify this as `1:length(v1)`. When using `for` loops, we need to keep in mind that we need to initialize a variable in order to use it within the loop. That's precisely what we do with the `add2`, making it a numberic vector with 10 observations.
+```{r}
+add2 <- vector("numeric", 10)   ## Initialize
+for (i in 1:10){
+  add2[i] <- v1[i] + v2[i]
+}
+round(add2, 3)
+```
+Same results! But, we'll see later that the speed is much than the vectorized function.
 
 
 ## The `apply` family {-}
 
+The `apply` family of functions that we'll introduce are:
 
+1. `apply()`
+2. `lapply()`
+3. `sapply()`
+4. `tapply()`
 
-## The `purrr` package {-}
+Each essentially do a loop over the data you provide using a function (either one you created or another). The different versions are extremely similar with some minor differences. For `apply()` you tell it if you want to iterative over the columns or rows; `lapply()` assumes you want to iterate over the columns and outputs a list (hence the `l`); `sapply()` is similar to `lapply()` but outputs vectors and data frames. `tapply()` has the most differences because it can iterative over columns by a grouping variable. We'll show `apply()`, `lapply()` and `tapply()` below.
 
-
-
-
+For example, we can add two variables together here. We provide it the `data.frame` that has the variables we want to add together.
 ```{r}
+df <- data.frame(v1, v2)
+add3 <- apply(df, 1, sum)
+round(add3, 3)
+```
+The function `apply()` has three main arguments: a) the `data.frame` or list of data, b) 1 meaning to apply the function for each row or 2 to the columns, and c) the function to use.
 
+We can also use one of our own functions such as `important_statistics2()` within the `apply` family.
+```{r}
+lapply(df, important_statistics2)
+```
+This gives us a list of two elements, one for each variable, with the statistics that our function provides. With a little adjustment, we can make this into a `data.frame` using the `do.call()` function with `"rbind"`.
+```{r}
+do.call("rbind", lapply(df, important_statistics2))
 ```
 
+`tapply()` allows us to get information by a grouping factor. We are going to add a factor variable to the data frame we are using `df` and then get the mean of the variables by group.
+```{r}
+group1 <- factor(sample(c(0,1), 10, replace=TRUE))
+tapply(df$v1, group1, mean)
+```
+We now have the means by each group. This, however, is probably replaced by the 3 step summary that we learned earlier in `dplyr` using `group_by()` and `summarize()`.
+
+These functions are useful in many situations, especially where there are no vectorized functions. You can always get an idea of whether to use a `for` loop or an `apply` function by giving it a try on a small subset of data to see if one is better and/or faster.
+
+### Speed Comparison
+
+We can test to see how fast functions are with the `microbenchmark` package. Since it wants functions, we will create a function that uses the `for` looop.
+```{r}
+forloop <- function(var1, var2){
+  add2 <- vector("numeric", length(var1))
+  for (i in 1:10){
+    add2[i] <- var1[i] + var2[i]
+  }
+  return(add2)
+}
+```
+
+Below, we can see that the vectorized version is nearly 50 times faster than the `for` loop and 300 times faster than the `apply`. Although the `for` loop was faster here, sometimes it can be slower than the `apply` functions--it just depends on the situation. But, the vectorized functions will almost always be *much* faster than anything else. It's important to note that the `+` is also a function that can be used as we do below, highlighting the fact that anything that does something to an object in `R` is a function.
+```{r}
+library(microbenchmark)
+microbenchmark(forloop(v1, v2),
+               apply(df, 1, sum),
+               `+`(v1, v2))
+```
+Of course, as it says the units are in nanoseconds. Whether a function takes 200 or 200,000 nanoseconds probably won't change your life. However, if the function is being used repeatedly or on on large data sets, this can make a difference.
+
+## Using "Anonymous Functions" in Apply
+
+Last thing to know here is that you don't need to create a named function everytime you want to use `apply`. We can use what is called "Anonymous" functions. Below, we use one to get at the N and mean of the data.
+```{r}
+lapply(df, function(x) rbind(length(x), mean(x, na.rm=TRUE)))
+```
+So we don't name the function but we design it like we would a named function, just minus the `return()`. We take `x` (which is a column of `df`) and do `length()` and `mean()` and bind them by rows. The first argument in the anonymous function will be the column or variable of the data you provide.
+
+Here's another example:
+```{r}
+lapply(df, function(y) y * 2 / sd(y))
+```
+We take `y` (again, the column of `df`), times it by two and divide by the standard deviation of `y`. Note that this is gibberish and is not some special formula, but again, we can see how flexible it is.
+
+The last two examples also show something important regarding the output:
+
+1. The output will be at the level of the anonymous function. The first had two numbers per variable because the function produced two summary statistics for each variable. The second we multiplied `y` by 2 (so it is still at the individual observation level) and then divide by the SD. This keeps it at the observation level so we get ten values for every variable.
+2. We can name the argument anything we want (as long as it is one word). We used `x` in the first and `y` in the second but as long as it is the same within the function, it doesn't matter what you use.
+
+## Conclusions
+
+These are useful tools to use in your own data manipulation beyond that what we discussed with `dplyr`. It takes time to get used to making your own functions so be patient with yourself as you learn how to get `R` to do exactly what you want in a condensed, replicable format. 
+
+With these new tricks up your sleeve, we can move on to more advanced plotting using `ggplot2`.
 
 
 [^functions]: That seemed like excessive use of the word function... It is important though. So, get used to it!
