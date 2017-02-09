@@ -397,32 +397,32 @@ h_fit =<span class="st"> </span><span class="kw">hurdle</span>(sed_zero ~<span c
 ## hurdle(formula = sed_zero ~ asthma + race + famsize, data = df)
 ## 
 ## Pearson residuals:
-##    Min     1Q Median     3Q    Max 
-## -3.757 -1.558 -0.243  1.285 10.849 
+##     Min      1Q  Median      3Q     Max 
+## -3.7157 -1.5438 -0.1691  1.2698  9.1309 
 ## 
 ## Count model coefficients (truncated poisson with log link):
 ##                     Estimate Std. Error z value Pr(&gt;|z|)    
-## (Intercept)        5.6569422  0.0036838 1535.63   &lt;2e-16 ***
-## asthma             0.0673757  0.0022490   29.96   &lt;2e-16 ***
-## raceOtherHispanic  0.1310127  0.0042793   30.62   &lt;2e-16 ***
-## raceWhite          0.3433510  0.0034659   99.07   &lt;2e-16 ***
-## raceBlack          0.3255786  0.0035734   91.11   &lt;2e-16 ***
-## raceOther          0.3491235  0.0037652   92.72   &lt;2e-16 ***
-## famsize           -0.0195062  0.0005751  -33.92   &lt;2e-16 ***
+## (Intercept)        5.6538044  0.0037471 1508.84   &lt;2e-16 ***
+## asthma             0.0499797  0.0022476   22.24   &lt;2e-16 ***
+## raceOtherHispanic  0.1401565  0.0042932   32.65   &lt;2e-16 ***
+## raceWhite          0.3387039  0.0035310   95.92   &lt;2e-16 ***
+## raceBlack          0.3438026  0.0036338   94.61   &lt;2e-16 ***
+## raceOther          0.3532267  0.0038182   92.51   &lt;2e-16 ***
+## famsize           -0.0185928  0.0005735  -32.42   &lt;2e-16 ***
 ## Zero hurdle model coefficients (binomial with logit link):
 ##                   Estimate Std. Error z value Pr(&gt;|z|)    
-## (Intercept)        2.75857    0.23117  11.933   &lt;2e-16 ***
-## asthma            -0.06882    0.14478  -0.475    0.635    
-## raceOtherHispanic -0.45475    0.25004  -1.819    0.069 .  
-## raceWhite         -0.30217    0.21573  -1.401    0.161    
-## raceBlack         -0.27675    0.22287  -1.242    0.214    
-## raceOther         -0.22208    0.23789  -0.934    0.351    
-## famsize           -0.05624    0.03606  -1.560    0.119    
+## (Intercept)        2.29915    0.20521  11.204   &lt;2e-16 ***
+## asthma            -0.01129    0.15340  -0.074   0.9413    
+## raceOtherHispanic  0.43451    0.24508   1.773   0.0762 .  
+## raceWhite          0.36635    0.18857   1.943   0.0520 .  
+## raceBlack          0.14663    0.19237   0.762   0.4459    
+## raceOther          0.42094    0.21696   1.940   0.0524 .  
+## famsize           -0.06166    0.03724  -1.656   0.0978 .  
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1 
 ## 
 ## Number of iterations in BFGS optimization: 12 
-## Log-likelihood: -2.346e+05 on 14 Df</code></pre>
+## Log-likelihood: -2.332e+05 on 14 Df</code></pre>
 <p>Notice that the output has two parts: “Count model coefficients (truncated poisson with log link):” and “Zero hurdle model coefficients (binomial with logit link):”. Together they tell us about the relationship between the predictors and a count variable with many zeros.</p>
 </div>
 <div id="negative-binomial" class="section level3 unnumbered">
@@ -453,28 +453,28 @@ fit_beta &lt;-<span class="st"> </span><span class="kw">betareg</span>(beta_var 
 ## 
 ## Standardized weighted residuals 2:
 ##     Min      1Q  Median      3Q     Max 
-## -2.1049 -0.6940 -0.0680  0.6227  2.9130 
+## -2.0418 -0.7074 -0.0505  0.6030  2.8589 
 ## 
 ## Coefficients (mean model with logit link):
-##                   Estimate Std. Error z value Pr(&gt;|z|)  
-## (Intercept)        0.05315    0.06351   0.837   0.4027  
-## asthma             0.07945    0.04392   1.809   0.0704 .
-## raceOtherHispanic  0.08198    0.07231   1.134   0.2569  
-## raceWhite          0.10480    0.05899   1.777   0.0756 .
-## raceBlack          0.07572    0.06123   1.237   0.2162  
-## raceOther          0.16031    0.06565   2.442   0.0146 *
-## famsize           -0.01151    0.01087  -1.059   0.2896  
+##                     Estimate Std. Error z value Pr(&gt;|z|)  
+## (Intercept)        0.1275503  0.0632846   2.016   0.0439 *
+## asthma            -0.0216715  0.0437296  -0.496   0.6202  
+## raceOtherHispanic  0.0053011  0.0720413   0.074   0.9413  
+## raceWhite          0.0500760  0.0587740   0.852   0.3942  
+## raceBlack          0.0103803  0.0610137   0.170   0.8649  
+## raceOther         -0.0404916  0.0653908  -0.619   0.5358  
+## famsize           -0.0008958  0.0108274  -0.083   0.9341  
 ## 
 ## Phi coefficients (precision model with identity link):
 ##       Estimate Std. Error z value Pr(&gt;|z|)    
-## (phi)   2.4356     0.0443   54.98   &lt;2e-16 ***
+## (phi)  2.46633    0.04492   54.91   &lt;2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1 
 ## 
 ## Type of estimator: ML (maximum likelihood)
-## Log-likelihood: 85.86 on 8 Df
-## Pseudo R-squared: 0.002641
-## Number of iterations: 16 (BFGS) + 2 (Fisher scoring)</code></pre>
+## Log-likelihood: 93.71 on 8 Df
+## Pseudo R-squared: 0.001008
+## Number of iterations: 17 (BFGS) + 1 (Fisher scoring)</code></pre>
 <p>The output provides coefficients and the “Phi” coefficients. Both are important parts of using beta regression but we are not going to discuss it here.</p>
 <p>There are many resources available to learn more about beta regression and each of these GLM’s. As for now, we are going to move on to more complex modeling where there are clustering or repeated measures in the data.</p>
 </div>

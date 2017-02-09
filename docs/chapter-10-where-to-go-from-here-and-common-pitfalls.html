@@ -323,27 +323,27 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="question-15" class="section level4 unnumbered">
 <h4>Question 15</h4>
 <p>Is the following data in wide or long form? How do you know?</p>
-<pre><code>##    ID  measures   values
-## 1   1 Var_Time1  1.43583
-## 2   2 Var_Time1 -0.23298
-## 3   3 Var_Time1 -1.10139
-## 4   4 Var_Time1  0.34984
-## 5   5 Var_Time1  1.13165
-## 6   6 Var_Time1 -0.06718
-## 7   7 Var_Time1 -1.20899
-## 8   8 Var_Time1  0.24708
-## 9   9 Var_Time1  0.12015
-## 10 10 Var_Time1 -1.44401
-## 11  1 Var_Time2  0.75513
-## 12  2 Var_Time2  0.59183
-## 13  3 Var_Time2  0.85950
-## 14  4 Var_Time2  0.19253
-## 15  5 Var_Time2  0.44780
-## 16  6 Var_Time2  0.84614
-## 17  7 Var_Time2  0.03641
-## 18  8 Var_Time2  0.78805
-## 19  9 Var_Time2  0.51541
-## 20 10 Var_Time2  0.69500</code></pre>
+<pre><code>##    ID  measures    values
+## 1   1 Var_Time1 -1.215247
+## 2   2 Var_Time1  0.512062
+## 3   3 Var_Time1  0.674665
+## 4   4 Var_Time1 -0.624234
+## 5   5 Var_Time1 -0.474608
+## 6   6 Var_Time1  0.272157
+## 7   7 Var_Time1 -0.009236
+## 8   8 Var_Time1  0.651493
+## 9   9 Var_Time1  0.043316
+## 10 10 Var_Time1 -0.434686
+## 11  1 Var_Time2  0.672734
+## 12  2 Var_Time2  0.763416
+## 13  3 Var_Time2  0.716960
+## 14  4 Var_Time2  0.316046
+## 15  5 Var_Time2  0.154204
+## 16  6 Var_Time2  0.756830
+## 17  7 Var_Time2  0.366830
+## 18  8 Var_Time2  0.930832
+## 19  9 Var_Time2  0.876778
+## 20 10 Var_Time2  0.505881</code></pre>
 <p>To make your data long form but it is currently in wide form, what function(s) can you use?</p>
 </div>
 <div id="question-16" class="section level4 unnumbered">
@@ -357,7 +357,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   s &lt;-<span class="st"> </span>pb +<span class="st"> </span>jam
   <span class="kw">return</span>(s)
 }</code></pre></div>
-<p>Question 18 {-} What is wrong with this chunk of code?</p>
+</div>
+<div id="question-18" class="section level4 unnumbered">
+<h4>Question 18</h4>
+<p>What is wrong with this chunk of code?</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span>df +
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">newvar =</span> <span class="kw">ifelse</span>(oldvar ==<span class="st"> </span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>))</code></pre></div>
 </div>
@@ -374,12 +377,17 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="kw">aes</span>(<span class="dt">ymin =</span> sed -<span class="st"> </span>s_se, <span class="dt">ymax =</span> sed +<span class="st"> </span>s_se), 
                 <span class="dt">width =</span> .<span class="dv">1</span>, 
                 <span class="dt">position =</span> pos)</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-160-1.png" width="672" /></p>
 </div>
 </div>
 <div id="goodbye-and-good-luck" class="section level2 unnumbered">
 <h2>Goodbye and Good Luck</h2>
 <p>I hope this has been a useful primer to get you into <code>R</code>. If you still feel rusty, feel free to go through the book again or look at other online resources. <code>R</code> is very flexible and can ease the data and analysis burden of research. Implement good practices and your work will become easier to track, easier to document, and easier to communicate. Good luck on your journey using <code>R</code> in your research!</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Step1 &lt;-<span class="st"> </span><span class="kw">of_a_journey</span>(you) %&gt;%
+<span class="st">  </span><span class="kw">has</span>(begun)
+You &lt;-<span class="st"> </span><span class="kw">now_have_seen</span>(aspects, of, R) %&gt;%
+<span class="st">  </span><span class="kw">that_can</span>(increase) %&gt;%
+<span class="st">  </span><span class="kw">productivity</span>(your)
+GoodLuck &lt;-<span class="st"> </span><span class="kw">journey</span>(on, your)</code></pre></div>
 
 </div>
 </div>

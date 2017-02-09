@@ -120,7 +120,7 @@ sandwhich <- function(pb, jam){
 }
 ```
 
-Question 18 {-}
+#### Question 18 {-}
 What is wrong with this chunk of code?
 ```{r, eval=FALSE}
 df <- df +
@@ -132,7 +132,7 @@ What is your favorite built in theme or how would you make your favorite custom 
 
 #### Question 20 {-}
 What kind of plot does the following make?
-```{r, message=FALSE, warning=FALSE}
+```{r, message=FALSE, warning=FALSE, eval=FALSE}
 pos = position_dodge(width = .1)
 ggplot(summed_data, aes(x = dep2, y = sed, group = asthma, color = asthma)) +
   geom_line(position = pos) +
@@ -145,3 +145,13 @@ ggplot(summed_data, aes(x = dep2, y = sed, group = asthma, color = asthma)) +
 ## Goodbye and Good Luck {-}
 
 I hope this has been a useful primer to get you into `R`. If you still feel rusty, feel free to go through the book again or look at other online resources. `R` is very flexible and can ease the data and analysis burden of research. Implement good practices and your work will become easier to track, easier to document, and easier to communicate. Good luck on your journey using `R` in your research!
+
+```{r, eval=FALSE}
+Step1 <- of_a_journey(you) %>%
+  has(begun)
+You <- now_have_seen(aspects, of, R) %>%
+  that_can(increase) %>%
+  productivity(your)
+GoodLuck <- journey(on, your)
+```
+
