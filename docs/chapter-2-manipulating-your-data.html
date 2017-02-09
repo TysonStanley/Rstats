@@ -384,17 +384,17 @@ dem_df %&gt;%<span class="st">                           </span>## 1. Data
 <div id="wide-form" class="section level3 unnumbered">
 <h3>Wide Form</h3>
 <p>Wide form generally has one unit (i.e. individual) per row. This generally looks like:</p>
-<pre><code>##    ID   Var_Time1  Var_Time2
-## 1   1 -0.82420440 0.31544451
-## 2   2 -0.66666680 0.11434808
-## 3   3 -0.22353820 0.36795942
-## 4   4  0.32431991 0.20922510
-## 5   5  0.04575228 0.55781471
-## 6   6  0.18952201 0.24274077
-## 7   7 -0.56035190 0.14321445
-## 8   8  1.62993250 0.30872494
-## 9   9  0.86552513 0.25050663
-## 10 10 -1.26809297 0.08066232</code></pre>
+<pre><code>##    ID  Var_Time1  Var_Time2
+## 1   1  0.6122535 0.59888428
+## 2   2 -2.7998651 0.09363904
+## 3   3  0.6032091 0.96046141
+## 4   4  2.1495543 0.29175264
+## 5   5  0.4654219 0.35198276
+## 6   6 -0.9397609 0.08541962
+## 7   7 -0.8374342 0.84009453
+## 8   8 -0.6418610 0.05852176
+## 9   9  0.6067672 0.35343477
+## 10 10  0.2397739 0.61634362</code></pre>
 <p>Notice that each row has a unique ID.</p>
 <p>This format is common in the ANOVA family of analyses. These can be used when there are set time points that the individual is measured and each individual has the same number of time points. This is not always reasonable, but when it is, wide format works just fine. However, when these conditions don’t hold, mixed effects modeling (i.e. multilevel modeling, hierarchical linear modeling) is particularly useful. In order to do mixed effects modeling, long format is required.</p>
 </div>
@@ -402,15 +402,15 @@ dem_df %&gt;%<span class="st">                           </span>## 1. Data
 <h3>Long Form</h3>
 <p>In contrast, long format has the lowest nested unit as a single row. This means that a single ID can span multiple rows, usually with a unique time point for each row as so:</p>
 <pre><code>##   ID Time       Var
-## 1  1    1 0.9329639
-## 2  1    2 0.1715240
-## 3  1    3 0.2221021
-## 4  1    4 0.4604060
-## 5  2    1 0.5427855
-## 6  2    2 0.9300754
-## 7  3    1 0.9958878
-## 8  3    2 0.2083723
-## 9  3    3 0.1070417</code></pre>
+## 1  1    1 0.0469462
+## 2  1    2 0.6174966
+## 3  1    3 0.9288661
+## 4  1    4 0.6083727
+## 5  2    1 0.7067529
+## 6  2    2 0.7820680
+## 7  3    1 0.9283597
+## 8  3    2 0.8023847
+## 9  3    3 0.8013688</code></pre>
 <p>Notice that a single ID spans multiple columns and that each row has only one time point. Here, time is nested within individuals making it the lowest unit. Therefore, each row corresponds to a single time point. Generally, this is the format we want for most modeling techniques and most visualizations.</p>
 </div>
 </div>

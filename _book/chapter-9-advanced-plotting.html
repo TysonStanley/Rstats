@@ -266,14 +266,11 @@ p1</code></pre></div>
 <p>We’ll start with a scatterplot–one of the most simple yet informative plots.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> dep, <span class="dt">y =</span> sed, <span class="dt">group =</span> asthma)) +
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> asthma))</code></pre></div>
-<pre><code>## Warning: Removed 18 rows containing missing values (geom_point).</code></pre>
 <p><img src="_main_files/figure-html/unnamed-chunk-130-1.png" width="672" /></p>
 <p>It’s not amazing. There looks to be a lot of overlap of the points. Also, it would be nice to know general trend lines for each group. Below, <code>alpha</code> refers to how transparent the points are, <code>method = &quot;lm&quot;</code> refers to how the line should be fit, and <code>se=FALSE</code> tells it not to include error ribbons.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> dep, <span class="dt">y =</span> sed, <span class="dt">group =</span> asthma)) +
 <span class="st">  </span><span class="kw">geom_jitter</span>(<span class="kw">aes</span>(<span class="dt">color =</span> asthma), <span class="dt">alpha =</span> .<span class="dv">5</span>) +
 <span class="st">  </span><span class="kw">geom_smooth</span>(<span class="kw">aes</span>(<span class="dt">color =</span> asthma), <span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se=</span><span class="ot">FALSE</span>)</code></pre></div>
-<pre><code>## Warning: Removed 18 rows containing non-finite values (stat_smooth).</code></pre>
-<pre><code>## Warning: Removed 18 rows containing missing values (geom_point).</code></pre>
 <p><img src="_main_files/figure-html/unnamed-chunk-131-1.png" width="672" /></p>
 <p>It’s getting better but we could still use some more features. We’ll come back to this in the next sections.</p>
 </div>
@@ -282,14 +279,11 @@ p1</code></pre></div>
 <p>Box plots are great ways to assess the variability in your data. Below, we create a boxplot but change <code>p1</code>’s x variable so that it is the factor version of depression.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span>(dep2), <span class="dt">y =</span> sed)) +
 <span class="st">  </span><span class="kw">geom_boxplot</span>()</code></pre></div>
-<pre><code>## Warning: Removed 18 rows containing non-finite values (stat_boxplot).</code></pre>
 <p><img src="_main_files/figure-html/unnamed-chunk-132-1.png" width="672" /></p>
 <p>This plot is, at best, mediocre. But there’s more we can do.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span>(dep2), <span class="dt">y =</span> <span class="kw">jitter</span>(sed, <span class="dv">100</span>))) +
 <span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">alpha =</span> .<span class="dv">1</span>, <span class="dt">color =</span> <span class="st">&quot;chartreuse4&quot;</span>) +
 <span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">alpha =</span> .<span class="dv">75</span>, <span class="dt">color =</span> <span class="st">&quot;dodgerblue4&quot;</span>) </code></pre></div>
-<pre><code>## Warning: Removed 18 rows containing non-finite values (stat_boxplot).</code></pre>
-<pre><code>## Warning: Removed 18 rows containing missing values (geom_point).</code></pre>
 <p><img src="_main_files/figure-html/unnamed-chunk-133-1.png" width="672" /></p>
 <p>This now provides the (jittered) raw data points as well to hightlight the noise and the number of observations in each group.</p>
 </div>
@@ -339,8 +333,6 @@ p1</code></pre></div>
 <span class="st">  </span><span class="kw">geom_jitter</span>(<span class="kw">aes</span>(<span class="dt">color =</span> asthma), <span class="dt">alpha =</span> .<span class="dv">5</span>) +
 <span class="st">  </span><span class="kw">geom_smooth</span>(<span class="kw">aes</span>(<span class="dt">color =</span> asthma), <span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se=</span><span class="ot">FALSE</span>) +
 <span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;dodgerblue4&quot;</span>, <span class="st">&quot;chartreuse4&quot;</span>))</code></pre></div>
-<pre><code>## Warning: Removed 18 rows containing non-finite values (stat_smooth).</code></pre>
-<pre><code>## Warning: Removed 18 rows containing missing values (geom_point).</code></pre>
 <p><img src="_main_files/figure-html/unnamed-chunk-138-1.png" width="672" /> Depending on your personal taste, you can adjust it with any color. On my blog, I’ve <a href="https:\tysonstanley.github.io">posted</a> the colors available in R (there are many).</p>
 <blockquote>
 <p>Advice: Don’t get too lost in selecting colors but it can add a nice touch to any plot. The nuances of plot design can be invigorating but also time consuming to be smart about how long you spend using it.</p>

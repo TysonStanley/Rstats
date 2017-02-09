@@ -108,13 +108,13 @@ As you hopefully recognize a bit, we are summarizing the time spent being sedent
 ## Types of Plots {-}
 ### Scatterplots {-}
 We'll start with a scatterplot--one of the most simple yet informative plots.
-```{r}
+```{r, message=FALSE, warning=FALSE}
 ggplot(df, aes(x = dep, y = sed, group = asthma)) +
   geom_point(aes(color = asthma))
 ```
 
 It's not amazing. There looks to be a lot of overlap of the points. Also, it would be nice to know general trend lines for each group. Below, `alpha` refers to how transparent the points are, `method = "lm"` refers to how the line should be fit, and `se=FALSE` tells it not to include error ribbons.
-```{r}
+```{r, message=FALSE, warning=FALSE}
 ggplot(df, aes(x = dep, y = sed, group = asthma)) +
   geom_jitter(aes(color = asthma), alpha = .5) +
   geom_smooth(aes(color = asthma), method = "lm", se=FALSE)
@@ -124,13 +124,13 @@ It's getting better but we could still use some more features. We'll come back t
 
 ### Boxplots {-}
 Box plots are great ways to assess the variability in your data. Below, we create a boxplot but change `p1`'s x variable so that it is the factor version of depression.
-```{r}
+```{r, message=FALSE, warning=FALSE}
 ggplot(df, aes(x = factor(dep2), y = sed)) +
   geom_boxplot()
 ```
 
 This plot is, at best, mediocre. But there's more we can do.
-```{r}
+```{r, message=FALSE, warning=FALSE}
 ggplot(df, aes(x = factor(dep2), y = jitter(sed, 100))) +
   geom_jitter(alpha = .1, color = "chartreuse4") +
   geom_boxplot(alpha = .75, color = "dodgerblue4") 
@@ -141,14 +141,14 @@ This now provides the (jittered) raw data points as well to hightlight the noise
 
 ### Bar Plots {-}
 Bar plots are great ways to look at means and standard deviations for groups.
-```{r}
+```{r, message=FALSE, warning=FALSE}
 ggplot(summed_data, aes(x = dep2, y = sed, group = asthma)) +
   geom_bar(aes(fill = asthma), stat = "identity", position = "dodge")
 ```
 
 We used `stat = "identity"` to make it based on the mean (default is `count`), and `position = "dodge"` makes it so the bars are next to each other as opposed to stacked. Let's also add error bars.
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 p = position_dodge(width = .9)
 ggplot(summed_data, aes(x = dep2, y = sed, group = asthma)) +
   geom_bar(aes(fill = asthma), 
@@ -167,13 +167,13 @@ Much more can be done to clean this up, which we'll show in later sections.
 
 ### Line Plots {-}
 Line plots are particularly good at showing trends and relationships. Below we we use it to highlight the relationship between depression, sedentary behavior, and asthma.
-```{r}
+```{r, message=FALSE, warning=FALSE}
 ggplot(summed_data, aes(x = dep2, y = sed, group = asthma)) +
   geom_line(aes(color = asthma))
 ```
 
 Good start, but let's add some features.
-```{r}
+```{r, message=FALSE, warning=FALSE}
 pos = position_dodge(width = .1)
 ggplot(summed_data, aes(x = dep2, y = sed, group = asthma, color = asthma)) +
   geom_line(position = pos) +
@@ -188,7 +188,7 @@ That looks a bit better. From here, let's go on to color schemes to make the plo
 ## Color Schemes {-}
 
 We'll start by using the scatterplot we made above but we will change the colors a bit using `scale_color_manual()`.
-```{r}
+```{r, message=FALSE, warning=FALSE}
 ggplot(df, aes(x = dep, y = sed, group = asthma)) +
   geom_jitter(aes(color = asthma), alpha = .5) +
   geom_smooth(aes(color = asthma), method = "lm", se=FALSE) +
@@ -202,7 +202,7 @@ Next, let's adjust the bar plot. We will also add some colors here, but we will 
 
 1. Fill fills in the object with color. This is useful for things that are more than simply a line or a dot.
 2. Color colors the object. This outlines those items that can also be filled and colors lines and dots.
-```{r}
+```{r, message=FALSE, warning=FALSE}
 p = position_dodge(width = .9)
 ggplot(summed_data, aes(x = dep2, y = sed, group = asthma)) +
   geom_bar(aes(fill = asthma, color = asthma), 
@@ -234,7 +234,7 @@ Using the plot we just made--the bar plot--we will show how theme options work. 
 
 First, we are going to save the plot to simply show the different theming options.
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 p = position_dodge(width = .9)
 p1 = ggplot(summed_data, aes(x = dep2, y = sed, group = asthma)) +
   geom_bar(aes(fill = asthma, color = asthma), 
@@ -251,21 +251,21 @@ p1 = ggplot(summed_data, aes(x = dep2, y = sed, group = asthma)) +
 
 #### Theme Black and White {-}
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 p1 + 
   theme_bw()
 ```
 
 #### Theme Classic {-}
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 p1 + 
   theme_classic()
 ```
 
 #### Theme Minimal {-}
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 p1 + 
   theme_minimal()
 ```
@@ -273,7 +273,7 @@ p1 +
 
 #### Theme Economist (from `ggthemes`) {-}
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 library(ggthemes)
 p1 + 
   theme_economist()
@@ -281,21 +281,21 @@ p1 +
 
 #### Theme FiveThirtyEight (from `ggthemes`) {-}
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 p1 + 
   theme_fivethirtyeight()
 ```
 
 #### Theme Tufte (from `ggthemes`) {-}
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 p1 + 
   theme_tufte()
 ```
 
 #### Theme Stata (from `ggthemes`) {-}
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 p1 + 
   theme_stata()
 ```
@@ -304,7 +304,7 @@ p1 +
 
 There are many more but you get the idea. In addition to the built in themes, you can use the `theme()` function and make your own adjustments. There are *many* options so we will just introduce the idea.
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 p1 + 
   theme(legend.position = "bottom",  ## puts legend at the bottom of figure
         legend.background = element_rect(color = "lightgrey"),  ## outlines legend
@@ -319,7 +319,7 @@ There are many more options but essentially if there is something you want to ch
 
 Using our last plot, we will also want to add good labels and/or titles.
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 p1 + 
   theme(legend.position = "bottom",  
         legend.background = element_rect(color = "lightgrey"),
@@ -335,7 +335,7 @@ p1 +
 ## Facetting {-}
 
 Facetting is very useful when trying to compare more than three variables at a time or you cannot use color or shading. It is often useful and beautiful. Facetting splits the data based on some grouping variable (e.g., asthma) to highlight differences in the relationship.
-```{r}
+```{r, message=FALSE, warning=FALSE}
 p1 + 
   theme(legend.position = "bottom",  
         legend.background = element_rect(color = "lightgrey"),

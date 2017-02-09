@@ -515,37 +515,37 @@ fit_enet  &lt;-<span class="st"> </span><span class="kw">cv.glmnet</span>(X, Y, 
 <p>We can get the coefficients at a reasonable <code>lambda</code>. Specifically, we use the “1-SE rule” (near the right hand side vertical dashed lines in the above plots) by <code>s = &quot;lambda.1se&quot;</code>. You can directly tell it what <code>lambda</code> value you’d like but this is a simple rule of thumb.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coef</span>(fit_ridge, <span class="dt">s =</span> <span class="st">&quot;lambda.1se&quot;</span>)</code></pre></div>
 <pre><code>## 8 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
-##                     1
-## (Intercept)  5.851093
-## riagendr     0.022850
-## ridageyr    -0.000274
-## ridreth3     0.029608
-## race         0.047229
-## famsize     -0.020334
-## dep          0.005322
-## asthma       0.052348</code></pre>
+##                      1
+## (Intercept)  5.8279934
+## riagendr     0.0247031
+## ridageyr    -0.0002985
+## ridreth3     0.0317766
+## race         0.0508899
+## famsize     -0.0220458
+## dep          0.0057745
+## asthma       0.0566773</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coef</span>(fit_lasso, <span class="dt">s =</span> <span class="st">&quot;lambda.1se&quot;</span>)</code></pre></div>
 <pre><code>## 8 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
-##                     1
-## (Intercept)  5.322680
-## riagendr     .       
-## ridageyr     .       
-## ridreth3     .       
-## race         0.278799
-## famsize     -0.043976
-## dep          0.008615
+##                    1
+## (Intercept)  5.29130
+## riagendr     .      
+## ridageyr     .      
+## ridreth3     .      
+## race         0.29293
+## famsize     -0.05403
+## dep          0.01222
 ## asthma       .</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coef</span>(fit_enet, <span class="dt">s =</span> <span class="st">&quot;lambda.1se&quot;</span>)</code></pre></div>
 <pre><code>## 8 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
-##                      1
-## (Intercept)  5.4071934
-## riagendr     .        
-## ridageyr     .        
-## ridreth3     .        
-## race         0.2424455
-## famsize     -0.0206231
-## dep          0.0002651
-## asthma       .</code></pre>
+##                  1
+## (Intercept) 5.5505
+## riagendr    .     
+## ridageyr    .     
+## ridreth3    .     
+## race        0.1827
+## famsize     .     
+## dep         .     
+## asthma      .</code></pre>
 <p>Although we briefly introduce these regression methods, they are indeed very important. We highly recommend learning more about them.</p>
 </div>
 <div id="random-forests" class="section level3 unnumbered">
@@ -572,8 +572,8 @@ fit_rf</code></pre></div>
 ##                      Number of trees: 500
 ## No. of variables tried at each split: 2
 ## 
-##           Mean of squared residuals: 10.8
-##                     % Var explained: 3.9</code></pre>
+##           Mean of squared residuals: 10.83
+##                     % Var explained: 3.64</code></pre>
 <p>We can find out which variables were important in the model via:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))  ## back to one plot per page
 <span class="kw">varImpPlot</span>(fit_rf)</code></pre></div>

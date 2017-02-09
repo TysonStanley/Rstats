@@ -294,7 +294,7 @@ m</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">v2 &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dt">mean=</span><span class="dv">5</span>, <span class="dt">sd=</span><span class="dv">2</span>)
 add1 &lt;-<span class="st"> </span>v1 +<span class="st"> </span>v2
 <span class="kw">round</span>(add1, <span class="dv">3</span>)</code></pre></div>
-<pre><code>##  [1]  5.911  7.832  3.692 12.472  8.405  5.506 10.739  6.021  6.117  3.322</code></pre>
+<pre><code>##  [1]  7.114  5.384  7.570 10.150  5.905  6.640  8.055  5.624  4.537  8.019</code></pre>
 <p>We will compare the speed of this to other ways of adding two variables together and see it is the simplest and quickest.</p>
 </div>
 <div id="for-loops" class="section level2 unnumbered">
@@ -307,7 +307,7 @@ for (i in <span class="dv">1</span>:<span class="dv">10</span>){
   add2[i] &lt;-<span class="st"> </span>v1[i] +<span class="st"> </span>v2[i]
 }
 <span class="kw">round</span>(add2, <span class="dv">3</span>)</code></pre></div>
-<pre><code>##  [1]  5.911  7.832  3.692 12.472  8.405  5.506 10.739  6.021  6.117  3.322</code></pre>
+<pre><code>##  [1]  7.114  5.384  7.570 10.150  5.905  6.640  8.055  5.624  4.537  8.019</code></pre>
 <p>Same results! But, we’ll see later that the speed is much than the vectorized function.</p>
 </div>
 <div id="the-apply-family" class="section level2 unnumbered">
@@ -324,7 +324,7 @@ for (i in <span class="dv">1</span>:<span class="dv">10</span>){
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(v1, v2)
 add3 &lt;-<span class="st"> </span><span class="kw">apply</span>(df, <span class="dv">1</span>, sum)
 <span class="kw">round</span>(add3, <span class="dv">3</span>)</code></pre></div>
-<pre><code>##  [1]  5.911  7.832  3.692 12.472  8.405  5.506 10.739  6.021  6.117  3.322</code></pre>
+<pre><code>##  [1]  7.114  5.384  7.570 10.150  5.905  6.640  8.055  5.624  4.537  8.019</code></pre>
 <p>The function <code>apply()</code> has three main arguments: a) the <code>data.frame</code> or list of data, b) 1 meaning to apply the function for each row or 2 to the columns, and c) the function to use.</p>
 <p>We can also use one of our own functions such as <code>important_statistics2()</code> within the <code>apply</code> family.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lapply</span>(df, important_statistics2)</code></pre></div>
@@ -333,18 +333,18 @@ add3 &lt;-<span class="st"> </span><span class="kw">apply</span>(df, <span class
 ## 1 10  1.8 1.033
 ## 
 ## $v2
-##    N  Mean    SD
-## 1 10 5.202 2.261</code></pre>
+##    N Mean    SD
+## 1 10  5.1 1.442</code></pre>
 <p>This gives us a list of two elements, one for each variable, with the statistics that our function provides. With a little adjustment, we can make this into a <code>data.frame</code> using the <code>do.call()</code> function with <code>&quot;rbind&quot;</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">do.call</span>(<span class="st">&quot;rbind&quot;</span>, <span class="kw">lapply</span>(df, important_statistics2))</code></pre></div>
-<pre><code>##     N  Mean    SD
-## v1 10 1.800 1.033
-## v2 10 5.202 2.261</code></pre>
+<pre><code>##     N Mean    SD
+## v1 10  1.8 1.033
+## v2 10  5.1 1.442</code></pre>
 <p><code>tapply()</code> allows us to get information by a grouping factor. We are going to add a factor variable to the data frame we are using <code>df</code> and then get the mean of the variables by group.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">group1 &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">sample</span>(<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="dv">10</span>, <span class="dt">replace=</span><span class="ot">TRUE</span>))
 <span class="kw">tapply</span>(df$v1, group1, mean)</code></pre></div>
-<pre><code>##   0   1 
-## 1.8 1.8</code></pre>
+<pre><code>##     0     1 
+## 1.857 1.667</code></pre>
 <p>We now have the means by each group. This, however, is probably replaced by the 3 step summary that we learned earlier in <code>dplyr</code> using <code>group_by()</code> and <code>summarize()</code>.</p>
 <p>These functions are useful in many situations, especially where there are no vectorized functions. You can always get an idea of whether to use a <code>for</code> loop or an <code>apply</code> function by giving it a try on a small subset of data to see if one is better and/or faster.</p>
 <div id="speed-comparison" class="section level3 unnumbered">
@@ -363,10 +363,10 @@ add3 &lt;-<span class="st"> </span><span class="kw">apply</span>(df, <span class
                <span class="kw">apply</span>(df, <span class="dv">1</span>, sum),
                <span class="st">`</span><span class="dt">+</span><span class="st">`</span>(v1, v2))</code></pre></div>
 <pre><code>## Unit: nanoseconds
-##               expr   min      lq    mean  median       uq    max neval cld
-##    forloop(v1, v2)  9645 11010.0 18716.9 18014.5  21293.0  88435   100  b 
-##  apply(df, 1, sum) 71986 73632.5 97010.5 75112.5 107222.5 269339   100   c
-##            v1 + v2   183   311.5   890.5   498.5    653.5  31147   100 a</code></pre>
+##               expr   min      lq    mean median    uq    max neval cld
+##    forloop(v1, v2)  9380 10629.0 15045.3  11388 12224 100175   100  b 
+##  apply(df, 1, sum) 71474 73473.5 80128.0  75166 77492 223796   100   c
+##            v1 + v2   173   212.5   593.1    340   485  16400   100 a</code></pre>
 <p>Of course, as it says the units are in nanoseconds. Whether a function takes 200 or 200,000 nanoseconds probably won’t change your life. However, if the function is being used repeatedly or on on large data sets, this can make a difference.</p>
 </div>
 </div>
@@ -380,9 +380,9 @@ add3 &lt;-<span class="st"> </span><span class="kw">apply</span>(df, <span class
 ## [2,]  1.8
 ## 
 ## $v2
-##        [,1]
-## [1,] 10.000
-## [2,]  5.202</code></pre>
+##      [,1]
+## [1,] 10.0
+## [2,]  5.1</code></pre>
 <p>So we don’t name the function but we design it like we would a named function, just minus the <code>return()</code>. We take <code>x</code> (which is a column of <code>df</code>) and do <code>length()</code> and <code>mean()</code> and bind them by rows. The first argument in the anonymous function will be the column or variable of the data you provide.</p>
 <p>Here’s another example:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lapply</span>(df, function(y) y *<span class="st"> </span><span class="dv">2</span> /<span class="st"> </span><span class="kw">sd</span>(y))</code></pre></div>
@@ -390,7 +390,7 @@ add3 &lt;-<span class="st"> </span><span class="kw">apply</span>(df, <span class
 ##  [1] 1.936 5.809 3.873 7.746 3.873 1.936 3.873 1.936 1.936 1.936
 ## 
 ## $v2
-##  [1] 4.343 4.274 1.496 7.493 5.666 3.986 7.730 4.441 4.526 2.054</code></pre>
+##  [1] 8.480 3.306 7.726 8.530 5.416 7.823 8.399 6.414 4.906 9.735</code></pre>
 <p>We take <code>y</code> (again, the column of <code>df</code>), times it by two and divide by the standard deviation of <code>y</code>. Note that this is gibberish and is not some special formula, but again, we can see how flexible it is.</p>
 <p>The last two examples also show something important regarding the output:</p>
 <ol style="list-style-type: decimal">
