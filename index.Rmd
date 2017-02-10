@@ -19,7 +19,7 @@ link-citations: yes
 
 This is probably due to the high learning curve. Although challenging, with a little guidance, the journey in learning `R` programming can be made much more simple. This book is for beginners in `R`; especially those in health, behavioral and social sciences. We picked those fields specifically because much of their research overlaps in data types, methodologies employed, and in hypotheses tested. Both exploratory and confirmatory methods will be highlighted given their importance in these fields, among many others.
 
-We'll introduce you to many ways in which `R` can be used in your work. You'll find that it can help in all facets of your data analysis and communication, while improving your replicability. In the long run, taking some time to learn a knew tool will save you time, energy, and probably most importantly, frustration. When a researcher is frustrated, it becomes so easy to overlook important features.
+We'll introduce you to many ways in which `R` can be used in your work. You'll find that it can help in all facets of your data analysis and communication, while improving your replicability. In the long run, taking some time to learn a new tool will save you time, energy, and probably most importantly, frustration. When a researcher is frustrated, it becomes so easy to overlook important features.
 
 We will quickly, and succinctly, introduce the newest, easiest, and most understandable ways of working with your data. To do this, we will have three main parts: 1) working with and simple analyses of your data, 2) modeling your data, and 3) more advanced techniques to help your workflow.
 

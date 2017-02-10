@@ -237,7 +237,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>So we’ll start with discussing mediation, then we’ll move on to SEM, followed by machine learning.</p>
 <div id="mediation-modeling" class="section level2 unnumbered">
 <h2>Mediation Modeling</h2>
-<p>Mediation modeling can be done via several packages. For now, we recommend using <code>lavaan</code> (stands for “latent variable analysis”)<a href="#fn17" class="footnoteRef" id="fnref17"><sup>17</sup></a>. Although it is technically still a “beta” version, it performs very well especially for more simple models. It makes mediation modeling straightforward.</p>
+<p>Mediation modeling can be done via several packages. For now, we recommend using <code>lavaan</code> (stands for “latent variable analysis”)<a href="#fn18" class="footnoteRef" id="fnref18"><sup>18</sup></a>. Although it is technically still a “beta” version, it performs very well especially for more simple models. It makes mediation modeling straightforward.</p>
 <p>Below, we model the following mediation model: <span class="math display">\[
 depression = \beta_0 + \beta_1 asthma + \epsilon_1
 \]</span></p>
@@ -501,7 +501,7 @@ X &lt;-<span class="st"> </span>df2 %&gt;%
 <span class="st">  </span>dplyr::<span class="kw">select</span>(-sed_hr) %&gt;%
 <span class="st">  </span>data.matrix
 Y &lt;-<span class="st"> </span>df2$sed_hr</code></pre></div>
-<p>Then we use the <code>cv.glmnet()</code> function to fit the different models. The “cv” refers to cross-validation<a href="#fn18" class="footnoteRef" id="fnref18"><sup>18</sup></a>, which we don’t discuss here, but it an important topic to become familiar with. Below we fit a ridge, a lasso, and an elastic net model. The elastic net model uses more of the lasso penalty because the <code>alpha</code> is closer to 1 than 0.</p>
+<p>Then we use the <code>cv.glmnet()</code> function to fit the different models. The “cv” refers to cross-validation<a href="#fn19" class="footnoteRef" id="fnref19"><sup>19</sup></a>, which we don’t discuss here, but it an important topic to become familiar with. Below we fit a ridge, a lasso, and an elastic net model. The elastic net model uses more of the lasso penalty because the <code>alpha</code> is closer to 1 than 0.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(glmnet)
 
 fit_ridge &lt;-<span class="st"> </span><span class="kw">cv.glmnet</span>(X, Y, <span class="dt">alpha =</span> <span class="dv">0</span>)
@@ -517,36 +517,36 @@ fit_enet  &lt;-<span class="st"> </span><span class="kw">cv.glmnet</span>(X, Y, 
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coef</span>(fit_ridge, <span class="dt">s =</span> <span class="st">&quot;lambda.1se&quot;</span>)</code></pre></div>
 <pre><code>## 8 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
 ##                      1
-## (Intercept)  5.6014688
-## riagendr     0.0438141
-## ridageyr    -0.0005779
-## ridreth3     0.0521362
-## race         0.0876903
-## famsize     -0.0403634
-## dep          0.0106392
-## asthma       0.1021151</code></pre>
+## (Intercept)  5.5019415
+## riagendr     0.0527863
+## ridageyr    -0.0007295
+## ridreth3     0.0603953
+## race         0.1046580
+## famsize     -0.0494439
+## dep          0.0130551
+## asthma       0.1239795</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coef</span>(fit_lasso, <span class="dt">s =</span> <span class="st">&quot;lambda.1se&quot;</span>)</code></pre></div>
 <pre><code>## 8 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
-##                     1
-## (Intercept)  5.357124
-## riagendr     .       
-## ridageyr     .       
-## ridreth3     .       
-## race         0.263294
-## famsize     -0.032942
-## dep          0.004658
-## asthma       .</code></pre>
+##                  1
+## (Intercept) 5.5379
+## riagendr    .     
+## ridageyr    .     
+## ridreth3    .     
+## race        0.1865
+## famsize     .     
+## dep         .     
+## asthma      .</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coef</span>(fit_enet, <span class="dt">s =</span> <span class="st">&quot;lambda.1se&quot;</span>)</code></pre></div>
 <pre><code>## 8 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
-##                     1
-## (Intercept)  5.368905
-## riagendr     .       
-## ridageyr     .       
-## ridreth3     .       
-## race         0.259552
-## famsize     -0.032591
-## dep          0.004548
-## asthma       .</code></pre>
+##                  1
+## (Intercept) 5.8128
+## riagendr    .     
+## ridageyr    .     
+## ridreth3    .     
+## race        0.1033
+## famsize     .     
+## dep         .     
+## asthma      .</code></pre>
 <p>Although we briefly introduce these regression methods, they are indeed very important. We highly recommend learning more about them.</p>
 </div>
 <div id="random-forests" class="section level3 unnumbered">
@@ -573,8 +573,8 @@ fit_rf</code></pre></div>
 ##                      Number of trees: 500
 ## No. of variables tried at each split: 2
 ## 
-##           Mean of squared residuals: 10.82
-##                     % Var explained: 3.74</code></pre>
+##           Mean of squared residuals: 10.8
+##                     % Var explained: 3.9</code></pre>
 <p>We can find out which variables were important in the model via:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))  ## back to one plot per page
 <span class="kw">varImpPlot</span>(fit_rf)</code></pre></div>
@@ -591,9 +591,9 @@ fit_rf</code></pre></div>
 </div>
 <div class="footnotes">
 <hr />
-<ol start="17">
-<li id="fn17"><p>The <code>lavaan</code> package has some great vignettes at <a href="http://lavaan.ugent.be/" class="uri">http://lavaan.ugent.be/</a> to help with the other types of models it can handle.<a href="chapter-7-other-modeling-techniques.html#fnref17">↩</a></p></li>
-<li id="fn18"><p>Cross-validation is a common way to reduce over-fitting and make sure your model is generalizable. Generally, you split your data into training and testing sets. It is very common in machine learning and is beginning to be practiced in academic fields as well. We recommend using it as often as you can, especially with these methods but also to make sure your other models are accurate on new data as well.<a href="chapter-7-other-modeling-techniques.html#fnref18">↩</a></p></li>
+<ol start="18">
+<li id="fn18"><p>The <code>lavaan</code> package has some great vignettes at <a href="http://lavaan.ugent.be/" class="uri">http://lavaan.ugent.be/</a> to help with the other types of models it can handle.<a href="chapter-7-other-modeling-techniques.html#fnref18">↩</a></p></li>
+<li id="fn19"><p>Cross-validation is a common way to reduce over-fitting and make sure your model is generalizable. Generally, you split your data into training and testing sets. It is very common in machine learning and is beginning to be practiced in academic fields as well. We recommend using it as often as you can, especially with these methods but also to make sure your other models are accurate on new data as well.<a href="chapter-7-other-modeling-techniques.html#fnref19">↩</a></p></li>
 </ol>
 </div>
             </section>

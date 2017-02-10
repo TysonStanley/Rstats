@@ -243,9 +243,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="objects" class="section level3 unnumbered">
 <h3>Objects</h3>
 <p><code>R</code> uses objects and operators. An object, just like in the physical world, is something you can do things with.</p>
-<p>In the real world, we have objects that we use regularly. For example, we have chairs. Chairs are great for some things (sitting, sleeping) and horrible at others (driving, flying). Similarly, in <code>R</code> each type of object is useful for certain things. The data types we just discussed are certain types of objects. The data frames objects are a very good way to store data in an easily analyzable format.</p>
-<p>Because this is so analogous to the real world, it becomes quite natural to work with. You can have many objects in memory, which allows flexbility in analyzing many different things simply within a single <code>R</code> session.</p>
-<p>For your work, the first thing you work with will be data in various forms. Below, we explain the different data types and how they can combine into what is known as a <code>data.frame</code>.</p>
+<p>In the real world, we have objects that we use regularly. For example, we have chairs. Chairs are great for some things (sitting, sleeping) and horrible at others (driving, flying). Similarly, in <code>R</code> each type of object is useful for certain things. The data types that we will discuss below are certain types of objects.</p>
+<p>Because this is so analogous to the real world, it becomes quite natural to work with. You can have many objects in memory, which allows flexbility in analyzing many different things simply within a single <code>R</code> session.<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a></p>
+<p>For your work, the first objects you work with will be data in various forms. Below, we explain the different data types and how they can combine into what is known as a <code>data.frame</code>.</p>
 </div>
 <div id="data-types" class="section level3 unnumbered">
 <h3>Data Types</h3>
@@ -257,7 +257,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul>
 <p>The first, <strong>numeric</strong>, is just that: numbers. In <code>R</code>, you can make a numeric variable with the code below:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">10.1</span>, <span class="fl">2.1</span>, <span class="fl">4.6</span>, <span class="fl">2.3</span>, <span class="fl">8.9</span>)</code></pre></div>
-<p>The <code>c()</code> is a <strong>function</strong> <a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a> that stands for “concatenate” which basically glues the values inside the paratheses together into one. We use <code>&lt;-</code> to put it into <code>x</code>. So in this case, <code>x</code> (which we could have named anything) is saving those values so we can work with them<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a>.</p>
+<p>The <code>c()</code> is a <strong>function</strong> <a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a> that stands for “concatenate” which basically glues the values inside the paratheses together into one. We use <code>&lt;-</code> to put it into <code>x</code>. So in this case, <code>x</code> (which we could have named anything) is saving those values so we can work with them<a href="#fn5" class="footnoteRef" id="fnref5"><sup>5</sup></a>.</p>
 <p>A <strong>factor</strong> variable is a categorical variable (i.e., only a limited number of options exist). For example, race/ethnicity is a factor variable.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">race &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">2</span>)</code></pre></div>
 <p>The code above actually produces a numeric vector (since it was only provided numbers). We can quickly tell <code>R</code> that it is indeed supposed to be a factor.</p>
@@ -283,15 +283,15 @@ df</code></pre></div>
 ## 3 1 4.6 1
 ## 4 4 2.0 1
 ## 5 3 8.2 1</code></pre>
-<p>We can do quite a bit with the <code>data.frame</code> that we called <code>df</code><a href="#fn5" class="footnoteRef" id="fnref5"><sup>5</sup></a>. Once again, we could have called this data frame anything, although I recommend short names. If “A” and “C” are factors we can tell <code>R</code> by:</p>
+<p>We can do quite a bit with the <code>data.frame</code> that we called <code>df</code><a href="#fn6" class="footnoteRef" id="fnref6"><sup>6</sup></a>. Once again, we could have called this data frame anything, although I recommend short names. If “A” and “C” are factors we can tell <code>R</code> by:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df$A &lt;-<span class="st"> </span><span class="kw">factor</span>(df$A, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;level1&quot;</span>, <span class="st">&quot;level2&quot;</span>, <span class="st">&quot;level3&quot;</span>, <span class="st">&quot;level4&quot;</span>))
 df$C &lt;-<span class="st"> </span><span class="kw">factor</span>(df$C, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Female&quot;</span>))</code></pre></div>
 <p>In the above code, the <code>$</code> reaches into <code>df</code> to grab a variable (or column). The following code does the exact same thing:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df[[<span class="st">&quot;A&quot;</span>]] &lt;-<span class="st"> </span><span class="kw">factor</span>(df$A, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;level1&quot;</span>, <span class="st">&quot;level2&quot;</span>, <span class="st">&quot;level3&quot;</span>, <span class="st">&quot;level4&quot;</span>))
-df[[<span class="st">&quot;C&quot;</span>]] &lt;-<span class="st"> </span><span class="kw">factor</span>(df$C, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Female&quot;</span>))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df[[<span class="st">&quot;A&quot;</span>]] &lt;-<span class="st"> </span><span class="kw">factor</span>(df[[<span class="st">&quot;A&quot;</span>]], <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;level1&quot;</span>, <span class="st">&quot;level2&quot;</span>, <span class="st">&quot;level3&quot;</span>, <span class="st">&quot;level4&quot;</span>))
+df[[<span class="st">&quot;C&quot;</span>]] &lt;-<span class="st"> </span><span class="kw">factor</span>(df[[<span class="st">&quot;C&quot;</span>]], <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Female&quot;</span>))</code></pre></div>
 <p>and so is the following:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df[, <span class="st">&quot;A&quot;</span>] &lt;-<span class="st"> </span><span class="kw">factor</span>(df$A, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;level1&quot;</span>, <span class="st">&quot;level2&quot;</span>, <span class="st">&quot;level3&quot;</span>, <span class="st">&quot;level4&quot;</span>))
-df[, <span class="st">&quot;C&quot;</span>] &lt;-<span class="st"> </span><span class="kw">factor</span>(df$C, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Female&quot;</span>))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df[, <span class="st">&quot;A&quot;</span>] &lt;-<span class="st"> </span><span class="kw">factor</span>(df[, <span class="st">&quot;A&quot;</span>], <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;level1&quot;</span>, <span class="st">&quot;level2&quot;</span>, <span class="st">&quot;level3&quot;</span>, <span class="st">&quot;level4&quot;</span>))
+df[, <span class="st">&quot;C&quot;</span>] &lt;-<span class="st"> </span><span class="kw">factor</span>(df[, <span class="st">&quot;C&quot;</span>], <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Female&quot;</span>))</code></pre></div>
 <p><code>df[[&quot;A&quot;]]</code> grabs the <code>A</code> variable just like <code>df$A</code>. The last example shows that we can grab both columns and rows. In <code>df[, &quot;C&quot;]</code> we have a spot just a head of the comma. It works like this: <code>df[rows, columns]</code>. So we could specifically grab certain rows and certain columns.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df[<span class="dv">1</span>:<span class="dv">3</span>, <span class="st">&quot;A&quot;</span>]
 df[<span class="dv">1</span>:<span class="dv">3</span>, <span class="dv">1</span>]</code></pre></div>
@@ -336,7 +336,7 @@ df[<span class="dv">1</span>:<span class="dv">3</span>, <span class="dv">1</span
 <div id="importing-data" class="section level2 unnumbered">
 <h2>Importing Data</h2>
 <p>Most of the time you’ll want to import data into <code>R</code> rather than manually entering it line by line, variable by variable.</p>
-<p>There are some built in ways to import many delimited<a href="#fn6" class="footnoteRef" id="fnref6"><sup>6</sup></a> data types (e.g. comma delimited–also called a CSV, tab delimited, space delimited). Other <strong>packages</strong><a href="#fn7" class="footnoteRef" id="fnref7"><sup>7</sup></a> have been developed to help with this as well.</p>
+<p>There are some built in ways to import many delimited<a href="#fn7" class="footnoteRef" id="fnref7"><sup>7</sup></a> data types (e.g. comma delimited–also called a CSV, tab delimited, space delimited). Other <strong>packages</strong><a href="#fn8" class="footnoteRef" id="fnref8"><sup>8</sup></a> have been developed to help with this as well.</p>
 <p>The first, if it is an <code>R</code> data file in the form <code>.rda</code> or <code>.RData</code> simply use:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">load</span>(<span class="st">&quot;file.rda&quot;</span>)</code></pre></div>
 <p>Note that you don’t assign this to a name such as <code>df</code>. Instead, it loads whatever <code>R</code> objects were saved to it.</p>
@@ -391,11 +391,12 @@ df &lt;-<span class="st"> </span><span class="kw">read.xport</span>(<span class=
 <div class="footnotes">
 <hr />
 <ol start="3">
-<li id="fn3"><p><code>R</code> is all about functions. Functions tell <code>R</code> what to do with the data. You’ll see many more examples throughout the book.<a href="chapter-1-the-basics.html#fnref3">↩</a></p></li>
-<li id="fn4"><p>This is a great feature of <code>R</code>. It is called “object oriented” which basically means <code>R</code> creates objects to work with. I discuss this more in 1.2.<a href="chapter-1-the-basics.html#fnref4">↩</a></p></li>
-<li id="fn5"><p>I used this name since <code>df</code> is common in online helps and other resources.<a href="chapter-1-the-basics.html#fnref5">↩</a></p></li>
-<li id="fn6"><p>The delimiter is what separates the pieces of data.<a href="chapter-1-the-basics.html#fnref6">↩</a></p></li>
-<li id="fn7"><p>A package is an extension to <code>R</code> that gives you more functions–abilities–to work with data. Anyone can write a package, although to get it on the Comprehensive R Archive Network (CRAN) it needs to be vetted to a large degree. In fact, after some practice, you could write a package to help you more easily do your work.<a href="chapter-1-the-basics.html#fnref7">↩</a></p></li>
+<li id="fn3"><p>An <code>R</code> session is any time you open <code>R</code> do work and then close <code>R</code>. Unless you are saving your workspace (which, in general you shouldn’t do), it starts the slate clean–no objects are in memory and no packages are loaded. This is why we use scripts. Also, it makes your workflow extra transparent and replicable.<a href="chapter-1-the-basics.html#fnref3">↩</a></p></li>
+<li id="fn4"><p><code>R</code> is all about functions. Functions tell <code>R</code> what to do with the data. You’ll see many more examples throughout the book.<a href="chapter-1-the-basics.html#fnref4">↩</a></p></li>
+<li id="fn5"><p>This is a great feature of <code>R</code>. It is called “object oriented” which basically means <code>R</code> creates objects to work with. I discuss this more in 1.2.<a href="chapter-1-the-basics.html#fnref5">↩</a></p></li>
+<li id="fn6"><p>I used this name since <code>df</code> is common in online helps and other resources.<a href="chapter-1-the-basics.html#fnref6">↩</a></p></li>
+<li id="fn7"><p>The delimiter is what separates the pieces of data.<a href="chapter-1-the-basics.html#fnref7">↩</a></p></li>
+<li id="fn8"><p>A package is an extension to <code>R</code> that gives you more functions–abilities–to work with data. Anyone can write a package, although to get it on the Comprehensive R Archive Network (CRAN) it needs to be vetted to a large degree. In fact, after some practice, you could write a package to help you more easily do your work.<a href="chapter-1-the-basics.html#fnref8">↩</a></p></li>
 </ol>
 </div>
             </section>

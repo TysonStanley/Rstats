@@ -29,11 +29,11 @@ Because learning code is best through experience, we'll start with a simple walk
 
 `R` uses objects and operators. An object, just like in the physical world, is something you can do things with. 
 
-In the real world, we have objects that we use regularly. For example, we have chairs. Chairs are great for some things (sitting, sleeping) and horrible at others (driving, flying). Similarly, in `R` each type of object is useful for certain things. The data types we just discussed are certain types of objects. The data frames objects are a very good way to store data in an easily analyzable format.
+In the real world, we have objects that we use regularly. For example, we have chairs. Chairs are great for some things (sitting, sleeping) and horrible at others (driving, flying). Similarly, in `R` each type of object is useful for certain things. The data types that we will discuss below are certain types of objects.
 
-Because this is so analogous to the real world, it becomes quite natural to work with. You can have many objects in memory, which allows flexbility in analyzing many different things simply within a single `R` session.
+Because this is so analogous to the real world, it becomes quite natural to work with. You can have many objects in memory, which allows flexbility in analyzing many different things simply within a single `R` session.[^rsession]
 
-For your work, the first thing you work with will be data in various forms. Below, we explain the different data types and how they can combine into what is known as a `data.frame`.
+For your work, the first objects you work with will be data in various forms. Below, we explain the different data types and how they can combine into what is known as a `data.frame`.
 
 
 ### Data Types {-}
@@ -98,15 +98,15 @@ df$C <- factor(df$C, labels = c("Male", "Female"))
 In the above code, the `$` reaches into `df` to grab a variable (or column). The following code does the exact same thing:
 
 ```{r, eval=FALSE}
-df[["A"]] <- factor(df$A, labels = c("level1", "level2", "level3", "level4"))
-df[["C"]] <- factor(df$C, labels = c("Male", "Female"))
+df[["A"]] <- factor(df[["A"]], labels = c("level1", "level2", "level3", "level4"))
+df[["C"]] <- factor(df[["C"]], labels = c("Male", "Female"))
 ```
 
 and so is the following: 
 
 ```{r, eval=FALSE}
-df[, "A"] <- factor(df$A, labels = c("level1", "level2", "level3", "level4"))
-df[, "C"] <- factor(df$C, labels = c("Male", "Female"))
+df[, "A"] <- factor(df[, "A"], labels = c("level1", "level2", "level3", "level4"))
+df[, "C"] <- factor(df[, "C"], labels = c("Male", "Female"))
 ```
 
 `df[["A"]]` grabs the `A` variable just like `df$A`. The last example shows that we can grab both columns and rows. In `df[, "C"]` we have a spot just a head of the comma. It works like this: `df[rows, columns]`. So we could specifically grab certain rows and certain columns.
@@ -243,6 +243,8 @@ So, if you were curious about the different arguments in `write.table` simply ru
 `R` is designed to be flexible and do just about anything with data that you'll need to do as a researcher. With this chapter under your belt, you can now read basic `R` code, import and save your data. The next chapter will introduce the "tidyverse" of methods that can help you join, reshape, summarize, group, and much more.
 
 
+
+[^rsession]: An `R` session is any time you open `R` do work and then close `R`. Unless you are saving your workspace (which, in general you shouldn't do), it starts the slate clean--no objects are in memory and no packages are loaded. This is why we use scripts. Also, it makes your workflow extra transparent and replicable.
 
 [^function]: `R` is all about functions. Functions tell `R` what to do with the data. You'll see many more examples throughout the book.
 
