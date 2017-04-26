@@ -26,7 +26,7 @@
 <meta name="author" content="Tyson S. Barrett">
 
 
-<meta name="date" content="2017-02-09">
+<meta name="date" content="2017-04-17">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -127,6 +127,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="chapter-2-manipulating-your-data.html"><a href="chapter-2-manipulating-your-data.html#reshaping"><i class="fa fa-check"></i>Reshaping</a><ul>
 <li class="chapter" data-level="" data-path="chapter-2-manipulating-your-data.html"><a href="chapter-2-manipulating-your-data.html#wide-form"><i class="fa fa-check"></i>Wide Form</a></li>
 <li class="chapter" data-level="" data-path="chapter-2-manipulating-your-data.html"><a href="chapter-2-manipulating-your-data.html#long-form"><i class="fa fa-check"></i>Long Form</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-manipulating-your-data.html"><a href="chapter-2-manipulating-your-data.html#change-from-one-to-the-other"><i class="fa fa-check"></i>Change from One to the Other</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-2-manipulating-your-data.html"><a href="chapter-2-manipulating-your-data.html#joining-merging"><i class="fa fa-check"></i>Joining (merging)</a><ul>
 <li class="chapter" data-level="" data-path="chapter-2-manipulating-your-data.html"><a href="chapter-2-manipulating-your-data.html#inner-join"><i class="fa fa-check"></i>Inner Join</a></li>
@@ -137,7 +138,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html"><i class="fa fa-check"></i>Chapter 3: Understanding and Describing Your Data</a><ul>
 <li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#descriptive-statistics"><i class="fa fa-check"></i>Descriptive Statistics</a></li>
 <li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#visualizations"><i class="fa fa-check"></i>Visualizations</a><ul>
-<li class="chapter" data-level="0.0.1" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#using-ggplot2"><i class="fa fa-check"></i><b>0.0.1</b> Using <code class="unnumbered">ggplot2</code></a></li>
+<li><a href="chapter-3-understanding-and-describing-your-data.html#using-ggplot2">Using <code>ggplot2</code></a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html"><i class="fa fa-check"></i>Chapter 4: Basic Analyses</a><ul>
@@ -279,9 +280,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="question-5" class="section level4 unnumbered">
 <h4>Question 5</h4>
 <p>What does the following code do?</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x=</span>C, <span class="dt">y=</span>D)) +
-<span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">color =</span> C)) +
-<span class="st">  </span><span class="kw">theme_bw</span>() +
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x=</span>C, <span class="dt">y=</span>D)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">color =</span> C)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span>
 <span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;dodgerblue4&quot;</span>, <span class="st">&quot;coral2&quot;</span>))</code></pre></div>
 </div>
 <div id="question-6" class="section level4 unnumbered">
@@ -323,27 +324,27 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="question-15" class="section level4 unnumbered">
 <h4>Question 15</h4>
 <p>Is the following data in wide or long form? How do you know?</p>
-<pre><code>##    ID  measures   values
-## 1   1 Var_Time1 -0.02186
-## 2   2 Var_Time1 -0.09791
-## 3   3 Var_Time1  0.58454
-## 4   4 Var_Time1  0.23865
-## 5   5 Var_Time1  0.10351
-## 6   6 Var_Time1 -0.07528
-## 7   7 Var_Time1 -0.03810
-## 8   8 Var_Time1  0.39964
-## 9   9 Var_Time1  1.34118
-## 10 10 Var_Time1 -1.01708
-## 11  1 Var_Time2  0.57235
-## 12  2 Var_Time2  0.23261
-## 13  3 Var_Time2  0.09563
-## 14  4 Var_Time2  0.94558
-## 15  5 Var_Time2  0.81758
-## 16  6 Var_Time2  0.92899
-## 17  7 Var_Time2  0.69313
-## 18  8 Var_Time2  0.25377
-## 19  9 Var_Time2  0.80698
-## 20 10 Var_Time2  0.37285</code></pre>
+<pre><code>##    ID  measures    values
+## 1   1 Var_Time1 -0.107869
+## 2   2 Var_Time1 -1.585501
+## 3   3 Var_Time1  0.308177
+## 4   4 Var_Time1  0.683782
+## 5   5 Var_Time1  0.088330
+## 6   6 Var_Time1 -0.163575
+## 7   7 Var_Time1 -0.201097
+## 8   8 Var_Time1 -1.992057
+## 9   9 Var_Time1  0.179965
+## 10 10 Var_Time1  0.368070
+## 11  1 Var_Time2  0.733068
+## 12  2 Var_Time2  0.976486
+## 13  3 Var_Time2  0.900742
+## 14  4 Var_Time2  0.003415
+## 15  5 Var_Time2  0.115922
+## 16  6 Var_Time2  0.799721
+## 17  7 Var_Time2  0.478656
+## 18  8 Var_Time2  0.250591
+## 19  9 Var_Time2  0.329611
+## 20 10 Var_Time2  0.378240</code></pre>
 <p>To make your data long form but it is currently in wide form, what function(s) can you use?</p>
 </div>
 <div id="question-16" class="section level4 unnumbered">
@@ -353,16 +354,16 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="question-17" class="section level4 unnumbered">
 <h4>Question 17</h4>
 <p>What is the following code doing?</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sandwhich &lt;-<span class="st"> </span>function(pb, jam){
-  s &lt;-<span class="st"> </span>pb +<span class="st"> </span>jam
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sandwhich &lt;-<span class="st"> </span><span class="cf">function</span>(pb, jam){
+  s &lt;-<span class="st"> </span>pb <span class="op">+</span><span class="st"> </span>jam
   <span class="kw">return</span>(s)
 }</code></pre></div>
 </div>
 <div id="question-18" class="section level4 unnumbered">
 <h4>Question 18</h4>
 <p>What is wrong with this chunk of code?</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span>df +
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">newvar =</span> <span class="kw">ifelse</span>(oldvar ==<span class="st"> </span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span>df <span class="op">+</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">newvar =</span> <span class="kw">ifelse</span>(oldvar <span class="op">==</span><span class="st"> </span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>))</code></pre></div>
 </div>
 <div id="question-19" class="section level4 unnumbered">
 <h4>Question 19</h4>
@@ -372,9 +373,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h4>Question 20</h4>
 <p>What kind of plot does the following make?</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pos =<span class="st"> </span><span class="kw">position_dodge</span>(<span class="dt">width =</span> .<span class="dv">1</span>)
-<span class="kw">ggplot</span>(summed_data, <span class="kw">aes</span>(<span class="dt">x =</span> dep2, <span class="dt">y =</span> sed, <span class="dt">group =</span> asthma, <span class="dt">color =</span> asthma)) +
-<span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">position =</span> pos) +
-<span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="kw">aes</span>(<span class="dt">ymin =</span> sed -<span class="st"> </span>s_se, <span class="dt">ymax =</span> sed +<span class="st"> </span>s_se), 
+<span class="kw">ggplot</span>(summed_data, <span class="kw">aes</span>(<span class="dt">x =</span> dep2, <span class="dt">y =</span> sed, <span class="dt">group =</span> asthma, <span class="dt">color =</span> asthma)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">position =</span> pos) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="kw">aes</span>(<span class="dt">ymin =</span> sed <span class="op">-</span><span class="st"> </span>s_se, <span class="dt">ymax =</span> sed <span class="op">+</span><span class="st"> </span>s_se), 
                 <span class="dt">width =</span> .<span class="dv">1</span>, 
                 <span class="dt">position =</span> pos)</code></pre></div>
 </div>
@@ -382,10 +383,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="goodbye-and-good-luck" class="section level2 unnumbered">
 <h2>Goodbye and Good Luck</h2>
 <p>I hope this has been a useful primer to get you into <code>R</code>. If you still feel rusty, feel free to go through the book again or look at other online resources. <code>R</code> is very flexible and can ease the data and analysis burden of research. Implement good practices and your work will become easier to track, easier to document, and easier to communicate. Good luck on your journey using <code>R</code> in your research!</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Step1 &lt;-<span class="st"> </span><span class="kw">of_a_journey</span>(you) %&gt;%
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Step1 &lt;-<span class="st"> </span><span class="kw">of_a_journey</span>(you) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">has</span>(begun)
-You &lt;-<span class="st"> </span><span class="kw">now_have_seen</span>(aspects, of, R) %&gt;%
-<span class="st">  </span><span class="kw">that_can</span>(increase) %&gt;%
+You &lt;-<span class="st"> </span><span class="kw">now_have_seen</span>(aspects, of, R) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">that_can</span>(increase) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">productivity</span>(your)
 GoodLuck &lt;-<span class="st"> </span><span class="kw">journey</span>(on, your)</code></pre></div>
 

@@ -61,6 +61,8 @@ There are several methods that help create tidy data:
 4. Reshaping
 5. Joining (merging)
 
+> Heads up! Understanding these tools requires, simultaneously, an understanding of what ways data can be moved around. For example, reshaping can refer to moving data into a more wide-format or long-format, can refer to summarizing or aggregating, and can refer to joining or binding. All of these are necessary to work with data flexibly. Because of this, we suggest taking your time to fully understand what each function is doing with the data.
+
 To help illustrate each aspect, we are going to use real data from the National Health and Nutrition Examiniation Survey (NHANES). I've provided this data at [https://tysonstanley.github.io/assets/Data/NHANES.zip](https://tysonstanley.github.io/assets/Data/NHANES.zip). I've cleaned it up somewhat already.
 
 Let's quickly read that data in so we can use it throughout the remainder of this chapter. First, we will set our working directory with `setwd`. This tells `R` where to look for files, including your data files. My specific file location is below so you will need to adjust it to wherever you saved the NHANES data.
@@ -214,7 +216,7 @@ This is a big part of working with data. Unfortunately, it is also a difficult t
 1. Wide form
 2. Long form
 
-Only when the data is cross-sectional and each individual is a row does this distinction not matter much. Otherwise, if there are multiple measures per individual, or there are multiple individuals per cluster, the distinction between wide and long is very important for modeling and visualization.
+Only when the data is cross-sectional and each individual is a row does this distinction not matter much. Otherwise, if there are multiple measurement periods per individual, or there are multiple individuals per cluster, the distinction between wide and long is very important for modeling and visualization.
 
 ### Wide Form {-}
 
@@ -239,6 +241,29 @@ data.frame("ID"=c(1,1,1,1,2,2,3,3,3),
 ```
 
 Notice that a single ID spans multiple columns and that each row has only one time point. Here, time is nested within individuals making it the lowest unit. Therefore, each row corresponds to a single time point. Generally, this is the format we want for most modeling techniques and most visualizations.
+
+### Change from One to the Other {-}
+
+Now that you have an idea of the differences between a wide format and a long format, we are going to briefly introduce how to change from one to the other. The following functions are particularly helpful when there are few time-variant variables (or the subjects are clustered). When there are many time-variant variables (or the data is more complex in general), we will use a different approach that we discuss in Chapter 8. For now, we are keeping it simple.
+
+First, we will go from wide to long using `gather()` from the `tidyr` package. We are using the ficticious data for the example of wide format from above.
+```{r}
+df_wide <- data.frame("ID"=c(1:10), "Var_Time1"=rnorm(10), "Var_Time2"=runif(10))
+df_long <- gather(df_wide, "var_label", "value", 2:3)
+df_long
+```
+We provided the data, some variable names, and told it what columns contained the values.
+
+And now we will go from long to wide using `spread()` from the same package.
+```{r}
+df_long <- data.frame("ID"=c(1,1,1,1,2,2,3,3,3), 
+                      "Time"=c(1,2,3,4,1,2,1,2,3), 
+                      "Var"=runif(9))
+df_wide <- spread(df_long, Time, Var)
+df_wide
+```
+Here, we provided the column name (`Time`) that had the value labels and (`Var`) that contained the values themselves. With a little bit of code we can move data around without any copy-pasting that is so error-prone.
+
 
 ## Joining (merging) {-}
 

@@ -9,7 +9,7 @@ documentclass: book
 link-citations: yes
 ---
 
-The following code is used for this chapter, chapters 5 - 7 and 9 to prep the data for the subsequent analyses.
+The following code is used for this chapter, chapters 5 - 7 and 9 to prep the data for the subsequent analyses. Each aspect of this will be covered throughout this book, so don't worry about it for now.
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 ## Run but not shown
 ## Getting data ready for the examples

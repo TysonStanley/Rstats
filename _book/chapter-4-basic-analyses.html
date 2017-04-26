@@ -26,7 +26,7 @@
 <meta name="author" content="Tyson S. Barrett">
 
 
-<meta name="date" content="2017-02-09">
+<meta name="date" content="2017-04-17">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -127,6 +127,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="chapter-2-manipulating-your-data.html"><a href="chapter-2-manipulating-your-data.html#reshaping"><i class="fa fa-check"></i>Reshaping</a><ul>
 <li class="chapter" data-level="" data-path="chapter-2-manipulating-your-data.html"><a href="chapter-2-manipulating-your-data.html#wide-form"><i class="fa fa-check"></i>Wide Form</a></li>
 <li class="chapter" data-level="" data-path="chapter-2-manipulating-your-data.html"><a href="chapter-2-manipulating-your-data.html#long-form"><i class="fa fa-check"></i>Long Form</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-manipulating-your-data.html"><a href="chapter-2-manipulating-your-data.html#change-from-one-to-the-other"><i class="fa fa-check"></i>Change from One to the Other</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-2-manipulating-your-data.html"><a href="chapter-2-manipulating-your-data.html#joining-merging"><i class="fa fa-check"></i>Joining (merging)</a><ul>
 <li class="chapter" data-level="" data-path="chapter-2-manipulating-your-data.html"><a href="chapter-2-manipulating-your-data.html#inner-join"><i class="fa fa-check"></i>Inner Join</a></li>
@@ -137,7 +138,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html"><i class="fa fa-check"></i>Chapter 3: Understanding and Describing Your Data</a><ul>
 <li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#descriptive-statistics"><i class="fa fa-check"></i>Descriptive Statistics</a></li>
 <li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#visualizations"><i class="fa fa-check"></i>Visualizations</a><ul>
-<li class="chapter" data-level="0.0.1" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#using-ggplot2"><i class="fa fa-check"></i><b>0.0.1</b> Using <code class="unnumbered">ggplot2</code></a></li>
+<li><a href="chapter-3-understanding-and-describing-your-data.html#using-ggplot2">Using <code>ggplot2</code></a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html"><i class="fa fa-check"></i>Chapter 4: Basic Analyses</a><ul>
@@ -241,11 +242,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 Y_i = \alpha_0 + \alpha_1 \text{Group}_i + e_i
 \]</span> Since the groups are compared using “effect coding,” the <span class="math inline">\(\alpha_0\)</span> is the grand mean and each of the group level means are compared to it.</p>
 <p>To run an ANOVA model, you can simply use the <code>aov</code> function. In the example below, we are analyzing whether family size (although not fully continuous it is still useful for the example) differs by race.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df$race &lt;-<span class="st"> </span><span class="kw">factor</span>(df$ridreth1, 
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df<span class="op">$</span>race &lt;-<span class="st"> </span><span class="kw">factor</span>(df<span class="op">$</span>ridreth1, 
                   <span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;MexicanAmerican&quot;</span>, <span class="st">&quot;OtherHispanic&quot;</span>, <span class="st">&quot;White&quot;</span>, <span class="st">&quot;Black&quot;</span>, <span class="st">&quot;Other&quot;</span>))
-df$famsize &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(df$dmdfmsiz)
+df<span class="op">$</span>famsize &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(df<span class="op">$</span>dmdfmsiz)
 
-fit &lt;-<span class="st"> </span><span class="kw">aov</span>(famsize ~<span class="st"> </span>race, df)
+fit &lt;-<span class="st"> </span><span class="kw">aov</span>(famsize <span class="op">~</span><span class="st"> </span>race, df)
 <span class="kw">anova</span>(fit)</code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
@@ -259,13 +260,13 @@ fit &lt;-<span class="st"> </span><span class="kw">aov</span>(famsize ~<span cla
 <p>In the output we see the normal ANOVA table and we can see the p-value (<code>Pr(&gt;F)</code>) is very, very small and thus is quite significant. We can look at how the groups relate using a box plot. We will be using some of the practice you got in Chapter 3 using <code>ggplot2</code> for this.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
 
-<span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x=</span>race, <span class="dt">y=</span>famsize)) +
-<span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">color=</span>race)) +
+<span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x=</span>race, <span class="dt">y=</span>famsize)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">color=</span>race)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">guide=</span><span class="ot">FALSE</span>, 
                      <span class="dt">values=</span><span class="kw">c</span>(<span class="st">&quot;dodgerblue3&quot;</span>, <span class="st">&quot;coral2&quot;</span>, <span class="st">&quot;chartreuse4&quot;</span>, 
-                              <span class="st">&quot;darkorchid&quot;</span>, <span class="st">&quot;firebrick2&quot;</span>)) +
+                              <span class="st">&quot;darkorchid&quot;</span>, <span class="st">&quot;firebrick2&quot;</span>)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">theme_bw</span>()</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-62-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-64-1.png" width="672" /></p>
 <p>This immediately gives us an idea of where some differences may be occuring. It would appear that “White” and “MexicanAmerican” groups are different in family size.</p>
 <div id="assumptions" class="section level3 unnumbered">
 <h3>Assumptions</h3>
@@ -273,14 +274,14 @@ fit &lt;-<span class="st"> </span><span class="kw">aov</span>(famsize ~<span cla
 <p>In <code>R</code> we can get some simple graphical checks using <code>plot</code>. All we provide is our ANOVA object (here it is <code>fit</code>). The line before it <code>par(mfrow=c(1,2))</code> tells <code>R</code> to have two plots per row (the 1 means one row, 2 means two columns).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))
 <span class="kw">plot</span>(fit)</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-63-1.png" width="480" /><img src="_main_files/figure-html/unnamed-chunk-63-2.png" width="480" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-65-1.png" width="480" /><img src="_main_files/figure-html/unnamed-chunk-65-2.png" width="480" /></p>
 <p>Here, it looks like we have a problem with normality (see the Normal Q-Q plot). Those dots should approximately follow the dotted line, which is not the case. In the first plot (Residuals vs. Fitted) suggests we have approximate homoskedasticity.</p>
 </div>
 </div>
 <div id="linear-modeling" class="section level2 unnumbered">
 <h2>Linear Modeling</h2>
 <p>Linear regression is nearly identical to ANOVA. In fact, a linear regression with a continuous outcome and categorical predictor is exactly the same (if we use effect coding). For example, if we run the same model but with the linear regression function <code>lm</code> we get the same ANOVA table.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fit2 &lt;-<span class="st"> </span><span class="kw">lm</span>(famsize ~<span class="st"> </span>race, <span class="dt">data=</span>df)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fit2 &lt;-<span class="st"> </span><span class="kw">lm</span>(famsize <span class="op">~</span><span class="st"> </span>race, <span class="dt">data=</span>df)
 <span class="kw">anova</span>(fit2)</code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
@@ -324,7 +325,7 @@ fit &lt;-<span class="st"> </span><span class="kw">aov</span>(famsize ~<span cla
 <p>Numbers 2 and 3 are fairly easy to assess using the <code>plot()</code> function on the model object as we did with the ANOVA model. The linear in parameters suggests that the relationship between the outcome and independents is linear.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))
 <span class="kw">plot</span>(fit2)</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-66-1.png" width="480" /><img src="_main_files/figure-html/unnamed-chunk-66-2.png" width="480" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-68-1.png" width="480" /><img src="_main_files/figure-html/unnamed-chunk-68-2.png" width="480" /></p>
 </div>
 <div id="comparing-models" class="section level3 unnumbered">
 <h3>Comparing Models</h3>
@@ -341,7 +342,7 @@ fit &lt;-<span class="st"> </span><span class="kw">aov</span>(famsize ~<span cla
 ## 1   4627 12188                      
 ## 2   4627 12188  0         0</code></pre>
 <p>The <code>anova()</code> function works with all sorts of modeling schemes and can help in model selection. Not surprisingly, when we compared the ANOVA and the simple linear model, they are <em>exactly</em> the same in overall model terms (the only difference is in how the cateogrical variable is coded—either effect coding in ANOVA or dummy coding in regression). For a more interesting comparison, lets run a new model with an additional variable and then make a comparison.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fit3 =<span class="st"> </span><span class="kw">lm</span>(famsize ~<span class="st"> </span>race +<span class="st"> </span>marriage, <span class="dt">data=</span>df)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fit3 =<span class="st"> </span><span class="kw">lm</span>(famsize <span class="op">~</span><span class="st"> </span>race <span class="op">+</span><span class="st"> </span>marriage, <span class="dt">data=</span>df)
 <span class="kw">summary</span>(fit3)</code></pre></div>
 <pre><code>## 
 ## Call:
@@ -451,18 +452,18 @@ fit &lt;-<span class="st"> </span><span class="kw">aov</span>(famsize ~<span cla
 <h3>Log-Linear, Log-Log, Linear-Log, Other</h3>
 <p>Sounds like a great tongue-twister? Well, it is but it’s also three ways of specifying (i.e. deciding what is in) your model better.</p>
 <p><strong>Log-Linear</strong> is where we adjust the outcome variable by a natural log transformation. This is done easily in <code>R</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df$log_outcome &lt;-<span class="st"> </span><span class="kw">log</span>(df$outcome)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df<span class="op">$</span>log_outcome &lt;-<span class="st"> </span><span class="kw">log</span>(df<span class="op">$</span>outcome)
 
-<span class="kw">lm</span>(log_outcome ~<span class="st"> </span>var1, <span class="dt">data=</span>df)</code></pre></div>
+<span class="kw">lm</span>(log_outcome <span class="op">~</span><span class="st"> </span>var1, <span class="dt">data=</span>df)</code></pre></div>
 <p><strong>Log-Log</strong> is where we adjust both the outcome and the predictor variable with a log transformation. This is also easily done:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df$log_outcome &lt;-<span class="st"> </span><span class="kw">log</span>(df$outcome)
-df$log_var1    &lt;-<span class="st"> </span><span class="kw">log</span>(df$var1)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df<span class="op">$</span>log_outcome &lt;-<span class="st"> </span><span class="kw">log</span>(df<span class="op">$</span>outcome)
+df<span class="op">$</span>log_var1    &lt;-<span class="st"> </span><span class="kw">log</span>(df<span class="op">$</span>var1)
 
-<span class="kw">lm</span>(log_outcome ~<span class="st"> </span>log_var1, <span class="dt">data=</span>df)</code></pre></div>
+<span class="kw">lm</span>(log_outcome <span class="op">~</span><span class="st"> </span>log_var1, <span class="dt">data=</span>df)</code></pre></div>
 <p><strong>Linear-Log</strong> is where we adjsut just the predictor variable with a log transformation. And, you guessed it, this is easily done in <code>R</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df$log_var1 &lt;-<span class="st"> </span><span class="kw">log</span>(df$var1)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df<span class="op">$</span>log_var1 &lt;-<span class="st"> </span><span class="kw">log</span>(df<span class="op">$</span>var1)
 
-<span class="kw">lm</span>(outcome ~<span class="st"> </span>log_var1 +<span class="st"> </span>var2, <span class="dt">data=</span>df)</code></pre></div>
+<span class="kw">lm</span>(outcome <span class="op">~</span><span class="st"> </span>log_var1 <span class="op">+</span><span class="st"> </span>var2, <span class="dt">data=</span>df)</code></pre></div>
 <p><strong>Other</strong> methods such as square rooting the outcome or using some power function (e.g. square, cube) are also quite common. There are functions that look for the best transformation to use. However, I will not cover it here since I think GLM’s are better. So if you want to learn about other ways to help your linear model go to the next chapter.</p>
 </div>
 </div>
@@ -473,9 +474,9 @@ df$log_var1    &lt;-<span class="st"> </span><span class="kw">log</span>(df$var1
 <div id="interactions-in-anova" class="section level3 unnumbered">
 <h3>Interactions in ANOVA</h3>
 <p>In general, we refer to ANOVA’s with interactions as “2-way Factorial ANOVA’s”. We interact race and marriage status in this ANOVA. For simplicity, we created a binary race variable called minority using the <code>ifelse()</code> function. We explain this in more depth in Chapter 5.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df$minority &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">ifelse</span>(df$race ==<span class="st"> &quot;White&quot;</span>, <span class="dv">0</span>, <span class="dv">1</span>), 
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df<span class="op">$</span>minority &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">ifelse</span>(df<span class="op">$</span>race <span class="op">==</span><span class="st"> &quot;White&quot;</span>, <span class="dv">0</span>, <span class="dv">1</span>), 
                       <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;White&quot;</span>, <span class="st">&quot;Minority&quot;</span>))
-fit_anova &lt;-<span class="st"> </span><span class="kw">aov</span>(famsize ~<span class="st"> </span>minority*marriage, df)
+fit_anova &lt;-<span class="st"> </span><span class="kw">aov</span>(famsize <span class="op">~</span><span class="st"> </span>minority<span class="op">*</span>marriage, df)
 <span class="kw">anova</span>(fit_anova)</code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
@@ -491,27 +492,27 @@ fit_anova &lt;-<span class="st"> </span><span class="kw">aov</span>(famsize ~<sp
 <p>We can check the assumptions the same way as before:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))
 <span class="kw">plot</span>(fit_anova)</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-75-1.png" width="480" /><img src="_main_files/figure-html/unnamed-chunk-75-2.png" width="480" /> Again, the assumptions are not met for this model. But, if we ignore that for now, we can quickly find a way to interpret the interaction.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-77-1.png" width="480" /><img src="_main_files/figure-html/unnamed-chunk-77-2.png" width="480" /> Again, the assumptions are not met for this model. But, if we ignore that for now, we can quickly find a way to interpret the interaction.</p>
 <p>We first create a new data set that is composed of every possible combination of the variables in the model. This allows us to get unbiased estimates for the plotting.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">newdata &lt;-<span class="st"> </span><span class="kw">expand.grid</span>(<span class="dt">minority =</span> <span class="kw">levels</span>(df$minority),
-                       <span class="dt">marriage =</span> <span class="kw">levels</span>(df$marriage))
-newdata$preds &lt;-<span class="st"> </span><span class="kw">predict</span>(fit_anova, <span class="dt">newdata=</span>newdata)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">newdata &lt;-<span class="st"> </span><span class="kw">expand.grid</span>(<span class="dt">minority =</span> <span class="kw">levels</span>(df<span class="op">$</span>minority),
+                       <span class="dt">marriage =</span> <span class="kw">levels</span>(df<span class="op">$</span>marriage))
+newdata<span class="op">$</span>preds &lt;-<span class="st"> </span><span class="kw">predict</span>(fit_anova, <span class="dt">newdata=</span>newdata)</code></pre></div>
 <p>We now use <code>ggplot2</code> just as before.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(newdata, <span class="kw">aes</span>(<span class="dt">x =</span> marriage, <span class="dt">y =</span> preds, <span class="dt">group =</span> minority)) +
-<span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">color =</span> minority)) +
-<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> minority)) +
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(newdata, <span class="kw">aes</span>(<span class="dt">x =</span> marriage, <span class="dt">y =</span> preds, <span class="dt">group =</span> minority)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">color =</span> minority)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> minority)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="st">&quot;Predicted Family Size&quot;</span>,
-       <span class="dt">x =</span> <span class="st">&quot;Marital Status&quot;</span>) +
+       <span class="dt">x =</span> <span class="st">&quot;Marital Status&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">name =</span> <span class="st">&quot;&quot;</span>,
-                     <span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;dodgerblue3&quot;</span>, <span class="st">&quot;chartreuse3&quot;</span>)) +
+                     <span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;dodgerblue3&quot;</span>, <span class="st">&quot;chartreuse3&quot;</span>)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">theme_anteo_wh</span>()           ## from anteo package</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-77-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-79-1.png" width="672" /></p>
 <p>The plot tells use a handful of things. For example, we see minorities generally have more children across marital statuses. However, the difference is smaller for married and divorced individuals compared to widowed, separated, never married, and living with a partner. There’s certainly more to gleen from the plot, but we won’t waste your time.</p>
 </div>
 <div id="interactions-in-linear-regression" class="section level3 unnumbered">
 <h3>Interactions in Linear Regression</h3>
 <p>Interactions in linear regression is nearly identical as in ANOVA, except we use dummy coding. It provides a bit more information. For example, we get the coefficients from the linear regression whereas the ANOVA does not provide this. We can run a regression model via:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fit_reg &lt;-<span class="st"> </span><span class="kw">lm</span>(famsize ~<span class="st"> </span>minority*marriage, df)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fit_reg &lt;-<span class="st"> </span><span class="kw">lm</span>(famsize <span class="op">~</span><span class="st"> </span>minority<span class="op">*</span>marriage, df)
 <span class="kw">summary</span>(fit_reg)</code></pre></div>
 <pre><code>## 
 ## Call:

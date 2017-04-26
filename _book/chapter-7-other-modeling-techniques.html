@@ -26,7 +26,7 @@
 <meta name="author" content="Tyson S. Barrett">
 
 
-<meta name="date" content="2017-02-09">
+<meta name="date" content="2017-04-17">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -127,6 +127,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="chapter-2-manipulating-your-data.html"><a href="chapter-2-manipulating-your-data.html#reshaping"><i class="fa fa-check"></i>Reshaping</a><ul>
 <li class="chapter" data-level="" data-path="chapter-2-manipulating-your-data.html"><a href="chapter-2-manipulating-your-data.html#wide-form"><i class="fa fa-check"></i>Wide Form</a></li>
 <li class="chapter" data-level="" data-path="chapter-2-manipulating-your-data.html"><a href="chapter-2-manipulating-your-data.html#long-form"><i class="fa fa-check"></i>Long Form</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-manipulating-your-data.html"><a href="chapter-2-manipulating-your-data.html#change-from-one-to-the-other"><i class="fa fa-check"></i>Change from One to the Other</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-2-manipulating-your-data.html"><a href="chapter-2-manipulating-your-data.html#joining-merging"><i class="fa fa-check"></i>Joining (merging)</a><ul>
 <li class="chapter" data-level="" data-path="chapter-2-manipulating-your-data.html"><a href="chapter-2-manipulating-your-data.html#inner-join"><i class="fa fa-check"></i>Inner Join</a></li>
@@ -137,7 +138,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html"><i class="fa fa-check"></i>Chapter 3: Understanding and Describing Your Data</a><ul>
 <li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#descriptive-statistics"><i class="fa fa-check"></i>Descriptive Statistics</a></li>
 <li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#visualizations"><i class="fa fa-check"></i>Visualizations</a><ul>
-<li class="chapter" data-level="0.0.1" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#using-ggplot2"><i class="fa fa-check"></i><b>0.0.1</b> Using <code class="unnumbered">ggplot2</code></a></li>
+<li><a href="chapter-3-understanding-and-describing-your-data.html#using-ggplot2">Using <code>ggplot2</code></a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html"><i class="fa fa-check"></i>Chapter 4: Basic Analyses</a><ul>
@@ -246,7 +247,7 @@ time_{Sedentary} = \lambda_0 + \lambda_1 asthma + \lambda_2 depression + \epsilo
 \]</span></p>
 <p>In essence, we believe that asthma increases depression which in turn increases the amount of time spent being sedentary.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(lavaan)
-df$sed_hr =<span class="st"> </span>df$sed/<span class="dv">60</span>  ## in hours instead of minutes
+df<span class="op">$</span>sed_hr =<span class="st"> </span>df<span class="op">$</span>sed<span class="op">/</span><span class="dv">60</span>  ## in hours instead of minutes
 
 ## Our model
 model1 &lt;-<span class="st"> &#39;</span>
@@ -256,7 +257,7 @@ model1 &lt;-<span class="st"> &#39;</span>
 ## sem function to run the model
 fit &lt;-<span class="st"> </span><span class="kw">sem</span>(model1, <span class="dt">data =</span> df)
 <span class="kw">summary</span>(fit)</code></pre></div>
-<pre><code>## lavaan (0.5-22) converged normally after  30 iterations
+<pre><code>## lavaan (0.5-23.1097) converged normally after  30 iterations
 ## 
 ##                                                   Used       Total
 ##   Number of observations                          4614        4632
@@ -294,7 +295,7 @@ model2 &lt;-<span class="st"> &#39;</span>
 ## sem function to run the model
 fit2 &lt;-<span class="st"> </span><span class="kw">sem</span>(model2, <span class="dt">data =</span> df)
 <span class="kw">summary</span>(fit2)</code></pre></div>
-<pre><code>## lavaan (0.5-22) converged normally after  30 iterations
+<pre><code>## lavaan (0.5-23.1097) converged normally after  30 iterations
 ## 
 ##                                                   Used       Total
 ##   Number of observations                          4614        4632
@@ -328,14 +329,14 @@ fit2 &lt;-<span class="st"> </span><span class="kw">sem</span>(model2, <span cla
 <p>We defined a few things in the model. First, we gave the coefficients labels of <code>a</code>, <code>b</code>, and <code>c</code>. Doing so allows us to define the <code>indirect</code> and <code>total</code> effects. Here we see the indirect effect, although small, is significant at <span class="math inline">\(p &lt; .001\)</span>. The total effect is larger (not surprising) and is also significant.</p>
 <p>Also note that we can make the regression equations have other covariates as well if we needed to (i.e. control for age or gender) just as we do in regular regression.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Our model
-model2<span class="fl">.1</span> &lt;-<span class="st"> &#39;</span>
+model2.<span class="dv">1</span> &lt;-<span class="st"> &#39;</span>
 <span class="st">  dep ~ asthma + ridageyr</span>
 <span class="st">  sed_hr ~ dep + asthma + ridageyr</span>
 <span class="st">&#39;</span>
 ## sem function to run the model
-fit2<span class="fl">.1</span> &lt;-<span class="st"> </span><span class="kw">sem</span>(model2<span class="fl">.1</span>, <span class="dt">data =</span> df)
-<span class="kw">summary</span>(fit2<span class="fl">.1</span>)</code></pre></div>
-<pre><code>## lavaan (0.5-22) converged normally after  33 iterations
+fit2.<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">sem</span>(model2.<span class="dv">1</span>, <span class="dt">data =</span> df)
+<span class="kw">summary</span>(fit2.<span class="dv">1</span>)</code></pre></div>
+<pre><code>## lavaan (0.5-23.1097) converged normally after  33 iterations
 ## 
 ##                                                   Used       Total
 ##   Number of observations                          4614        4632
@@ -381,7 +382,7 @@ model3 &lt;-<span class="st"> &#39;</span>
 ## sem function to run the model
 fit3 &lt;-<span class="st"> </span><span class="kw">sem</span>(model3, <span class="dt">data =</span> df)
 <span class="kw">summary</span>(fit3)</code></pre></div>
-<pre><code>## lavaan (0.5-22) converged normally after  47 iterations
+<pre><code>## lavaan (0.5-23.1097) converged normally after  47 iterations
 ## 
 ##                                                   Used       Total
 ##   Number of observations                          4614        4632
@@ -441,7 +442,7 @@ fit3 &lt;-<span class="st"> </span><span class="kw">sem</span>(model3, <span cla
 <span class="st">&#39;</span>
 fit4 &lt;-<span class="st"> </span><span class="kw">cfa</span>(model4, <span class="dt">data=</span>df)
 <span class="kw">summary</span>(fit4)</code></pre></div>
-<pre><code>## lavaan (0.5-22) converged normally after  29 iterations
+<pre><code>## lavaan (0.5-23.1097) converged normally after  29 iterations
 ## 
 ##   Number of observations                          4632
 ## 
@@ -494,13 +495,13 @@ fit4 &lt;-<span class="st"> </span><span class="kw">cfa</span>(model4, <span cla
 <p>In order to do either ridge, lasso, or elastic net regression, we can use the fantastic <code>glmnet</code> package. Using the <code>cv.glmnet()</code> function we can run the ridge (<span class="math inline">\(alpha = 0\)</span>), lasso (<span class="math inline">\(alpha = 1\)</span> which is default), and elastic net (<span class="math inline">\(0 \leq alpha \leq 1\)</span>). It turns out that elastic net is the combination of the ridge and lasso methods and the closer <code>alpha</code> is to 1 the more it acts like lasso and the closer it is to 0 the more it acts like ridge.</p>
 <p>Lasso and elastic net can do variable selection in addition to estimation. Ridge is great at handling correlated predictors. Each of them are better than conventional methods at prediction and each of them can handle large numbers of predictors. To learn more see “Introduction to Statistical Learning” by Daniela Witten, Gareth James, Robert Tibshirani, and Trevor Hastie. A feww PDF is available on their website.</p>
 <p>To use the package, it wants the data in a very specific form. First, we need to remove any missingness. We use <code>na.omit()</code> to do this. We take all the predictors (without the outcome) and put it in a data matrix object. We only include a few for the demonstration but you can include <em>many</em> predictors. We name ours <code>X</code>. <code>Y</code> is our outcome.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df2 &lt;-<span class="st"> </span>df %&gt;%
-<span class="st">  </span>dplyr::<span class="kw">select</span>(riagendr, ridageyr, ridreth3, race, famsize, dep, asthma, sed_hr) %&gt;%
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df2 &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(riagendr, ridageyr, ridreth3, race, famsize, dep, asthma, sed_hr) <span class="op">%&gt;%</span>
 <span class="st">  </span>na.omit
-X &lt;-<span class="st"> </span>df2 %&gt;%
-<span class="st">  </span>dplyr::<span class="kw">select</span>(-sed_hr) %&gt;%
+X &lt;-<span class="st"> </span>df2 <span class="op">%&gt;%</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="op">-</span>sed_hr) <span class="op">%&gt;%</span>
 <span class="st">  </span>data.matrix
-Y &lt;-<span class="st"> </span>df2$sed_hr</code></pre></div>
+Y &lt;-<span class="st"> </span>df2<span class="op">$</span>sed_hr</code></pre></div>
 <p>Then we use the <code>cv.glmnet()</code> function to fit the different models. The “cv” refers to cross-validation<a href="#fn19" class="footnoteRef" id="fnref19"><sup>19</sup></a>, which we don’t discuss here, but it an important topic to become familiar with. Below we fit a ridge, a lasso, and an elastic net model. The elastic net model uses more of the lasso penalty because the <code>alpha</code> is closer to 1 than 0.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(glmnet)
 
@@ -512,38 +513,38 @@ fit_enet  &lt;-<span class="st"> </span><span class="kw">cv.glmnet</span>(X, Y, 
 <span class="kw">plot</span>(fit_ridge)
 <span class="kw">plot</span>(fit_lasso)
 <span class="kw">plot</span>(fit_enet)</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-105-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-107-1.png" width="672" /></p>
 <p>We can get the coefficients at a reasonable <code>lambda</code>. Specifically, we use the “1-SE rule” (near the right hand side vertical dashed lines in the above plots) by <code>s = &quot;lambda.1se&quot;</code>. You can directly tell it what <code>lambda</code> value you’d like but this is a simple rule of thumb.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coef</span>(fit_ridge, <span class="dt">s =</span> <span class="st">&quot;lambda.1se&quot;</span>)</code></pre></div>
 <pre><code>## 8 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
 ##                      1
-## (Intercept)  5.5019415
-## riagendr     0.0527863
-## ridageyr    -0.0007295
-## ridreth3     0.0603953
-## race         0.1046580
-## famsize     -0.0494439
-## dep          0.0130551
-## asthma       0.1239795</code></pre>
+## (Intercept)  5.6643383
+## riagendr     0.0383332
+## ridageyr    -0.0004922
+## ridreth3     0.0466744
+## race         0.0772713
+## famsize     -0.0349771
+## dep          0.0092062
+## asthma       0.0889313</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coef</span>(fit_lasso, <span class="dt">s =</span> <span class="st">&quot;lambda.1se&quot;</span>)</code></pre></div>
 <pre><code>## 8 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
 ##                  1
-## (Intercept) 5.5379
+## (Intercept) 5.4647
 ## riagendr    .     
 ## ridageyr    .     
 ## ridreth3    .     
-## race        0.1865
+## race        0.2087
 ## famsize     .     
 ## dep         .     
 ## asthma      .</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coef</span>(fit_enet, <span class="dt">s =</span> <span class="st">&quot;lambda.1se&quot;</span>)</code></pre></div>
 <pre><code>## 8 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
 ##                  1
-## (Intercept) 5.8128
+## (Intercept) 5.7175
 ## riagendr    .     
 ## ridageyr    .     
 ## ridreth3    .     
-## race        0.1033
+## race        0.1322
 ## famsize     .     
 ## dep         .     
 ## asthma      .</code></pre>
@@ -564,7 +565,7 @@ fit_enet  &lt;-<span class="st"> </span><span class="kw">cv.glmnet</span>(X, Y, 
 <pre><code>## The following object is masked from &#39;package:ggplot2&#39;:
 ## 
 ##     margin</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fit_rf &lt;-<span class="st"> </span><span class="kw">randomForest</span>(sed_hr ~<span class="st"> </span>., <span class="dt">data =</span> df2)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fit_rf &lt;-<span class="st"> </span><span class="kw">randomForest</span>(sed_hr <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> df2)
 fit_rf</code></pre></div>
 <pre><code>## 
 ## Call:
@@ -573,12 +574,12 @@ fit_rf</code></pre></div>
 ##                      Number of trees: 500
 ## No. of variables tried at each split: 2
 ## 
-##           Mean of squared residuals: 10.8
-##                     % Var explained: 3.9</code></pre>
+##           Mean of squared residuals: 10.81
+##                     % Var explained: 3.8</code></pre>
 <p>We can find out which variables were important in the model via:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))  ## back to one plot per page
 <span class="kw">varImpPlot</span>(fit_rf)</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-108-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-110-1.png" width="672" /></p>
 <p>We can see that age (<code>ridageyr</code>) is the most important variable, depression (<code>dep</code>) follows, with the family size (<code>famsize</code>) the third most important in the random forests model.</p>
 </div>
 </div>

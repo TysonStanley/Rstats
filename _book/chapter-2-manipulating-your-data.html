@@ -26,7 +26,7 @@
 <meta name="author" content="Tyson S. Barrett">
 
 
-<meta name="date" content="2017-02-09">
+<meta name="date" content="2017-04-17">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -127,6 +127,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="chapter-2-manipulating-your-data.html"><a href="chapter-2-manipulating-your-data.html#reshaping"><i class="fa fa-check"></i>Reshaping</a><ul>
 <li class="chapter" data-level="" data-path="chapter-2-manipulating-your-data.html"><a href="chapter-2-manipulating-your-data.html#wide-form"><i class="fa fa-check"></i>Wide Form</a></li>
 <li class="chapter" data-level="" data-path="chapter-2-manipulating-your-data.html"><a href="chapter-2-manipulating-your-data.html#long-form"><i class="fa fa-check"></i>Long Form</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-manipulating-your-data.html"><a href="chapter-2-manipulating-your-data.html#change-from-one-to-the-other"><i class="fa fa-check"></i>Change from One to the Other</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-2-manipulating-your-data.html"><a href="chapter-2-manipulating-your-data.html#joining-merging"><i class="fa fa-check"></i>Joining (merging)</a><ul>
 <li class="chapter" data-level="" data-path="chapter-2-manipulating-your-data.html"><a href="chapter-2-manipulating-your-data.html#inner-join"><i class="fa fa-check"></i>Inner Join</a></li>
@@ -137,7 +138,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html"><i class="fa fa-check"></i>Chapter 3: Understanding and Describing Your Data</a><ul>
 <li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#descriptive-statistics"><i class="fa fa-check"></i>Descriptive Statistics</a></li>
 <li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#visualizations"><i class="fa fa-check"></i>Visualizations</a><ul>
-<li class="chapter" data-level="0.0.1" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#using-ggplot2"><i class="fa fa-check"></i><b>0.0.1</b> Using <code class="unnumbered">ggplot2</code></a></li>
+<li><a href="chapter-3-understanding-and-describing-your-data.html#using-ggplot2">Using <code>ggplot2</code></a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html"><i class="fa fa-check"></i>Chapter 4: Basic Analyses</a><ul>
@@ -249,7 +250,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(awesome)
 <span class="kw">library</span>(amazing)</code></pre></div>
 <p><code>R</code> will automatically use the function from <code>amazing</code>. We can still access the <code>awesome</code> version of the function (because even though the name is the same, they won’t necessarily do the same things for you). We can do this by:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">awesome::<span class="kw">make_really_great</span>(arg)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">awesome<span class="op">::</span><span class="kw">make_really_great</span>(arg)</code></pre></div>
 <p>That’s a bit of an aside, but know that you can always get at a function even if it is “masked” from your current session.</p>
 <div id="tidy-methods" class="section level2 unnumbered">
 <h2>Tidy Methods</h2>
@@ -268,6 +269,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>Reshaping</li>
 <li>Joining (merging)</li>
 </ol>
+<blockquote>
+<p>Heads up! Understanding these tools requires, simultaneously, an understanding of what ways data can be moved around. For example, reshaping can refer to moving data into a more wide-format or long-format, can refer to summarizing or aggregating, and can refer to joining or binding. All of these are necessary to work with data flexibly. Because of this, we suggest taking your time to fully understand what each function is doing with the data.</p>
+</blockquote>
 <p>To help illustrate each aspect, we are going to use real data from the National Health and Nutrition Examiniation Survey (NHANES). I’ve provided this data at <a href="https://tysonstanley.github.io/assets/Data/NHANES.zip" class="uri">https://tysonstanley.github.io/assets/Data/NHANES.zip</a>. I’ve cleaned it up somewhat already.</p>
 <p>Let’s quickly read that data in so we can use it throughout the remainder of this chapter. First, we will set our working directory with <code>setwd</code>. This tells <code>R</code> where to look for files, including your data files. My specific file location is below so you will need to adjust it to wherever you saved the NHANES data.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setwd</span>(<span class="st">&quot;~/Dropbox/GitHub/blog_rstats/assets/Data/&quot;</span>)</code></pre></div>
@@ -294,30 +298,30 @@ act_df &lt;-<span class="st"> </span><span class="kw">read.xport</span>(<span cl
 <div id="piping" class="section level2 unnumbered">
 <h2>Piping</h2>
 <p>Let’s introduce a few major themes in this tidyverse. First, the pipe operator – <code>%&gt;%</code>. It helps simplify the code and makes things more readable. It takes what is on the left hand side and puts it in the right hand side’s function.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dem_df %&gt;%<span class="st"> </span>summary</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dem_df <span class="op">%&gt;%</span><span class="st"> </span>summary</code></pre></div>
 <p>So the above code takes the data frame <code>df</code> and puts it into the <code>summary</code> function. This does the same thing as <code>summary(df)</code>. In this simple case, it doesn’t really make the code more readable, but in more complex situations it can really help. In the following sections you will see how and where this type of coding is helpful.</p>
 </div>
 <div id="select-and-filter" class="section level2 unnumbered">
 <h2>Select and Filter</h2>
 <p>We often want to subset our data in some way before we do many of our analyses. This can make our cognitive load of the data much lighter but it can also be very important in the actual analyses. The code below show the two main ways to subset your data: 1) selecting variables and 2) filtering observations.</p>
 <p>To select three variables (i.e. gender [“riagendr”], age [“ridageyr”], and ethnicity [“ridreth1”]) we:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">selected_dem &lt;-<span class="st"> </span>dem_df %&gt;%
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">selected_dem &lt;-<span class="st"> </span>dem_df <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">select</span>(riagendr, ridageyr, ridreth1)</code></pre></div>
 <p>Now, <code>selected_dem</code> has three variables and all the observations.</p>
 <p>We can also filter (i.e. take out observations we don’t want):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">filtered_dem &lt;-<span class="st"> </span>dem_df %&gt;%
-<span class="st">  </span><span class="kw">filter</span>(riagendr ==<span class="st"> </span><span class="dv">1</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">filtered_dem &lt;-<span class="st"> </span>dem_df <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(riagendr <span class="op">==</span><span class="st"> </span><span class="dv">1</span>)</code></pre></div>
 <p>Since when <code>riagendr == 1</code> the individual is male, <code>filtered_dem</code> only has male participants. We can add multiple filtering options as well:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">filtered_dem &lt;-<span class="st"> </span>dem_df %&gt;%
-<span class="st">  </span><span class="kw">filter</span>(riagendr ==<span class="st"> </span><span class="dv">1</span> &amp;<span class="st"> </span>ridageyr &gt;<span class="st"> </span><span class="dv">16</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">filtered_dem &lt;-<span class="st"> </span>dem_df <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(riagendr <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">&amp;</span><span class="st"> </span>ridageyr <span class="op">&gt;</span><span class="st"> </span><span class="dv">16</span>)</code></pre></div>
 <p>We now have only males that are older than 16 years old. We used <code>&amp;</code> to say we want <strong>both</strong> conditions to be met. Alternatively, we could:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">filtered_dem &lt;-<span class="st"> </span>dem_df %&gt;%
-<span class="st">  </span><span class="kw">filter</span>(riagendr ==<span class="st"> </span><span class="dv">1</span> |<span class="st"> </span>ridageyr &gt;<span class="st"> </span><span class="dv">16</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">filtered_dem &lt;-<span class="st"> </span>dem_df <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(riagendr <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">|</span><span class="st"> </span>ridageyr <span class="op">&gt;</span><span class="st"> </span><span class="dv">16</span>)</code></pre></div>
 <p>which, using <code>|</code> we are saying we want males <strong>or</strong> individuals older than 16. In other words, if either are met, that observation will be kept.</p>
 <p>Finally, we can do all of these in one step:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">filtered_dem &lt;-<span class="st"> </span>dem_df %&gt;%
-<span class="st">  </span><span class="kw">select</span>(riagendr, ridageyr, ridreth1) %&gt;%
-<span class="st">  </span><span class="kw">filter</span>(riagendr ==<span class="st"> </span><span class="dv">1</span> &amp;<span class="st"> </span>ridageyr &gt;<span class="st"> </span><span class="dv">16</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">filtered_dem &lt;-<span class="st"> </span>dem_df <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(riagendr, ridageyr, ridreth1) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(riagendr <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">&amp;</span><span class="st"> </span>ridageyr <span class="op">&gt;</span><span class="st"> </span><span class="dv">16</span>)</code></pre></div>
 <p>where we use two <code>%&gt;%</code> operators to grab <code>dem_df</code>, select the three variables, and then filter the rows that we want.</p>
 </div>
 <div id="grouping-and-summarizing" class="section level2 unnumbered">
@@ -329,11 +333,11 @@ act_df &lt;-<span class="st"> </span><span class="kw">read.xport</span>(<span cl
 <li>Summarize</li>
 </ol>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Our Grouping Variable as a factor
-dem_df$citizen &lt;-<span class="st"> </span><span class="kw">factor</span>(dem_df$dmdcitzn)
+dem_df<span class="op">$</span>citizen &lt;-<span class="st"> </span><span class="kw">factor</span>(dem_df<span class="op">$</span>dmdcitzn)
 
 ## Three step summary:
-dem_df %&gt;%<span class="st">                           </span>## 1. Data
-<span class="st">  </span><span class="kw">group_by</span>(citizen) %&gt;%<span class="st">              </span>## 2. Group by
+dem_df <span class="op">%&gt;%</span><span class="st">                           </span>## 1. Data
+<span class="st">  </span><span class="kw">group_by</span>(citizen) <span class="op">%&gt;%</span><span class="st">              </span>## 2. Group by
 <span class="st">  </span><span class="kw">summarize</span>(<span class="dt">N =</span> <span class="kw">n</span>())                 ## 3. Summarize</code></pre></div>
 <pre><code>## # A tibble: 4 × 2
 ##   citizen     N
@@ -346,12 +350,12 @@ dem_df %&gt;%<span class="st">                           </span>## 1. Data
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;furniture&quot;</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(furniture)
 
-dem_df$citizen &lt;-<span class="st"> </span><span class="kw">washer</span>(dem_df$citizen, <span class="dv">7</span>)            ## Changes all 7&#39;s to NA&#39;s
-dem_df$citizen &lt;-<span class="st"> </span><span class="kw">washer</span>(dem_df$citizen, <span class="dv">2</span>, <span class="dt">value=</span><span class="dv">0</span>)   ## Changes all 2&#39;s to 0&#39;s</code></pre></div>
+dem_df<span class="op">$</span>citizen &lt;-<span class="st"> </span><span class="kw">washer</span>(dem_df<span class="op">$</span>citizen, <span class="dv">7</span>)            ## Changes all 7&#39;s to NA&#39;s
+dem_df<span class="op">$</span>citizen &lt;-<span class="st"> </span><span class="kw">washer</span>(dem_df<span class="op">$</span>citizen, <span class="dv">2</span>, <span class="dt">value=</span><span class="dv">0</span>)   ## Changes all 2&#39;s to 0&#39;s</code></pre></div>
 <p>Now, our citizen variable is cleaned, with <code>0</code> meaning not a citizen and <code>1</code> meaning citizen. Let’s rerun the code from above with the three step summary:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Three step summary:
-dem_df %&gt;%<span class="st">                           </span>## 1. Data
-<span class="st">  </span><span class="kw">group_by</span>(citizen) %&gt;%<span class="st">              </span>## 2. Group by
+dem_df <span class="op">%&gt;%</span><span class="st">                           </span>## 1. Data
+<span class="st">  </span><span class="kw">group_by</span>(citizen) <span class="op">%&gt;%</span><span class="st">              </span>## 2. Group by
 <span class="st">  </span><span class="kw">summarize</span>(<span class="dt">N =</span> <span class="kw">n</span>())                 ## 3. Summarize</code></pre></div>
 <pre><code>## # A tibble: 3 × 2
 ##   citizen     N
@@ -361,8 +365,8 @@ dem_df %&gt;%<span class="st">                           </span>## 1. Data
 ## 3    &lt;NA&gt;    31</code></pre>
 <p>Its clear that the majority of the subjects are citizens. We can also check multiple variables at the same time, just separating them with a comma in the <code>summarize</code> function.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Three step summary:
-dem_df %&gt;%<span class="st">                           </span>## 1. Data
-<span class="st">  </span><span class="kw">group_by</span>(citizen) %&gt;%<span class="st">              </span>## 2. Group by
+dem_df <span class="op">%&gt;%</span><span class="st">                           </span>## 1. Data
+<span class="st">  </span><span class="kw">group_by</span>(citizen) <span class="op">%&gt;%</span><span class="st">              </span>## 2. Group by
 <span class="st">  </span><span class="kw">summarize</span>(<span class="dt">N =</span> <span class="kw">n</span>(),                 ## 3. Summarize
             <span class="dt">Age =</span> <span class="kw">mean</span>(ridageyr, <span class="dt">na.rm=</span><span class="ot">TRUE</span>))                 </code></pre></div>
 <pre><code>## # A tibble: 3 × 3
@@ -381,38 +385,79 @@ dem_df %&gt;%<span class="st">                           </span>## 1. Data
 <li>Wide form</li>
 <li>Long form</li>
 </ol>
-<p>Only when the data is cross-sectional and each individual is a row does this distinction not matter much. Otherwise, if there are multiple measures per individual, or there are multiple individuals per cluster, the distinction between wide and long is very important for modeling and visualization.</p>
+<p>Only when the data is cross-sectional and each individual is a row does this distinction not matter much. Otherwise, if there are multiple measurement periods per individual, or there are multiple individuals per cluster, the distinction between wide and long is very important for modeling and visualization.</p>
 <div id="wide-form" class="section level3 unnumbered">
 <h3>Wide Form</h3>
 <p>Wide form generally has one unit (i.e. individual) per row. This generally looks like:</p>
-<pre><code>##    ID  Var_Time1 Var_Time2
-## 1   1 -0.9706563 0.6387496
-## 2   2  1.3789611 0.9314843
-## 3   3  2.4544064 0.7750831
-## 4   4  0.1730225 0.4690019
-## 5   5  0.2060349 0.3337171
-## 6   6 -1.0729583 0.4948871
-## 7   7 -0.4206507 0.5556425
-## 8   8 -1.7944119 0.2935733
-## 9   9 -0.1648771 0.4356911
-## 10 10 -0.5409308 0.1600317</code></pre>
+<pre><code>##    ID   Var_Time1  Var_Time2
+## 1   1 -0.42036410 0.26182996
+## 2   2 -0.56442696 0.20654929
+## 3   3 -1.37724337 0.09421562
+## 4   4  0.13597740 0.87538688
+## 5   5 -2.08934773 0.90466925
+## 6   6  1.12657870 0.89588555
+## 7   7  0.04893103 0.49824613
+## 8   8  1.44216815 0.70407102
+## 9   9 -0.31098976 0.26948057
+## 10 10  1.07391932 0.69558433</code></pre>
 <p>Notice that each row has a unique ID.</p>
 <p>This format is common in the ANOVA family of analyses. These can be used when there are set time points that the individual is measured and each individual has the same number of time points. This is not always reasonable, but when it is, wide format works just fine. However, when these conditions don’t hold, mixed effects modeling (i.e. multilevel modeling, hierarchical linear modeling) is particularly useful. In order to do mixed effects modeling, long format is required.</p>
 </div>
 <div id="long-form" class="section level3 unnumbered">
 <h3>Long Form</h3>
 <p>In contrast, long format has the lowest nested unit as a single row. This means that a single ID can span multiple rows, usually with a unique time point for each row as so:</p>
-<pre><code>##   ID Time         Var
-## 1  1    1 0.890954329
-## 2  1    2 0.282291385
-## 3  1    3 0.477135014
-## 4  1    4 0.773626585
-## 5  2    1 0.554862926
-## 6  2    2 0.668778904
-## 7  3    1 0.044424923
-## 8  3    2 0.007824539
-## 9  3    3 0.574861849</code></pre>
+<pre><code>##   ID Time        Var
+## 1  1    1 0.03899339
+## 2  1    2 0.76598094
+## 3  1    3 0.74644611
+## 4  1    4 0.06752922
+## 5  2    1 0.20600365
+## 6  2    2 0.47594231
+## 7  3    1 0.97246109
+## 8  3    2 0.12105419
+## 9  3    3 0.99748192</code></pre>
 <p>Notice that a single ID spans multiple columns and that each row has only one time point. Here, time is nested within individuals making it the lowest unit. Therefore, each row corresponds to a single time point. Generally, this is the format we want for most modeling techniques and most visualizations.</p>
+</div>
+<div id="change-from-one-to-the-other" class="section level3 unnumbered">
+<h3>Change from One to the Other</h3>
+<p>Now that you have an idea of the differences between a wide format and a long format, we are going to briefly introduce how to change from one to the other. The following functions are particularly helpful when there are few time-variant variables (or the subjects are clustered). When there are many time-variant variables (or the data is more complex in general), we will use a different approach that we discuss in Chapter 8. For now, we are keeping it simple.</p>
+<p>First, we will go from wide to long using <code>gather()</code> from the <code>tidyr</code> package. We are using the ficticious data for the example of wide format from above.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df_wide &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="st">&quot;ID&quot;</span>=<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>), <span class="st">&quot;Var_Time1&quot;</span>=<span class="kw">rnorm</span>(<span class="dv">10</span>), <span class="st">&quot;Var_Time2&quot;</span>=<span class="kw">runif</span>(<span class="dv">10</span>))
+df_long &lt;-<span class="st"> </span><span class="kw">gather</span>(df_wide, <span class="st">&quot;var_label&quot;</span>, <span class="st">&quot;value&quot;</span>, <span class="dv">2</span><span class="op">:</span><span class="dv">3</span>)
+df_long</code></pre></div>
+<pre><code>##    ID var_label      value
+## 1   1 Var_Time1  0.5919021
+## 2   2 Var_Time1  0.8274973
+## 3   3 Var_Time1  0.8880345
+## 4   4 Var_Time1  0.8693675
+## 5   5 Var_Time1 -0.7246241
+## 6   6 Var_Time1 -0.1554722
+## 7   7 Var_Time1  0.7075107
+## 8   8 Var_Time1  0.3558710
+## 9   9 Var_Time1  0.4355783
+## 10 10 Var_Time1  0.5817997
+## 11  1 Var_Time2  0.1436524
+## 12  2 Var_Time2  0.2452182
+## 13  3 Var_Time2  0.4790477
+## 14  4 Var_Time2  0.1995977
+## 15  5 Var_Time2  0.7054057
+## 16  6 Var_Time2  0.9560707
+## 17  7 Var_Time2  0.6710861
+## 18  8 Var_Time2  0.1514055
+## 19  9 Var_Time2  0.2081780
+## 20 10 Var_Time2  0.5942309</code></pre>
+<p>We provided the data, some variable names, and told it what columns contained the values.</p>
+<p>And now we will go from long to wide using <code>spread()</code> from the same package.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df_long &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="st">&quot;ID&quot;</span>=<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>), 
+                      <span class="st">&quot;Time&quot;</span>=<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), 
+                      <span class="st">&quot;Var&quot;</span>=<span class="kw">runif</span>(<span class="dv">9</span>))
+df_wide &lt;-<span class="st"> </span><span class="kw">spread</span>(df_long, Time, Var)
+df_wide</code></pre></div>
+<pre><code>##   ID         1         2         3         4
+## 1  1 0.4185258 0.8817032 0.2956599 0.1567894
+## 2  2 0.9014880 0.3097825        NA        NA
+## 3  3 0.3895010 0.5006912 0.9130711        NA</code></pre>
+<p>Here, we provided the column name (<code>Time</code>) that had the value labels and (<code>Var</code>) that contained the values themselves. With a little bit of code we can move data around without any copy-pasting that is so error-prone.</p>
 </div>
 </div>
 <div id="joining-merging" class="section level2 unnumbered">
@@ -439,9 +484,9 @@ dem_df %&gt;%<span class="st">                           </span>## 1. Data
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">full_join</span>(df1, df2, <span class="dt">by=</span><span class="st">&quot;IDvariable&quot;</span>)</code></pre></div>
 <p>Each of the left, right and full joins will have missing values placed in the variables where that individual wasn’t found. For example, if person “A” was not in df2, then in a full join they would have missing values in the df1 variables.</p>
 <p>For our NHANES example, we will use <code>full_join</code> to get all the data sets together. Note that in the code below we do all the joining in the same overall step.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span>dem_df %&gt;%
-<span class="st">  </span><span class="kw">full_join</span>(med_df, <span class="dt">by=</span><span class="st">&quot;seqn&quot;</span>) %&gt;%
-<span class="st">  </span><span class="kw">full_join</span>(men_df, <span class="dt">by=</span><span class="st">&quot;seqn&quot;</span>) %&gt;%
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span>dem_df <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">full_join</span>(med_df, <span class="dt">by=</span><span class="st">&quot;seqn&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">full_join</span>(men_df, <span class="dt">by=</span><span class="st">&quot;seqn&quot;</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">full_join</span>(act_df, <span class="dt">by=</span><span class="st">&quot;seqn&quot;</span>)</code></pre></div>
 <p>So now <code>df</code> is the the joined data set of all four. We started with <code>dem_df</code> joined it with <code>med_df</code> by <code>seqn</code> then joined that joined data set with <code>men_df</code> by <code>seqn</code>, and so on.</p>
 <p>For analyses in the next chapter, we will use this new <code>df</code> object that is the combination of all the data sets that we had before.</p>
