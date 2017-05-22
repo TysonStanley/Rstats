@@ -55,6 +55,20 @@ And we are back to the wide form.
 
 These steps can be followed for situations where there are many measures per person, many people per cluster, etc. In most cases, this is the way multilevel data analysis occurs (as we discussed in Chapter 6) and is a nice way to get our data ready for plotting.
 
+### The `reshape()` function {-}
+
+It is also possible to do multiple measures at once when moving from wide to long or long to wide. The following figure shows the basics of the `reshape()` function that was made for an introductory R class.
+
+![Reshape](https://github.com/TysonStanley/tysonstanley.github.io/blob/master/assets/images/DataCleaning_Handout.png)
+
+Note a few important features: 
+
+1. `reshape()` is used for moving from wide to long and long to wide. Here we just tell it the direction.
+2. To indicate multiple columns, use a list of vectors (e.g., `list(c("x1", "x2"), c("z1", "z2")))`).
+3. `reshape()` can be used before or after subsetting, allowing for only the necessary variables to be included in the reshaping process.
+
+
+
 ## Repeating Actions (Looping) {-}
 
 To fully go into looping, understanding how to write your own functions is needed.
