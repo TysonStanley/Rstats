@@ -26,7 +26,7 @@
 <meta name="author" content="Tyson S. Barrett">
 
 
-<meta name="date" content="2017-04-17">
+<meta name="date" content="2017-05-22">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -529,22 +529,22 @@ fit_enet  &lt;-<span class="st"> </span><span class="kw">cv.glmnet</span>(X, Y, 
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coef</span>(fit_lasso, <span class="dt">s =</span> <span class="st">&quot;lambda.1se&quot;</span>)</code></pre></div>
 <pre><code>## 8 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
 ##                  1
-## (Intercept) 5.4647
+## (Intercept) 5.5379
 ## riagendr    .     
 ## ridageyr    .     
 ## ridreth3    .     
-## race        0.2087
+## race        0.1865
 ## famsize     .     
 ## dep         .     
 ## asthma      .</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coef</span>(fit_enet, <span class="dt">s =</span> <span class="st">&quot;lambda.1se&quot;</span>)</code></pre></div>
 <pre><code>## 8 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
 ##                  1
-## (Intercept) 5.7175
+## (Intercept) 5.6303
 ## riagendr    .     
 ## ridageyr    .     
 ## ridreth3    .     
-## race        0.1322
+## race        0.1585
 ## famsize     .     
 ## dep         .     
 ## asthma      .</code></pre>
@@ -574,8 +574,8 @@ fit_rf</code></pre></div>
 ##                      Number of trees: 500
 ## No. of variables tried at each split: 2
 ## 
-##           Mean of squared residuals: 10.81
-##                     % Var explained: 3.8</code></pre>
+##           Mean of squared residuals: 10.83
+##                     % Var explained: 3.67</code></pre>
 <p>We can find out which variables were important in the model via:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))  ## back to one plot per page
 <span class="kw">varImpPlot</span>(fit_rf)</code></pre></div>

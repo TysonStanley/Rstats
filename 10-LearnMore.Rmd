@@ -1,5 +1,5 @@
 ---
-title: "R for Health, Behavioral, and Social Scientists"
+title: "R for the Health, Behavioral, and Social Sciences"
 author: "Tyson S. Barrett"
 date: "`r Sys.Date()`"
 site: "bookdown::bookdown_site"

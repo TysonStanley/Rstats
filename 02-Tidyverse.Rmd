@@ -1,5 +1,5 @@
 ---
-title: "R for Health, Behavioral, and Social Scientists"
+title: "R for the Health, Behavioral, and Social Sciences"
 author: "Tyson S. Barrett"
 date: "`r Sys.Date()`"
 site: "bookdown::bookdown_site"
@@ -317,7 +317,7 @@ df <- dem_df %>%
 
 So now `df` is the the joined data set of all four. We started with `dem_df` joined it with `med_df` by `seqn` then joined that joined data set with `men_df` by `seqn`, and so on.
 
-For analyses in the next chapter, we will use this new `df` object that is the combination of all the data sets that we had before.
+For many analyses in later chapters, we will use this new `df` object that is the combination of all the data sets that we had before. Whenever this is the case, this data will be explicitly referenced. Note, that in addition to what was shown in this chapter, a few other cleaning tasks were done on the data. This final version of `df` can be found at [tysonstanley.github.io/R](http://www.tysonstanley.github.io/R).
 
 
 

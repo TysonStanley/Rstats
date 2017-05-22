@@ -26,7 +26,7 @@
 <meta name="author" content="Tyson S. Barrett">
 
 
-<meta name="date" content="2017-04-17">
+<meta name="date" content="2017-05-22">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -399,26 +399,26 @@ h_fit =<span class="st"> </span><span class="kw">hurdle</span>(sed_zero <span cl
 ## 
 ## Pearson residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -3.9501 -1.6474 -0.1402  1.3703 10.0372 
+## -3.6194 -1.4600 -0.2929  1.2482  9.0200 
 ## 
 ## Count model coefficients (truncated poisson with log link):
 ##                     Estimate Std. Error z value Pr(&gt;|z|)    
-## (Intercept)        5.6683992  0.0036990 1532.43   &lt;2e-16 ***
-## asthma             0.0658982  0.0022324   29.52   &lt;2e-16 ***
-## raceOtherHispanic  0.1250816  0.0042624   29.34   &lt;2e-16 ***
-## raceWhite          0.3368808  0.0034825   96.74   &lt;2e-16 ***
-## raceBlack          0.3340279  0.0035828   93.23   &lt;2e-16 ***
-## raceOther          0.3480303  0.0037754   92.19   &lt;2e-16 ***
-## famsize           -0.0210582  0.0005682  -37.06   &lt;2e-16 ***
+## (Intercept)        5.6620658  0.0037288 1518.48   &lt;2e-16 ***
+## asthma             0.0647137  0.0022371   28.93   &lt;2e-16 ***
+## raceOtherHispanic  0.1258516  0.0042984   29.28   &lt;2e-16 ***
+## raceWhite          0.3290680  0.0035036   93.92   &lt;2e-16 ***
+## raceBlack          0.3314650  0.0036076   91.88   &lt;2e-16 ***
+## raceOther          0.3416123  0.0038089   89.69   &lt;2e-16 ***
+## famsize           -0.0181514  0.0005752  -31.55   &lt;2e-16 ***
 ## Zero hurdle model coefficients (binomial with logit link):
-##                   Estimate Std. Error z value Pr(&gt;|z|)    
-## (Intercept)        2.11477    0.21738   9.728   &lt;2e-16 ***
-## asthma            -0.14268    0.15090  -0.946   0.3444    
-## raceOtherHispanic  0.22449    0.25377   0.885   0.3764    
-## raceWhite          0.17553    0.20078   0.874   0.3820    
-## raceBlack          0.25915    0.21147   1.225   0.2204    
-## raceOther          0.17903    0.22662   0.790   0.4295    
-## famsize            0.07019    0.03989   1.759   0.0785 .  
+##                    Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept)        2.077901   0.203675  10.202   &lt;2e-16 ***
+## asthma             0.169858   0.152818   1.112    0.266    
+## raceOtherHispanic  0.031092   0.230840   0.135    0.893    
+## raceWhite          0.238453   0.190795   1.250    0.211    
+## raceBlack          0.038571   0.195199   0.198    0.843    
+## raceOther         -0.001147   0.208077  -0.006    0.996    
+## famsize            0.024637   0.036035   0.684    0.494    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1 
 ## 
@@ -454,28 +454,28 @@ fit_beta &lt;-<span class="st"> </span><span class="kw">betareg</span>(beta_var 
 ## 
 ## Standardized weighted residuals 2:
 ##     Min      1Q  Median      3Q     Max 
-## -2.0510 -0.7085 -0.0538  0.6480  2.9066 
+## -2.0688 -0.6995 -0.0648  0.6343  2.8962 
 ## 
 ## Coefficients (mean model with logit link):
-##                    Estimate Std. Error z value Pr(&gt;|z|)  
-## (Intercept)        0.113917   0.063203   1.802   0.0715 .
-## asthma            -0.028223   0.043676  -0.646   0.5182  
-## raceOtherHispanic -0.007401   0.071945  -0.103   0.9181  
-## raceWhite          0.039699   0.058695   0.676   0.4988  
-## raceBlack          0.053496   0.060938   0.878   0.3800  
-## raceOther          0.078806   0.065320   1.206   0.2276  
-## famsize           -0.011958   0.010814  -1.106   0.2688  
+##                     Estimate Std. Error z value Pr(&gt;|z|)
+## (Intercept)        0.0980541  0.0630342   1.556    0.120
+## asthma             0.0432103  0.0435692   0.992    0.321
+## raceOtherHispanic  0.0184141  0.0717620   0.257    0.797
+## raceWhite          0.0001519  0.0585399   0.003    0.998
+## raceBlack          0.0482562  0.0607794   0.794    0.427
+## raceOther         -0.0171281  0.0651371  -0.263    0.793
+## famsize           -0.0021877  0.0107850  -0.203    0.839
 ## 
 ## Phi coefficients (precision model with identity link):
 ##       Estimate Std. Error z value Pr(&gt;|z|)    
-## (phi)  2.47534    0.04509    54.9   &lt;2e-16 ***
+## (phi)  2.49723    0.04552   54.86   &lt;2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1 
 ## 
 ## Type of estimator: ML (maximum likelihood)
-## Log-likelihood:  88.3 on 8 Df
-## Pseudo R-squared: 0.001055
-## Number of iterations: 18 (BFGS) + 2 (Fisher scoring)</code></pre>
+## Log-likelihood: 89.93 on 8 Df
+## Pseudo R-squared: 0.0008072
+## Number of iterations: 17 (BFGS) + 1 (Fisher scoring)</code></pre>
 <p>The output provides coefficients and the “Phi” coefficients. Both are important parts of using beta regression but we are not going to discuss it here.</p>
 <p>There are many resources available to learn more about beta regression and each of these GLM’s. As for now, we are going to move on to more complex modeling where there are clustering or repeated measures in the data.</p>
 </div>
