@@ -26,7 +26,7 @@
 <meta name="author" content="Tyson S. Barrett">
 
 
-<meta name="date" content="2017-02-09">
+<meta name="date" content="2017-05-22">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -127,6 +127,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="chapter-2-manipulating-your-data.html"><a href="chapter-2-manipulating-your-data.html#reshaping"><i class="fa fa-check"></i>Reshaping</a><ul>
 <li class="chapter" data-level="" data-path="chapter-2-manipulating-your-data.html"><a href="chapter-2-manipulating-your-data.html#wide-form"><i class="fa fa-check"></i>Wide Form</a></li>
 <li class="chapter" data-level="" data-path="chapter-2-manipulating-your-data.html"><a href="chapter-2-manipulating-your-data.html#long-form"><i class="fa fa-check"></i>Long Form</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-manipulating-your-data.html"><a href="chapter-2-manipulating-your-data.html#change-from-one-to-the-other"><i class="fa fa-check"></i>Change from One to the Other</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-2-manipulating-your-data.html"><a href="chapter-2-manipulating-your-data.html#joining-merging"><i class="fa fa-check"></i>Joining (merging)</a><ul>
 <li class="chapter" data-level="" data-path="chapter-2-manipulating-your-data.html"><a href="chapter-2-manipulating-your-data.html#inner-join"><i class="fa fa-check"></i>Inner Join</a></li>
@@ -137,7 +138,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html"><i class="fa fa-check"></i>Chapter 3: Understanding and Describing Your Data</a><ul>
 <li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#descriptive-statistics"><i class="fa fa-check"></i>Descriptive Statistics</a></li>
 <li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#visualizations"><i class="fa fa-check"></i>Visualizations</a><ul>
-<li class="chapter" data-level="0.0.1" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#using-ggplot2"><i class="fa fa-check"></i><b>0.0.1</b> Using <code class="unnumbered">ggplot2</code></a></li>
+<li><a href="chapter-3-understanding-and-describing-your-data.html#using-ggplot2">Using <code>ggplot2</code></a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html"><i class="fa fa-check"></i>Chapter 4: Basic Analyses</a><ul>
@@ -181,7 +182,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#conclusions-3"><i class="fa fa-check"></i>Conclusions</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html"><i class="fa fa-check"></i>Chapter 8: Advanced Data Manipulation</a><ul>
-<li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#reshaping-your-data"><i class="fa fa-check"></i>Reshaping Your Data</a></li>
+<li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#reshaping-your-data"><i class="fa fa-check"></i>Reshaping Your Data</a><ul>
+<li><a href="chapter-8-advanced-data-manipulation.html#the-reshape-function">The <code>reshape()</code> function</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#repeating-actions-looping"><i class="fa fa-check"></i>Repeating Actions (Looping)</a><ul>
 <li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#your-own-functions"><i class="fa fa-check"></i>Your Own Functions</a></li>
 <li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#vectorized"><i class="fa fa-check"></i>Vectorized</a></li>
@@ -248,11 +251,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Since the outcome is binary, we use a statistical transformation to make things work well. This makes it so the outcome is in “log-odds.” A simple exponentiation of the coefficients and we get very useful “odds ratios.” These are very common in many fields using binary data.</p>
 <p>Luckily, running a logistic regression is simple in <code>R</code>. We first create the binary outcome variable called <code>dep</code>. We use a new function called <code>mutate</code> to create a new variable (we could do this a number of ways but this is probably the cleanest way).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## First creating binary depression variable
-df &lt;-<span class="st"> </span>df %&gt;%
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">dep =</span> dpq010 +<span class="st"> </span>dpq020 +<span class="st"> </span>dpq030 +<span class="st"> </span>dpq040 +<span class="st"> </span>dpq050 +
-<span class="st">               </span>dpq060 +<span class="st"> </span>dpq070 +<span class="st"> </span>dpq080 +<span class="st"> </span>dpq090) %&gt;%
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">dep2 =</span> <span class="kw">ifelse</span>(dep &gt;=<span class="st"> </span><span class="dv">10</span>, <span class="dv">1</span>,
-                <span class="kw">ifelse</span>(dep &lt;<span class="st"> </span><span class="dv">10</span>, <span class="dv">0</span>, <span class="ot">NA</span>)))</code></pre></div>
+df &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">dep =</span> dpq010 <span class="op">+</span><span class="st"> </span>dpq020 <span class="op">+</span><span class="st"> </span>dpq030 <span class="op">+</span><span class="st"> </span>dpq040 <span class="op">+</span><span class="st"> </span>dpq050 <span class="op">+</span>
+<span class="st">               </span>dpq060 <span class="op">+</span><span class="st"> </span>dpq070 <span class="op">+</span><span class="st"> </span>dpq080 <span class="op">+</span><span class="st"> </span>dpq090) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">dep2 =</span> <span class="kw">ifelse</span>(dep <span class="op">&gt;=</span><span class="st"> </span><span class="dv">10</span>, <span class="dv">1</span>,
+                <span class="kw">ifelse</span>(dep <span class="op">&lt;</span><span class="st"> </span><span class="dv">10</span>, <span class="dv">0</span>, <span class="ot">NA</span>)))</code></pre></div>
 <p>Note that we added the values from the ten variables that give us an overall depression score (<code>dep</code>). We then use <code>ifelse()</code> to create a binary version of depression called <code>dep2</code> with a cutoff of <span class="math inline">\(\geq 16\)</span> meaning depressed. Because there are missing values denoted as “NA” in this variable, we use a “nested ifelse” to say:</p>
 <ol style="list-style-type: decimal">
 <li>IF depression <span class="math inline">\(\geq 10\)</span> then dep2 is 1,</li>
@@ -261,12 +264,12 @@ df &lt;-<span class="st"> </span>df %&gt;%
 </ol>
 <p>Note that these nested <code>ifelse()</code> statements can be as long as you want. We further need to clean up the asthma and sedentary variables.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Fix some placeholders
-df &lt;-<span class="st"> </span>df %&gt;%
+df &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">asthma =</span> <span class="kw">washer</span>(mcq010, <span class="dv">9</span>),
-         <span class="dt">asthma =</span> <span class="kw">washer</span>(asthma, <span class="dv">2</span>, <span class="dt">value =</span> <span class="dv">0</span>)) %&gt;%
+         <span class="dt">asthma =</span> <span class="kw">washer</span>(asthma, <span class="dv">2</span>, <span class="dt">value =</span> <span class="dv">0</span>)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sed =</span> <span class="kw">washer</span>(pad680, <span class="dv">9999</span>, <span class="dv">7777</span>))</code></pre></div>
 <p>Now let’s run the logistic regression:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">l_fit &lt;-<span class="st"> </span><span class="kw">glm</span>(dep2 ~<span class="st"> </span>asthma +<span class="st"> </span>sed +<span class="st"> </span>race +<span class="st"> </span>famsize,
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">l_fit &lt;-<span class="st"> </span><span class="kw">glm</span>(dep2 <span class="op">~</span><span class="st"> </span>asthma <span class="op">+</span><span class="st"> </span>sed <span class="op">+</span><span class="st"> </span>race <span class="op">+</span><span class="st"> </span>famsize,
              <span class="dt">data =</span> df,
              <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>)
 <span class="kw">summary</span>(l_fit)</code></pre></div>
@@ -305,7 +308,7 @@ df &lt;-<span class="st"> </span>df %&gt;%
 <div id="poisson-regression" class="section level2 unnumbered">
 <h2>Poisson Regression</h2>
 <p>As we did in logistic regression, we will use the <code>glm()</code> function. The difference here is we will be using an outcome that is a count variable. For example, the sedentary variable (<code>sed</code>) that we have in <code>df</code> is a count of the minutes of sedentary activity.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p_fit &lt;-<span class="st"> </span><span class="kw">glm</span>(sed ~<span class="st"> </span>asthma +<span class="st"> </span>race +<span class="st"> </span>famsize,
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p_fit &lt;-<span class="st"> </span><span class="kw">glm</span>(sed <span class="op">~</span><span class="st"> </span>asthma <span class="op">+</span><span class="st"> </span>race <span class="op">+</span><span class="st"> </span>famsize,
              <span class="dt">data =</span> df,
              <span class="dt">family =</span> <span class="st">&quot;poisson&quot;</span>)
 <span class="kw">summary</span>(p_fit)</code></pre></div>
@@ -338,13 +341,13 @@ df &lt;-<span class="st"> </span>df %&gt;%
 ## AIC: 508999
 ## 
 ## Number of Fisher Scoring iterations: 5</code></pre>
-<p>Sedentary may be over-dispersed (see plot) <img src="_main_files/figure-html/unnamed-chunk-84-1.png" width="672" /> and so other methods related to poisson may be necessary. For this book, we are not going to be delving into these in depth but we will introduce some below.</p>
+<p>Sedentary may be over-dispersed (see plot) <img src="_main_files/figure-html/unnamed-chunk-86-1.png" width="672" /> and so other methods related to poisson may be necessary. For this book, we are not going to be delving into these in depth but we will introduce some below.</p>
 <div id="gamma" class="section level3 unnumbered">
 <h3>Gamma</h3>
 <p>Regression with a gamma distribution are often found when analyzing costs in dollars. It is very similar to poisson but does not require integers and can handle more dispersion. However, the outcome must have values <span class="math inline">\(&gt; 0\)</span>. Just for demonstration:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Adjust sed
-df$sed_gamma &lt;-<span class="st"> </span>df$sed +<span class="st"> </span>.<span class="dv">01</span>
-g_fit &lt;-<span class="st"> </span><span class="kw">glm</span>(sed_gamma ~<span class="st"> </span>asthma +<span class="st"> </span>race +<span class="st"> </span>famsize,
+df<span class="op">$</span>sed_gamma &lt;-<span class="st"> </span>df<span class="op">$</span>sed <span class="op">+</span><span class="st"> </span>.<span class="dv">01</span>
+g_fit &lt;-<span class="st"> </span><span class="kw">glm</span>(sed_gamma <span class="op">~</span><span class="st"> </span>asthma <span class="op">+</span><span class="st"> </span>race <span class="op">+</span><span class="st"> </span>famsize,
              <span class="dt">data =</span> df,
              <span class="dt">family =</span> <span class="st">&quot;Gamma&quot;</span>)
 <span class="kw">summary</span>(g_fit)</code></pre></div>
@@ -383,13 +386,13 @@ g_fit &lt;-<span class="st"> </span><span class="kw">glm</span>(sed_gamma ~<span
 <p>We are going to use the <code>pscl</code> package to run a hurdle model. These models are built for situations where there is a count variable with many zeros (“zero-inflated”). The hurdle model makes slightly different assumptions regarding the zeros than the pure negative binomial that we present next. The hurdle consists of two models: one for whether the person had a zero or more (binomial) and if more than zero, how many (poisson).</p>
 <p>To run a hurdle model, we are going to make a sedentary variable with many more zeros to illustrate and then we will run a hurdle model.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Zero inflated sedentary (don&#39;t worry too much about the specifics)
-df$sed_zero &lt;-<span class="st"> </span><span class="kw">ifelse</span>(<span class="kw">sample</span>(<span class="dv">1</span>:<span class="dv">100</span>, 
-                             <span class="dt">size =</span> <span class="kw">length</span>(df$sed), 
-                             <span class="dt">replace=</span><span class="ot">TRUE</span>) %in%<span class="st"> </span><span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">11</span>,<span class="dv">20</span>:<span class="dv">25</span>), <span class="dv">0</span>, 
-                      df$sed)
+df<span class="op">$</span>sed_zero &lt;-<span class="st"> </span><span class="kw">ifelse</span>(<span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>, 
+                             <span class="dt">size =</span> <span class="kw">length</span>(df<span class="op">$</span>sed), 
+                             <span class="dt">replace=</span><span class="ot">TRUE</span>) <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">11</span>,<span class="dv">20</span><span class="op">:</span><span class="dv">25</span>), <span class="dv">0</span>, 
+                      df<span class="op">$</span>sed)
 ## Hurdle model
 <span class="kw">library</span>(pscl)
-h_fit =<span class="st"> </span><span class="kw">hurdle</span>(sed_zero ~<span class="st"> </span>asthma +<span class="st"> </span>race +<span class="st"> </span>famsize,
+h_fit =<span class="st"> </span><span class="kw">hurdle</span>(sed_zero <span class="op">~</span><span class="st"> </span>asthma <span class="op">+</span><span class="st"> </span>race <span class="op">+</span><span class="st"> </span>famsize,
                <span class="dt">data =</span> df)
 <span class="kw">summary</span>(h_fit)</code></pre></div>
 <pre><code>## 
@@ -398,38 +401,38 @@ h_fit =<span class="st"> </span><span class="kw">hurdle</span>(sed_zero ~<span c
 ## 
 ## Pearson residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -3.4731 -1.4736 -0.3064  1.2735  9.2197 
+## -3.4861 -1.4446 -0.2837  1.2358  9.8646 
 ## 
 ## Count model coefficients (truncated poisson with log link):
-##                    Estimate Std. Error z value Pr(&gt;|z|)    
-## (Intercept)        5.642853   0.003782 1491.98   &lt;2e-16 ***
-## asthma             0.067334   0.002236   30.12   &lt;2e-16 ***
-## raceOtherHispanic  0.152419   0.004328   35.21   &lt;2e-16 ***
-## raceWhite          0.351276   0.003549   98.97   &lt;2e-16 ***
-## raceBlack          0.353031   0.003654   96.62   &lt;2e-16 ***
-## raceOther          0.367254   0.003838   95.70   &lt;2e-16 ***
-## famsize           -0.020530   0.000579  -35.46   &lt;2e-16 ***
+##                     Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept)        5.6448064  0.0037260 1514.99   &lt;2e-16 ***
+## asthma             0.0620210  0.0022486   27.58   &lt;2e-16 ***
+## raceOtherHispanic  0.1320318  0.0042877   30.79   &lt;2e-16 ***
+## raceWhite          0.3583953  0.0035064  102.21   &lt;2e-16 ***
+## raceBlack          0.3450200  0.0036075   95.64   &lt;2e-16 ***
+## raceOther          0.3604620  0.0038047   94.74   &lt;2e-16 ***
+## famsize           -0.0181714  0.0005764  -31.53   &lt;2e-16 ***
 ## Zero hurdle model coefficients (binomial with logit link):
-##                    Estimate Std. Error z value Pr(&gt;|z|)    
-## (Intercept)        2.137586   0.203892  10.484   &lt;2e-16 ***
-## asthma             0.196152   0.152689   1.285    0.199    
-## raceOtherHispanic  0.074919   0.233147   0.321    0.748    
-## raceWhite          0.140863   0.189519   0.743    0.457    
-## raceBlack         -0.023472   0.194258  -0.121    0.904    
-## raceOther          0.172440   0.213763   0.807    0.420    
-## famsize            0.005401   0.035788   0.151    0.880    
+##                   Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept)        2.28592    0.21406  10.679   &lt;2e-16 ***
+## asthma             0.02834    0.14486   0.196    0.845    
+## raceOtherHispanic  0.13706    0.25349   0.541    0.589    
+## raceWhite         -0.20221    0.19820  -1.020    0.308    
+## raceBlack         -0.01312    0.20847  -0.063    0.950    
+## raceOther         -0.11956    0.22007  -0.543    0.587    
+## famsize            0.02016    0.03596   0.561    0.575    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1 
 ## 
 ## Number of iterations in BFGS optimization: 12 
-## Log-likelihood: -2.331e+05 on 14 Df</code></pre>
+## Log-likelihood: -2.315e+05 on 14 Df</code></pre>
 <p>Notice that the output has two parts: “Count model coefficients (truncated poisson with log link):” and “Zero hurdle model coefficients (binomial with logit link):”. Together they tell us about the relationship between the predictors and a count variable with many zeros.</p>
 </div>
 <div id="negative-binomial" class="section level3 unnumbered">
 <h3>Negative Binomial</h3>
 <p>Similar to that above, negative binomial is for zero-inflated count variables. It makes slightly different assumptions than the hurdle and doesn’t use a two-part approach. In order to run a negative binomial model we’ll use the <code>MASS</code> package and the <code>glm.nb()</code> function.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(MASS)
-fit_nb &lt;-<span class="st"> </span><span class="kw">glm.nb</span>(sed_zero ~<span class="st"> </span>asthma +<span class="st"> </span>race +<span class="st"> </span>famsize,
+fit_nb &lt;-<span class="st"> </span><span class="kw">glm.nb</span>(sed_zero <span class="op">~</span><span class="st"> </span>asthma <span class="op">+</span><span class="st"> </span>race <span class="op">+</span><span class="st"> </span>famsize,
                  <span class="dt">data =</span> df)
 <span class="kw">summary</span>(fit_nb)</code></pre></div>
 <p>Note that this model is not really appropriate because our data is somewhat contrived.</p>
@@ -440,11 +443,11 @@ fit_nb &lt;-<span class="st"> </span><span class="kw">glm.nb</span>(sed_zero ~<s
 <p>For outcomes that are bound between a lower and upper bound, Beta Regression is a great method. For example, if we are looking at test scores that are bound between 0 and 100. It is a very flexible method and allows for some extra analysis regarding the variation.</p>
 <p>For this, we are going to use the <code>betareg</code> package. But first, we are going to reach a little and create a ficticiously bound variable in the data set.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Variable bound between 0 and 1
-df$beta_var &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="kw">seq</span>(.<span class="dv">05</span>, .<span class="dv">99</span>, <span class="dt">by =</span> .<span class="dv">01</span>), 
-                      <span class="dt">size =</span> <span class="kw">length</span>(df$asthma),
+df<span class="op">$</span>beta_var &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="kw">seq</span>(.<span class="dv">05</span>, .<span class="dv">99</span>, <span class="dt">by =</span> .<span class="dv">01</span>), 
+                      <span class="dt">size =</span> <span class="kw">length</span>(df<span class="op">$</span>asthma),
                       <span class="dt">replace =</span> <span class="ot">TRUE</span>)
 <span class="kw">library</span>(betareg)
-fit_beta &lt;-<span class="st"> </span><span class="kw">betareg</span>(beta_var ~<span class="st"> </span>asthma +<span class="st"> </span>race +<span class="st"> </span>famsize,
+fit_beta &lt;-<span class="st"> </span><span class="kw">betareg</span>(beta_var <span class="op">~</span><span class="st"> </span>asthma <span class="op">+</span><span class="st"> </span>race <span class="op">+</span><span class="st"> </span>famsize,
                     <span class="dt">data =</span> df)
 <span class="kw">summary</span>(fit_beta)</code></pre></div>
 <pre><code>## 
@@ -453,27 +456,27 @@ fit_beta &lt;-<span class="st"> </span><span class="kw">betareg</span>(beta_var 
 ## 
 ## Standardized weighted residuals 2:
 ##     Min      1Q  Median      3Q     Max 
-## -2.0545 -0.6993 -0.0513  0.6298  2.9031 
+## -2.0210 -0.6888 -0.0456  0.6270  2.8832 
 ## 
 ## Coefficients (mean model with logit link):
 ##                   Estimate Std. Error z value Pr(&gt;|z|)
-## (Intercept)        0.05744    0.06331   0.907    0.364
-## asthma             0.04959    0.04376   1.133    0.257
-## raceOtherHispanic -0.03330    0.07207  -0.462    0.644
-## raceWhite          0.02825    0.05880   0.480    0.631
-## raceBlack          0.02345    0.06105   0.384    0.701
-## raceOther         -0.02732    0.06543  -0.418    0.676
-## famsize            0.01482    0.01083   1.368    0.171
+## (Intercept)        0.03492    0.06316   0.553    0.580
+## asthma             0.01654    0.04365   0.379    0.705
+## raceOtherHispanic  0.08241    0.07192   1.146    0.252
+## raceWhite          0.03116    0.05866   0.531    0.595
+## raceBlack          0.06200    0.06090   1.018    0.309
+## raceOther          0.07333    0.06528   1.123    0.261
+## famsize            0.00369    0.01081   0.341    0.733
 ## 
 ## Phi coefficients (precision model with identity link):
 ##       Estimate Std. Error z value Pr(&gt;|z|)    
-## (phi)  2.46158    0.04481   54.94   &lt;2e-16 ***
+## (phi)  2.47944    0.04515   54.92   &lt;2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1 
 ## 
 ## Type of estimator: ML (maximum likelihood)
-## Log-likelihood: 83.62 on 8 Df
-## Pseudo R-squared: 0.001226
+## Log-likelihood: 80.87 on 8 Df
+## Pseudo R-squared: 0.0006293
 ## Number of iterations: 16 (BFGS) + 1 (Fisher scoring)</code></pre>
 <p>The output provides coefficients and the “Phi” coefficients. Both are important parts of using beta regression but we are not going to discuss it here.</p>
 <p>There are many resources available to learn more about beta regression and each of these GLM’s. As for now, we are going to move on to more complex modeling where there are clustering or repeated measures in the data.</p>

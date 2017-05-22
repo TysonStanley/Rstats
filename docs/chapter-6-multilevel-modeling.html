@@ -26,7 +26,7 @@
 <meta name="author" content="Tyson S. Barrett">
 
 
-<meta name="date" content="2017-02-09">
+<meta name="date" content="2017-05-22">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -127,6 +127,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="chapter-2-manipulating-your-data.html"><a href="chapter-2-manipulating-your-data.html#reshaping"><i class="fa fa-check"></i>Reshaping</a><ul>
 <li class="chapter" data-level="" data-path="chapter-2-manipulating-your-data.html"><a href="chapter-2-manipulating-your-data.html#wide-form"><i class="fa fa-check"></i>Wide Form</a></li>
 <li class="chapter" data-level="" data-path="chapter-2-manipulating-your-data.html"><a href="chapter-2-manipulating-your-data.html#long-form"><i class="fa fa-check"></i>Long Form</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-manipulating-your-data.html"><a href="chapter-2-manipulating-your-data.html#change-from-one-to-the-other"><i class="fa fa-check"></i>Change from One to the Other</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-2-manipulating-your-data.html"><a href="chapter-2-manipulating-your-data.html#joining-merging"><i class="fa fa-check"></i>Joining (merging)</a><ul>
 <li class="chapter" data-level="" data-path="chapter-2-manipulating-your-data.html"><a href="chapter-2-manipulating-your-data.html#inner-join"><i class="fa fa-check"></i>Inner Join</a></li>
@@ -137,7 +138,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html"><i class="fa fa-check"></i>Chapter 3: Understanding and Describing Your Data</a><ul>
 <li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#descriptive-statistics"><i class="fa fa-check"></i>Descriptive Statistics</a></li>
 <li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#visualizations"><i class="fa fa-check"></i>Visualizations</a><ul>
-<li class="chapter" data-level="0.0.1" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#using-ggplot2"><i class="fa fa-check"></i><b>0.0.1</b> Using <code class="unnumbered">ggplot2</code></a></li>
+<li><a href="chapter-3-understanding-and-describing-your-data.html#using-ggplot2">Using <code>ggplot2</code></a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html"><i class="fa fa-check"></i>Chapter 4: Basic Analyses</a><ul>
@@ -181,7 +182,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#conclusions-3"><i class="fa fa-check"></i>Conclusions</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html"><i class="fa fa-check"></i>Chapter 8: Advanced Data Manipulation</a><ul>
-<li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#reshaping-your-data"><i class="fa fa-check"></i>Reshaping Your Data</a></li>
+<li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#reshaping-your-data"><i class="fa fa-check"></i>Reshaping Your Data</a><ul>
+<li><a href="chapter-8-advanced-data-manipulation.html#the-reshape-function">The <code>reshape()</code> function</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#repeating-actions-looping"><i class="fa fa-check"></i>Repeating Actions (Looping)</a><ul>
 <li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#your-own-functions"><i class="fa fa-check"></i>Your Own Functions</a></li>
 <li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#vectorized"><i class="fa fa-check"></i>Vectorized</a></li>
@@ -248,19 +251,19 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>GEE’s, in general, want a few pieces of information from you. First, the outcome and predictors. This is just as in linear regression and GLM’s. Second, we need to provide a correlation structure. This tells the model the approximate pattern of correlations between the time points or clusters. It also wants a variable that tells the cluster ID’s. Finally, it also wants the family (i.e. the type of distribution).</p>
 <p>Since this is not longitudinal, but rather clustered within communities, we’ll assume for this analysis an unstructured correlation structure. It is the most flexible and we have enough power for it here.</p>
 <p>For <code>geepack</code> to work, we need to filter out the missing values for the variables that will be in the model.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df2 &lt;-<span class="st"> </span>df %&gt;%
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df2 &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">filter</span>(<span class="kw">complete.cases</span>(dep, famsize, sed, race, asthma))</code></pre></div>
 <p>Now, we’ll build the model with both packages (just for demonstration). We predict depression with asthma, family size, minutes of sedentary behavior, and the subject’s race.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(gee)
-fit_gee &lt;-<span class="st"> </span><span class="kw">gee</span>(dep ~<span class="st"> </span>asthma +<span class="st"> </span>famsize +<span class="st"> </span>sed +<span class="st"> </span>race,
+fit_gee &lt;-<span class="st"> </span><span class="kw">gee</span>(dep <span class="op">~</span><span class="st"> </span>asthma <span class="op">+</span><span class="st"> </span>famsize <span class="op">+</span><span class="st"> </span>sed <span class="op">+</span><span class="st"> </span>race,
                <span class="dt">data =</span> df2,
-               <span class="dt">id =</span> df2$sdmvstra,
+               <span class="dt">id =</span> df2<span class="op">$</span>sdmvstra,
                <span class="dt">corstr =</span> <span class="st">&quot;unstructured&quot;</span>)</code></pre></div>
 <pre><code>##       (Intercept)      asthmaAsthma           famsize               sed 
 ##       2.500022059       1.356081567      -0.042132178       0.001362226 
 ## raceOtherHispanic         raceWhite         raceBlack         raceOther 
 ##       1.184995689       0.113949209       0.100536695      -0.555478773</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(fit_gee)$coef</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(fit_gee)<span class="op">$</span>coef</code></pre></div>
 <pre><code>##                       Estimate   Naive S.E.    Naive z  Robust S.E.
 ## (Intercept)        2.495509790 0.2867816215  8.7017773 0.2690426648
 ## asthmaAsthma       1.353039007 0.1867101195  7.2467363 0.2137975620
@@ -280,9 +283,9 @@ fit_gee &lt;-<span class="st"> </span><span class="kw">gee</span>(dep ~<span cla
 ## raceBlack          0.4100864
 ## raceOther         -2.3064133</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(geepack)
-fit_geeglm &lt;-<span class="st"> </span><span class="kw">geeglm</span>(dep ~<span class="st"> </span>asthma +<span class="st"> </span>famsize +<span class="st"> </span>sed +<span class="st"> </span>race,
+fit_geeglm &lt;-<span class="st"> </span><span class="kw">geeglm</span>(dep <span class="op">~</span><span class="st"> </span>asthma <span class="op">+</span><span class="st"> </span>famsize <span class="op">+</span><span class="st"> </span>sed <span class="op">+</span><span class="st"> </span>race,
                      <span class="dt">data =</span> df2,
-                     <span class="dt">id =</span> df2$sdmvstra,
+                     <span class="dt">id =</span> df2<span class="op">$</span>sdmvstra,
                      <span class="dt">corstr =</span> <span class="st">&quot;unstructured&quot;</span>)
 <span class="kw">summary</span>(fit_geeglm)</code></pre></div>
 <pre><code>## 
@@ -330,7 +333,7 @@ fit_geeglm &lt;-<span class="st"> </span><span class="kw">geeglm</span>(dep ~<sp
 <p>Mixed effects models require a bit more thinking about the effects. It is called “mixed effects” because we include both fixed and random effects into the model simultaneously. The random effects are those that we don’t necessarily care about the specific values but want to control for it and/or estimate the variance. The fixed effects are those we are used to estimating in linear models and GLM’s.</p>
 <p>These are a bit more clear with an example. We will do the same overall model as we did with the GEE but we’ll use ME. To do so, we’ll use the <code>lme4</code> package. In the model below, we predict depression with asthma, family size, minutes of sedentary behavior, and the subject’s race. We have a random intercept (which allows the intercept to vary across clusters).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(lme4)
-fit_me &lt;-<span class="st"> </span><span class="kw">lmer</span>(dep ~<span class="st"> </span>asthma +<span class="st"> </span>famsize +<span class="st"> </span>sed +<span class="st"> </span>race +<span class="st"> </span>(<span class="dv">1</span> |<span class="st"> </span>cluster),
+fit_me &lt;-<span class="st"> </span><span class="kw">lmer</span>(dep <span class="op">~</span><span class="st"> </span>asthma <span class="op">+</span><span class="st"> </span>famsize <span class="op">+</span><span class="st"> </span>sed <span class="op">+</span><span class="st"> </span>race <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>cluster),
                <span class="dt">data =</span> df2,
                <span class="dt">REML =</span> <span class="ot">FALSE</span>)
 <span class="kw">summary</span>(fit_me)</code></pre></div>
@@ -372,7 +375,7 @@ fit_me &lt;-<span class="st"> </span><span class="kw">lmer</span>(dep ~<span cla
 ## raceBlack   -0.643 -0.057  0.094 -0.131  0.624  0.775       
 ## raceOther   -0.580  0.000  0.048 -0.135  0.589  0.725  0.693</code></pre>
 <p>You’ll see that there are no p-values provided here. This is because p-values are not well-defined in the ME framework. A good way to test it can be through the <code>anova()</code> function, comparing models. Let’s compare a model with and without <code>asthma</code> to see if the model is significantly better with it in.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fit_me1 &lt;-<span class="st"> </span><span class="kw">lmer</span>(dep ~<span class="st"> </span>famsize +<span class="st"> </span>sed +<span class="st"> </span>race +<span class="st"> </span>(<span class="dv">1</span> |<span class="st"> </span>cluster),
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fit_me1 &lt;-<span class="st"> </span><span class="kw">lmer</span>(dep <span class="op">~</span><span class="st"> </span>famsize <span class="op">+</span><span class="st"> </span>sed <span class="op">+</span><span class="st"> </span>race <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>cluster),
                <span class="dt">data =</span> df2,
                <span class="dt">REML =</span> <span class="ot">FALSE</span>)
 
@@ -387,10 +390,10 @@ fit_me &lt;-<span class="st"> </span><span class="kw">lmer</span>(dep ~<span cla
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>This comparison strongly suggests that <code>asthma</code> is a significant predictor (<span class="math inline">\(\chi^2 = 50.5\)</span>, p &lt; .001). We can do this with both fixed and random effects, as below:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fit_me2 &lt;-<span class="st"> </span><span class="kw">lmer</span>(dep ~<span class="st"> </span>famsize +<span class="st"> </span>sed +<span class="st"> </span>race +<span class="st"> </span>(<span class="dv">1</span> |<span class="st"> </span>cluster),
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fit_me2 &lt;-<span class="st"> </span><span class="kw">lmer</span>(dep <span class="op">~</span><span class="st"> </span>famsize <span class="op">+</span><span class="st"> </span>sed <span class="op">+</span><span class="st"> </span>race <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>cluster),
                <span class="dt">data =</span> df2,
                <span class="dt">REML =</span> <span class="ot">TRUE</span>)
-fit_me3 &lt;-<span class="st"> </span><span class="kw">lmer</span>(dep ~<span class="st"> </span>famsize +<span class="st"> </span>sed +<span class="st"> </span>race +<span class="st"> </span>(<span class="dv">1</span> +<span class="st"> </span>asthma |<span class="st"> </span>cluster),
+fit_me3 &lt;-<span class="st"> </span><span class="kw">lmer</span>(dep <span class="op">~</span><span class="st"> </span>famsize <span class="op">+</span><span class="st"> </span>sed <span class="op">+</span><span class="st"> </span>race <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>asthma <span class="op">|</span><span class="st"> </span>cluster),
                <span class="dt">data =</span> df2,
                <span class="dt">REML =</span> <span class="ot">TRUE</span>)
 <span class="kw">anova</span>(fit_me2, fit_me3, <span class="dt">refit =</span> <span class="ot">FALSE</span>)</code></pre></div>
@@ -406,7 +409,7 @@ fit_me3 &lt;-<span class="st"> </span><span class="kw">lmer</span>(dep ~<span cl
 <p>Here, including random slopes for asthma appears to be significant (<span class="math inline">\(\chi^2 = 36.9\)</span>, p &lt; .001).</p>
 <p>Linear mixed effects models converge pretty well. You’ll see that the conclusions and estimates are very similar to that of the GEE. For generalized versions of ME, the convergence can be harder and more picky. As we’ll see below, it complains about large eigenvalues and tells us to rescale some of the variables.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(lme4)
-fit_gme &lt;-<span class="st"> </span><span class="kw">glmer</span>(dep2 ~<span class="st"> </span>asthma +<span class="st"> </span>famsize +<span class="st"> </span>sed +<span class="st"> </span>race +<span class="st"> </span>(<span class="dv">1</span> |<span class="st"> </span>cluster),
+fit_gme &lt;-<span class="st"> </span><span class="kw">glmer</span>(dep2 <span class="op">~</span><span class="st"> </span>asthma <span class="op">+</span><span class="st"> </span>famsize <span class="op">+</span><span class="st"> </span>sed <span class="op">+</span><span class="st"> </span>race <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>cluster),
                  <span class="dt">data =</span> df2,
                  <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>)</code></pre></div>
 <pre><code>## Warning in checkConv(attr(opt, &quot;derivs&quot;), opt$par, ctrl = control
@@ -417,7 +420,7 @@ fit_gme &lt;-<span class="st"> </span><span class="kw">glmer</span>(dep2 ~<span 
 ##  - Rescale variables?</code></pre>
 <p>After a quick check, we can see that <code>sed</code> is huge compared to the other variables. If we simply rescale it, using the <code>I()</code> function within the model formula, we can rescale it by 1,000. Here, that is all it needed to converge.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(lme4)
-fit_gme &lt;-<span class="st"> </span><span class="kw">glmer</span>(dep2 ~<span class="st"> </span>asthma +<span class="st"> </span>famsize +<span class="st"> </span><span class="kw">I</span>(sed/<span class="dv">1000</span>) +<span class="st"> </span>race +<span class="st"> </span>(<span class="dv">1</span> |<span class="st"> </span>cluster),
+fit_gme &lt;-<span class="st"> </span><span class="kw">glmer</span>(dep2 <span class="op">~</span><span class="st"> </span>asthma <span class="op">+</span><span class="st"> </span>famsize <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(sed<span class="op">/</span><span class="dv">1000</span>) <span class="op">+</span><span class="st"> </span>race <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>cluster),
                  <span class="dt">data =</span> df2,
                  <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>)
 <span class="kw">summary</span>(fit_gme)</code></pre></div>
