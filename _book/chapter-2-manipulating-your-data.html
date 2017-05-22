@@ -182,7 +182,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#conclusions-3"><i class="fa fa-check"></i>Conclusions</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html"><i class="fa fa-check"></i>Chapter 8: Advanced Data Manipulation</a><ul>
-<li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#reshaping-your-data"><i class="fa fa-check"></i>Reshaping Your Data</a></li>
+<li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#reshaping-your-data"><i class="fa fa-check"></i>Reshaping Your Data</a><ul>
+<li><a href="chapter-8-advanced-data-manipulation.html#the-reshape-function">The <code>reshape()</code> function</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#repeating-actions-looping"><i class="fa fa-check"></i>Repeating Actions (Looping)</a><ul>
 <li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#your-own-functions"><i class="fa fa-check"></i>Your Own Functions</a></li>
 <li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#vectorized"><i class="fa fa-check"></i>Vectorized</a></li>
@@ -389,33 +391,33 @@ dem_df <span class="op">%&gt;%</span><span class="st">                          
 <div id="wide-form" class="section level3 unnumbered">
 <h3>Wide Form</h3>
 <p>Wide form generally has one unit (i.e. individual) per row. This generally looks like:</p>
-<pre><code>##    ID  Var_Time1  Var_Time2
-## 1   1 -0.9445632 0.86487343
-## 2   2 -2.2187003 0.07935541
-## 3   3 -0.5791760 0.19407590
-## 4   4  0.5015577 0.91659822
-## 5   5 -0.4311474 0.74410813
-## 6   6 -0.3387909 0.10311221
-## 7   7  0.6769022 0.53147422
-## 8   8  1.2772355 0.94490326
-## 9   9  0.8253579 0.12963390
-## 10 10  0.8887881 0.67710864</code></pre>
+<pre><code>##    ID   Var_Time1  Var_Time2
+## 1   1  0.83672085 0.86505732
+## 2   2  1.38652314 0.90498346
+## 3   3 -1.00937509 0.80046232
+## 4   4 -0.49763732 0.38466553
+## 5   5  0.05264796 0.67699777
+## 6   6 -1.10964686 0.56602523
+## 7   7  0.06599646 0.67840615
+## 8   8 -0.29791647 0.46595278
+## 9   9 -1.30277788 0.07543498
+## 10 10 -0.36118004 0.66137512</code></pre>
 <p>Notice that each row has a unique ID.</p>
 <p>This format is common in the ANOVA family of analyses. These can be used when there are set time points that the individual is measured and each individual has the same number of time points. This is not always reasonable, but when it is, wide format works just fine. However, when these conditions don’t hold, mixed effects modeling (i.e. multilevel modeling, hierarchical linear modeling) is particularly useful. In order to do mixed effects modeling, long format is required.</p>
 </div>
 <div id="long-form" class="section level3 unnumbered">
 <h3>Long Form</h3>
 <p>In contrast, long format has the lowest nested unit as a single row. This means that a single ID can span multiple rows, usually with a unique time point for each row as so:</p>
-<pre><code>##   ID Time        Var
-## 1  1    1 0.94554977
-## 2  1    2 0.87798406
-## 3  1    3 0.05755182
-## 4  1    4 0.99511623
-## 5  2    1 0.72159478
-## 6  2    2 0.93509026
-## 7  3    1 0.88447582
-## 8  3    2 0.42531426
-## 9  3    3 0.67774349</code></pre>
+<pre><code>##   ID Time       Var
+## 1  1    1 0.4850868
+## 2  1    2 0.4582406
+## 3  1    3 0.3328986
+## 4  1    4 0.1272143
+## 5  2    1 0.6325773
+## 6  2    2 0.9436676
+## 7  3    1 0.1204940
+## 8  3    2 0.6415250
+## 9  3    3 0.7078279</code></pre>
 <p>Notice that a single ID spans multiple columns and that each row has only one time point. Here, time is nested within individuals making it the lowest unit. Therefore, each row corresponds to a single time point. Generally, this is the format we want for most modeling techniques and most visualizations.</p>
 </div>
 <div id="change-from-one-to-the-other" class="section level3 unnumbered">
@@ -425,27 +427,27 @@ dem_df <span class="op">%&gt;%</span><span class="st">                          
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df_wide &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="st">&quot;ID&quot;</span>=<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>), <span class="st">&quot;Var_Time1&quot;</span>=<span class="kw">rnorm</span>(<span class="dv">10</span>), <span class="st">&quot;Var_Time2&quot;</span>=<span class="kw">runif</span>(<span class="dv">10</span>))
 df_long &lt;-<span class="st"> </span><span class="kw">gather</span>(df_wide, <span class="st">&quot;var_label&quot;</span>, <span class="st">&quot;value&quot;</span>, <span class="dv">2</span><span class="op">:</span><span class="dv">3</span>)
 df_long</code></pre></div>
-<pre><code>##    ID var_label        value
-## 1   1 Var_Time1  0.004347569
-## 2   2 Var_Time1 -0.259401534
-## 3   3 Var_Time1 -0.536791676
-## 4   4 Var_Time1  0.037141142
-## 5   5 Var_Time1 -1.087769404
-## 6   6 Var_Time1  0.490072433
-## 7   7 Var_Time1 -1.707136057
-## 8   8 Var_Time1  0.030821234
-## 9   9 Var_Time1 -0.337096135
-## 10 10 Var_Time1 -0.895913796
-## 11  1 Var_Time2  0.338403570
-## 12  2 Var_Time2  0.593154142
-## 13  3 Var_Time2  0.549978877
-## 14  4 Var_Time2  0.606955544
-## 15  5 Var_Time2  0.939074952
-## 16  6 Var_Time2  0.526950801
-## 17  7 Var_Time2  0.426443722
-## 18  8 Var_Time2  0.928159420
-## 19  9 Var_Time2  0.707525841
-## 20 10 Var_Time2  0.323220604</code></pre>
+<pre><code>##    ID var_label       value
+## 1   1 Var_Time1  0.36028042
+## 2   2 Var_Time1 -0.35984734
+## 3   3 Var_Time1 -0.03541337
+## 4   4 Var_Time1  0.63924625
+## 5   5 Var_Time1 -2.55744098
+## 6   6 Var_Time1 -2.70836385
+## 7   7 Var_Time1  0.73372801
+## 8   8 Var_Time1  0.39771488
+## 9   9 Var_Time1 -1.18464217
+## 10 10 Var_Time1 -0.54539969
+## 11  1 Var_Time2  0.84879034
+## 12  2 Var_Time2  0.83497530
+## 13  3 Var_Time2  0.53060192
+## 14  4 Var_Time2  0.20260485
+## 15  5 Var_Time2  0.83928932
+## 16  6 Var_Time2  0.93971363
+## 17  7 Var_Time2  0.77093490
+## 18  8 Var_Time2  0.03365733
+## 19  9 Var_Time2  0.35861084
+## 20 10 Var_Time2  0.44950358</code></pre>
 <p>We provided the data, some variable names, and told it what columns contained the values.</p>
 <p>And now we will go from long to wide using <code>spread()</code> from the same package.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df_long &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="st">&quot;ID&quot;</span>=<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>), 
@@ -454,9 +456,9 @@ df_long</code></pre></div>
 df_wide &lt;-<span class="st"> </span><span class="kw">spread</span>(df_long, Time, Var)
 df_wide</code></pre></div>
 <pre><code>##   ID         1         2         3         4
-## 1  1 0.2290493 0.5468669 0.2300578 0.8421427
-## 2  2 0.3205412 0.2413513        NA        NA
-## 3  3 0.8912513 0.1081804 0.2902273        NA</code></pre>
+## 1  1 0.3363876 0.4505758 0.2654750 0.6872623
+## 2  2 0.3518292 0.4692058        NA        NA
+## 3  3 0.1390442 0.8319515 0.5408114        NA</code></pre>
 <p>Here, we provided the column name (<code>Time</code>) that had the value labels and (<code>Var</code>) that contained the values themselves. With a little bit of code we can move data around without any copy-pasting that is so error-prone.</p>
 </div>
 </div>

@@ -182,7 +182,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#conclusions-3"><i class="fa fa-check"></i>Conclusions</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html"><i class="fa fa-check"></i>Chapter 8: Advanced Data Manipulation</a><ul>
-<li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#reshaping-your-data"><i class="fa fa-check"></i>Reshaping Your Data</a></li>
+<li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#reshaping-your-data"><i class="fa fa-check"></i>Reshaping Your Data</a><ul>
+<li><a href="chapter-8-advanced-data-manipulation.html#the-reshape-function">The <code>reshape()</code> function</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#repeating-actions-looping"><i class="fa fa-check"></i>Repeating Actions (Looping)</a><ul>
 <li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#your-own-functions"><i class="fa fa-check"></i>Your Own Functions</a></li>
 <li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#vectorized"><i class="fa fa-check"></i>Vectorized</a></li>
@@ -518,25 +520,25 @@ fit_enet  &lt;-<span class="st"> </span><span class="kw">cv.glmnet</span>(X, Y, 
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coef</span>(fit_ridge, <span class="dt">s =</span> <span class="st">&quot;lambda.1se&quot;</span>)</code></pre></div>
 <pre><code>## 8 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
 ##                      1
-## (Intercept)  5.6643383
-## riagendr     0.0383332
-## ridageyr    -0.0004922
-## ridreth3     0.0466744
-## race         0.0772713
-## famsize     -0.0349771
-## dep          0.0092062
-## asthma       0.0889313</code></pre>
+## (Intercept)  5.4679055
+## riagendr     0.0559416
+## ridageyr    -0.0007866
+## ridreth3     0.0630870
+## race         0.1106316
+## famsize     -0.0527215
+## dep          0.0139263
+## asthma       0.1317550</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coef</span>(fit_lasso, <span class="dt">s =</span> <span class="st">&quot;lambda.1se&quot;</span>)</code></pre></div>
 <pre><code>## 8 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
-##                  1
-## (Intercept) 5.5379
-## riagendr    .     
-## ridageyr    .     
-## ridreth3    .     
-## race        0.1865
-## famsize     .     
-## dep         .     
-## asthma      .</code></pre>
+##                      1
+## (Intercept)  5.3949259
+## riagendr     .        
+## ridageyr     .        
+## ridreth3     .        
+## race         0.2462767
+## famsize     -0.0208317
+## dep          0.0003159
+## asthma       .</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coef</span>(fit_enet, <span class="dt">s =</span> <span class="st">&quot;lambda.1se&quot;</span>)</code></pre></div>
 <pre><code>## 8 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
 ##                  1
@@ -574,8 +576,8 @@ fit_rf</code></pre></div>
 ##                      Number of trees: 500
 ## No. of variables tried at each split: 2
 ## 
-##           Mean of squared residuals: 10.83
-##                     % Var explained: 3.67</code></pre>
+##           Mean of squared residuals: 10.84
+##                     % Var explained: 3.56</code></pre>
 <p>We can find out which variables were important in the model via:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))  ## back to one plot per page
 <span class="kw">varImpPlot</span>(fit_rf)</code></pre></div>
