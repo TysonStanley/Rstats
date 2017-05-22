@@ -251,56 +251,56 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>We introduced you to wide form and long form of your data in Chapter 2. In reality, data can take on nearly infinite forms but for most data in health, behavior, and social science, these two forms are sufficient to know. But the question is, how to change the form of your data?</p>
 <p>In the <code>tidyverse</code> functions known as <code>gather</code> and <code>spread</code> can help with this in a simple way. To show you, we will use the fake data we started with in Chapter 2.</p>
 <pre><code>##    ID Var_Time1 Var_Time2
-## 1   1  -0.22244   0.50972
-## 2   2   0.02946   0.01212
-## 3   3  -0.40560   0.05165
-## 4   4   0.53144   0.39233
-## 5   5  -0.74278   0.47090
-## 6   6   0.99441   0.01179
-## 7   7  -0.74996   0.89578
-## 8   8  -0.02328   0.03635
-## 9   9   0.52843   0.15380
-## 10 10   0.01700   0.10663</code></pre>
+## 1   1 -1.046637   0.53802
+## 2   2 -0.220833   0.81474
+## 3   3  0.238458   0.99886
+## 4   4  0.488424   0.06995
+## 5   5 -0.725238   0.10672
+## 6   6 -1.520908   0.74336
+## 7   7 -0.408335   0.56705
+## 8   8  0.001111   0.12518
+## 9   9  0.493075   0.42237
+## 10 10 -0.129080   0.33423</code></pre>
 <p>Notice that this data frame is in wide format (each ID is one row and there are multiple times or measurements per person). To change this to wide format, we’ll use <code>gather()</code>. The first argument is the data.frame, followed by two variable names (names that we go into the new long form), and then the numbers of the columns that are the measures (in this case, <code>Var_Time1</code> and <code>Var_Time2</code>).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
 long_form &lt;-<span class="st"> </span><span class="kw">gather</span>(d1, <span class="st">&quot;measures&quot;</span>, <span class="st">&quot;values&quot;</span>, <span class="dv">2</span><span class="op">:</span><span class="dv">3</span>)
 long_form</code></pre></div>
-<pre><code>##    ID  measures   values
-## 1   1 Var_Time1 -0.22244
-## 2   2 Var_Time1  0.02946
-## 3   3 Var_Time1 -0.40560
-## 4   4 Var_Time1  0.53144
-## 5   5 Var_Time1 -0.74278
-## 6   6 Var_Time1  0.99441
-## 7   7 Var_Time1 -0.74996
-## 8   8 Var_Time1 -0.02328
-## 9   9 Var_Time1  0.52843
-## 10 10 Var_Time1  0.01700
-## 11  1 Var_Time2  0.50972
-## 12  2 Var_Time2  0.01212
-## 13  3 Var_Time2  0.05165
-## 14  4 Var_Time2  0.39233
-## 15  5 Var_Time2  0.47090
-## 16  6 Var_Time2  0.01179
-## 17  7 Var_Time2  0.89578
-## 18  8 Var_Time2  0.03635
-## 19  9 Var_Time2  0.15380
-## 20 10 Var_Time2  0.10663</code></pre>
+<pre><code>##    ID  measures    values
+## 1   1 Var_Time1 -1.046637
+## 2   2 Var_Time1 -0.220833
+## 3   3 Var_Time1  0.238458
+## 4   4 Var_Time1  0.488424
+## 5   5 Var_Time1 -0.725238
+## 6   6 Var_Time1 -1.520908
+## 7   7 Var_Time1 -0.408335
+## 8   8 Var_Time1  0.001111
+## 9   9 Var_Time1  0.493075
+## 10 10 Var_Time1 -0.129080
+## 11  1 Var_Time2  0.538018
+## 12  2 Var_Time2  0.814738
+## 13  3 Var_Time2  0.998862
+## 14  4 Var_Time2  0.069954
+## 15  5 Var_Time2  0.106723
+## 16  6 Var_Time2  0.743359
+## 17  7 Var_Time2  0.567045
+## 18  8 Var_Time2  0.125175
+## 19  9 Var_Time2  0.422371
+## 20 10 Var_Time2  0.334233</code></pre>
 <p>As you can see, it took the variable names and put that in our first variable that we called “measures”. The actual values of the variables are now in the variable we called “values”. Finally, notice that each ID now has two rows (one for each measure).</p>
 <p>To go in the opposite direction (long to wide) we can use the <code>spread()</code> function. All we do is provide the long formed data frame, the measured variable (<code>measures</code>) and the variable with the values (<code>values</code>).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wide_form &lt;-<span class="st"> </span><span class="kw">spread</span>(long_form, measures, values)
 wide_form</code></pre></div>
 <pre><code>##    ID Var_Time1 Var_Time2
-## 1   1  -0.22244   0.50972
-## 2   2   0.02946   0.01212
-## 3   3  -0.40560   0.05165
-## 4   4   0.53144   0.39233
-## 5   5  -0.74278   0.47090
-## 6   6   0.99441   0.01179
-## 7   7  -0.74996   0.89578
-## 8   8  -0.02328   0.03635
-## 9   9   0.52843   0.15380
-## 10 10   0.01700   0.10663</code></pre>
+## 1   1 -1.046637   0.53802
+## 2   2 -0.220833   0.81474
+## 3   3  0.238458   0.99886
+## 4   4  0.488424   0.06995
+## 5   5 -0.725238   0.10672
+## 6   6 -1.520908   0.74336
+## 7   7 -0.408335   0.56705
+## 8   8  0.001111   0.12518
+## 9   9  0.493075   0.42237
+## 10 10 -0.129080   0.33423</code></pre>
 <p>And we are back to the wide form.</p>
 <p>These steps can be followed for situations where there are many measures per person, many people per cluster, etc. In most cases, this is the way multilevel data analysis occurs (as we discussed in Chapter 6) and is a nice way to get our data ready for plotting.</p>
 <div id="the-reshape-function" class="section level3 unnumbered">
@@ -376,7 +376,7 @@ m</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">v2 &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dt">mean=</span><span class="dv">5</span>, <span class="dt">sd=</span><span class="dv">2</span>)
 add1 &lt;-<span class="st"> </span>v1 <span class="op">+</span><span class="st"> </span>v2
 <span class="kw">round</span>(add1, <span class="dv">3</span>)</code></pre></div>
-<pre><code>##  [1] 7.361 6.677 3.568 9.131 7.535 5.574 7.007 3.761 9.683 4.970</code></pre>
+<pre><code>##  [1]  4.700  6.344  9.043 12.328  6.349  6.234  6.936  7.376  5.436  4.308</code></pre>
 <p>We will compare the speed of this to other ways of adding two variables together and see it is the simplest and quickest.</p>
 </div>
 <div id="for-loops" class="section level3 unnumbered">
@@ -389,7 +389,7 @@ add1 &lt;-<span class="st"> </span>v1 <span class="op">+</span><span class="st">
   add2[i] &lt;-<span class="st"> </span>v1[i] <span class="op">+</span><span class="st"> </span>v2[i]
 }
 <span class="kw">round</span>(add2, <span class="dv">3</span>)</code></pre></div>
-<pre><code>##  [1] 7.361 6.677 3.568 9.131 7.535 5.574 7.007 3.761 9.683 4.970</code></pre>
+<pre><code>##  [1]  4.700  6.344  9.043 12.328  6.349  6.234  6.936  7.376  5.436  4.308</code></pre>
 <p>Same results! But, we’ll see later that the speed is much than the vectorized function.</p>
 </div>
 <div id="the-apply-family" class="section level3 unnumbered">
@@ -406,7 +406,7 @@ add1 &lt;-<span class="st"> </span>v1 <span class="op">+</span><span class="st">
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(v1, v2)
 add3 &lt;-<span class="st"> </span><span class="kw">apply</span>(df, <span class="dv">1</span>, sum)
 <span class="kw">round</span>(add3, <span class="dv">3</span>)</code></pre></div>
-<pre><code>##  [1] 7.361 6.677 3.568 9.131 7.535 5.574 7.007 3.761 9.683 4.970</code></pre>
+<pre><code>##  [1]  4.700  6.344  9.043 12.328  6.349  6.234  6.936  7.376  5.436  4.308</code></pre>
 <p>The function <code>apply()</code> has three main arguments: a) the <code>data.frame</code> or list of data, b) 1 meaning to apply the function for each row or 2 to the columns, and c) the function to use.</p>
 <p>We can also use one of our own functions such as <code>important_statistics2()</code> within the <code>apply</code> family.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lapply</span>(df, important_statistics2)</code></pre></div>
@@ -416,17 +416,17 @@ add3 &lt;-<span class="st"> </span><span class="kw">apply</span>(df, <span class
 ## 
 ## $v2
 ##    N  Mean    SD
-## 1 10 4.727 1.965</code></pre>
+## 1 10 5.105 1.671</code></pre>
 <p>This gives us a list of two elements, one for each variable, with the statistics that our function provides. With a little adjustment, we can make this into a <code>data.frame</code> using the <code>do.call()</code> function with <code>&quot;rbind&quot;</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">do.call</span>(<span class="st">&quot;rbind&quot;</span>, <span class="kw">lapply</span>(df, important_statistics2))</code></pre></div>
 <pre><code>##     N  Mean    SD
 ## v1 10 1.800 1.033
-## v2 10 4.727 1.965</code></pre>
+## v2 10 5.105 1.671</code></pre>
 <p><code>tapply()</code> allows us to get information by a grouping factor. We are going to add a factor variable to the data frame we are using <code>df</code> and then get the mean of the variables by group.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">group1 &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">sample</span>(<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="dv">10</span>, <span class="dt">replace=</span><span class="ot">TRUE</span>))
 <span class="kw">tapply</span>(df<span class="op">$</span>v1, group1, mean)</code></pre></div>
-<pre><code>##   0   1 
-## 2.0 1.5</code></pre>
+<pre><code>##     0     1 
+## 1.667 2.000</code></pre>
 <p>We now have the means by each group. This, however, is probably replaced by the 3 step summary that we learned earlier in <code>dplyr</code> using <code>group_by()</code> and <code>summarize()</code>.</p>
 <p>These functions are useful in many situations, especially where there are no vectorized functions. You can always get an idea of whether to use a <code>for</code> loop or an <code>apply</code> function by giving it a try on a small subset of data to see if one is better and/or faster.</p>
 <div id="speed-comparison" class="section level4 unnumbered">
@@ -445,10 +445,10 @@ add3 &lt;-<span class="st"> </span><span class="kw">apply</span>(df, <span class
                <span class="kw">apply</span>(df, <span class="dv">1</span>, sum),
                <span class="st">`</span><span class="dt">+</span><span class="st">`</span>(v1, v2))</code></pre></div>
 <pre><code>## Unit: nanoseconds
-##               expr   min      lq  mean median      uq    max neval cld
-##    forloop(v1, v2)  9491 10766.0 15478  11444 12668.5 105940   100  b 
-##  apply(df, 1, sum) 71829 74076.0 84024  76578 90687.5 203550   100   c
-##            v1 + v2   175   285.5   535    423   585.5   6482   100 a</code></pre>
+##               expr   min      lq    mean  median      uq    max neval cld
+##    forloop(v1, v2)  9536 10379.5 14999.5 11254.0 12574.5 113514   100  b 
+##  apply(df, 1, sum) 72923 74633.5 81447.4 75687.5 78944.5 220872   100   c
+##            v1 + v2   175   257.5   825.5   403.5   554.5  17342   100 a</code></pre>
 <p>Of course, as it says the units are in nanoseconds. Whether a function takes 200 or 200,000 nanoseconds probably won’t change your life. However, if the function is being used repeatedly or on on large data sets, this can make a difference.</p>
 </div>
 </div>
@@ -464,7 +464,7 @@ add3 &lt;-<span class="st"> </span><span class="kw">apply</span>(df, <span class
 ## $v2
 ##        [,1]
 ## [1,] 10.000
-## [2,]  4.727</code></pre>
+## [2,]  5.105</code></pre>
 <p>So we don’t name the function but we design it like we would a named function, just minus the <code>return()</code>. We take <code>x</code> (which is a column of <code>df</code>) and do <code>length()</code> and <code>mean()</code> and bind them by rows. The first argument in the anonymous function will be the column or variable of the data you provide.</p>
 <p>Here’s another example:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lapply</span>(df, <span class="cf">function</span>(y) y <span class="op">*</span><span class="st"> </span><span class="dv">2</span> <span class="op">/</span><span class="st"> </span><span class="kw">sd</span>(y))</code></pre></div>
@@ -472,7 +472,7 @@ add3 &lt;-<span class="st"> </span><span class="kw">apply</span>(df, <span class
 ##  [1] 1.936 5.809 3.873 7.746 3.873 1.936 3.873 1.936 1.936 1.936
 ## 
 ## $v2
-##  [1] 6.474 3.742 1.596 5.222 5.633 4.656 5.096 2.810 8.837 4.041</code></pre>
+##  [1] 4.428 4.003 8.430 9.968 5.205 6.264 5.908 7.632 5.309 3.960</code></pre>
 <p>We take <code>y</code> (again, the column of <code>df</code>), times it by two and divide by the standard deviation of <code>y</code>. Note that this is gibberish and is not some special formula, but again, we can see how flexible it is.</p>
 <p>The last two examples also show something important regarding the output:</p>
 <ol style="list-style-type: decimal">

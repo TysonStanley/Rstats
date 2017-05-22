@@ -55,6 +55,7 @@ And we are back to the wide form.
 
 These steps can be followed for situations where there are many measures per person, many people per cluster, etc. In most cases, this is the way multilevel data analysis occurs (as we discussed in Chapter 6) and is a nice way to get our data ready for plotting.
 
+
 ### The `reshape()` function {-}
 
 It is also possible to do multiple measures at once when moving from wide to long or long to wide. The following figure shows the basics of the `reshape()` function that was made for an introductory R class.

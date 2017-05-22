@@ -265,7 +265,7 @@ df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class=
 ##  C                             
 ##               0.7 (0.5)        
 ##  D                             
-##               0.1 (1.1)        
+##               0.1 (0.9)        
 ## |==============================|</code></pre>
 <p>This quickly gives you means and standard deviations (or counts and percentages if there were categorical variables). We could have also used the pipe operator here if we wanted via:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df <span class="op">%&gt;%</span>
@@ -281,7 +281,7 @@ df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class=
 ##  C                             
 ##               0.7 (0.5)        
 ##  D                             
-##               0.1 (1.1)        
+##               0.1 (0.9)        
 ## |==============================|</code></pre>
 <p>It turns out, for we want “A” and “C” to be factors.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df<span class="op">$</span>A &lt;-<span class="st"> </span><span class="kw">factor</span>(df<span class="op">$</span>A, <span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;cat1&quot;</span>, <span class="st">&quot;cat2&quot;</span>, <span class="st">&quot;cat3&quot;</span>, <span class="st">&quot;cat4&quot;</span>))
@@ -303,7 +303,7 @@ df<span class="op">$</span>C &lt;-<span class="st"> </span><span class="kw">fact
 ##     male      2 (33.3%)        
 ##     female    4 (66.7%)        
 ##  D                             
-##               0.1 (1.1)        
+##               0.1 (0.9)        
 ## |==============================|</code></pre>
 <p>So now we see the counts and percentages for the factor variables. But now we can take a step further and look for relationships. The code below shows the means/standard devaitions or counts/percentages by a grouping variable–in this case, <code>C</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table1</span>(df, A, B, D,
@@ -311,17 +311,17 @@ df<span class="op">$</span>C &lt;-<span class="st"> </span><span class="kw">fact
 <pre><code>## 
 ## |=================================|
 ##                   C 
-##               male      female    
-##  Observations 2         4         
+##               male       female   
+##  Observations 2          4        
 ##  A                                
-##     cat1      1 (50%)   1 (33.3%) 
-##     cat2      1 (50%)   0 (0%)    
-##     cat3      0 (0%)    1 (33.3%) 
-##     cat4      0 (0%)    1 (33.3%) 
+##     cat1      1 (50%)    1 (33.3%)
+##     cat2      1 (50%)    0 (0%)   
+##     cat3      0 (0%)     1 (33.3%)
+##     cat4      0 (0%)     1 (33.3%)
 ##  B                                
-##               1.8 (0.5) 3.3 (1.3) 
+##               1.8 (0.5)  3.3 (1.3)
 ##  D                                
-##               0.6 (1.0) -0.1 (1.2)
+##               -0.4 (0.4) 0.4 (1.0)
 ## |=================================|</code></pre>
 <p>We can also test for differences by group as well (although this is not particularly good with a sample size of 5). It produces a warning since the <span class="math inline">\(\chi^2\)</span> approximation is not accurate with cells this small.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table1</span>(df, A, B, D,
@@ -330,17 +330,17 @@ df<span class="op">$</span>C &lt;-<span class="st"> </span><span class="kw">fact
 <pre><code>## 
 ## |=========================================|
 ##                       C 
-##               male      female     P-Value
-##  Observations 2         4                 
+##               male       female    P-Value
+##  Observations 2          4                
 ##  A                                 0.405  
-##     cat1      1 (50%)   1 (33.3%)         
-##     cat2      1 (50%)   0 (0%)            
-##     cat3      0 (0%)    1 (33.3%)         
-##     cat4      0 (0%)    1 (33.3%)         
+##     cat1      1 (50%)    1 (33.3%)        
+##     cat2      1 (50%)    0 (0%)           
+##     cat3      0 (0%)     1 (33.3%)        
+##     cat4      0 (0%)     1 (33.3%)        
 ##  B                                 0.162  
-##               1.8 (0.5) 3.3 (1.3)         
-##  D                                 0.551  
-##               0.6 (1.0) -0.1 (1.2)        
+##               1.8 (0.5)  3.3 (1.3)        
+##  D                                 0.228  
+##               -0.4 (0.4) 0.4 (1.0)        
 ## |=========================================|</code></pre>
 <p>Finally, we can include missingness in the table for factors.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table1</span>(df, A, B, D,
@@ -350,18 +350,18 @@ df<span class="op">$</span>C &lt;-<span class="st"> </span><span class="kw">fact
 <pre><code>## 
 ## |=========================================|
 ##                       C 
-##               male      female     P-Value
-##  Observations 2         4                 
+##               male       female    P-Value
+##  Observations 2          4                
 ##  A                                 0.405  
-##     cat1      1 (50%)   1 (25%)           
-##     cat2      1 (50%)   0 (0%)            
-##     cat3      0 (0%)    1 (25%)           
-##     cat4      0 (0%)    1 (25%)           
-##     NA        0 (0%)    1 (25%)           
+##     cat1      1 (50%)    1 (25%)          
+##     cat2      1 (50%)    0 (0%)           
+##     cat3      0 (0%)     1 (25%)          
+##     cat4      0 (0%)     1 (25%)          
+##     NA        0 (0%)     1 (25%)          
 ##  B                                 0.162  
-##               1.8 (0.5) 3.3 (1.3)         
-##  D                                 0.551  
-##               0.6 (1.0) -0.1 (1.2)        
+##               1.8 (0.5)  3.3 (1.3)        
+##  D                                 0.228  
+##               -0.4 (0.4) 0.4 (1.0)        
 ## |=========================================|</code></pre>
 <p>So with three or four short lines of code we can get a good idea about variables that may be related to the grouping variable and any missingness in the factor variables. There’s much more you can do with <code>table1</code> and there are vignettes and tutorials available to learn more.<a href="#fn14" class="footnoteRef" id="fnref14"><sup>14</sup></a></p>
 <p>Other quick descriptive functions exist; here are a few of them.</p>

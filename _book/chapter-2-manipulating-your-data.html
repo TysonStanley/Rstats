@@ -391,17 +391,17 @@ dem_df <span class="op">%&gt;%</span><span class="st">                          
 <div id="wide-form" class="section level3 unnumbered">
 <h3>Wide Form</h3>
 <p>Wide form generally has one unit (i.e. individual) per row. This generally looks like:</p>
-<pre><code>##    ID   Var_Time1  Var_Time2
-## 1   1  0.83672085 0.86505732
-## 2   2  1.38652314 0.90498346
-## 3   3 -1.00937509 0.80046232
-## 4   4 -0.49763732 0.38466553
-## 5   5  0.05264796 0.67699777
-## 6   6 -1.10964686 0.56602523
-## 7   7  0.06599646 0.67840615
-## 8   8 -0.29791647 0.46595278
-## 9   9 -1.30277788 0.07543498
-## 10 10 -0.36118004 0.66137512</code></pre>
+<pre><code>##    ID  Var_Time1   Var_Time2
+## 1   1  0.1874429 0.159395477
+## 2   2 -0.3073314 0.449209853
+## 3   3  2.4458895 0.954175605
+## 4   4  0.7582227 0.902027665
+## 5   5  0.6479288 0.004097129
+## 6   6 -1.1869866 0.409759110
+## 7   7  0.3430620 0.106845815
+## 8   8 -1.4609704 0.355644065
+## 9   9  0.8069925 0.548921337
+## 10 10  0.2255408 0.544293472</code></pre>
 <p>Notice that each row has a unique ID.</p>
 <p>This format is common in the ANOVA family of analyses. These can be used when there are set time points that the individual is measured and each individual has the same number of time points. This is not always reasonable, but when it is, wide format works just fine. However, when these conditions don’t hold, mixed effects modeling (i.e. multilevel modeling, hierarchical linear modeling) is particularly useful. In order to do mixed effects modeling, long format is required.</p>
 </div>
@@ -409,15 +409,15 @@ dem_df <span class="op">%&gt;%</span><span class="st">                          
 <h3>Long Form</h3>
 <p>In contrast, long format has the lowest nested unit as a single row. This means that a single ID can span multiple rows, usually with a unique time point for each row as so:</p>
 <pre><code>##   ID Time       Var
-## 1  1    1 0.4850868
-## 2  1    2 0.4582406
-## 3  1    3 0.3328986
-## 4  1    4 0.1272143
-## 5  2    1 0.6325773
-## 6  2    2 0.9436676
-## 7  3    1 0.1204940
-## 8  3    2 0.6415250
-## 9  3    3 0.7078279</code></pre>
+## 1  1    1 0.3392220
+## 2  1    2 0.5348762
+## 3  1    3 0.3634555
+## 4  1    4 0.1153751
+## 5  2    1 0.8855411
+## 6  2    2 0.7564322
+## 7  3    1 0.4065523
+## 8  3    2 0.7095450
+## 9  3    3 0.6863382</code></pre>
 <p>Notice that a single ID spans multiple columns and that each row has only one time point. Here, time is nested within individuals making it the lowest unit. Therefore, each row corresponds to a single time point. Generally, this is the format we want for most modeling techniques and most visualizations.</p>
 </div>
 <div id="change-from-one-to-the-other" class="section level3 unnumbered">
@@ -427,27 +427,27 @@ dem_df <span class="op">%&gt;%</span><span class="st">                          
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df_wide &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="st">&quot;ID&quot;</span>=<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>), <span class="st">&quot;Var_Time1&quot;</span>=<span class="kw">rnorm</span>(<span class="dv">10</span>), <span class="st">&quot;Var_Time2&quot;</span>=<span class="kw">runif</span>(<span class="dv">10</span>))
 df_long &lt;-<span class="st"> </span><span class="kw">gather</span>(df_wide, <span class="st">&quot;var_label&quot;</span>, <span class="st">&quot;value&quot;</span>, <span class="dv">2</span><span class="op">:</span><span class="dv">3</span>)
 df_long</code></pre></div>
-<pre><code>##    ID var_label       value
-## 1   1 Var_Time1  0.36028042
-## 2   2 Var_Time1 -0.35984734
-## 3   3 Var_Time1 -0.03541337
-## 4   4 Var_Time1  0.63924625
-## 5   5 Var_Time1 -2.55744098
-## 6   6 Var_Time1 -2.70836385
-## 7   7 Var_Time1  0.73372801
-## 8   8 Var_Time1  0.39771488
-## 9   9 Var_Time1 -1.18464217
-## 10 10 Var_Time1 -0.54539969
-## 11  1 Var_Time2  0.84879034
-## 12  2 Var_Time2  0.83497530
-## 13  3 Var_Time2  0.53060192
-## 14  4 Var_Time2  0.20260485
-## 15  5 Var_Time2  0.83928932
-## 16  6 Var_Time2  0.93971363
-## 17  7 Var_Time2  0.77093490
-## 18  8 Var_Time2  0.03365733
-## 19  9 Var_Time2  0.35861084
-## 20 10 Var_Time2  0.44950358</code></pre>
+<pre><code>##    ID var_label        value
+## 1   1 Var_Time1 -1.093358118
+## 2   2 Var_Time1  0.185102691
+## 3   3 Var_Time1  0.559279302
+## 4   4 Var_Time1 -0.118758515
+## 5   5 Var_Time1  0.334564424
+## 6   6 Var_Time1 -0.370395549
+## 7   7 Var_Time1  1.381699359
+## 8   8 Var_Time1  0.730157740
+## 9   9 Var_Time1 -0.015245176
+## 10 10 Var_Time1 -1.508776784
+## 11  1 Var_Time2  0.844510138
+## 12  2 Var_Time2  0.060687910
+## 13  3 Var_Time2  0.189251553
+## 14  4 Var_Time2  0.003691458
+## 15  5 Var_Time2  0.860609301
+## 16  6 Var_Time2  0.634251287
+## 17  7 Var_Time2  0.878940569
+## 18  8 Var_Time2  0.460365643
+## 19  9 Var_Time2  0.672409609
+## 20 10 Var_Time2  0.623698717</code></pre>
 <p>We provided the data, some variable names, and told it what columns contained the values.</p>
 <p>And now we will go from long to wide using <code>spread()</code> from the same package.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df_long &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="st">&quot;ID&quot;</span>=<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>), 
@@ -455,10 +455,10 @@ df_long</code></pre></div>
                       <span class="st">&quot;Var&quot;</span>=<span class="kw">runif</span>(<span class="dv">9</span>))
 df_wide &lt;-<span class="st"> </span><span class="kw">spread</span>(df_long, Time, Var)
 df_wide</code></pre></div>
-<pre><code>##   ID         1         2         3         4
-## 1  1 0.3363876 0.4505758 0.2654750 0.6872623
-## 2  2 0.3518292 0.4692058        NA        NA
-## 3  3 0.1390442 0.8319515 0.5408114        NA</code></pre>
+<pre><code>##   ID         1          2         3         4
+## 1  1 0.7065705 0.85928426 0.9853012 0.5727795
+## 2  2 0.6772005 0.06272561        NA        NA
+## 3  3 0.9906251 0.77065107 0.6374287        NA</code></pre>
 <p>Here, we provided the column name (<code>Time</code>) that had the value labels and (<code>Var</code>) that contained the values themselves. With a little bit of code we can move data around without any copy-pasting that is so error-prone.</p>
 </div>
 </div>
