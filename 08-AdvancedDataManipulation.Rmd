@@ -60,7 +60,7 @@ These steps can be followed for situations where there are many measures per per
 
 It is also possible to do multiple measures at once when moving from wide to long or long to wide. The following figure shows the basics of the `reshape()` function that was made for an introductory R class.
 
-![Reshape]({{ site.baseurl }}/assets/images/DataCleaning_Handout.png)
+![Reshape](~/Box Sync/GitHub/blog_rstats/assets/images/DataCleaning_Handout.png)
 
 Note a few important features: 
 
