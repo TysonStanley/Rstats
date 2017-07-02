@@ -6,21 +6,21 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>R for the Health, Behavioral, and Social Sciences</title>
-  <meta name="description" content="R for the Health, Behavioral, and Social Sciences">
+  <meta name="description" content="This book introduces the R statistical language for researchers in the health, behavioral, and social sciences. It is designed for those that have little background in statistical programming but would like to use the powerful statistical and visualization tool that R offers at no cost. The light-hearted design of this book allows a researcher to investigate and begin using R relatively stress-free with intuitive and interesting examples.">
   <meta name="generator" content="bookdown 0.4 and GitBook 2.6.7">
 
   <meta property="og:title" content="R for the Health, Behavioral, and Social Sciences" />
   <meta property="og:type" content="book" />
   
-  
-  
-  
+  <meta property="og:image" content="Cover.jpg" />
+  <meta property="og:description" content="This book introduces the R statistical language for researchers in the health, behavioral, and social sciences. It is designed for those that have little background in statistical programming but would like to use the powerful statistical and visualization tool that R offers at no cost. The light-hearted design of this book allows a researcher to investigate and begin using R relatively stress-free with intuitive and interesting examples." />
+  <meta name="github-repo" content="tysonstanley/tysonstanley.github.io" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="R for the Health, Behavioral, and Social Sciences" />
   
-  
-  
+  <meta name="twitter:description" content="This book introduces the R statistical language for researchers in the health, behavioral, and social sciences. It is designed for those that have little background in statistical programming but would like to use the powerful statistical and visualization tool that R offers at no cost. The light-hearted design of this book allows a researcher to investigate and begin using R relatively stress-free with intuitive and interesting examples." />
+  <meta name="twitter:image" content="Cover.jpg" />
 
 <meta name="author" content="Tyson S. Barrett">
 
@@ -141,12 +141,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html"><i class="fa fa-check"></i>Chapter 4: Basic Analyses</a><ul>
-<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#anova"><i class="fa fa-check"></i>ANOVA</a><ul>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#anova"><i class="fa fa-check"></i>ANOVA</a></li>
 <li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#assumptions"><i class="fa fa-check"></i>Assumptions</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#linear-modeling"><i class="fa fa-check"></i>Linear Modeling</a><ul>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#linear-modeling"><i class="fa fa-check"></i>Linear Modeling</a></li>
 <li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#assumptions-1"><i class="fa fa-check"></i>Assumptions</a></li>
-<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#comparing-models"><i class="fa fa-check"></i>Comparing Models</a></li>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#comparing-models"><i class="fa fa-check"></i>Comparing Models</a><ul>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#compare-statistically"><i class="fa fa-check"></i>Compare Statistically</a></li>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#compare-in-a-table"><i class="fa fa-check"></i>Compare in a Table</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#when-assumptions-fail"><i class="fa fa-check"></i>When Assumptions Fail</a><ul>
 <li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#log-linear-log-log-linear-log-other"><i class="fa fa-check"></i>Log-Linear, Log-Log, Linear-Log, Other</a></li>
@@ -400,31 +401,31 @@ h_fit =<span class="st"> </span><span class="kw">hurdle</span>(sed_zero <span cl
 ## 
 ## Pearson residuals:
 ##    Min     1Q Median     3Q    Max 
-## -3.450 -1.467 -0.256  1.257  9.224 
+## -3.480 -1.445 -0.258  1.225  9.352 
 ## 
 ## Count model coefficients (truncated poisson with log link):
 ##                    Estimate Std. Error z value Pr(&gt;|z|)    
-## (Intercept)        5.658359   0.003730  1516.9   &lt;2e-16 ***
-## asthma             0.055570   0.002247    24.7   &lt;2e-16 ***
-## raceOtherHispanic  0.127692   0.004283    29.8   &lt;2e-16 ***
-## raceWhite          0.344657   0.003504    98.4   &lt;2e-16 ***
-## raceBlack          0.330579   0.003605    91.7   &lt;2e-16 ***
-## raceOther          0.334629   0.003810    87.8   &lt;2e-16 ***
-## famsize           -0.018489   0.000575   -32.2   &lt;2e-16 ***
+## (Intercept)        5.646302   0.003756  1503.5   &lt;2e-16 ***
+## asthma             0.069464   0.002255    30.8   &lt;2e-16 ***
+## raceOtherHispanic  0.144540   0.004301    33.6   &lt;2e-16 ***
+## raceWhite          0.344456   0.003536    97.4   &lt;2e-16 ***
+## raceBlack          0.342565   0.003639    94.1   &lt;2e-16 ***
+## raceOther          0.347245   0.003835    90.5   &lt;2e-16 ***
+## famsize           -0.018797   0.000581   -32.4   &lt;2e-16 ***
 ## Zero hurdle model coefficients (binomial with logit link):
 ##                   Estimate Std. Error z value Pr(&gt;|z|)    
-## (Intercept)        2.26174    0.20980   10.78   &lt;2e-16 ***
-## asthma             0.10473    0.15088    0.69     0.49    
-## raceOtherHispanic  0.15702    0.24553    0.64     0.52    
-## raceWhite         -0.04458    0.19342   -0.23     0.82    
-## raceBlack          0.11364    0.20396    0.56     0.58    
-## raceOther         -0.01893    0.21513   -0.09     0.93    
-## famsize           -0.00348    0.03619   -0.10     0.92    
+## (Intercept)        2.31883    0.20261   11.44   &lt;2e-16 ***
+## asthma             0.00695    0.14304    0.05     0.96    
+## raceOtherHispanic  0.25918    0.24017    1.08     0.28    
+## raceWhite          0.03294    0.18649    0.18     0.86    
+## raceBlack         -0.00122    0.19304   -0.01     0.99    
+## raceOther          0.12756    0.21060    0.61     0.54    
+## famsize           -0.05220    0.03479   -1.50     0.13    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1 
 ## 
 ## Number of iterations in BFGS optimization: 12 
-## Log-likelihood: -2.33e+05 on 14 Df</code></pre>
+## Log-likelihood: -2.32e+05 on 14 Df</code></pre>
 <p>Notice that the output has two parts: “Count model coefficients (truncated poisson with log link):” and “Zero hurdle model coefficients (binomial with logit link):”. Together they tell us about the relationship between the predictors and a count variable with many zeros.</p>
 </div>
 <div id="negative-binomial" class="section level3 unnumbered">
@@ -455,28 +456,28 @@ fit_beta &lt;-<span class="st"> </span><span class="kw">betareg</span>(beta_var 
 ## 
 ## Standardized weighted residuals 2:
 ##    Min     1Q Median     3Q    Max 
-## -2.024 -0.706 -0.050  0.626  2.996 
+## -2.021 -0.686 -0.051  0.633  2.938 
 ## 
 ## Coefficients (mean model with logit link):
-##                   Estimate Std. Error z value Pr(&gt;|z|)  
-## (Intercept)         0.0947     0.0631    1.50    0.133  
-## asthma             -0.0363     0.0436   -0.83    0.405  
-## raceOtherHispanic  -0.0745     0.0718   -1.04    0.300  
-## raceWhite          -0.0719     0.0586   -1.23    0.219  
-## raceBlack          -0.1085     0.0608   -1.78    0.074 .
-## raceOther          -0.0658     0.0652   -1.01    0.313  
-## famsize             0.0100     0.0108    0.93    0.352  
+##                   Estimate Std. Error z value Pr(&gt;|z|)
+## (Intercept)        0.04147    0.06295    0.66     0.51
+## asthma             0.00597    0.04350    0.14     0.89
+## raceOtherHispanic -0.02505    0.07166   -0.35     0.73
+## raceWhite          0.02210    0.05847    0.38     0.71
+## raceBlack         -0.01758    0.06070   -0.29     0.77
+## raceOther          0.02179    0.06506    0.33     0.74
+## famsize            0.01602    0.01077    1.49     0.14
 ## 
 ## Phi coefficients (precision model with identity link):
 ##       Estimate Std. Error z value Pr(&gt;|z|)    
-## (phi)   2.4937     0.0454    54.9   &lt;2e-16 ***
+## (phi)   2.5075     0.0457    54.9   &lt;2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1 
 ## 
 ## Type of estimator: ML (maximum likelihood)
-## Log-likelihood:   74 on 8 Df
-## Pseudo R-squared: 0.00128
-## Number of iterations: 18 (BFGS) + 2 (Fisher scoring)</code></pre>
+## Log-likelihood: 86.3 on 8 Df
+## Pseudo R-squared: 0.000844
+## Number of iterations: 17 (BFGS) + 1 (Fisher scoring)</code></pre>
 <p>The output provides coefficients and the “Phi” coefficients. Both are important parts of using beta regression but we are not going to discuss it here.</p>
 <p>There are many resources available to learn more about beta regression and each of these GLM’s. As for now, we are going to move on to more complex modeling where there are clustering or repeated measures in the data.</p>
 </div>

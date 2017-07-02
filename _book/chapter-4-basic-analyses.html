@@ -6,21 +6,21 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>R for the Health, Behavioral, and Social Sciences</title>
-  <meta name="description" content="R for the Health, Behavioral, and Social Sciences">
+  <meta name="description" content="This book introduces the R statistical language for researchers in the health, behavioral, and social sciences. It is designed for those that have little background in statistical programming but would like to use the powerful statistical and visualization tool that R offers at no cost. The light-hearted design of this book allows a researcher to investigate and begin using R relatively stress-free with intuitive and interesting examples.">
   <meta name="generator" content="bookdown 0.4 and GitBook 2.6.7">
 
   <meta property="og:title" content="R for the Health, Behavioral, and Social Sciences" />
   <meta property="og:type" content="book" />
   
-  
-  
-  
+  <meta property="og:image" content="Cover.jpg" />
+  <meta property="og:description" content="This book introduces the R statistical language for researchers in the health, behavioral, and social sciences. It is designed for those that have little background in statistical programming but would like to use the powerful statistical and visualization tool that R offers at no cost. The light-hearted design of this book allows a researcher to investigate and begin using R relatively stress-free with intuitive and interesting examples." />
+  <meta name="github-repo" content="tysonstanley/tysonstanley.github.io" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="R for the Health, Behavioral, and Social Sciences" />
   
-  
-  
+  <meta name="twitter:description" content="This book introduces the R statistical language for researchers in the health, behavioral, and social sciences. It is designed for those that have little background in statistical programming but would like to use the powerful statistical and visualization tool that R offers at no cost. The light-hearted design of this book allows a researcher to investigate and begin using R relatively stress-free with intuitive and interesting examples." />
+  <meta name="twitter:image" content="Cover.jpg" />
 
 <meta name="author" content="Tyson S. Barrett">
 
@@ -141,12 +141,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html"><i class="fa fa-check"></i>Chapter 4: Basic Analyses</a><ul>
-<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#anova"><i class="fa fa-check"></i>ANOVA</a><ul>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#anova"><i class="fa fa-check"></i>ANOVA</a></li>
 <li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#assumptions"><i class="fa fa-check"></i>Assumptions</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#linear-modeling"><i class="fa fa-check"></i>Linear Modeling</a><ul>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#linear-modeling"><i class="fa fa-check"></i>Linear Modeling</a></li>
 <li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#assumptions-1"><i class="fa fa-check"></i>Assumptions</a></li>
-<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#comparing-models"><i class="fa fa-check"></i>Comparing Models</a></li>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#comparing-models"><i class="fa fa-check"></i>Comparing Models</a><ul>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#compare-statistically"><i class="fa fa-check"></i>Compare Statistically</a></li>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#compare-in-a-table"><i class="fa fa-check"></i>Compare in a Table</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#when-assumptions-fail"><i class="fa fa-check"></i>When Assumptions Fail</a><ul>
 <li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#log-linear-log-log-linear-log-other"><i class="fa fa-check"></i>Log-Linear, Log-Log, Linear-Log, Other</a></li>
@@ -269,15 +270,15 @@ fit &lt;-<span class="st"> </span><span class="kw">aov</span>(famsize <span clas
 <span class="st">  </span><span class="kw">theme_bw</span>()</code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-64-1.png" width="672" /></p>
 <p>This immediately gives us an idea of where some differences may be occuring. It would appear that “White” and “MexicanAmerican” groups are different in family size.</p>
-<div id="assumptions" class="section level3 unnumbered">
-<h3>Assumptions</h3>
+</div>
+<div id="assumptions" class="section level2 unnumbered">
+<h2>Assumptions</h2>
 <p>We also would like to make sure the assumptions look like they are being met. In ANOVA, we want the residuals to be distributed normally, the variance of each group should be approximately the same, the groups are assumed to be randomly assigned, and the sample should be randomly selected as well.</p>
 <p>In <code>R</code> we can get some simple graphical checks using <code>plot</code>. All we provide is our ANOVA object (here it is <code>fit</code>). The line before it <code>par(mfrow=c(1,2))</code> tells <code>R</code> to have two plots per row (the 1 means one row, 2 means two columns).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))
 <span class="kw">plot</span>(fit)</code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-65-1.png" width="480" /><img src="_main_files/figure-html/unnamed-chunk-65-2.png" width="480" /></p>
 <p>Here, it looks like we have a problem with normality (see the Normal Q-Q plot). Those dots should approximately follow the dotted line, which is not the case. In the first plot (Residuals vs. Fitted) suggests we have approximate homoskedasticity.</p>
-</div>
 </div>
 <div id="linear-modeling" class="section level2 unnumbered">
 <h2>Linear Modeling</h2>
@@ -315,8 +316,9 @@ fit &lt;-<span class="st"> </span><span class="kw">aov</span>(famsize <span clas
 ## Residual standard error: 1.62 on 4627 degrees of freedom
 ## Multiple R-squared:  0.0425, Adjusted R-squared:  0.0417 
 ## F-statistic: 51.4 on 4 and 4627 DF,  p-value: &lt;2e-16</code></pre>
-<div id="assumptions-1" class="section level3 unnumbered">
-<h3>Assumptions</h3>
+</div>
+<div id="assumptions-1" class="section level2 unnumbered">
+<h2>Assumptions</h2>
 <p>Linear regression has a few important assumptions, often called “Gauss-Markov Assumptions”. These include:</p>
 <ol style="list-style-type: decimal">
 <li>The model is linear in parameters.</li>
@@ -328,11 +330,11 @@ fit &lt;-<span class="st"> </span><span class="kw">aov</span>(famsize <span clas
 <span class="kw">plot</span>(fit2)</code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-68-1.png" width="480" /><img src="_main_files/figure-html/unnamed-chunk-68-2.png" width="480" /></p>
 </div>
-<div id="comparing-models" class="section level3 unnumbered">
-<h3>Comparing Models</h3>
+<div id="comparing-models" class="section level2 unnumbered">
+<h2>Comparing Models</h2>
 <p>Often when running linear regression, we want to compare models and see if one fits significantly better than another. We also often want to present all the models in a table to let our readers compare the models. We will demonstrate both.</p>
-<div id="compare-statistically" class="section level4 unnumbered">
-<h4>Compare Statistically</h4>
+<div id="compare-statistically" class="section level3 unnumbered">
+<h3>Compare Statistically</h3>
 <p>Using the <code>anova()</code> function, we can compare models statistically.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">anova</span>(fit, fit2)</code></pre></div>
 <pre><code>## Analysis of Variance Table
@@ -383,8 +385,8 @@ fit &lt;-<span class="st"> </span><span class="kw">aov</span>(famsize <span clas
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 </div>
-<div id="compare-in-a-table" class="section level4 unnumbered">
-<h4>Compare in a Table</h4>
+<div id="compare-in-a-table" class="section level3 unnumbered">
+<h3>Compare in a Table</h3>
 <p>We can also compare the models in a well-formatted table that makes many aspects easy to compare. Two main packages allow us to compare models:</p>
 <ol style="list-style-type: decimal">
 <li><code>stargazer</code></li>
@@ -439,7 +441,6 @@ fit &lt;-<span class="st"> </span><span class="kw">aov</span>(famsize <span clas
 ## F Statistic         51.400*** (df = 4; 4627) 73.700*** (df = 9; 4622)
 ## =====================================================================
 ## Note:                                     *p&lt;0.1; **p&lt;0.05; ***p&lt;0.01</code></pre>
-</div>
 </div>
 </div>
 <div id="when-assumptions-fail" class="section level2 unnumbered">

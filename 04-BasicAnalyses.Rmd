@@ -59,7 +59,7 @@ ggplot(df, aes(x=race, y=famsize)) +
 
 This immediately gives us an idea of where some differences may be occuring. It would appear that "White" and "MexicanAmerican" groups are different in family size.
 
-### Assumptions {-}
+## Assumptions {-}
 
 We also would like to make sure the assumptions look like they are being met. In ANOVA, we want the residuals to be distributed normally, the variance of each group should be approximately the same, the groups are assumed to be randomly assigned, and the sample should be randomly selected as well. 
 
@@ -89,7 +89,7 @@ summary(fit2)
 ```
 
 
-### Assumptions {-}
+## Assumptions {-}
 
 Linear regression has a few important assumptions, often called "Gauss-Markov Assumptions". These include:
 
@@ -104,11 +104,11 @@ plot(fit2)
 ```
 
 
-### Comparing Models {-}
+## Comparing Models {-}
 
 Often when running linear regression, we want to compare models and see if one fits significantly better than another. We also often want to present all the models in a table to let our readers compare the models. We will demonstrate both.
 
-#### Compare Statistically {-}
+### Compare Statistically {-}
 
 Using the `anova()` function, we can compare models statistically.
 
@@ -130,7 +130,7 @@ anova(fit2, fit3)
 ```
 
 
-#### Compare in a Table {-}
+### Compare in a Table {-}
 
 We can also compare the models in a well-formatted table that makes many aspects easy to compare.
 Two main packages allow us to compare models:

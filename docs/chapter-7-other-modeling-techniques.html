@@ -6,21 +6,21 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>R for the Health, Behavioral, and Social Sciences</title>
-  <meta name="description" content="R for the Health, Behavioral, and Social Sciences">
+  <meta name="description" content="This book introduces the R statistical language for researchers in the health, behavioral, and social sciences. It is designed for those that have little background in statistical programming but would like to use the powerful statistical and visualization tool that R offers at no cost. The light-hearted design of this book allows a researcher to investigate and begin using R relatively stress-free with intuitive and interesting examples.">
   <meta name="generator" content="bookdown 0.4 and GitBook 2.6.7">
 
   <meta property="og:title" content="R for the Health, Behavioral, and Social Sciences" />
   <meta property="og:type" content="book" />
   
-  
-  
-  
+  <meta property="og:image" content="Cover.jpg" />
+  <meta property="og:description" content="This book introduces the R statistical language for researchers in the health, behavioral, and social sciences. It is designed for those that have little background in statistical programming but would like to use the powerful statistical and visualization tool that R offers at no cost. The light-hearted design of this book allows a researcher to investigate and begin using R relatively stress-free with intuitive and interesting examples." />
+  <meta name="github-repo" content="tysonstanley/tysonstanley.github.io" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="R for the Health, Behavioral, and Social Sciences" />
   
-  
-  
+  <meta name="twitter:description" content="This book introduces the R statistical language for researchers in the health, behavioral, and social sciences. It is designed for those that have little background in statistical programming but would like to use the powerful statistical and visualization tool that R offers at no cost. The light-hearted design of this book allows a researcher to investigate and begin using R relatively stress-free with intuitive and interesting examples." />
+  <meta name="twitter:image" content="Cover.jpg" />
 
 <meta name="author" content="Tyson S. Barrett">
 
@@ -141,12 +141,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html"><i class="fa fa-check"></i>Chapter 4: Basic Analyses</a><ul>
-<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#anova"><i class="fa fa-check"></i>ANOVA</a><ul>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#anova"><i class="fa fa-check"></i>ANOVA</a></li>
 <li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#assumptions"><i class="fa fa-check"></i>Assumptions</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#linear-modeling"><i class="fa fa-check"></i>Linear Modeling</a><ul>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#linear-modeling"><i class="fa fa-check"></i>Linear Modeling</a></li>
 <li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#assumptions-1"><i class="fa fa-check"></i>Assumptions</a></li>
-<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#comparing-models"><i class="fa fa-check"></i>Comparing Models</a></li>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#comparing-models"><i class="fa fa-check"></i>Comparing Models</a><ul>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#compare-statistically"><i class="fa fa-check"></i>Compare Statistically</a></li>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#compare-in-a-table"><i class="fa fa-check"></i>Compare in a Table</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#when-assumptions-fail"><i class="fa fa-check"></i>When Assumptions Fail</a><ul>
 <li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#log-linear-log-log-linear-log-other"><i class="fa fa-check"></i>Log-Linear, Log-Log, Linear-Log, Other</a></li>
@@ -520,35 +521,35 @@ fit_enet  &lt;-<span class="st"> </span><span class="kw">cv.glmnet</span>(X, Y, 
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coef</span>(fit_ridge, <span class="dt">s =</span> <span class="st">&quot;lambda.1se&quot;</span>)</code></pre></div>
 <pre><code>## 8 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
 ##                     1
-## (Intercept)  5.723420
-## riagendr     0.033309
-## ridageyr    -0.000418
-## ridreth3     0.041398
-## race         0.067642
-## famsize     -0.030137
-## dep          0.007920
-## asthma       0.076956</code></pre>
+## (Intercept)  6.15e+00
+## riagendr     2.03e-37
+## ridageyr    -2.24e-39
+## ridreth3     2.88e-37
+## race         4.40e-37
+## famsize     -1.75e-37
+## dep          4.52e-38
+## asthma       4.57e-37</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coef</span>(fit_lasso, <span class="dt">s =</span> <span class="st">&quot;lambda.1se&quot;</span>)</code></pre></div>
 <pre><code>## 8 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
-##                 1
-## (Intercept) 5.538
-## riagendr    .    
-## ridageyr    .    
-## ridreth3    .    
-## race        0.187
-## famsize     .    
-## dep         .    
-## asthma      .</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coef</span>(fit_enet, <span class="dt">s =</span> <span class="st">&quot;lambda.1se&quot;</span>)</code></pre></div>
-<pre><code>## 8 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
 ##                    1
-## (Intercept)  5.36891
+## (Intercept)  5.35712
 ## riagendr     .      
 ## ridageyr     .      
 ## ridreth3     .      
-## race         0.25955
-## famsize     -0.03259
-## dep          0.00455
+## race         0.26329
+## famsize     -0.03294
+## dep          0.00466
+## asthma       .</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coef</span>(fit_enet, <span class="dt">s =</span> <span class="st">&quot;lambda.1se&quot;</span>)</code></pre></div>
+<pre><code>## 8 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
+##                     1
+## (Intercept)  5.407193
+## riagendr     .       
+## ridageyr     .       
+## ridreth3     .       
+## race         0.242446
+## famsize     -0.020623
+## dep          0.000265
 ## asthma       .</code></pre>
 <p>Although we briefly introduce these regression methods, they are indeed very important. We highly recommend learning more about them.</p>
 </div>
@@ -568,7 +569,7 @@ fit_rf</code></pre></div>
 ## No. of variables tried at each split: 2
 ## 
 ##           Mean of squared residuals: 10.8
-##                     % Var explained: 3.93</code></pre>
+##                     % Var explained: 3.57</code></pre>
 <p>We can find out which variables were important in the model via:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))  ## back to one plot per page
 <span class="kw">varImpPlot</span>(fit_rf)</code></pre></div>
