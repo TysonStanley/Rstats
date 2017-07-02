@@ -5,12 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>R for Health, Behavioral, and Social Scientists</title>
-  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
-  <meta name="description" content="R for Health, Behavioral, and Social Scientists">
-  <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
+  <title>R for the Health, Behavioral, and Social Sciences</title>
+  <meta name="description" content="R for the Health, Behavioral, and Social Sciences">
+  <meta name="generator" content="bookdown 0.4 and GitBook 2.6.7">
 
-  <meta property="og:title" content="R for Health, Behavioral, and Social Scientists" />
+  <meta property="og:title" content="R for the Health, Behavioral, and Social Sciences" />
   <meta property="og:type" content="book" />
   
   
@@ -18,7 +17,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="R for Health, Behavioral, and Social Scientists" />
+  <meta name="twitter:title" content="R for the Health, Behavioral, and Social Sciences" />
   
   
   
@@ -26,7 +25,7 @@
 <meta name="author" content="Tyson S. Barrett">
 
 
-<meta name="date" content="2017-05-22">
+<meta name="date" content="2017-07-01">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -35,7 +34,6 @@
   
 <link rel="prev" href="index.html">
 <link rel="next" href="chapter-2-manipulating-your-data.html">
-
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -92,6 +90,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </head>
 
 <body>
+
 
 
   <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
@@ -221,7 +220,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R for Health, Behavioral, and Social Scientists</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R for the Health, Behavioral, and Social Sciences</a>
           </h1>
         </div>
 
@@ -260,7 +259,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul>
 <p>The first, <strong>numeric</strong>, is just that: numbers. In <code>R</code>, you can make a numeric variable with the code below:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">10.1</span>, <span class="fl">2.1</span>, <span class="fl">4.6</span>, <span class="fl">2.3</span>, <span class="fl">8.9</span>)</code></pre></div>
-<p>The <code>c()</code> is a <strong>function</strong> <a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a> that stands for “concatenate” which basically glues the values inside the paratheses together into one. We use <code>&lt;-</code> to put it into <code>x</code>. So in this case, <code>x</code> (which we could have named anything) is saving those values so we can work with them<a href="#fn5" class="footnoteRef" id="fnref5"><sup>5</sup></a>.</p>
+<p>The <code>c()</code> is a <strong>function</strong><a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a> that stands for “concatenate” which basically glues the values inside the paratheses together into one. We use <code>&lt;-</code> to put it into <code>x</code>. So in this case, <code>x</code> (which we could have named anything) is saving those values so we can work with them<a href="#fn5" class="footnoteRef" id="fnref5"><sup>5</sup></a>.</p>
 <p>A <strong>factor</strong> variable is a categorical variable (i.e., only a limited number of options exist). For example, race/ethnicity is a factor variable.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">race &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">2</span>)</code></pre></div>
 <p>The code above actually produces a numeric vector (since it was only provided numbers). We can quickly tell <code>R</code> that it is indeed supposed to be a factor.</p>
@@ -408,8 +407,9 @@ df &lt;-<span class="st"> </span><span class="kw">read.xport</span>(<span class=
         </div>
       </div>
 <a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="chapter-2-manipulating-your-data.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
-
+<a href="chapter-2-manipulating-your-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
@@ -439,7 +439,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": null,
+"download": ["_main.epub"],
 "toc": {
 "collapse": "subsection"
 }
@@ -452,7 +452,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(script.src))
       script.src  = script.src.replace(/^https?:/, '');
     document.getElementsByTagName("head")[0].appendChild(script);

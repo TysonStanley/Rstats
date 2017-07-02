@@ -1,13 +1,5 @@
----
-title: "R for the Health, Behavioral, and Social Sciences"
-author: "Tyson S. Barrett"
-date: "`r Sys.Date()`"
-site: "bookdown::bookdown_site"
-output:
-  bookdown::gitbook: default
-documentclass: book
-link-citations: yes
----
+
+
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 ## Run but not shown
@@ -114,7 +106,7 @@ fit3 <- sem(model3, data = df)
 summary(fit3)
 ```
 
-We defined `dep1` as a latent variable using `=~`. The regression, indirect, and total results are very similar the summed score version. Although the model does not fit the data well--"`P-value (Chi-square) = 0.000`"--it is informative for demonstration. We would likely need to find out how the measurement model (`dep1 =~ dpq010 + dpq020 + dpq030 +`) actually fits before throwing it into a mediation model. We can do that via:
+We defined `dep1` as a latent variable using `=~`. Although the model does not fit the data well--"`P-value (Chi-square) = 0.000`"--it is informative for demonstration. We would likely need to find out how the measurement model (`dep1 =~ dpq010 + dpq020 + dpq030 +`) actually fits before throwing it into a mediation model. We can do that via:
 
 ```{r}
 model4 <- '
@@ -138,7 +130,7 @@ We are briefly going to introduce some machine learning techniques that may be o
 
 In order to do either ridge, lasso, or elastic net regression, we can use the fantastic `glmnet` package. Using the `cv.glmnet()` function we can run the ridge ($alpha = 0$), lasso ($alpha = 1$ which is default), and elastic net ($0 \leq alpha \leq 1$). It turns out that elastic net is the combination of the ridge and lasso methods and the closer `alpha` is to 1 the more it acts like lasso and the closer it is to 0 the more it acts like ridge.
 
-Lasso and elastic net can do variable selection in addition to estimation. Ridge is great at handling correlated predictors. Each of them are better than conventional methods at prediction and each of them can handle large numbers of predictors. To learn more see "Introduction to Statistical Learning" by Daniela Witten, Gareth James, Robert Tibshirani, and Trevor Hastie. A feww PDF is available on their website.
+Lasso and elastic net can do variable selection in addition to estimation. Ridge is great at handling correlated predictors. Each of them are better than conventional methods at prediction and each of them can handle large numbers of predictors. To learn more see "Introduction to Statistical Learning" by Daniela Witten, Gareth James, Robert Tibshirani, and Trevor Hastie. A free PDF is available on their website.
 
 To use the package, it wants the data in a very specific form. First, we need to remove any missingness. We use `na.omit()` to do this. We take all the predictors (without the outcome) and put it in a data matrix object. We only include a few for the demonstration but you can include *many* predictors. We name ours `X`. `Y` is our outcome.
 
@@ -165,7 +157,6 @@ fit_enet  <- cv.glmnet(X, Y, alpha = .8)
 The plots below show where appropriate `lambda` values are based on the mean squared error of the cross-validated prediction. The vertical dashed lines show a reasonable range of lambda values that can be used.
 
 ```{r}
-par(mfrow = c(2,2))  ## put plots together on 2 x 2 grid
 plot(fit_ridge)
 plot(fit_lasso)
 plot(fit_enet)

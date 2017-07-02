@@ -1,13 +1,4 @@
----
-title: "R for the Health, Behavioral, and Social Sciences"
-author: "Tyson S. Barrett"
-date: "`r Sys.Date()`"
-site: "bookdown::bookdown_site"
-output:
-  bookdown::gitbook: default
-documentclass: book
-link-citations: yes
----
+
 
 # Chapter 8: Advanced Data Manipulation {-}
 

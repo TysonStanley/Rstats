@@ -5,12 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>R for Health, Behavioral, and Social Scientists</title>
-  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
-  <meta name="description" content="R for Health, Behavioral, and Social Scientists">
-  <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
+  <title>R for the Health, Behavioral, and Social Sciences</title>
+  <meta name="description" content="R for the Health, Behavioral, and Social Sciences">
+  <meta name="generator" content="bookdown 0.4 and GitBook 2.6.7">
 
-  <meta property="og:title" content="R for Health, Behavioral, and Social Scientists" />
+  <meta property="og:title" content="R for the Health, Behavioral, and Social Sciences" />
   <meta property="og:type" content="book" />
   
   
@@ -18,7 +17,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="R for Health, Behavioral, and Social Scientists" />
+  <meta name="twitter:title" content="R for the Health, Behavioral, and Social Sciences" />
   
   
   
@@ -26,7 +25,7 @@
 <meta name="author" content="Tyson S. Barrett">
 
 
-<meta name="date" content="2017-05-22">
+<meta name="date" content="2017-07-01">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -35,7 +34,6 @@
   
 <link rel="prev" href="chapter-5-generalized-linear-models.html">
 <link rel="next" href="chapter-7-other-modeling-techniques.html">
-
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -92,6 +90,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </head>
 
 <body>
+
 
 
   <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
@@ -221,7 +220,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R for Health, Behavioral, and Social Scientists</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R for the Health, Behavioral, and Social Sciences</a>
           </h1>
         </div>
 
@@ -260,28 +259,19 @@ fit_gee &lt;-<span class="st"> </span><span class="kw">gee</span>(dep <span clas
                <span class="dt">id =</span> df2<span class="op">$</span>sdmvstra,
                <span class="dt">corstr =</span> <span class="st">&quot;unstructured&quot;</span>)</code></pre></div>
 <pre><code>##       (Intercept)      asthmaAsthma           famsize               sed 
-##       2.500022059       1.356081567      -0.042132178       0.001362226 
+##           2.50002           1.35608          -0.04213           0.00136 
 ## raceOtherHispanic         raceWhite         raceBlack         raceOther 
-##       1.184995689       0.113949209       0.100536695      -0.555478773</code></pre>
+##           1.18500           0.11395           0.10054          -0.55548</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(fit_gee)<span class="op">$</span>coef</code></pre></div>
-<pre><code>##                       Estimate   Naive S.E.    Naive z  Robust S.E.
-## (Intercept)        2.495509790 0.2867816215  8.7017773 0.2690426648
-## asthmaAsthma       1.353039007 0.1867101195  7.2467363 0.2137975620
-## famsize           -0.039489294 0.0461945052 -0.8548483 0.0457474654
-## sed                0.001358042 0.0003362291  4.0390382 0.0003551901
-## raceOtherHispanic  1.192481318 0.3075562837  3.8772783 0.3309608614
-## raceWhite          0.116185743 0.2531554533  0.4589502 0.2279687738
-## raceBlack          0.096800821 0.2625826864  0.3686489 0.2360498473
-## raceOther         -0.555053605 0.2809301544 -1.9757708 0.2406566044
-##                     Robust z
-## (Intercept)        9.2755169
-## asthmaAsthma       6.3285989
-## famsize           -0.8632018
-## sed                3.8234244
-## raceOtherHispanic  3.6030886
-## raceWhite          0.5096564
-## raceBlack          0.4100864
-## raceOther         -2.3064133</code></pre>
+<pre><code>##                   Estimate Naive S.E. Naive z Robust S.E. Robust z
+## (Intercept)        2.49551   0.286782   8.702    0.269043    9.276
+## asthmaAsthma       1.35304   0.186710   7.247    0.213798    6.329
+## famsize           -0.03949   0.046195  -0.855    0.045747   -0.863
+## sed                0.00136   0.000336   4.039    0.000355    3.823
+## raceOtherHispanic  1.19248   0.307556   3.877    0.330961    3.603
+## raceWhite          0.11619   0.253155   0.459    0.227969    0.510
+## raceBlack          0.09680   0.262583   0.369    0.236050    0.410
+## raceOther         -0.55505   0.280930  -1.976    0.240657   -2.306</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(geepack)
 fit_geeglm &lt;-<span class="st"> </span><span class="kw">geeglm</span>(dep <span class="op">~</span><span class="st"> </span>asthma <span class="op">+</span><span class="st"> </span>famsize <span class="op">+</span><span class="st"> </span>sed <span class="op">+</span><span class="st"> </span>race,
                      <span class="dt">data =</span> df2,
@@ -294,36 +284,36 @@ fit_geeglm &lt;-<span class="st"> </span><span class="kw">geeglm</span>(dep <spa
 ##     id = df2$sdmvstra, corstr = &quot;unstructured&quot;)
 ## 
 ##  Coefficients:
-##                     Estimate    Std.err   Wald Pr(&gt;|W|)    
-## (Intercept)        2.5579361  0.2700717 89.706  &lt; 2e-16 ***
-## asthmaAsthma       1.3492892  0.2156202 39.159 3.91e-10 ***
-## famsize           -0.0446716  0.0457087  0.955 0.328415    
-## sed                0.0013015  0.0003548 13.454 0.000244 ***
-## raceOtherHispanic  1.1750373  0.3318983 12.534 0.000400 ***
-## raceWhite          0.0806377  0.2295661  0.123 0.725392    
-## raceBlack          0.0642028  0.2363255  0.074 0.785875    
-## raceOther         -0.5902049  0.2413379  5.981 0.014463 *  
+##                    Estimate   Std.err  Wald Pr(&gt;|W|)    
+## (Intercept)        2.557936  0.270072 89.71  &lt; 2e-16 ***
+## asthmaAsthma       1.349289  0.215620 39.16  3.9e-10 ***
+## famsize           -0.044672  0.045709  0.96  0.32841    
+## sed                0.001301  0.000355 13.45  0.00024 ***
+## raceOtherHispanic  1.175037  0.331898 12.53  0.00040 ***
+## raceWhite          0.080638  0.229566  0.12  0.72539    
+## raceBlack          0.064203  0.236326  0.07  0.78587    
+## raceOther         -0.590205  0.241338  5.98  0.01446 *  
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## Estimated Scale Parameters:
 ##             Estimate Std.err
-## (Intercept)    19.49  0.7843
+## (Intercept)     19.5   0.784
 ## 
 ## Correlation: Structure = unstructured  Link = identity 
 ## 
 ## Estimated Correlation Parameters:
 ##           Estimate Std.err
-## alpha.1:2  0.12480 0.01654
-## alpha.1:3  0.42070 0.10339
-## alpha.1:4  2.89640 1.06678
-## alpha.1:5 -1.85447 0.20276
-## alpha.2:3  0.12238 0.06330
-## alpha.2:4 -0.08935 0.20229
-## alpha.2:5  0.20541 0.03720
-## alpha.3:4 -0.49597 0.11227
-## alpha.3:5  0.25045 0.03879
-## alpha.4:5 -0.66939 0.08761
+## alpha.1:2   0.1248  0.0165
+## alpha.1:3   0.4207  0.1034
+## alpha.1:4   2.8964  1.0668
+## alpha.1:5  -1.8545  0.2028
+## alpha.2:3   0.1224  0.0633
+## alpha.2:4  -0.0894  0.2023
+## alpha.2:5   0.2054  0.0372
+## alpha.3:4  -0.4960  0.1123
+## alpha.3:5   0.2504  0.0388
+## alpha.4:5  -0.6694  0.0876
 ## Number of clusters:   4109   Maximum cluster size: 5</code></pre>
 <p>The <code>gee</code> package doesn’t directly provide p-values but provides the z-scores, which can be used to find the p-values. The <code>geepack</code> provides the p-values in the way you’ll see in the <code>lm()</code> and <code>glm()</code> functions.</p>
 <p>These models are interpreted just as the regular GLM. It has adjusted for the correlations within the clusters and provides valid standard errors and p-values.</p>
@@ -483,8 +473,9 @@ fit_gme &lt;-<span class="st"> </span><span class="kw">glmer</span>(dep2 <span c
         </div>
       </div>
 <a href="chapter-5-generalized-linear-models.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="chapter-7-other-modeling-techniques.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
-
+<a href="chapter-7-other-modeling-techniques.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
@@ -514,7 +505,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": null,
+"download": ["_main.epub"],
 "toc": {
 "collapse": "subsection"
 }
@@ -527,7 +518,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(script.src))
       script.src  = script.src.replace(/^https?:/, '');
     document.getElementsByTagName("head")[0].appendChild(script);

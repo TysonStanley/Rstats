@@ -11,4 +11,7 @@ render_book(input = c("index.Rmd",
                       "07-OtherModels.Rmd",
                       "08-AdvancedDataManipulation.Rmd",
                       "09-AdvancedPlotting.Rmd",
-                      "10-LearnMore.Rmd"))
+                      "10-LearnMore.Rmd"),
+            output_format = c("epub_book", "gitbook"))
+
+?render_book
