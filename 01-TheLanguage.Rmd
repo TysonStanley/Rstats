@@ -9,7 +9,7 @@ Let's jump right into it.
 
 `R` is an open source statistical software made by statisticians. This means it generally speaks the language of statistics. This is very helpful when it comes running analyses but can be confusing when starting to understand the code. 
 
-Because learning code is best through experience, we'll start with a simple walk-through of data types, functions, and objects.
+Let's start with a simple walk-through of data types, functions, and objects.
 
 > Early Advice: Don't get overwhelmed. It may feel like there is a lot to learn, but taking things one at a time will work surprisingly quickly. I've designed this book to discuss what you need to know from the beginning. Other topics that are not discussed are things you can learn later and do not need to be of your immediate concern.
 
@@ -19,16 +19,16 @@ Because learning code is best through experience, we'll start with a simple walk
 
 `R` uses objects and operators. An object, just like in the physical world, is something you can do things with. 
 
-In the real world, we have objects that we use regularly. For example, we have chairs. Chairs are great for some things (sitting, sleeping) and horrible at others (driving, flying). Similarly, in `R` each type of object is useful for certain things. The data types that we will discuss below are certain types of objects.
+In the real world, we have objects that we use regularly. For example, we have chairs. Chairs are great for some things (sitting on, sleeping on) and horrible at others (playing basketball, flying). Similarly, in `R` each type of object is useful for certain things. The data types that we will discuss below are certain types of objects.
 
-Because this is so analogous to the real world, it becomes quite natural to work with. You can have many objects in memory, which allows flexbility in analyzing many different things simply within a single `R` session.[^rsession]
+Because this is so analogous to the real world, it becomes quite natural to work with. You can have many objects in the computer's memory, which allows flexbility in analyzing many different things simply within a single `R` session.[^rsession]
 
 For your work, the first objects you work with will be data in various forms. Below, we explain the different data types and how they can combine into what is known as a `data.frame`.
 
 
 ### Data Types {-}
 
-In `R` there are three main data types that you'll work with in research:
+In `R` there are three main data types (variable types) that you'll work with in research:
 
 - numeric
 - factor
@@ -40,7 +40,7 @@ The first, **numeric**, is just that: numbers. In `R`, you can make a numeric va
 x <- c(10.1, 2.1, 4.6, 2.3, 8.9)
 ```
 
-The `c()` is a **function** [^function] that stands for "concatenate" which basically glues the values inside the paratheses together into one. We use `<-` to put it into `x`. So in this case, `x` (which we could have named anything) is saving those values so we can work with them[^obj].
+The `c()` is a **function** [^function] that stands for "concatenate" which basically glues the values inside the paratheses together into one. We use `<-` to put it into `x`. So in this case, `x` (which we could have named anything) is saving those values so we can work with them[^obj]. If we ran this code, the `x` object would be in the working memory of `R` and will stay there unless we remove it or until the end of the `R` session (i.e., we close `R`).
 
 A **factor** variable is a categorical variable (i.e., only a limited number of options exist). For example, race/ethnicity is a factor variable.
 
@@ -55,7 +55,7 @@ race <- factor(race,
                labels = c("white", "black", "hispanic", "asian"))
 ```
 
-The `factor()` function tells `R` that the first thing `race` is actually a factor. The additional argument `labels` tells `R` what each of the values means. If we print out `race` we see that `R` has replaced the numeric values with the labels.
+The `factor()` function tells `R` that the first thing---`race`---is actually a factor. The additional argument `labels` tells `R` what each of the values means. If we print out `race` we see that `R` has replaced the numeric values with the labels.
 
 ```{r}
 race
@@ -69,7 +69,7 @@ ch <- c("I think this is great.",
         "You seem quite smart.")
 ```
 
-When we combine multiple variables into one, we create a **data.frame**. A data frame is like a spreadsheet table, like the ones you have probably seen in excel and SPSS. Here's a simple example:
+When we combine multiple variables into one, we create a **data.frame**. A data frame is like a spreadsheet table, like the ones you have probably seen in Microsoft's Excel and IBM's SPSS. Here's a simple example:
 
 ```{r}
 df <- data.frame("A"=c(1,2,1,4,3),
@@ -136,7 +136,7 @@ We admit that the last one is a bit pointless since our data frame is only a few
 
 Earlier we mentioned that `c()` was a "function." Functions are how we do things we our data. There are probably hundreds of thousands of functions at your reach. In fact, you can create your own! We'll discuss that more later.
 
-For now, know that each function has a name (the function name of `c()` is "c"), arguments, and output of some sort. Arguments are the information that you provide the function (e.g. we gave `c()` a bunch of numbers). Output from a function varies to a massive degree but, in general, the output is what you are using the function for (e.g., for `c()` we wanted to create a vector---a variable---of data). At any point, by typing:
+For now, know that each function has a name (the function name of `c()` is "c"), arguments, and output of some sort. Arguments are the information that you provide the function (e.g. we gave `c()` a bunch of numbers; we gave `factor()` two arguments---the variable and the labels for the variable's levels). Output from a function varies to a massive degree but, in general, the output is what you are using the function for (e.g., for `c()` we wanted to create a vector---a variable---of data). At any point, by typing:
 
 ```{r, eval=FALSE}
 ?functionname
@@ -144,7 +144,7 @@ For now, know that each function has a name (the function name of `c()` is "c"),
 
 we get information in the "Help" window providing the arguments and output.
 
-Below we show you several functions for both importing and saving data. Note that each have a name, arguments, and output. 
+Below we show you several functions for both importing and saving data. Note that each have a name, arguments, and output of each. 
 
 ## Importing Data {-}
 
@@ -238,7 +238,7 @@ So, if you were curious about the different arguments in `write.table` simply ru
 
 [^function]: `R` is all about functions. Functions tell `R` what to do with the data. You'll see many more examples throughout the book.
 
-[^obj]: This is a great feature of `R`. It is called "object oriented" which basically means `R` creates objects to work with. I discuss this more in 1.2.
+[^obj]: This is a great feature of `R`. It is called "object oriented" which basically means `R` creates objects to work with. I discuss this more in 1.2. Also, the fact that I said `x` "saves" the information is not entirely true but is useful to think this way.
 
 [^df]: I used this name since `df` is common in online helps and other resources.
 

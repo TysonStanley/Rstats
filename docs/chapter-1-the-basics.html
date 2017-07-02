@@ -25,7 +25,7 @@
 <meta name="author" content="Tyson S. Barrett">
 
 
-<meta name="date" content="2017-07-01">
+<meta name="date" content="2017-07-02">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -237,7 +237,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </blockquote>
 <p>Let’s jump right into it.</p>
 <p><code>R</code> is an open source statistical software made by statisticians. This means it generally speaks the language of statistics. This is very helpful when it comes running analyses but can be confusing when starting to understand the code.</p>
-<p>Because learning code is best through experience, we’ll start with a simple walk-through of data types, functions, and objects.</p>
+<p>Let’s start with a simple walk-through of data types, functions, and objects.</p>
 <blockquote>
 <p>Early Advice: Don’t get overwhelmed. It may feel like there is a lot to learn, but taking things one at a time will work surprisingly quickly. I’ve designed this book to discuss what you need to know from the beginning. Other topics that are not discussed are things you can learn later and do not need to be of your immediate concern.</p>
 </blockquote>
@@ -246,13 +246,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="objects" class="section level3 unnumbered">
 <h3>Objects</h3>
 <p><code>R</code> uses objects and operators. An object, just like in the physical world, is something you can do things with.</p>
-<p>In the real world, we have objects that we use regularly. For example, we have chairs. Chairs are great for some things (sitting, sleeping) and horrible at others (driving, flying). Similarly, in <code>R</code> each type of object is useful for certain things. The data types that we will discuss below are certain types of objects.</p>
-<p>Because this is so analogous to the real world, it becomes quite natural to work with. You can have many objects in memory, which allows flexbility in analyzing many different things simply within a single <code>R</code> session.<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a></p>
+<p>In the real world, we have objects that we use regularly. For example, we have chairs. Chairs are great for some things (sitting on, sleeping on) and horrible at others (playing basketball, flying). Similarly, in <code>R</code> each type of object is useful for certain things. The data types that we will discuss below are certain types of objects.</p>
+<p>Because this is so analogous to the real world, it becomes quite natural to work with. You can have many objects in the computer’s memory, which allows flexbility in analyzing many different things simply within a single <code>R</code> session.<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a></p>
 <p>For your work, the first objects you work with will be data in various forms. Below, we explain the different data types and how they can combine into what is known as a <code>data.frame</code>.</p>
 </div>
 <div id="data-types" class="section level3 unnumbered">
 <h3>Data Types</h3>
-<p>In <code>R</code> there are three main data types that you’ll work with in research:</p>
+<p>In <code>R</code> there are three main data types (variable types) that you’ll work with in research:</p>
 <ul>
 <li>numeric</li>
 <li>factor</li>
@@ -260,13 +260,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul>
 <p>The first, <strong>numeric</strong>, is just that: numbers. In <code>R</code>, you can make a numeric variable with the code below:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">10.1</span>, <span class="fl">2.1</span>, <span class="fl">4.6</span>, <span class="fl">2.3</span>, <span class="fl">8.9</span>)</code></pre></div>
-<p>The <code>c()</code> is a <strong>function</strong><a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a> that stands for “concatenate” which basically glues the values inside the paratheses together into one. We use <code>&lt;-</code> to put it into <code>x</code>. So in this case, <code>x</code> (which we could have named anything) is saving those values so we can work with them<a href="#fn5" class="footnoteRef" id="fnref5"><sup>5</sup></a>.</p>
+<p>The <code>c()</code> is a <strong>function</strong><a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a> that stands for “concatenate” which basically glues the values inside the paratheses together into one. We use <code>&lt;-</code> to put it into <code>x</code>. So in this case, <code>x</code> (which we could have named anything) is saving those values so we can work with them<a href="#fn5" class="footnoteRef" id="fnref5"><sup>5</sup></a>. If we ran this code, the <code>x</code> object would be in the working memory of <code>R</code> and will stay there unless we remove it or until the end of the <code>R</code> session (i.e., we close <code>R</code>).</p>
 <p>A <strong>factor</strong> variable is a categorical variable (i.e., only a limited number of options exist). For example, race/ethnicity is a factor variable.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">race &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">2</span>)</code></pre></div>
 <p>The code above actually produces a numeric vector (since it was only provided numbers). We can quickly tell <code>R</code> that it is indeed supposed to be a factor.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">race &lt;-<span class="st"> </span><span class="kw">factor</span>(race, 
                <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;white&quot;</span>, <span class="st">&quot;black&quot;</span>, <span class="st">&quot;hispanic&quot;</span>, <span class="st">&quot;asian&quot;</span>))</code></pre></div>
-<p>The <code>factor()</code> function tells <code>R</code> that the first thing <code>race</code> is actually a factor. The additional argument <code>labels</code> tells <code>R</code> what each of the values means. If we print out <code>race</code> we see that <code>R</code> has replaced the numeric values with the labels.</p>
+<p>The <code>factor()</code> function tells <code>R</code> that the first thing—<code>race</code>—is actually a factor. The additional argument <code>labels</code> tells <code>R</code> what each of the values means. If we print out <code>race</code> we see that <code>R</code> has replaced the numeric values with the labels.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">race</code></pre></div>
 <pre><code>##  [1] white    hispanic black    white    white    black    white   
 ##  [8] hispanic asian    black   
@@ -275,7 +275,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ch &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;I think this is great.&quot;</span>, 
         <span class="st">&quot;I would suggest you learn R.&quot;</span>, 
         <span class="st">&quot;You seem quite smart.&quot;</span>)</code></pre></div>
-<p>When we combine multiple variables into one, we create a <strong>data.frame</strong>. A data frame is like a spreadsheet table, like the ones you have probably seen in excel and SPSS. Here’s a simple example:</p>
+<p>When we combine multiple variables into one, we create a <strong>data.frame</strong>. A data frame is like a spreadsheet table, like the ones you have probably seen in Microsoft’s Excel and IBM’s SPSS. Here’s a simple example:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="st">&quot;A&quot;</span>=<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">3</span>),
                  <span class="st">&quot;B&quot;</span>=<span class="kw">c</span>(<span class="fl">1.4</span>,<span class="fl">2.1</span>,<span class="fl">4.6</span>,<span class="fl">2.0</span>,<span class="fl">8.2</span>),
                  <span class="st">&quot;C&quot;</span>=<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>))
@@ -330,10 +330,10 @@ df[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, 
 <div id="functions" class="section level3 unnumbered">
 <h3>Functions</h3>
 <p>Earlier we mentioned that <code>c()</code> was a “function.” Functions are how we do things we our data. There are probably hundreds of thousands of functions at your reach. In fact, you can create your own! We’ll discuss that more later.</p>
-<p>For now, know that each function has a name (the function name of <code>c()</code> is “c”), arguments, and output of some sort. Arguments are the information that you provide the function (e.g. we gave <code>c()</code> a bunch of numbers). Output from a function varies to a massive degree but, in general, the output is what you are using the function for (e.g., for <code>c()</code> we wanted to create a vector—a variable—of data). At any point, by typing:</p>
+<p>For now, know that each function has a name (the function name of <code>c()</code> is “c”), arguments, and output of some sort. Arguments are the information that you provide the function (e.g. we gave <code>c()</code> a bunch of numbers; we gave <code>factor()</code> two arguments—the variable and the labels for the variable’s levels). Output from a function varies to a massive degree but, in general, the output is what you are using the function for (e.g., for <code>c()</code> we wanted to create a vector—a variable—of data). At any point, by typing:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">?functionname</code></pre></div>
 <p>we get information in the “Help” window providing the arguments and output.</p>
-<p>Below we show you several functions for both importing and saving data. Note that each have a name, arguments, and output.</p>
+<p>Below we show you several functions for both importing and saving data. Note that each have a name, arguments, and output of each.</p>
 </div>
 </div>
 <div id="importing-data" class="section level2 unnumbered">
@@ -396,7 +396,7 @@ df &lt;-<span class="st"> </span><span class="kw">read.xport</span>(<span class=
 <ol start="3">
 <li id="fn3"><p>An <code>R</code> session is any time you open <code>R</code> do work and then close <code>R</code>. Unless you are saving your workspace (which, in general you shouldn’t do), it starts the slate clean–no objects are in memory and no packages are loaded. This is why we use scripts. Also, it makes your workflow extra transparent and replicable.<a href="chapter-1-the-basics.html#fnref3">↩</a></p></li>
 <li id="fn4"><p><code>R</code> is all about functions. Functions tell <code>R</code> what to do with the data. You’ll see many more examples throughout the book.<a href="chapter-1-the-basics.html#fnref4">↩</a></p></li>
-<li id="fn5"><p>This is a great feature of <code>R</code>. It is called “object oriented” which basically means <code>R</code> creates objects to work with. I discuss this more in 1.2.<a href="chapter-1-the-basics.html#fnref5">↩</a></p></li>
+<li id="fn5"><p>This is a great feature of <code>R</code>. It is called “object oriented” which basically means <code>R</code> creates objects to work with. I discuss this more in 1.2. Also, the fact that I said <code>x</code> “saves” the information is not entirely true but is useful to think this way.<a href="chapter-1-the-basics.html#fnref5">↩</a></p></li>
 <li id="fn6"><p>I used this name since <code>df</code> is common in online helps and other resources.<a href="chapter-1-the-basics.html#fnref6">↩</a></p></li>
 <li id="fn7"><p>The delimiter is what separates the pieces of data.<a href="chapter-1-the-basics.html#fnref7">↩</a></p></li>
 <li id="fn8"><p>A package is an extension to <code>R</code> that gives you more functions–abilities–to work with data. Anyone can write a package, although to get it on the Comprehensive R Archive Network (CRAN) it needs to be vetted to a large degree. In fact, after some practice, you could write a package to help you more easily do your work.<a href="chapter-1-the-basics.html#fnref8">↩</a></p></li>
@@ -440,7 +440,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["_main.epub"],
+"download": ["_main.pdf", "_main.epub"],
 "toc": {
 "collapse": "subsection"
 }

@@ -25,7 +25,7 @@
 <meta name="author" content="Tyson S. Barrett">
 
 
-<meta name="date" content="2017-07-01">
+<meta name="date" content="2017-07-02">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -521,36 +521,36 @@ fit_enet  &lt;-<span class="st"> </span><span class="kw">cv.glmnet</span>(X, Y, 
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coef</span>(fit_ridge, <span class="dt">s =</span> <span class="st">&quot;lambda.1se&quot;</span>)</code></pre></div>
 <pre><code>## 8 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
 ##                     1
-## (Intercept)  6.15e+00
-## riagendr     2.03e-37
-## ridageyr    -2.24e-39
-## ridreth3     2.88e-37
-## race         4.40e-37
-## famsize     -1.75e-37
-## dep          4.52e-38
-## asthma       4.57e-37</code></pre>
+## (Intercept)  5.633332
+## riagendr     0.041019
+## ridageyr    -0.000534
+## ridreth3     0.049389
+## race         0.082386
+## famsize     -0.037602
+## dep          0.009904
+## asthma       0.095375</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coef</span>(fit_lasso, <span class="dt">s =</span> <span class="st">&quot;lambda.1se&quot;</span>)</code></pre></div>
 <pre><code>## 8 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
-##                    1
-## (Intercept)  5.35712
-## riagendr     .      
-## ridageyr     .      
-## ridreth3     .      
-## race         0.26329
-## famsize     -0.03294
-## dep          0.00466
-## asthma       .</code></pre>
+##                 1
+## (Intercept) 5.465
+## riagendr    .    
+## ridageyr    .    
+## ridreth3    .    
+## race        0.209
+## famsize     .    
+## dep         .    
+## asthma      .</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coef</span>(fit_enet, <span class="dt">s =</span> <span class="st">&quot;lambda.1se&quot;</span>)</code></pre></div>
 <pre><code>## 8 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
-##                     1
-## (Intercept)  5.407193
-## riagendr     .       
-## ridageyr     .       
-## ridreth3     .       
-## race         0.242446
-## famsize     -0.020623
-## dep          0.000265
-## asthma       .</code></pre>
+##                 1
+## (Intercept) 5.718
+## riagendr    .    
+## ridageyr    .    
+## ridreth3    .    
+## race        0.132
+## famsize     .    
+## dep         .    
+## asthma      .</code></pre>
 <p>Although we briefly introduce these regression methods, they are indeed very important. We highly recommend learning more about them.</p>
 </div>
 <div id="random-forests" class="section level3 unnumbered">
@@ -569,7 +569,7 @@ fit_rf</code></pre></div>
 ## No. of variables tried at each split: 2
 ## 
 ##           Mean of squared residuals: 10.8
-##                     % Var explained: 3.57</code></pre>
+##                     % Var explained: 3.79</code></pre>
 <p>We can find out which variables were important in the model via:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))  ## back to one plot per page
 <span class="kw">varImpPlot</span>(fit_rf)</code></pre></div>
@@ -629,7 +629,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["_main.epub"],
+"download": ["_main.pdf", "_main.epub"],
 "toc": {
 "collapse": "subsection"
 }
