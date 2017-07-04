@@ -1,33 +1,33 @@
 
-# Chapter 2: Manipulating Your Data {-}
+# Chapter 2: Working with and Cleaning Your Data {-}
 
 > "Organizing is what you do before you do something, so that when you do it, it is not all mixed up."
 >
 > --- A. A. Milne
 
-In order to manipulate your data in the cleanest, most up-to-date manner, we are going to be using the "tidyverse" group of methods. The tidyverse[^hadley] is a group of packages[^pack] that provide a simple syntax that can do many basic (and complex) data manipulating. The group of packages can be downloaded via:
+In order to work with and clean your data in the most up-to-date manner, we are going to be using the "tidyverse" group of methods. The tidyverse[^hadley] is a group of packages[^pack] that provide a simple syntax that can do many basic (and complex) data manipulating. They form a sort of "grammar" of data manipulation that simplifies both the coding approach and the way researchers think about working with data. 
+
+The group of packages can be downloaded via:
 
 ```{r, eval=FALSE}
 install.packages("tidyverse")
 ```
 
-After downloading it, simply use:
+After downloading it, to use its functions, simply use:
 
 ```{r}
 library(tidyverse)
 ```
 
-Note that when we loaded tidyverse it loaded 6 packages and told you of "conflicts". These conflicts are where two or more loaded packages have the same function in them. The last loaded package is the one that `R` will use by default. For example, if we loaded two packages--`awesome` and `amazing`--and both had the function--`make_really_great` and we loaded `awesome` and then `amazing` as so:
-
+Note that when we loaded tidyverse it loaded 6 packages and told you of "conflicts". These conflicts are where two or more functions across different packages have the same name. These functions with the same name will almost invariably differ in what they do. In this situation, the last loaded package is the one that `R` will use by default. For example, if we loaded two packages---`awesome` and `amazing`---and both had the function `make_really_cool` and we loaded `awesome` and then `amazing` as so:
 ```{r, eval=FALSE}
 library(awesome)
 library(amazing)
 ```
-
-`R` will automatically use the function from `amazing`. We can still access the `awesome` version of the function (because even though the name is the same, they won't necessarily do the same things for you). We can do this by:
+`R` will automatically use the function from `amazing`. We can still access the `awesome` version of the function (because, again, even though the name is the same, they won't necessarily do the same things for you). We can do this by:
 
 ```{r, eval=FALSE}
-awesome::make_really_great(arg)
+awesome::make_really_cool(args)
 ```
 
 That's a bit of an aside, but know that you can always get at a function even if it is "masked" from your current session.
@@ -36,12 +36,10 @@ That's a bit of an aside, but know that you can always get at a function even if
 
 I'm introducing this to you for a couple reasons.
 
-1. It simplifies the code and makes the code more readable. As the saying goes, there are always at least two collaborators on any project: you and future you.
-2. It is the cutting edge. The most influential individuals in the `R` world, including the makers and maintainers of `RStudio`, use these methods and syntax.
+1. It simplifies the code and makes the code more readable. It is often worthwhile to make sure the code is readable for, as the saying goes, there are always at least two collaborators on any project: you and future you.
+2. It is the cutting edge of all things `R`. The most influential individuals in the `R` world, including the makers and maintainers of `RStudio`, use these methods and syntax.
 
-The majority of what you'll need to do with data as a researcher will be covered by these functions. 
-
-The goal of these functions is to help tidy up your data. Tidy data is based on columns being variables and rows being observations. It is the form that data needs to be in to analyze it, whether that analysis is by graphing, modeling, or other means.
+The majority of what you'll need to do with data as a researcher will be covered by these functions. The goal of these packages is to help tidy up your data. *Tidy data* is based on columns being variables and rows being observations. This depends largely on your data and research design but the definition is still the same---columns are variables and rows are observations. It is the form that data needs to be in to analyze it, whether that analysis is by graphing, modeling, or other means.
 
 There are several methods that help create tidy data:
 
@@ -51,9 +49,44 @@ There are several methods that help create tidy data:
 4. Reshaping
 5. Joining (merging)
 
-> Heads up! Understanding these tools requires, simultaneously, an understanding of what ways data can be moved around. For example, reshaping can refer to moving data into a more wide-format or long-format, can refer to summarizing or aggregating, and can refer to joining or binding. All of these are necessary to work with data flexibly. Because of this, we suggest taking your time to fully understand what each function is doing with the data.
+> Heads up! Understanding these tools requires an understanding of what ways data can be moved around. For example, reshaping can refer to moving data into a more wide-format or long-format, can refer to summarizing or aggregating, and can refer to joining or binding. All of these are necessary to work with data flexibly. Because of this, we suggest taking your time to fully understand what each function is doing with the data.
 
-To help illustrate each aspect, we are going to use real data from the National Health and Nutrition Examiniation Survey (NHANES). I've provided this data at [https://tysonstanley.github.io/assets/Data/NHANES.zip](https://tysonstanley.github.io/assets/Data/NHANES.zip). I've cleaned it up somewhat already.
+Much of these may be things you have done in other tools such as spreadsheets. The copy-and-paste approach is seriously error prone and is not reproducible. Taking your time to learn these methods will be well worth it.
+
+## Tidy (Long) Form {-}
+
+Before diving in, I want to provide some examples of tidy data (also known as "long form") and how they are different from another form, often called "wide form."
+
+Only when the data is cross-sectional and each individual is a row does this distinction not matter much. Otherwise, if there are multiple measurement periods per individual (longitudinal design), or there are multiple individuals per cluster (clustered design), the distinction between wide and long is very important for modeling and visualization.
+
+### Wide Form {-}
+
+Wide form generally has one unit (i.e. individual) per row. This generally looks like:
+
+```{r, echo=FALSE}
+data.frame("ID"=c(1:10), "Var_Time1"=rnorm(10), "Var_Time2"=runif(10))
+```
+
+Notice that each row has a unique ID, and some of the columns (all in this case) are variables at specific time points. This means that the variable is split up and is not a single column. This is a common way to collect and store data in our fields and so your data likely looks similar to this.
+
+### Long Form {-}
+
+In contrast, long format has the lowest nested unit as a single row. This means that a single ID can span multiple rows, usually with a unique time point for each row as so:
+
+```{r, echo=FALSE}
+data.frame("ID"=c(1,1,1,1,2,2,3,3,3), 
+           "Time"=c(1,2,3,4,1,2,1,2,3), 
+           "Var"=runif(9))
+```
+
+Notice that a single ID spans multiple columns and that each row has only one time point. Here, time is nested within individuals making it the lowest unit. Therefore, each row corresponds to a single time point. Generally, this is the format we want for most modeling techniques and most visualizations.
+
+This is a very simple example of the differences between wide and long format. Although much more complex examples are probably available to you, we will start with this for now. Later chapters will delve into more complex data designs.
+
+
+### Data Used for Examples {-}
+
+To help illustrate each aspect of working with and cleaning your data, we are going to use real data from the National Health and Nutrition Examiniation Survey (NHANES). I've provided this data at [https://tysonstanley.github.io/assets/Data/NHANES.zip](https://tysonstanley.github.io/assets/Data/NHANES.zip). I've cleaned it up somewhat already.
 
 Let's quickly read that data in so we can use it throughout the remainder of this chapter. First, we will set our working directory with `setwd`. This tells `R` where to look for files, including your data files. My specific file location is below so you will need to adjust it to wherever you saved the NHANES data.
 ```{r, eval=FALSE}
@@ -104,11 +137,14 @@ Let's introduce a few major themes in this tidyverse. First, the pipe operator -
 dem_df %>% summary
 ```
 
-So the above code takes the data frame `df` and puts it into the `summary` function. This does the same thing as `summary(df)`. In this simple case, it doesn't really make the code more readable, but in more complex situations it can really help. In the following sections you will see how and where this type of coding is helpful.
+So the above code takes the data frame `dem_df` and puts it into the `summary` function. This does the same thing as `summary(df)`. In this simple case, it doesn't really make the code more readable, but in more complex situations it can really help. In the following sections you will see how and where this type of coding is helpful.
 
 ## Select and Filter {-}
 
-We often want to subset our data in some way before we do many of our analyses. This can make our cognitive load of the data much lighter but it can also be very important in the actual analyses. The code below show the two main ways to subset your data: 1) selecting variables and 2) filtering observations.
+We often want to subset our data in some way before we do many of our analyses. We may want to do this for a number of reasons (e.g., easier cognitively to think about the data, the analyses depend on the subsetting). The code below show the two main ways to subset your data: 
+
+1. *selecting* variables and 
+2. *filtering* observations.
 
 To select three variables (i.e. gender ["riagendr"], age ["ridageyr"], and ethnicity ["ridreth1"]) we:
 ```{r, eval = FALSE}
@@ -130,16 +166,16 @@ filtered_dem <- dem_df %>%
   filter(riagendr == 1 & ridageyr > 16)
 ```
 
-We now have only males that are older than 16 years old. We used `&` to say we want **both** conditions to be met. Alternatively, we could:
+We now have only males that are older than 16 years old. We used `&` to say we want **both** conditions to be met. Alternatively, we could use:
 ```{r, eval = FALSE}
 filtered_dem <- dem_df %>%
   filter(riagendr == 1 | ridageyr > 16)
 ```
-which, using `|` we are saying we want males **or** individuals older than 16. In other words, if either are met, that observation will be kept.
+By using `|` we are saying we want males **or** individuals older than 16. In other words, if either are met, that observation will be kept.
 
 Finally, we can do all of these in one step:
 ```{r, eval = FALSE}
-filtered_dem <- dem_df %>%
+filtered_selected_dem <- dem_df %>%
   select(riagendr, ridageyr, ridreth1) %>%
   filter(riagendr == 1 & ridageyr > 16)
 ```
@@ -201,58 +237,34 @@ This pattern of grouping and summarizing is something that will follow us throug
 
 ## Reshaping {-}
 
-This is a big part of working with data. Unfortunately, it is also a difficult topic to understand without much practice at it. In general, two data formats exist:
+Earlier we described the differences between wide and long (or tidy) form. Now that you have an idea of the differences, we are going to introduce how to change from one to the other. Several functions exist for just this purpose, including `gather()` from the `tidyr` package and `reshape()` in the default `stats` package. Since these can be limited, we are going to teach two functions that can be used in nearly any reshaping situation. For now, though, we will keep in simple.
 
-1. Wide form
-2. Long form
-
-Only when the data is cross-sectional and each individual is a row does this distinction not matter much. Otherwise, if there are multiple measurement periods per individual, or there are multiple individuals per cluster, the distinction between wide and long is very important for modeling and visualization.
-
-### Wide Form {-}
-
-Wide form generally has one unit (i.e. individual) per row. This generally looks like:
-
-```{r, echo=FALSE}
-data.frame("ID"=c(1:10), "Var_Time1"=rnorm(10), "Var_Time2"=runif(10))
-```
-
-Notice that each row has a unique ID. 
-
-This format is common in the ANOVA family of analyses. These can be used when there are set time points that the individual is measured and each individual has the same number of time points. This is not always reasonable, but when it is, wide format works just fine. However, when these conditions don't hold, mixed effects modeling (i.e. multilevel modeling, hierarchical linear modeling) is particularly useful. In order to do mixed effects modeling, long format is required.
-
-### Long Form {-}
-
-In contrast, long format has the lowest nested unit as a single row. This means that a single ID can span multiple rows, usually with a unique time point for each row as so:
-
-```{r, echo=FALSE}
-data.frame("ID"=c(1,1,1,1,2,2,3,3,3), 
-           "Time"=c(1,2,3,4,1,2,1,2,3), 
-           "Var"=runif(9))
-```
-
-Notice that a single ID spans multiple columns and that each row has only one time point. Here, time is nested within individuals making it the lowest unit. Therefore, each row corresponds to a single time point. Generally, this is the format we want for most modeling techniques and most visualizations.
-
-### Change from One to the Other {-}
-
-Now that you have an idea of the differences between a wide format and a long format, we are going to briefly introduce how to change from one to the other. The following functions are particularly helpful when there are few time-variant variables (or the subjects are clustered). When there are many time-variant variables (or the data is more complex in general), we will use a different approach that we discuss in Chapter 8. For now, we are keeping it simple.
-
-First, we will go from wide to long using `gather()` from the `tidyr` package. We are using the ficticious data for the example of wide format from above.
+First, we will go from wide to long using `long()` from the `furniture` package.[^furniture1] We are using the ficticious data for the example of wide format from above.
 ```{r}
-df_wide <- data.frame("ID"=c(1:10), "Var_Time1"=rnorm(10), "Var_Time2"=runif(10))
-df_long <- gather(df_wide, "var_label", "value", 2:3)
+library(furniture)
+df_wide <- data.frame("ID"=c(1:10), 
+                      "Var_Time1"=rnorm(10), 
+                      "Var_Time2"=runif(10))
+df_long <- long(df_wide, 
+                varying = c("Var_Time1", "Var_Time2"),
+                v.names = "Var")
 df_long
 ```
-We provided the data, some variable names, and told it what columns contained the values.
+We provided the data (`df_wide`), the time varying variables (`varying = c("Var_Time1", "Var_Time2")`), and told it what we should name the value variable (`v.names = "Var"`). 
 
-And now we will go from long to wide using `spread()` from the same package.
+This function automatically assumes each observation is a time point, thus the `time` variable. We can easily change that by adding the argument `timevar` and giving it a name (e.g., `timevar = "cluster"`).
+
+And now we will go from long to wide using `wide()` from the same package.
 ```{r}
 df_long <- data.frame("ID"=c(1,1,1,1,2,2,3,3,3), 
                       "Time"=c(1,2,3,4,1,2,1,2,3), 
                       "Var"=runif(9))
-df_wide <- spread(df_long, Time, Var)
+df_wide <- wide(df_long, 
+                v.names = c("Var"),
+                timevar = "Time")
 df_wide
 ```
-Here, we provided the column name (`Time`) that had the value labels and (`Var`) that contained the values themselves. With a little bit of code we can move data around without any copy-pasting that is so error-prone.
+Here, we provided the data `df_long` and the variable name (`Var`) that had the values and (`Time`) that contained the time labels (in this case, just numbers). With a little bit of code we can move data around without any copy-pasting that is so error-prone.
 
 
 ## Joining (merging) {-}
@@ -320,3 +332,5 @@ For many analyses in later chapters, we will use this new `df` object that is th
 [^hadley]: Hadley Wickham (2016). tidyverse: Easily Install and Load 'Tidyverse' Packages. R package version 1.0.0. https://CRAN.R-project.org/package=tidyverse
 
 [^pack]: Remember, a package is an extension to `R` that gives you more functions that you can easily load into `R`.
+
+[^furniture1]: Although the furniture package isn't in the `tidyverse`, it is a valuable package to use with the other `tidyverse` packages.

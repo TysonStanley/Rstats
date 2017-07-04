@@ -41,12 +41,12 @@ We will quickly, and succinctly, introduce the newest, easiest, and most underst
 ## Part I {-}
 
 1. Chapter 1: The basics of the language
-2. Chapter 2: Manipulate Your Data (reshape, subset, join)
+2. Chapter 2: Working with and Cleaning Your Data
 3. Chapter 3: Understanding your data (summary statistics, ggplot2)
 
 ## Part II {-}
 
-4. Chapter 4: Basic Analyses (ANOVA, Linear Regression)
+4. Chapter 4: Basic Statistical Analyses (ANOVA, Linear Regression)
 5. Chapter 5: Generalized Linear Models
 6. Chapter 6: Mulilevel Modeling
 7. Chapter 7: Other Modeling Techniques
@@ -57,7 +57,7 @@ We will quickly, and succinctly, introduce the newest, easiest, and most underst
 9. Chapter 9: Advanced plotting
 10. Chapter 10: Where to go from here
 
-At the end of the book, you should be able to: 1) use `R` to perform your data manipulation and data analyses and 2) understand online helps (e.g. [www.stackoverflow.com](www.stackoverflow.com), [www.r-bloggers.com](www.r-bloggers.com)) so your potential in `R` becomes nearly limitless.
+At the end of the book, you should be able to: 1) use `R` to perform your data cleaning and data analyses and 2) understand online helps (e.g. [www.stackoverflow.com](www.stackoverflow.com), [www.r-bloggers.com](www.r-bloggers.com)) so your potential in `R` becomes nearly limitless.
 
 
 ## Download R and RStudio {-}

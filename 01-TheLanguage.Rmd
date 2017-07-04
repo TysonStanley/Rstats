@@ -1,34 +1,44 @@
 
-# Chapter 1: The Basics {-}
+# Chapter 1: The Basics of the Language {-}
 
 > "Success is neither magical nor mysterious. Success is the natural consequence of consistently applying the basic fundamentals."
 >
 > --- Jim Rohn
 
-Let's jump right into it. 
-
 `R` is an open source statistical software made by statisticians. This means it generally speaks the language of statistics. This is very helpful when it comes running analyses but can be confusing when starting to understand the code. 
 
-Let's start with a simple walk-through of data types, functions, and objects.
+The best way to begin to learn it is by jumping right into it. This chapter will provide the background and foundation to start using `R` right away. This background revolves around data and functions---two types of objects. 
 
-> Early Advice: Don't get overwhelmed. It may feel like there is a lot to learn, but taking things one at a time will work surprisingly quickly. I've designed this book to discuss what you need to know from the beginning. Other topics that are not discussed are things you can learn later and do not need to be of your immediate concern.
+## Objects {-}
 
-## Objects, Data Types and Functions {-}
+`R` is built on a few different types of virtual objects. An object, just like in the physical world, is something you can do things with. In the real world, we have objects that we use regularly. For example, we have chairs. Chairs are great for some things (sitting on, sleeping on) and horrible at others (playing basketball, flying). Similarly, in `R` each type of object is useful for certain things. The data types that we will discuss below are certain types of objects.
 
-### Objects {-}
-
-`R` uses objects and operators. An object, just like in the physical world, is something you can do things with. 
-
-In the real world, we have objects that we use regularly. For example, we have chairs. Chairs are great for some things (sitting on, sleeping on) and horrible at others (playing basketball, flying). Similarly, in `R` each type of object is useful for certain things. The data types that we will discuss below are certain types of objects.
+\includegraphics[width=\linewidth]{}
 
 Because this is so analogous to the real world, it becomes quite natural to work with. You can have many objects in the computer's memory, which allows flexbility in analyzing many different things simply within a single `R` session.[^rsession]
 
 For your work, the first objects you work with will be data in various forms. Below, we explain the different data types and how they can combine into what is known as a `data.frame`.
 
+```{r, echo=FALSE}
+df = data.frame(
+  "Object" = c("Vector", "Matrix", "Data Frame", "Function", "Operator"),
+  "Description" = c("A single column of data ('a variable')",
+                    "An n x p table of numeric data",
+                    "An n x p table of data (can be numeric or categorical)",
+                    "Takes input and produces output---the workhorse of R",
+                    "A special type of function that is generally used to assign")
+)
+knitr::kable(df)
+```
 
-### Data Types {-}
+Each object type will be introduced in this chapter, highlighting their definition and use.
 
-In `R` there are three main data types (variable types) that you'll work with in research:
+> Early Advice: Don't get overwhelmed. It may feel like there is a lot to learn, but taking things one at a time will work surprisingly quickly. I've designed this book to discuss what you need to know from the beginning. Other topics that are not discussed are things you can learn later and do not need to be of your immediate concern.
+
+
+## Data Types {-}
+
+To begin understanding data in `R`, you must know about vectors. Vectors are, in essence, a single column of data---a variable. In `R` there are three main vector data types (variable types) that you'll work with in research:
 
 - numeric
 - factor
@@ -132,25 +142,31 @@ head(df, n=10)
 
 We admit that the last one is a bit pointless since our data frame is only a few lines long. However, these functions can give you quick information about your data with hardly any effort on your part.
 
-### Functions {-}
+## Functions {-}
 
 Earlier we mentioned that `c()` was a "function." Functions are how we do things we our data. There are probably hundreds of thousands of functions at your reach. In fact, you can create your own! We'll discuss that more later.
 
-For now, know that each function has a name (the function name of `c()` is "c"), arguments, and output of some sort. Arguments are the information that you provide the function (e.g. we gave `c()` a bunch of numbers; we gave `factor()` two arguments---the variable and the labels for the variable's levels). Output from a function varies to a massive degree but, in general, the output is what you are using the function for (e.g., for `c()` we wanted to create a vector---a variable---of data). At any point, by typing:
+For now, know that each function has a name---for named functions---(the function name of `c()` is "c"), arguments, and output of some sort. Arguments are the information that you provide the function between the parenthases (e.g. we gave `c()` a bunch of numbers; we gave `factor()` two arguments---the variable and the labels for the variable's levels). Output from a function varies to a massive degree but, in general, the output is what you are using the function for (e.g., for `c()` we wanted to create a vector---a variable---of data). 
 
+At any point, by typing:
 ```{r, eval=FALSE}
 ?functionname
 ```
+we get information in the "Help" window. It provides information on how to use the function, including arguments, output, and examples.
 
-we get information in the "Help" window providing the arguments and output.
+After a quick note about operators, you will be shown several functions for both importing and saving data. Note that each have a name, arguments, and output of each. 
 
-Below we show you several functions for both importing and saving data. Note that each have a name, arguments, and output of each. 
+### Operators {-}
+
+A special type of function is called an operator. These take two inputs---a left hand side and a right hand side---and output some value. A very common operator is `<-`, known as the assignment operator. It takes what is on the right hand side and assigns it to the left hand side. We saw this earlier with vectors and data frames. Other operators exist, a few of which we will introduce in the following chapter. But again, an operator is just a special function. 
 
 ## Importing Data {-}
 
 Most of the time you'll want to import data into `R` rather than manually entering it line by line, variable by variable.
 
 There are some built in ways to import many delimited[^delim] data types (e.g. comma delimited--also called a CSV, tab delimited, space delimited). Other **packages**[^packages] have been developed to help with this as well. 
+
+### R Data File {-}
 
 The first, if it is an `R` data file in the form `.rda` or `.RData` simply use:
 
@@ -219,13 +235,7 @@ write.table(df, file="file.csv", sep = ",")  ## to create a CSV data file
 
 `R` automatically saves missing data as `NA` since that is what it is in `R`. But often when we write a CSV file, we might want it as blank or some other value. If that's the case, we can add another argument `na = " "` after the sep argument.
 
-If you ever have questions about the specific arguments that a certain function has, you can simply run:
-
-```{r, eval=FALSE}
-?functionname
-```
-
-So, if you were curious about the different arguments in `write.table` simply run: `?write.table`. In the pane with the files, plots, packages, etc. a document will show up to give you more informaton.
+Again, if you ever have questions about the specific arguments that a certain function has, you can simply run `?functionname`. So, if you were curious about the different arguments in `write.table` simply run: `?write.table`. In the pane with the files, plots, packages, etc. a document will show up to give you more informaton.
 
 
 ## Conclusions {-}
