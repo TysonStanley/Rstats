@@ -277,31 +277,31 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h3>Wide Form</h3>
 <p>Wide form generally has one unit (i.e. individual) per row. This generally looks like:</p>
 <pre><code>##    ID Var_Time1 Var_Time2
-## 1   1   -0.8065  0.687876
-## 2   2    0.0617  0.255250
-## 3   3    0.0815  0.800157
-## 4   4    0.0515  0.949905
-## 5   5    0.4505  0.583828
-## 6   6    0.6622  0.468827
-## 7   7    0.7711  0.496007
-## 8   8    0.0550  0.558061
-## 9   9    0.6621  0.179154
-## 10 10   -1.6843  0.000924</code></pre>
+## 1   1   1.27834    0.6243
+## 2   2   1.97965    0.2013
+## 3   3  -0.09944    0.2023
+## 4   4  -2.30682    0.8028
+## 5   5  -1.45236    0.3782
+## 6   6   0.76659    0.6113
+## 7   7  -0.37481    0.6660
+## 8   8  -0.76786    0.7271
+## 9   9  -1.96999    0.5966
+## 10 10   1.67800    0.1668</code></pre>
 <p>Notice that each row has a unique ID, and some of the columns (all in this case) are variables at specific time points. This means that the variable is split up and is not a single column. This is a common way to collect and store data in our fields and so your data likely looks similar to this.</p>
 </div>
 <div id="long-form" class="section level3 unnumbered">
 <h3>Long Form</h3>
 <p>In contrast, long format has the lowest nested unit as a single row. This means that a single ID can span multiple rows, usually with a unique time point for each row as so:</p>
-<pre><code>##   ID Time   Var
-## 1  1    1 0.919
-## 2  1    2 0.278
-## 3  1    3 0.185
-## 4  1    4 0.488
-## 5  2    1 0.287
-## 6  2    2 0.482
-## 7  3    1 0.986
-## 8  3    2 0.522
-## 9  3    3 0.263</code></pre>
+<pre><code>##   ID Time     Var
+## 1  1    1 0.39805
+## 2  1    2 0.03503
+## 3  1    3 0.03469
+## 4  1    4 0.56103
+## 5  2    1 0.83104
+## 6  2    2 0.32800
+## 7  3    1 0.24879
+## 8  3    2 0.17858
+## 9  3    3 0.36060</code></pre>
 <p>Notice that a single ID spans multiple columns and that each row has only one time point. Here, time is nested within individuals making it the lowest unit. Therefore, each row corresponds to a single time point. Generally, this is the format we want for most modeling techniques and most visualizations.</p>
 <p>This is a very simple example of the differences between wide and long format. Although much more complex examples are probably available to you, we will start with this for now. Later chapters will delve into more complex data designs.</p>
 </div>
@@ -412,9 +412,9 @@ dem_df <span class="op">%&gt;%</span><span class="st">                          
 <pre><code>## # A tibble: 3 x 3
 ##   citizen     N   Age
 ##     &lt;chr&gt; &lt;int&gt; &lt;dbl&gt;
-## 1       0  1040  37.3
-## 2       1  8685  30.7
-## 3    &lt;NA&gt;    31  40.4</code></pre>
+## 1       0  1040 37.32
+## 2       1  8685 30.66
+## 3    &lt;NA&gt;    31 40.35</code></pre>
 <p>We used the <code>n()</code> function (which gives us counts) and the <code>mean()</code> function which, shockingly, gives us the mean. Note that if there are <code>NA</code>’s in the variable, the mean (and most other functions like it) will give the result <code>NA</code>. To have <code>R</code> ignore these, we tell the <code>mean</code> function to remove the <code>NA</code>’s when you compute this using <code>na.rm=TRUE</code>.</p>
 <p>This pattern of grouping and summarizing is something that will follow us throughout the book. It’s a great way to get to know your data well and to make decisions on what to do next with your data.</p>
 </div>
@@ -431,27 +431,27 @@ df_long &lt;-<span class="st"> </span><span class="kw">long</span>(df_wide,
                 <span class="dt">v.names =</span> <span class="st">&quot;Var&quot;</span>)</code></pre></div>
 <pre><code>## id = ID</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df_long</code></pre></div>
-<pre><code>##      ID time      Var
-## 1.1   1    1  0.74611
-## 2.1   2    1  2.59105
-## 3.1   3    1  0.24349
-## 4.1   4    1 -1.26925
-## 5.1   5    1  1.85828
-## 6.1   6    1 -1.26820
-## 7.1   7    1  0.75978
-## 8.1   8    1 -0.34445
-## 9.1   9    1  0.75302
-## 10.1 10    1 -0.36952
-## 1.2   1    2  0.82811
-## 2.2   2    2  0.68617
-## 3.2   3    2  0.26933
-## 4.2   4    2  0.66450
-## 5.2   5    2  0.91133
-## 6.2   6    2  0.89826
-## 7.2   7    2  0.58036
-## 8.2   8    2  0.00302
-## 9.2   9    2  0.87526
-## 10.2 10    2  0.24194</code></pre>
+<pre><code>##      ID time       Var
+## 1.1   1    1 -0.491037
+## 2.1   2    1  1.473402
+## 3.1   3    1  0.463581
+## 4.1   4    1 -2.349380
+## 5.1   5    1  0.619167
+## 6.1   6    1  1.107866
+## 7.1   7    1 -1.084920
+## 8.1   8    1 -0.003741
+## 9.1   9    1 -0.526791
+## 10.1 10    1  1.257393
+## 1.2   1    2  0.626668
+## 2.2   2    2  0.657519
+## 3.2   3    2  0.704732
+## 4.2   4    2  0.297261
+## 5.2   5    2  0.778837
+## 6.2   6    2  0.456463
+## 7.2   7    2  0.907916
+## 8.2   8    2  0.756391
+## 9.2   9    2  0.699796
+## 10.2 10    2  0.303224</code></pre>
 <p>We provided the data (<code>df_wide</code>), the time varying variables (<code>c(&quot;Var_Time1&quot;, &quot;Var_Time2&quot;)</code>), and told it what we should name the value variable (<code>v.names = &quot;Var&quot;</code>).</p>
 <p>This function automatically assumes each observation is a time point, thus the <code>time</code> variable. We can easily change that by adding the argument <code>timevar</code> and giving it a name (e.g., <code>timevar = &quot;cluster&quot;</code>).</p>
 <p>And now we will go from long to wide using <code>wide()</code> from the same package.</p>
@@ -463,10 +463,10 @@ df_wide &lt;-<span class="st"> </span><span class="kw">wide</span>(df_long,
                 <span class="dt">timevar =</span> <span class="st">&quot;Time&quot;</span>)</code></pre></div>
 <pre><code>## id = ID</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df_wide</code></pre></div>
-<pre><code>##   ID Var.1  Var.2 Var.3 Var.4
-## 1  1 0.308 0.2708 0.571 0.874
-## 5  2 0.680 0.2848    NA    NA
-## 7  3 0.812 0.0819 0.335    NA</code></pre>
+<pre><code>##   ID   Var.1   Var.2  Var.3 Var.4
+## 1  1 0.48956 0.13131 0.8151 0.402
+## 5  2 0.04896 0.06951     NA    NA
+## 7  3 0.32519 0.41665 0.8495    NA</code></pre>
 <p>Here, we provided the data <code>df_long</code> and the variable name (<code>Var</code>) that had the values and (<code>Time</code>) that contained the time labels (in this case, just numbers). With a little bit of code we can move data around without any copy-pasting that is so error-prone.</p>
 </div>
 <div id="joining-merging" class="section level2 unnumbered">
@@ -474,7 +474,7 @@ df_wide &lt;-<span class="st"> </span><span class="kw">wide</span>(df_long,
 <p>The final topic in the chapter is joining data sets. This is common in many situations including large surveys (e.g., a demographics set, physical activity set, family characteristics set), health records (financial data, doctors notes, diagnosis data), and longitudinal studies (data from wave I, data from wave II).</p>
 <p>We currently have 4 data sets that have mostly the same people in them but with different variables. One tells us about the demographics; another gives us information on mental health. We may have questions that ask whether a demographic characteristics is related to a mental health factor. This means we need to merge, or join, our data sets.<a href="#fn13" class="footnoteRef" id="fnref13"><sup>13</sup></a></p>
 <p>When we merge a data set, we combine them based on some ID variable(s). Here, this is simple since each individual is given a unique identifier in the variable <code>seqn</code>. Within the <code>dplyr</code> package (part of the tidyverse) there are four main joining functions: <code>inner_join</code>, <code>left_join</code>, <code>right_join</code> and <code>full_join</code>. Each join combines the data in slightly different ways.</p>
-
+<p><img src="Joining.jpg" alt="Joining" /> </p>
 <div id="inner-join" class="section level3 unnumbered">
 <h3>Inner Join</h3>
 <p>Here, only those individuals that are in both data sets that you are combining will remain. So if person “A” is in data set 1 and not in data set 2 then he/she will not be included.</p>
