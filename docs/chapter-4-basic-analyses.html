@@ -25,7 +25,7 @@
 <meta name="author" content="Tyson S. Barrett">
 
 
-<meta name="date" content="2017-07-03">
+<meta name="date" content="2017-07-04">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -270,7 +270,7 @@ fit &lt;-<span class="st"> </span><span class="kw">aov</span>(famsize <span clas
                      <span class="dt">values=</span><span class="kw">c</span>(<span class="st">&quot;dodgerblue3&quot;</span>, <span class="st">&quot;coral2&quot;</span>, <span class="st">&quot;chartreuse4&quot;</span>, 
                               <span class="st">&quot;darkorchid&quot;</span>, <span class="st">&quot;firebrick2&quot;</span>)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">theme_bw</span>()</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-64-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-63-1.png" width="672" /></p>
 <p>This immediately gives us an idea of where some differences may be occuring. It would appear that “White” and “MexicanAmerican” groups are different in family size.</p>
 </div>
 <div id="assumptions" class="section level2 unnumbered">
@@ -279,7 +279,7 @@ fit &lt;-<span class="st"> </span><span class="kw">aov</span>(famsize <span clas
 <p>In <code>R</code> we can get some simple graphical checks using <code>plot</code>. All we provide is our ANOVA object (here it is <code>fit</code>). The line before it <code>par(mfrow=c(1,2))</code> tells <code>R</code> to have two plots per row (the 1 means one row, 2 means two columns).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))
 <span class="kw">plot</span>(fit)</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-65-1.png" width="480" /><img src="_main_files/figure-html/unnamed-chunk-65-2.png" width="480" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-64-1.png" width="480" /><img src="_main_files/figure-html/unnamed-chunk-64-2.png" width="480" /></p>
 <p>Here, it looks like we have a problem with normality (see the Normal Q-Q plot). Those dots should approximately follow the dotted line, which is not the case. In the first plot (Residuals vs. Fitted) suggests we have approximate homoskedasticity.</p>
 </div>
 <div id="linear-modeling" class="section level2 unnumbered">
@@ -330,7 +330,7 @@ fit &lt;-<span class="st"> </span><span class="kw">aov</span>(famsize <span clas
 <p>Numbers 2 and 3 are fairly easy to assess using the <code>plot()</code> function on the model object as we did with the ANOVA model. The linear in parameters suggests that the relationship between the outcome and independents is linear.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))
 <span class="kw">plot</span>(fit2)</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-68-1.png" width="480" /><img src="_main_files/figure-html/unnamed-chunk-68-2.png" width="480" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-67-1.png" width="480" /><img src="_main_files/figure-html/unnamed-chunk-67-2.png" width="480" /></p>
 </div>
 <div id="comparing-models" class="section level2 unnumbered">
 <h2>Comparing Models</h2>
@@ -408,7 +408,7 @@ fit &lt;-<span class="st"> </span><span class="kw">aov</span>(famsize <span clas
 ## raceOtherHispanic          -0.518***                -0.412***        
 ##                             (0.108)                  (0.104)         
 ##                                                                      
-## raceWhite                  -1.126***                -1.027***        
+## raceWhite                  -1.130***                -1.030***        
 ##                             (0.087)                  (0.084)         
 ##                                                                      
 ## raceBlack                  -0.798***                -0.559***        
@@ -417,10 +417,10 @@ fit &lt;-<span class="st"> </span><span class="kw">aov</span>(famsize <span clas
 ## raceOther                  -0.573***                -0.562***        
 ##                             (0.098)                  (0.095)         
 ##                                                                      
-## marriage2                                           -1.229***        
+## marriage2                                           -1.230***        
 ##                                                      (0.087)         
 ##                                                                      
-## marriage3                                           -1.202***        
+## marriage3                                           -1.200***        
 ##                                                      (0.078)         
 ##                                                                      
 ## marriage4                                           -0.477***        
@@ -432,15 +432,15 @@ fit &lt;-<span class="st"> </span><span class="kw">aov</span>(famsize <span clas
 ## marriage6                                           -0.492***        
 ##                                                      (0.089)         
 ##                                                                      
-## Constant                    3.619***                 3.969***        
+## Constant                    3.620***                 3.970***        
 ##                             (0.078)                  (0.078)         
 ##                                                                      
 ## ---------------------------------------------------------------------
 ## Observations                 4,632                    4,632          
 ## R2                           0.043                    0.126          
 ## Adjusted R2                  0.042                    0.124          
-## Residual Std. Error    1.623 (df = 4627)        1.552 (df = 4622)    
-## F Statistic         51.370*** (df = 4; 4627) 73.730*** (df = 9; 4622)
+## Residual Std. Error    1.620 (df = 4627)        1.550 (df = 4622)    
+## F Statistic         51.400*** (df = 4; 4627) 73.700*** (df = 9; 4622)
 ## =====================================================================
 ## Note:                                     *p&lt;0.1; **p&lt;0.05; ***p&lt;0.01</code></pre>
 </div>
@@ -492,7 +492,7 @@ fit_anova &lt;-<span class="st"> </span><span class="kw">aov</span>(famsize <spa
 <p>We can check the assumptions the same way as before:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))
 <span class="kw">plot</span>(fit_anova)</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-77-1.png" width="480" /><img src="_main_files/figure-html/unnamed-chunk-77-2.png" width="480" /> Again, the assumptions are not met for this model. But, if we ignore that for now, we can quickly find a way to interpret the interaction.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-76-1.png" width="480" /><img src="_main_files/figure-html/unnamed-chunk-76-2.png" width="480" /> Again, the assumptions are not met for this model. But, if we ignore that for now, we can quickly find a way to interpret the interaction.</p>
 <p>We first create a new data set that is composed of every possible combination of the variables in the model. This allows us to get unbiased estimates for the plotting.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">newdata &lt;-<span class="st"> </span><span class="kw">expand.grid</span>(<span class="dt">minority =</span> <span class="kw">levels</span>(df<span class="op">$</span>minority),
                        <span class="dt">marriage =</span> <span class="kw">levels</span>(df<span class="op">$</span>marriage))
@@ -506,7 +506,7 @@ newdata<span class="op">$</span>preds &lt;-<span class="st"> </span><span class=
 <span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">name =</span> <span class="st">&quot;&quot;</span>,
                      <span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;dodgerblue3&quot;</span>, <span class="st">&quot;chartreuse3&quot;</span>)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">theme_anteo_wh</span>()           ## from anteo package</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-79-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-78-1.png" width="672" /></p>
 <p>The plot tells use a handful of things. For example, we see minorities generally have more children across marital statuses. However, the difference is smaller for married and divorced individuals compared to widowed, separated, never married, and living with a partner. There’s certainly more to gleen from the plot, but we won’t waste your time.</p>
 </div>
 <div id="interactions-in-linear-regression" class="section level3 unnumbered">

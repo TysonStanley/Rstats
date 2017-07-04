@@ -25,7 +25,7 @@
 <meta name="author" content="Tyson S. Barrett">
 
 
-<meta name="date" content="2017-07-03">
+<meta name="date" content="2017-07-04">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -514,23 +514,23 @@ fit_lasso &lt;-<span class="st"> </span><span class="kw">cv.glmnet</span>(X, Y, 
 fit_enet  &lt;-<span class="st"> </span><span class="kw">cv.glmnet</span>(X, Y, <span class="dt">alpha =</span> .<span class="dv">8</span>)</code></pre></div>
 <p>The plots below show where appropriate <code>lambda</code> values are based on the mean squared error of the cross-validated prediction. The vertical dashed lines show a reasonable range of lambda values that can be used.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(fit_ridge)</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-107-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-106-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(fit_lasso)</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-107-2.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-106-2.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(fit_enet)</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-107-3.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-106-3.png" width="672" /></p>
 <p>We can get the coefficients at a reasonable <code>lambda</code>. Specifically, we use the “1-SE rule” (near the right hand side vertical dashed lines in the above plots) by <code>s = &quot;lambda.1se&quot;</code>. You can directly tell it what <code>lambda</code> value you’d like but this is a simple rule of thumb.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coef</span>(fit_ridge, <span class="dt">s =</span> <span class="st">&quot;lambda.1se&quot;</span>)</code></pre></div>
 <pre><code>## 8 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
 ##                     1
-## (Intercept)  5.467905
-## riagendr     0.055942
-## ridageyr    -0.000787
-## ridreth3     0.063087
-## race         0.110632
-## famsize     -0.052721
-## dep          0.013926
-## asthma       0.131755</code></pre>
+## (Intercept)  5.601469
+## riagendr     0.043814
+## ridageyr    -0.000578
+## ridreth3     0.052136
+## race         0.087690
+## famsize     -0.040363
+## dep          0.010639
+## asthma       0.102115</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coef</span>(fit_lasso, <span class="dt">s =</span> <span class="st">&quot;lambda.1se&quot;</span>)</code></pre></div>
 <pre><code>## 8 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
 ##                 1
@@ -571,11 +571,11 @@ fit_rf</code></pre></div>
 ## No. of variables tried at each split: 2
 ## 
 ##           Mean of squared residuals: 10.8
-##                     % Var explained: 3.7</code></pre>
+##                     % Var explained: 3.72</code></pre>
 <p>We can find out which variables were important in the model via:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))  ## back to one plot per page
 <span class="kw">varImpPlot</span>(fit_rf)</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-110-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-109-1.png" width="672" /></p>
 <p>We can see that age (<code>ridageyr</code>) is the most important variable, depression (<code>dep</code>) follows, with the family size (<code>famsize</code>) the third most important in the random forests model.</p>
 </div>
 </div>

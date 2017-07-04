@@ -25,7 +25,7 @@
 <meta name="author" content="Tyson S. Barrett">
 
 
-<meta name="date" content="2017-07-03">
+<meta name="date" content="2017-07-04">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -343,7 +343,7 @@ df &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span>
 ## AIC: 508999
 ## 
 ## Number of Fisher Scoring iterations: 5</code></pre>
-<p>Sedentary may be over-dispersed (see plot) <img src="_main_files/figure-html/unnamed-chunk-86-1.png" width="672" /> and so other methods related to poisson may be necessary. For this book, we are not going to be delving into these in depth but we will introduce some below.</p>
+<p>Sedentary may be over-dispersed (see plot) <img src="_main_files/figure-html/unnamed-chunk-85-1.png" width="672" /> and so other methods related to poisson may be necessary. For this book, we are not going to be delving into these in depth but we will introduce some below.</p>
 <div id="gamma" class="section level3 unnumbered">
 <h3>Gamma</h3>
 <p>Regression with a gamma distribution are often found when analyzing costs in dollars. It is very similar to poisson but does not require integers and can handle more dispersion. However, the outcome must have values <span class="math inline">\(&gt; 0\)</span>. Just for demonstration:</p>
@@ -374,7 +374,7 @@ g_fit &lt;-<span class="st"> </span><span class="kw">glm</span>(sed_gamma <span 
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## (Dispersion parameter for Gamma family taken to be 0.2933)
+## (Dispersion parameter for Gamma family taken to be 0.293)
 ## 
 ##     Null deviance: 1664.8  on 4436  degrees of freedom
 ## Residual deviance: 1604.2  on 4430  degrees of freedom
@@ -403,26 +403,26 @@ h_fit =<span class="st"> </span><span class="kw">hurdle</span>(sed_zero <span cl
 ## 
 ## Pearson residuals:
 ##    Min     1Q Median     3Q    Max 
-## -3.363 -1.510 -0.235  1.299  9.556 
+## -3.425 -1.603 -0.206  1.276 10.208 
 ## 
 ## Count model coefficients (truncated poisson with log link):
 ##                    Estimate Std. Error z value Pr(&gt;|z|)    
-## (Intercept)        5.647369   0.003747  1507.0   &lt;2e-16 ***
-## asthma             0.050263   0.002259    22.2   &lt;2e-16 ***
-## raceOtherHispanic  0.157872   0.004288    36.8   &lt;2e-16 ***
-## raceWhite          0.357804   0.003526   101.5   &lt;2e-16 ***
-## raceBlack          0.354086   0.003626    97.7   &lt;2e-16 ***
-## raceOther          0.351115   0.003829    91.7   &lt;2e-16 ***
-## famsize           -0.020197   0.000574   -35.2   &lt;2e-16 ***
+## (Intercept)        5.650250   0.003695  1529.1   &lt;2e-16 ***
+## asthma             0.067039   0.002253    29.8   &lt;2e-16 ***
+## raceOtherHispanic  0.133170   0.004265    31.2   &lt;2e-16 ***
+## raceWhite          0.342097   0.003468    98.6   &lt;2e-16 ***
+## raceBlack          0.328611   0.003580    91.8   &lt;2e-16 ***
+## raceOther          0.350117   0.003763    93.0   &lt;2e-16 ***
+## famsize           -0.015251   0.000575   -26.5   &lt;2e-16 ***
 ## Zero hurdle model coefficients (binomial with logit link):
 ##                   Estimate Std. Error z value Pr(&gt;|z|)    
-## (Intercept)        2.26668    0.21046   10.77   &lt;2e-16 ***
-## asthma            -0.08133    0.14473   -0.56     0.57    
-## raceOtherHispanic  0.19543    0.24713    0.79     0.43    
-## raceWhite          0.04366    0.19450    0.22     0.82    
-## raceBlack          0.08522    0.20304    0.42     0.67    
-## raceOther          0.03250    0.21670    0.15     0.88    
-## famsize            0.00107    0.03662    0.03     0.98    
+## (Intercept)         2.5236     0.2226   11.34   &lt;2e-16 ***
+## asthma             -0.1642     0.1409   -1.17     0.24    
+## raceOtherHispanic  -0.2270     0.2470   -0.92     0.36    
+## raceWhite          -0.0574     0.2089   -0.27     0.78    
+## raceBlack          -0.3008     0.2119   -1.42     0.16    
+## raceOther          -0.0610     0.2317   -0.26     0.79    
+## famsize            -0.0153     0.0363   -0.42     0.67    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1 
 ## 
@@ -458,28 +458,28 @@ fit_beta &lt;-<span class="st"> </span><span class="kw">betareg</span>(beta_var 
 ## 
 ## Standardized weighted residuals 2:
 ##    Min     1Q Median     3Q    Max 
-## -2.022 -0.695 -0.068  0.609  2.928 
+## -1.975 -0.672 -0.055  0.617  2.815 
 ## 
 ## Coefficients (mean model with logit link):
-##                   Estimate Std. Error z value Pr(&gt;|z|)  
-## (Intercept)         0.0285     0.0637    0.45    0.655  
-## asthma              0.0556     0.0441    1.26    0.207  
-## raceOtherHispanic   0.0994     0.0726    1.37    0.171  
-## raceWhite           0.0971     0.0592    1.64    0.101  
-## raceBlack           0.1205     0.0615    1.96    0.050 *
-## raceOther           0.1200     0.0659    1.82    0.069 .
-## famsize            -0.0127     0.0109   -1.16    0.246  
+##                    Estimate Std. Error z value Pr(&gt;|z|)  
+## (Intercept)        0.115141   0.063835    1.80    0.071 .
+## asthma             0.003727   0.044110    0.08    0.933  
+## raceOtherHispanic -0.044505   0.072666   -0.61    0.540  
+## raceWhite         -0.004689   0.059284   -0.08    0.937  
+## raceBlack         -0.007242   0.061546   -0.12    0.906  
+## raceOther          0.020931   0.065969    0.32    0.751  
+## famsize            0.000293   0.010921    0.03    0.979  
 ## 
 ## Phi coefficients (precision model with identity link):
 ##       Estimate Std. Error z value Pr(&gt;|z|)    
-## (phi)   2.4059     0.0437    55.1   &lt;2e-16 ***
+## (phi)   2.3957     0.0435    55.1   &lt;2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1 
 ## 
 ## Type of estimator: ML (maximum likelihood)
-## Log-likelihood: 68.6 on 8 Df
-## Pseudo R-squared: 0.00184
-## Number of iterations: 16 (BFGS) + 2 (Fisher scoring)</code></pre>
+## Log-likelihood: 67.2 on 8 Df
+## Pseudo R-squared: 0.000253
+## Number of iterations: 15 (BFGS) + 1 (Fisher scoring)</code></pre>
 <p>The output provides coefficients and the “Phi” coefficients. Both are important parts of using beta regression but we are not going to discuss it here.</p>
 <p>There are many resources available to learn more about beta regression and each of these GLM’s. As for now, we are going to move on to more complex modeling where there are clustering or repeated measures in the data.</p>
 </div>

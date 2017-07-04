@@ -246,11 +246,11 @@ df_wide <- data.frame("ID"=c(1:10),
                       "Var_Time1"=rnorm(10), 
                       "Var_Time2"=runif(10))
 df_long <- long(df_wide, 
-                varying = c("Var_Time1", "Var_Time2"),
+                c("Var_Time1", "Var_Time2"),
                 v.names = "Var")
 df_long
 ```
-We provided the data (`df_wide`), the time varying variables (`varying = c("Var_Time1", "Var_Time2")`), and told it what we should name the value variable (`v.names = "Var"`). 
+We provided the data (`df_wide`), the time varying variables (`c("Var_Time1", "Var_Time2")`), and told it what we should name the value variable (`v.names = "Var"`). 
 
 This function automatically assumes each observation is a time point, thus the `time` variable. We can easily change that by adding the argument `timevar` and giving it a name (e.g., `timevar = "cluster"`).
 
@@ -269,17 +269,17 @@ Here, we provided the data `df_long` and the variable name (`Var`) that had the 
 
 ## Joining (merging) {-}
 
-The final topic in the chapter is joining data sets This is common when we are using bigger
+The final topic in the chapter is joining data sets. This is common in many situations including large surveys (e.g., a demographics set, physical activity set, family characteristics set), health records (financial data, doctors notes, diagnosis data), and longitudinal studies (data from wave I, data from wave II).
 
 We currently have 4 data sets that have mostly the same people in them but with different variables. One tells us about the demographics; another gives us information on mental health. We may have questions that ask whether a demographic characteristics is related to a mental health factor. This means we need to merge, or join, our data sets.[^bind]
 
-When we merge a data set, we combine them based on some ID variable(s). Here, this is simple since each individual is given a unique identifier in the variable `seqn`. Within the `dplyr` package there are four main joining functions: `inner_join`, `left_join`, `right_join` and `full_join`. Each join combines the data in slightly different ways. 
+When we merge a data set, we combine them based on some ID variable(s). Here, this is simple since each individual is given a unique identifier in the variable `seqn`. Within the `dplyr` package (part of the tidyverse) there are four main joining functions: `inner_join`, `left_join`, `right_join` and `full_join`. Each join combines the data in slightly different ways. 
 
-Let's first load `dplyr`:
-
-```{r}
-library(dplyr)
-```
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth]{Joining.jpg}
+\caption{The four ways to join two data sets together.}
+\end{figure}
 
 ### Inner Join {-}
 
