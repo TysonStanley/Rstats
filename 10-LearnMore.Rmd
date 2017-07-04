@@ -2,9 +2,7 @@
 
 # Chapter 10: Where to Go from Here and Common Pitfalls {-}
 
-> "The journey of a thousand miles begins with one step."
->
-> --- Lao Tzu
+> "The journey of a thousand miles begins with one step." --- Lao Tzu
 
 There are many resources that can aid in developing your `R` skills from here. We have introduced the basics of `R`, helping you take a few steps on your journey of understanding `R`. We have focused on the ones that are most important for researchers in the health, behavioral, and social sciences. 
 

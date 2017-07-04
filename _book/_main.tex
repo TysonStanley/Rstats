@@ -127,6 +127,10 @@
 \tableofcontents
 }
 
+\begin{verbatim}
+## furniture 1.5.4: learn more at tysonstanley.github.io
+\end{verbatim}
+
 \chapter*{Preface}\label{preface}
 \addcontentsline{toc}{chapter}{Preface}
 
@@ -255,9 +259,8 @@ Language}\label{chapter-1-the-basics-of-the-language}
 
 \begin{quote}
 ``Success is neither magical nor mysterious. Success is the natural
-consequence of consistently applying the basic fundamentals.''
-
---- Jim Rohn
+consequence of consistently applying the basic fundamentals.'' --- Jim
+Rohn
 \end{quote}
 
 \texttt{R} is an open source statistical software made by statisticians.
@@ -277,12 +280,16 @@ functions---two types of objects.
 object, just like in the physical world, is something you can do things
 with. In the real world, we have objects that we use regularly. For
 example, we have chairs. Chairs are great for some things (sitting on,
-sleeping on) and horrible at others (playing basketball, flying).
-Similarly, in \texttt{R} each type of object is useful for certain
-things. The data types that we will discuss below are certain types of
-objects.
+sleeping on, enjoying the beach) and horrible at others (playing
+basketball, flying, floating in the ocean). Similarly, in \texttt{R}
+each type of object is useful for certain things. The data types that we
+will discuss below are certain types of objects.
 
-\includegraphics[width=\linewidth]{}
+\begin{figure}
+\centering
+\includegraphics{chair.jpg}
+\caption{Chair}
+\end{figure}
 
 Because this is so analogous to the real world, it becomes quite natural
 to work with. You can have many objects in the computer's memory, which
@@ -292,11 +299,8 @@ single \texttt{R} session.\footnote{An \texttt{R} session is any time
   saving your workspace (which, in general you shouldn't do), it starts
   the slate clean--no objects are in memory and no packages are loaded.
   This is why we use scripts. Also, it makes your workflow extra
-  transparent and replicable.}
-
-For your work, the first objects you work with will be data in various
-forms. Below, we explain the different data types and how they can
-combine into what is known as a \texttt{data.frame}.
+  transparent and replicable.} The main object types that you'll work
+with are presented in the following table.
 
 \begin{tabular}{l|l}
 \hline
@@ -306,16 +310,19 @@ Vector & A single column of data ('a variable')\\
 \hline
 Matrix & An n x p table of numeric data\\
 \hline
-Data Frame & An n x p table of data (can be numeric or categorical)\\
+Data Frame & An n x p table of data (numeric and/or categorical)\\
 \hline
 Function & Takes input and produces output---the workhorse of R\\
 \hline
-Operator & A special type of function that is generally used to assign\\
+Operator & A special type of function (e.g. `<-`\\
 \hline
 \end{tabular}
 
-Each object type will be introduced in this chapter, highlighting their
-definition and use.
+Each of these objects will be introduced in this chapter, highlighting
+their definition and use. For your work, the first objects you work with
+will be data in various forms. Below, we explain the different data
+types and how they can combine into what is known as a
+\texttt{data.frame}.
 
 \begin{quote}
 Early Advice: Don't get overwhelmed. It may feel like there is a lot to
@@ -570,19 +577,19 @@ information about your data with hardly any effort on your part.
 \addcontentsline{toc}{section}{Functions}
 
 Earlier we mentioned that \texttt{c()} was a ``function.'' Functions are
-how we do things we our data. There are probably hundreds of thousands
+how we do things with our data. There are probably hundreds of thousands
 of functions at your reach. In fact, you can create your own! We'll
-discuss that more later.
+discuss that more in later chapters.
 
-For now, know that each function has a name---for named functions---(the
-function name of \texttt{c()} is ``c''), arguments, and output of some
-sort. Arguments are the information that you provide the function
-between the parenthases (e.g.~we gave \texttt{c()} a bunch of numbers;
-we gave \texttt{factor()} two arguments---the variable and the labels
-for the variable's levels). Output from a function varies to a massive
-degree but, in general, the output is what you are using the function
-for (e.g., for \texttt{c()} we wanted to create a vector---a
-variable---of data).
+For now, know that each named function has a name (the function name of
+\texttt{c()} is ``c''), arguments, and output of some sort. Arguments
+are the information that you provide the function between the
+parenthases (e.g.~we gave \texttt{c()} a bunch of numbers; we gave
+\texttt{factor()} two arguments---the variable and the labels for the
+variable's levels). Output from a function varies to a massive degree
+but, in general, the output is what you are using the function for
+(e.g., for \texttt{c()} we wanted to create a vector---a variable---of
+data).
 
 At any point, by typing:
 
@@ -772,15 +779,13 @@ Data}
 
 \begin{quote}
 ``Organizing is what you do before you do something, so that when you do
-it, it is not all mixed up.''
-
---- A. A. Milne
+it, it is not all mixed up.'' --- A. A. Milne
 \end{quote}
 
-In order to work with and clean your data in the most up-to-date manner,
-we are going to be using the ``tidyverse'' group of methods. The
-tidyverse\footnote{Hadley Wickham (2016). tidyverse: Easily Install and
-  Load `Tidyverse' Packages. R package version 1.0.0.
+In order to work with and clean your data in the most modern and
+straightforward way, we are going to be using the ``tidyverse'' group of
+methods. The tidyverse\footnote{Hadley Wickham (2016). tidyverse: Easily
+  Install and Load `Tidyverse' Packages. R package version 1.0.0.
   \url{https://CRAN.R-project.org/package=tidyverse}} is a group of
 packages\footnote{Remember, a package is an extension to \texttt{R} that
   gives you more functions that you can easily load into \texttt{R}.}
@@ -804,6 +809,24 @@ After downloading it, to use its functions, simply use:
 \KeywordTok{library}\NormalTok{(tidyverse)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+## Loading tidyverse: ggplot2
+## Loading tidyverse: tibble
+## Loading tidyverse: tidyr
+## Loading tidyverse: readr
+## Loading tidyverse: purrr
+## Loading tidyverse: dplyr
+\end{verbatim}
+
+\begin{verbatim}
+## Conflicts with tidy packages ----------------
+\end{verbatim}
+
+\begin{verbatim}
+## filter(): dplyr, stats
+## lag():    dplyr, stats
+\end{verbatim}
 
 Note that when we loaded tidyverse it loaded 6 packages and told you of
 ``conflicts''. These conflicts are where two or more functions across
@@ -878,6 +901,8 @@ There are several methods that help create tidy data:
   Reshaping
 \item
   Joining (merging)
+\item
+  Mutate and Transmute
 \end{enumerate}
 
 \begin{quote}
@@ -915,17 +940,17 @@ Wide form generally has one unit (i.e.~individual) per row. This
 generally looks like:
 
 \begin{verbatim}
-##    ID Var_Time1 Var_Time2
-## 1   1     0.735     0.625
-## 2   2     0.361     0.618
-## 3   3     1.054     0.219
-## 4   4     0.974     0.403
-## 5   5    -1.049     0.116
-## 6   6    -0.255     0.984
-## 7   7    -1.422     0.717
-## 8   8    -1.042     0.584
-## 9   9     0.660     0.134
-## 10 10     1.804     0.899
+##    ID  Var_Time1  Var_Time2
+## 1   1  0.8253851 0.85640117
+## 2   2  1.7195555 0.89395870
+## 3   3 -0.6720712 0.08513946
+## 4   4 -0.3368603 0.25216800
+## 5   5  0.3263601 0.66391415
+## 6   6  1.2963043 0.34597526
+## 7   7  0.2034810 0.27605441
+## 8   8  0.9685124 0.75120514
+## 9   9  1.1401042 0.83002463
+## 10 10  1.2662161 0.84590341
 \end{verbatim}
 
 Notice that each row has a unique ID, and some of the columns (all in
@@ -942,16 +967,16 @@ This means that a single ID can span multiple rows, usually with a
 unique time point for each row as so:
 
 \begin{verbatim}
-##   ID Time   Var
-## 1  1    1 0.274
-## 2  1    2 0.629
-## 3  1    3 0.124
-## 4  1    4 0.481
-## 5  2    1 0.818
-## 6  2    2 0.249
-## 7  3    1 0.983
-## 8  3    2 0.426
-## 9  3    3 0.541
+##   ID Time        Var
+## 1  1    1 0.42543615
+## 2  1    2 0.15420834
+## 3  1    3 0.20037760
+## 4  1    4 0.80737111
+## 5  2    1 0.41092742
+## 6  2    2 0.10414766
+## 7  3    1 0.05555708
+## 8  3    2 0.57718849
+## 9  3    3 0.89311229
 \end{verbatim}
 
 Notice that a single ID spans multiple columns and that each row has
@@ -1192,7 +1217,7 @@ package.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(furniture)}
+\CommentTok{# library(furniture)}
 
 \NormalTok{dem_df}\OperatorTok{$}\NormalTok{citizen <-}\StringTok{ }\KeywordTok{washer}\NormalTok{(dem_df}\OperatorTok{$}\NormalTok{citizen, }\DecValTok{7}\NormalTok{)  ## Changes all 7's to NA's}
 \NormalTok{dem_df}\OperatorTok{$}\NormalTok{citizen <-}\StringTok{ }\KeywordTok{washer}\NormalTok{(dem_df}\OperatorTok{$}\NormalTok{citizen, }\DecValTok{2}\NormalTok{, }\DataTypeTok{value =} \DecValTok{0}\NormalTok{)  ## Changes all 2's to 0's}
@@ -1237,11 +1262,11 @@ comma in the \texttt{summarize} function.
 
 \begin{verbatim}
 ## # A tibble: 3 x 3
-##   citizen     N   Age
-##     <chr> <int> <dbl>
-## 1       0  1040  37.3
-## 2       1  8685  30.7
-## 3    <NA>    31  40.4
+##   citizen     N      Age
+##     <chr> <int>    <dbl>
+## 1       0  1040 37.31635
+## 2       1  8685 30.66252
+## 3    <NA>    31 40.35484
 \end{verbatim}
 
 We used the \texttt{n()} function (which gives us counts) and the
@@ -1263,11 +1288,11 @@ form. Now that you have an idea of the differences, we are going to
 introduce how to change from one to the other. Several functions exist
 for just this purpose, including \texttt{gather()} from the
 \texttt{tidyr} package and \texttt{reshape()} in the default
-\texttt{stats} package. Since these can be limited, we are going to
-teach two functions that can be used in nearly any reshaping situation.
-For now, though, we will keep in simple.
+\texttt{stats} package. Since these can be limited in certain
+situations, we are going to teach two functions that can be used in
+nearly any reshaping situation. For now, though, we will keep in simple.
 
-First, we will go from wide to long using \texttt{long()} from the
+First, we will go from wide to long form using \texttt{long()} from the
 \texttt{furniture} package.\footnote{Although the furniture package
   isn't in the \texttt{tidyverse}, it is a valuable package to use with
   the other \texttt{tidyverse} packages.} We are using the ficticious
@@ -1275,7 +1300,7 @@ data for the example of wide format from above.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(furniture)}
+\CommentTok{# library(furniture)}
 \NormalTok{df_wide <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{ID =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{10}\NormalTok{), }\DataTypeTok{Var_Time1 =} \KeywordTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{), }
     \DataTypeTok{Var_Time2 =} \KeywordTok{runif}\NormalTok{(}\DecValTok{10}\NormalTok{))}
 \NormalTok{df_long <-}\StringTok{ }\KeywordTok{long}\NormalTok{(df_wide, }\KeywordTok{c}\NormalTok{(}\StringTok{"Var_Time1"}\NormalTok{, }\StringTok{"Var_Time2"}\NormalTok{), }
@@ -1294,32 +1319,34 @@ data for the example of wide format from above.
 \end{Shaded}
 
 \begin{verbatim}
-##      ID time     Var
-## 1.1   1    1 -0.5803
-## 2.1   2    1  0.0631
-## 3.1   3    1  1.3405
-## 4.1   4    1  0.5364
-## 5.1   5    1 -0.7557
-## 6.1   6    1  0.6738
-## 7.1   7    1 -0.2141
-## 8.1   8    1  1.1248
-## 9.1   9    1  0.3942
-## 10.1 10    1 -1.6679
-## 1.2   1    2  0.9370
-## 2.2   2    2  0.8744
-## 3.2   3    2  0.7627
-## 4.2   4    2  0.7852
-## 5.2   5    2  0.5388
-## 6.2   6    2  0.1563
-## 7.2   7    2  0.2239
-## 8.2   8    2  0.1966
-## 9.2   9    2  0.2259
-## 10.2 10    2  0.5587
+##      ID time         Var
+## 1.1   1    1  0.34678137
+## 2.1   2    1 -0.71882854
+## 3.1   3    1 -0.65056799
+## 4.1   4    1  1.04932457
+## 5.1   5    1  0.61579842
+## 6.1   6    1 -1.23217588
+## 7.1   7    1 -0.53961616
+## 8.1   8    1 -0.81021133
+## 9.1   9    1  2.22042407
+## 10.1 10    1  0.57943005
+## 1.2   1    2  0.41488455
+## 2.2   2    2  0.10206596
+## 3.2   3    2  0.90963590
+## 4.2   4    2  0.53497601
+## 5.2   5    2  0.37657681
+## 6.2   6    2  0.61125699
+## 7.2   7    2  0.88744931
+## 8.2   8    2  0.61652842
+## 9.2   9    2  0.12874175
+## 10.2 10    2  0.07831647
 \end{verbatim}
 
 We provided the data (\texttt{df\_wide}), the time varying variables
 (\texttt{c("Var\_Time1",\ "Var\_Time2")}), and told it what we should
-name the value variable (\texttt{v.names\ =\ "Var"}).
+name the value variable (\texttt{v.names\ =\ "Var"}). Note that the
+function guessed, based on its name, that the variable \texttt{ID} was
+the identifying variable.
 
 This function automatically assumes each observation is a time point,
 thus the \texttt{time} variable. We can easily change that by adding the
@@ -1349,16 +1376,22 @@ package.
 \end{Shaded}
 
 \begin{verbatim}
-##   ID Var.1 Var.2 Var.3 Var.4
-## 1  1 0.994 0.937 0.339  0.46
-## 5  2 0.296 0.579    NA    NA
-## 7  3 0.748 0.721 0.126    NA
+##   ID     Var.1     Var.2     Var.3
+## 1  1 0.4338654 0.6957646 0.3796209
+## 5  2 0.6796242 0.6314711        NA
+## 7  3 0.8722224 0.1777460 0.6865418
+##        Var.4
+## 1 0.04268565
+## 5         NA
+## 7         NA
 \end{verbatim}
 
 Here, we provided the data \texttt{df\_long} and the variable name
 (\texttt{Var}) that had the values and (\texttt{Time}) that contained
 the time labels (in this case, just numbers). With a little bit of code
 we can move data around without any copy-pasting that is so error-prone.
+Again, note that the function guessed, based on its name, that the
+variable \texttt{ID} was the identifying variable.
 
 \section*{Joining (merging)}\label{joining-merging}
 \addcontentsline{toc}{section}{Joining (merging)}
@@ -1386,8 +1419,14 @@ of the tidyverse) there are four main joining functions:
 \texttt{full\_join}. Each join combines the data in slightly different
 ways.
 
+The figure below shows each type of join in Venn Diagram form. Each are
+discussed below.
+
+\begin{figure}
+\centering
 \includegraphics{Joining.jpg}
-\caption{The four ways to join two data sets together.}
+\caption{Joining}
+\end{figure}
 
 \subsection*{Inner Join}\label{inner-join}
 \addcontentsline{toc}{subsection}{Inner Join}
@@ -1459,6 +1498,129 @@ cleaning tasks were done on the data. This final version of \texttt{df}
 can be found at
 \href{http://www.tysonstanley.github.io/R}{tysonstanley.github.io/R}.
 
+\section*{Mutate and Transmute}\label{mutate-and-transmute}
+\addcontentsline{toc}{section}{Mutate and Transmute}
+
+Earlier we showed how to create a new variable or clean an existing one.
+We used the base \texttt{R} way for these. However, a great way to add
+and change variables is using \texttt{mutate()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df_fake <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{ID =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{10}\NormalTok{), }\DataTypeTok{Var1 =} \KeywordTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{), }
+    \DataTypeTok{Var2 =} \KeywordTok{runif}\NormalTok{(}\DecValTok{10}\NormalTok{))}
+
+\NormalTok{df_fake <-}\StringTok{ }\NormalTok{df_fake }\OperatorTok{%>%}\StringTok{ }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{Var3 =}\NormalTok{ Var1 }\OperatorTok{+}\StringTok{ }\NormalTok{Var2, }
+    \DataTypeTok{Var4 =}\NormalTok{ Var1 }\OperatorTok{*}\StringTok{ }\NormalTok{Var2 }\OperatorTok{+}\StringTok{ }\NormalTok{Var3)}
+\NormalTok{df_fake}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    ID       Var1       Var2       Var3
+## 1   1 -0.9823118 0.76685938 -0.2154524
+## 2   2  0.3270290 0.14315634  0.4701854
+## 3   3  1.4332710 0.96987814  2.4031492
+## 4   4 -1.2886640 0.08020757 -1.2084564
+## 5   5  0.1477409 0.06725765  0.2149985
+## 6   6 -1.8281070 0.37256890 -1.4555381
+## 7   7 -0.7976255 0.93120249  0.1335770
+## 8   8  0.0845791 0.18053500  0.2651141
+## 9   9  1.9288177 0.95213795  2.8809557
+## 10 10  0.9283757 0.31532117  1.2436968
+##          Var4
+## 1  -0.9687475
+## 2   0.5170017
+## 3   3.7932474
+## 4  -1.3118170
+## 5   0.2249352
+## 6  -2.1366340
+## 7  -0.6091738
+## 8   0.2803836
+## 9   4.7174563
+## 10  1.5364333
+\end{verbatim}
+
+The benefit is in the readability of the code. We repeat things like the
+name of the data frame much less (only once here). I highly recommend
+working this way.
+
+To highlight its benefits on real data, let's go back to our NHANES data
+(now called \texttt{df}). First, we are going to create an overall
+depression variable that is the sum of all the depression items (we
+could do IRT or some other way of combining them but that is not the
+point here). Below, we do three things:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  We clean up each depression item using \texttt{washer()} since both
+  ``7'' and ``9'' are placeholders for missing values. We take override
+  the original variable with the cleaned one.
+\item
+  Next, we sum all the items into a new variable called \texttt{dep}.
+\item
+  Finally, we create a dichotomized variable called \texttt{dep2} using
+  nested \texttt{ifelse()} functions. The \texttt{ifelse()} statements
+  read: if condition holds (\texttt{dep} is greater than or equal to
+  \texttt{10}), then \texttt{1}, else if condition holds (\texttt{dep}
+  is less than \texttt{10}), then \texttt{0}, else \texttt{NA}. The
+  basic build of the function is:
+  \texttt{ifelse(condition,\ value\ if\ true,\ value\ if\ false)}.
+\end{enumerate}
+
+In the end, we are creating a new data frame called \texttt{df2} with
+the new and improved \texttt{df} with the items cleaned and depression
+summed and dichotomized.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df2 <-}\StringTok{ }\NormalTok{df }\OperatorTok{%>%}\StringTok{ }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{dpq010 =} \KeywordTok{washer}\NormalTok{(dpq010, }\DecValTok{7}\NormalTok{, }
+    \DecValTok{9}\NormalTok{), }\DataTypeTok{dpq020 =} \KeywordTok{washer}\NormalTok{(dpq020, }\DecValTok{7}\NormalTok{, }\DecValTok{9}\NormalTok{), }\DataTypeTok{dpq030 =} \KeywordTok{washer}\NormalTok{(dpq030, }
+    \DecValTok{7}\NormalTok{, }\DecValTok{9}\NormalTok{), }\DataTypeTok{dpq040 =} \KeywordTok{washer}\NormalTok{(dpq040, }\DecValTok{7}\NormalTok{, }\DecValTok{9}\NormalTok{), }\DataTypeTok{dpq050 =} \KeywordTok{washer}\NormalTok{(dpq050, }
+    \DecValTok{7}\NormalTok{, }\DecValTok{9}\NormalTok{), }\DataTypeTok{dpq060 =} \KeywordTok{washer}\NormalTok{(dpq060, }\DecValTok{7}\NormalTok{, }\DecValTok{9}\NormalTok{), }\DataTypeTok{dpq070 =} \KeywordTok{washer}\NormalTok{(dpq070, }
+    \DecValTok{7}\NormalTok{, }\DecValTok{9}\NormalTok{), }\DataTypeTok{dpq080 =} \KeywordTok{washer}\NormalTok{(dpq080, }\DecValTok{7}\NormalTok{, }\DecValTok{9}\NormalTok{), }\DataTypeTok{dpq090 =} \KeywordTok{washer}\NormalTok{(dpq090, }
+    \DecValTok{7}\NormalTok{, }\DecValTok{9}\NormalTok{), }\DataTypeTok{dpq100 =} \KeywordTok{washer}\NormalTok{(dpq100, }\DecValTok{7}\NormalTok{, }\DecValTok{9}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{    }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{dep =}\NormalTok{ dpq010 }\OperatorTok{+}\StringTok{ }\NormalTok{dpq020 }\OperatorTok{+}\StringTok{ }\NormalTok{dpq030 }\OperatorTok{+}\StringTok{ }\NormalTok{dpq040 }\OperatorTok{+}\StringTok{ }
+\StringTok{        }\NormalTok{dpq050 }\OperatorTok{+}\StringTok{ }\NormalTok{dpq060 }\OperatorTok{+}\StringTok{ }\NormalTok{dpq070 }\OperatorTok{+}\StringTok{ }\NormalTok{dpq080 }\OperatorTok{+}\StringTok{ }\NormalTok{dpq090) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{    }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{dep2 =} \KeywordTok{factor}\NormalTok{(}\KeywordTok{ifelse}\NormalTok{(dep }\OperatorTok{>=}\StringTok{ }\DecValTok{10}\NormalTok{, }\DecValTok{1}\NormalTok{, }
+        \KeywordTok{ifelse}\NormalTok{(dep }\OperatorTok{<}\StringTok{ }\DecValTok{10}\NormalTok{, }\DecValTok{0}\NormalTok{, }\OtherTok{NA}\NormalTok{))))}
+\end{Highlighting}
+\end{Shaded}
+
+\section*{Wrap it up}\label{wrap-it-up}
+\addcontentsline{toc}{section}{Wrap it up}
+
+Let's put all the pieces together that we've learned in the chapter
+together on this new \texttt{df} data frame we just created. Below, we
+using piping, selecting, filtering, grouping, and summarizing.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df2 }\OperatorTok{%>%}\StringTok{ }\KeywordTok{select}\NormalTok{(ridageyr, riagendr, mcq010, dep) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{    }\KeywordTok{filter}\NormalTok{(ridageyr }\OperatorTok{>}\StringTok{ }\DecValTok{10} \OperatorTok{&}\StringTok{ }\NormalTok{ridageyr }\OperatorTok{<}\StringTok{ }\DecValTok{40}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{    }\KeywordTok{group_by}\NormalTok{(riagendr) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{asthma =} \KeywordTok{mean}\NormalTok{(mcq010, }
+    \DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{), }\DataTypeTok{depr =} \KeywordTok{mean}\NormalTok{(dep, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 2 x 3
+##   riagendr   asthma     depr
+##      <dbl>    <dbl>    <dbl>
+## 1        1 1.819597 2.612388
+## 2        2 1.815528 3.584081
+\end{verbatim}
+
+We can see that males (\texttt{riagendr\ =\ 1}) have nearly identical
+asthma levels but lower depression levels than their female
+counterparts.
+
+Ultimately, I hope you see the benefit to using these methods. With
+these methods, you can clean, reshape, and summarize your data. Because
+these are foundational, we will apply these methods throughout the book.
+
 \chapter*{Chapter 3: Understanding and Describing Your
 Data}\label{chapter-3-understanding-and-describing-your-data}
 \addcontentsline{toc}{chapter}{Chapter 3: Understanding and Describing
@@ -1466,13 +1628,12 @@ Your Data}
 
 \begin{quote}
 ``If you can't explain it simply, you don't understand it well enough.''
-
 --- Albert Einstein
 \end{quote}
 
 We are going to take what we've learned from the previous two chapters
 and use them together to have simple but powerful ways to understand
-your data. This chapter will be broken down into:
+your data. This chapter will be split into two sections:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -1483,10 +1644,11 @@ your data. This chapter will be broken down into:
   Visualizations
 \end{enumerate}
 
-The two go hand-in-hand in understanding what is happening in your data.
-We are often most interested in three things when exploring our data:
-\textbf{understanding distributions}, \textbf{understanding
-relationships}, and \textbf{looking for outliers or errors}.
+The two go hand-in-hand in understanding what is happening in your data
+before you attempt any modeling procedures. We are often most interested
+in three things when exploring our data: \emph{understanding
+distributions}, \emph{understanding relationships}, and \emph{looking
+for outliers or errors}.
 
 \section*{Descriptive Statistics}\label{descriptive-statistics}
 \addcontentsline{toc}{section}{Descriptive Statistics}
@@ -1507,12 +1669,11 @@ of \texttt{table1}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(furniture)}
-
 \NormalTok{df <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{A =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{3}\NormalTok{, }\OtherTok{NA}\NormalTok{), }\DataTypeTok{B =} \KeywordTok{c}\NormalTok{(}\FloatTok{1.4}\NormalTok{, }
     \FloatTok{2.1}\NormalTok{, }\FloatTok{4.6}\NormalTok{, }\DecValTok{2}\NormalTok{, }\OtherTok{NA}\NormalTok{, }\FloatTok{3.4}\NormalTok{), }\DataTypeTok{C =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }
     \DecValTok{1}\NormalTok{), }\DataTypeTok{D =} \KeywordTok{rnorm}\NormalTok{(}\DecValTok{6}\NormalTok{))}
 
+\CommentTok{# library(furniture)}
 \KeywordTok{table1}\NormalTok{(df, A, B, C, D)}
 \end{Highlighting}
 \end{Shaded}
@@ -1529,7 +1690,7 @@ of \texttt{table1}.
 ##  C                             
 ##               0.7 (0.5)        
 ##  D                             
-##               -0.1 (0.9)       
+##               0.1 (0.9)        
 ## |==============================|
 \end{verbatim}
 
@@ -1555,7 +1716,7 @@ used the pipe operator here if we wanted via:
 ##  C                             
 ##               0.7 (0.5)        
 ##  D                             
-##               -0.1 (0.9)       
+##               0.1 (0.9)        
 ## |==============================|
 \end{verbatim}
 
@@ -1587,7 +1748,7 @@ It turns out, for we want ``A'' and ``C'' to be factors.
 ##     male      2 (33.3%)        
 ##     female    4 (66.7%)        
 ##  D                             
-##               -0.1 (0.9)       
+##               0.1 (0.9)        
 ## |==============================|
 \end{verbatim}
 
@@ -1616,7 +1777,7 @@ grouping variable--in this case, \texttt{C}.
 ##  B                                
 ##               1.8 (0.5) 3.3 (1.3) 
 ##  D                                
-##               0.4 (0.7) -0.3 (1.1)
+##               0.5 (0.3) -0.2 (1.0)
 ## |=================================|
 \end{verbatim}
 
@@ -1643,40 +1804,16 @@ the \(\chi^2\) approximation is not accurate with cells this small.
 ##     cat4      0 (0%)    1 (33.3%)         
 ##  B                                 0.162  
 ##               1.8 (0.5) 3.3 (1.3)         
-##  D                                 0.438  
-##               0.4 (0.7) -0.3 (1.1)        
+##  D                                 0.285  
+##               0.5 (0.3) -0.2 (1.0)        
 ## |=========================================|
 \end{verbatim}
 
-Finally, we can include missingness in the table for factors.
+Several other options exist for you to play around with, including
+obtaining medians and ranges and removing a lot of the white space of
+the table.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{table1}\NormalTok{(df, A, B, D, }\DataTypeTok{splitby =} \OperatorTok{~}\NormalTok{C, }\DataTypeTok{test =} \OtherTok{TRUE}\NormalTok{, }
-    \DataTypeTok{NAkeep =} \OtherTok{TRUE}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 
-## |=========================================|
-##                       C 
-##               male      female     P-Value
-##  Observations 2         4                 
-##  A                                 0.405  
-##     cat1      1 (50%)   1 (25%)           
-##     cat2      1 (50%)   0 (0%)            
-##     cat3      0 (0%)    1 (25%)           
-##     cat4      0 (0%)    1 (25%)           
-##     NA        0 (0%)    1 (25%)           
-##  B                                 0.162  
-##               1.8 (0.5) 3.3 (1.3)         
-##  D                                 0.438  
-##               0.4 (0.7) -0.3 (1.1)        
-## |=========================================|
-\end{verbatim}
-
-So with three or four short lines of code we can get a good idea about
+With three or four short lines of code we can get a good idea about
 variables that may be related to the grouping variable and any
 missingness in the factor variables. There's much more you can do with
 \texttt{table1} and there are vignettes and tutorials available to learn
@@ -1686,15 +1823,26 @@ Other quick descriptive functions exist; here are a few of them.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{summary}\NormalTok{(df)  ## descriptives for each variable in the data}
-
-\KeywordTok{library}\NormalTok{(psych)  ## install first}
-\KeywordTok{describe}\NormalTok{(df)  ## produces summary statistics for continuous variables}
-
-\KeywordTok{library}\NormalTok{(Hmisc)  ## install first}
-\NormalTok{Hmisc}\OperatorTok{::}\KeywordTok{describe}\NormalTok{(df)  ## gives summary for each variable separately}
+\KeywordTok{summary}\NormalTok{(df)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## install with install.packages('psych')}
+\NormalTok{psych}\OperatorTok{::}\KeywordTok{describe}\NormalTok{(df)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## install with install.packages('Hmisc')}
+\NormalTok{Hmisc}\OperatorTok{::}\KeywordTok{describe}\NormalTok{(df)}
+\end{Highlighting}
+\end{Shaded}
+
+There is truly no shortage of descriptive information that you can
+obtain within \texttt{R}.
 
 \section*{Visualizations}\label{visualizations}
 \addcontentsline{toc}{section}{Visualizations}
@@ -1721,7 +1869,9 @@ to the plot.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(ggplot2)  ## first install using install.packages('ggplot2')}
+\NormalTok{## first install using}
+\NormalTok{## install.packages('ggplot2')}
+\KeywordTok{library}\NormalTok{(ggplot2)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1735,7 +1885,7 @@ and variables you provide.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-56-1}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-61-1}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1748,16 +1898,33 @@ and variables you provide.
 ## (geom_point).
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-56-2}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-61-2}
 
 For a bit more control over the plot, you can use the \texttt{ggplot}
 function. The first piece is the \texttt{ggplot} piece. From there, we
 add layers. These layers generally start with \texttt{geom\_} then have
-the type of plot.
+the type of plot. Below, we start with telling \texttt{ggplot} the
+basics of the plot and then build a boxplot.
 
-Below, we start with telling \texttt{ggplot} the basics of the plot and
-then build a boxplot. The x-axis is the variable ``C'' and the y-axis is
-the variable ``D'' and then we color it by variable ``C'' as well.
+The key pieces of ggplot:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \texttt{aes()} is how we tell \texttt{ggplot()} to look at the
+  variables in the data frame.
+\item
+  Within \texttt{aes()} we told it that the x-axis is the variable ``C''
+  and the y-axis is the variable ``D'' and then we color it by variable
+  ``C'' as well (which we told specifically to the boxplot).
+\item
+  \texttt{geom\_} functions are how we tell \texttt{ggplot} what to
+  plot---in this case, a boxplot.
+\end{enumerate}
+
+These same pieces will be found throughout \texttt{ggplot} plotting. In
+later chapters we will introduce much more in relation to these plots.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1765,7 +1932,7 @@ the variable ``D'' and then we color it by variable ``C'' as well.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-57-1}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-62-1}
 
 Here's a few more examples:
 
@@ -1776,7 +1943,7 @@ Here's a few more examples:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-58-1}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-63-1}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1789,7 +1956,7 @@ Here's a few more examples:
 ## (geom_point).
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-59-1}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-64-1}
 
 \emph{Note that the warning that says it removed a row is because we had
 a missing value in ``C''.}
@@ -1807,7 +1974,7 @@ adjustments. Notice that we just added two extra lines telling
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-60-1}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-65-1}
 
 The \texttt{theme\_bw()} makes the background white, the
 \texttt{scale\_color\_manual()} allows us to change the colors in the
@@ -1872,12 +2039,12 @@ fully continuous it is still useful for the example) differs by race.
 ## Analysis of Variance Table
 ## 
 ## Response: famsize
-##             Df Sum Sq Mean Sq F value Pr(>F)
-## race         4    541   135.3    51.4 <2e-16
-## Residuals 4627  12187     2.6               
-##              
-## race      ***
-## Residuals    
+##             Df  Sum Sq Mean Sq F value
+## race         4   541.2 135.300  51.367
+## Residuals 4627 12187.5   2.634        
+##              Pr(>F)    
+## race      < 2.2e-16 ***
+## Residuals              
 ## ---
 ## Signif. codes:  
 ##   0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1  ' ' 1
@@ -1910,7 +2077,7 @@ will be using some of the practice you got in Chapter 3 using
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-63-1}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-68-1}
 
 This immediately gives us an idea of where some differences may be
 occuring. It would appear that ``White'' and ``MexicanAmerican'' groups
@@ -1938,8 +2105,8 @@ columns).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-64-1}
-\includegraphics{_main_files/figure-latex/unnamed-chunk-64-2}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-69-1}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-69-2}
 
 Here, it looks like we have a problem with normality (see the Normal Q-Q
 plot). Those dots should approximately follow the dotted line, which is
@@ -1966,12 +2133,12 @@ the same ANOVA table.
 ## Analysis of Variance Table
 ## 
 ## Response: famsize
-##             Df Sum Sq Mean Sq F value Pr(>F)
-## race         4    541   135.3    51.4 <2e-16
-## Residuals 4627  12187     2.6               
-##              
-## race      ***
-## Residuals    
+##             Df  Sum Sq Mean Sq F value
+## race         4   541.2 135.300  51.367
+## Residuals 4627 12187.5   2.634        
+##              Pr(>F)    
+## race      < 2.2e-16 ***
+## Residuals              
 ## ---
 ## Signif. codes:  
 ##   0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1  ' ' 1
@@ -1996,29 +2163,29 @@ group).
 ## lm(formula = famsize ~ race, data = df)
 ## 
 ## Residuals:
-##    Min     1Q Median     3Q    Max 
-## -2.619 -1.493 -0.493  0.954  4.507 
+##     Min      1Q  Median      3Q     Max 
+## -2.6193 -1.4932 -0.4932  0.9539  4.5068 
 ## 
 ## Coefficients:
 ##                   Estimate Std. Error
-## (Intercept)         3.6193     0.0777
-## raceOtherHispanic  -0.5184     0.1081
-## raceWhite          -1.1260     0.0868
-## raceBlack          -0.7980     0.0906
-## raceOther          -0.5732     0.0980
+## (Intercept)        3.61927    0.07773
+## raceOtherHispanic -0.51841    0.10814
+## raceWhite         -1.12604    0.08676
+## raceBlack         -0.79795    0.09056
+## raceOther         -0.57320    0.09803
 ##                   t value Pr(>|t|)    
-## (Intercept)         46.56  < 2e-16 ***
-## raceOtherHispanic   -4.79  1.7e-06 ***
-## raceWhite          -12.98  < 2e-16 ***
-## raceBlack           -8.81  < 2e-16 ***
-## raceOther           -5.85  5.3e-09 ***
+## (Intercept)        46.565  < 2e-16 ***
+## raceOtherHispanic  -4.794 1.69e-06 ***
+## raceWhite         -12.978  < 2e-16 ***
+## raceBlack          -8.812  < 2e-16 ***
+## raceOther          -5.847 5.35e-09 ***
 ## ---
 ## Signif. codes:  
 ##   0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1  ' ' 1
 ## 
-## Residual standard error: 1.62 on 4627 degrees of freedom
-## Multiple R-squared:  0.0425, Adjusted R-squared:  0.0417 
-## F-statistic: 51.4 on 4 and 4627 DF,  p-value: <2e-16
+## Residual standard error: 1.623 on 4627 degrees of freedom
+## Multiple R-squared:  0.04252,    Adjusted R-squared:  0.04169 
+## F-statistic: 51.37 on 4 and 4627 DF,  p-value: < 2.2e-16
 \end{verbatim}
 
 \section*{Assumptions}\label{assumptions-1}
@@ -2051,8 +2218,8 @@ independents is linear.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-67-1}
-\includegraphics{_main_files/figure-latex/unnamed-chunk-67-2}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-72-1}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-72-2}
 
 \section*{Comparing Models}\label{comparing-models}
 \addcontentsline{toc}{section}{Comparing Models}
@@ -2080,8 +2247,8 @@ statistically.
 ## Model 1: famsize ~ race
 ## Model 2: famsize ~ race
 ##   Res.Df   RSS Df Sum of Sq F Pr(>F)
-## 1   4627 12187                      
-## 2   4627 12187  0         0
+## 1   4627 12188                      
+## 2   4627 12188  0         0
 \end{verbatim}
 
 The \texttt{anova()} function works with all sorts of modeling schemes
@@ -2105,39 +2272,39 @@ with an additional variable and then make a comparison.
 ## lm(formula = famsize ~ race + marriage, data = df)
 ## 
 ## Residuals:
-##    Min     1Q Median     3Q    Max 
-##  -2.97  -1.18  -0.41   1.03   5.29 
+##     Min      1Q  Median      3Q     Max 
+## -2.9689 -1.1774 -0.4101  1.0311  5.2870 
 ## 
 ## Coefficients:
 ##                   Estimate Std. Error
-## (Intercept)         3.9689     0.0779
-## raceOtherHispanic  -0.4118     0.1037
-## raceWhite          -1.0268     0.0836
-## raceBlack          -0.5588     0.0879
-## raceOther          -0.5624     0.0946
-## marriage2          -1.2291     0.0867
-## marriage3          -1.2025     0.0778
-## marriage4          -0.4775     0.1253
-## marriage5          -0.8093     0.0597
-## marriage6          -0.4921     0.0887
+## (Intercept)        3.96893    0.07790
+## raceOtherHispanic -0.41181    0.10368
+## raceWhite         -1.02681    0.08364
+## raceBlack         -0.55881    0.08791
+## raceOther         -0.56242    0.09461
+## marriage2         -1.22909    0.08666
+## marriage3         -1.20245    0.07784
+## marriage4         -0.47750    0.12529
+## marriage5         -0.80932    0.05970
+## marriage6         -0.49213    0.08866
 ##                   t value Pr(>|t|)    
-## (Intercept)         50.95  < 2e-16 ***
-## raceOtherHispanic   -3.97  7.2e-05 ***
-## raceWhite          -12.28  < 2e-16 ***
-## raceBlack           -6.36  2.3e-10 ***
-## raceOther           -5.94  3.0e-09 ***
-## marriage2          -14.18  < 2e-16 ***
-## marriage3          -15.45  < 2e-16 ***
-## marriage4           -3.81  0.00014 ***
-## marriage5          -13.56  < 2e-16 ***
-## marriage6           -5.55  3.0e-08 ***
+## (Intercept)        50.952  < 2e-16 ***
+## raceOtherHispanic  -3.972 7.23e-05 ***
+## raceWhite         -12.277  < 2e-16 ***
+## raceBlack          -6.357 2.26e-10 ***
+## raceOther          -5.945 2.97e-09 ***
+## marriage2         -14.183  < 2e-16 ***
+## marriage3         -15.447  < 2e-16 ***
+## marriage4          -3.811  0.00014 ***
+## marriage5         -13.556  < 2e-16 ***
+## marriage6          -5.551 3.00e-08 ***
 ## ---
 ## Signif. codes:  
 ##   0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1  ' ' 1
 ## 
-## Residual standard error: 1.55 on 4622 degrees of freedom
-## Multiple R-squared:  0.126,  Adjusted R-squared:  0.124 
-## F-statistic: 73.7 on 9 and 4622 DF,  p-value: <2e-16
+## Residual standard error: 1.552 on 4622 degrees of freedom
+## Multiple R-squared:  0.1255, Adjusted R-squared:  0.1238 
+## F-statistic: 73.73 on 9 and 4622 DF,  p-value: < 2.2e-16
 \end{verbatim}
 
 Notice that the variable is associated with the outcome according to the
@@ -2156,9 +2323,12 @@ output below.
 ## 
 ## Model 1: famsize ~ race
 ## Model 2: famsize ~ race + marriage
-##   Res.Df   RSS Df Sum of Sq    F Pr(>F)    
-## 1   4627 12187                             
-## 2   4622 11131  5      1057 87.8 <2e-16 ***
+##   Res.Df   RSS Df Sum of Sq      F    Pr(>F)
+## 1   4627 12188                              
+## 2   4622 11131  5    1056.8 87.765 < 2.2e-16
+##      
+## 1    
+## 2 ***
 ## ---
 ## Signif. codes:  
 ##   0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1  ' ' 1
@@ -2185,6 +2355,24 @@ Both provide simple functions to compare multiple models. For example,
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(stargazer)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Please cite as:
+\end{verbatim}
+
+\begin{verbatim}
+##  Hlavac, Marek (2015). stargazer: Well-Formatted Regression and Summary Statistics Tables.
+\end{verbatim}
+
+\begin{verbatim}
+##  R package version 5.2. http://CRAN.R-project.org/package=stargazer
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \KeywordTok{stargazer}\NormalTok{(fit2, fit3, }\DataTypeTok{type =} \StringTok{"text"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -2200,7 +2388,7 @@ Both provide simple functions to compare multiple models. For example,
 ## raceOtherHispanic          -0.518***                -0.412***        
 ##                             (0.108)                  (0.104)         
 ##                                                                      
-## raceWhite                  -1.130***                -1.030***        
+## raceWhite                  -1.126***                -1.027***        
 ##                             (0.087)                  (0.084)         
 ##                                                                      
 ## raceBlack                  -0.798***                -0.559***        
@@ -2209,10 +2397,10 @@ Both provide simple functions to compare multiple models. For example,
 ## raceOther                  -0.573***                -0.562***        
 ##                             (0.098)                  (0.095)         
 ##                                                                      
-## marriage2                                           -1.230***        
+## marriage2                                           -1.229***        
 ##                                                      (0.087)         
 ##                                                                      
-## marriage3                                           -1.200***        
+## marriage3                                           -1.202***        
 ##                                                      (0.078)         
 ##                                                                      
 ## marriage4                                           -0.477***        
@@ -2224,15 +2412,15 @@ Both provide simple functions to compare multiple models. For example,
 ## marriage6                                           -0.492***        
 ##                                                      (0.089)         
 ##                                                                      
-## Constant                    3.620***                 3.970***        
+## Constant                    3.619***                 3.969***        
 ##                             (0.078)                  (0.078)         
 ##                                                                      
 ## ---------------------------------------------------------------------
 ## Observations                 4,632                    4,632          
 ## R2                           0.043                    0.126          
 ## Adjusted R2                  0.042                    0.124          
-## Residual Std. Error    1.620 (df = 4627)        1.550 (df = 4622)    
-## F Statistic         51.400*** (df = 4; 4627) 73.700*** (df = 9; 4622)
+## Residual Std. Error    1.623 (df = 4627)        1.552 (df = 4622)    
+## F Statistic         51.367*** (df = 4; 4627) 73.729*** (df = 9; 4622)
 ## =====================================================================
 ## Note:                                     *p<0.1; **p<0.05; ***p<0.01
 \end{verbatim}
@@ -2333,16 +2521,16 @@ simplicity, we created a binary race variable called minority using the
 ## Analysis of Variance Table
 ## 
 ## Response: famsize
-##                     Df Sum Sq Mean Sq
-## minority             1    335     335
-## marriage             5   1153     231
-## minority:marriage    5     25       5
-## Residuals         4620  11216       2
-##                   F value Pr(>F)    
-## minority           137.96 <2e-16 ***
-## marriage            95.01 <2e-16 ***
-## minority:marriage    2.05  0.068 .  
-## Residuals                           
+##                     Df  Sum Sq Mean Sq
+## minority             1   334.9  334.92
+## marriage             5  1153.3  230.65
+## minority:marriage    5    24.9    4.98
+## Residuals         4620 11215.6    2.43
+##                    F value  Pr(>F)    
+## minority          137.9637 < 2e-16 ***
+## marriage           95.0112 < 2e-16 ***
+## minority:marriage   2.0527 0.06831 .  
+## Residuals                             
 ## ---
 ## Signif. codes:  
 ##   0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1  ' ' 1
@@ -2364,8 +2552,8 @@ We can check the assumptions the same way as before:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-76-1}
-\includegraphics{_main_files/figure-latex/unnamed-chunk-76-2} Again, the
+\includegraphics{_main_files/figure-latex/unnamed-chunk-81-1}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-81-2} Again, the
 assumptions are not met for this model. But, if we ignore that for now,
 we can quickly find a way to interpret the interaction.
 
@@ -2393,7 +2581,7 @@ We now use \texttt{ggplot2} just as before.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-78-1}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-83-1}
 
 The plot tells use a handful of things. For example, we see minorities
 generally have more children across marital statuses. However, the
@@ -2423,49 +2611,49 @@ ANOVA does not provide this. We can run a regression model via:
 ## lm(formula = famsize ~ minority * marriage, data = df)
 ## 
 ## Residuals:
-##    Min     1Q Median     3Q    Max 
-## -2.479 -1.196 -0.479  0.980  5.435 
+##     Min      1Q  Median      3Q     Max 
+## -2.4794 -1.1957 -0.4794  0.9805  5.4353 
 ## 
 ## Coefficients:
 ##                            Estimate
-## (Intercept)                  3.0195
-## minorityMinority             0.4599
-## marriage2                   -1.4548
-## marriage3                   -1.2437
-## marriage4                   -0.5195
-## marriage5                   -1.0161
-## marriage6                   -0.6989
-## minorityMinority:marriage2   0.3546
-## minorityMinority:marriage3   0.0263
-## minorityMinority:marriage4   0.0981
-## minorityMinority:marriage5   0.2518
-## minorityMinority:marriage6   0.4152
+## (Intercept)                 3.01952
+## minorityMinority            0.45989
+## marriage2                  -1.45482
+## marriage3                  -1.24374
+## marriage4                  -0.51952
+## marriage5                  -1.01614
+## marriage6                  -0.69891
+## minorityMinority:marriage2  0.35455
+## minorityMinority:marriage3  0.02632
+## minorityMinority:marriage4  0.09808
+## minorityMinority:marriage5  0.25181
+## minorityMinority:marriage6  0.41515
 ##                            Std. Error
-## (Intercept)                    0.0513
-## minorityMinority               0.0672
-## marriage2                      0.1301
-## marriage3                      0.1163
-## marriage4                      0.2891
-## marriage5                      0.1041
-## marriage6                      0.1455
-## minorityMinority:marriage2     0.1741
-## minorityMinority:marriage3     0.1561
-## minorityMinority:marriage4     0.3210
-## minorityMinority:marriage5     0.1268
-## minorityMinority:marriage6     0.1833
+## (Intercept)                   0.05131
+## minorityMinority              0.06723
+## marriage2                     0.13005
+## marriage3                     0.11627
+## marriage4                     0.28906
+## marriage5                     0.10409
+## marriage6                     0.14548
+## minorityMinority:marriage2    0.17408
+## minorityMinority:marriage3    0.15609
+## minorityMinority:marriage4    0.32098
+## minorityMinority:marriage5    0.12680
+## minorityMinority:marriage6    0.18332
 ##                            t value Pr(>|t|)
-## (Intercept)                  58.85  < 2e-16
-## minorityMinority              6.84  8.9e-12
-## marriage2                   -11.19  < 2e-16
-## marriage3                   -10.70  < 2e-16
-## marriage4                    -1.80    0.072
-## marriage5                    -9.76  < 2e-16
-## marriage6                    -4.80  1.6e-06
-## minorityMinority:marriage2    2.04    0.042
-## minorityMinority:marriage3    0.17    0.866
-## minorityMinority:marriage4    0.31    0.760
-## minorityMinority:marriage5    1.99    0.047
-## minorityMinority:marriage6    2.26    0.024
+## (Intercept)                 58.846  < 2e-16
+## minorityMinority             6.841 8.89e-12
+## marriage2                  -11.187  < 2e-16
+## marriage3                  -10.697  < 2e-16
+## marriage4                   -1.797   0.0724
+## marriage5                   -9.762  < 2e-16
+## marriage6                   -4.804 1.60e-06
+## minorityMinority:marriage2   2.037   0.0417
+## minorityMinority:marriage3   0.169   0.8661
+## minorityMinority:marriage4   0.306   0.7599
+## minorityMinority:marriage5   1.986   0.0471
+## minorityMinority:marriage6   2.265   0.0236
 ##                               
 ## (Intercept)                ***
 ## minorityMinority           ***
@@ -2483,9 +2671,9 @@ ANOVA does not provide this. We can run a regression model via:
 ## Signif. codes:  
 ##   0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1  ' ' 1
 ## 
-## Residual standard error: 1.56 on 4620 degrees of freedom
-## Multiple R-squared:  0.119,  Adjusted R-squared:  0.117 
-## F-statistic: 56.7 on 11 and 4620 DF,  p-value: <2e-16
+## Residual standard error: 1.558 on 4620 degrees of freedom
+## Multiple R-squared:  0.1189, Adjusted R-squared:  0.1168 
+## F-statistic: 56.66 on 11 and 4620 DF,  p-value: < 2.2e-16
 \end{verbatim}
 
 We used \texttt{summary()} to see the coefficients. If we used
@@ -2613,28 +2801,28 @@ Now let's run the logistic regression:
 ##     data = df)
 ## 
 ## Deviance Residuals: 
-##    Min      1Q  Median      3Q     Max  
-## -0.783  -0.448  -0.408  -0.364   2.547  
+##     Min       1Q   Median       3Q      Max  
+## -0.7831  -0.4479  -0.4078  -0.3645   2.5471  
 ## 
 ## Coefficients:
-##                    Estimate Std. Error
-## (Intercept)       -2.620355   0.238077
-## asthma             0.568845   0.127633
-## sed                0.000564   0.000261
-## raceOtherHispanic  0.716257   0.232867
-## raceWhite          0.128706   0.211641
-## raceBlack          0.018921   0.220546
-## raceOther         -0.490141   0.257012
-## famsize           -0.031831   0.037322
+##                     Estimate Std. Error
+## (Intercept)       -2.6203555  0.2380770
+## asthma             0.5688452  0.1276326
+## sed                0.0005638  0.0002610
+## raceOtherHispanic  0.7162568  0.2328673
+## raceWhite          0.1287059  0.2116414
+## raceBlack          0.0189205  0.2205461
+## raceOther         -0.4901414  0.2570123
+## famsize           -0.0318309  0.0373218
 ##                   z value Pr(>|z|)    
-## (Intercept)        -11.01  < 2e-16 ***
-## asthma               4.46  8.3e-06 ***
-## sed                  2.16   0.0307 *  
-## raceOtherHispanic    3.08   0.0021 ** 
-## raceWhite            0.61   0.5431    
-## raceBlack            0.09   0.9316    
-## raceOther           -1.91   0.0565 .  
-## famsize             -0.85   0.3937    
+## (Intercept)       -11.006  < 2e-16 ***
+## asthma              4.457 8.32e-06 ***
+## sed                 2.160   0.0307 *  
+## raceOtherHispanic   3.076   0.0021 ** 
+## raceWhite           0.608   0.5431    
+## raceBlack           0.086   0.9316    
+## raceOther          -1.907   0.0565 .  
+## famsize            -0.853   0.3937    
 ## ---
 ## Signif. codes:  
 ##   0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1  ' ' 1
@@ -2644,7 +2832,7 @@ Now let's run the logistic regression:
 ##     Null deviance: 2706.3  on 4436  degrees of freedom
 ## Residual deviance: 2648.2  on 4429  degrees of freedom
 ##   (195 observations deleted due to missingness)
-## AIC: 2664
+## AIC: 2664.2
 ## 
 ## Number of Fisher Scoring iterations: 5
 \end{verbatim}
@@ -2678,26 +2866,26 @@ we have in \texttt{df} is a count of the minutes of sedentary activity.
 ##     data = df)
 ## 
 ## Deviance Residuals: 
-##    Min      1Q  Median      3Q     Max  
-## -27.36   -8.43   -1.48    5.82   34.51  
+##     Min       1Q   Median       3Q      Max  
+## -27.362   -8.430   -1.477    5.823   34.507  
 ## 
 ## Coefficients:
-##                    Estimate Std. Error
-## (Intercept)        5.649987   0.003555
-## asthma             0.061496   0.002143
-## raceOtherHispanic  0.139344   0.004094
-## raceWhite          0.348462   0.003344
-## raceBlack          0.340035   0.003443
-## raceOther          0.355795   0.003627
-## famsize           -0.018867   0.000549
+##                     Estimate Std. Error
+## (Intercept)        5.6499871  0.0035550
+## asthma             0.0614965  0.0021434
+## raceOtherHispanic  0.1393438  0.0040940
+## raceWhite          0.3484622  0.0033438
+## raceBlack          0.3400346  0.0034430
+## raceOther          0.3557953  0.0036273
+## famsize           -0.0188673  0.0005488
 ##                   z value Pr(>|z|)    
-## (Intercept)        1589.3   <2e-16 ***
-## asthma               28.7   <2e-16 ***
-## raceOtherHispanic    34.0   <2e-16 ***
-## raceWhite           104.2   <2e-16 ***
-## raceBlack            98.8   <2e-16 ***
-## raceOther            98.1   <2e-16 ***
-## famsize             -34.4   <2e-16 ***
+## (Intercept)       1589.31   <2e-16 ***
+## asthma              28.69   <2e-16 ***
+## raceOtherHispanic   34.04   <2e-16 ***
+## raceWhite          104.21   <2e-16 ***
+## raceBlack           98.76   <2e-16 ***
+## raceOther           98.09   <2e-16 ***
+## famsize            -34.38   <2e-16 ***
 ## ---
 ## Signif. codes:  
 ##   0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1  ' ' 1
@@ -2714,7 +2902,7 @@ we have in \texttt{df} is a count of the minutes of sedentary activity.
 
 Sedentary may be over-dispersed (see plot)
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-85-1} and so
+\includegraphics{_main_files/figure-latex/unnamed-chunk-90-1} and so
 other methods related to poisson may be necessary. For this book, we are
 not going to be delving into these in depth but we will introduce some
 below.
@@ -2744,31 +2932,31 @@ values \(> 0\). Just for demonstration:
 ##     data = df)
 ## 
 ## Deviance Residuals: 
-##    Min      1Q  Median      3Q     Max  
-## -4.359  -0.461  -0.084   0.293   1.687  
+##     Min       1Q   Median       3Q      Max  
+## -4.3589  -0.4613  -0.0845   0.2926   1.6868  
 ## 
 ## Coefficients:
-##                    Estimate Std. Error
-## (Intercept)        3.57e-03   1.13e-04
-## asthma            -1.60e-04   5.86e-05
-## raceOtherHispanic -4.87e-04   1.31e-04
-## raceWhite         -1.09e-03   1.08e-04
-## raceBlack         -1.07e-03   1.10e-04
-## raceOther         -1.11e-03   1.15e-04
-## famsize            5.11e-05   1.55e-05
+##                     Estimate Std. Error
+## (Intercept)        3.567e-03  1.132e-04
+## asthma            -1.604e-04  5.865e-05
+## raceOtherHispanic -4.874e-04  1.309e-04
+## raceWhite         -1.090e-03  1.078e-04
+## raceBlack         -1.068e-03  1.102e-04
+## raceOther         -1.110e-03  1.145e-04
+## famsize            5.107e-05  1.552e-05
 ##                   t value Pr(>|t|)    
-## (Intercept)         31.51   <2e-16 ***
-## asthma              -2.74   0.0063 ** 
-## raceOtherHispanic   -3.72   0.0002 ***
-## raceWhite          -10.11   <2e-16 ***
-## raceBlack           -9.70   <2e-16 ***
-## raceOther           -9.70   <2e-16 ***
-## famsize              3.29   0.0010 ** 
+## (Intercept)        31.515  < 2e-16 ***
+## asthma             -2.735  0.00626 ** 
+## raceOtherHispanic  -3.723  0.00020 ***
+## raceWhite         -10.115  < 2e-16 ***
+## raceBlack          -9.697  < 2e-16 ***
+## raceOther          -9.695  < 2e-16 ***
+## famsize             3.289  0.00101 ** 
 ## ---
 ## Signif. codes:  
 ##   0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1  ' ' 1
 ## 
-## (Dispersion parameter for Gamma family taken to be 0.293)
+## (Dispersion parameter for Gamma family taken to be 0.2932604)
 ## 
 ##     Null deviance: 1664.8  on 4436  degrees of freedom
 ## Residual deviance: 1604.2  on 4430  degrees of freedom
@@ -2814,48 +3002,48 @@ many more zeros to illustrate and then we will run a hurdle model.
 ##     famsize, data = df)
 ## 
 ## Pearson residuals:
-##    Min     1Q Median     3Q    Max 
-## -3.321 -1.551 -0.149  1.282  9.552 
+##     Min      1Q  Median      3Q     Max 
+## -3.6179 -1.5600 -0.2116  1.3010  9.9024 
 ## 
 ## Count model coefficients (truncated poisson with log link):
-##                    Estimate Std. Error
-## (Intercept)        5.647110   0.003723
-## asthma             0.066566   0.002242
-## raceOtherHispanic  0.144772   0.004297
-## raceWhite          0.358439   0.003509
-## raceBlack          0.351893   0.003612
-## raceOther          0.362652   0.003809
-## famsize           -0.018517   0.000569
+##                     Estimate Std. Error
+## (Intercept)        5.6551161  0.0037409
+## asthma             0.0626771  0.0022419
+## raceOtherHispanic  0.1321143  0.0043129
+## raceWhite          0.3479855  0.0035118
+## raceBlack          0.3398474  0.0036143
+## raceOther          0.3474906  0.0038192
+## famsize           -0.0207386  0.0005783
 ##                   z value Pr(>|z|)    
-## (Intercept)        1516.7   <2e-16 ***
-## asthma               29.7   <2e-16 ***
-## raceOtherHispanic    33.7   <2e-16 ***
-## raceWhite           102.2   <2e-16 ***
-## raceBlack            97.4   <2e-16 ***
-## raceOther            95.2   <2e-16 ***
-## famsize             -32.6   <2e-16 ***
+## (Intercept)       1511.72   <2e-16 ***
+## asthma              27.96   <2e-16 ***
+## raceOtherHispanic   30.63   <2e-16 ***
+## raceWhite           99.09   <2e-16 ***
+## raceBlack           94.03   <2e-16 ***
+## raceOther           90.98   <2e-16 ***
+## famsize            -35.86   <2e-16 ***
 ## Zero hurdle model coefficients (binomial with logit link):
 ##                   Estimate Std. Error
-## (Intercept)         2.2767     0.2109
-## asthma             -0.1675     0.1426
-## raceOtherHispanic   0.0254     0.2386
-## raceWhite           0.1511     0.1961
-## raceBlack           0.0817     0.2029
-## raceOther           0.0157     0.2162
-## famsize             0.0011     0.0368
+## (Intercept)        2.57885    0.21363
+## asthma            -0.02362    0.15089
+## raceOtherHispanic -0.06777    0.23648
+## raceWhite          0.09928    0.19699
+## raceBlack          0.12363    0.20546
+## raceOther         -0.05110    0.21530
+## famsize           -0.09431    0.03630
 ##                   z value Pr(>|z|)    
-## (Intercept)         10.80   <2e-16 ***
-## asthma              -1.18     0.24    
-## raceOtherHispanic    0.11     0.92    
-## raceWhite            0.77     0.44    
-## raceBlack            0.40     0.69    
-## raceOther            0.07     0.94    
-## famsize              0.03     0.98    
+## (Intercept)        12.072  < 2e-16 ***
+## asthma             -0.157  0.87559    
+## raceOtherHispanic  -0.287  0.77444    
+## raceWhite           0.504  0.61428    
+## raceBlack           0.602  0.54736    
+## raceOther          -0.237  0.81240    
+## famsize            -2.598  0.00938 ** 
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 ## 
 ## Number of iterations in BFGS optimization: 12 
-## Log-likelihood: -2.31e+05 on 14 Df
+## Log-likelihood: -2.349e+05 on 14 Df
 \end{verbatim}
 
 Notice that the output has two parts: ``Count model coefficients
@@ -2916,39 +3104,39 @@ in the data set.
 ##     famsize, data = df)
 ## 
 ## Standardized weighted residuals 2:
-##    Min     1Q Median     3Q    Max 
-## -2.024 -0.682 -0.042  0.647  2.884 
+##     Min      1Q  Median      3Q     Max 
+## -2.0456 -0.6937 -0.0447  0.6193  2.9449 
 ## 
 ## Coefficients (mean model with logit link):
-##                   Estimate Std. Error
-## (Intercept)        0.07605    0.06354
-## asthma            -0.06763    0.04390
-## raceOtherHispanic -0.00692    0.07233
-## raceWhite          0.03685    0.05901
-## raceBlack          0.03018    0.06126
-## raceOther         -0.00813    0.06566
-## famsize            0.01410    0.01087
-##                   z value Pr(>|z|)
-## (Intercept)          1.20     0.23
-## asthma              -1.54     0.12
-## raceOtherHispanic   -0.10     0.92
-## raceWhite            0.62     0.53
-## raceBlack            0.49     0.62
-## raceOther           -0.12     0.90
-## famsize              1.30     0.19
+##                    Estimate Std. Error
+## (Intercept)       -0.014469   0.063342
+## asthma             0.051074   0.043792
+## raceOtherHispanic  0.033559   0.072109
+## raceWhite          0.129331   0.058836
+## raceBlack          0.121746   0.061082
+## raceOther          0.091338   0.065464
+## famsize            0.007108   0.010840
+##                   z value Pr(>|z|)  
+## (Intercept)        -0.228   0.8193  
+## asthma              1.166   0.2435  
+## raceOtherHispanic   0.465   0.6417  
+## raceWhite           2.198   0.0279 *
+## raceBlack           1.993   0.0462 *
+## raceOther           1.395   0.1629  
+## famsize             0.656   0.5120  
 ## 
 ## Phi coefficients (precision model with identity link):
 ##       Estimate Std. Error z value Pr(>|z|)
-## (phi)   2.4333     0.0442      55   <2e-16
+## (phi)   2.4563     0.0447   54.95   <2e-16
 ##          
 ## (phi) ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 ## 
 ## Type of estimator: ML (maximum likelihood)
-## Log-likelihood:   81 on 8 Df
-## Pseudo R-squared: 0.00115
-## Number of iterations: 17 (BFGS) + 1 (Fisher scoring)
+## Log-likelihood:  83.3 on 8 Df
+## Pseudo R-squared: 0.002072
+## Number of iterations: 16 (BFGS) + 1 (Fisher scoring)
 \end{verbatim}
 
 The output provides coefficients and the ``Phi'' coefficients. Both are
@@ -3084,13 +3272,13 @@ behavior, and the subject's race.
 
 \begin{verbatim}
 ##       (Intercept)      asthmaAsthma 
-##           2.50002           1.35608 
+##       2.500022059       1.356081567 
 ##           famsize               sed 
-##          -0.04213           0.00136 
+##      -0.042132178       0.001362226 
 ## raceOtherHispanic         raceWhite 
-##           1.18500           0.11395 
+##       1.184995689       0.113949209 
 ##         raceBlack         raceOther 
-##           0.10054          -0.55548
+##       0.100536695      -0.555478773
 \end{verbatim}
 
 \begin{Shaded}
@@ -3100,33 +3288,33 @@ behavior, and the subject's race.
 \end{Shaded}
 
 \begin{verbatim}
-##                   Estimate Naive S.E.
-## (Intercept)        2.49551   0.286782
-## asthmaAsthma       1.35304   0.186710
-## famsize           -0.03949   0.046195
-## sed                0.00136   0.000336
-## raceOtherHispanic  1.19248   0.307556
-## raceWhite          0.11619   0.253155
-## raceBlack          0.09680   0.262583
-## raceOther         -0.55505   0.280930
-##                   Naive z Robust S.E.
-## (Intercept)         8.702    0.269043
-## asthmaAsthma        7.247    0.213798
-## famsize            -0.855    0.045747
-## sed                 4.039    0.000355
-## raceOtherHispanic   3.877    0.330961
-## raceWhite           0.459    0.227969
-## raceBlack           0.369    0.236050
-## raceOther          -1.976    0.240657
-##                   Robust z
-## (Intercept)          9.276
-## asthmaAsthma         6.329
-## famsize             -0.863
-## sed                  3.823
-## raceOtherHispanic    3.603
-## raceWhite            0.510
-## raceBlack            0.410
-## raceOther           -2.306
+##                       Estimate   Naive S.E.
+## (Intercept)        2.495509790 0.2867816215
+## asthmaAsthma       1.353039007 0.1867101195
+## famsize           -0.039489294 0.0461945052
+## sed                0.001358042 0.0003362291
+## raceOtherHispanic  1.192481318 0.3075562837
+## raceWhite          0.116185743 0.2531554533
+## raceBlack          0.096800821 0.2625826864
+## raceOther         -0.555053605 0.2809301544
+##                      Naive z  Robust S.E.
+## (Intercept)        8.7017773 0.2690426648
+## asthmaAsthma       7.2467363 0.2137975620
+## famsize           -0.8548483 0.0457474654
+## sed                4.0390382 0.0003551901
+## raceOtherHispanic  3.8772783 0.3309608614
+## raceWhite          0.4589502 0.2279687738
+## raceBlack          0.3686489 0.2360498473
+## raceOther         -1.9757708 0.2406566044
+##                     Robust z
+## (Intercept)        9.2755169
+## asthmaAsthma       6.3285989
+## famsize           -0.8632018
+## sed                3.8234244
+## raceOtherHispanic  3.6030886
+## raceWhite          0.5096564
+## raceBlack          0.4100864
+## raceOther         -2.3064133
 \end{verbatim}
 
 \begin{Shaded}
@@ -3146,46 +3334,46 @@ behavior, and the subject's race.
 ##     id = df2$sdmvstra, corstr = "unstructured")
 ## 
 ##  Coefficients:
-##                    Estimate   Std.err  Wald
-## (Intercept)        2.557936  0.270072 89.71
-## asthmaAsthma       1.349289  0.215620 39.16
-## famsize           -0.044672  0.045709  0.96
-## sed                0.001301  0.000355 13.45
-## raceOtherHispanic  1.175037  0.331898 12.53
-## raceWhite          0.080638  0.229566  0.12
-## raceBlack          0.064203  0.236326  0.07
-## raceOther         -0.590205  0.241338  5.98
-##                   Pr(>|W|)    
-## (Intercept)        < 2e-16 ***
-## asthmaAsthma       3.9e-10 ***
-## famsize            0.32841    
-## sed                0.00024 ***
-## raceOtherHispanic  0.00040 ***
-## raceWhite          0.72539    
-## raceBlack          0.78587    
-## raceOther          0.01446 *  
+##                     Estimate    Std.err
+## (Intercept)        2.5579361  0.2700717
+## asthmaAsthma       1.3492892  0.2156202
+## famsize           -0.0446716  0.0457087
+## sed                0.0013015  0.0003548
+## raceOtherHispanic  1.1750373  0.3318983
+## raceWhite          0.0806377  0.2295661
+## raceBlack          0.0642028  0.2363255
+## raceOther         -0.5902049  0.2413379
+##                     Wald Pr(>|W|)    
+## (Intercept)       89.706  < 2e-16 ***
+## asthmaAsthma      39.159 3.91e-10 ***
+## famsize            0.955 0.328415    
+## sed               13.454 0.000244 ***
+## raceOtherHispanic 12.534 0.000400 ***
+## raceWhite          0.123 0.725392    
+## raceBlack          0.074 0.785875    
+## raceOther          5.981 0.014463 *  
 ## ---
 ## Signif. codes:  
 ##   0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1  ' ' 1
 ## 
 ## Estimated Scale Parameters:
 ##             Estimate Std.err
-## (Intercept)     19.5   0.784
+## (Intercept)    19.49  0.7843
 ## 
 ## Correlation: Structure = unstructured  Link = identity 
 ## 
 ## Estimated Correlation Parameters:
 ##           Estimate Std.err
-## alpha.1:2   0.1248  0.0165
-## alpha.1:3   0.4207  0.1034
-## alpha.1:4   2.8964  1.0668
-## alpha.1:5  -1.8545  0.2028
-## alpha.2:3   0.1224  0.0633
-## alpha.2:4  -0.0894  0.2023
-## alpha.2:5   0.2054  0.0372
-## alpha.3:4  -0.4960  0.1123
-## alpha.3:5   0.2504  0.0388
-## alpha.4:5  -0.6694  0.0876
+## alpha.1:2  0.12480 0.01654
+## alpha.1:3  0.42070 0.10339
+## alpha.1:4  2.89640 1.06678
+## alpha.1:5 -1.85447 0.20276
+## alpha.2:3  0.12238 0.06330
+## alpha.2:4 -0.08935 0.20229
+## alpha.2:5  0.20541 0.03720
+## alpha.3:4 -0.49597 0.11227
+## alpha.3:5  0.25045 0.03879
+## alpha.4:5 -0.66939 0.08761
 ## Number of clusters:   4109   Maximum cluster size: 5
 \end{verbatim}
 
@@ -3995,7 +4183,7 @@ be used.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-106-1}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-111-1}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4003,7 +4191,7 @@ be used.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-106-2}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-111-2}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4011,7 +4199,7 @@ be used.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-106-3}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-111-3}
 
 We can get the coefficients at a reasonable \texttt{lambda}.
 Specifically, we use the ``1-SE rule'' (near the right hand side
@@ -4027,15 +4215,15 @@ vertical dashed lines in the above plots) by
 
 \begin{verbatim}
 ## 8 x 1 sparse Matrix of class "dgCMatrix"
-##                     1
-## (Intercept)  5.664338
-## riagendr     0.038333
-## ridageyr    -0.000492
-## ridreth3     0.046674
-## race         0.077271
-## famsize     -0.034977
-## dep          0.009206
-## asthma       0.088931
+##                      1
+## (Intercept)  5.5356427
+## riagendr     0.0497064
+## ridageyr    -0.0006757
+## ridreth3     0.0576589
+## race         0.0988363
+## famsize     -0.0462880
+## dep          0.0122157
+## asthma       0.1164337
 \end{verbatim}
 
 \begin{Shaded}
@@ -4046,14 +4234,14 @@ vertical dashed lines in the above plots) by
 
 \begin{verbatim}
 ## 8 x 1 sparse Matrix of class "dgCMatrix"
-##                 1
-## (Intercept) 5.707
-## riagendr    .    
-## ridageyr    .    
-## ridreth3    .    
-## race        0.135
-## famsize     .    
-## dep         .    
+##                  1
+## (Intercept) 5.4647
+## riagendr    .     
+## ridageyr    .     
+## ridreth3    .     
+## race        0.2087
+## famsize     .     
+## dep         .     
 ## asthma      .
 \end{verbatim}
 
@@ -4065,15 +4253,15 @@ vertical dashed lines in the above plots) by
 
 \begin{verbatim}
 ## 8 x 1 sparse Matrix of class "dgCMatrix"
-##                    1
-## (Intercept)  5.36891
-## riagendr     .      
-## ridageyr     .      
-## ridreth3     .      
-## race         0.25955
-## famsize     -0.03259
-## dep          0.00455
-## asthma       .
+##                  1
+## (Intercept) 5.4775
+## riagendr    .     
+## ridageyr    .     
+## ridreth3    .     
+## race        0.2048
+## famsize     .     
+## dep         .     
+## asthma      .
 \end{verbatim}
 
 Although we briefly introduce these regression methods, they are indeed
@@ -4097,7 +4285,36 @@ variables to be predictors.
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(randomForest)}
+\end{Highlighting}
+\end{Shaded}
 
+\begin{verbatim}
+## randomForest 4.6-12
+\end{verbatim}
+
+\begin{verbatim}
+## Type rfNews() to see new features/changes/bug fixes.
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Attaching package: 'randomForest'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:dplyr':
+## 
+##     combine
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:ggplot2':
+## 
+##     margin
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \NormalTok{fit_rf <-}\StringTok{ }\KeywordTok{randomForest}\NormalTok{(sed_hr }\OperatorTok{~}\StringTok{ }\NormalTok{., }\DataTypeTok{data =}\NormalTok{ df2)}
 \NormalTok{fit_rf}
 \end{Highlighting}
@@ -4111,8 +4328,8 @@ variables to be predictors.
 ##                      Number of trees: 500
 ## No. of variables tried at each split: 2
 ## 
-##           Mean of squared residuals: 10.8
-##                     % Var explained: 3.88
+##           Mean of squared residuals: 10.82
+##                     % Var explained: 3.75
 \end{verbatim}
 
 We can find out which variables were important in the model via:
@@ -4124,7 +4341,7 @@ We can find out which variables were important in the model via:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-109-1}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-114-1}
 
 We can see that age (\texttt{ridageyr}) is the most important variable,
 depression (\texttt{dep}) follows, with the family size
@@ -4195,16 +4412,16 @@ use the fake data we started with in Chapter 2.
 
 \begin{verbatim}
 ##    ID Var_Time1 Var_Time2
-## 1   1     1.000     0.905
-## 2   2     0.231     0.965
-## 3   3     0.554     0.813
-## 4   4    -1.485     0.678
-## 5   5    -0.858     0.516
-## 6   6     0.318     0.493
-## 7   7    -0.362     0.717
-## 8   8     0.523     0.775
-## 9   9    -0.608     0.245
-## 10 10    -0.935     0.695
+## 1   1   -0.6850   0.60163
+## 2   2   -0.3283   0.12130
+## 3   3    1.6455   0.92441
+## 4   4   -1.3931   0.73833
+## 5   5    0.6329   0.79659
+## 6   6   -1.6164   0.18960
+## 7   7   -1.2941   0.91965
+## 8   8   -0.5748   0.18988
+## 9   9   -0.3696   0.73826
+## 10 10    1.7610   0.05206
 \end{verbatim}
 
 Notice that this data frame is in wide format (each ID is one row and
@@ -4224,27 +4441,27 @@ measures (in this case, \texttt{Var\_Time1} and \texttt{Var\_Time2}).
 \end{Shaded}
 
 \begin{verbatim}
-##    ID  measures values
-## 1   1 Var_Time1  1.000
-## 2   2 Var_Time1  0.231
-## 3   3 Var_Time1  0.554
-## 4   4 Var_Time1 -1.485
-## 5   5 Var_Time1 -0.858
-## 6   6 Var_Time1  0.318
-## 7   7 Var_Time1 -0.362
-## 8   8 Var_Time1  0.523
-## 9   9 Var_Time1 -0.608
-## 10 10 Var_Time1 -0.935
-## 11  1 Var_Time2  0.905
-## 12  2 Var_Time2  0.965
-## 13  3 Var_Time2  0.813
-## 14  4 Var_Time2  0.678
-## 15  5 Var_Time2  0.516
-## 16  6 Var_Time2  0.493
-## 17  7 Var_Time2  0.717
-## 18  8 Var_Time2  0.775
-## 19  9 Var_Time2  0.245
-## 20 10 Var_Time2  0.695
+##    ID  measures   values
+## 1   1 Var_Time1 -0.68504
+## 2   2 Var_Time1 -0.32827
+## 3   3 Var_Time1  1.64550
+## 4   4 Var_Time1 -1.39310
+## 5   5 Var_Time1  0.63288
+## 6   6 Var_Time1 -1.61643
+## 7   7 Var_Time1 -1.29407
+## 8   8 Var_Time1 -0.57476
+## 9   9 Var_Time1 -0.36957
+## 10 10 Var_Time1  1.76096
+## 11  1 Var_Time2  0.60163
+## 12  2 Var_Time2  0.12130
+## 13  3 Var_Time2  0.92441
+## 14  4 Var_Time2  0.73833
+## 15  5 Var_Time2  0.79659
+## 16  6 Var_Time2  0.18960
+## 17  7 Var_Time2  0.91965
+## 18  8 Var_Time2  0.18988
+## 19  9 Var_Time2  0.73826
+## 20 10 Var_Time2  0.05206
 \end{verbatim}
 
 As you can see, it took the variable names and put that in our first
@@ -4266,16 +4483,16 @@ the values (\texttt{values}).
 
 \begin{verbatim}
 ##    ID Var_Time1 Var_Time2
-## 1   1     1.000     0.905
-## 2   2     0.231     0.965
-## 3   3     0.554     0.813
-## 4   4    -1.485     0.678
-## 5   5    -0.858     0.516
-## 6   6     0.318     0.493
-## 7   7    -0.362     0.717
-## 8   8     0.523     0.775
-## 9   9    -0.608     0.245
-## 10 10    -0.935     0.695
+## 1   1   -0.6850   0.60163
+## 2   2   -0.3283   0.12130
+## 3   3    1.6455   0.92441
+## 4   4   -1.3931   0.73833
+## 5   5    0.6329   0.79659
+## 6   6   -1.6164   0.18960
+## 7   7   -1.2941   0.91965
+## 8   8   -0.5748   0.18988
+## 9   9   -0.3696   0.73826
+## 10 10    1.7610   0.05206
 \end{verbatim}
 
 And we are back to the wide form.
@@ -4431,7 +4648,7 @@ Let's try it out with the vector we created earlier.
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 10.00  1.80  1.03
+## [1] 10.000  1.800  1.033
 \end{verbatim}
 
 Looks good but we may want to change a few aesthetics. In the following
@@ -4452,8 +4669,8 @@ code, we adjust it so we have each one labeled.
 \end{Shaded}
 
 \begin{verbatim}
-##    N Mean   SD
-## 1 10  1.8 1.03
+##    N Mean    SD
+## 1 10  1.8 1.033
 \end{verbatim}
 
 We will come back to this function and use it in some loops and see what
@@ -4479,8 +4696,8 @@ length of the vector, followed by the mean and SD.
 \end{Shaded}
 
 \begin{verbatim}
-##  [1]  6.79  8.78  3.48 11.12  6.30  4.74
-##  [7] 10.84  4.42  7.26  3.23
+##  [1]  5.402  7.954  8.998 10.294  7.266
+##  [6] 10.199  9.100  3.788  5.548  6.849
 \end{verbatim}
 
 We will compare the speed of this to other ways of adding two variables
@@ -4521,8 +4738,8 @@ observations.
 \end{Shaded}
 
 \begin{verbatim}
-##  [1]  6.79  8.78  3.48 11.12  6.30  4.74
-##  [7] 10.84  4.42  7.26  3.23
+##  [1]  5.402  7.954  8.998 10.294  7.266
+##  [6] 10.199  9.100  3.788  5.548  6.849
 \end{verbatim}
 
 Same results! But, we'll see later that the speed is much than the
@@ -4570,8 +4787,8 @@ For example, we can add two variables together here. We provide it the
 \end{Shaded}
 
 \begin{verbatim}
-##  [1]  6.79  8.78  3.48 11.12  6.30  4.74
-##  [7] 10.84  4.42  7.26  3.23
+##  [1]  5.402  7.954  8.998 10.294  7.266
+##  [6] 10.199  9.100  3.788  5.548  6.849
 \end{verbatim}
 
 The function \texttt{apply()} has three main arguments: a) the
@@ -4589,12 +4806,12 @@ We can also use one of our own functions such as
 
 \begin{verbatim}
 ## $v1
-##    N Mean   SD
-## 1 10  1.8 1.03
+##    N Mean    SD
+## 1 10  1.8 1.033
 ## 
 ## $v2
-##    N Mean   SD
-## 1 10  4.9 2.27
+##    N Mean    SD
+## 1 10 5.74 1.779
 \end{verbatim}
 
 This gives us a list of two elements, one for each variable, with the
@@ -4609,9 +4826,9 @@ function with \texttt{"rbind"}.
 \end{Shaded}
 
 \begin{verbatim}
-##     N Mean   SD
-## v1 10  1.8 1.03
-## v2 10  4.9 2.27
+##     N Mean    SD
+## v1 10 1.80 1.033
+## v2 10 5.74 1.779
 \end{verbatim}
 
 \texttt{tapply()} allows us to get information by a grouping factor. We
@@ -4627,7 +4844,7 @@ are going to add a factor variable to the data frame we are using
 
 \begin{verbatim}
 ##   0   1 
-## 2.2 1.4
+## 1.2 2.4
 \end{verbatim}
 
 We now have the means by each group. This, however, is probably replaced
@@ -4678,14 +4895,14 @@ highlighting the fact that anything that does something to an object in
 
 \begin{verbatim}
 ## Unit: nanoseconds
-##               expr   min    lq   mean median
-##    forloop(v1, v2)  9899 11172  19259  11960
-##  apply(df, 1, sum) 77027 80073 106120  83932
-##            v1 + v2   172   246    498    442
-##      uq    max neval cld
-##   19878  90364   100  b 
-##  116058 282783   100   c
-##     538   2683   100 a
+##               expr   min     lq   mean
+##    forloop(v1, v2) 10457  19540  40923
+##  apply(df, 1, sum) 80069 167352 235851
+##            v1 + v2   171    500   1531
+##    median     uq    max neval cld
+##   25429.0  33180 401630   100  b 
+##  224458.5 292370 940145   100   c
+##     939.5   2314   6564   100 a
 \end{verbatim}
 
 Of course, as it says the units are in nanoseconds. Whether a function
@@ -4717,9 +4934,9 @@ mean of the data.
 ## [2,]  1.8
 ## 
 ## $v2
-##      [,1]
-## [1,] 10.0
-## [2,]  4.9
+##       [,1]
+## [1,] 10.00
+## [2,]  5.74
 \end{verbatim}
 
 So we don't name the function but we design it like we would a named
@@ -4738,12 +4955,12 @@ Here's another example:
 
 \begin{verbatim}
 ## $v1
-##  [1] 1.94 5.81 3.87 7.75 3.87 1.94 3.87 1.94
-##  [9] 1.94 1.94
+##  [1] 1.936 5.809 3.873 7.746 3.873 1.936
+##  [7] 3.873 1.936 1.936 1.936
 ## 
 ## $v2
-##  [1] 5.09 5.08 1.30 6.26 3.78 3.29 7.77 3.00
-##  [9] 5.51 1.96
+##  [1]  4.949  5.569  7.868  7.076  5.921
+##  [6] 10.342  7.983  3.135  5.114  6.576
 \end{verbatim}
 
 We take \texttt{y} (again, the column of \texttt{df}), times it by two
@@ -4866,7 +5083,7 @@ we can do the following:
 ## (geom_point).
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-132-1} So now
+\includegraphics{_main_files/figure-latex/unnamed-chunk-137-1} So now
 \texttt{p1} has the information for this basic, and honestly fairly
 uninformative, plot. We'll use this feature to build on plots that we
 like.
@@ -4903,7 +5120,7 @@ plots.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-134-1}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-139-1}
 
 It's not amazing. There looks to be a lot of overlap of the points.
 Also, it would be nice to know general trend lines for each group.
@@ -4920,7 +5137,7 @@ Below, \texttt{alpha} refers to how transparent the points are,
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-135-1}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-140-1}
 
 It's getting better but we could still use some more features. We'll
 come back to this in the next sections.
@@ -4938,7 +5155,7 @@ the factor version of depression.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-136-1}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-141-1}
 
 This plot is, at best, mediocre. But there's more we can do.
 
@@ -4950,7 +5167,7 @@ This plot is, at best, mediocre. But there's more we can do.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-137-1}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-142-1}
 
 This now provides the (jittered) raw data points as well to hightlight
 the noise and the number of observations in each group.
@@ -4969,7 +5186,7 @@ groups.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-138-1}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-143-1}
 
 We used \texttt{stat\ =\ "identity"} to make it based on the mean
 (default is \texttt{count}), and \texttt{position\ =\ "dodge"} makes it
@@ -4987,7 +5204,7 @@ error bars.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-139-1}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-144-1}
 
 There's a lot in there but much of it is what you've seen before. For
 example, we use \texttt{alpha} in the \texttt{geom\_bar()} to tell it to
@@ -5014,7 +5231,7 @@ sedentary behavior, and asthma.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-140-1}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-145-1}
 
 Good start, but let's add some features.
 
@@ -5028,7 +5245,7 @@ Good start, but let's add some features.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-141-1}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-146-1}
 
 That looks a bit better. From here, let's go on to color schemes to make
 the plots a bit better.
@@ -5049,7 +5266,7 @@ the colors a bit using \texttt{scale\_color\_manual()}.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-142-1} Depending
+\includegraphics{_main_files/figure-latex/unnamed-chunk-147-1} Depending
 on your personal taste, you can adjust it with any color. On my blog,
 I've \href{https:/tysonstanley.github.io}{posted} the colors available
 in R (there are many).
@@ -5091,7 +5308,7 @@ we will differentiate between ``color'' and ``fill''.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-143-1}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-148-1}
 
 Just so you are aware:
 
@@ -5154,7 +5371,7 @@ theming options.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-145-1}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-150-1}
 
 \subsubsection*{Theme Classic}\label{theme-classic}
 \addcontentsline{toc}{subsubsection}{Theme Classic}
@@ -5165,7 +5382,7 @@ theming options.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-146-1}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-151-1}
 
 \subsubsection*{Theme Minimal}\label{theme-minimal}
 \addcontentsline{toc}{subsubsection}{Theme Minimal}
@@ -5176,7 +5393,7 @@ theming options.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-147-1}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-152-1}
 
 \subsubsection*{\texorpdfstring{Theme Economist (from
 \texttt{ggthemes})}{Theme Economist (from ggthemes)}}\label{theme-economist-from-ggthemes}
@@ -5190,7 +5407,7 @@ theming options.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-148-1}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-153-1}
 
 \subsubsection*{\texorpdfstring{Theme FiveThirtyEight (from
 \texttt{ggthemes})}{Theme FiveThirtyEight (from ggthemes)}}\label{theme-fivethirtyeight-from-ggthemes}
@@ -5203,7 +5420,7 @@ theming options.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-149-1}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-154-1}
 
 \subsubsection*{\texorpdfstring{Theme Tufte (from
 \texttt{ggthemes})}{Theme Tufte (from ggthemes)}}\label{theme-tufte-from-ggthemes}
@@ -5216,7 +5433,7 @@ theming options.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-150-1}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-155-1}
 
 \subsubsection*{\texorpdfstring{Theme Stata (from
 \texttt{ggthemes})}{Theme Stata (from ggthemes)}}\label{theme-stata-from-ggthemes}
@@ -5229,7 +5446,7 @@ theming options.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-151-1}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-156-1}
 
 \subsubsection*{Your Own Theme}\label{your-own-theme}
 \addcontentsline{toc}{subsubsection}{Your Own Theme}
@@ -5250,7 +5467,7 @@ idea.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-152-1}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-157-1}
 
 There are many more options but essentially if there is something you
 want to change, you probably can.
@@ -5271,7 +5488,7 @@ Using our last plot, we will also want to add good labels and/or titles.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-153-1}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-158-1}
 
 \section*{Facetting}\label{facetting}
 \addcontentsline{toc}{section}{Facetting}
@@ -5293,7 +5510,7 @@ variable (e.g., asthma) to highlight differences in the relationship.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-154-1}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-159-1}
 
 You can facet by more than one variable and it will create separate
 panels for each combination of the facetting variables.
@@ -5317,9 +5534,7 @@ Pitfalls}\label{chapter-10-where-to-go-from-here-and-common-pitfalls}
 Common Pitfalls}
 
 \begin{quote}
-``The journey of a thousand miles begins with one step.''
-
---- Lao Tzu
+``The journey of a thousand miles begins with one step.'' --- Lao Tzu
 \end{quote}
 
 There are many resources that can aid in developing your \texttt{R}
@@ -5506,27 +5721,27 @@ cross-validated ``glmnet'' model?
 Is the following data in wide or long form? How do you know?
 
 \begin{verbatim}
-##    ID  measures  values
-## 1   1 Var_Time1  0.2049
-## 2   2 Var_Time1  1.3175
-## 3   3 Var_Time1  0.3736
-## 4   4 Var_Time1 -1.6175
-## 5   5 Var_Time1 -1.2925
-## 6   6 Var_Time1  0.7854
-## 7   7 Var_Time1 -0.5777
-## 8   8 Var_Time1  0.1773
-## 9   9 Var_Time1 -0.4818
-## 10 10 Var_Time1 -1.0493
-## 11  1 Var_Time2  0.4395
-## 12  2 Var_Time2  0.5113
-## 13  3 Var_Time2  0.7480
-## 14  4 Var_Time2  0.0208
-## 15  5 Var_Time2  0.7252
-## 16  6 Var_Time2  0.9650
-## 17  7 Var_Time2  0.1318
-## 18  8 Var_Time2  0.4774
-## 19  9 Var_Time2  0.6851
-## 20 10 Var_Time2  0.1312
+##    ID  measures   values
+## 1   1 Var_Time1 -0.67655
+## 2   2 Var_Time1 -1.50596
+## 3   3 Var_Time1 -0.46429
+## 4   4 Var_Time1  0.98734
+## 5   5 Var_Time1 -0.64739
+## 6   6 Var_Time1 -1.79699
+## 7   7 Var_Time1 -0.64113
+## 8   8 Var_Time1  0.44428
+## 9   9 Var_Time1  0.02218
+## 10 10 Var_Time1 -1.80685
+## 11  1 Var_Time2  0.93799
+## 12  2 Var_Time2  0.13771
+## 13  3 Var_Time2  0.71397
+## 14  4 Var_Time2  0.74489
+## 15  5 Var_Time2  0.55565
+## 16  6 Var_Time2  0.75221
+## 17  7 Var_Time2  0.01328
+## 18  8 Var_Time2  0.05400
+## 19  9 Var_Time2  0.68700
+## 20 10 Var_Time2  0.02057
 \end{verbatim}
 
 To make your data long form but it is currently in wide form, what

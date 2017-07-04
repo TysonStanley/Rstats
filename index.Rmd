@@ -20,6 +20,12 @@ github-repo: "tysonstanley/tysonstanley.github.io"
 cover-image: "Cover.jpg"
 ---
 
+```{r, echo=FALSE}
+library(foreign)
+library(furniture)
+```
+
+
 # Preface {-}
 
 > "Somewhere, something incredible is waiting to be known."

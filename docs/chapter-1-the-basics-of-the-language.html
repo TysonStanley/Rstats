@@ -135,6 +135,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#left-or-right-join"><i class="fa fa-check"></i>Left or Right Join</a></li>
 <li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#full-join"><i class="fa fa-check"></i>Full Join</a></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#mutate-and-transmute"><i class="fa fa-check"></i>Mutate and Transmute</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#wrap-it-up"><i class="fa fa-check"></i>Wrap it up</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html"><i class="fa fa-check"></i>Chapter 3: Understanding and Describing Your Data</a><ul>
 <li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#descriptive-statistics"><i class="fa fa-check"></i>Descriptive Statistics</a></li>
@@ -234,17 +236,18 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="chapter-1-the-basics-of-the-language" class="section level1 unnumbered">
 <h1>Chapter 1: The Basics of the Language</h1>
 <blockquote>
-<p>“Success is neither magical nor mysterious. Success is the natural consequence of consistently applying the basic fundamentals.”</p>
-<p>— Jim Rohn</p>
+<p>“Success is neither magical nor mysterious. Success is the natural consequence of consistently applying the basic fundamentals.” — Jim Rohn</p>
 </blockquote>
 <p><code>R</code> is an open source statistical software made by statisticians. This means it generally speaks the language of statistics. This is very helpful when it comes running analyses but can be confusing when starting to understand the code.</p>
 <p>The best way to begin to learn it is by jumping right into it. This chapter will provide the background and foundation to start using <code>R</code> right away. This background revolves around data and functions—two types of objects.</p>
 <div id="objects" class="section level2 unnumbered">
 <h2>Objects</h2>
-<p><code>R</code> is built on a few different types of virtual objects. An object, just like in the physical world, is something you can do things with. In the real world, we have objects that we use regularly. For example, we have chairs. Chairs are great for some things (sitting on, sleeping on) and horrible at others (playing basketball, flying). Similarly, in <code>R</code> each type of object is useful for certain things. The data types that we will discuss below are certain types of objects.</p>
-
-<p>Because this is so analogous to the real world, it becomes quite natural to work with. You can have many objects in the computer’s memory, which allows flexbility in analyzing many different things simply within a single <code>R</code> session.<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a></p>
-<p>For your work, the first objects you work with will be data in various forms. Below, we explain the different data types and how they can combine into what is known as a <code>data.frame</code>.</p>
+<p><code>R</code> is built on a few different types of virtual objects. An object, just like in the physical world, is something you can do things with. In the real world, we have objects that we use regularly. For example, we have chairs. Chairs are great for some things (sitting on, sleeping on, enjoying the beach) and horrible at others (playing basketball, flying, floating in the ocean). Similarly, in <code>R</code> each type of object is useful for certain things. The data types that we will discuss below are certain types of objects.</p>
+<div class="figure">
+<img src="chair.jpg" alt="Chair" />
+<p class="caption">Chair</p>
+</div>
+<p>Because this is so analogous to the real world, it becomes quite natural to work with. You can have many objects in the computer’s memory, which allows flexbility in analyzing many different things simply within a single <code>R</code> session.<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a> The main object types that you’ll work with are presented in the following table.</p>
 <table>
 <thead>
 <tr class="header">
@@ -263,7 +266,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </tr>
 <tr class="odd">
 <td align="left">Data Frame</td>
-<td align="left">An n x p table of data (can be numeric or categorical)</td>
+<td align="left">An n x p table of data (numeric and/or categorical)</td>
 </tr>
 <tr class="even">
 <td align="left">Function</td>
@@ -271,11 +274,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </tr>
 <tr class="odd">
 <td align="left">Operator</td>
-<td align="left">A special type of function that is generally used to assign</td>
+<td align="left">A special type of function (e.g. <code>&lt;-</code></td>
 </tr>
 </tbody>
 </table>
-<p>Each object type will be introduced in this chapter, highlighting their definition and use.</p>
+<p>Each of these objects will be introduced in this chapter, highlighting their definition and use. For your work, the first objects you work with will be data in various forms. Below, we explain the different data types and how they can combine into what is known as a <code>data.frame</code>.</p>
 <blockquote>
 <p>Early Advice: Don’t get overwhelmed. It may feel like there is a lot to learn, but taking things one at a time will work surprisingly quickly. I’ve designed this book to discuss what you need to know from the beginning. Other topics that are not discussed are things you can learn later and do not need to be of your immediate concern.</p>
 </blockquote>
@@ -359,8 +362,8 @@ df[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, 
 </div>
 <div id="functions" class="section level2 unnumbered">
 <h2>Functions</h2>
-<p>Earlier we mentioned that <code>c()</code> was a “function.” Functions are how we do things we our data. There are probably hundreds of thousands of functions at your reach. In fact, you can create your own! We’ll discuss that more later.</p>
-<p>For now, know that each function has a name—for named functions—(the function name of <code>c()</code> is “c”), arguments, and output of some sort. Arguments are the information that you provide the function between the parenthases (e.g. we gave <code>c()</code> a bunch of numbers; we gave <code>factor()</code> two arguments—the variable and the labels for the variable’s levels). Output from a function varies to a massive degree but, in general, the output is what you are using the function for (e.g., for <code>c()</code> we wanted to create a vector—a variable—of data).</p>
+<p>Earlier we mentioned that <code>c()</code> was a “function.” Functions are how we do things with our data. There are probably hundreds of thousands of functions at your reach. In fact, you can create your own! We’ll discuss that more in later chapters.</p>
+<p>For now, know that each named function has a name (the function name of <code>c()</code> is “c”), arguments, and output of some sort. Arguments are the information that you provide the function between the parenthases (e.g. we gave <code>c()</code> a bunch of numbers; we gave <code>factor()</code> two arguments—the variable and the labels for the variable’s levels). Output from a function varies to a massive degree but, in general, the output is what you are using the function for (e.g., for <code>c()</code> we wanted to create a vector—a variable—of data).</p>
 <p>At any point, by typing:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">?functionname</code></pre></div>
 <p>we get information in the “Help” window. It provides information on how to use the function, including arguments, output, and examples.</p>

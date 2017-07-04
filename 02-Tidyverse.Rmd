@@ -1,20 +1,16 @@
 
 # Chapter 2: Working with and Cleaning Your Data {-}
 
-> "Organizing is what you do before you do something, so that when you do it, it is not all mixed up."
->
-> --- A. A. Milne
+> "Organizing is what you do before you do something, so that when you do it, it is not all mixed up." --- A. A. Milne
 
-In order to work with and clean your data in the most up-to-date manner, we are going to be using the "tidyverse" group of methods. The tidyverse[^hadley] is a group of packages[^pack] that provide a simple syntax that can do many basic (and complex) data manipulating. They form a sort of "grammar" of data manipulation that simplifies both the coding approach and the way researchers think about working with data. 
+In order to work with and clean your data in the most modern and straightforward way, we are going to be using the "tidyverse" group of methods. The tidyverse[^hadley] is a group of packages[^pack] that provide a simple syntax that can do many basic (and complex) data manipulating. They form a sort of "grammar" of data manipulation that simplifies both the coding approach and the way researchers think about working with data. 
 
 The group of packages can be downloaded via:
-
 ```{r, eval=FALSE}
 install.packages("tidyverse")
 ```
 
 After downloading it, to use its functions, simply use:
-
 ```{r}
 library(tidyverse)
 ```
@@ -48,6 +44,7 @@ There are several methods that help create tidy data:
 3. Grouping and Summarizing
 4. Reshaping
 5. Joining (merging)
+6. Mutate and Transmute
 
 > Heads up! Understanding these tools requires an understanding of what ways data can be moved around. For example, reshaping can refer to moving data into a more wide-format or long-format, can refer to summarizing or aggregating, and can refer to joining or binding. All of these are necessary to work with data flexibly. Because of this, we suggest taking your time to fully understand what each function is doing with the data.
 
@@ -206,7 +203,7 @@ install.packages("furniture")
 ```
 
 ```{r, message=FALSE, warning=FALSE}
-library(furniture)
+#library(furniture)
 
 dem_df$citizen <- washer(dem_df$citizen, 7)            ## Changes all 7's to NA's
 dem_df$citizen <- washer(dem_df$citizen, 2, value=0)   ## Changes all 2's to 0's
@@ -237,11 +234,11 @@ This pattern of grouping and summarizing is something that will follow us throug
 
 ## Reshaping {-}
 
-Earlier we described the differences between wide and long (or tidy) form. Now that you have an idea of the differences, we are going to introduce how to change from one to the other. Several functions exist for just this purpose, including `gather()` from the `tidyr` package and `reshape()` in the default `stats` package. Since these can be limited, we are going to teach two functions that can be used in nearly any reshaping situation. For now, though, we will keep in simple.
+Earlier we described the differences between wide and long (or tidy) form. Now that you have an idea of the differences, we are going to introduce how to change from one to the other. Several functions exist for just this purpose, including `gather()` from the `tidyr` package and `reshape()` in the default `stats` package. Since these can be limited in certain situations, we are going to teach two functions that can be used in nearly any reshaping situation. For now, though, we will keep in simple.
 
-First, we will go from wide to long using `long()` from the `furniture` package.[^furniture1] We are using the ficticious data for the example of wide format from above.
+First, we will go from wide to long form using `long()` from the `furniture` package.[^furniture1] We are using the ficticious data for the example of wide format from above.
 ```{r}
-library(furniture)
+#library(furniture)
 df_wide <- data.frame("ID"=c(1:10), 
                       "Var_Time1"=rnorm(10), 
                       "Var_Time2"=runif(10))
@@ -250,7 +247,7 @@ df_long <- long(df_wide,
                 v.names = "Var")
 df_long
 ```
-We provided the data (`df_wide`), the time varying variables (`c("Var_Time1", "Var_Time2")`), and told it what we should name the value variable (`v.names = "Var"`). 
+We provided the data (`df_wide`), the time varying variables (`c("Var_Time1", "Var_Time2")`), and told it what we should name the value variable (`v.names = "Var"`). Note that the function guessed, based on its name, that the variable `ID` was the identifying variable.
 
 This function automatically assumes each observation is a time point, thus the `time` variable. We can easily change that by adding the argument `timevar` and giving it a name (e.g., `timevar = "cluster"`).
 
@@ -264,7 +261,7 @@ df_wide <- wide(df_long,
                 timevar = "Time")
 df_wide
 ```
-Here, we provided the data `df_long` and the variable name (`Var`) that had the values and (`Time`) that contained the time labels (in this case, just numbers). With a little bit of code we can move data around without any copy-pasting that is so error-prone.
+Here, we provided the data `df_long` and the variable name (`Var`) that had the values and (`Time`) that contained the time labels (in this case, just numbers). With a little bit of code we can move data around without any copy-pasting that is so error-prone. Again, note that the function guessed, based on its name, that the variable `ID` was the identifying variable.
 
 
 ## Joining (merging) {-}
@@ -275,8 +272,9 @@ We currently have 4 data sets that have mostly the same people in them but with 
 
 When we merge a data set, we combine them based on some ID variable(s). Here, this is simple since each individual is given a unique identifier in the variable `seqn`. Within the `dplyr` package (part of the tidyverse) there are four main joining functions: `inner_join`, `left_join`, `right_join` and `full_join`. Each join combines the data in slightly different ways. 
 
+The figure below shows each type of join in Venn Diagram form. Each are discussed below.
+
 ![Joining](Joining.jpg)
-\caption{The four ways to join two data sets together.}
 
 
 ### Inner Join {-}
@@ -319,7 +317,65 @@ So now `df` is the the joined data set of all four. We started with `dem_df` joi
 
 For many analyses in later chapters, we will use this new `df` object that is the combination of all the data sets that we had before. Whenever this is the case, this data will be explicitly referenced. Note, that in addition to what was shown in this chapter, a few other cleaning tasks were done on the data. This final version of `df` can be found at [tysonstanley.github.io/R](http://www.tysonstanley.github.io/R).
 
+## Mutate and Transmute {-}
 
+Earlier we showed how to create a new variable or clean an existing one. We used the base `R` way for these. However, a great way to add and change variables is using `mutate()`.
+
+```{r}
+df_fake <- data.frame("ID"=c(1:10), 
+                      "Var1"=rnorm(10), 
+                      "Var2"=runif(10))
+
+df_fake <- df_fake %>%
+  mutate(Var3 = Var1 + Var2,
+         Var4 = Var1 * Var2 + Var3)
+df_fake
+```
+The benefit is in the readability of the code. We repeat things like the name of the data frame much less (only once here). I highly recommend working this way.
+
+To highlight its benefits on real data, let's go back to our NHANES data (now called `df`). First, we are going to create an overall depression variable that is the sum of all the depression items (we could do IRT or some other way of combining them but that is not the point here). Below, we do three things:
+
+1. We clean up each depression item using `washer()` since both "7" and "9" are placeholders for missing values. We take override the original variable with the cleaned one.
+2. Next, we sum all the items into a new variable called `dep`.
+3. Finally, we create a dichotomized variable called `dep2` using nested `ifelse()` functions. The `ifelse()` statements read: if condition holds (`dep` is greater than or equal to `10`), then `1`, else if condition holds (`dep` is less than `10`), then `0`, else `NA`. The basic build of the function is: `ifelse(condition, value if true, value if false)`.
+
+In the end, we are creating a new data frame called `df2` with the new and improved `df` with the items cleaned and depression summed and dichotomized.
+```{r}
+df2 <- df %>%
+  mutate(dpq010 = washer(dpq010, 7,9),
+         dpq020 = washer(dpq020, 7,9),
+         dpq030 = washer(dpq030, 7,9),
+         dpq040 = washer(dpq040, 7,9),
+         dpq050 = washer(dpq050, 7,9),
+         dpq060 = washer(dpq060, 7,9),
+         dpq070 = washer(dpq070, 7,9),
+         dpq080 = washer(dpq080, 7,9),
+         dpq090 = washer(dpq090, 7,9),
+         dpq100 = washer(dpq100, 7,9)) %>%
+  mutate(dep = dpq010 + dpq020 + dpq030 + dpq040 + dpq050 +
+               dpq060 + dpq070 + dpq080 + dpq090) %>%
+  mutate(dep2 = factor(ifelse(dep >= 10, 1,
+                       ifelse(dep < 10, 0, NA))))
+```
+
+
+
+## Wrap it up {-}
+
+Let's put all the pieces together that we've learned in the chapter together on this new `df` data frame we just created. Below, we using piping, selecting, filtering, grouping, and summarizing.
+
+```{r}
+df2 %>%
+  select(ridageyr, riagendr, mcq010, dep) %>%
+  filter(ridageyr > 10 & ridageyr < 40) %>%
+  group_by(riagendr) %>%
+  summarize(asthma = mean(mcq010, na.rm=TRUE),
+            depr   = mean(dep, na.rm=TRUE))
+```
+
+We can see that males (`riagendr = 1`) have nearly identical asthma levels but lower depression levels than their female counterparts. 
+
+Ultimately, I hope you see the benefit to using these methods. With these methods, you can clean, reshape, and summarize your data. Because these are foundational, we will apply these methods throughout the book. 
 
 
 

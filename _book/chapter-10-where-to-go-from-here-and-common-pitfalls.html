@@ -135,6 +135,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#left-or-right-join"><i class="fa fa-check"></i>Left or Right Join</a></li>
 <li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#full-join"><i class="fa fa-check"></i>Full Join</a></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#mutate-and-transmute"><i class="fa fa-check"></i>Mutate and Transmute</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#wrap-it-up"><i class="fa fa-check"></i>Wrap it up</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html"><i class="fa fa-check"></i>Chapter 3: Understanding and Describing Your Data</a><ul>
 <li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#descriptive-statistics"><i class="fa fa-check"></i>Descriptive Statistics</a></li>
@@ -234,8 +236,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="chapter-10-where-to-go-from-here-and-common-pitfalls" class="section level1 unnumbered">
 <h1>Chapter 10: Where to Go from Here and Common Pitfalls</h1>
 <blockquote>
-<p>“The journey of a thousand miles begins with one step.”</p>
-<p>— Lao Tzu</p>
+<p>“The journey of a thousand miles begins with one step.” — Lao Tzu</p>
 </blockquote>
 <p>There are many resources that can aid in developing your <code>R</code> skills from here. We have introduced the basics of <code>R</code>, helping you take a few steps on your journey of understanding <code>R</code>. We have focused on the ones that are most important for researchers in the health, behavioral, and social sciences.</p>
 <p>Since this has been a primer, we hope that you will continue your learning of <code>R</code> via the various sources available at little to no cost. Just like this book, many <code>R</code> books are available online as well as in print. This allows you to explore and learn online at your own pace without having to buy a bunch of books or other resources.</p>
@@ -328,27 +329,27 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="question-15" class="section level4 unnumbered">
 <h4>Question 15</h4>
 <p>Is the following data in wide or long form? How do you know?</p>
-<pre><code>##    ID  measures  values
-## 1   1 Var_Time1 -0.1183
-## 2   2 Var_Time1 -0.0587
-## 3   3 Var_Time1 -1.9499
-## 4   4 Var_Time1 -1.0410
-## 5   5 Var_Time1  0.3914
-## 6   6 Var_Time1 -0.8334
-## 7   7 Var_Time1  0.7465
-## 8   8 Var_Time1  0.5367
-## 9   9 Var_Time1  0.3974
-## 10 10 Var_Time1  0.2663
-## 11  1 Var_Time2  0.3906
-## 12  2 Var_Time2  0.4174
-## 13  3 Var_Time2  0.3347
-## 14  4 Var_Time2  0.4040
-## 15  5 Var_Time2  0.5840
-## 16  6 Var_Time2  0.6032
-## 17  7 Var_Time2  0.1260
-## 18  8 Var_Time2  0.6753
-## 19  9 Var_Time2  0.8427
-## 20 10 Var_Time2  0.8217</code></pre>
+<pre><code>##    ID  measures    values
+## 1   1 Var_Time1  0.524114
+## 2   2 Var_Time1  0.415746
+## 3   3 Var_Time1  0.996621
+## 4   4 Var_Time1  0.086854
+## 5   5 Var_Time1 -0.657405
+## 6   6 Var_Time1 -1.398749
+## 7   7 Var_Time1 -0.271779
+## 8   8 Var_Time1  0.997696
+## 9   9 Var_Time1  0.549537
+## 10 10 Var_Time1 -1.053267
+## 11  1 Var_Time2  0.815098
+## 12  2 Var_Time2  0.771251
+## 13  3 Var_Time2  0.845459
+## 14  4 Var_Time2  0.153719
+## 15  5 Var_Time2  0.132193
+## 16  6 Var_Time2  0.551353
+## 17  7 Var_Time2  0.004535
+## 18  8 Var_Time2  0.400338
+## 19  9 Var_Time2  0.079808
+## 20 10 Var_Time2  0.348209</code></pre>
 <p>To make your data long form but it is currently in wide form, what function(s) can you use?</p>
 </div>
 <div id="question-16" class="section level4 unnumbered">

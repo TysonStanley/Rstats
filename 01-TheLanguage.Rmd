@@ -1,9 +1,7 @@
 
 # Chapter 1: The Basics of the Language {-}
 
-> "Success is neither magical nor mysterious. Success is the natural consequence of consistently applying the basic fundamentals."
->
-> --- Jim Rohn
+> "Success is neither magical nor mysterious. Success is the natural consequence of consistently applying the basic fundamentals." --- Jim Rohn
 
 `R` is an open source statistical software made by statisticians. This means it generally speaks the language of statistics. This is very helpful when it comes running analyses but can be confusing when starting to understand the code. 
 
@@ -11,27 +9,25 @@ The best way to begin to learn it is by jumping right into it. This chapter will
 
 ## Objects {-}
 
-`R` is built on a few different types of virtual objects. An object, just like in the physical world, is something you can do things with. In the real world, we have objects that we use regularly. For example, we have chairs. Chairs are great for some things (sitting on, sleeping on) and horrible at others (playing basketball, flying). Similarly, in `R` each type of object is useful for certain things. The data types that we will discuss below are certain types of objects.
+`R` is built on a few different types of virtual objects. An object, just like in the physical world, is something you can do things with. In the real world, we have objects that we use regularly. For example, we have chairs. Chairs are great for some things (sitting on, sleeping on, enjoying the beach) and horrible at others (playing basketball, flying, floating in the ocean). Similarly, in `R` each type of object is useful for certain things. The data types that we will discuss below are certain types of objects.
 
-\includegraphics[width=\linewidth]{}
+![Chair](chair.jpg)
 
-Because this is so analogous to the real world, it becomes quite natural to work with. You can have many objects in the computer's memory, which allows flexbility in analyzing many different things simply within a single `R` session.[^rsession]
-
-For your work, the first objects you work with will be data in various forms. Below, we explain the different data types and how they can combine into what is known as a `data.frame`.
+Because this is so analogous to the real world, it becomes quite natural to work with. You can have many objects in the computer's memory, which allows flexbility in analyzing many different things simply within a single `R` session.[^rsession] The main object types that you'll work with are presented in the following table.
 
 ```{r, echo=FALSE}
 df = data.frame(
   "Object" = c("Vector", "Matrix", "Data Frame", "Function", "Operator"),
   "Description" = c("A single column of data ('a variable')",
                     "An n x p table of numeric data",
-                    "An n x p table of data (can be numeric or categorical)",
+                    "An n x p table of data (numeric and/or categorical)",
                     "Takes input and produces output---the workhorse of R",
-                    "A special type of function that is generally used to assign")
+                    "A special type of function (e.g. `<-`")
 )
 knitr::kable(df)
 ```
 
-Each object type will be introduced in this chapter, highlighting their definition and use.
+Each of these objects will be introduced in this chapter, highlighting their definition and use. For your work, the first objects you work with will be data in various forms. Below, we explain the different data types and how they can combine into what is known as a `data.frame`.
 
 > Early Advice: Don't get overwhelmed. It may feel like there is a lot to learn, but taking things one at a time will work surprisingly quickly. I've designed this book to discuss what you need to know from the beginning. Other topics that are not discussed are things you can learn later and do not need to be of your immediate concern.
 
@@ -144,9 +140,9 @@ We admit that the last one is a bit pointless since our data frame is only a few
 
 ## Functions {-}
 
-Earlier we mentioned that `c()` was a "function." Functions are how we do things we our data. There are probably hundreds of thousands of functions at your reach. In fact, you can create your own! We'll discuss that more later.
+Earlier we mentioned that `c()` was a "function." Functions are how we do things with our data. There are probably hundreds of thousands of functions at your reach. In fact, you can create your own! We'll discuss that more in later chapters.
 
-For now, know that each function has a name---for named functions---(the function name of `c()` is "c"), arguments, and output of some sort. Arguments are the information that you provide the function between the parenthases (e.g. we gave `c()` a bunch of numbers; we gave `factor()` two arguments---the variable and the labels for the variable's levels). Output from a function varies to a massive degree but, in general, the output is what you are using the function for (e.g., for `c()` we wanted to create a vector---a variable---of data). 
+For now, know that each named function has a name (the function name of `c()` is "c"), arguments, and output of some sort. Arguments are the information that you provide the function between the parenthases (e.g. we gave `c()` a bunch of numbers; we gave `factor()` two arguments---the variable and the labels for the variable's levels). Output from a function varies to a massive degree but, in general, the output is what you are using the function for (e.g., for `c()` we wanted to create a vector---a variable---of data). 
 
 At any point, by typing:
 ```{r, eval=FALSE}
