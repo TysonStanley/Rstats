@@ -25,7 +25,7 @@
 <meta name="author" content="Tyson S. Barrett">
 
 
-<meta name="date" content="2017-07-04">
+<meta name="date" content="2017-07-07">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -287,32 +287,32 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="wide-form" class="section level3 unnumbered">
 <h3>Wide Form</h3>
 <p>Wide form generally has one unit (i.e. individual) per row. This generally looks like:</p>
-<pre><code>##    ID   Var_Time1  Var_Time2
-## 1   1 -0.13818633 0.20759164
-## 2   2  0.34965261 0.61892787
-## 3   3 -0.55138984 0.22738815
-## 4   4 -1.04088911 0.51710562
-## 5   5 -0.29027833 0.66466432
-## 6   6  1.04090946 0.74993571
-## 7   7 -0.01538521 0.87776367
-## 8   8 -0.83565700 0.98927660
-## 9   9 -0.40029933 0.04796334
-## 10 10  0.55091495 0.35717063</code></pre>
+<pre><code>##    ID  Var_Time1  Var_Time2
+## 1   1 -0.4555996 0.33469730
+## 2   2  0.3391549 0.26994872
+## 3   3  1.4118583 0.52871554
+## 4   4 -1.9071136 0.01855643
+## 5   5 -2.0740464 0.46187387
+## 6   6  0.6768914 0.31013246
+## 7   7  1.8717838 0.26049149
+## 8   8  0.5293413 0.01353450
+## 9   9  2.0037632 0.28364271
+## 10 10  0.5868872 0.67524176</code></pre>
 <p>Notice that each row has a unique ID, and some of the columns (all in this case) are variables at specific time points. This means that the variable is split up and is not a single column. This is a common way to collect and store data in our fields and so your data likely looks similar to this.</p>
 </div>
 <div id="long-form" class="section level3 unnumbered">
 <h3>Long Form</h3>
 <p>In contrast, long format has the lowest nested unit as a single row. This means that a single ID can span multiple rows, usually with a unique time point for each row as so:</p>
-<pre><code>##   ID Time       Var
-## 1  1    1 0.2559159
-## 2  1    2 0.4032055
-## 3  1    3 0.5408284
-## 4  1    4 0.3575786
-## 5  2    1 0.1268353
-## 6  2    2 0.1259372
-## 7  3    1 0.4363381
-## 8  3    2 0.4070761
-## 9  3    3 0.5860954</code></pre>
+<pre><code>##   ID Time        Var
+## 1  1    1 0.03909769
+## 2  1    2 0.17134227
+## 3  1    3 0.41218482
+## 4  1    4 0.66911325
+## 5  2    1 0.50621826
+## 6  2    2 0.37492576
+## 7  3    1 0.90645235
+## 8  3    2 0.15563861
+## 9  3    3 0.09116156</code></pre>
 <p>Notice that a single ID spans multiple columns and that each row has only one time point. Here, time is nested within individuals making it the lowest unit. Therefore, each row corresponds to a single time point. Generally, this is the format we want for most modeling techniques and most visualizations.</p>
 <p>This is a very simple example of the differences between wide and long format. Although much more complex examples are probably available to you, we will start with this for now. Later chapters will delve into more complex data designs.</p>
 </div>
@@ -442,27 +442,27 @@ df_long &lt;-<span class="st"> </span><span class="kw">long</span>(df_wide,
                 <span class="dt">v.names =</span> <span class="st">&quot;Var&quot;</span>)</code></pre></div>
 <pre><code>## id = ID</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df_long</code></pre></div>
-<pre><code>##      ID time        Var
-## 1.1   1    1  0.1796004
-## 2.1   2    1 -0.6121961
-## 3.1   3    1  1.0689475
-## 4.1   4    1  0.4782383
-## 5.1   5    1 -1.2988660
-## 6.1   6    1  0.5453731
-## 7.1   7    1  1.3881477
-## 8.1   8    1  1.2071617
-## 9.1   9    1  0.9586229
-## 10.1 10    1 -0.3583196
-## 1.2   1    2  0.6574993
-## 2.2   2    2  0.3874571
-## 3.2   3    2  0.9861915
-## 4.2   4    2  0.2066776
-## 5.2   5    2  0.8809239
-## 6.2   6    2  0.5314439
-## 7.2   7    2  0.6626405
-## 8.2   8    2  0.6906002
-## 9.2   9    2  0.9393234
-## 10.2 10    2  0.1302051</code></pre>
+<pre><code>##      ID time         Var
+## 1.1   1    1  0.25363784
+## 2.1   2    1 -1.37071922
+## 3.1   3    1  2.36022334
+## 4.1   4    1 -0.88194431
+## 5.1   5    1 -0.48390169
+## 6.1   6    1 -0.07952493
+## 7.1   7    1 -0.54214844
+## 8.1   8    1  0.20691541
+## 9.1   9    1  0.70411698
+## 10.1 10    1 -0.65605189
+## 1.2   1    2  0.34787384
+## 2.2   2    2  0.88871089
+## 3.2   3    2  0.89584313
+## 4.2   4    2  0.37739600
+## 5.2   5    2  0.67668871
+## 6.2   6    2  0.03796950
+## 7.2   7    2  0.45406396
+## 8.2   8    2  0.39890412
+## 9.2   9    2  0.26219022
+## 10.2 10    2  0.61764074</code></pre>
 <p>We provided the data (<code>df_wide</code>), the time varying variables (<code>c(&quot;Var_Time1&quot;, &quot;Var_Time2&quot;)</code>), and told it what we should name the value variable (<code>v.names = &quot;Var&quot;</code>). Note that the function guessed, based on its name, that the variable <code>ID</code> was the identifying variable.</p>
 <p>This function automatically assumes each observation is a time point, thus the <code>time</code> variable. We can easily change that by adding the argument <code>timevar</code> and giving it a name (e.g., <code>timevar = &quot;cluster&quot;</code>).</p>
 <p>And now we will go from long to wide using <code>wide()</code> from the same package.</p>
@@ -474,10 +474,10 @@ df_wide &lt;-<span class="st"> </span><span class="kw">wide</span>(df_long,
                 <span class="dt">timevar =</span> <span class="st">&quot;Time&quot;</span>)</code></pre></div>
 <pre><code>## id = ID</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df_wide</code></pre></div>
-<pre><code>##   ID      Var.1     Var.2     Var.3      Var.4
-## 1  1 0.15031451 0.2564318 0.1251883 0.04329681
-## 5  2 0.03606433 0.8186439        NA         NA
-## 7  3 0.68759829 0.3008413 0.5880489         NA</code></pre>
+<pre><code>##   ID     Var.1     Var.2      Var.3     Var.4
+## 1  1 0.6952376 0.7361538 0.10044417 0.9908014
+## 5  2 0.3042404 0.3891946         NA        NA
+## 7  3 0.3381761 0.1121283 0.05793004        NA</code></pre>
 <p>Here, we provided the data <code>df_long</code> and the variable name (<code>Var</code>) that had the values and (<code>Time</code>) that contained the time labels (in this case, just numbers). With a little bit of code we can move data around without any copy-pasting that is so error-prone. Again, note that the function guessed, based on its name, that the variable <code>ID</code> was the identifying variable.</p>
 </div>
 <div id="joining-merging" class="section level2 unnumbered">
@@ -526,17 +526,17 @@ df_fake &lt;-<span class="st"> </span>df_fake <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Var3 =</span> Var1 <span class="op">+</span><span class="st"> </span>Var2,
          <span class="dt">Var4 =</span> Var1 <span class="op">*</span><span class="st"> </span>Var2 <span class="op">+</span><span class="st"> </span>Var3)
 df_fake</code></pre></div>
-<pre><code>##    ID       Var1       Var2       Var3       Var4
-## 1   1 -0.1470621 0.58547707  0.4384149  0.3523134
-## 2   2 -1.4874525 0.34274729 -1.1447052 -1.6545255
-## 3   3  0.8924949 0.47059720  1.3630921  1.7830977
-## 4   4  0.5612416 0.57182687  1.1330685  1.4540015
-## 5   5 -1.0008351 0.48139115 -0.5194440 -1.0012371
-## 6   6  1.3428273 0.27228174  1.6151091  1.9807364
-## 7   7 -1.5074147 0.47496867 -1.0324461 -1.7484208
-## 8   8 -1.0078187 0.14086171 -0.8669570 -1.0089201
-## 9   9  0.8664061 0.75566348  1.6220696  2.2767811
-## 10 10  0.6597575 0.05682583  0.7165833  0.7540746</code></pre>
+<pre><code>##    ID        Var1        Var2        Var3        Var4
+## 1   1  0.16054722 0.538366376  0.69891360  0.78534683
+## 2   2 -1.42749886 0.449599443 -0.97789942 -1.61970211
+## 3   3 -0.17848976 0.684519689  0.50602992  0.38385017
+## 4   4  0.40310647 0.438137841  0.84124432  1.01786052
+## 5   5  1.16295345 0.280959232  1.44391268  1.77065519
+## 6   6  2.70724738 0.416489629  3.12373701  4.25127747
+## 7   7  0.06129158 0.006302088  0.06759367  0.06797994
+## 8   8 -0.30693705 0.022422885 -0.28451416 -0.29139658
+## 9   9 -1.34932255 0.755407894 -0.59391466 -1.61320356
+## 10 10 -0.61813197 0.883746965  0.26561500 -0.28065725</code></pre>
 <p>The benefit is in the readability of the code. We repeat things like the name of the data frame much less (only once here). I highly recommend working this way.</p>
 <p>To highlight its benefits on real data, let’s go back to our NHANES data (now called <code>df</code>). First, we are going to create an overall depression variable that is the sum of all the depression items (we could do IRT or some other way of combining them but that is not the point here). Below, we do three things:</p>
 <ol style="list-style-type: decimal">

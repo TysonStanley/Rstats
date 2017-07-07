@@ -13,9 +13,7 @@ load("~/Box Sync/GitHub/blog_rstats/assets/Data/NHANES_2012.rda")
 
 # Chapter 5: Generalized Linear Models {-}
 
-> "You must stick to your conviction, but be ready to abandon your assumptions."
->
-> --- Dennis Waitley
+> "You must stick to your conviction, but be ready to abandon your assumptions." --- Dennis Waitley
 
 Generalized Linear Models (GLM's) are extensions of linear regression to areas where assumptions of normality and homoskedasticity do not hold. There are several versions of GLM's, each for different types and distributions of outcomes. We are going to go through several of the most common. 
 

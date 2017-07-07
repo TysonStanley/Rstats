@@ -13,9 +13,7 @@ load("~/Box Sync/GitHub/blog_rstats/assets/Data/NHANES_2012.rda")
 
 # Chapter 9: Advanced Plotting {-}
 
-> "The commonality between science and art is in trying to see profoundly - to develop strategies of seeing and showing."
->
-> --- Edward Tufte
+> "The commonality between science and art is in trying to see profoundly - to develop strategies of seeing and showing." --- Edward Tufte
 
 
 Once again, we will turn to our friend `ggplot2` to plot; but now, we are going to take it to another level. We will use many of the options that this powerful package provides and discuss briefly some important aspects of a good plot.

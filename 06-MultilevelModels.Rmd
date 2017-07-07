@@ -13,9 +13,7 @@ load("~/Box Sync/GitHub/blog_rstats/assets/Data/NHANES_2012.rda")
 
 # Chapter 6: Multilevel Modeling {-}
 
-> "Simplicity does not precede complexity, but follows it."
->
-> --- Alan Perlis
+> "Simplicity does not precede complexity, but follows it." --- Alan Perlis
 
 Multilevel data are more complex and don't meet the assumptions of regular linear or generalized linear models. But with the right modeling schemes, the results can be very interpretable and actionable. Two powerful forms of multilevel modeling are:
 

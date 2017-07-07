@@ -83,8 +83,7 @@ For simple but appealing visualizations we are going to be using `ggplot2`. This
 
 This package has a straight-forward syntax. It is built by adding layers to the plot. 
 ```{r, eval = FALSE}
-## first install using install.packages("ggplot2")
-library(ggplot2)
+library(tidyverse)
 ```
 
 First, we have a nice `qplot` function that is short for "quick plot." It quickly decides what kind of plot is useful given the data and variables you provide.

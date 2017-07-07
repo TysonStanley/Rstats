@@ -14,9 +14,7 @@ load("~/Box Sync/GitHub/blog_rstats/assets/Data/NHANES_2012.rda")
 
 # Chapter 7: Other Modeling Techniques {-}
 
-> "Simplicity is the ultimate sophistication."
->
-> --- Leonardo da Vinci
+> "Simplicity is the ultimate sophistication." --- Leonardo da Vinci
 
 In this chapter we cover, however briefly, modeling techniques that are especially useful to make complex relationships easier to interpret. We will focus on mediation and moderation modeling, methods relating to structural equation modeling (SEM), and methods applicable to our field from machine learning. Although these machine learning may appear very different than mediation and SEM, they each have advantages that can help in different situations. For example, SEM is useful when we know there is a high degree of measurement error or our data has multiple indicators for each construct. On the other hand, regularized regression and random forests--two popular forms of machine learning--are great to explore patterns and relationships there are hundreds or thousands of variables that may predict an outcome. 
 

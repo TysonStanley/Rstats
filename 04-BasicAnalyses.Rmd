@@ -13,9 +13,7 @@ load("~/Box Sync/GitHub/blog_rstats/assets/Data/NHANES_2012.rda")
 
 # Chapter 4: Basic Analyses {-}
 
-> "The goal is to turn data into information, and information into insight." 
->
-> --- Carly Fiorina
+> "The goal is to turn data into information, and information into insight." --- Carly Fiorina
 
 In this chapter we are going to demonstrate basic modeling in `R`. Lucky for us, `R` is built for these analyses. It is actually quite straight-forward to run these types of models and analyze the output. Not only that, but there are simple ways to compare models.
 

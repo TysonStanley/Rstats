@@ -2,9 +2,7 @@
 
 # Chapter 8: Advanced Data Manipulation {-}
 
-> "Every new thing creates two new questions and two new opportunities."
->
-> --- Jeff Bezos
+> "Every new thing creates two new questions and two new opportunities." --- Jeff Bezos
 
 There's so much more we can do with data in `R` than what we've presented. Two main topics we need to clarify here are:
 
