@@ -155,6 +155,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#piping"><i class="fa fa-check"></i>Piping</a></li>
 <li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#select-and-filter"><i class="fa fa-check"></i>Select and Filter</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#mutate-and-transmute"><i class="fa fa-check"></i>Mutate and Transmute</a></li>
 <li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#grouping-and-summarizing"><i class="fa fa-check"></i>Grouping and Summarizing</a></li>
 <li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#reshaping"><i class="fa fa-check"></i>Reshaping</a></li>
 <li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#joining-merging"><i class="fa fa-check"></i>Joining (merging)</a><ul>
@@ -162,8 +163,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#left-or-right-join"><i class="fa fa-check"></i>Left or Right Join</a></li>
 <li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#full-join"><i class="fa fa-check"></i>Full Join</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#mutate-and-transmute"><i class="fa fa-check"></i>Mutate and Transmute</a></li>
 <li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#wrap-it-up"><i class="fa fa-check"></i>Wrap it up</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#apply-it-1"><i class="fa fa-check"></i>Apply It</a><ul>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#step-1-1"><i class="fa fa-check"></i>Step 1</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#step-2-1"><i class="fa fa-check"></i>Step 2</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html"><i class="fa fa-check"></i>Chapter 3: Understanding and Describing Your Data</a><ul>
 <li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#descriptive-statistics"><i class="fa fa-check"></i>Descriptive Statistics</a></li>
@@ -299,7 +303,7 @@ fit &lt;-<span class="st"> </span><span class="kw">aov</span>(famsize <span clas
                      <span class="dt">values=</span><span class="kw">c</span>(<span class="st">&quot;dodgerblue3&quot;</span>, <span class="st">&quot;coral2&quot;</span>, <span class="st">&quot;chartreuse4&quot;</span>, 
                               <span class="st">&quot;darkorchid&quot;</span>, <span class="st">&quot;firebrick2&quot;</span>)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-62-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-64-1.png" width="672" /></p>
 <p>This immediately gives us an idea of where some differences may be occuring. It would appear that “White” and “MexicanAmerican” groups are different in family size.</p>
 </div>
 <div id="assumptions" class="section level2 unnumbered">
@@ -308,7 +312,7 @@ fit &lt;-<span class="st"> </span><span class="kw">aov</span>(famsize <span clas
 <p>In <code>R</code> we can get some simple graphical checks using <code>plot</code>. All we provide is our ANOVA object (here it is <code>fit</code>). The line before it <code>par(mfrow=c(1,2))</code> tells <code>R</code> to have two plots per row (the 1 means one row, 2 means two columns).</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))
 <span class="kw">plot</span>(fit)</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-63-1.png" width="480" /><img src="_main_files/figure-html/unnamed-chunk-63-2.png" width="480" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-65-1.png" width="480" /><img src="_main_files/figure-html/unnamed-chunk-65-2.png" width="480" /></p>
 <p>Here, it looks like we have a problem with normality (see the Normal Q-Q plot). Those dots should approximately follow the dotted line, which is not the case. In the first plot (Residuals vs. Fitted) suggests we have approximate homoskedasticity.</p>
 </div>
 <div id="linear-modeling" class="section level2 unnumbered">
@@ -359,7 +363,7 @@ fit &lt;-<span class="st"> </span><span class="kw">aov</span>(famsize <span clas
 <p>Numbers 2 and 3 are fairly easy to assess using the <code>plot()</code> function on the model object as we did with the ANOVA model. The linear in parameters suggests that the relationship between the outcome and independents is linear.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))
 <span class="kw">plot</span>(fit2)</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-66-1.png" width="480" /><img src="_main_files/figure-html/unnamed-chunk-66-2.png" width="480" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-68-1.png" width="480" /><img src="_main_files/figure-html/unnamed-chunk-68-2.png" width="480" /></p>
 </div>
 <div id="comparing-models" class="section level2 unnumbered">
 <h2>Comparing Models</h2>
@@ -526,7 +530,7 @@ fit_anova &lt;-<span class="st"> </span><span class="kw">aov</span>(famsize <spa
 <p>We can check the assumptions the same way as before:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))
 <span class="kw">plot</span>(fit_anova)</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-75-1.png" width="480" /><img src="_main_files/figure-html/unnamed-chunk-75-2.png" width="480" />
+<p><img src="_main_files/figure-html/unnamed-chunk-77-1.png" width="480" /><img src="_main_files/figure-html/unnamed-chunk-77-2.png" width="480" />
 Again, the assumptions are not met for this model. But, if we ignore that for now, we can quickly find a way to interpret the interaction.</p>
 <p>We first create a new data set that is composed of every possible combination of the variables in the model. This allows us to get unbiased estimates for the plotting.</p>
 <pre class="sourceCode r"><code class="sourceCode r">newdata &lt;-<span class="st"> </span><span class="kw">expand.grid</span>(<span class="dt">minority =</span> <span class="kw">levels</span>(df<span class="op">$</span>minority),
@@ -541,7 +545,7 @@ newdata<span class="op">$</span>preds &lt;-<span class="st"> </span><span class=
 <span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">name =</span> <span class="st">&quot;&quot;</span>,
                      <span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;dodgerblue3&quot;</span>, <span class="st">&quot;chartreuse3&quot;</span>)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">theme_anteo_wh</span>()           <span class="co">## from anteo package</span></code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-77-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-79-1.png" width="672" /></p>
 <p>The plot tells use a handful of things. For example, we see minorities generally have more children across marital statuses. However, the difference is smaller for married and divorced individuals compared to widowed, separated, never married, and living with a partner. There’s certainly more to gleen from the plot, but we won’t waste your time.</p>
 </div>
 <div id="interactions-in-linear-regression" class="section level3 unnumbered">

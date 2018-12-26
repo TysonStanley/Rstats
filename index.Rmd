@@ -26,7 +26,7 @@ Before beginning the book, you will need to download the `R` software [www.r-pro
 
 Once both are installed (helps on installing the software can be found on [www.rstudio.com](https://www.rstudio.com/), [www.r-bloggers.com](www.r-bloggers.com), and [www.statmethods.net](www.statmethods.net)) you are good to go. The remainder of the book will be about actually using it.
 
-The basic build of the book is divided into three parts.
+The book is divided into three parts.
 
 ## Part I {-}
 

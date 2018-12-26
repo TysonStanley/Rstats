@@ -41,10 +41,11 @@ There are several methods that help create tidy data:
 
 1. Piping
 2. Selecting and Filtering
-3. Grouping and Summarizing
-4. Reshaping
-5. Joining (merging)
-6. Mutate and Transmute
+3. Mutate and Transmute
+4. Grouping and Summarizing
+5. Reshaping
+6. Joining (merging)
+
 
 > Heads up! Understanding these tools requires an understanding of what ways data can be moved around. For example, reshaping can refer to moving data into a more wide-format or long-format, can refer to summarizing or aggregating, and can refer to joining or binding. All of these are necessary to work with data flexibly. Because of this, we suggest taking your time to fully understand what each function is doing with the data.
 
@@ -131,7 +132,25 @@ Let's introduce a few major themes in this tidyverse. First, the pipe operator -
 dem_df %>% head()
 ```
 
-So the above code takes the data frame `dem_df` and puts it into the `head` function. This does the same thing as `head(df)`. In this simple case, it doesn't really make the code more readable, but in more complex situations it can really help. In the following sections you will see how and where this type of coding is helpful.
+So the above code takes the data frame `dem_df` and puts it into the `head` function. This does the same thing as `head(df)`. 
+
+To illustrate its strength, consider the following example. We take `dem_df`, group it by gender, and then count.
+
+```{r}
+dem_df %>%
+  group_by(riagendr) %>%
+  summarize(mean_age = mean(ridageyr, na.rm = TRUE))
+```
+
+Without using the pipe, we would need to use something like:
+
+```{r}
+summarize(group_by(dem_df, riagendr), mean_age = mean(ridageyr, na.rm = TRUE))
+```
+
+Although it is fewer lines, this is notably harder to understand. Instead of reading from left to right, top to bottom, we must read inside out, which is unnatural for English reading individuals.
+
+
 
 ## Select and Filter {-}
 
@@ -175,6 +194,18 @@ filtered_selected_dem <- dem_df %>%
 ```
 where we use two `%>%` operators to grab `dem_df`, select the three variables, and then filter the rows that we want.
 
+## Mutate and Transmute {-}
+
+Earlier we showed how to create a new variable or clean an existing one. We used the base `R` way for these. However, a great way to add and change variables is using `mutate()`. We grab `df`, and create a variable called `citizen` using the factored version of `dmdcitzn` and assign it back into `df`.
+
+```{r}
+## Our Grouping Variable as a factor
+dem_df <- dem_df %>%
+  mutate(citizen = factor(dmdcitzn))
+```
+The benefit is in the readability of the code. We repeat things like the name of the data frame much less. I highly recommend working this way.
+
+
 ## Grouping and Summarizing {-}
 
 A major aspect of analysis is comparing groups. Lucky for us, this is very simple in `R`. I call it the three step summary:
@@ -184,9 +215,6 @@ A major aspect of analysis is comparing groups. Lucky for us, this is very simpl
 3. Summarize
 
 ```{r}
-## Our Grouping Variable as a factor
-dem_df$citizen <- factor(dem_df$dmdcitzn)
-
 ## Three step summary:
 dem_df %>%                           ## 1. Data
   group_by(citizen) %>%              ## 2. Group by
@@ -200,10 +228,9 @@ install.packages("furniture")
 ```
 
 ```{r, message=FALSE, warning=FALSE}
-#library(furniture)
-
-dem_df$citizen <- washer(dem_df$citizen, 7)            ## Changes all 7's to NA's
-dem_df$citizen <- washer(dem_df$citizen, 2, value=0)   ## Changes all 2's to 0's
+dem_df <- dem_df %>%
+  mutate(citizen = washer(citizen, 7),                ## Changes all 7's to NA's
+         citizen = washer(citizen, 2, value = 0))     ## Changes all 2's to 0's
 ```
 
 Now, our citizen variable is cleaned, with `0` meaning not a citizen and `1` meaning citizen. Let's rerun the code from above with the three step summary:
@@ -314,25 +341,15 @@ So now `df` is the the joined data set of all four. We started with `dem_df` joi
 
 For many analyses in later chapters, we will use this new `df` object that is the combination of all the data sets that we had before. Whenever this is the case, this data will be explicitly referenced. Note, that in addition to what was shown in this chapter, a few other cleaning tasks were done on the data. This final version of `df` can be found at [tysonstanley.github.io/R](http://www.tysonstanley.github.io/R).
 
-## Mutate and Transmute {-}
 
-Earlier we showed how to create a new variable or clean an existing one. We used the base `R` way for these. However, a great way to add and change variables is using `mutate()`.
 
-```{r}
-df_fake <- data.frame("ID"=c(1:10), 
-                      "Var1"=rnorm(10), 
-                      "Var2"=runif(10))
+## Wrap it up {-}
 
-df_fake <- df_fake %>%
-  mutate(Var3 = Var1 + Var2,
-         Var4 = Var1 * Var2 + Var3)
-df_fake
-```
-The benefit is in the readability of the code. We repeat things like the name of the data frame much less (only once here). I highly recommend working this way.
+Let's put all the pieces together that we've learned in the chapter together on this new `df` data frame we just created. Below, we using piping, selecting, filtering, grouping, and summarizing.
 
-To highlight its benefits on real data, let's go back to our NHANES data (now called `df`). First, we are going to create an overall depression variable that is the sum of all the depression items (we could do IRT or some other way of combining them but that is not the point here). Below, we do three things:
+First, let's create an overall depression variable that is the sum of all the depression items (we could do IRT or some other way of combining them but that is not the point here). Below, we do three things:
 
-1. We clean up each depression item using `washer()` since both "7" and "9" are placeholders for missing values. We take override the original variable with the cleaned one.
+1. We clean up each depression item using `furniture::washer()` since both "7" and "9" are placeholders for missing values. We take override the original variable with the cleaned one.
 2. Next, we sum all the items into a new variable called `dep`.
 3. Finally, we create a dichotomized variable called `dep2` using nested `ifelse()` functions. The `ifelse()` statements read: if condition holds (`dep` is greater than or equal to `10`), then `1`, else if condition holds (`dep` is less than `10`), then `0`, else `NA`. The basic build of the function is: `ifelse(condition, value if true, value if false)`.
 
@@ -355,11 +372,7 @@ df2 <- df %>%
                        ifelse(dep < 10, 0, NA))))
 ```
 
-
-
-## Wrap it up {-}
-
-Let's put all the pieces together that we've learned in the chapter together on this new `df` data frame we just created. Below, we using piping, selecting, filtering, grouping, and summarizing.
+After these adjustments, let's select, filter, group by, and summarize.
 
 ```{r}
 df2 %>%
@@ -373,6 +386,24 @@ df2 %>%
 We can see that males (`riagendr = 1`) have nearly identical asthma levels but lower depression levels than their female counterparts. 
 
 Ultimately, I hope you see the benefit to using these methods. With these methods, you can clean, reshape, and summarize your data. Because these are foundational, we will apply these methods throughout the book. 
+
+
+
+## Apply It {-}
+
+[This link](http://tysonbarrett.com/DataR/Chapter2.zip) contains a folder complete with an Rstudio project file, an RMarkdown file, and a few data files. Download it and unzip it to do the following steps.
+
+
+### Step 1 {-}
+
+Open the `Chapter2.Rproj` file. This will open up RStudio for you.
+
+### Step 2 {-}
+
+Once RStudio has started, in the panel on the lower-right, there is a `Files` tab. Click on that to see the project folder. You should see the data files and the `Chapter2.Rmd` file. Click on the `Chapter2.Rmd` file to open it. In this file, import the data, create a new variable, select three varaibles, and summarize a variable using the three step summary.
+
+Once that code is in the file, click the `knit` button. This will create an HTML file with the code and output knitted together into one nice document. This can be read into any browser and can be used to show your work in a clean document.
+
 
 
 

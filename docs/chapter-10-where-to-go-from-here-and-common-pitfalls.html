@@ -155,6 +155,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#piping"><i class="fa fa-check"></i>Piping</a></li>
 <li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#select-and-filter"><i class="fa fa-check"></i>Select and Filter</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#mutate-and-transmute"><i class="fa fa-check"></i>Mutate and Transmute</a></li>
 <li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#grouping-and-summarizing"><i class="fa fa-check"></i>Grouping and Summarizing</a></li>
 <li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#reshaping"><i class="fa fa-check"></i>Reshaping</a></li>
 <li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#joining-merging"><i class="fa fa-check"></i>Joining (merging)</a><ul>
@@ -162,8 +163,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#left-or-right-join"><i class="fa fa-check"></i>Left or Right Join</a></li>
 <li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#full-join"><i class="fa fa-check"></i>Full Join</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#mutate-and-transmute"><i class="fa fa-check"></i>Mutate and Transmute</a></li>
 <li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#wrap-it-up"><i class="fa fa-check"></i>Wrap it up</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#apply-it-1"><i class="fa fa-check"></i>Apply It</a><ul>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#step-1-1"><i class="fa fa-check"></i>Step 1</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#step-2-1"><i class="fa fa-check"></i>Step 2</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html"><i class="fa fa-check"></i>Chapter 3: Understanding and Describing Your Data</a><ul>
 <li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#descriptive-statistics"><i class="fa fa-check"></i>Descriptive Statistics</a></li>
@@ -357,26 +361,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h4>Question 15</h4>
 <p>Is the following data in wide or long form? How do you know?</p>
 <pre><code>##    ID  measures   values
-## 1   1 Var_Time1  0.18896
-## 2   2 Var_Time1 -0.66424
-## 3   3 Var_Time1  0.80839
-## 4   4 Var_Time1  1.29141
-## 5   5 Var_Time1 -0.16970
-## 6   6 Var_Time1  1.10986
-## 7   7 Var_Time1  0.08921
-## 8   8 Var_Time1 -1.52550
-## 9   9 Var_Time1  1.38053
-## 10 10 Var_Time1  0.46405
-## 11  1 Var_Time2  0.42719
-## 12  2 Var_Time2  0.91626
-## 13  3 Var_Time2  0.58091
-## 14  4 Var_Time2  0.17102
-## 15  5 Var_Time2  0.61576
-## 16  6 Var_Time2  0.92720
-## 17  7 Var_Time2  0.92334
-## 18  8 Var_Time2  0.77137
-## 19  9 Var_Time2  0.01903
-## 20 10 Var_Time2  0.38096</code></pre>
+## 1   1 Var_Time1 -1.33034
+## 2   2 Var_Time1 -0.68427
+## 3   3 Var_Time1 -0.53928
+## 4   4 Var_Time1 -1.20200
+## 5   5 Var_Time1  0.67672
+## 6   6 Var_Time1 -0.73015
+## 7   7 Var_Time1 -1.05074
+## 8   8 Var_Time1 -1.48402
+## 9   9 Var_Time1 -0.15608
+## 10 10 Var_Time1  0.37857
+## 11  1 Var_Time2  0.77022
+## 12  2 Var_Time2  0.39954
+## 13  3 Var_Time2  0.93940
+## 14  4 Var_Time2  0.04366
+## 15  5 Var_Time2  0.30533
+## 16  6 Var_Time2  0.99304
+## 17  7 Var_Time2  0.74186
+## 18  8 Var_Time2  0.02502
+## 19  9 Var_Time2  0.19810
+## 20 10 Var_Time2  0.58184</code></pre>
 <p>To make your data long form but it is currently in wide form, what function(s) can you use?</p>
 </div>
 <div id="question-16" class="section level4 unnumbered">

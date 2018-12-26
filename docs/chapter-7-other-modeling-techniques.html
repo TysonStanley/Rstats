@@ -155,6 +155,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#piping"><i class="fa fa-check"></i>Piping</a></li>
 <li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#select-and-filter"><i class="fa fa-check"></i>Select and Filter</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#mutate-and-transmute"><i class="fa fa-check"></i>Mutate and Transmute</a></li>
 <li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#grouping-and-summarizing"><i class="fa fa-check"></i>Grouping and Summarizing</a></li>
 <li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#reshaping"><i class="fa fa-check"></i>Reshaping</a></li>
 <li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#joining-merging"><i class="fa fa-check"></i>Joining (merging)</a><ul>
@@ -162,8 +163,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#left-or-right-join"><i class="fa fa-check"></i>Left or Right Join</a></li>
 <li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#full-join"><i class="fa fa-check"></i>Full Join</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#mutate-and-transmute"><i class="fa fa-check"></i>Mutate and Transmute</a></li>
 <li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#wrap-it-up"><i class="fa fa-check"></i>Wrap it up</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#apply-it-1"><i class="fa fa-check"></i>Apply It</a><ul>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#step-1-1"><i class="fa fa-check"></i>Step 1</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#step-2-1"><i class="fa fa-check"></i>Step 2</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html"><i class="fa fa-check"></i>Chapter 3: Understanding and Describing Your Data</a><ul>
 <li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#descriptive-statistics"><i class="fa fa-check"></i>Descriptive Statistics</a></li>
@@ -563,45 +567,45 @@ fit_lasso &lt;-<span class="st"> </span><span class="kw">cv.glmnet</span>(X, Y, 
 fit_enet  &lt;-<span class="st"> </span><span class="kw">cv.glmnet</span>(X, Y, <span class="dt">alpha =</span> <span class="fl">.8</span>)</code></pre>
 <p>The plots below show where appropriate <code>lambda</code> values are based on the mean squared error of the cross-validated prediction. The vertical dashed lines show a reasonable range of lambda values that can be used.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(fit_ridge)</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-105-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-107-1.png" width="672" /></p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(fit_lasso)</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-105-2.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-107-2.png" width="672" /></p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(fit_enet)</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-105-3.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-107-3.png" width="672" /></p>
 <p>We can get the coefficients at a reasonable <code>lambda</code>. Specifically, we use the “1-SE rule” (near the right hand side vertical dashed lines in the above plots) by <code>s = "lambda.1se"</code>. You can directly tell it what <code>lambda</code> value you’d like but this is a simple rule of thumb.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coef</span>(fit_ridge, <span class="dt">s =</span> <span class="st">&quot;lambda.1se&quot;</span>)</code></pre>
 <pre><code>## 8 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
 ##                      1
-## (Intercept)  5.9130082
-## riagendr     0.0179635
-## ridageyr    -0.0002113
-## ridreth3     0.0237274
-## race         0.0374751
-## famsize     -0.0158694
-## dep          0.0041439
-## asthma       0.0409958</code></pre>
+## (Intercept)  5.9930888
+## riagendr     0.0118160
+## ridageyr    -0.0001358
+## ridreth3     0.0159859
+## race         0.0249594
+## famsize     -0.0103471
+## dep          0.0026931
+## asthma       0.0268381</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coef</span>(fit_lasso, <span class="dt">s =</span> <span class="st">&quot;lambda.1se&quot;</span>)</code></pre>
 <pre><code>## 8 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
 ##                     1
-## (Intercept)  5.357124
+## (Intercept)  5.322680
 ## riagendr     .       
 ## ridageyr     .       
 ## ridreth3     .       
-## race         0.263294
-## famsize     -0.032942
-## dep          0.004658
+## race         0.278799
+## famsize     -0.043976
+## dep          0.008615
 ## asthma       .</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coef</span>(fit_enet, <span class="dt">s =</span> <span class="st">&quot;lambda.1se&quot;</span>)</code></pre>
 <pre><code>## 8 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
-##                  1
-## (Intercept) 5.6303
-## riagendr    .     
-## ridageyr    .     
-## ridreth3    .     
-## race        0.1585
-## famsize     .     
-## dep         .     
-## asthma      .</code></pre>
+##                      1
+## (Intercept)  5.4071934
+## riagendr     .        
+## ridageyr     .        
+## ridreth3     .        
+## race         0.2424455
+## famsize     -0.0206231
+## dep          0.0002651
+## asthma       .</code></pre>
 <p>Although we briefly introduce these regression methods, they are indeed very important. We highly recommend learning more about them.</p>
 </div>
 <div id="random-forests" class="section level3 unnumbered">
@@ -628,12 +632,12 @@ fit_rf</code></pre>
 ##                      Number of trees: 500
 ## No. of variables tried at each split: 2
 ## 
-##           Mean of squared residuals: 10.83
-##                     % Var explained: 3.65</code></pre>
+##           Mean of squared residuals: 10.8
+##                     % Var explained: 3.86</code></pre>
 <p>We can find out which variables were important in the model via:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))  <span class="co">## back to one plot per page</span>
 <span class="kw">varImpPlot</span>(fit_rf)</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-108-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-110-1.png" width="672" /></p>
 <p>We can see that age (<code>ridageyr</code>) is the most important variable, depression (<code>dep</code>) follows, with the family size (<code>famsize</code>) the third most important in the random forests model.</p>
 </div>
 </div>

@@ -155,6 +155,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#piping"><i class="fa fa-check"></i>Piping</a></li>
 <li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#select-and-filter"><i class="fa fa-check"></i>Select and Filter</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#mutate-and-transmute"><i class="fa fa-check"></i>Mutate and Transmute</a></li>
 <li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#grouping-and-summarizing"><i class="fa fa-check"></i>Grouping and Summarizing</a></li>
 <li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#reshaping"><i class="fa fa-check"></i>Reshaping</a></li>
 <li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#joining-merging"><i class="fa fa-check"></i>Joining (merging)</a><ul>
@@ -162,8 +163,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#left-or-right-join"><i class="fa fa-check"></i>Left or Right Join</a></li>
 <li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#full-join"><i class="fa fa-check"></i>Full Join</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#mutate-and-transmute"><i class="fa fa-check"></i>Mutate and Transmute</a></li>
 <li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#wrap-it-up"><i class="fa fa-check"></i>Wrap it up</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#apply-it-1"><i class="fa fa-check"></i>Apply It</a><ul>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#step-1-1"><i class="fa fa-check"></i>Step 1</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#step-2-1"><i class="fa fa-check"></i>Step 2</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html"><i class="fa fa-check"></i>Chapter 3: Understanding and Describing Your Data</a><ul>
 <li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#descriptive-statistics"><i class="fa fa-check"></i>Descriptive Statistics</a></li>
@@ -296,10 +300,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol style="list-style-type: decimal">
 <li>Piping</li>
 <li>Selecting and Filtering</li>
+<li>Mutate and Transmute</li>
 <li>Grouping and Summarizing</li>
 <li>Reshaping</li>
 <li>Joining (merging)</li>
-<li>Mutate and Transmute</li>
 </ol>
 <blockquote>
 <p>Heads up! Understanding these tools requires an understanding of what ways data can be moved around. For example, reshaping can refer to moving data into a more wide-format or long-format, can refer to summarizing or aggregating, and can refer to joining or binding. All of these are necessary to work with data flexibly. Because of this, we suggest taking your time to fully understand what each function is doing with the data.</p>
@@ -313,32 +317,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="wide-form" class="section level3 unnumbered">
 <h3>Wide Form</h3>
 <p>Wide form generally has one unit (i.e. individual) per row. This generally looks like:</p>
-<pre><code>##    ID   Var_Time1 Var_Time2
-## 1   1 -0.25879461 0.4818797
-## 2   2 -0.33714725 0.9526144
-## 3   3 -3.05624380 0.5811752
-## 4   4  1.28185987 0.9614880
-## 5   5 -0.48522813 0.7064332
-## 6   6  0.63181151 0.6217630
-## 7   7  0.03247701 0.5576232
-## 8   8  0.09315989 0.9148889
-## 9   9 -0.10028697 0.8798993
-## 10 10  0.36854183 0.4041104</code></pre>
+<pre><code>##    ID  Var_Time1  Var_Time2
+## 1   1  0.5972415 0.36169309
+## 2   2  0.1001186 0.34937656
+## 3   3 -0.8236267 0.46538655
+## 4   4  1.0932659 0.35314086
+## 5   5  0.2685232 0.63822562
+## 6   6 -0.4419795 0.45128990
+## 7   7 -0.6049612 0.76644272
+## 8   8  0.7039586 0.06016974
+## 9   9  1.5229108 0.74436015
+## 10 10 -1.4153939 0.47292308</code></pre>
 <p>Notice that each row has a unique ID, and some of the columns (all in this case) are variables at specific time points. This means that the variable is split up and is not a single column. This is a common way to collect and store data in our fields and so your data likely looks similar to this.</p>
 </div>
 <div id="long-form" class="section level3 unnumbered">
 <h3>Long Form</h3>
 <p>In contrast, long format has the lowest nested unit as a single row. This means that a single ID can span multiple rows, usually with a unique time point for each row as so:</p>
-<pre><code>##   ID Time       Var
-## 1  1    1 0.3202398
-## 2  1    2 0.6984610
-## 3  1    3 0.2853186
-## 4  1    4 0.6884527
-## 5  2    1 0.2596600
-## 6  2    2 0.2323781
-## 7  3    1 0.1991913
-## 8  3    2 0.2509645
-## 9  3    3 0.8083955</code></pre>
+<pre><code>##   ID Time         Var
+## 1  1    1 0.190318576
+## 2  1    2 0.810181064
+## 3  1    3 0.204523668
+## 4  1    4 0.887516545
+## 5  2    1 0.693050870
+## 6  2    2 0.594903129
+## 7  3    1 0.462396127
+## 8  3    2 0.938736177
+## 9  3    3 0.004840804</code></pre>
 <p>Notice that a single ID spans multiple columns and that each row has only one time point. Here, time is nested within individuals making it the lowest unit. Therefore, each row corresponds to a single time point. Generally, this is the format we want for most modeling techniques and most visualizations.</p>
 <p>This is a very simple example of the differences between wide and long format. Although much more complex examples are probably available to you, we will start with this for now. Later chapters will delve into more complex data designs.</p>
 </div>
@@ -371,7 +375,24 @@ act_df &lt;-<span class="st"> </span><span class="kw">import</span>(<span class=
 <h2>Piping</h2>
 <p>Let’s introduce a few major themes in this tidyverse. First, the pipe operator – <code>%&gt;%</code>. It helps simplify the code and makes things more readable. It takes what is on the left hand side and puts it in the right hand side’s function.</p>
 <pre class="sourceCode r"><code class="sourceCode r">dem_df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>()</code></pre>
-<p>So the above code takes the data frame <code>dem_df</code> and puts it into the <code>head</code> function. This does the same thing as <code>head(df)</code>. In this simple case, it doesn’t really make the code more readable, but in more complex situations it can really help. In the following sections you will see how and where this type of coding is helpful.</p>
+<p>So the above code takes the data frame <code>dem_df</code> and puts it into the <code>head</code> function. This does the same thing as <code>head(df)</code>.</p>
+<p>To illustrate its strength, consider the following example. We take <code>dem_df</code>, group it by gender, and then count.</p>
+<pre class="sourceCode r"><code class="sourceCode r">dem_df <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(riagendr) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_age =</span> <span class="kw">mean</span>(ridageyr, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</code></pre>
+<pre><code>## # A tibble: 2 x 2
+##   riagendr mean_age
+##      &lt;dbl&gt;    &lt;dbl&gt;
+## 1        1     31.1
+## 2        2     31.7</code></pre>
+<p>Without using the pipe, we would need to use something like:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summarize</span>(<span class="kw">group_by</span>(dem_df, riagendr), <span class="dt">mean_age =</span> <span class="kw">mean</span>(ridageyr, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</code></pre>
+<pre><code>## # A tibble: 2 x 2
+##   riagendr mean_age
+##      &lt;dbl&gt;    &lt;dbl&gt;
+## 1        1     31.1
+## 2        2     31.7</code></pre>
+<p>Although it is fewer lines, this is notably harder to understand. Instead of reading from left to right, top to bottom, we must read inside out, which is unnatural for English reading individuals.</p>
 </div>
 <div id="select-and-filter" class="section level2 unnumbered">
 <h2>Select and Filter</h2>
@@ -400,6 +421,14 @@ act_df &lt;-<span class="st"> </span><span class="kw">import</span>(<span class=
 <span class="st">  </span><span class="kw">filter</span>(riagendr <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">&amp;</span><span class="st"> </span>ridageyr <span class="op">&gt;</span><span class="st"> </span><span class="dv">16</span>)</code></pre>
 <p>where we use two <code>%&gt;%</code> operators to grab <code>dem_df</code>, select the three variables, and then filter the rows that we want.</p>
 </div>
+<div id="mutate-and-transmute" class="section level2 unnumbered">
+<h2>Mutate and Transmute</h2>
+<p>Earlier we showed how to create a new variable or clean an existing one. We used the base <code>R</code> way for these. However, a great way to add and change variables is using <code>mutate()</code>. We grab <code>df</code>, and create a variable called <code>citizen</code> using the factored version of <code>dmdcitzn</code> and assign it back into <code>df</code>.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">## Our Grouping Variable as a factor</span>
+dem_df &lt;-<span class="st"> </span>dem_df <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">citizen =</span> <span class="kw">factor</span>(dmdcitzn))</code></pre>
+<p>The benefit is in the readability of the code. We repeat things like the name of the data frame much less. I highly recommend working this way.</p>
+</div>
 <div id="grouping-and-summarizing" class="section level2 unnumbered">
 <h2>Grouping and Summarizing</h2>
 <p>A major aspect of analysis is comparing groups. Lucky for us, this is very simple in <code>R</code>. I call it the three step summary:</p>
@@ -408,10 +437,7 @@ act_df &lt;-<span class="st"> </span><span class="kw">import</span>(<span class=
 <li>Group by</li>
 <li>Summarize</li>
 </ol>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co">## Our Grouping Variable as a factor</span>
-dem_df<span class="op">$</span>citizen &lt;-<span class="st"> </span><span class="kw">factor</span>(dem_df<span class="op">$</span>dmdcitzn)
-
-<span class="co">## Three step summary:</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">## Three step summary:</span>
 dem_df <span class="op">%&gt;%</span><span class="st">                           </span><span class="co">## 1. Data</span>
 <span class="st">  </span><span class="kw">group_by</span>(citizen) <span class="op">%&gt;%</span><span class="st">              </span><span class="co">## 2. Group by</span>
 <span class="st">  </span><span class="kw">summarize</span>(<span class="dt">N =</span> <span class="kw">n</span>())                 <span class="co">## 3. Summarize</span></code></pre>
@@ -424,10 +450,9 @@ dem_df <span class="op">%&gt;%</span><span class="st">                          
 ## 4 &lt;NA&gt;        5</code></pre>
 <p>The output is very informative. The first column is the grouping variable and the second is the N (number of individuals) by group. We can quickly see that there are four levels, currently, to the citizen variable. After some reading of the documentation we see that <code>1 = Citizen</code> and <code>2 = Not a Citizen</code>. A value of <code>7</code> it turns out is a placeholder value for missing. And finally we have an NA category. It’s unlikely that we want those to be included in any analyses, unless we are particularly interested in the missingness on this variable. So let’s do some simple cleaning to get this where we want it. To do this, we will use the <code>furniture</code> package.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;furniture&quot;</span>)</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#library(furniture)</span>
-
-dem_df<span class="op">$</span>citizen &lt;-<span class="st"> </span><span class="kw">washer</span>(dem_df<span class="op">$</span>citizen, <span class="dv">7</span>)            <span class="co">## Changes all 7&#39;s to NA&#39;s</span>
-dem_df<span class="op">$</span>citizen &lt;-<span class="st"> </span><span class="kw">washer</span>(dem_df<span class="op">$</span>citizen, <span class="dv">2</span>, <span class="dt">value=</span><span class="dv">0</span>)   <span class="co">## Changes all 2&#39;s to 0&#39;s</span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">dem_df &lt;-<span class="st"> </span>dem_df <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">citizen =</span> <span class="kw">washer</span>(citizen, <span class="dv">7</span>),                <span class="co">## Changes all 7&#39;s to NA&#39;s</span>
+         <span class="dt">citizen =</span> <span class="kw">washer</span>(citizen, <span class="dv">2</span>, <span class="dt">value =</span> <span class="dv">0</span>))     <span class="co">## Changes all 2&#39;s to 0&#39;s</span></code></pre>
 <p>Now, our citizen variable is cleaned, with <code>0</code> meaning not a citizen and <code>1</code> meaning citizen. Let’s rerun the code from above with the three step summary:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co">## Three step summary:</span>
 dem_df <span class="op">%&gt;%</span><span class="st">                           </span><span class="co">## 1. Data</span>
@@ -467,27 +492,27 @@ df_long &lt;-<span class="st"> </span><span class="kw">long</span>(df_wide,
                 <span class="dt">v.names =</span> <span class="st">&quot;Var&quot;</span>)</code></pre>
 <pre><code>## id = ID</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">df_long</code></pre>
-<pre><code>##      ID time         Var
-## 1.1   1    1  1.69440282
-## 2.1   2    1 -0.23990780
-## 3.1   3    1 -1.07005011
-## 4.1   4    1 -0.54609404
-## 5.1   5    1  0.09399397
-## 6.1   6    1 -1.33140626
-## 7.1   7    1 -0.25096038
-## 8.1   8    1  0.62905863
-## 9.1   9    1  1.29122499
-## 10.1 10    1 -0.13860103
-## 1.2   1    2  0.96927129
-## 2.2   2    2  0.53628870
-## 3.2   3    2  0.45760910
-## 4.2   4    2  0.64027898
-## 5.2   5    2  0.48526401
-## 6.2   6    2  0.18579525
-## 7.2   7    2  0.88215168
-## 8.2   8    2  0.53543267
-## 9.2   9    2  0.19184983
-## 10.2 10    2  0.84081142</code></pre>
+<pre><code>##      ID time          Var
+## 1.1   1    1 -0.889600345
+## 2.1   2    1  0.776447016
+## 3.1   3    1  1.202339278
+## 4.1   4    1  0.731162175
+## 5.1   5    1  1.099465752
+## 6.1   6    1  1.909426615
+## 7.1   7    1 -0.983028886
+## 8.1   8    1  0.636268728
+## 9.1   9    1  0.006159452
+## 10.1 10    1 -0.944575593
+## 1.2   1    2  0.620756119
+## 2.2   2    2  0.670703418
+## 3.2   3    2  0.369249871
+## 4.2   4    2  0.423831544
+## 5.2   5    2  0.532131544
+## 6.2   6    2  0.991800993
+## 7.2   7    2  0.874762335
+## 8.2   8    2  0.703955741
+## 9.2   9    2  0.509060074
+## 10.2 10    2  0.322793453</code></pre>
 <p>We provided the data (<code>df_wide</code>), the time varying variables (<code>c("Var_Time1", "Var_Time2")</code>), and told it what we should name the value variable (<code>v.names = "Var"</code>). Note that the function guessed, based on its name, that the variable <code>ID</code> was the identifying variable.</p>
 <p>This function automatically assumes each observation is a time point, thus the <code>time</code> variable. We can easily change that by adding the argument <code>timevar</code> and giving it a name (e.g., <code>timevar = "cluster"</code>).</p>
 <p>And now we will go from long to wide using <code>wide()</code> from the same package.</p>
@@ -499,10 +524,10 @@ df_wide &lt;-<span class="st"> </span><span class="kw">wide</span>(df_long,
                 <span class="dt">timevar =</span> <span class="st">&quot;Time&quot;</span>)</code></pre>
 <pre><code>## id = ID</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">df_wide</code></pre>
-<pre><code>##   ID      Var.1     Var.2     Var.3     Var.4
-## 1  1 0.07725025 0.3553968 0.2316248 0.6362499
-## 5  2 0.14320268 0.8687750        NA        NA
-## 7  3 0.12792836 0.8543882 0.9947470        NA</code></pre>
+<pre><code>##   ID     Var.1     Var.2     Var.3     Var.4
+## 1  1 0.5118027 0.2529407 0.1691494 0.1845793
+## 5  2 0.7187487 0.4457171        NA        NA
+## 7  3 0.9785354 0.4326648 0.3020775        NA</code></pre>
 <p>Here, we provided the data <code>df_long</code> and the variable name (<code>Var</code>) that had the values and (<code>Time</code>) that contained the time labels (in this case, just numbers). With a little bit of code we can move data around without any copy-pasting that is so error-prone. Again, note that the function guessed, based on its name, that the variable <code>ID</code> was the identifying variable.</p>
 </div>
 <div id="joining-merging" class="section level2 unnumbered">
@@ -540,32 +565,12 @@ df_wide &lt;-<span class="st"> </span><span class="kw">wide</span>(df_long,
 <p>For many analyses in later chapters, we will use this new <code>df</code> object that is the combination of all the data sets that we had before. Whenever this is the case, this data will be explicitly referenced. Note, that in addition to what was shown in this chapter, a few other cleaning tasks were done on the data. This final version of <code>df</code> can be found at <a href="http://www.tysonstanley.github.io/R">tysonstanley.github.io/R</a>.</p>
 </div>
 </div>
-<div id="mutate-and-transmute" class="section level2 unnumbered">
-<h2>Mutate and Transmute</h2>
-<p>Earlier we showed how to create a new variable or clean an existing one. We used the base <code>R</code> way for these. However, a great way to add and change variables is using <code>mutate()</code>.</p>
-<pre class="sourceCode r"><code class="sourceCode r">df_fake &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="st">&quot;ID&quot;</span>=<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>), 
-                      <span class="st">&quot;Var1&quot;</span>=<span class="kw">rnorm</span>(<span class="dv">10</span>), 
-                      <span class="st">&quot;Var2&quot;</span>=<span class="kw">runif</span>(<span class="dv">10</span>))
-
-df_fake &lt;-<span class="st"> </span>df_fake <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Var3 =</span> Var1 <span class="op">+</span><span class="st"> </span>Var2,
-         <span class="dt">Var4 =</span> Var1 <span class="op">*</span><span class="st"> </span>Var2 <span class="op">+</span><span class="st"> </span>Var3)
-df_fake</code></pre>
-<pre><code>##    ID        Var1       Var2         Var3        Var4
-## 1   1 -1.38244777 0.83443784 -0.548009934 -1.70157666
-## 2   2  0.01766233 0.06917894  0.086841276  0.08806314
-## 3   3  2.50975602 0.22669270  2.736448718  3.30539209
-## 4   4 -0.50298789 0.03995145 -0.463036435 -0.48313153
-## 5   5 -0.32083635 0.32833268  0.007496329 -0.09784473
-## 6   6  0.30788262 0.54919961  0.857082235  1.02617125
-## 7   7 -0.45148408 0.31197768 -0.139506398 -0.28035935
-## 8   8 -1.51695344 0.77136788 -0.745585561 -1.91571472
-## 9   9  1.26373479 0.23487524  1.498610031  1.79543004
-## 10 10 -0.26878295 0.12517350 -0.143609455 -0.17725396</code></pre>
-<p>The benefit is in the readability of the code. We repeat things like the name of the data frame much less (only once here). I highly recommend working this way.</p>
-<p>To highlight its benefits on real data, let’s go back to our NHANES data (now called <code>df</code>). First, we are going to create an overall depression variable that is the sum of all the depression items (we could do IRT or some other way of combining them but that is not the point here). Below, we do three things:</p>
+<div id="wrap-it-up" class="section level2 unnumbered">
+<h2>Wrap it up</h2>
+<p>Let’s put all the pieces together that we’ve learned in the chapter together on this new <code>df</code> data frame we just created. Below, we using piping, selecting, filtering, grouping, and summarizing.</p>
+<p>First, let’s create an overall depression variable that is the sum of all the depression items (we could do IRT or some other way of combining them but that is not the point here). Below, we do three things:</p>
 <ol style="list-style-type: decimal">
-<li>We clean up each depression item using <code>washer()</code> since both “7” and “9” are placeholders for missing values. We take override the original variable with the cleaned one.</li>
+<li>We clean up each depression item using <code>furniture::washer()</code> since both “7” and “9” are placeholders for missing values. We take override the original variable with the cleaned one.</li>
 <li>Next, we sum all the items into a new variable called <code>dep</code>.</li>
 <li>Finally, we create a dichotomized variable called <code>dep2</code> using nested <code>ifelse()</code> functions. The <code>ifelse()</code> statements read: if condition holds (<code>dep</code> is greater than or equal to <code>10</code>), then <code>1</code>, else if condition holds (<code>dep</code> is less than <code>10</code>), then <code>0</code>, else <code>NA</code>. The basic build of the function is: <code>ifelse(condition, value if true, value if false)</code>.</li>
 </ol>
@@ -585,10 +590,7 @@ df_fake</code></pre>
 <span class="st">               </span>dpq060 <span class="op">+</span><span class="st"> </span>dpq070 <span class="op">+</span><span class="st"> </span>dpq080 <span class="op">+</span><span class="st"> </span>dpq090) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">dep2 =</span> <span class="kw">factor</span>(<span class="kw">ifelse</span>(dep <span class="op">&gt;=</span><span class="st"> </span><span class="dv">10</span>, <span class="dv">1</span>,
                        <span class="kw">ifelse</span>(dep <span class="op">&lt;</span><span class="st"> </span><span class="dv">10</span>, <span class="dv">0</span>, <span class="ot">NA</span>))))</code></pre>
-</div>
-<div id="wrap-it-up" class="section level2 unnumbered">
-<h2>Wrap it up</h2>
-<p>Let’s put all the pieces together that we’ve learned in the chapter together on this new <code>df</code> data frame we just created. Below, we using piping, selecting, filtering, grouping, and summarizing.</p>
+<p>After these adjustments, let’s select, filter, group by, and summarize.</p>
 <pre class="sourceCode r"><code class="sourceCode r">df2 <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">select</span>(ridageyr, riagendr, mcq010, dep) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">filter</span>(ridageyr <span class="op">&gt;</span><span class="st"> </span><span class="dv">10</span> <span class="op">&amp;</span><span class="st"> </span>ridageyr <span class="op">&lt;</span><span class="st"> </span><span class="dv">40</span>) <span class="op">%&gt;%</span>
@@ -602,7 +604,20 @@ df_fake</code></pre>
 ## 2        2   1.82  3.58</code></pre>
 <p>We can see that males (<code>riagendr = 1</code>) have nearly identical asthma levels but lower depression levels than their female counterparts.</p>
 <p>Ultimately, I hope you see the benefit to using these methods. With these methods, you can clean, reshape, and summarize your data. Because these are foundational, we will apply these methods throughout the book.</p>
+</div>
+<div id="apply-it-1" class="section level2 unnumbered">
+<h2>Apply It</h2>
+<p><a href="http://tysonbarrett.com/DataR/Chapter2.zip">This link</a> contains a folder complete with an Rstudio project file, an RMarkdown file, and a few data files. Download it and unzip it to do the following steps.</p>
+<div id="step-1-1" class="section level3 unnumbered">
+<h3>Step 1</h3>
+<p>Open the <code>Chapter2.Rproj</code> file. This will open up RStudio for you.</p>
+</div>
+<div id="step-2-1" class="section level3 unnumbered">
+<h3>Step 2</h3>
+<p>Once RStudio has started, in the panel on the lower-right, there is a <code>Files</code> tab. Click on that to see the project folder. You should see the data files and the <code>Chapter2.Rmd</code> file. Click on the <code>Chapter2.Rmd</code> file to open it. In this file, import the data, create a new variable, select three varaibles, and summarize a variable using the three step summary.</p>
+<p>Once that code is in the file, click the <code>knit</code> button. This will create an HTML file with the code and output knitted together into one nice document. This can be read into any browser and can be used to show your work in a clean document.</p>
 
+</div>
 </div>
 </div>
 <div class="footnotes">
