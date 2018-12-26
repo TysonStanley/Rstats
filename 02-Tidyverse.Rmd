@@ -15,7 +15,7 @@ After downloading it, to use its functions, simply use:
 library(tidyverse)
 ```
 
-Note that when we loaded tidyverse it loaded 6 packages and told you of "conflicts". These conflicts are where two or more functions across different packages have the same name. These functions with the same name will almost invariably differ in what they do. In this situation, the last loaded package is the one that `R` will use by default. For example, if we loaded two packages---`awesome` and `amazing`---and both had the function `make_really_cool` and we loaded `awesome` and then `amazing` as so:
+Note that when we loaded tidyverse it loaded several packages and told you of "conflicts". These conflicts are where two or more functions across different packages have the same name. These functions with the same name will almost invariably differ in what they do. In this situation, the last loaded package is the one that `R` will use by default. For example, if we loaded two packages---`awesome` and `amazing`---and both had the function `make_really_cool` and we loaded `awesome` and then `amazing` as so:
 ```{r, eval=FALSE}
 library(awesome)
 library(amazing)
@@ -85,26 +85,23 @@ This is a very simple example of the differences between wide and long format. A
 
 To help illustrate each aspect of working with and cleaning your data, we are going to use real data from the National Health and Nutrition Examiniation Survey (NHANES). I've provided this data at [https://tysonstanley.github.io/assets/Data/NHANES.zip](https://tysonstanley.github.io/assets/Data/NHANES.zip). I've cleaned it up somewhat already.
 
-Let's quickly read that data in so we can use it throughout the remainder of this chapter. First, we will set our working directory with `setwd`. This tells `R` where to look for files, including your data files. My specific file location is below so you will need to adjust it to wherever you saved the NHANES data.
-```{r, eval=FALSE}
-setwd("~/Dropbox/GitHub/blog_rstats/assets/Data/")
-```
+Let's quickly read that data in so we can use it throughout the remainder of this chapter.
 
 ```{r, echo=FALSE}
 ## Run but not shown
-library(foreign)
-dem_df <- read.xport("~/Box Sync/GitHub/blog_rstats/assets/Data/NHANES_demographics_11.xpt")
-med_df <- read.xport("~/Box Sync/GitHub/blog_rstats/assets/Data/NHANES_MedHeath_11.xpt")
-men_df <- read.xport("~/Box Sync/GitHub/blog_rstats/assets/Data/NHANES_MentHealth_11.xpt")
-act_df <- read.xport("~/Box Sync/GitHub/blog_rstats/assets/Data/NHANES_PhysActivity_11.xpt")
+library(rio)
+dem_df <- import("~/Dropbox/GitHub/blog_rstats/assets/Data/NHANES_demographics_11.xpt")
+med_df <- import("~/Dropbox/GitHub/blog_rstats/assets/Data/NHANES_MedHeath_11.xpt")
+men_df <- import("~/Dropbox/GitHub/blog_rstats/assets/Data/NHANES_MentHealth_11.xpt")
+act_df <- import("~/Dropbox/GitHub/blog_rstats/assets/Data/NHANES_PhysActivity_11.xpt")
 ```
 
 ```{r, eval=FALSE}
-library(foreign)
-dem_df <- read.xport("NHANES_demographics_11.xpt")
-med_df <- read.xport("NHANES_MedHeath_11.xpt")
-men_df <- read.xport("NHANES_MentHealth_11.xpt")
-act_df <- read.xport("NHANES_PhysActivity_11.xpt")
+library(rio)
+dem_df <- import("NHANES_demographics_11.xpt")
+med_df <- import("NHANES_MedHeath_11.xpt")
+men_df <- import("NHANES_MentHealth_11.xpt")
+act_df <- import("NHANES_PhysActivity_11.xpt")
 ```
 
 Now we have four separate, but related, data sets in memory:
@@ -131,10 +128,10 @@ We will now go through each aspect of the tidy way of working with data using th
 Let's introduce a few major themes in this tidyverse. First, the pipe operator -- `%>%`. It helps simplify the code and makes things more readable. It takes what is on the left hand side and puts it in the right hand side's function.
 
 ```{r, eval=FALSE}
-dem_df %>% summary
+dem_df %>% head()
 ```
 
-So the above code takes the data frame `dem_df` and puts it into the `summary` function. This does the same thing as `summary(df)`. In this simple case, it doesn't really make the code more readable, but in more complex situations it can really help. In the following sections you will see how and where this type of coding is helpful.
+So the above code takes the data frame `dem_df` and puts it into the `head` function. This does the same thing as `head(df)`. In this simple case, it doesn't really make the code more readable, but in more complex situations it can really help. In the following sections you will see how and where this type of coding is helpful.
 
 ## Select and Filter {-}
 

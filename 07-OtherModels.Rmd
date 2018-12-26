@@ -8,7 +8,7 @@ library(foreign)
 library(furniture)
 library(tidyverse)
 library(anteo)
-load("~/Box Sync/GitHub/blog_rstats/assets/Data/NHANES_2012.rda")
+load("~/Dropbox/GitHub/blog_rstats/assets/Data/NHANES_2012.rda")
 ```
 
 

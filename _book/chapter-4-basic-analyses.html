@@ -5,27 +5,27 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>R for the Health, Behavioral, and Social Sciences</title>
-  <meta name="description" content="This book introduces the R statistical language for researchers in the health, behavioral, and social sciences. It is designed for those that have little background in statistical programming but would like to use the powerful statistical and visualization tool that R offers at no cost. The light-hearted design of this book allows a researcher to investigate and begin using R relatively stress-free with intuitive and interesting examples.">
-  <meta name="generator" content="bookdown 0.4 and GitBook 2.6.7">
+  <title>Chapter 4: Basic Analyses | R for the Health, Behavioral, and Social Sciences</title>
+  <meta name="description" content="This book introduces the R statistical language for researchers in the health, behavioral, educational, and psychological sciences. It is designed for those that have little background in statistical programming but would like to use the powerful statistical and visualization tool that R offers at no cost. The light-hearted design of this book allows a researcher to investigate and begin using R relatively stress-free with intuitive and interesting examples.">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="R for the Health, Behavioral, and Social Sciences" />
+  <meta property="og:title" content="Chapter 4: Basic Analyses | R for the Health, Behavioral, and Social Sciences" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="Cover.jpg" />
-  <meta property="og:description" content="This book introduces the R statistical language for researchers in the health, behavioral, and social sciences. It is designed for those that have little background in statistical programming but would like to use the powerful statistical and visualization tool that R offers at no cost. The light-hearted design of this book allows a researcher to investigate and begin using R relatively stress-free with intuitive and interesting examples." />
+  <meta property="og:description" content="This book introduces the R statistical language for researchers in the health, behavioral, educational, and psychological sciences. It is designed for those that have little background in statistical programming but would like to use the powerful statistical and visualization tool that R offers at no cost. The light-hearted design of this book allows a researcher to investigate and begin using R relatively stress-free with intuitive and interesting examples." />
   <meta name="github-repo" content="tysonstanley/tysonstanley.github.io" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="R for the Health, Behavioral, and Social Sciences" />
+  <meta name="twitter:title" content="Chapter 4: Basic Analyses | R for the Health, Behavioral, and Social Sciences" />
   
-  <meta name="twitter:description" content="This book introduces the R statistical language for researchers in the health, behavioral, and social sciences. It is designed for those that have little background in statistical programming but would like to use the powerful statistical and visualization tool that R offers at no cost. The light-hearted design of this book allows a researcher to investigate and begin using R relatively stress-free with intuitive and interesting examples." />
+  <meta name="twitter:description" content="This book introduces the R statistical language for researchers in the health, behavioral, educational, and psychological sciences. It is designed for those that have little background in statistical programming but would like to use the powerful statistical and visualization tool that R offers at no cost. The light-hearted design of this book allows a researcher to investigate and begin using R relatively stress-free with intuitive and interesting examples." />
   <meta name="twitter:image" content="Cover.jpg" />
 
 <meta name="author" content="Tyson S. Barrett">
 
 
-<meta name="date" content="2017-07-07">
+<meta name="date" content="2018-12-26">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -36,6 +36,7 @@
 <link rel="next" href="chapter-5-generalized-linear-models.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
@@ -50,41 +51,67 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 </head>
@@ -103,21 +130,21 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#part-i"><i class="fa fa-check"></i>Part I</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#part-ii"><i class="fa fa-check"></i>Part II</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#part-iii"><i class="fa fa-check"></i>Part III</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#download-r-and-rstudio"><i class="fa fa-check"></i>Download R and RStudio</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="chapter-1-the-basics-of-the-language.html"><a href="chapter-1-the-basics-of-the-language.html"><i class="fa fa-check"></i>Chapter 1: The Basics of the Language</a><ul>
-<li class="chapter" data-level="" data-path="chapter-1-the-basics-of-the-language.html"><a href="chapter-1-the-basics-of-the-language.html#objects"><i class="fa fa-check"></i>Objects</a></li>
-<li class="chapter" data-level="" data-path="chapter-1-the-basics-of-the-language.html"><a href="chapter-1-the-basics-of-the-language.html#data-types"><i class="fa fa-check"></i>Data Types</a></li>
-<li class="chapter" data-level="" data-path="chapter-1-the-basics-of-the-language.html"><a href="chapter-1-the-basics-of-the-language.html#functions"><i class="fa fa-check"></i>Functions</a><ul>
-<li class="chapter" data-level="" data-path="chapter-1-the-basics-of-the-language.html"><a href="chapter-1-the-basics-of-the-language.html#operators"><i class="fa fa-check"></i>Operators</a></li>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html"><i class="fa fa-check"></i>Chapter 1: The Basics</a><ul>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html#objects"><i class="fa fa-check"></i>Objects</a></li>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html#data-types"><i class="fa fa-check"></i>Data Types</a></li>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html#functions"><i class="fa fa-check"></i>Functions</a><ul>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html#operators"><i class="fa fa-check"></i>Operators</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="chapter-1-the-basics-of-the-language.html"><a href="chapter-1-the-basics-of-the-language.html#importing-data"><i class="fa fa-check"></i>Importing Data</a><ul>
-<li class="chapter" data-level="" data-path="chapter-1-the-basics-of-the-language.html"><a href="chapter-1-the-basics-of-the-language.html#r-data-file"><i class="fa fa-check"></i>R Data File</a></li>
-<li class="chapter" data-level="" data-path="chapter-1-the-basics-of-the-language.html"><a href="chapter-1-the-basics-of-the-language.html#delimited-files"><i class="fa fa-check"></i>Delimited Files</a></li>
-<li class="chapter" data-level="" data-path="chapter-1-the-basics-of-the-language.html"><a href="chapter-1-the-basics-of-the-language.html#other-data-formats"><i class="fa fa-check"></i>Other Data Formats</a></li>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html#importing-data"><i class="fa fa-check"></i>Importing Data</a></li>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html#saving-data"><i class="fa fa-check"></i>Saving Data</a></li>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html#apply-it"><i class="fa fa-check"></i>Apply it</a><ul>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html#step-1"><i class="fa fa-check"></i>Step 1</a></li>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html#step-2"><i class="fa fa-check"></i>Step 2</a></li>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html#step-3"><i class="fa fa-check"></i>Step 3</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="chapter-1-the-basics-of-the-language.html"><a href="chapter-1-the-basics-of-the-language.html#saving-data"><i class="fa fa-check"></i>Saving Data</a></li>
-<li class="chapter" data-level="" data-path="chapter-1-the-basics-of-the-language.html"><a href="chapter-1-the-basics-of-the-language.html#conclusions"><i class="fa fa-check"></i>Conclusions</a></li>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html#conclusions"><i class="fa fa-check"></i>Conclusions</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html"><i class="fa fa-check"></i>Chapter 2: Working with and Cleaning Your Data</a><ul>
 <li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#tidy-methods"><i class="fa fa-check"></i>Tidy Methods</a></li>
@@ -245,14 +272,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>ANOVA stands for <strong>an</strong>alysis <strong>o</strong>f <strong>va</strong>riance. It is a family of methods (e.g. ANCOVA, MANOVA) that all share the fact that they compare a continuous dependent variable by a grouping factor variable (and may have multiple outcomes or other covariates).</p>
 <p><span class="math display">\[
 Y_i = \alpha_0 + \alpha_1 \text{Group}_i + e_i
-\]</span> Since the groups are compared using “effect coding,” the <span class="math inline">\(\alpha_0\)</span> is the grand mean and each of the group level means are compared to it.</p>
+\]</span>
+Since the groups are compared using “effect coding,” the <span class="math inline">\(\alpha_0\)</span> is the grand mean and each of the group level means are compared to it.</p>
 <p>To run an ANOVA model, you can simply use the <code>aov</code> function. In the example below, we are analyzing whether family size (although not fully continuous it is still useful for the example) differs by race.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df<span class="op">$</span>race &lt;-<span class="st"> </span><span class="kw">factor</span>(df<span class="op">$</span>ridreth1, 
+<pre class="sourceCode r"><code class="sourceCode r">df<span class="op">$</span>race &lt;-<span class="st"> </span><span class="kw">factor</span>(df<span class="op">$</span>ridreth1, 
                   <span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;MexicanAmerican&quot;</span>, <span class="st">&quot;OtherHispanic&quot;</span>, <span class="st">&quot;White&quot;</span>, <span class="st">&quot;Black&quot;</span>, <span class="st">&quot;Other&quot;</span>))
 df<span class="op">$</span>famsize &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(df<span class="op">$</span>dmdfmsiz)
 
 fit &lt;-<span class="st"> </span><span class="kw">aov</span>(famsize <span class="op">~</span><span class="st"> </span>race, df)
-<span class="kw">anova</span>(fit)</code></pre></div>
+<span class="kw">anova</span>(fit)</code></pre>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: famsize
@@ -263,31 +291,31 @@ fit &lt;-<span class="st"> </span><span class="kw">aov</span>(famsize <span clas
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>We make sure the variables are the right type, then we use the <code>aov</code> function. Inside of the function we have what is called a formula. It has the general structure: <code>leftside ~ rightside</code>. Generally, the left side is an outcome variable and the right side is the predictor (i.e. independent) variable. Here, we have <code>race</code> predicting <code>famsize</code>. We assign the model to the name <code>fit</code> which is a common way of denoting it is a model. Finally, we use the <code>anova</code> function to output a nice ANOVA table.</p>
 <p>In the output we see the normal ANOVA table and we can see the p-value (<code>Pr(&gt;F)</code>) is very, very small and thus is quite significant. We can look at how the groups relate using a box plot. We will be using some of the practice you got in Chapter 3 using <code>ggplot2</code> for this.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
 
 <span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x=</span>race, <span class="dt">y=</span>famsize)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">color=</span>race)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">guide=</span><span class="ot">FALSE</span>, 
                      <span class="dt">values=</span><span class="kw">c</span>(<span class="st">&quot;dodgerblue3&quot;</span>, <span class="st">&quot;coral2&quot;</span>, <span class="st">&quot;chartreuse4&quot;</span>, 
                               <span class="st">&quot;darkorchid&quot;</span>, <span class="st">&quot;firebrick2&quot;</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-68-1.png" width="672" /></p>
+<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-62-1.png" width="672" /></p>
 <p>This immediately gives us an idea of where some differences may be occuring. It would appear that “White” and “MexicanAmerican” groups are different in family size.</p>
 </div>
 <div id="assumptions" class="section level2 unnumbered">
 <h2>Assumptions</h2>
 <p>We also would like to make sure the assumptions look like they are being met. In ANOVA, we want the residuals to be distributed normally, the variance of each group should be approximately the same, the groups are assumed to be randomly assigned, and the sample should be randomly selected as well.</p>
 <p>In <code>R</code> we can get some simple graphical checks using <code>plot</code>. All we provide is our ANOVA object (here it is <code>fit</code>). The line before it <code>par(mfrow=c(1,2))</code> tells <code>R</code> to have two plots per row (the 1 means one row, 2 means two columns).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))
-<span class="kw">plot</span>(fit)</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-69-1.png" width="480" /><img src="_main_files/figure-html/unnamed-chunk-69-2.png" width="480" /></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))
+<span class="kw">plot</span>(fit)</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-63-1.png" width="480" /><img src="_main_files/figure-html/unnamed-chunk-63-2.png" width="480" /></p>
 <p>Here, it looks like we have a problem with normality (see the Normal Q-Q plot). Those dots should approximately follow the dotted line, which is not the case. In the first plot (Residuals vs. Fitted) suggests we have approximate homoskedasticity.</p>
 </div>
 <div id="linear-modeling" class="section level2 unnumbered">
 <h2>Linear Modeling</h2>
 <p>Linear regression is nearly identical to ANOVA. In fact, a linear regression with a continuous outcome and categorical predictor is exactly the same (if we use effect coding). For example, if we run the same model but with the linear regression function <code>lm</code> we get the same ANOVA table.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fit2 &lt;-<span class="st"> </span><span class="kw">lm</span>(famsize <span class="op">~</span><span class="st"> </span>race, <span class="dt">data=</span>df)
-<span class="kw">anova</span>(fit2)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">fit2 &lt;-<span class="st"> </span><span class="kw">lm</span>(famsize <span class="op">~</span><span class="st"> </span>race, <span class="dt">data=</span>df)
+<span class="kw">anova</span>(fit2)</code></pre>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: famsize
@@ -297,7 +325,7 @@ fit &lt;-<span class="st"> </span><span class="kw">aov</span>(famsize <span clas
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>Surprise! It is the same as before. Here we can also use the <code>summary</code> function and we get the coefficients in the model as well (using dummy coding). The first level of the categorical variable is the reference group (the group that the others are compared to). We also get the intercept (in this case, the average value of the reference group).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(fit2)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(fit2)</code></pre>
 <pre><code>## 
 ## Call:
 ## lm(formula = famsize ~ race, data = df)
@@ -329,9 +357,9 @@ fit &lt;-<span class="st"> </span><span class="kw">aov</span>(famsize <span clas
 <li>Normality of residuals.</li>
 </ol>
 <p>Numbers 2 and 3 are fairly easy to assess using the <code>plot()</code> function on the model object as we did with the ANOVA model. The linear in parameters suggests that the relationship between the outcome and independents is linear.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))
-<span class="kw">plot</span>(fit2)</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-72-1.png" width="480" /><img src="_main_files/figure-html/unnamed-chunk-72-2.png" width="480" /></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))
+<span class="kw">plot</span>(fit2)</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-66-1.png" width="480" /><img src="_main_files/figure-html/unnamed-chunk-66-2.png" width="480" /></p>
 </div>
 <div id="comparing-models" class="section level2 unnumbered">
 <h2>Comparing Models</h2>
@@ -339,7 +367,7 @@ fit &lt;-<span class="st"> </span><span class="kw">aov</span>(famsize <span clas
 <div id="compare-statistically" class="section level3 unnumbered">
 <h3>Compare Statistically</h3>
 <p>Using the <code>anova()</code> function, we can compare models statistically.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">anova</span>(fit, fit2)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">anova</span>(fit, fit2)</code></pre>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Model 1: famsize ~ race
@@ -348,8 +376,8 @@ fit &lt;-<span class="st"> </span><span class="kw">aov</span>(famsize <span clas
 ## 1   4627 12188                      
 ## 2   4627 12188  0         0</code></pre>
 <p>The <code>anova()</code> function works with all sorts of modeling schemes and can help in model selection. Not surprisingly, when we compared the ANOVA and the simple linear model, they are <em>exactly</em> the same in overall model terms (the only difference is in how the cateogrical variable is coded—either effect coding in ANOVA or dummy coding in regression). For a more interesting comparison, lets run a new model with an additional variable and then make a comparison.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fit3 =<span class="st"> </span><span class="kw">lm</span>(famsize <span class="op">~</span><span class="st"> </span>race <span class="op">+</span><span class="st"> </span>marriage, <span class="dt">data=</span>df)
-<span class="kw">summary</span>(fit3)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">fit3 =<span class="st"> </span><span class="kw">lm</span>(famsize <span class="op">~</span><span class="st"> </span>race <span class="op">+</span><span class="st"> </span>marriage, <span class="dt">data=</span>df)
+<span class="kw">summary</span>(fit3)</code></pre>
 <pre><code>## 
 ## Call:
 ## lm(formula = famsize ~ race + marriage, data = df)
@@ -377,7 +405,7 @@ fit &lt;-<span class="st"> </span><span class="kw">aov</span>(famsize <span clas
 ## Multiple R-squared:  0.1255, Adjusted R-squared:  0.1238 
 ## F-statistic: 73.73 on 9 and 4622 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>Notice that the variable is associated with the outcome according to the t-test seen in the summary. So we would expect that <code>fit3</code> is better than <code>fit2</code> at explaining the outcome, which we see in the output below.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">anova</span>(fit2, fit3)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">anova</span>(fit2, fit3)</code></pre>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Model 1: famsize ~ race
@@ -390,19 +418,20 @@ fit &lt;-<span class="st"> </span><span class="kw">aov</span>(famsize <span clas
 </div>
 <div id="compare-in-a-table" class="section level3 unnumbered">
 <h3>Compare in a Table</h3>
-<p>We can also compare the models in a well-formatted table that makes many aspects easy to compare. Two main packages allow us to compare models:</p>
+<p>We can also compare the models in a well-formatted table that makes many aspects easy to compare.
+Two main packages allow us to compare models:</p>
 <ol style="list-style-type: decimal">
 <li><code>stargazer</code></li>
 <li><code>texreg</code></li>
 </ol>
 <p>Both provide simple functions to compare multiple models. For example, <code>stargazer</code> provides:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(stargazer)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(stargazer)</code></pre>
 <pre><code>## 
 ## Please cite as:</code></pre>
-<pre><code>##  Hlavac, Marek (2015). stargazer: Well-Formatted Regression and Summary Statistics Tables.</code></pre>
-<pre><code>##  R package version 5.2. http://CRAN.R-project.org/package=stargazer</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">stargazer</span>(fit2, fit3,
-          <span class="dt">type =</span> <span class="st">&quot;text&quot;</span>)</code></pre></div>
+<pre><code>##  Hlavac, Marek (2018). stargazer: Well-Formatted Regression and Summary Statistics Tables.</code></pre>
+<pre><code>##  R package version 5.2.2. https://CRAN.R-project.org/package=stargazer</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">stargazer</span>(fit2, fit3,
+          <span class="dt">type =</span> <span class="st">&quot;text&quot;</span>)</code></pre>
 <pre><code>## 
 ## =====================================================================
 ##                                    Dependent variable:               
@@ -457,18 +486,18 @@ fit &lt;-<span class="st"> </span><span class="kw">aov</span>(famsize <span clas
 <h3>Log-Linear, Log-Log, Linear-Log, Other</h3>
 <p>Sounds like a great tongue-twister? Well, it is but it’s also three ways of specifying (i.e. deciding what is in) your model better.</p>
 <p><strong>Log-Linear</strong> is where we adjust the outcome variable by a natural log transformation. This is done easily in <code>R</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df<span class="op">$</span>log_outcome &lt;-<span class="st"> </span><span class="kw">log</span>(df<span class="op">$</span>outcome)
+<pre class="sourceCode r"><code class="sourceCode r">df<span class="op">$</span>log_outcome &lt;-<span class="st"> </span><span class="kw">log</span>(df<span class="op">$</span>outcome)
 
-<span class="kw">lm</span>(log_outcome <span class="op">~</span><span class="st"> </span>var1, <span class="dt">data=</span>df)</code></pre></div>
+<span class="kw">lm</span>(log_outcome <span class="op">~</span><span class="st"> </span>var1, <span class="dt">data=</span>df)</code></pre>
 <p><strong>Log-Log</strong> is where we adjust both the outcome and the predictor variable with a log transformation. This is also easily done:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df<span class="op">$</span>log_outcome &lt;-<span class="st"> </span><span class="kw">log</span>(df<span class="op">$</span>outcome)
+<pre class="sourceCode r"><code class="sourceCode r">df<span class="op">$</span>log_outcome &lt;-<span class="st"> </span><span class="kw">log</span>(df<span class="op">$</span>outcome)
 df<span class="op">$</span>log_var1    &lt;-<span class="st"> </span><span class="kw">log</span>(df<span class="op">$</span>var1)
 
-<span class="kw">lm</span>(log_outcome <span class="op">~</span><span class="st"> </span>log_var1, <span class="dt">data=</span>df)</code></pre></div>
+<span class="kw">lm</span>(log_outcome <span class="op">~</span><span class="st"> </span>log_var1, <span class="dt">data=</span>df)</code></pre>
 <p><strong>Linear-Log</strong> is where we adjsut just the predictor variable with a log transformation. And, you guessed it, this is easily done in <code>R</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df<span class="op">$</span>log_var1 &lt;-<span class="st"> </span><span class="kw">log</span>(df<span class="op">$</span>var1)
+<pre class="sourceCode r"><code class="sourceCode r">df<span class="op">$</span>log_var1 &lt;-<span class="st"> </span><span class="kw">log</span>(df<span class="op">$</span>var1)
 
-<span class="kw">lm</span>(outcome <span class="op">~</span><span class="st"> </span>log_var1 <span class="op">+</span><span class="st"> </span>var2, <span class="dt">data=</span>df)</code></pre></div>
+<span class="kw">lm</span>(outcome <span class="op">~</span><span class="st"> </span>log_var1 <span class="op">+</span><span class="st"> </span>var2, <span class="dt">data=</span>df)</code></pre>
 <p><strong>Other</strong> methods such as square rooting the outcome or using some power function (e.g. square, cube) are also quite common. There are functions that look for the best transformation to use. However, I will not cover it here since I think GLM’s are better. So if you want to learn about other ways to help your linear model go to the next chapter.</p>
 </div>
 </div>
@@ -479,10 +508,10 @@ df<span class="op">$</span>log_var1    &lt;-<span class="st"> </span><span class
 <div id="interactions-in-anova" class="section level3 unnumbered">
 <h3>Interactions in ANOVA</h3>
 <p>In general, we refer to ANOVA’s with interactions as “2-way Factorial ANOVA’s”. We interact race and marriage status in this ANOVA. For simplicity, we created a binary race variable called minority using the <code>ifelse()</code> function. We explain this in more depth in Chapter 5.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df<span class="op">$</span>minority &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">ifelse</span>(df<span class="op">$</span>race <span class="op">==</span><span class="st"> &quot;White&quot;</span>, <span class="dv">0</span>, <span class="dv">1</span>), 
+<pre class="sourceCode r"><code class="sourceCode r">df<span class="op">$</span>minority &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">ifelse</span>(df<span class="op">$</span>race <span class="op">==</span><span class="st"> &quot;White&quot;</span>, <span class="dv">0</span>, <span class="dv">1</span>), 
                       <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;White&quot;</span>, <span class="st">&quot;Minority&quot;</span>))
 fit_anova &lt;-<span class="st"> </span><span class="kw">aov</span>(famsize <span class="op">~</span><span class="st"> </span>minority<span class="op">*</span>marriage, df)
-<span class="kw">anova</span>(fit_anova)</code></pre></div>
+<span class="kw">anova</span>(fit_anova)</code></pre>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: famsize
@@ -495,30 +524,31 @@ fit_anova &lt;-<span class="st"> </span><span class="kw">aov</span>(famsize <spa
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>Notice two things: First, the interaction is significant (p = .003). This is important since we are going to try to interpret this interaction. Second, by including <code>minority*marriage</code> we get both the main effects and the interaction. This is very important for interpretation purposes so you can thank <code>R</code> for making it a bit more easy on you.</p>
 <p>We can check the assumptions the same way as before:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))
-<span class="kw">plot</span>(fit_anova)</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-81-1.png" width="480" /><img src="_main_files/figure-html/unnamed-chunk-81-2.png" width="480" /> Again, the assumptions are not met for this model. But, if we ignore that for now, we can quickly find a way to interpret the interaction.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))
+<span class="kw">plot</span>(fit_anova)</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-75-1.png" width="480" /><img src="_main_files/figure-html/unnamed-chunk-75-2.png" width="480" />
+Again, the assumptions are not met for this model. But, if we ignore that for now, we can quickly find a way to interpret the interaction.</p>
 <p>We first create a new data set that is composed of every possible combination of the variables in the model. This allows us to get unbiased estimates for the plotting.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">newdata &lt;-<span class="st"> </span><span class="kw">expand.grid</span>(<span class="dt">minority =</span> <span class="kw">levels</span>(df<span class="op">$</span>minority),
+<pre class="sourceCode r"><code class="sourceCode r">newdata &lt;-<span class="st"> </span><span class="kw">expand.grid</span>(<span class="dt">minority =</span> <span class="kw">levels</span>(df<span class="op">$</span>minority),
                        <span class="dt">marriage =</span> <span class="kw">levels</span>(df<span class="op">$</span>marriage))
-newdata<span class="op">$</span>preds &lt;-<span class="st"> </span><span class="kw">predict</span>(fit_anova, <span class="dt">newdata=</span>newdata)</code></pre></div>
+newdata<span class="op">$</span>preds &lt;-<span class="st"> </span><span class="kw">predict</span>(fit_anova, <span class="dt">newdata=</span>newdata)</code></pre>
 <p>We now use <code>ggplot2</code> just as before.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(newdata, <span class="kw">aes</span>(<span class="dt">x =</span> marriage, <span class="dt">y =</span> preds, <span class="dt">group =</span> minority)) <span class="op">+</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(newdata, <span class="kw">aes</span>(<span class="dt">x =</span> marriage, <span class="dt">y =</span> preds, <span class="dt">group =</span> minority)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">color =</span> minority)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> minority)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="st">&quot;Predicted Family Size&quot;</span>,
        <span class="dt">x =</span> <span class="st">&quot;Marital Status&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">name =</span> <span class="st">&quot;&quot;</span>,
                      <span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;dodgerblue3&quot;</span>, <span class="st">&quot;chartreuse3&quot;</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_anteo_wh</span>()           ## from anteo package</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-83-1.png" width="672" /></p>
+<span class="st">  </span><span class="kw">theme_anteo_wh</span>()           <span class="co">## from anteo package</span></code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-77-1.png" width="672" /></p>
 <p>The plot tells use a handful of things. For example, we see minorities generally have more children across marital statuses. However, the difference is smaller for married and divorced individuals compared to widowed, separated, never married, and living with a partner. There’s certainly more to gleen from the plot, but we won’t waste your time.</p>
 </div>
 <div id="interactions-in-linear-regression" class="section level3 unnumbered">
 <h3>Interactions in Linear Regression</h3>
 <p>Interactions in linear regression is nearly identical as in ANOVA, except we use dummy coding. It provides a bit more information. For example, we get the coefficients from the linear regression whereas the ANOVA does not provide this. We can run a regression model via:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fit_reg &lt;-<span class="st"> </span><span class="kw">lm</span>(famsize <span class="op">~</span><span class="st"> </span>minority<span class="op">*</span>marriage, df)
-<span class="kw">summary</span>(fit_reg)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">fit_reg &lt;-<span class="st"> </span><span class="kw">lm</span>(famsize <span class="op">~</span><span class="st"> </span>minority<span class="op">*</span>marriage, df)
+<span class="kw">summary</span>(fit_reg)</code></pre>
 <pre><code>## 
 ## Call:
 ## lm(formula = famsize ~ minority * marriage, data = df)
@@ -570,17 +600,18 @@ newdata<span class="op">$</span>preds &lt;-<span class="st"> </span><span class=
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
 <script>
-require(["gitbook"], function(gitbook) {
+gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
 "github": false,
 "facebook": true,
 "twitter": true,
 "google": false,
+"linkedin": false,
 "weibo": false,
-"instapper": false,
+"instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -588,6 +619,10 @@ gitbook.start({
 "size": 2
 },
 "edit": {
+"link": null,
+"text": null
+},
+"history": {
 "link": null,
 "text": null
 },
@@ -604,9 +639,11 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(script.src))
-      script.src  = script.src.replace(/^https?:/, '');
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>

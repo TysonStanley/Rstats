@@ -5,15 +5,10 @@ site: "bookdown::bookdown_site"
 output:
   bookdown::gitbook:
     download: [epub, pdf]
-  bookdown::tufte_book2:
-    keep_tex: yes
-  bookdown::epub_book: 
-    fig_caption: yes
-    number_sections: yes
 documentclass: book
 link-citations: yes
 bibliography: [book.bib]
 biblio-style: apalike
-description: "This book introduces the R statistical language for researchers in the health, behavioral, and social sciences. It is designed for those that have little background in statistical programming but would like to use the powerful statistical and visualization tool that R offers at no cost. The light-hearted design of this book allows a researcher to investigate and begin using R relatively stress-free with intuitive and interesting examples."
+description: "This book introduces the R statistical language for researchers in the health, behavioral, educational, and psychological sciences. It is designed for those that have little background in statistical programming but would like to use the powerful statistical and visualization tool that R offers at no cost. The light-hearted design of this book allows a researcher to investigate and begin using R relatively stress-free with intuitive and interesting examples."
 github-repo: "tysonstanley/tysonstanley.github.io"
 cover-image: "Cover.jpg"

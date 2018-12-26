@@ -6,53 +6,37 @@ site: "bookdown::bookdown_site"
 output:
   bookdown::gitbook:
     download: [epub, pdf]
-  bookdown::tufte_book2:
-    keep_tex: yes
-  bookdown::epub_book: 
-    fig_caption: yes
-    number_sections: yes
 documentclass: book
 link-citations: yes
 bibliography: [book.bib]
 biblio-style: apalike
-description: "This book introduces the R statistical language for researchers in the health, behavioral, and social sciences. It is designed for those that have little background in statistical programming but would like to use the powerful statistical and visualization tool that R offers at no cost. The light-hearted design of this book allows a researcher to investigate and begin using R relatively stress-free with intuitive and interesting examples."
+description: "This book introduces the R statistical language for researchers in the health, behavioral, educational, and psychological sciences. It is designed for those that have little background in statistical programming but would like to use the powerful statistical and visualization tool that R offers at no cost. The light-hearted design of this book allows a researcher to investigate and begin using R relatively stress-free with intuitive and interesting examples."
 github-repo: "tysonstanley/tysonstanley.github.io"
 cover-image: "Cover.jpg"
 ---
 
-```{r, echo=FALSE}
-library(foreign)
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+library(rio)
 library(furniture)
 ```
 
-
 # Preface {-}
 
-> "Somewhere, something incredible is waiting to be known."
->
-> --- Carl Sagan
+Before beginning the book, you will need to download the `R` software [www.r-project.org](https://www.r-project.org/) and then the RStudio software [www.rstudio.com](https://www.rstudio.com/). `R` is the brains and `RStudio`[^free] is an "IDE" (something that helps us work with `R` much more easily). 
 
-`R` is made for scientists pursuing discoveries; discoveries that cannot be solved with human intuition alone. `R` is capable of data analysis in nearly any form. It is an open-source project meaning it can be extended and fixed by countless individuals around the world. It is almost always on the cutting edge of new techniques and methods. Yet, many are hesitant to learn to use it.
+Once both are installed (helps on installing the software can be found on [www.rstudio.com](https://www.rstudio.com/), [www.r-bloggers.com](www.r-bloggers.com), and [www.statmethods.net](www.statmethods.net)) you are good to go. The remainder of the book will be about actually using it.
 
-This is probably due to the high learning curve. Although challenging, with a little guidance, the journey in learning `R` programming can be made much simpler. It is for this exact reason this book was written.
-
-Although there are many books and websites devoted to R, I've noticed that a simple introduction---without excessive information on things that are unlikely to be used---was lacking, particularly for the health, behavioral, and social sciences. This book began as I, working as a data science and statistical consultant, was trying to help my clientele with quantitative research across these fields. Three main reasons kept me repeatedly recommending my clients to use `R`: the replicability of the `R` centered workflow, the powerful and beautiful plotting capabilities, and the simple---yet extensive---data management/analysis tools.
-
-This book is for beginners in `R`; especially those in health, behavioral and social sciences. I picked those fields specifically because much of their research overlaps in data types, methodologies employed, and in hypotheses tested. Both exploratory and confirmatory methods will be highlighted given their importance in these fields, among many others.
-
-I'll introduce you to many ways in which `R` can be used in your work. You'll find that it can help in all facets of your data analysis and communication, while improving your replicability. In the long run, taking some time to learn a new tool will save you time, energy, and probably most importantly, frustration. When a researcher is frustrated, it becomes so easy to overlook important features.
-
-We will quickly, and succinctly, introduce the newest, easiest, and most understandable ways of working with your data. To do this, we will have three main parts: 1) working with and simple analyses of your data, 2) modeling your data, and 3) more advanced techniques to help your workflow.
+The basic build of the book is divided into three parts.
 
 ## Part I {-}
 
-1. Chapter 1: The basics of the language
+1. Chapter 1: The Basics
 2. Chapter 2: Working with and Cleaning Your Data
-3. Chapter 3: Understanding your data (summary statistics, ggplot2)
+3. Chapter 3: Understanding Your Data (summary statistics, ggplot2)
 
 ## Part II {-}
 
-4. Chapter 4: Basic Statistical Analyses (ANOVA, Linear Regression)
+4. Chapter 4: Basic Statistical Analyses (T-tests, ANOVA, Linear Regression)
 5. Chapter 5: Generalized Linear Models
 6. Chapter 6: Mulilevel Modeling
 7. Chapter 7: Other Modeling Techniques
@@ -64,13 +48,6 @@ We will quickly, and succinctly, introduce the newest, easiest, and most underst
 10. Chapter 10: Where to go from here
 
 At the end of the book, you should be able to: 1) use `R` to perform your data cleaning and data analyses and 2) understand online helps (e.g. [www.stackoverflow.com](www.stackoverflow.com), [www.r-bloggers.com](www.r-bloggers.com)) so your potential in `R` becomes nearly limitless.
-
-
-## Download R and RStudio {-}
-
-To begin, you will need to download the `R` software [www.r-project.org](https://www.r-project.org/) and then the RStudio software [www.rstudio.com](https://www.rstudio.com/). `R` is the brains and `RStudio`[^free] is an "IDE" (something that helps us work with `R` much more easily). 
-
-Once both are installed (helps on installing the software can be found on [www.rstudio.com](https://www.rstudio.com/), [www.r-bloggers.com](www.r-bloggers.com), and [www.statmethods.net](www.statmethods.net)) you are good to go. The remainder of the book will be about actually using it.
 
 Enjoy![^return]
 
