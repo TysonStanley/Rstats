@@ -385,6 +385,22 @@ df2 %>%
 
 We can see that males (`riagendr = 1`) have nearly identical asthma levels but lower depression levels than their female counterparts. 
 
+## General Cleaning of the Data Set {-}
+
+A package known as `janitor` provides some nice functions that add to the ideas presented in this chapter. Specifically, two functions are of note:
+
+1. `clean_names()` -- cleans up the names of the data frame to make them easier to type and make sure it works well with `R`.
+2. `remove_empty()` -- removes either empty columns or empty rows (columns or rows that have only missing values).
+
+These can be used in tandem, like so:
+```{r}
+df3 <- df2 %>%
+  janitor::clean_names() %>%
+  janitor::remove_empty("cols") %>%
+  janitor::remove_empty("rows")
+```
+
+
 Ultimately, I hope you see the benefit to using these methods. With these methods, you can clean, reshape, and summarize your data. Because these are foundational, we will apply these methods throughout the book. 
 
 

@@ -4,6 +4,15 @@
 
 > "If you can’t explain it simply, you don’t understand it well enough." --- Albert Einstein
 
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+## Run but not shown
+## Getting data ready for the examples
+library(foreign)
+library(furniture)
+library(tidyverse)
+load("~/Dropbox/GitHub/blog_rstats/assets/Data/NHANES_2012.rda")
+```
+
 We are going to take what we've learned from the previous two chapters and use them together to have simple but powerful ways to understand your data. This chapter will be split into two sections:
 
 1. Descriptive Statistics
@@ -15,53 +24,35 @@ The two go hand-in-hand in understanding what is happening in your data before y
 
 Several methods of discovering descriptives in a succinct way have been developed for `R`. My favorite (full disclosure: it is one that I made so I may be biased) is the `table1` function in the `furniture` package.
 
-This function has been designed to be simple and complete. It produces a well-formatted table that you can easily export and use as a table in a report or article.[^tab1]
+This function has been designed to be simple and complete. It produces a well-formatted table that you can easily export and use as a table in a report or article.[^tab1] We'll use the `df` object we created in Chapter 2.
 
-We'll first create a ficticious data set and we'll show the basic build of `table1`.
+Let's get descriptive statistics for five of the variables: asthma, race, depression, family size, and sedentary behavior.
 ```{r, message=FALSE, warning=FALSE}
-df <- data.frame("A"=c(1,2,1,4,3,NA),
-                 "B"=c(1.4,2.1,4.6,2.0,NA,3.4),
-                 "C"=c(0,0,1,1,1,1),
-                 "D"=rnorm(6))
-
 #library(furniture)
-table1(df, A, B, C, D)
+df %>%
+  table1(asthma, race, dep, famsize, sed)
 ```
+This quickly gives you means and standard deviations or counts and percentages.
 
-This quickly gives you means and standard deviations (or counts and percentages if there were categorical variables). We could have also used the pipe operator here if we wanted via:
+The code below shows the means/standard devaitions or counts/percentages by a grouping variable---in this case, `C`.
 ```{r, message=FALSE, warning=FALSE}
 df %>%
-  table1(A, B, C, D)
+  group_by(asthma) %>%
+  table1(race, dep, famsize, sed)
 ```
 
-It turns out, for we want "A" and "C" to be factors.
+We can also test for differences by group as well.
 ```{r, message=FALSE, warning=FALSE}
-df$A <- factor(df$A, labels=c("cat1", "cat2", "cat3", "cat4"))
-df$C <- factor(df$C, labels=c("male", "female"))
-
-table1(df, A, B, C, D)
-```
-
-So now we see the counts and percentages for the factor variables. But now we can take a step further and look for relationships. The code below shows the means/standard devaitions or counts/percentages by a grouping variable--in this case, `C`.
-```{r, message=FALSE, warning=FALSE}
-table1(df, A, B, D,
-       splitby = ~C)
-```
-
-We can also test for differences by group as well (although this is not particularly good with a sample size of 5). It produces a warning since the $\chi^2$ approximation is not accurate with cells this small.
-```{r, message=FALSE, warning=FALSE}
-table1(df, A, B, D,
-       splitby = ~C,
-       test=TRUE)
+df %>%
+  group_by(asthma) %>%
+  table1(race, dep, famsize, sed,
+         test = TRUE)
 ```
 Several other options exist for you to play around with, including obtaining medians and ranges and removing a lot of the white space of the table.
 
 With three or four short lines of code we can get a good idea about variables that may be related to the grouping variable and any missingness in the factor variables. There's much more you can do with `table1` and there are vignettes and tutorials available to learn more.[^tutorials]
 
 Other quick descriptive functions exist; here are a few of them.
-```{r, eval = FALSE}
-summary(df)
-```
 ```{r, eval = FALSE}
 ## install with install.packages("psych")
 psych::describe(df)  
@@ -70,26 +61,27 @@ psych::describe(df)
 ## install with install.packages("Hmisc")
 Hmisc::describe(df) 
 ```
+```{r, eval = FALSE}
+## install with install.packages("janitor")
+janitor::tabyl(df)
+```
 There is truly no shortage of descriptive information that you can obtain within `R`.
 
 
 ## Visualizations {-}
 
-Understanding your data, in my experience, generally requires visualizations. If we are going to use a model of some sort, understanding the distributions and relationships beforehand are very helpful in interpreting the model and catching errors in the data. Also finding any outliers or errors that could be highly influencing the modeling should be understood beforehand.
+Understanding your data, in my experience, almost always requires visualizations[^viz]. If we are going to use a model of some sort, understanding the distributions and relationships beforehand are very helpful in interpreting the model and catching errors in the data. Also finding any outliers or errors that could be highly influencing the modeling should be understood beforehand.
 
 For simple but appealing visualizations we are going to be using `ggplot2`. This package is used to produce professional level plots for many journalism organizations (e.g. five-thrity-eight). These plots are quickly presentation quality and can be used to impress your boss, your advisor, or your friends.
 
 ### Using `ggplot2` {-}
 
-This package has a straight-forward syntax. It is built by adding layers to the plot. 
-```{r, eval = FALSE}
-library(tidyverse)
-```
+This package is included in the `tidyverse` and is built on the "Grammar of Graphics" principles of data visualization. In essence, it is built on adding layers to a plot. Below, we walk through quick ways to start to visualize our data.
 
 First, we have a nice `qplot` function that is short for "quick plot." It quickly decides what kind of plot is useful given the data and variables you provide.
 ```{r}
-qplot(df$A)  ## Makes a simple histogram
-qplot(df$D, df$B)  ## Makes a scatterplot
+qplot(df$sed)          ## Makes a simple histogram
+qplot(df$sed, df$dep)  ## Makes a scatterplot
 ```
 
 For a bit more control over the plot, you can use the `ggplot` function. The first piece is the `ggplot` piece. From there, we add layers. These layers generally start with `geom_` then have the type of plot. Below, we start with telling `ggplot` the basics of the plot and then build a boxplot. 
@@ -102,27 +94,36 @@ The key pieces of ggplot:
 
 These same pieces will be found throughout `ggplot` plotting. In later chapters we will introduce much more in relation to these plots.
 ```{r}
-ggplot(df, aes(x=C, y=D)) +
-  geom_boxplot(aes(color = C))
+ggplot(df, aes(x=sed, y=dep)) +
+  geom_boxplot(aes(color = sed))
 ```
 
 Here's a few more examples:
 ```{r}
-ggplot(df, aes(x=C)) +
-  geom_bar(stat="count", aes(fill = C))
+ggplot(df, aes(x=sed)) +
+  geom_bar(stat="count")
 ```
 
 ```{r}
-ggplot(df, aes(x=B, y=D)) +
-  geom_point(aes(color = C))
+ggplot(df, aes(x=sed, y=dep)) +
+  geom_point(aes(color = famsize))
 ```
 
-*Note that the warning that says it removed a row is because we had a missing value in "C".*
+*Note that the warning that says it removed a row is because we had missing values in in these variables.*
+
+```{r}
+ggplot(df, aes(x=sed, 
+               y=dep, 
+               group = race,
+               color = race)) +
+  geom_point() +
+  geom_smooth(method = "lm")
+```
 
 We are going to make the first one again but with some aesthetic adjustments. Notice that we just added two extra lines telling `ggplot2` how we want some things to look.[^look]
 ```{r}
-ggplot(df, aes(x=C, y=D)) +
-  geom_boxplot(aes(color = C)) +
+ggplot(df, aes(x=famsize, y=dep, group = famsize)) +
+  geom_boxplot(aes(color = riagendr)) +
   theme_bw() +
   scale_color_manual(values = c("dodgerblue4", "coral2"))
 ```
@@ -131,7 +132,20 @@ The `theme_bw()` makes the background white, the `scale_color_manual()` allows u
 
 We will be using `ggplot2` extensively in the book to help understand our data and our models as well as communicate our results.
 
+## Apply It {-}
 
+[This link](http://tysonbarrett.com/DataR/Chapter3.zip) contains a folder complete with an Rstudio project file, an RMarkdown file, and a few data files. Download it and unzip it to do the following steps.
+
+
+### Step 1 {-}
+
+Open the `Chapter3.Rproj` file. This will open up RStudio for you.
+
+### Step 2 {-}
+
+Once RStudio has started, in the panel on the lower-right, there is a `Files` tab. Click on that to see the project folder. You should see the data files and the `Chapter3.Rmd` file. Click on the `Chapter3.Rmd` file to open it. In this file, import the data, create a descriptive table with `table1()` and three different types of visualizations (e.g., boxplot, histogram, scatterplot).
+
+Once that code is in the file, click the `knit` button. This will create an HTML file with the code and output knitted together into one nice document. This can be read into any browser and can be used to show your work in a clean document.
 
 
 
@@ -142,3 +156,5 @@ We will be using `ggplot2` extensively in the book to help understand our data a
 [ggplot2]: http://docs.ggplot2.org/current/
 
 [^look]: This is just scratching the surface of what we can change in the plots.
+
+[^viz]: If you'd like to learn more about data visualization, see Kieran Healy's *Data Visualization: A Practical Introduction* at [http://socviz.co](http://socviz.co).

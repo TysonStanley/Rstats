@@ -240,4 +240,20 @@ We used `summary()` to see the coefficients. If we used `anova()` it would have 
 We can use the exact same methods here as we did with the ANOVA, including checking assumptions, creating a new data set, and using `ggplot2` to check the interaction. We won't repeat it here so you can move on to Chapter 5.
 
 
+## Apply It {-}
+
+[This link](http://tysonbarrett.com/DataR/Chapter4.zip) contains a folder complete with an Rstudio project file, an RMarkdown file, and a few data files. Download it and unzip it to do the following steps.
+
+
+### Step 1 {-}
+
+Open the `Chapter4.Rproj` file. This will open up RStudio for you.
+
+### Step 2 {-}
+
+Once RStudio has started, in the panel on the lower-right, there is a `Files` tab. Click on that to see the project folder. You should see the data files and the `Chapter4.Rmd` file. Click on the `Chapter4.Rmd` file to open it. In this file, import the data and run each type of statistical analysis presented in this chapter.
+
+Once that code is in the file, click the `knit` button. This will create an HTML file with the code and output knitted together into one nice document. This can be read into any browser and can be used to show your work in a clean document.
+
+
 

@@ -25,7 +25,7 @@
 <meta name="author" content="Tyson S. Barrett">
 
 
-<meta name="date" content="2018-12-26">
+<meta name="date" content="2018-12-28">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -164,6 +164,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#full-join"><i class="fa fa-check"></i>Full Join</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#wrap-it-up"><i class="fa fa-check"></i>Wrap it up</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#general-cleaning-of-the-data-set"><i class="fa fa-check"></i>General Cleaning of the Data Set</a></li>
 <li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#apply-it-1"><i class="fa fa-check"></i>Apply It</a><ul>
 <li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#step-1-1"><i class="fa fa-check"></i>Step 1</a></li>
 <li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#step-2-1"><i class="fa fa-check"></i>Step 2</a></li>
@@ -173,6 +174,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#descriptive-statistics"><i class="fa fa-check"></i>Descriptive Statistics</a></li>
 <li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#visualizations"><i class="fa fa-check"></i>Visualizations</a><ul>
 <li><a href="chapter-3-understanding-and-describing-your-data.html#using-ggplot2">Using <code>ggplot2</code></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#apply-it-2"><i class="fa fa-check"></i>Apply It</a><ul>
+<li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#step-1-2"><i class="fa fa-check"></i>Step 1</a></li>
+<li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#step-2-2"><i class="fa fa-check"></i>Step 2</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html"><i class="fa fa-check"></i>Chapter 4: Basic Analyses</a><ul>
@@ -190,6 +195,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#interactions"><i class="fa fa-check"></i>Interactions</a><ul>
 <li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#interactions-in-anova"><i class="fa fa-check"></i>Interactions in ANOVA</a></li>
 <li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#interactions-in-linear-regression"><i class="fa fa-check"></i>Interactions in Linear Regression</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#apply-it-3"><i class="fa fa-check"></i>Apply It</a><ul>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#step-1-3"><i class="fa fa-check"></i>Step 1</a></li>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#step-2-3"><i class="fa fa-check"></i>Step 2</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-5-generalized-linear-models.html"><a href="chapter-5-generalized-linear-models.html"><i class="fa fa-check"></i>Chapter 5: Generalized Linear Models</a><ul>
@@ -278,127 +287,103 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="descriptive-statistics" class="section level2 unnumbered">
 <h2>Descriptive Statistics</h2>
 <p>Several methods of discovering descriptives in a succinct way have been developed for <code>R</code>. My favorite (full disclosure: it is one that I made so I may be biased) is the <code>table1</code> function in the <code>furniture</code> package.</p>
-<p>This function has been designed to be simple and complete. It produces a well-formatted table that you can easily export and use as a table in a report or article.<a href="#fn14" class="footnote-ref" id="fnref14"><sup>14</sup></a></p>
-<p>We’ll first create a ficticious data set and we’ll show the basic build of <code>table1</code>.</p>
-<pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="st">&quot;A&quot;</span>=<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">3</span>,<span class="ot">NA</span>),
-                 <span class="st">&quot;B&quot;</span>=<span class="kw">c</span>(<span class="fl">1.4</span>,<span class="fl">2.1</span>,<span class="fl">4.6</span>,<span class="fl">2.0</span>,<span class="ot">NA</span>,<span class="fl">3.4</span>),
-                 <span class="st">&quot;C&quot;</span>=<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>),
-                 <span class="st">&quot;D&quot;</span>=<span class="kw">rnorm</span>(<span class="dv">6</span>))
-
-<span class="co">#library(furniture)</span>
-<span class="kw">table1</span>(df, A, B, C, D)</code></pre>
-<pre><code>## 
-## ─────────────────────
-##    Mean/Count (SD/%)
-##    n = 4            
-##  A                  
-##    2.0 (1.4)        
-##  B                  
-##    2.5 (1.4)        
-##  C                  
-##    0.5 (0.6)        
-##  D                  
-##    0.8 (1.3)        
-## ─────────────────────</code></pre>
-<p>This quickly gives you means and standard deviations (or counts and percentages if there were categorical variables). We could have also used the pipe operator here if we wanted via:</p>
-<pre class="sourceCode r"><code class="sourceCode r">df <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">table1</span>(A, B, C, D)</code></pre>
-<pre><code>## 
-## ─────────────────────
-##    Mean/Count (SD/%)
-##    n = 4            
-##  A                  
-##    2.0 (1.4)        
-##  B                  
-##    2.5 (1.4)        
-##  C                  
-##    0.5 (0.6)        
-##  D                  
-##    0.8 (1.3)        
-## ─────────────────────</code></pre>
-<p>It turns out, for we want “A” and “C” to be factors.</p>
-<pre class="sourceCode r"><code class="sourceCode r">df<span class="op">$</span>A &lt;-<span class="st"> </span><span class="kw">factor</span>(df<span class="op">$</span>A, <span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;cat1&quot;</span>, <span class="st">&quot;cat2&quot;</span>, <span class="st">&quot;cat3&quot;</span>, <span class="st">&quot;cat4&quot;</span>))
-df<span class="op">$</span>C &lt;-<span class="st"> </span><span class="kw">factor</span>(df<span class="op">$</span>C, <span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;male&quot;</span>, <span class="st">&quot;female&quot;</span>))
-
-<span class="kw">table1</span>(df, A, B, C, D)</code></pre>
-<pre><code>## 
-## ─────────────────────────────
-##            Mean/Count (SD/%)
-##            n = 4            
-##  A                          
-##     cat1   2 (50%)          
-##     cat2   1 (25%)          
-##     cat3   0 (0%)           
-##     cat4   1 (25%)          
-##  B                          
-##            2.5 (1.4)        
-##  C                          
-##     male   2 (50%)          
-##     female 2 (50%)          
-##  D                          
-##            0.8 (1.3)        
-## ─────────────────────────────</code></pre>
-<p>So now we see the counts and percentages for the factor variables. But now we can take a step further and look for relationships. The code below shows the means/standard devaitions or counts/percentages by a grouping variable–in this case, <code>C</code>.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table1</span>(df, A, B, D,
-       <span class="dt">splitby =</span> <span class="op">~</span>C)</code></pre>
-<pre><code>## 
-## ──────────────────────────────
-##                 C 
-##          male       female   
-##          n = 2      n = 2    
-##  A                           
-##     cat1 1 (50%)    1 (50%)  
-##     cat2 1 (50%)    0 (0%)   
-##     cat3 0 (0%)     0 (0%)   
-##     cat4 0 (0%)     1 (50%)  
-##  B                           
-##          1.8 (0.5)  3.3 (1.8)
-##  D                           
-##          -0.3 (0.3) 1.9 (0.7)
-## ──────────────────────────────</code></pre>
-<p>We can also test for differences by group as well (although this is not particularly good with a sample size of 5). It produces a warning since the <span class="math inline">\(\chi^2\)</span> approximation is not accurate with cells this small.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table1</span>(df, A, B, D,
-       <span class="dt">splitby =</span> <span class="op">~</span>C,
-       <span class="dt">test=</span><span class="ot">TRUE</span>)</code></pre>
+<p>This function has been designed to be simple and complete. It produces a well-formatted table that you can easily export and use as a table in a report or article.<a href="#fn14" class="footnote-ref" id="fnref14"><sup>14</sup></a> We’ll use the <code>df</code> object we created in Chapter 2.</p>
+<p>Let’s get descriptive statistics for five of the variables: asthma, race, depression, family size, and sedentary behavior.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#library(furniture)</span>
+df <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">table1</span>(asthma, race, dep, famsize, sed)</code></pre>
 <pre><code>## 
 ## ──────────────────────────────────────
-##                     C 
-##          male       female    P-Value
-##          n = 2      n = 2            
-##  A                            0.368  
-##     cat1 1 (50%)    1 (50%)          
-##     cat2 1 (50%)    0 (0%)           
-##     cat3 0 (0%)     0 (0%)           
-##     cat4 0 (0%)     1 (50%)          
-##  B                            0.369  
-##          1.8 (0.5)  3.3 (1.8)        
-##  D                            0.064  
-##          -0.3 (0.3) 1.9 (0.7)        
+##                     Mean/Count (SD/%)
+##                     n = 4437         
+##  asthma                              
+##     No Asthma       3774 (85.1%)     
+##     Asthma          663 (14.9%)      
+##  race                                
+##     MexicanAmerican 392 (8.8%)       
+##     OtherHispanic   442 (10%)        
+##     White           1733 (39.1%)     
+##     Black           1161 (26.2%)     
+##     Other           709 (16%)        
+##  dep                                 
+##                     3.2 (4.5)        
+##  famsize                             
+##                     2.7 (1.5)        
+##  sed                                 
+##                     369.3 (201.2)    
 ## ──────────────────────────────────────</code></pre>
+<p>This quickly gives you means and standard deviations or counts and percentages.</p>
+<p>The code below shows the means/standard devaitions or counts/percentages by a grouping variable—in this case, <code>C</code>.</p>
+<pre class="sourceCode r"><code class="sourceCode r">df <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(asthma) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">table1</span>(race, dep, famsize, sed)</code></pre>
+<pre><code>## 
+## ────────────────────────────────────────────────
+##                             asthma 
+##                     No Asthma     Asthma       
+##                     n = 3774       n = 663     
+##  race                                          
+##     MexicanAmerican 350 (9.3%)    42 (6.3%)    
+##     OtherHispanic   380 (10.1%)   62 (9.4%)    
+##     White           1453 (38.5%)  280 (42.2%)  
+##     Black           958 (25.4%)   203 (30.6%)  
+##     Other           633 (16.8%)   76 (11.5%)   
+##  dep                                           
+##                     3.0 (4.3)     4.4 (5.2)    
+##  famsize                                       
+##                     2.7 (1.5)     2.6 (1.5)    
+##  sed                                           
+##                     365.2 (201.1) 392.4 (200.0)
+## ────────────────────────────────────────────────</code></pre>
+<p>We can also test for differences by group as well.</p>
+<pre class="sourceCode r"><code class="sourceCode r">df <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(asthma) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">table1</span>(race, dep, famsize, sed,
+         <span class="dt">test =</span> <span class="ot">TRUE</span>)</code></pre>
+<pre><code>## 
+## ────────────────────────────────────────────────────────
+##                                 asthma 
+##                     No Asthma     Asthma        P-Value
+##                     n = 3774       n = 663             
+##  race                                           &lt;.001  
+##     MexicanAmerican 350 (9.3%)    42 (6.3%)            
+##     OtherHispanic   380 (10.1%)   62 (9.4%)            
+##     White           1453 (38.5%)  280 (42.2%)          
+##     Black           958 (25.4%)   203 (30.6%)          
+##     Other           633 (16.8%)   76 (11.5%)           
+##  dep                                            &lt;.001  
+##                     3.0 (4.3)     4.4 (5.2)            
+##  famsize                                        0.496  
+##                     2.7 (1.5)     2.6 (1.5)            
+##  sed                                            0.001  
+##                     365.2 (201.1) 392.4 (200.0)        
+## ────────────────────────────────────────────────────────</code></pre>
 <p>Several other options exist for you to play around with, including obtaining medians and ranges and removing a lot of the white space of the table.</p>
 <p>With three or four short lines of code we can get a good idea about variables that may be related to the grouping variable and any missingness in the factor variables. There’s much more you can do with <code>table1</code> and there are vignettes and tutorials available to learn more.<a href="#fn15" class="footnote-ref" id="fnref15"><sup>15</sup></a></p>
 <p>Other quick descriptive functions exist; here are a few of them.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(df)</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co">## install with install.packages(&quot;psych&quot;)</span>
 psych<span class="op">::</span><span class="kw">describe</span>(df)  </code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co">## install with install.packages(&quot;Hmisc&quot;)</span>
 Hmisc<span class="op">::</span><span class="kw">describe</span>(df) </code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">## install with install.packages(&quot;janitor&quot;)</span>
+janitor<span class="op">::</span><span class="kw">tabyl</span>(df)</code></pre>
 <p>There is truly no shortage of descriptive information that you can obtain within <code>R</code>.</p>
 </div>
 <div id="visualizations" class="section level2 unnumbered">
 <h2>Visualizations</h2>
-<p>Understanding your data, in my experience, generally requires visualizations. If we are going to use a model of some sort, understanding the distributions and relationships beforehand are very helpful in interpreting the model and catching errors in the data. Also finding any outliers or errors that could be highly influencing the modeling should be understood beforehand.</p>
+<p>Understanding your data, in my experience, almost always requires visualizations<a href="#fn16" class="footnote-ref" id="fnref16"><sup>16</sup></a>. If we are going to use a model of some sort, understanding the distributions and relationships beforehand are very helpful in interpreting the model and catching errors in the data. Also finding any outliers or errors that could be highly influencing the modeling should be understood beforehand.</p>
 <p>For simple but appealing visualizations we are going to be using <code>ggplot2</code>. This package is used to produce professional level plots for many journalism organizations (e.g. five-thrity-eight). These plots are quickly presentation quality and can be used to impress your boss, your advisor, or your friends.</p>
 <div id="using-ggplot2" class="section level3 unnumbered">
 <h3>Using <code>ggplot2</code></h3>
-<p>This package has a straight-forward syntax. It is built by adding layers to the plot.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)</code></pre>
+<p>This package is included in the <code>tidyverse</code> and is built on the “Grammar of Graphics” principles of data visualization. In essence, it is built on adding layers to a plot. Below, we walk through quick ways to start to visualize our data.</p>
 <p>First, we have a nice <code>qplot</code> function that is short for “quick plot.” It quickly decides what kind of plot is useful given the data and variables you provide.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qplot</span>(df<span class="op">$</span>A)  <span class="co">## Makes a simple histogram</span></code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-57-1.png" width="672" /></p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qplot</span>(df<span class="op">$</span>D, df<span class="op">$</span>B)  <span class="co">## Makes a scatterplot</span></code></pre>
-<pre><code>## Warning: Removed 1 rows containing missing values (geom_point).</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-57-2.png" width="672" /></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qplot</span>(df<span class="op">$</span>sed)          <span class="co">## Makes a simple histogram</span></code></pre>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<pre><code>## Warning: Removed 18 rows containing non-finite values (stat_bin).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-56-1.png" width="672" /></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qplot</span>(df<span class="op">$</span>sed, df<span class="op">$</span>dep)  <span class="co">## Makes a scatterplot</span></code></pre>
+<pre><code>## Warning: Removed 18 rows containing missing values (geom_point).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-56-2.png" width="672" /></p>
 <p>For a bit more control over the plot, you can use the <code>ggplot</code> function. The first piece is the <code>ggplot</code> piece. From there, we add layers. These layers generally start with <code>geom_</code> then have the type of plot. Below, we start with telling <code>ggplot</code> the basics of the plot and then build a boxplot.</p>
 <p>The key pieces of ggplot:</p>
 <ol style="list-style-type: decimal">
@@ -407,26 +392,52 @@ Hmisc<span class="op">::</span><span class="kw">describe</span>(df) </code></pre
 <li><code>geom_</code> functions are how we tell <code>ggplot</code> what to plot—in this case, a boxplot.</li>
 </ol>
 <p>These same pieces will be found throughout <code>ggplot</code> plotting. In later chapters we will introduce much more in relation to these plots.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x=</span>C, <span class="dt">y=</span>D)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">color =</span> C))</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-58-1.png" width="672" /></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x=</span>sed, <span class="dt">y=</span>dep)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">color =</span> sed))</code></pre>
+<pre><code>## Warning: Continuous x aesthetic -- did you forget aes(group=...)?</code></pre>
+<pre><code>## Warning: Removed 18 rows containing missing values (stat_boxplot).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-57-1.png" width="672" /></p>
 <p>Here’s a few more examples:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x=</span>C)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;count&quot;</span>, <span class="kw">aes</span>(<span class="dt">fill =</span> C))</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x=</span>sed)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;count&quot;</span>)</code></pre>
+<pre><code>## Warning: Removed 18 rows containing non-finite values (stat_count).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-58-1.png" width="672" /></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x=</span>sed, <span class="dt">y=</span>dep)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> famsize))</code></pre>
+<pre><code>## Warning: Removed 18 rows containing missing values (geom_point).</code></pre>
 <p><img src="_main_files/figure-html/unnamed-chunk-59-1.png" width="672" /></p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x=</span>B, <span class="dt">y=</span>D)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> C))</code></pre>
-<pre><code>## Warning: Removed 1 rows containing missing values (geom_point).</code></pre>
+<p><em>Note that the warning that says it removed a row is because we had missing values in in these variables.</em></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x=</span>sed, 
+               <span class="dt">y=</span>dep, 
+               <span class="dt">group =</span> race,
+               <span class="dt">color =</span> race)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>)</code></pre>
+<pre><code>## Warning: Removed 18 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 18 rows containing missing values (geom_point).</code></pre>
 <p><img src="_main_files/figure-html/unnamed-chunk-60-1.png" width="672" /></p>
-<p><em>Note that the warning that says it removed a row is because we had a missing value in “C”.</em></p>
-<p>We are going to make the first one again but with some aesthetic adjustments. Notice that we just added two extra lines telling <code>ggplot2</code> how we want some things to look.<a href="#fn16" class="footnote-ref" id="fnref16"><sup>16</sup></a></p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x=</span>C, <span class="dt">y=</span>D)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">color =</span> C)) <span class="op">+</span>
+<p>We are going to make the first one again but with some aesthetic adjustments. Notice that we just added two extra lines telling <code>ggplot2</code> how we want some things to look.<a href="#fn17" class="footnote-ref" id="fnref17"><sup>17</sup></a></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x=</span>famsize, <span class="dt">y=</span>dep, <span class="dt">group =</span> famsize)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">color =</span> riagendr)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span>
 <span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;dodgerblue4&quot;</span>, <span class="st">&quot;coral2&quot;</span>))</code></pre>
+<pre><code>## Warning: Removed 178 rows containing missing values (stat_boxplot).</code></pre>
 <p><img src="_main_files/figure-html/unnamed-chunk-61-1.png" width="672" /></p>
 <p>The <code>theme_bw()</code> makes the background white, the <code>scale_color_manual()</code> allows us to change the colors in the plot. You can get a good idea of how many types of plots you can do by going to <a href="http://docs.ggplot2.org/current/">http://docs.ggplot2.org/current</a>. Almost any informative plot that you need to do as a researcher is possible with <code>ggplot2</code>.</p>
 <p>We will be using <code>ggplot2</code> extensively in the book to help understand our data and our models as well as communicate our results.</p>
+</div>
+</div>
+<div id="apply-it-2" class="section level2 unnumbered">
+<h2>Apply It</h2>
+<p><a href="http://tysonbarrett.com/DataR/Chapter3.zip">This link</a> contains a folder complete with an Rstudio project file, an RMarkdown file, and a few data files. Download it and unzip it to do the following steps.</p>
+<div id="step-1-2" class="section level3 unnumbered">
+<h3>Step 1</h3>
+<p>Open the <code>Chapter3.Rproj</code> file. This will open up RStudio for you.</p>
+</div>
+<div id="step-2-2" class="section level3 unnumbered">
+<h3>Step 2</h3>
+<p>Once RStudio has started, in the panel on the lower-right, there is a <code>Files</code> tab. Click on that to see the project folder. You should see the data files and the <code>Chapter3.Rmd</code> file. Click on the <code>Chapter3.Rmd</code> file to open it. In this file, import the data, create a descriptive table with <code>table1()</code> and three different types of visualizations (e.g., boxplot, histogram, scatterplot).</p>
+<p>Once that code is in the file, click the <code>knit</code> button. This will create an HTML file with the code and output knitted together into one nice document. This can be read into any browser and can be used to show your work in a clean document.</p>
 
 </div>
 </div>
@@ -436,7 +447,8 @@ Hmisc<span class="op">::</span><span class="kw">describe</span>(df) </code></pre
 <ol start="14">
 <li id="fn14"><p>It is called “table1” because a nice descriptive table is often found in the first table of many academic papers.<a href="chapter-3-understanding-and-describing-your-data.html#fnref14" class="footnote-back">↩</a></p></li>
 <li id="fn15"><p><a href="tysonstanley.github.io">tysonstanley.github.io</a><a href="chapter-3-understanding-and-describing-your-data.html#fnref15" class="footnote-back">↩</a></p></li>
-<li id="fn16"><p>This is just scratching the surface of what we can change in the plots.<a href="chapter-3-understanding-and-describing-your-data.html#fnref16" class="footnote-back">↩</a></p></li>
+<li id="fn16"><p>If you’d like to learn more about data visualization, see Kieran Healy’s <em>Data Visualization: A Practical Introduction</em> at <a href="http://socviz.co">http://socviz.co</a>.<a href="chapter-3-understanding-and-describing-your-data.html#fnref16" class="footnote-back">↩</a></p></li>
+<li id="fn17"><p>This is just scratching the surface of what we can change in the plots.<a href="chapter-3-understanding-and-describing-your-data.html#fnref17" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>
