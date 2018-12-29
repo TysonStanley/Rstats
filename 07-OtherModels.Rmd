@@ -193,6 +193,22 @@ varImpPlot(fit_rf)
 
 We can see that age (`ridageyr`) is the most important variable, depression (`dep`) follows, with the family size (`famsize`) the third most important in the random forests model.
 
+## Apply It {-}
+
+[This link](http://tysonbarrett.com/DataR/Chapter7.zip) contains a folder complete with an Rstudio project file, an RMarkdown file, and a few data files. Download it and unzip it to do the following steps.
+
+
+### Step 1 {-}
+
+Open the `Chapter7.Rproj` file. This will open up RStudio for you.
+
+### Step 2 {-}
+
+Once RStudio has started, in the panel on the lower-right, there is a `Files` tab. Click on that to see the project folder. You should see the data files and the `Chapter7.Rmd` file. Click on the `Chapter7.Rmd` file to open it. In this file, import the data and run each type of statistical analysis presented in this chapter.
+
+Once that code is in the file, click the `knit` button. This will create an HTML file with the code and output knitted together into one nice document. This can be read into any browser and can be used to show your work in a clean document.
+
+
 
 ## Conclusions {-}
 

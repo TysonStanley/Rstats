@@ -304,6 +304,24 @@ p1 +
 
 You can facet by more than one variable and it will create separate panels for each combination of the facetting variables.
 
+
+## Apply It {-}
+
+[This link](http://tysonbarrett.com/DataR/Chapter9.zip) contains a folder complete with an Rstudio project file, an RMarkdown file, and a few data files. Download it and unzip it to do the following steps.
+
+
+### Step 1 {-}
+
+Open the `Chapter9.Rproj` file. This will open up RStudio for you.
+
+### Step 2 {-}
+
+Once RStudio has started, in the panel on the lower-right, there is a `Files` tab. Click on that to see the project folder. You should see the data files and the `Chapter9.Rmd` file. Click on the `Chapter9.Rmd` file to open it. In this file, import the data and run each type of statistical analysis presented in this chapter.
+
+Once that code is in the file, click the `knit` button. This will create an HTML file with the code and output knitted together into one nice document. This can be read into any browser and can be used to show your work in a clean document.
+
+
+
 ## Conclusions {-}
 
 This was a quick demonstration of plotting with `ggplot2`. There is so much more you can do. However, in the end, exploring and communicating the data through plots is simply something you need to practice. With time, you can *a priori* picture the types of plots that will highlight things in your data, the ways you can adjust it, and how you need to manipulate your data to make it plot ready. Be patient and have fun trying things. In my experience, almost anytime I think, "Can R do this?", it can, so try to do cool stuff and you'll probably find that you can.

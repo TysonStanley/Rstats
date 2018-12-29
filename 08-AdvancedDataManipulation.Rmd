@@ -230,6 +230,22 @@ The last two examples also show something important regarding the output:
 1. The output will be at the level of the anonymous function. The first had two numbers per variable because the function produced two summary statistics for each variable. The second we multiplied `y` by 2 (so it is still at the individual observation level) and then divide by the SD. This keeps it at the observation level so we get ten values for every variable.
 2. We can name the argument anything we want (as long as it is one word). We used `x` in the first and `y` in the second but as long as it is the same within the function, it doesn't matter what you use.
 
+## Apply It {-}
+
+[This link](http://tysonbarrett.com/DataR/Chapter8.zip) contains a folder complete with an Rstudio project file, an RMarkdown file, and a few data files. Download it and unzip it to do the following steps.
+
+
+### Step 1 {-}
+
+Open the `Chapter8.Rproj` file. This will open up RStudio for you.
+
+### Step 2 {-}
+
+Once RStudio has started, in the panel on the lower-right, there is a `Files` tab. Click on that to see the project folder. You should see the data files and the `Chapter8.Rmd` file. Click on the `Chapter8.Rmd` file to open it. In this file, import the data, reshape it to long form, create your own function to do something for you, and apply the function in a loop over some of the variables of the data set.
+
+Once that code is in the file, click the `knit` button. This will create an HTML file with the code and output knitted together into one nice document. This can be read into any browser and can be used to show your work in a clean document.
+
+
 
 ## Conclusions {-}
 
