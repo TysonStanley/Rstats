@@ -161,11 +161,11 @@ There are many resources available to learn more about beta regression and each 
 
 ### Step 1 {-}
 
-Open the `Chapter5.Rproj` file. This will open up RStudio for you.
+Open the `Chapter4.Rproj` file. This will open up RStudio for you.
 
 ### Step 2 {-}
 
-Once RStudio has started, in the panel on the lower-right, there is a `Files` tab. Click on that to see the project folder. You should see the data files and the `Chapter5.Rmd` file. Click on the `Chapter5.Rmd` file to open it. In this file, import the data and run each type of statistical analysis presented in this chapter.
+Once RStudio has started, in the panel on the lower-right, there is a `Files` tab. Click on that to see the project folder. You should see the data files and the `Chapter4.Rmd` file. Click on the `Chapter4.Rmd` file to open it. In this file, import the data and run each type of statistical analysis presented in this chapter (there are others that are presented in Chapter 4---that you may have done already---and Chapters 6 and 7 that you do not need to do yet).
 
 Once that code is in the file, click the `knit` button. This will create an HTML file with the code and output knitted together into one nice document. This can be read into any browser and can be used to show your work in a clean document.
 

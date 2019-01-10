@@ -1,3 +1,8 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
 
 
 
@@ -20,12 +25,12 @@ In this chapter we cover, however briefly, modeling techniques that are especial
 
 Mediation modeling, although often used within SEM, can help us understand pathways of effect from one variable to another. It is especially useful with moderating variables (i.e., variables that interact with another).
 
-So we'll start with discussing mediation, then we'll move on to SEM, followed by machine learning.
+So we'll start with discussing mediation, then we'll move on to SEM, followed by machine learning techniques.
 
 
 ## Mediation Modeling {-}
 
-Mediation modeling can be done via several packages. For now, we recommend using `lavaan` (stands for "latent variable analysis")[^lavaa]. Although it is technically still a "beta" version, it performs very well especially for more simple models. It makes mediation modeling straightforward.
+Mediation modeling can be done via several packages. For now, we recommend using either `lavaan` (stands for "latent variable analysis")[^lavaa] or `MarginalMediation` (written by the author of this book). Although both are technically still "beta" versions, they both perform very well especially for more simple models. It makes mediation modeling straightforward.
 
 Below, we model the following mediation model:
 $$
@@ -36,11 +41,26 @@ $$
 time_{Sedentary} = \lambda_0 + \lambda_1 asthma + \lambda_2 depression + \epsilon_2
 $$
 
-In essence, we believe that asthma increases depression which in turn increases the amount of time spent being sedentary. 
+In essence, we believe that asthma increases depression which in turn increases the amount of time spent being sedentary. To run this with `MarginalMediation`, we will use two distinct regression models (see Chapter 4) and combine them with `mma()`. The object `pathbc` is the model with sedentary behavior as the outcome and `patha` is the path leading to the mediator.
+
+```{r, message=FALSE, warning=FALSE}
+library(MarginalMediation)
+
+df$sed_hr = df$sed/60  ## in hours instead of minutes
+
+pathbc <- glm(sed_hr ~ dep + asthma, data = df)
+patha  <- glm(dep ~ asthma, data = df)
+
+mma(pathbc, patha,
+    ind_effects = c("asthmaAsthma-dep"))
+```
+
+This gives us the estimates of the individual regression models and the estimates of the indirect and direct effects.
+
+To do the exact same model with `lavaan`, we can do the following:
 
 ```{r, message=FALSE, warning=FALSE}
 library(lavaan)
-df$sed_hr = df$sed/60  ## in hours instead of minutes
 
 ## Our model
 model1 <- '
@@ -83,7 +103,9 @@ fit2.1 <- sem(model2.1, data = df)
 summary(fit2.1)
 ```
 
-Although we don't show it here, we can also do moderation ("interactions") as part of the mediation model.
+Although we don't show it here, we can also do moderation ("interactions") as part of the mediation model (especially using the `MarginalMediation` package).
+
+
 
 ## Structural Equation Modeling {-}
 
@@ -124,9 +146,9 @@ We are briefly going to introduce some machine learning techniques that may be o
 1. Ridge, Lasso and Elastic Net
 2. Random Forests
 
-### Ridge, Lasso and Elastic Net {-}
+In order to use these methods, we can use the fantastic `caret` package. It allows us to do nearly any type of machine learning technique. It is a type of package that takes many other packages and gives us a simple syntax across all the methods.
 
-In order to do either ridge, lasso, or elastic net regression, we can use the fantastic `glmnet` package. Using the `cv.glmnet()` function we can run the ridge ($alpha = 0$), lasso ($alpha = 1$ which is default), and elastic net ($0 \leq alpha \leq 1$). It turns out that elastic net is the combination of the ridge and lasso methods and the closer `alpha` is to 1 the more it acts like lasso and the closer it is to 0 the more it acts like ridge.
+### Ridge, Lasso and Elastic Net {-}
 
 Lasso and elastic net can do variable selection in addition to estimation. Ridge is great at handling correlated predictors. Each of them are better than conventional methods at prediction and each of them can handle large numbers of predictors. To learn more see "Introduction to Statistical Learning" by Daniela Witten, Gareth James, Robert Tibshirani, and Trevor Hastie. A free PDF is available on their website.
 
@@ -136,46 +158,38 @@ To use the package, it wants the data in a very specific form. First, we need to
 df2 <- df %>%
   dplyr::select(riagendr, ridageyr, ridreth3, race, famsize, dep, asthma, sed_hr) %>%
   na.omit
-X <- df2 %>%
-  dplyr::select(-sed_hr) %>%
-  data.matrix
-Y <- df2$sed_hr
 ```
 
-Then we use the `cv.glmnet()` function to fit the different models. The "cv" refers to cross-validation[^crossval], which we don't discuss here, but it an important topic to become familiar with. Below we fit a ridge, a lasso, and an elastic net model. The elastic net model uses more of the lasso penalty because the `alpha` is closer to 1 than 0.
+Then we use the `train()` function to fit the different models. This function, by default, uses cross-validation[^crossval], which we don't discuss here, but it an important topic to become familiar with. Below we fit a model that is either a ridge, a lasso, or an elastic net model depending on the `alpha` level. This is done using the `method = "glmnet"` argument. We specify the model by the formula `sed_hr ~ .` which means we want `sed_hr` to be the outcome and all the rest of the variables to be predictors.
 
 ```{r, message=FALSE, warning=FALSE}
-library(glmnet)
+library(caret)
 
-fit_ridge <- cv.glmnet(X, Y, alpha = 0)
-fit_lasso <- cv.glmnet(X, Y, alpha = 1)
-fit_enet  <- cv.glmnet(X, Y, alpha = .8)
+## Use 10-fold cross validation
+fitControl <- trainControl(method = "cv",
+                           number = 10)
+
+## Run the model
+fit <- train(sed_hr ~ ., 
+             method = "glmnet",
+             data = df2,
+             trControl = fitControl)
+fit
 ```
 
-The plots below show where appropriate `lambda` values are based on the mean squared error of the cross-validated prediction. The vertical dashed lines show a reasonable range of lambda values that can be used.
+With this model, we can assess the most important predictors of sedentary behavior. We can do that with:
 
 ```{r}
-plot(fit_ridge)
-plot(fit_lasso)
-plot(fit_enet)
+varImp(fit)
 ```
 
-We can get the coefficients at a reasonable `lambda`. Specifically, we use the "1-SE rule" (near the right hand side vertical dashed lines in the above plots) by `s = "lambda.1se"`. You can directly tell it what `lambda` value you'd like but this is a simple rule of thumb.
-
-```{r}
-coef(fit_ridge, s = "lambda.1se")
-coef(fit_lasso, s = "lambda.1se")
-coef(fit_enet, s = "lambda.1se")
-```
-
-Although we briefly introduce these regression methods, they are indeed very important. We highly recommend learning more about them.
-
+This shows us that, of these variables, `race` was most important, followed by `asthma`. Importantly, though, this model did not predict the outcome very well so these are likely not very important predictors overall.
 
 ### Random Forests {-}
 
 Random forests is another machine learning method that can do fantastic prediction. It is built in a very different way than the methods we have discussed up to this point. It is not built on a linear modeling scheme; rather, it is built on classification and regression trees (CART). Again, "Introduction to Statistical Learning" is a great resource to learn more.
 
-Conveniently, we can use the `randomForest` package. We specify the model by the formula `sed_hr ~ .` which means we want `sed_hr` to be the outcome and all the rest of the variables to be predictors.
+Conveniently, we can use the `randomForest` package. (We can also use the `caret` package here.) We specify the model by the formula `sed_hr ~ .` just like before, which means we want `sed_hr` to be the outcome and all the rest of the variables to be predictors.
 
 ```{r}
 library(randomForest)
@@ -200,11 +214,11 @@ We can see that age (`ridageyr`) is the most important variable, depression (`de
 
 ### Step 1 {-}
 
-Open the `Chapter7.Rproj` file. This will open up RStudio for you.
+Open the `Chapter4.Rproj` file. This will open up RStudio for you.
 
 ### Step 2 {-}
 
-Once RStudio has started, in the panel on the lower-right, there is a `Files` tab. Click on that to see the project folder. You should see the data files and the `Chapter7.Rmd` file. Click on the `Chapter7.Rmd` file to open it. In this file, import the data and run each type of statistical analysis presented in this chapter.
+Once RStudio has started, in the panel on the lower-right, there is a `Files` tab. Click on that to see the project folder. You should see the data files and the `Chapter4.Rmd` file. Click on the `Chapter4.Rmd` file to open it. In this file, import the data and run each type of statistical analysis presented in this chapter (there are others that are presented in Chapters 4, 5, and 6 that you may have done already).
 
 Once that code is in the file, click the `knit` button. This will create an HTML file with the code and output knitted together into one nice document. This can be read into any browser and can be used to show your work in a clean document.
 

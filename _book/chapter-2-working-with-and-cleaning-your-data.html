@@ -9,7 +9,7 @@
   <meta name="description" content="This book introduces the R statistical language for researchers in the health, behavioral, educational, and psychological sciences. It is designed for those that have little background in statistical programming but would like to use the powerful statistical and visualization tool that R offers at no cost. The light-hearted design of this book allows a researcher to investigate and begin using R relatively stress-free with intuitive and interesting examples.">
   <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="Chapter 2: Working with and Cleaning Your Data | R for the Health, Behavioral, and Social Sciences" />
+  <meta property="og:title" content="Chapter 2: Working with and Cleaning Your Data | R for the Health, Behavioral, and Social Sciences />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="Cover.jpg" />
@@ -17,7 +17,7 @@
   <meta name="github-repo" content="tysonstanley/tysonstanley.github.io" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 2: Working with and Cleaning Your Data | R for the Health, Behavioral, and Social Sciences" />
+  <meta name="twitter:title" content="Chapter 2: Working with and Cleaning Your Data | R for the Health, Behavioral, and Social Sciences />
   
   <meta name="twitter:description" content="This book introduces the R statistical language for researchers in the health, behavioral, educational, and psychological sciences. It is designed for those that have little background in statistical programming but would like to use the powerful statistical and visualization tool that R offers at no cost. The light-hearted design of this book allows a researcher to investigate and begin using R relatively stress-free with intuitive and interesting examples." />
   <meta name="twitter:image" content="Cover.jpg" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Tyson S. Barrett">
 
 
-<meta name="date" content="2018-12-29">
+<meta name="date" content="2019-01-10">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -68,7 +68,7 @@ a.sourceLine { text-indent: -1em; padding-left: 1em; }
 pre.numberSource a.sourceLine
   { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(title);
+  { content: attr(data-line-number);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
     border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
@@ -303,12 +303,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</code></pre>
 <p>After downloading it, to use its functions, simply use:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)</code></pre>
-<pre><code>## ── Attaching packages ───────────────────────── tidyverse 1.2.1.9000 ──</code></pre>
-<pre><code>## ✔ ggplot2 3.1.0     ✔ purrr   0.2.5
-## ✔ tibble  1.4.2     ✔ dplyr   0.7.8
-## ✔ tidyr   0.8.2     ✔ stringr 1.3.1
-## ✔ readr   1.3.1     ✔ forcats 0.3.0</code></pre>
-<pre><code>## ── Conflicts ───────────────────────────────── tidyverse_conflicts() ──
+<pre><code>## ── Attaching packages ───────────────────────────────────────────────── tidyverse 1.2.1.9000 ──</code></pre>
+<pre><code>## ✔ ggplot2 3.1.0           ✔ purrr   0.2.5      
+## ✔ tibble  1.4.99.9005     ✔ dplyr   0.7.99.9000
+## ✔ tidyr   0.8.2           ✔ stringr 1.3.1      
+## ✔ readr   1.2.1           ✔ forcats 0.3.0</code></pre>
+<pre><code>## ── Conflicts ───────────────────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()</code></pre>
 <p>Note that when we loaded tidyverse it loaded several packages and told you of “conflicts”. These conflicts are where two or more functions across different packages have the same name. These functions with the same name will almost invariably differ in what they do. In this situation, the last loaded package is the one that <code>R</code> will use by default. For example, if we loaded two packages—<code>awesome</code> and <code>amazing</code>—and both had the function <code>make_really_cool</code> and we loaded <code>awesome</code> and then <code>amazing</code> as so:</p>
@@ -346,32 +346,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="wide-form" class="section level3 unnumbered">
 <h3>Wide Form</h3>
 <p>Wide form generally has one unit (i.e. individual) per row. This generally looks like:</p>
-<pre><code>##    ID   Var_Time1  Var_Time2
-## 1   1 -0.18314114 0.28756055
-## 2   2  1.21169171 0.03496562
-## 3   3 -1.33873031 0.37434555
-## 4   4  0.63570464 0.95344752
-## 5   5  0.04421114 0.98111360
-## 6   6 -1.26487769 0.93251913
-## 7   7  0.14301622 0.11057424
-## 8   8  0.62339174 0.69410577
-## 9   9  0.18735848 0.40011400
-## 10 10  1.00496545 0.51367639</code></pre>
+<pre><code>##    ID  Var_Time1  Var_Time2
+## 1   1 -0.3017840 0.07474267
+## 2   2  0.3697688 0.19360412
+## 3   3  0.2176942 0.11743206
+## 4   4 -0.5328170 0.01388725
+## 5   5  0.6276708 0.53410892
+## 6   6  0.2032862 0.50388794
+## 7   7 -1.1345561 0.20336065
+## 8   8 -0.4347211 0.41389906
+## 9   9 -1.1946688 0.08305754
+## 10 10 -0.1936241 0.47177142</code></pre>
 <p>Notice that each row has a unique ID, and some of the columns (all in this case) are variables at specific time points. This means that the variable is split up and is not a single column. This is a common way to collect and store data in our fields and so your data likely looks similar to this.</p>
 </div>
 <div id="long-form" class="section level3 unnumbered">
 <h3>Long Form</h3>
 <p>In contrast, long format has the lowest nested unit as a single row. This means that a single ID can span multiple rows, usually with a unique time point for each row as so:</p>
 <pre><code>##   ID Time        Var
-## 1  1    1 0.39541212
-## 2  1    2 0.06433633
-## 3  1    3 0.64539164
-## 4  1    4 0.77952482
-## 5  2    1 0.32830889
-## 6  2    2 0.42419269
-## 7  3    1 0.66493736
-## 8  3    2 0.88048062
-## 9  3    3 0.63458792</code></pre>
+## 1  1    1 0.60122225
+## 2  1    2 0.98967964
+## 3  1    3 0.70719235
+## 4  1    4 0.51166275
+## 5  2    1 0.06261443
+## 6  2    2 0.23085983
+## 7  3    1 0.39608015
+## 8  3    2 0.86580792
+## 9  3    3 0.15284790</code></pre>
 <p>Notice that a single ID spans multiple columns and that each row has only one time point. Here, time is nested within individuals making it the lowest unit. Therefore, each row corresponds to a single time point. Generally, this is the format we want for most modeling techniques and most visualizations.</p>
 <p>This is a very simple example of the differences between wide and long format. Although much more complex examples are probably available to you, we will start with this for now. Later chapters will delve into more complex data designs.</p>
 </div>
@@ -470,6 +470,8 @@ dem_df &lt;-<span class="st"> </span>dem_df <span class="op">%&gt;%</span>
 dem_df <span class="op">%&gt;%</span><span class="st">                           </span><span class="co">## 1. Data</span>
 <span class="st">  </span><span class="kw">group_by</span>(citizen) <span class="op">%&gt;%</span><span class="st">              </span><span class="co">## 2. Group by</span>
 <span class="st">  </span><span class="kw">summarize</span>(<span class="dt">N =</span> <span class="kw">n</span>())                 <span class="co">## 3. Summarize</span></code></pre>
+<pre><code>## Warning: Factor `citizen` contains implicit NA, consider using
+## `forcats::fct_explicit_na`</code></pre>
 <pre><code>## # A tibble: 4 x 2
 ##   citizen     N
 ##   &lt;fct&gt;   &lt;int&gt;
@@ -487,6 +489,8 @@ dem_df <span class="op">%&gt;%</span><span class="st">                          
 dem_df <span class="op">%&gt;%</span><span class="st">                           </span><span class="co">## 1. Data</span>
 <span class="st">  </span><span class="kw">group_by</span>(citizen) <span class="op">%&gt;%</span><span class="st">              </span><span class="co">## 2. Group by</span>
 <span class="st">  </span><span class="kw">summarize</span>(<span class="dt">N =</span> <span class="kw">n</span>())                 <span class="co">## 3. Summarize</span></code></pre>
+<pre><code>## Warning: Factor `citizen` contains implicit NA, consider using
+## `forcats::fct_explicit_na`</code></pre>
 <pre><code>## # A tibble: 3 x 2
 ##   citizen     N
 ##   &lt;fct&gt;   &lt;int&gt;
@@ -499,6 +503,8 @@ dem_df <span class="op">%&gt;%</span><span class="st">                          
 <span class="st">  </span><span class="kw">group_by</span>(citizen) <span class="op">%&gt;%</span><span class="st">              </span><span class="co">## 2. Group by</span>
 <span class="st">  </span><span class="kw">summarize</span>(<span class="dt">N =</span> <span class="kw">n</span>(),                 <span class="co">## 3. Summarize</span>
             <span class="dt">Age =</span> <span class="kw">mean</span>(ridageyr, <span class="dt">na.rm=</span><span class="ot">TRUE</span>))                 </code></pre>
+<pre><code>## Warning: Factor `citizen` contains implicit NA, consider using
+## `forcats::fct_explicit_na`</code></pre>
 <pre><code>## # A tibble: 3 x 3
 ##   citizen     N   Age
 ##   &lt;fct&gt;   &lt;int&gt; &lt;dbl&gt;
@@ -522,28 +528,28 @@ df_long &lt;-<span class="st"> </span><span class="kw">long</span>(df_wide,
 <pre><code>## id = ID</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">df_long</code></pre>
 <pre><code>##      ID time         Var
-## 1.1   1    1  0.48505239
-## 2.1   2    1  1.32216326
-## 3.1   3    1 -0.33450165
-## 4.1   4    1  0.82117178
-## 5.1   5    1 -0.67014124
-## 6.1   6    1 -0.16220065
-## 7.1   7    1 -1.36019245
-## 8.1   8    1 -1.34976666
-## 9.1   9    1 -0.54233881
-## 10.1 10    1  1.33742653
-## 1.2   1    2  0.86882292
-## 2.2   2    2  0.06464505
-## 3.2   3    2  0.59882389
-## 4.2   4    2  0.78436776
-## 5.2   5    2  0.83594872
-## 6.2   6    2  0.54340345
-## 7.2   7    2  0.62913701
-## 8.2   8    2  0.99688194
-## 9.2   9    2  0.67601359
-## 10.2 10    2  0.61560457</code></pre>
-<p>We provided the data (<code>df_wide</code>), the time varying variables (<code>c("Var_Time1", "Var_Time2")</code>), and told it what we should name the value variable (<code>v.names = "Var"</code>). Note that the function guessed, based on its name, that the variable <code>ID</code> was the identifying variable.</p>
-<p>This function automatically assumes each observation is a time point, thus the <code>time</code> variable. We can easily change that by adding the argument <code>timevar</code> and giving it a name (e.g., <code>timevar = "cluster"</code>).</p>
+## 1.1   1    1  0.22722646
+## 2.1   2    1 -0.20816774
+## 3.1   3    1 -1.49409842
+## 4.1   4    1  1.90269096
+## 5.1   5    1  0.66813524
+## 6.1   6    1 -0.67982859
+## 7.1   7    1 -0.87002562
+## 8.1   8    1 -0.31656866
+## 9.1   9    1 -1.31613346
+## 10.1 10    1 -1.25168885
+## 1.2   1    2  0.56508619
+## 2.2   2    2  0.97831295
+## 3.2   3    2  0.81829703
+## 4.2   4    2  0.21868978
+## 5.2   5    2  0.45691256
+## 6.2   6    2  0.21305248
+## 7.2   7    2  0.95869585
+## 8.2   8    2  0.24617204
+## 9.2   9    2  0.36101753
+## 10.2 10    2  0.05478537</code></pre>
+<p>We provided the data (<code>df_wide</code>), the time varying variables (<code>c(&quot;Var_Time1&quot;, &quot;Var_Time2&quot;)</code>), and told it what we should name the value variable (<code>v.names = &quot;Var&quot;</code>). Note that the function guessed, based on its name, that the variable <code>ID</code> was the identifying variable.</p>
+<p>This function automatically assumes each observation is a time point, thus the <code>time</code> variable. We can easily change that by adding the argument <code>timevar</code> and giving it a name (e.g., <code>timevar = &quot;cluster&quot;</code>).</p>
 <p>And now we will go from long to wide using <code>wide()</code> from the same package.</p>
 <pre class="sourceCode r"><code class="sourceCode r">df_long &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="st">&quot;ID&quot;</span>=<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>), 
                       <span class="st">&quot;Time&quot;</span>=<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), 
@@ -553,10 +559,10 @@ df_wide &lt;-<span class="st"> </span><span class="kw">wide</span>(df_long,
                 <span class="dt">timevar =</span> <span class="st">&quot;Time&quot;</span>)</code></pre>
 <pre><code>## id = ID</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">df_wide</code></pre>
-<pre><code>##   ID     Var.1     Var.2    Var.3     Var.4
-## 1  1 0.4441084 0.8318030 0.515600 0.9408524
-## 5  2 0.8847508 0.4074601       NA        NA
-## 7  3 0.6765495 0.9098210 0.279502        NA</code></pre>
+<pre><code>##   ID     Var.1      Var.2     Var.3     Var.4
+## 1  1 0.3803092 0.49446703 0.8617564 0.8688054
+## 5  2 0.2800434 0.15833037        NA        NA
+## 7  3 0.5886070 0.02162879 0.5450035        NA</code></pre>
 <p>Here, we provided the data <code>df_long</code> and the variable name (<code>Var</code>) that had the values and (<code>Time</code>) that contained the time labels (in this case, just numbers). With a little bit of code we can move data around without any copy-pasting that is so error-prone. Again, note that the function guessed, based on its name, that the variable <code>ID</code> was the identifying variable.</p>
 </div>
 <div id="joining-merging" class="section level2 unnumbered">

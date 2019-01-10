@@ -9,7 +9,7 @@
   <meta name="description" content="This book introduces the R statistical language for researchers in the health, behavioral, educational, and psychological sciences. It is designed for those that have little background in statistical programming but would like to use the powerful statistical and visualization tool that R offers at no cost. The light-hearted design of this book allows a researcher to investigate and begin using R relatively stress-free with intuitive and interesting examples.">
   <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="Chapter 7: Other Modeling Techniques | R for the Health, Behavioral, and Social Sciences" />
+  <meta property="og:title" content="Chapter 7: Other Modeling Techniques | R for the Health, Behavioral, and Social Sciences />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="Cover.jpg" />
@@ -17,7 +17,7 @@
   <meta name="github-repo" content="tysonstanley/tysonstanley.github.io" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 7: Other Modeling Techniques | R for the Health, Behavioral, and Social Sciences" />
+  <meta name="twitter:title" content="Chapter 7: Other Modeling Techniques | R for the Health, Behavioral, and Social Sciences />
   
   <meta name="twitter:description" content="This book introduces the R statistical language for researchers in the health, behavioral, educational, and psychological sciences. It is designed for those that have little background in statistical programming but would like to use the powerful statistical and visualization tool that R offers at no cost. The light-hearted design of this book allows a researcher to investigate and begin using R relatively stress-free with intuitive and interesting examples." />
   <meta name="twitter:image" content="Cover.jpg" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Tyson S. Barrett">
 
 
-<meta name="date" content="2018-12-29">
+<meta name="date" content="2019-01-10">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -68,7 +68,7 @@ a.sourceLine { text-indent: -1em; padding-left: 1em; }
 pre.numberSource a.sourceLine
   { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(title);
+  { content: attr(data-line-number);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
     border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
@@ -300,10 +300,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </blockquote>
 <p>In this chapter we cover, however briefly, modeling techniques that are especially useful to make complex relationships easier to interpret. We will focus on mediation and moderation modeling, methods relating to structural equation modeling (SEM), and methods applicable to our field from machine learning. Although these machine learning may appear very different than mediation and SEM, they each have advantages that can help in different situations. For example, SEM is useful when we know there is a high degree of measurement error or our data has multiple indicators for each construct. On the other hand, regularized regression and random forests–two popular forms of machine learning–are great to explore patterns and relationships there are hundreds or thousands of variables that may predict an outcome.</p>
 <p>Mediation modeling, although often used within SEM, can help us understand pathways of effect from one variable to another. It is especially useful with moderating variables (i.e., variables that interact with another).</p>
-<p>So we’ll start with discussing mediation, then we’ll move on to SEM, followed by machine learning.</p>
+<p>So we’ll start with discussing mediation, then we’ll move on to SEM, followed by machine learning techniques.</p>
 <div id="mediation-modeling" class="section level2 unnumbered">
 <h2>Mediation Modeling</h2>
-<p>Mediation modeling can be done via several packages. For now, we recommend using <code>lavaan</code> (stands for “latent variable analysis”)<a href="#fn20" class="footnote-ref" id="fnref20"><sup>20</sup></a>. Although it is technically still a “beta” version, it performs very well especially for more simple models. It makes mediation modeling straightforward.</p>
+<p>Mediation modeling can be done via several packages. For now, we recommend using either <code>lavaan</code> (stands for “latent variable analysis”)<a href="#fn20" class="footnote-ref" id="fnref20"><sup>20</sup></a> or <code>MarginalMediation</code> (written by the author of this book). Although both are technically still “beta” versions, they both perform very well especially for more simple models. It makes mediation modeling straightforward.</p>
 <p>Below, we model the following mediation model:
 <span class="math display">\[
 depression = \beta_0 + \beta_1 asthma + \epsilon_1
@@ -311,9 +311,78 @@ depression = \beta_0 + \beta_1 asthma + \epsilon_1
 <p><span class="math display">\[
 time_{Sedentary} = \lambda_0 + \lambda_1 asthma + \lambda_2 depression + \epsilon_2
 \]</span></p>
-<p>In essence, we believe that asthma increases depression which in turn increases the amount of time spent being sedentary.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(lavaan)
+<p>In essence, we believe that asthma increases depression which in turn increases the amount of time spent being sedentary. To run this with <code>MarginalMediation</code>, we will use two distinct regression models (see Chapter 4) and combine them with <code>mma()</code>. The object <code>pathbc</code> is the model with sedentary behavior as the outcome and <code>patha</code> is the path leading to the mediator.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(MarginalMediation)
+
 df<span class="op">$</span>sed_hr =<span class="st"> </span>df<span class="op">$</span>sed<span class="op">/</span><span class="dv">60</span>  <span class="co">## in hours instead of minutes</span>
+
+pathbc &lt;-<span class="st"> </span><span class="kw">glm</span>(sed_hr <span class="op">~</span><span class="st"> </span>dep <span class="op">+</span><span class="st"> </span>asthma, <span class="dt">data =</span> df)
+patha  &lt;-<span class="st"> </span><span class="kw">glm</span>(dep <span class="op">~</span><span class="st"> </span>asthma, <span class="dt">data =</span> df)
+
+<span class="kw">mma</span>(pathbc, patha,
+    <span class="dt">ind_effects =</span> <span class="kw">c</span>(<span class="st">&quot;asthmaAsthma-dep&quot;</span>))</code></pre>
+<pre><code>## 
+## calculating a paths... b and c paths... Done.
+                                                                                 </code></pre>
+<pre><code>## ┌───────────────────────────────┐
+## │  Marginal Mediation Analysis  │
+## └───────────────────────────────┘
+## A marginal mediation model with:
+##    1 mediators
+##    1 indirect effects
+##    1 direct effects
+##    500 bootstrapped samples
+##    95% confidence interval
+##    n = 4632 
+## 
+## Formulas:
+##    ◌ sed_hr ~ dep + asthma
+##    ◌ dep ~ asthma 
+## 
+## Regression Models: 
+## 
+##      sed_hr ~ 
+##                          Est      SE Est/SE P-Value
+##         (Intercept)  5.88575 0.06262 93.986 0.00000
+##         dep          0.04367 0.01112  3.927 0.00009
+##         asthmaAsthma 0.41230 0.13908  2.965 0.00305
+## 
+##      dep ~ 
+##                        Est      SE Est/SE P-Value
+##         (Intercept)  2.948 0.07059 41.764       0
+##         asthmaAsthma 1.459 0.18250  7.993       0
+## 
+## Unstandardized Mediated Effects: 
+## 
+##    Indirect Effects: 
+## 
+##      sed_hr ~ 
+##                             Indirect   Lower  Upper
+##         asthmaAsthma =&gt; dep   0.0637 0.02603 0.1017
+## 
+##    Direct Effects: 
+## 
+##      sed_hr ~ 
+##                      Direct  Lower  Upper
+##         asthmaAsthma 0.4123 0.1256 0.7002
+## 
+## 
+## Standardized Mediated Effects: 
+## 
+##    Indirect Effects: 
+## 
+##      sed_hr ~ 
+##                             Indirect   Lower   Upper
+##         asthmaAsthma =&gt; dep    0.019 0.00776 0.03034
+## 
+##    Direct Effects: 
+## 
+##      sed_hr ~ 
+##                      Direct   Lower  Upper
+##         asthmaAsthma  0.123 0.03745 0.2089</code></pre>
+<p>This gives us the estimates of the individual regression models and the estimates of the indirect and direct effects.</p>
+<p>To do the exact same model with <code>lavaan</code>, we can do the following:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(lavaan)
 
 <span class="co">## Our model</span>
 model1 &lt;-<span class="st"> &#39;</span>
@@ -443,7 +512,7 @@ fit2<span class="fl">.1</span> &lt;-<span class="st"> </span><span class="kw">se
 ##                    Estimate  Std.Err  z-value  P(&gt;|z|)
 ##    .dep              19.590    0.408   48.031    0.000
 ##    .sed_hr           11.171    0.233   48.031    0.000</code></pre>
-<p>Although we don’t show it here, we can also do moderation (“interactions”) as part of the mediation model.</p>
+<p>Although we don’t show it here, we can also do moderation (“interactions”) as part of the mediation model (especially using the <code>MarginalMediation</code> package).</p>
 </div>
 <div id="structural-equation-modeling" class="section level2 unnumbered">
 <h2>Structural Equation Modeling</h2>
@@ -576,71 +645,72 @@ fit4 &lt;-<span class="st"> </span><span class="kw">cfa</span>(model4, <span cla
 <li>Ridge, Lasso and Elastic Net</li>
 <li>Random Forests</li>
 </ol>
+<p>In order to use these methods, we can use the fantastic <code>caret</code> package. It allows us to do nearly any type of machine learning technique. It is a type of package that takes many other packages and gives us a simple syntax across all the methods.</p>
 <div id="ridge-lasso-and-elastic-net" class="section level3 unnumbered">
 <h3>Ridge, Lasso and Elastic Net</h3>
-<p>In order to do either ridge, lasso, or elastic net regression, we can use the fantastic <code>glmnet</code> package. Using the <code>cv.glmnet()</code> function we can run the ridge (<span class="math inline">\(alpha = 0\)</span>), lasso (<span class="math inline">\(alpha = 1\)</span> which is default), and elastic net (<span class="math inline">\(0 \leq alpha \leq 1\)</span>). It turns out that elastic net is the combination of the ridge and lasso methods and the closer <code>alpha</code> is to 1 the more it acts like lasso and the closer it is to 0 the more it acts like ridge.</p>
 <p>Lasso and elastic net can do variable selection in addition to estimation. Ridge is great at handling correlated predictors. Each of them are better than conventional methods at prediction and each of them can handle large numbers of predictors. To learn more see “Introduction to Statistical Learning” by Daniela Witten, Gareth James, Robert Tibshirani, and Trevor Hastie. A free PDF is available on their website.</p>
 <p>To use the package, it wants the data in a very specific form. First, we need to remove any missingness. We use <code>na.omit()</code> to do this. We take all the predictors (without the outcome) and put it in a data matrix object. We only include a few for the demonstration but you can include <em>many</em> predictors. We name ours <code>X</code>. <code>Y</code> is our outcome.</p>
 <pre class="sourceCode r"><code class="sourceCode r">df2 &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span>
 <span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(riagendr, ridageyr, ridreth3, race, famsize, dep, asthma, sed_hr) <span class="op">%&gt;%</span>
-<span class="st">  </span>na.omit
-X &lt;-<span class="st"> </span>df2 <span class="op">%&gt;%</span>
-<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="op">-</span>sed_hr) <span class="op">%&gt;%</span>
-<span class="st">  </span>data.matrix
-Y &lt;-<span class="st"> </span>df2<span class="op">$</span>sed_hr</code></pre>
-<p>Then we use the <code>cv.glmnet()</code> function to fit the different models. The “cv” refers to cross-validation<a href="#fn21" class="footnote-ref" id="fnref21"><sup>21</sup></a>, which we don’t discuss here, but it an important topic to become familiar with. Below we fit a ridge, a lasso, and an elastic net model. The elastic net model uses more of the lasso penalty because the <code>alpha</code> is closer to 1 than 0.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(glmnet)
+<span class="st">  </span>na.omit</code></pre>
+<p>Then we use the <code>train()</code> function to fit the different models. This function, by default, uses cross-validation<a href="#fn21" class="footnote-ref" id="fnref21"><sup>21</sup></a>, which we don’t discuss here, but it an important topic to become familiar with. Below we fit a model that is either a ridge, a lasso, or an elastic net model depending on the <code>alpha</code> level. This is done using the <code>method = &quot;glmnet&quot;</code> argument. We specify the model by the formula <code>sed_hr ~ .</code> which means we want <code>sed_hr</code> to be the outcome and all the rest of the variables to be predictors.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(caret)
 
-fit_ridge &lt;-<span class="st"> </span><span class="kw">cv.glmnet</span>(X, Y, <span class="dt">alpha =</span> <span class="dv">0</span>)
-fit_lasso &lt;-<span class="st"> </span><span class="kw">cv.glmnet</span>(X, Y, <span class="dt">alpha =</span> <span class="dv">1</span>)
-fit_enet  &lt;-<span class="st"> </span><span class="kw">cv.glmnet</span>(X, Y, <span class="dt">alpha =</span> <span class="fl">.8</span>)</code></pre>
-<p>The plots below show where appropriate <code>lambda</code> values are based on the mean squared error of the cross-validated prediction. The vertical dashed lines show a reasonable range of lambda values that can be used.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(fit_ridge)</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-107-1.png" width="672" /></p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(fit_lasso)</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-107-2.png" width="672" /></p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(fit_enet)</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-107-3.png" width="672" /></p>
-<p>We can get the coefficients at a reasonable <code>lambda</code>. Specifically, we use the “1-SE rule” (near the right hand side vertical dashed lines in the above plots) by <code>s = "lambda.1se"</code>. You can directly tell it what <code>lambda</code> value you’d like but this is a simple rule of thumb.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coef</span>(fit_ridge, <span class="dt">s =</span> <span class="st">&quot;lambda.1se&quot;</span>)</code></pre>
-<pre><code>## 8 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
-##                      1
-## (Intercept)  5.6333323
-## riagendr     0.0410189
-## ridageyr    -0.0005336
-## ridreth3     0.0493886
-## race         0.0823857
-## famsize     -0.0376020
-## dep          0.0099045
-## asthma       0.0953754</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coef</span>(fit_lasso, <span class="dt">s =</span> <span class="st">&quot;lambda.1se&quot;</span>)</code></pre>
-<pre><code>## 8 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
-##                  1
-## (Intercept) 5.5379
-## riagendr    .     
-## ridageyr    .     
-## ridreth3    .     
-## race        0.1865
-## famsize     .     
-## dep         .     
-## asthma      .</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coef</span>(fit_enet, <span class="dt">s =</span> <span class="st">&quot;lambda.1se&quot;</span>)</code></pre>
-<pre><code>## 8 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
-##                     1
-## (Intercept)  5.333917
-## riagendr     .       
-## ridageyr     .       
-## ridreth3     .       
-## race         0.275181
-## famsize     -0.043523
-## dep          0.008462
-## asthma       .</code></pre>
-<p>Although we briefly introduce these regression methods, they are indeed very important. We highly recommend learning more about them.</p>
+<span class="co">## Use 10-fold cross validation</span>
+fitControl &lt;-<span class="st"> </span><span class="kw">trainControl</span>(<span class="dt">method =</span> <span class="st">&quot;cv&quot;</span>,
+                           <span class="dt">number =</span> <span class="dv">10</span>)
+
+<span class="co">## Run the model</span>
+fit &lt;-<span class="st"> </span><span class="kw">train</span>(sed_hr <span class="op">~</span><span class="st"> </span>., 
+             <span class="dt">method =</span> <span class="st">&quot;glmnet&quot;</span>,
+             <span class="dt">data =</span> df2,
+             <span class="dt">trControl =</span> fitControl)
+fit</code></pre>
+<pre><code>## glmnet 
+## 
+## 4437 samples
+##    7 predictor
+## 
+## No pre-processing
+## Resampling: Cross-Validated (10 fold) 
+## Summary of sample sizes: 3993, 3993, 3994, 3993, 3994, 3993, ... 
+## Resampling results across tuning parameters:
+## 
+##   alpha  lambda     RMSE   Rsquared  MAE  
+##   0.10   0.0008293  3.284  0.04300   2.690
+##   0.10   0.0082933  3.284  0.04271   2.691
+##   0.10   0.0829328  3.285  0.04202   2.694
+##   0.55   0.0008293  3.284  0.04291   2.691
+##   0.55   0.0082933  3.285  0.04202   2.693
+##   0.55   0.0829328  3.287  0.04101   2.700
+##   1.00   0.0008293  3.284  0.04289   2.691
+##   1.00   0.0082933  3.285  0.04205   2.693
+##   1.00   0.0829328  3.292  0.03951   2.706
+## 
+## RMSE was used to select the optimal model using the smallest value.
+## The final values used for the model were alpha = 0.1 and lambda
+##  = 0.0008293.</code></pre>
+<p>With this model, we can assess the most important predictors of sedentary behavior. We can do that with:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">varImp</span>(fit)</code></pre>
+<pre><code>## glmnet variable importance
+## 
+##                   Overall
+## raceOther          100.00
+## raceBlack           83.52
+## raceWhite           80.22
+## raceOtherHispanic   28.12
+## asthmaAsthma        10.87
+## ridreth3             5.47
+## riagendr             4.81
+## famsize              4.54
+## dep                  1.37
+## ridageyr             0.00</code></pre>
+<p>This shows us that, of these variables, <code>race</code> was most important, followed by <code>asthma</code>. Importantly, though, this model did not predict the outcome very well so these are likely not very important predictors overall.</p>
 </div>
 <div id="random-forests" class="section level3 unnumbered">
 <h3>Random Forests</h3>
 <p>Random forests is another machine learning method that can do fantastic prediction. It is built in a very different way than the methods we have discussed up to this point. It is not built on a linear modeling scheme; rather, it is built on classification and regression trees (CART). Again, “Introduction to Statistical Learning” is a great resource to learn more.</p>
-<p>Conveniently, we can use the <code>randomForest</code> package. We specify the model by the formula <code>sed_hr ~ .</code> which means we want <code>sed_hr</code> to be the outcome and all the rest of the variables to be predictors.</p>
+<p>Conveniently, we can use the <code>randomForest</code> package. (We can also use the <code>caret</code> package here.) We specify the model by the formula <code>sed_hr ~ .</code> just like before, which means we want <code>sed_hr</code> to be the outcome and all the rest of the variables to be predictors.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(randomForest)</code></pre>
 <pre><code>## randomForest 4.6-14</code></pre>
 <pre><code>## Type rfNews() to see new features/changes/bug fixes.</code></pre>
@@ -661,8 +731,8 @@ fit_rf</code></pre>
 ##                      Number of trees: 500
 ## No. of variables tried at each split: 2
 ## 
-##           Mean of squared residuals: 10.82
-##                     % Var explained: 3.73</code></pre>
+##           Mean of squared residuals: 10.83
+##                     % Var explained: 3.62</code></pre>
 <p>We can find out which variables were important in the model via:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))  <span class="co">## back to one plot per page</span>
 <span class="kw">varImpPlot</span>(fit_rf)</code></pre>
@@ -675,11 +745,11 @@ fit_rf</code></pre>
 <p><a href="http://tysonbarrett.com/DataR/Chapter7.zip">This link</a> contains a folder complete with an Rstudio project file, an RMarkdown file, and a few data files. Download it and unzip it to do the following steps.</p>
 <div id="step-1-6" class="section level3 unnumbered">
 <h3>Step 1</h3>
-<p>Open the <code>Chapter7.Rproj</code> file. This will open up RStudio for you.</p>
+<p>Open the <code>Chapter4.Rproj</code> file. This will open up RStudio for you.</p>
 </div>
 <div id="step-2-6" class="section level3 unnumbered">
 <h3>Step 2</h3>
-<p>Once RStudio has started, in the panel on the lower-right, there is a <code>Files</code> tab. Click on that to see the project folder. You should see the data files and the <code>Chapter7.Rmd</code> file. Click on the <code>Chapter7.Rmd</code> file to open it. In this file, import the data and run each type of statistical analysis presented in this chapter.</p>
+<p>Once RStudio has started, in the panel on the lower-right, there is a <code>Files</code> tab. Click on that to see the project folder. You should see the data files and the <code>Chapter4.Rmd</code> file. Click on the <code>Chapter4.Rmd</code> file to open it. In this file, import the data and run each type of statistical analysis presented in this chapter (there are others that are presented in Chapters 4, 5, and 6 that you may have done already).</p>
 <p>Once that code is in the file, click the <code>knit</code> button. This will create an HTML file with the code and output knitted together into one nice document. This can be read into any browser and can be used to show your work in a clean document.</p>
 </div>
 </div>
