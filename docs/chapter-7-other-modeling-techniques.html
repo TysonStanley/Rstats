@@ -357,14 +357,14 @@ patha  &lt;-<span class="st"> </span><span class="kw">glm</span>(dep <span class
 ##    Indirect Effects: 
 ## 
 ##      sed_hr ~ 
-##                             Indirect   Lower  Upper
-##         asthmaAsthma =&gt; dep   0.0637 0.02603 0.1017
+##                             Indirect   Lower Upper
+##         asthmaAsthma =&gt; dep   0.0637 0.02842 0.109
 ## 
 ##    Direct Effects: 
 ## 
 ##      sed_hr ~ 
-##                      Direct  Lower  Upper
-##         asthmaAsthma 0.4123 0.1256 0.7002
+##                      Direct  Lower Upper
+##         asthmaAsthma 0.4123 0.1593 0.711
 ## 
 ## 
 ## Standardized Mediated Effects: 
@@ -373,13 +373,13 @@ patha  &lt;-<span class="st"> </span><span class="kw">glm</span>(dep <span class
 ## 
 ##      sed_hr ~ 
 ##                             Indirect   Lower   Upper
-##         asthmaAsthma =&gt; dep    0.019 0.00776 0.03034
+##         asthmaAsthma =&gt; dep    0.019 0.00848 0.03251
 ## 
 ##    Direct Effects: 
 ## 
 ##      sed_hr ~ 
 ##                      Direct   Lower  Upper
-##         asthmaAsthma  0.123 0.03745 0.2089</code></pre>
+##         asthmaAsthma  0.123 0.04753 0.2121</code></pre>
 <p>This gives us the estimates of the individual regression models and the estimates of the indirect and direct effects.</p>
 <p>To do the exact same model with <code>lavaan</code>, we can do the following:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(lavaan)
@@ -673,38 +673,37 @@ fit</code></pre>
 ## 
 ## No pre-processing
 ## Resampling: Cross-Validated (10 fold) 
-## Summary of sample sizes: 3993, 3993, 3994, 3993, 3994, 3993, ... 
+## Summary of sample sizes: 3993, 3992, 3995, 3993, 3994, 3992, ... 
 ## Resampling results across tuning parameters:
 ## 
 ##   alpha  lambda     RMSE   Rsquared  MAE  
-##   0.10   0.0008293  3.284  0.04300   2.690
-##   0.10   0.0082933  3.284  0.04271   2.691
-##   0.10   0.0829328  3.285  0.04202   2.694
-##   0.55   0.0008293  3.284  0.04291   2.691
-##   0.55   0.0082933  3.285  0.04202   2.693
-##   0.55   0.0829328  3.287  0.04101   2.700
-##   1.00   0.0008293  3.284  0.04289   2.691
-##   1.00   0.0082933  3.285  0.04205   2.693
-##   1.00   0.0829328  3.292  0.03951   2.706
+##   0.10   0.0008293  3.282  0.04440   2.690
+##   0.10   0.0082933  3.282  0.04432   2.691
+##   0.10   0.0829328  3.283  0.04396   2.694
+##   0.55   0.0008293  3.282  0.04436   2.690
+##   0.55   0.0082933  3.283  0.04391   2.692
+##   0.55   0.0829328  3.286  0.04311   2.700
+##   1.00   0.0008293  3.282  0.04441   2.690
+##   1.00   0.0082933  3.283  0.04399   2.693
+##   1.00   0.0829328  3.292  0.04181   2.707
 ## 
 ## RMSE was used to select the optimal model using the smallest value.
-## The final values used for the model were alpha = 0.1 and lambda
-##  = 0.0008293.</code></pre>
+## The final values used for the model were alpha = 1 and lambda = 0.0008293.</code></pre>
 <p>With this model, we can assess the most important predictors of sedentary behavior. We can do that with:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">varImp</span>(fit)</code></pre>
 <pre><code>## glmnet variable importance
 ## 
 ##                   Overall
-## raceOther          100.00
-## raceBlack           83.52
-## raceWhite           80.22
-## raceOtherHispanic   28.12
-## asthmaAsthma        10.87
-## ridreth3             5.47
-## riagendr             4.81
-## famsize              4.54
-## dep                  1.37
-## ridageyr             0.00</code></pre>
+## raceOther         100.000
+## raceWhite          95.553
+## raceBlack          92.974
+## raceOtherHispanic  30.979
+## asthmaAsthma       14.747
+## riagendr            6.608
+## famsize             6.158
+## dep                 1.858
+## ridreth3            0.414
+## ridageyr            0.000</code></pre>
 <p>This shows us that, of these variables, <code>race</code> was most important, followed by <code>asthma</code>. Importantly, though, this model did not predict the outcome very well so these are likely not very important predictors overall.</p>
 </div>
 <div id="random-forests" class="section level3 unnumbered">
@@ -731,8 +730,8 @@ fit_rf</code></pre>
 ##                      Number of trees: 500
 ## No. of variables tried at each split: 2
 ## 
-##           Mean of squared residuals: 10.83
-##                     % Var explained: 3.62</code></pre>
+##           Mean of squared residuals: 10.81
+##                     % Var explained: 3.78</code></pre>
 <p>We can find out which variables were important in the model via:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))  <span class="co">## back to one plot per page</span>
 <span class="kw">varImpPlot</span>(fit_rf)</code></pre>
@@ -742,7 +741,7 @@ fit_rf</code></pre>
 </div>
 <div id="apply-it-6" class="section level2 unnumbered">
 <h2>Apply It</h2>
-<p><a href="http://tysonbarrett.com/DataR/Chapter7.zip">This link</a> contains a folder complete with an Rstudio project file, an RMarkdown file, and a few data files. Download it and unzip it to do the following steps.</p>
+<p><a href="http://tysonbarrett.com/DataR/Chapter4.zip">This link</a> contains a folder complete with an Rstudio project file, an RMarkdown file, and a few data files. Download it and unzip it to do the following steps.</p>
 <div id="step-1-6" class="section level3 unnumbered">
 <h3>Step 1</h3>
 <p>Open the <code>Chapter4.Rproj</code> file. This will open up RStudio for you.</p>

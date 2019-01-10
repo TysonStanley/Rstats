@@ -346,32 +346,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="wide-form" class="section level3 unnumbered">
 <h3>Wide Form</h3>
 <p>Wide form generally has one unit (i.e. individual) per row. This generally looks like:</p>
-<pre><code>##    ID  Var_Time1  Var_Time2
-## 1   1 -0.3017840 0.07474267
-## 2   2  0.3697688 0.19360412
-## 3   3  0.2176942 0.11743206
-## 4   4 -0.5328170 0.01388725
-## 5   5  0.6276708 0.53410892
-## 6   6  0.2032862 0.50388794
-## 7   7 -1.1345561 0.20336065
-## 8   8 -0.4347211 0.41389906
-## 9   9 -1.1946688 0.08305754
-## 10 10 -0.1936241 0.47177142</code></pre>
+<pre><code>##    ID  Var_Time1 Var_Time2
+## 1   1 -0.2259457 0.8211714
+## 2   2 -0.9296161 0.0315381
+## 3   3 -1.6786328 0.2960555
+## 4   4  0.2370555 0.1102022
+## 5   5  0.7577958 0.7651369
+## 6   6 -1.8752331 0.3706970
+## 7   7  0.4591851 0.2967773
+## 8   8  0.5078198 0.7788491
+## 9   9 -1.8677536 0.2716627
+## 10 10 -0.2422804 0.9204542</code></pre>
 <p>Notice that each row has a unique ID, and some of the columns (all in this case) are variables at specific time points. This means that the variable is split up and is not a single column. This is a common way to collect and store data in our fields and so your data likely looks similar to this.</p>
 </div>
 <div id="long-form" class="section level3 unnumbered">
 <h3>Long Form</h3>
 <p>In contrast, long format has the lowest nested unit as a single row. This means that a single ID can span multiple rows, usually with a unique time point for each row as so:</p>
-<pre><code>##   ID Time        Var
-## 1  1    1 0.60122225
-## 2  1    2 0.98967964
-## 3  1    3 0.70719235
-## 4  1    4 0.51166275
-## 5  2    1 0.06261443
-## 6  2    2 0.23085983
-## 7  3    1 0.39608015
-## 8  3    2 0.86580792
-## 9  3    3 0.15284790</code></pre>
+<pre><code>##   ID Time       Var
+## 1  1    1 0.2878993
+## 2  1    2 0.7719722
+## 3  1    3 0.6678354
+## 4  1    4 0.1690886
+## 5  2    1 0.2293582
+## 6  2    2 0.7796205
+## 7  3    1 0.9224425
+## 8  3    2 0.8036123
+## 9  3    3 0.6856512</code></pre>
 <p>Notice that a single ID spans multiple columns and that each row has only one time point. Here, time is nested within individuals making it the lowest unit. Therefore, each row corresponds to a single time point. Generally, this is the format we want for most modeling techniques and most visualizations.</p>
 <p>This is a very simple example of the differences between wide and long format. Although much more complex examples are probably available to you, we will start with this for now. Later chapters will delve into more complex data designs.</p>
 </div>
@@ -528,26 +528,26 @@ df_long &lt;-<span class="st"> </span><span class="kw">long</span>(df_wide,
 <pre><code>## id = ID</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">df_long</code></pre>
 <pre><code>##      ID time         Var
-## 1.1   1    1  0.22722646
-## 2.1   2    1 -0.20816774
-## 3.1   3    1 -1.49409842
-## 4.1   4    1  1.90269096
-## 5.1   5    1  0.66813524
-## 6.1   6    1 -0.67982859
-## 7.1   7    1 -0.87002562
-## 8.1   8    1 -0.31656866
-## 9.1   9    1 -1.31613346
-## 10.1 10    1 -1.25168885
-## 1.2   1    2  0.56508619
-## 2.2   2    2  0.97831295
-## 3.2   3    2  0.81829703
-## 4.2   4    2  0.21868978
-## 5.2   5    2  0.45691256
-## 6.2   6    2  0.21305248
-## 7.2   7    2  0.95869585
-## 8.2   8    2  0.24617204
-## 9.2   9    2  0.36101753
-## 10.2 10    2  0.05478537</code></pre>
+## 1.1   1    1  1.38340692
+## 2.1   2    1 -0.55278308
+## 3.1   3    1  1.25066799
+## 4.1   4    1  0.38303930
+## 5.1   5    1 -0.96150861
+## 6.1   6    1 -0.83877299
+## 7.1   7    1 -0.98308757
+## 8.1   8    1  0.68285410
+## 9.1   9    1 -0.26410544
+## 10.1 10    1  1.37779811
+## 1.2   1    2  0.03691008
+## 2.2   2    2  0.64330973
+## 3.2   3    2  0.13467603
+## 4.2   4    2  0.22122691
+## 5.2   5    2  0.62962327
+## 6.2   6    2  0.70977469
+## 7.2   7    2  0.82374992
+## 8.2   8    2  0.11373403
+## 9.2   9    2  0.02768729
+## 10.2 10    2  0.16834830</code></pre>
 <p>We provided the data (<code>df_wide</code>), the time varying variables (<code>c(&quot;Var_Time1&quot;, &quot;Var_Time2&quot;)</code>), and told it what we should name the value variable (<code>v.names = &quot;Var&quot;</code>). Note that the function guessed, based on its name, that the variable <code>ID</code> was the identifying variable.</p>
 <p>This function automatically assumes each observation is a time point, thus the <code>time</code> variable. We can easily change that by adding the argument <code>timevar</code> and giving it a name (e.g., <code>timevar = &quot;cluster&quot;</code>).</p>
 <p>And now we will go from long to wide using <code>wide()</code> from the same package.</p>
@@ -559,10 +559,10 @@ df_wide &lt;-<span class="st"> </span><span class="kw">wide</span>(df_long,
                 <span class="dt">timevar =</span> <span class="st">&quot;Time&quot;</span>)</code></pre>
 <pre><code>## id = ID</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">df_wide</code></pre>
-<pre><code>##   ID     Var.1      Var.2     Var.3     Var.4
-## 1  1 0.3803092 0.49446703 0.8617564 0.8688054
-## 5  2 0.2800434 0.15833037        NA        NA
-## 7  3 0.5886070 0.02162879 0.5450035        NA</code></pre>
+<pre><code>##   ID     Var.1     Var.2      Var.3     Var.4
+## 1  1 0.3549314 0.4093186 0.07376034 0.1795055
+## 5  2 0.6103713 0.3819856         NA        NA
+## 7  3 0.5838001 0.5095757 0.21462403        NA</code></pre>
 <p>Here, we provided the data <code>df_long</code> and the variable name (<code>Var</code>) that had the values and (<code>Time</code>) that contained the time labels (in this case, just numbers). With a little bit of code we can move data around without any copy-pasting that is so error-prone. Again, note that the function guessed, based on its name, that the variable <code>ID</code> was the identifying variable.</p>
 </div>
 <div id="joining-merging" class="section level2 unnumbered">

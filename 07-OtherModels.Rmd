@@ -209,7 +209,7 @@ We can see that age (`ridageyr`) is the most important variable, depression (`de
 
 ## Apply It {-}
 
-[This link](http://tysonbarrett.com/DataR/Chapter7.zip) contains a folder complete with an Rstudio project file, an RMarkdown file, and a few data files. Download it and unzip it to do the following steps.
+[This link](http://tysonbarrett.com/DataR/Chapter4.zip) contains a folder complete with an Rstudio project file, an RMarkdown file, and a few data files. Download it and unzip it to do the following steps.
 
 
 ### Step 1 {-}

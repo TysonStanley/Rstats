@@ -156,7 +156,7 @@ There are many resources available to learn more about beta regression and each 
 
 ## Apply It {-}
 
-[This link](http://tysonbarrett.com/DataR/Chapter5.zip) contains a folder complete with an Rstudio project file, an RMarkdown file, and a few data files. Download it and unzip it to do the following steps.
+[This link](http://tysonbarrett.com/DataR/Chapter4.zip) contains a folder complete with an Rstudio project file, an RMarkdown file, and a few data files. Download it and unzip it to do the following steps.
 
 
 ### Step 1 {-}
