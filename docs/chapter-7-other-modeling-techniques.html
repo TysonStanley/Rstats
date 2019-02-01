@@ -356,13 +356,13 @@ patha  &lt;-<span class="st"> </span><span class="kw">glm</span>(dep <span class
 ## 
 ##      sed_hr ~ 
 ##                             Indirect   Lower  Upper
-##         asthmaAsthma =&gt; dep   0.0637 0.02982 0.1094
+##         asthmaAsthma =&gt; dep   0.0637 0.03038 0.1081
 ## 
 ##    Direct Effects: 
 ## 
 ##      sed_hr ~ 
 ##                      Direct Lower  Upper
-##         asthmaAsthma 0.4123 0.123 0.6922
+##         asthmaAsthma 0.4123 0.153 0.6751
 ## 
 ## 
 ## Standardized Mediated Effects: 
@@ -371,13 +371,13 @@ patha  &lt;-<span class="st"> </span><span class="kw">glm</span>(dep <span class
 ## 
 ##      sed_hr ~ 
 ##                             Indirect   Lower   Upper
-##         asthmaAsthma =&gt; dep    0.019 0.00889 0.03264
+##         asthmaAsthma =&gt; dep    0.019 0.00906 0.03225
 ## 
 ##    Direct Effects: 
 ## 
 ##      sed_hr ~ 
 ##                      Direct   Lower  Upper
-##         asthmaAsthma  0.123 0.03669 0.2065</code></pre>
+##         asthmaAsthma  0.123 0.04564 0.2014</code></pre>
 <p>This gives us the estimates of the individual regression models and the estimates of the indirect and direct effects.</p>
 <p>To do the exact same model with <code>lavaan</code>, we can do the following:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(lavaan)
@@ -671,19 +671,19 @@ fit</code></pre>
 ## 
 ## No pre-processing
 ## Resampling: Cross-Validated (10 fold) 
-## Summary of sample sizes: 3993, 3993, 3992, 3994, 3993, 3994, ... 
+## Summary of sample sizes: 3993, 3993, 3995, 3992, 3994, 3993, ... 
 ## Resampling results across tuning parameters:
 ## 
 ##   alpha  lambda     RMSE   Rsquared  MAE  
-##   0.10   0.0008293  3.282  0.04393   2.689
-##   0.10   0.0082933  3.282  0.04366   2.690
-##   0.10   0.0829328  3.283  0.04301   2.693
-##   0.55   0.0008293  3.282  0.04389   2.689
-##   0.55   0.0082933  3.283  0.04312   2.692
-##   0.55   0.0829328  3.286  0.04228   2.700
-##   1.00   0.0008293  3.282  0.04384   2.689
-##   1.00   0.0082933  3.283  0.04306   2.692
-##   1.00   0.0829328  3.292  0.04114   2.706
+##   0.10   0.0008293  3.281  0.04317   2.690
+##   0.10   0.0082933  3.281  0.04299   2.691
+##   0.10   0.0829328  3.282  0.04235   2.694
+##   0.55   0.0008293  3.281  0.04317   2.690
+##   0.55   0.0082933  3.282  0.04253   2.692
+##   0.55   0.0829328  3.285  0.04168   2.699
+##   1.00   0.0008293  3.281  0.04317   2.690
+##   1.00   0.0082933  3.282  0.04244   2.693
+##   1.00   0.0829328  3.290  0.04018   2.706
 ## 
 ## RMSE was used to select the optimal model using the smallest value.
 ## The final values used for the model were alpha = 0.1 and lambda
@@ -729,8 +729,8 @@ fit_rf</code></pre>
 ##                      Number of trees: 500
 ## No. of variables tried at each split: 2
 ## 
-##           Mean of squared residuals: 10.81
-##                     % Var explained: 3.82</code></pre>
+##           Mean of squared residuals: 10.84
+##                     % Var explained: 3.55</code></pre>
 <p>We can find out which variables were important in the model via:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))  <span class="co">## back to one plot per page</span>
 <span class="kw">varImpPlot</span>(fit_rf)</code></pre>

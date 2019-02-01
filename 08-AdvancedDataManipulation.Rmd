@@ -18,9 +18,9 @@ We will introduce both ideas to you in this chapter. To discuss the first, show 
 
 ## Reshaping Your Data {-}
 
-We introduced you to wide form and long form of your data in Chapter 2. In reality, data can take on nearly infinite forms but for most data in health, behavior, and social science, these two forms are sufficient to know. But the question is, how to change the form of your data?
+We introduced you to wide form and long form of your data in Chapter 2. In reality, data can take on nearly infinite forms but for most data in health, behavioral, and social science, these two forms are sufficient to know. 
 
-In the `tidyverse` functions known as `gather` and `spread` can help with this in a simple way. To show you, we will use the fake data we started with in Chapter 2.
+In some situations, your data may have multiple variables with multiple time points (known as time-variant variables) and other variables that are not (known as time-invariant variables) as shown:
 
 ```{r, echo=FALSE}
 d1 <- data.frame("ID"=c(1:10), 
@@ -30,7 +30,7 @@ d1 <- data.frame("ID"=c(1:10),
 d1
 ```
 
-Notice that this data frame is in wide format (each ID is one row and there are multiple times or measurements per person for two of the variables). To change this to wide format, we'll use `long()`. The first argument is the data.frame, followed by two variable names (names that we go into the new long form), and then the numbers of the columns that are the measures (in this case, `Var_Time1` and `Var_Time2`).
+Notice that this data frame is in wide format (each ID is one row and there are multiple times or measurements per person for two of the variables). To change this to wide format, we'll use `long()`. The first argument is the data.frame, followed by two variable names (names that we go into the new long form), and then the numbers of the columns that are the measures (e.g., `Var_Time1` and `Var_Time2`).
 ```{r}
 long_form <- furniture::long(d1, 
                              c("Var_Time1", "Var_Time2"), 
@@ -41,7 +41,7 @@ long_form
 
 As you can see, it took the variable names and put that in our first variable that we called "measures". The actual values of the variables are now in the variable we called "values". Finally, notice that each ID now has two rows (one for each measure).
 
-To go in the opposite direction (long to wide) we can use the `spread()` function. All we do is provide the long formed data frame, the measured variable (`measures`) and the variable with the values (`values`).
+To go in the opposite direction (long to wide) we can use the `wide()` function. All we do is provide the long formed data frame, variables that are time-varying (`Var1` and `Var2`) and the variable showing the time points (`time`).
 ```{r}
 wide_form <- furniture::wide(long_form, 
                              v.names = c("Var", "Var2"),
