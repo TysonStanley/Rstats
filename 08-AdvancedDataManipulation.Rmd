@@ -6,14 +6,15 @@
 
 There's so much more we can do with data in `R` than what we've presented. Two main topics we need to clarify here are:
 
-1. How do you reshape your data from wide to long form or vice versa?
-2. How do can we simplify tasks that we need done many times?
+1. How do you reshape your data from wide to long form or vice versa in more complex data structures?
+2. How do can we automate tasks that we need done many times?
 
-We will introduce both ideas to you in this chapter. To discuss the first, we will introduce two functions to help you reshape your data: `gather()` and `spread()`. For the second, we need to talk about loops. Looping, for our purposes, refers to the ability to repeat something across many variables or data sets. There's many ways of doing this but some are better than others. For looping, we'll talk about:
+We will introduce both ideas to you in this chapter. To discuss the first, show the use of `long()` and `wide()` from the `furniture` package. For the second, we need to talk about loops. Looping, for our purposes, refers to the ability to repeat something across many variables or data sets. There's many ways of doing this but some are better than others. For looping, we'll talk about:
 
 1. vectorized functions,
 2. `for` loops, and
 3. the `apply` family of functions.
+
 
 ## Reshaping Your Data {-}
 
@@ -22,14 +23,19 @@ We introduced you to wide form and long form of your data in Chapter 2. In reali
 In the `tidyverse` functions known as `gather` and `spread` can help with this in a simple way. To show you, we will use the fake data we started with in Chapter 2.
 
 ```{r, echo=FALSE}
-d1 <- data.frame("ID"=c(1:10), "Var_Time1"=rnorm(10), "Var_Time2"=runif(10))
+d1 <- data.frame("ID"=c(1:10), 
+                 "Var_Time1"=rnorm(10), "Var_Time2"=runif(10), 
+                 "Var2_Time1"=rnorm(10), "Var2_Time2"=rnorm(10),
+                 "Var3"=rnorm(10))
 d1
 ```
 
-Notice that this data frame is in wide format (each ID is one row and there are multiple times or measurements per person). To change this to wide format, we'll use `gather()`. The first argument is the data.frame, followed by two variable names (names that we go into the new long form), and then the numbers of the columns that are the measures (in this case, `Var_Time1` and `Var_Time2`).
+Notice that this data frame is in wide format (each ID is one row and there are multiple times or measurements per person for two of the variables). To change this to wide format, we'll use `long()`. The first argument is the data.frame, followed by two variable names (names that we go into the new long form), and then the numbers of the columns that are the measures (in this case, `Var_Time1` and `Var_Time2`).
 ```{r}
-library(tidyverse)
-long_form <- gather(d1, "measures", "values", 2:3)
+long_form <- furniture::long(d1, 
+                             c("Var_Time1", "Var_Time2"), 
+                             c("Var2_Time1", "Var2_Time2"),
+                             v.names = c("Var", "Var2"))
 long_form
 ```
 
@@ -37,25 +43,19 @@ As you can see, it took the variable names and put that in our first variable th
 
 To go in the opposite direction (long to wide) we can use the `spread()` function. All we do is provide the long formed data frame, the measured variable (`measures`) and the variable with the values (`values`).
 ```{r}
-wide_form <- spread(long_form, measures, values)
+wide_form <- furniture::wide(long_form, 
+                             v.names = c("Var", "Var2"),
+                             timevar = "time")
 wide_form
 ```
 And we are back to the wide form.
 
 These steps can be followed for situations where there are many measures per person, many people per cluster, etc. In most cases, this is the way multilevel data analysis occurs (as we discussed in Chapter 6) and is a nice way to get our data ready for plotting.
 
+The following figure shows the features of both `long()` and `wide()`.
 
-### The `reshape()` function {-}
+![](DataCleaning_Handout.png)
 
-It is also possible to do multiple measures at once when moving from wide to long or long to wide. The following figure shows the basics of the `reshape()` function that was made for an introductory R class (which can also be found [here](https://tysonstanley.github.io/assets/images/DataCleaning_Handout.pdf)).
-
-\includegraphics[width=\linewidth]{DataCleaning_Handout.png}
-
-Note a few important features: 
-
-1. `reshape()` is used for moving from wide to long and long to wide. Here we just tell it the direction.
-2. To indicate multiple columns, use a list of vectors (e.g., `list(c("x1", "x2"), c("z1", "z2")))`).
-3. `reshape()` can be used before or after subsetting, allowing for only the necessary variables to be included in the reshaping process.
 
 
 
