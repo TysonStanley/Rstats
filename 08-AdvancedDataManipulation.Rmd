@@ -230,6 +230,25 @@ The last two examples also show something important regarding the output:
 1. The output will be at the level of the anonymous function. The first had two numbers per variable because the function produced two summary statistics for each variable. The second we multiplied `y` by 2 (so it is still at the individual observation level) and then divide by the SD. This keeps it at the observation level so we get ten values for every variable.
 2. We can name the argument anything we want (as long as it is one word). We used `x` in the first and `y` in the second but as long as it is the same within the function, it doesn't matter what you use.
 
+Finally, we may not want our variables to be in the list format. We may want to control more tightly what is outputted from the looping. For that, we can thank the `purrr` package (part of the `tidyverse`; note the three r's in purrr). This package provides many valuable functions that you can explore. Of particular mention here, though, are some of the `map*()` functions that work just like `lapply()`.
+
+1. `map()` -- outputs a list
+2. `map_df()` -- outputs a data frame
+3. `map_if()` -- outputs a list but only makes any changes to the variables that meet a condition (e.g., `is.numeric()`).
+
+```{r}
+purrr::map(df, function(y) y * 2 / sd(y))
+```
+
+```{r}
+purrr::map_df(df, function(y) y * 2 / sd(y))
+```
+
+```{r}
+purrr::map_if(df, is.numeric, function(y) y * 2 / sd(y))
+```
+
+
 ## Apply It {-}
 
 [This link](http://tysonbarrett.com/DataR/Chapter8.zip) contains a folder complete with an Rstudio project file, an RMarkdown file, and a few data files. Download it and unzip it to do the following steps.

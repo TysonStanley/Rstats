@@ -4,6 +4,8 @@ author: "Tyson S. Barrett"
 date: "`r Sys.Date()`"
 site: "bookdown::bookdown_site"
 output:
+  bookdown::tufte_book2:
+    latex_engine: "xelatex"
   bookdown::gitbook:
     download: [epub, pdf]
 documentclass: book
@@ -38,7 +40,7 @@ The book is divided into three parts.
 
 4. Chapter 4: Basic Statistical Analyses (T-tests, ANOVA, Linear Regression)
 5. Chapter 5: Generalized Linear Models
-6. Chapter 6: Mulilevel Modeling
+6. Chapter 6: Multilevel Modeling
 7. Chapter 7: Other Modeling Techniques
 
 ## Part III {-}

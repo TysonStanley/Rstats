@@ -9,7 +9,7 @@
   <meta name="description" content="This book introduces the R statistical language for researchers in the health, behavioral, educational, and psychological sciences. It is designed for those that have little background in statistical programming but would like to use the powerful statistical and visualization tool that R offers at no cost. The light-hearted design of this book allows a researcher to investigate and begin using R relatively stress-free with intuitive and interesting examples.">
   <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="Chapter 5: Generalized Linear Models | R for the Health, Behavioral, and Social Sciences />
+  <meta property="og:title" content="Chapter 5: Generalized Linear Models | R for the Health, Behavioral, and Social Sciences" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="Cover.jpg" />
@@ -17,7 +17,7 @@
   <meta name="github-repo" content="tysonstanley/tysonstanley.github.io" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 5: Generalized Linear Models | R for the Health, Behavioral, and Social Sciences />
+  <meta name="twitter:title" content="Chapter 5: Generalized Linear Models | R for the Health, Behavioral, and Social Sciences" />
   
   <meta name="twitter:description" content="This book introduces the R statistical language for researchers in the health, behavioral, educational, and psychological sciences. It is designed for those that have little background in statistical programming but would like to use the powerful statistical and visualization tool that R offers at no cost. The light-hearted design of this book allows a researcher to investigate and begin using R relatively stress-free with intuitive and interesting examples." />
   <meta name="twitter:image" content="Cover.jpg" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Tyson S. Barrett">
 
 
-<meta name="date" content="2019-01-10">
+<meta name="date" content="2019-01-31">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -68,7 +68,7 @@ a.sourceLine { text-indent: -1em; padding-left: 1em; }
 pre.numberSource a.sourceLine
   { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+  { content: attr(title);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
     border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
@@ -154,8 +154,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#data-used-for-examples"><i class="fa fa-check"></i>Data Used for Examples</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#piping"><i class="fa fa-check"></i>Piping</a></li>
-<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#select-and-filter"><i class="fa fa-check"></i>Select and Filter</a></li>
-<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#mutate-and-transmute"><i class="fa fa-check"></i>Mutate and Transmute</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#select-variables-and-filter-observations"><i class="fa fa-check"></i>Select Variables and Filter Observations</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#mutate-variables"><i class="fa fa-check"></i>Mutate Variables</a></li>
 <li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#grouping-and-summarizing"><i class="fa fa-check"></i>Grouping and Summarizing</a></li>
 <li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#reshaping"><i class="fa fa-check"></i>Reshaping</a></li>
 <li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#joining-merging"><i class="fa fa-check"></i>Joining (merging)</a><ul>
@@ -366,7 +366,7 @@ df &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span>
 ## AIC: 2664.2
 ## 
 ## Number of Fisher Scoring iterations: 5</code></pre>
-<p>We used <code>glm()</code> (stands for generalized linear model). The key to making it logistic, since you can use <code>glm()</code> for a linear model using maximum likelihood instead of <code>lm()</code> with least squares, is <code>family = &quot;binomial&quot;</code>. This tells <code>R</code> to do a logistic regression.</p>
+<p>We used <code>glm()</code> (stands for generalized linear model). The key to making it logistic, since you can use <code>glm()</code> for a linear model using maximum likelihood instead of <code>lm()</code> with least squares, is <code>family = "binomial"</code>. This tells <code>R</code> to do a logistic regression.</p>
 </div>
 <div id="poisson-regression" class="section level2 unnumbered">
 <h2>Poisson Regression</h2>
@@ -405,7 +405,7 @@ df &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span>
 ## 
 ## Number of Fisher Scoring iterations: 5</code></pre>
 <p>Sedentary may be over-dispersed (see plot)
-<img src="_main_files/figure-html/unnamed-chunk-86-1.png" width="672" />
+<img src="_main_files/figure-html/unnamed-chunk-87-1.png" width="672" />
 and so other methods related to poisson may be necessary. For this book, we are not going to be delving into these in depth but we will introduce some below.</p>
 <div id="gamma" class="section level3 unnumbered">
 <h3>Gamma</h3>
@@ -465,32 +465,32 @@ h_fit =<span class="st"> </span><span class="kw">hurdle</span>(sed_zero <span cl
 ## hurdle(formula = sed_zero ~ asthma + race + famsize, data = df)
 ## 
 ## Pearson residuals:
-##    Min     1Q Median     3Q    Max 
-## -3.522 -1.494 -0.258  1.284  8.701 
+##     Min      1Q  Median      3Q     Max 
+## -3.9172 -1.5151 -0.2762  1.2659  9.5071 
 ## 
 ## Count model coefficients (truncated poisson with log link):
 ##                     Estimate Std. Error z value Pr(&gt;|z|)    
-## (Intercept)        5.6442033  0.0037851 1491.18   &lt;2e-16 ***
-## asthma             0.0622911  0.0022387   27.82   &lt;2e-16 ***
-## raceOtherHispanic  0.1446251  0.0043438   33.30   &lt;2e-16 ***
-## raceWhite          0.3556700  0.0035673   99.70   &lt;2e-16 ***
-## raceBlack          0.3416115  0.0036706   93.07   &lt;2e-16 ***
-## raceOther          0.3532326  0.0038734   91.19   &lt;2e-16 ***
-## famsize           -0.0201147  0.0005772  -34.85   &lt;2e-16 ***
+## (Intercept)        5.6622768  0.0036942 1532.73   &lt;2e-16 ***
+## asthma             0.0646915  0.0022134   29.23   &lt;2e-16 ***
+## raceOtherHispanic  0.1212762  0.0042780   28.35   &lt;2e-16 ***
+## raceWhite          0.3407343  0.0034762   98.02   &lt;2e-16 ***
+## raceBlack          0.3332365  0.0035766   93.17   &lt;2e-16 ***
+## raceOther          0.3420211  0.0037741   90.62   &lt;2e-16 ***
+## famsize           -0.0182083  0.0005717  -31.85   &lt;2e-16 ***
 ## Zero hurdle model coefficients (binomial with logit link):
-##                    Estimate Std. Error z value Pr(&gt;|z|)    
-## (Intercept)        1.999564   0.196141  10.195   &lt;2e-16 ***
-## asthma             0.159597   0.155458   1.027   0.3046    
-## raceOtherHispanic  0.362979   0.230596   1.574   0.1155    
-## raceWhite          0.356332   0.180384   1.975   0.0482 *  
-## raceBlack          0.398477   0.190114   2.096   0.0361 *  
-## raceOther          0.185866   0.199526   0.932   0.3516    
-## famsize           -0.006851   0.036270  -0.189   0.8502    
+##                   Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept)        2.27776    0.21715  10.489   &lt;2e-16 ***
+## asthma             0.32637    0.16646   1.961   0.0499 *  
+## raceOtherHispanic -0.10510    0.24242  -0.434   0.6646    
+## raceWhite         -0.04491    0.20088  -0.224   0.8231    
+## raceBlack          0.09926    0.21166   0.469   0.6391    
+## raceOther          0.03195    0.22501   0.142   0.8871    
+## famsize            0.01399    0.03753   0.373   0.7093    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1 
 ## 
 ## Number of iterations in BFGS optimization: 12 
-## Log-likelihood: -2.322e+05 on 14 Df</code></pre>
+## Log-likelihood: -2.345e+05 on 14 Df</code></pre>
 <p>Notice that the output has two parts: “Count model coefficients (truncated poisson with log link):” and “Zero hurdle model coefficients (binomial with logit link):”. Together they tell us about the relationship between the predictors and a count variable with many zeros.</p>
 </div>
 <div id="negative-binomial" class="section level3 unnumbered">
@@ -521,28 +521,28 @@ fit_beta &lt;-<span class="st"> </span><span class="kw">betareg</span>(beta_var 
 ## 
 ## Standardized weighted residuals 2:
 ##     Min      1Q  Median      3Q     Max 
-## -2.0100 -0.6853 -0.0597  0.6072  2.9057 
+## -2.0675 -0.6958 -0.0636  0.6317  2.8634 
 ## 
 ## Coefficients (mean model with logit link):
-##                    Estimate Std. Error z value Pr(&gt;|z|)
-## (Intercept)        0.071866   0.063457   1.133    0.257
-## asthma             0.018026   0.043852   0.411    0.681
-## raceOtherHispanic -0.071259   0.072239  -0.986    0.324
-## raceWhite         -0.030744   0.058935  -0.522    0.602
-## raceBlack          0.027789   0.061188   0.454    0.650
-## raceOther          0.031579   0.065583   0.482    0.630
-## famsize            0.009879   0.010858   0.910    0.363
+##                    Estimate Std. Error z value Pr(&gt;|z|)  
+## (Intercept)        0.140048   0.063219   2.215   0.0267 *
+## asthma             0.052434   0.043695   1.200   0.2301  
+## raceOtherHispanic  0.010785   0.071969   0.150   0.8809  
+## raceWhite          0.012893   0.058710   0.220   0.8262  
+## raceBlack         -0.041919   0.060948  -0.688   0.4916  
+## raceOther          0.009567   0.065329   0.146   0.8836  
+## famsize           -0.001848   0.010815  -0.171   0.8643  
 ## 
 ## Phi coefficients (precision model with identity link):
 ##       Estimate Std. Error z value Pr(&gt;|z|)    
-## (phi)  2.44279    0.04441      55   &lt;2e-16 ***
+## (phi)  2.47554    0.04511   54.88   &lt;2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1 
 ## 
 ## Type of estimator: ML (maximum likelihood)
-## Log-likelihood: 73.47 on 8 Df
-## Pseudo R-squared: 0.001407
-## Number of iterations: 17 (BFGS) + 1 (Fisher scoring)</code></pre>
+## Log-likelihood: 96.06 on 8 Df
+## Pseudo R-squared: 0.0008356
+## Number of iterations: 18 (BFGS) + 2 (Fisher scoring)</code></pre>
 <p>The output provides coefficients and the “Phi” coefficients. Both are important parts of using beta regression but we are not going to discuss it here.</p>
 <p>There are many resources available to learn more about beta regression and each of these GLM’s. As for now, we are going to move on to more complex modeling where there are clustering or repeated measures in the data.</p>
 </div>

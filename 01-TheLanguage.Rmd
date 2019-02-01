@@ -139,7 +139,7 @@ install.packages("rio")
 This puts the package called `rio` on your computer for you but in order to use the functions it provides, we use
 
 ```{r, eval = FALSE}
-library("rio")
+library(rio)
 ```
 
 We now can use the functions from `rio` in this `R` session (i.e. from when you open `R` to when you close it).

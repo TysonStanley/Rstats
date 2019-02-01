@@ -26,6 +26,8 @@ library(amazing)
 awesome::make_really_cool(args)
 ```
 
+In essence, the `::` grabs the function from inside of the package and let's you use that. 
+
 That's a bit of an aside, but know that you can always get at a function even if it is "masked" from your current session.
 
 ## Tidy Methods {-}
@@ -79,7 +81,7 @@ data.frame("ID"=c(1,1,1,1,2,2,3,3,3),
 
 Notice that a single ID spans multiple columns and that each row has only one time point. Here, time is nested within individuals making it the lowest unit. Therefore, each row corresponds to a single time point. Generally, this is the format we want for most modeling techniques and most visualizations.
 
-This is a very simple example of the differences between wide and long format. Although much more complex examples are probably available to you, we will start with this for now. Later chapters will delve into more complex data designs.
+This is a very simple example of the differences between wide and long format. Although much more complex examples are probably available to you, we will start with this for now. Chapter 8 will delve into more complex data designs and how to reshape those. Toward the end of this chapter, we show reshaping with more simple data structures.
 
 
 ### Data Used for Examples {-}
@@ -152,7 +154,7 @@ Although it is fewer lines, this is notably harder to understand. Instead of rea
 
 
 
-## Select and Filter {-}
+## Select Variables and Filter Observations {-}
 
 We often want to subset our data in some way before we do many of our analyses. We may want to do this for a number of reasons (e.g., easier cognitively to think about the data, the analyses depend on the subsetting). The code below show the two main ways to subset your data: 
 
@@ -194,7 +196,7 @@ filtered_selected_dem <- dem_df %>%
 ```
 where we use two `%>%` operators to grab `dem_df`, select the three variables, and then filter the rows that we want.
 
-## Mutate and Transmute {-}
+## Mutate Variables {-}
 
 Earlier we showed how to create a new variable or clean an existing one. We used the base `R` way for these. However, a great way to add and change variables is using `mutate()`. We grab `df`, and create a variable called `citizen` using the factored version of `dmdcitzn` and assign it back into `df`.
 
@@ -253,6 +255,16 @@ dem_df %>%                           ## 1. Data
 ```
 
 We used the `n()` function (which gives us counts) and the `mean()` function which, shockingly, gives us the mean. Note that if there are `NA`'s in the variable, the mean (and most other functions like it) will give the result `NA`. To have `R` ignore these, we tell the `mean` function to remove the `NA`'s when you compute this using `na.rm=TRUE`.
+
+We can also use `furniture::table1()` to do the three-step summary. By default, `table1()` will give you the mean and SD of numeric variables and counts and percentages for factors.
+
+```{r}
+## Three step summary:
+dem_df %>%                           ## 1. Data
+  group_by(citizen) %>%              ## 2. Group by
+  table1(Age = ridageyr,             ## 3. Summarize
+         Sex = factor(riagendr))                 
+```
 
 This pattern of grouping and summarizing is something that will follow us throughout the book. It's a great way to get to know your data well and to make decisions on what to do next with your data.
 

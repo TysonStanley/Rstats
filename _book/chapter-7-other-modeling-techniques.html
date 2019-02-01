@@ -9,7 +9,7 @@
   <meta name="description" content="This book introduces the R statistical language for researchers in the health, behavioral, educational, and psychological sciences. It is designed for those that have little background in statistical programming but would like to use the powerful statistical and visualization tool that R offers at no cost. The light-hearted design of this book allows a researcher to investigate and begin using R relatively stress-free with intuitive and interesting examples.">
   <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="Chapter 7: Other Modeling Techniques | R for the Health, Behavioral, and Social Sciences />
+  <meta property="og:title" content="Chapter 7: Other Modeling Techniques | R for the Health, Behavioral, and Social Sciences" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="Cover.jpg" />
@@ -17,7 +17,7 @@
   <meta name="github-repo" content="tysonstanley/tysonstanley.github.io" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 7: Other Modeling Techniques | R for the Health, Behavioral, and Social Sciences />
+  <meta name="twitter:title" content="Chapter 7: Other Modeling Techniques | R for the Health, Behavioral, and Social Sciences" />
   
   <meta name="twitter:description" content="This book introduces the R statistical language for researchers in the health, behavioral, educational, and psychological sciences. It is designed for those that have little background in statistical programming but would like to use the powerful statistical and visualization tool that R offers at no cost. The light-hearted design of this book allows a researcher to investigate and begin using R relatively stress-free with intuitive and interesting examples." />
   <meta name="twitter:image" content="Cover.jpg" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Tyson S. Barrett">
 
 
-<meta name="date" content="2019-01-10">
+<meta name="date" content="2019-01-31">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -68,7 +68,7 @@ a.sourceLine { text-indent: -1em; padding-left: 1em; }
 pre.numberSource a.sourceLine
   { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+  { content: attr(title);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
     border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
@@ -154,8 +154,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#data-used-for-examples"><i class="fa fa-check"></i>Data Used for Examples</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#piping"><i class="fa fa-check"></i>Piping</a></li>
-<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#select-and-filter"><i class="fa fa-check"></i>Select and Filter</a></li>
-<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#mutate-and-transmute"><i class="fa fa-check"></i>Mutate and Transmute</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#select-variables-and-filter-observations"><i class="fa fa-check"></i>Select Variables and Filter Observations</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#mutate-variables"><i class="fa fa-check"></i>Mutate Variables</a></li>
 <li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#grouping-and-summarizing"><i class="fa fa-check"></i>Grouping and Summarizing</a></li>
 <li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#reshaping"><i class="fa fa-check"></i>Reshaping</a></li>
 <li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#joining-merging"><i class="fa fa-check"></i>Joining (merging)</a><ul>
@@ -357,14 +357,14 @@ patha  &lt;-<span class="st"> </span><span class="kw">glm</span>(dep <span class
 ##    Indirect Effects: 
 ## 
 ##      sed_hr ~ 
-##                             Indirect   Lower Upper
-##         asthmaAsthma =&gt; dep   0.0637 0.02842 0.109
+##                             Indirect   Lower  Upper
+##         asthmaAsthma =&gt; dep   0.0637 0.02818 0.1122
 ## 
 ##    Direct Effects: 
 ## 
 ##      sed_hr ~ 
 ##                      Direct  Lower Upper
-##         asthmaAsthma 0.4123 0.1593 0.711
+##         asthmaAsthma 0.4123 0.1472  0.71
 ## 
 ## 
 ## Standardized Mediated Effects: 
@@ -373,13 +373,13 @@ patha  &lt;-<span class="st"> </span><span class="kw">glm</span>(dep <span class
 ## 
 ##      sed_hr ~ 
 ##                             Indirect   Lower   Upper
-##         asthmaAsthma =&gt; dep    0.019 0.00848 0.03251
+##         asthmaAsthma =&gt; dep    0.019 0.00841 0.03347
 ## 
 ##    Direct Effects: 
 ## 
 ##      sed_hr ~ 
 ##                      Direct   Lower  Upper
-##         asthmaAsthma  0.123 0.04753 0.2121</code></pre>
+##         asthmaAsthma  0.123 0.04391 0.2118</code></pre>
 <p>This gives us the estimates of the individual regression models and the estimates of the indirect and direct effects.</p>
 <p>To do the exact same model with <code>lavaan</code>, we can do the following:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(lavaan)
@@ -653,7 +653,7 @@ fit4 &lt;-<span class="st"> </span><span class="kw">cfa</span>(model4, <span cla
 <pre class="sourceCode r"><code class="sourceCode r">df2 &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span>
 <span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(riagendr, ridageyr, ridreth3, race, famsize, dep, asthma, sed_hr) <span class="op">%&gt;%</span>
 <span class="st">  </span>na.omit</code></pre>
-<p>Then we use the <code>train()</code> function to fit the different models. This function, by default, uses cross-validation<a href="#fn21" class="footnote-ref" id="fnref21"><sup>21</sup></a>, which we don’t discuss here, but it an important topic to become familiar with. Below we fit a model that is either a ridge, a lasso, or an elastic net model depending on the <code>alpha</code> level. This is done using the <code>method = &quot;glmnet&quot;</code> argument. We specify the model by the formula <code>sed_hr ~ .</code> which means we want <code>sed_hr</code> to be the outcome and all the rest of the variables to be predictors.</p>
+<p>Then we use the <code>train()</code> function to fit the different models. This function, by default, uses cross-validation<a href="#fn21" class="footnote-ref" id="fnref21"><sup>21</sup></a>, which we don’t discuss here, but it an important topic to become familiar with. Below we fit a model that is either a ridge, a lasso, or an elastic net model depending on the <code>alpha</code> level. This is done using the <code>method = "glmnet"</code> argument. We specify the model by the formula <code>sed_hr ~ .</code> which means we want <code>sed_hr</code> to be the outcome and all the rest of the variables to be predictors.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(caret)
 
 <span class="co">## Use 10-fold cross validation</span>
@@ -673,19 +673,19 @@ fit</code></pre>
 ## 
 ## No pre-processing
 ## Resampling: Cross-Validated (10 fold) 
-## Summary of sample sizes: 3993, 3992, 3995, 3993, 3994, 3992, ... 
+## Summary of sample sizes: 3994, 3992, 3993, 3993, 3994, 3994, ... 
 ## Resampling results across tuning parameters:
 ## 
 ##   alpha  lambda     RMSE   Rsquared  MAE  
-##   0.10   0.0008293  3.282  0.04440   2.690
-##   0.10   0.0082933  3.282  0.04432   2.691
-##   0.10   0.0829328  3.283  0.04396   2.694
-##   0.55   0.0008293  3.282  0.04436   2.690
-##   0.55   0.0082933  3.283  0.04391   2.692
-##   0.55   0.0829328  3.286  0.04311   2.700
-##   1.00   0.0008293  3.282  0.04441   2.690
-##   1.00   0.0082933  3.283  0.04399   2.693
-##   1.00   0.0829328  3.292  0.04181   2.707
+##   0.10   0.0008293  3.283  0.04382   2.690
+##   0.10   0.0082933  3.283  0.04356   2.691
+##   0.10   0.0829328  3.284  0.04290   2.694
+##   0.55   0.0008293  3.283  0.04378   2.690
+##   0.55   0.0082933  3.284  0.04301   2.692
+##   0.55   0.0829328  3.287  0.04204   2.700
+##   1.00   0.0008293  3.283  0.04377   2.690
+##   1.00   0.0082933  3.284  0.04297   2.693
+##   1.00   0.0829328  3.292  0.04051   2.707
 ## 
 ## RMSE was used to select the optimal model using the smallest value.
 ## The final values used for the model were alpha = 1 and lambda = 0.0008293.</code></pre>
@@ -730,12 +730,12 @@ fit_rf</code></pre>
 ##                      Number of trees: 500
 ## No. of variables tried at each split: 2
 ## 
-##           Mean of squared residuals: 10.81
-##                     % Var explained: 3.78</code></pre>
+##           Mean of squared residuals: 10.83
+##                     % Var explained: 3.65</code></pre>
 <p>We can find out which variables were important in the model via:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))  <span class="co">## back to one plot per page</span>
 <span class="kw">varImpPlot</span>(fit_rf)</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-110-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-111-1.png" width="672" /></p>
 <p>We can see that age (<code>ridageyr</code>) is the most important variable, depression (<code>dep</code>) follows, with the family size (<code>famsize</code>) the third most important in the random forests model.</p>
 </div>
 </div>

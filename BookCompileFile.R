@@ -37,3 +37,5 @@ render_book(input = c("index.Rmd",
                       "09-AdvancedPlotting.Rmd",
                       "10-LearnMore.Rmd"),
             output_format = c("tufte_book2"))
+
+

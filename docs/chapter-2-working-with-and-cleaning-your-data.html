@@ -9,7 +9,7 @@
   <meta name="description" content="This book introduces the R statistical language for researchers in the health, behavioral, educational, and psychological sciences. It is designed for those that have little background in statistical programming but would like to use the powerful statistical and visualization tool that R offers at no cost. The light-hearted design of this book allows a researcher to investigate and begin using R relatively stress-free with intuitive and interesting examples.">
   <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="Chapter 2: Working with and Cleaning Your Data | R for the Health, Behavioral, and Social Sciences />
+  <meta property="og:title" content="Chapter 2: Working with and Cleaning Your Data | R for the Health, Behavioral, and Social Sciences" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="Cover.jpg" />
@@ -17,7 +17,7 @@
   <meta name="github-repo" content="tysonstanley/tysonstanley.github.io" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 2: Working with and Cleaning Your Data | R for the Health, Behavioral, and Social Sciences />
+  <meta name="twitter:title" content="Chapter 2: Working with and Cleaning Your Data | R for the Health, Behavioral, and Social Sciences" />
   
   <meta name="twitter:description" content="This book introduces the R statistical language for researchers in the health, behavioral, educational, and psychological sciences. It is designed for those that have little background in statistical programming but would like to use the powerful statistical and visualization tool that R offers at no cost. The light-hearted design of this book allows a researcher to investigate and begin using R relatively stress-free with intuitive and interesting examples." />
   <meta name="twitter:image" content="Cover.jpg" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Tyson S. Barrett">
 
 
-<meta name="date" content="2019-01-10">
+<meta name="date" content="2019-01-31">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -68,7 +68,7 @@ a.sourceLine { text-indent: -1em; padding-left: 1em; }
 pre.numberSource a.sourceLine
   { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+  { content: attr(title);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
     border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
@@ -154,8 +154,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#data-used-for-examples"><i class="fa fa-check"></i>Data Used for Examples</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#piping"><i class="fa fa-check"></i>Piping</a></li>
-<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#select-and-filter"><i class="fa fa-check"></i>Select and Filter</a></li>
-<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#mutate-and-transmute"><i class="fa fa-check"></i>Mutate and Transmute</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#select-variables-and-filter-observations"><i class="fa fa-check"></i>Select Variables and Filter Observations</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#mutate-variables"><i class="fa fa-check"></i>Mutate Variables</a></li>
 <li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#grouping-and-summarizing"><i class="fa fa-check"></i>Grouping and Summarizing</a></li>
 <li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#reshaping"><i class="fa fa-check"></i>Reshaping</a></li>
 <li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#joining-merging"><i class="fa fa-check"></i>Joining (merging)</a><ul>
@@ -303,12 +303,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</code></pre>
 <p>After downloading it, to use its functions, simply use:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)</code></pre>
-<pre><code>## ── Attaching packages ───────────────────────────────────────────────── tidyverse 1.2.1.9000 ──</code></pre>
-<pre><code>## ✔ ggplot2 3.1.0           ✔ purrr   0.2.5      
-## ✔ tibble  1.4.99.9005     ✔ dplyr   0.7.99.9000
-## ✔ tidyr   0.8.2           ✔ stringr 1.3.1      
-## ✔ readr   1.2.1           ✔ forcats 0.3.0</code></pre>
-<pre><code>## ── Conflicts ───────────────────────────────────────────────────────── tidyverse_conflicts() ──
+<pre><code>## ── Attaching packages ───────────────────────── tidyverse 1.2.1.9000 ──</code></pre>
+<pre><code>## ✔ ggplot2 3.1.0     ✔ purrr   0.2.5
+## ✔ tibble  2.0.1     ✔ dplyr   0.7.8
+## ✔ tidyr   0.8.2     ✔ stringr 1.3.1
+## ✔ readr   1.3.1     ✔ forcats 0.3.0</code></pre>
+<pre><code>## Warning: package &#39;tibble&#39; was built under R version 3.5.2</code></pre>
+<pre><code>## ── Conflicts ───────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()</code></pre>
 <p>Note that when we loaded tidyverse it loaded several packages and told you of “conflicts”. These conflicts are where two or more functions across different packages have the same name. These functions with the same name will almost invariably differ in what they do. In this situation, the last loaded package is the one that <code>R</code> will use by default. For example, if we loaded two packages—<code>awesome</code> and <code>amazing</code>—and both had the function <code>make_really_cool</code> and we loaded <code>awesome</code> and then <code>amazing</code> as so:</p>
@@ -316,6 +317,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span class="kw">library</span>(amazing)</code></pre>
 <p><code>R</code> will automatically use the function from <code>amazing</code>. We can still access the <code>awesome</code> version of the function (because, again, even though the name is the same, they won’t necessarily do the same things for you). We can do this by:</p>
 <pre class="sourceCode r"><code class="sourceCode r">awesome<span class="op">::</span><span class="kw">make_really_cool</span>(args)</code></pre>
+<p>In essence, the <code>::</code> grabs the function from inside of the package and let’s you use that.</p>
 <p>That’s a bit of an aside, but know that you can always get at a function even if it is “masked” from your current session.</p>
 <div id="tidy-methods" class="section level2 unnumbered">
 <h2>Tidy Methods</h2>
@@ -347,33 +349,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3>Wide Form</h3>
 <p>Wide form generally has one unit (i.e. individual) per row. This generally looks like:</p>
 <pre><code>##    ID  Var_Time1 Var_Time2
-## 1   1 -0.2259457 0.8211714
-## 2   2 -0.9296161 0.0315381
-## 3   3 -1.6786328 0.2960555
-## 4   4  0.2370555 0.1102022
-## 5   5  0.7577958 0.7651369
-## 6   6 -1.8752331 0.3706970
-## 7   7  0.4591851 0.2967773
-## 8   8  0.5078198 0.7788491
-## 9   9 -1.8677536 0.2716627
-## 10 10 -0.2422804 0.9204542</code></pre>
+## 1   1  0.5291600 0.6015608
+## 2   2 -0.1516356 0.8986519
+## 3   3 -0.0120289 0.3620289
+## 4   4 -0.7593237 0.7750887
+## 5   5  1.1214274 0.2161986
+## 6   6 -0.8342472 0.1926804
+## 7   7  1.5033303 0.5021448
+## 8   8 -0.2118892 0.9915993
+## 9   9  1.3588543 0.4824841
+## 10 10  0.6676626 0.4214324</code></pre>
 <p>Notice that each row has a unique ID, and some of the columns (all in this case) are variables at specific time points. This means that the variable is split up and is not a single column. This is a common way to collect and store data in our fields and so your data likely looks similar to this.</p>
 </div>
 <div id="long-form" class="section level3 unnumbered">
 <h3>Long Form</h3>
 <p>In contrast, long format has the lowest nested unit as a single row. This means that a single ID can span multiple rows, usually with a unique time point for each row as so:</p>
 <pre><code>##   ID Time       Var
-## 1  1    1 0.2878993
-## 2  1    2 0.7719722
-## 3  1    3 0.6678354
-## 4  1    4 0.1690886
-## 5  2    1 0.2293582
-## 6  2    2 0.7796205
-## 7  3    1 0.9224425
-## 8  3    2 0.8036123
-## 9  3    3 0.6856512</code></pre>
+## 1  1    1 0.1436527
+## 2  1    2 0.8769686
+## 3  1    3 0.9147358
+## 4  1    4 0.9534702
+## 5  2    1 0.9404138
+## 6  2    2 0.5910349
+## 7  3    1 0.4445934
+## 8  3    2 0.5571082
+## 9  3    3 0.4057677</code></pre>
 <p>Notice that a single ID spans multiple columns and that each row has only one time point. Here, time is nested within individuals making it the lowest unit. Therefore, each row corresponds to a single time point. Generally, this is the format we want for most modeling techniques and most visualizations.</p>
-<p>This is a very simple example of the differences between wide and long format. Although much more complex examples are probably available to you, we will start with this for now. Later chapters will delve into more complex data designs.</p>
+<p>This is a very simple example of the differences between wide and long format. Although much more complex examples are probably available to you, we will start with this for now. Chapter 8 will delve into more complex data designs and how to reshape those. Toward the end of this chapter, we show reshaping with more simple data structures.</p>
 </div>
 <div id="data-used-for-examples" class="section level3 unnumbered">
 <h3>Data Used for Examples</h3>
@@ -423,8 +425,8 @@ act_df &lt;-<span class="st"> </span><span class="kw">import</span>(<span class=
 ## 2        2     31.7</code></pre>
 <p>Although it is fewer lines, this is notably harder to understand. Instead of reading from left to right, top to bottom, we must read inside out, which is unnatural for English reading individuals.</p>
 </div>
-<div id="select-and-filter" class="section level2 unnumbered">
-<h2>Select and Filter</h2>
+<div id="select-variables-and-filter-observations" class="section level2 unnumbered">
+<h2>Select Variables and Filter Observations</h2>
 <p>We often want to subset our data in some way before we do many of our analyses. We may want to do this for a number of reasons (e.g., easier cognitively to think about the data, the analyses depend on the subsetting). The code below show the two main ways to subset your data:</p>
 <ol style="list-style-type: decimal">
 <li><em>selecting</em> variables and</li>
@@ -450,8 +452,8 @@ act_df &lt;-<span class="st"> </span><span class="kw">import</span>(<span class=
 <span class="st">  </span><span class="kw">filter</span>(riagendr <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">&amp;</span><span class="st"> </span>ridageyr <span class="op">&gt;</span><span class="st"> </span><span class="dv">16</span>)</code></pre>
 <p>where we use two <code>%&gt;%</code> operators to grab <code>dem_df</code>, select the three variables, and then filter the rows that we want.</p>
 </div>
-<div id="mutate-and-transmute" class="section level2 unnumbered">
-<h2>Mutate and Transmute</h2>
+<div id="mutate-variables" class="section level2 unnumbered">
+<h2>Mutate Variables</h2>
 <p>Earlier we showed how to create a new variable or clean an existing one. We used the base <code>R</code> way for these. However, a great way to add and change variables is using <code>mutate()</code>. We grab <code>df</code>, and create a variable called <code>citizen</code> using the factored version of <code>dmdcitzn</code> and assign it back into <code>df</code>.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co">## Our Grouping Variable as a factor</span>
 dem_df &lt;-<span class="st"> </span>dem_df <span class="op">%&gt;%</span>
@@ -470,8 +472,6 @@ dem_df &lt;-<span class="st"> </span>dem_df <span class="op">%&gt;%</span>
 dem_df <span class="op">%&gt;%</span><span class="st">                           </span><span class="co">## 1. Data</span>
 <span class="st">  </span><span class="kw">group_by</span>(citizen) <span class="op">%&gt;%</span><span class="st">              </span><span class="co">## 2. Group by</span>
 <span class="st">  </span><span class="kw">summarize</span>(<span class="dt">N =</span> <span class="kw">n</span>())                 <span class="co">## 3. Summarize</span></code></pre>
-<pre><code>## Warning: Factor `citizen` contains implicit NA, consider using
-## `forcats::fct_explicit_na`</code></pre>
 <pre><code>## # A tibble: 4 x 2
 ##   citizen     N
 ##   &lt;fct&gt;   &lt;int&gt;
@@ -489,8 +489,6 @@ dem_df <span class="op">%&gt;%</span><span class="st">                          
 dem_df <span class="op">%&gt;%</span><span class="st">                           </span><span class="co">## 1. Data</span>
 <span class="st">  </span><span class="kw">group_by</span>(citizen) <span class="op">%&gt;%</span><span class="st">              </span><span class="co">## 2. Group by</span>
 <span class="st">  </span><span class="kw">summarize</span>(<span class="dt">N =</span> <span class="kw">n</span>())                 <span class="co">## 3. Summarize</span></code></pre>
-<pre><code>## Warning: Factor `citizen` contains implicit NA, consider using
-## `forcats::fct_explicit_na`</code></pre>
 <pre><code>## # A tibble: 3 x 2
 ##   citizen     N
 ##   &lt;fct&gt;   &lt;int&gt;
@@ -503,8 +501,6 @@ dem_df <span class="op">%&gt;%</span><span class="st">                          
 <span class="st">  </span><span class="kw">group_by</span>(citizen) <span class="op">%&gt;%</span><span class="st">              </span><span class="co">## 2. Group by</span>
 <span class="st">  </span><span class="kw">summarize</span>(<span class="dt">N =</span> <span class="kw">n</span>(),                 <span class="co">## 3. Summarize</span>
             <span class="dt">Age =</span> <span class="kw">mean</span>(ridageyr, <span class="dt">na.rm=</span><span class="ot">TRUE</span>))                 </code></pre>
-<pre><code>## Warning: Factor `citizen` contains implicit NA, consider using
-## `forcats::fct_explicit_na`</code></pre>
 <pre><code>## # A tibble: 3 x 3
 ##   citizen     N   Age
 ##   &lt;fct&gt;   &lt;int&gt; &lt;dbl&gt;
@@ -512,6 +508,24 @@ dem_df <span class="op">%&gt;%</span><span class="st">                          
 ## 2 1        8685  30.7
 ## 3 &lt;NA&gt;       31  40.4</code></pre>
 <p>We used the <code>n()</code> function (which gives us counts) and the <code>mean()</code> function which, shockingly, gives us the mean. Note that if there are <code>NA</code>’s in the variable, the mean (and most other functions like it) will give the result <code>NA</code>. To have <code>R</code> ignore these, we tell the <code>mean</code> function to remove the <code>NA</code>’s when you compute this using <code>na.rm=TRUE</code>.</p>
+<p>We can also use <code>furniture::table1()</code> to do the three-step summary. By default, <code>table1()</code> will give you the mean and SD of numeric variables and counts and percentages for factors.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">## Three step summary:</span>
+dem_df <span class="op">%&gt;%</span><span class="st">                           </span><span class="co">## 1. Data</span>
+<span class="st">  </span><span class="kw">group_by</span>(citizen) <span class="op">%&gt;%</span><span class="st">              </span><span class="co">## 2. Group by</span>
+<span class="st">  </span><span class="kw">table1</span>(<span class="dt">Age =</span> ridageyr,             <span class="co">## 3. Summarize</span>
+         <span class="dt">Sex =</span> <span class="kw">factor</span>(riagendr))                 </code></pre>
+<pre><code>## Using dplyr::group_by() groups: citizen</code></pre>
+<pre><code>## 
+## ───────────────────────────────
+##             citizen 
+##       0           1           
+##       n = 1040    n = 8685    
+##  Age                          
+##       37.3 (18.5) 30.7 (25.1) 
+##  Sex                          
+##     1 523 (50.3%) 4315 (49.7%)
+##     2 517 (49.7%) 4370 (50.3%)
+## ───────────────────────────────</code></pre>
 <p>This pattern of grouping and summarizing is something that will follow us throughout the book. It’s a great way to get to know your data well and to make decisions on what to do next with your data.</p>
 </div>
 <div id="reshaping" class="section level2 unnumbered">
@@ -528,28 +542,28 @@ df_long &lt;-<span class="st"> </span><span class="kw">long</span>(df_wide,
 <pre><code>## id = ID</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">df_long</code></pre>
 <pre><code>##      ID time         Var
-## 1.1   1    1  1.38340692
-## 2.1   2    1 -0.55278308
-## 3.1   3    1  1.25066799
-## 4.1   4    1  0.38303930
-## 5.1   5    1 -0.96150861
-## 6.1   6    1 -0.83877299
-## 7.1   7    1 -0.98308757
-## 8.1   8    1  0.68285410
-## 9.1   9    1 -0.26410544
-## 10.1 10    1  1.37779811
-## 1.2   1    2  0.03691008
-## 2.2   2    2  0.64330973
-## 3.2   3    2  0.13467603
-## 4.2   4    2  0.22122691
-## 5.2   5    2  0.62962327
-## 6.2   6    2  0.70977469
-## 7.2   7    2  0.82374992
-## 8.2   8    2  0.11373403
-## 9.2   9    2  0.02768729
-## 10.2 10    2  0.16834830</code></pre>
-<p>We provided the data (<code>df_wide</code>), the time varying variables (<code>c(&quot;Var_Time1&quot;, &quot;Var_Time2&quot;)</code>), and told it what we should name the value variable (<code>v.names = &quot;Var&quot;</code>). Note that the function guessed, based on its name, that the variable <code>ID</code> was the identifying variable.</p>
-<p>This function automatically assumes each observation is a time point, thus the <code>time</code> variable. We can easily change that by adding the argument <code>timevar</code> and giving it a name (e.g., <code>timevar = &quot;cluster&quot;</code>).</p>
+## 1.1   1    1  0.38657186
+## 2.1   2    1  0.50701190
+## 3.1   3    1  0.98677476
+## 4.1   4    1  0.90152275
+## 5.1   5    1 -1.69328136
+## 6.1   6    1 -0.87126971
+## 7.1   7    1 -0.56404856
+## 8.1   8    1  0.82284429
+## 9.1   9    1  1.57942927
+## 10.1 10    1 -1.52554813
+## 1.2   1    2  0.44126862
+## 2.2   2    2  0.64800642
+## 3.2   3    2  0.46538947
+## 4.2   4    2  0.54163706
+## 5.2   5    2  0.49329819
+## 6.2   6    2  0.09052692
+## 7.2   7    2  0.23140376
+## 8.2   8    2  0.34846092
+## 9.2   9    2  0.62380056
+## 10.2 10    2  0.83646426</code></pre>
+<p>We provided the data (<code>df_wide</code>), the time varying variables (<code>c("Var_Time1", "Var_Time2")</code>), and told it what we should name the value variable (<code>v.names = "Var"</code>). Note that the function guessed, based on its name, that the variable <code>ID</code> was the identifying variable.</p>
+<p>This function automatically assumes each observation is a time point, thus the <code>time</code> variable. We can easily change that by adding the argument <code>timevar</code> and giving it a name (e.g., <code>timevar = "cluster"</code>).</p>
 <p>And now we will go from long to wide using <code>wide()</code> from the same package.</p>
 <pre class="sourceCode r"><code class="sourceCode r">df_long &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="st">&quot;ID&quot;</span>=<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>), 
                       <span class="st">&quot;Time&quot;</span>=<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), 
@@ -559,10 +573,10 @@ df_wide &lt;-<span class="st"> </span><span class="kw">wide</span>(df_long,
                 <span class="dt">timevar =</span> <span class="st">&quot;Time&quot;</span>)</code></pre>
 <pre><code>## id = ID</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">df_wide</code></pre>
-<pre><code>##   ID     Var.1     Var.2      Var.3     Var.4
-## 1  1 0.3549314 0.4093186 0.07376034 0.1795055
-## 5  2 0.6103713 0.3819856         NA        NA
-## 7  3 0.5838001 0.5095757 0.21462403        NA</code></pre>
+<pre><code>##   ID     Var.1     Var.2     Var.3     Var.4
+## 1  1 0.2513354 0.8767734 0.5877173 0.6621917
+## 5  2 0.5061684 0.1907750        NA        NA
+## 7  3 0.4893701 0.9482559 0.5390819        NA</code></pre>
 <p>Here, we provided the data <code>df_long</code> and the variable name (<code>Var</code>) that had the values and (<code>Time</code>) that contained the time labels (in this case, just numbers). With a little bit of code we can move data around without any copy-pasting that is so error-prone. Again, note that the function guessed, based on its name, that the variable <code>ID</code> was the identifying variable.</p>
 </div>
 <div id="joining-merging" class="section level2 unnumbered">
