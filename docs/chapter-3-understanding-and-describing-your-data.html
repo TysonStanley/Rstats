@@ -5,27 +5,27 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Chapter 3: Understanding and Describing Your Data | R for the Health, Behavioral, and Social Sciences</title>
+  <title>Chapter 3: Understanding and Describing Your Data | R for Researchers: An Introduction</title>
   <meta name="description" content="This book introduces the R statistical language for researchers in the health, behavioral, educational, and psychological sciences. It is designed for those that have little background in statistical programming but would like to use the powerful statistical and visualization tool that R offers at no cost. The light-hearted design of this book allows a researcher to investigate and begin using R relatively stress-free with intuitive and interesting examples.">
   <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="Chapter 3: Understanding and Describing Your Data | R for the Health, Behavioral, and Social Sciences" />
+  <meta property="og:title" content="Chapter 3: Understanding and Describing Your Data | R for Researchers: An Introduction" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="Cover.jpg" />
   <meta property="og:description" content="This book introduces the R statistical language for researchers in the health, behavioral, educational, and psychological sciences. It is designed for those that have little background in statistical programming but would like to use the powerful statistical and visualization tool that R offers at no cost. The light-hearted design of this book allows a researcher to investigate and begin using R relatively stress-free with intuitive and interesting examples." />
-  <meta name="github-repo" content="tysonstanley/tysonstanley.github.io" />
+  <meta name="github-repo" content="tysonstanley" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 3: Understanding and Describing Your Data | R for the Health, Behavioral, and Social Sciences" />
+  <meta name="twitter:title" content="Chapter 3: Understanding and Describing Your Data | R for Researchers: An Introduction" />
   
   <meta name="twitter:description" content="This book introduces the R statistical language for researchers in the health, behavioral, educational, and psychological sciences. It is designed for those that have little background in statistical programming but would like to use the powerful statistical and visualization tool that R offers at no cost. The light-hearted design of this book allows a researcher to investigate and begin using R relatively stress-free with intuitive and interesting examples." />
   <meta name="twitter:image" content="Cover.jpg" />
 
-<meta name="author" content="Tyson S. Barrett">
+<meta name="author" content="Tyson S. Barrett, PhD">
 
 
-<meta name="date" content="2019-02-01">
+<meta name="date" content="2019-03-27">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -68,7 +68,7 @@ a.sourceLine { text-indent: -1em; padding-left: 1em; }
 pre.numberSource a.sourceLine
   { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(title);
+  { content: attr(data-line-number);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
     border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
@@ -126,10 +126,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#part-i"><i class="fa fa-check"></i>Part I</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#part-ii"><i class="fa fa-check"></i>Part II</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#part-iii"><i class="fa fa-check"></i>Part III</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#part-i"><i class="fa fa-check"></i>Part I</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#part-ii"><i class="fa fa-check"></i>Part II</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#part-iii"><i class="fa fa-check"></i>Part III</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html"><i class="fa fa-check"></i>Chapter 1: The Basics</a><ul>
 <li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html#objects"><i class="fa fa-check"></i>Objects</a></li>
@@ -283,7 +283,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R for the Health, Behavioral, and Social Sciences</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R for Researchers: An Introduction</a>
           </h1>
         </div>
 
@@ -312,23 +312,6 @@ df <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">table1</span>(asthma, race, dep, famsize, sed)</code></pre>
 <pre><code>## 
 ## ──────────────────────────────────────
-##                     Mean/Count (SD/%)
-##                     n = 4437         
-##  asthma                              
-##     No Asthma       3774 (85.1%)     
-##     Asthma          663 (14.9%)      
-##  race                                
-##     MexicanAmerican 392 (8.8%)       
-##     OtherHispanic   442 (10%)        
-##     White           1733 (39.1%)     
-##     Black           1161 (26.2%)     
-##     Other           709 (16%)        
-##  dep                                 
-##                     3.2 (4.5)        
-##  famsize                             
-##                     2.7 (1.5)        
-##  sed                                 
-##                     369.3 (201.2)    
 ## ──────────────────────────────────────</code></pre>
 <p>This quickly gives you means and standard deviations or counts and percentages.</p>
 <p>The code below shows the means/standard devaitions or counts/percentages by a grouping variable—in this case, <code>C</code>.</p>
@@ -338,20 +321,6 @@ df <span class="op">%&gt;%</span>
 <pre><code>## 
 ## ────────────────────────────────────────────────
 ##                             asthma 
-##                     No Asthma     Asthma       
-##                     n = 3774      n = 663      
-##  race                                          
-##     MexicanAmerican 350 (9.3%)    42 (6.3%)    
-##     OtherHispanic   380 (10.1%)   62 (9.4%)    
-##     White           1453 (38.5%)  280 (42.2%)  
-##     Black           958 (25.4%)   203 (30.6%)  
-##     Other           633 (16.8%)   76 (11.5%)   
-##  dep                                           
-##                     3.0 (4.3)     4.4 (5.2)    
-##  famsize                                       
-##                     2.7 (1.5)     2.6 (1.5)    
-##  sed                                           
-##                     365.2 (201.1) 392.4 (200.0)
 ## ────────────────────────────────────────────────</code></pre>
 <p>We can also test for differences by group as well.</p>
 <pre class="sourceCode r"><code class="sourceCode r">df <span class="op">%&gt;%</span>
@@ -361,20 +330,6 @@ df <span class="op">%&gt;%</span>
 <pre><code>## 
 ## ────────────────────────────────────────────────────────
 ##                             asthma 
-##                     No Asthma     Asthma        P-Value
-##                     n = 3774      n = 663              
-##  race                                           &lt;.001  
-##     MexicanAmerican 350 (9.3%)    42 (6.3%)            
-##     OtherHispanic   380 (10.1%)   62 (9.4%)            
-##     White           1453 (38.5%)  280 (42.2%)          
-##     Black           958 (25.4%)   203 (30.6%)          
-##     Other           633 (16.8%)   76 (11.5%)           
-##  dep                                            &lt;.001  
-##                     3.0 (4.3)     4.4 (5.2)            
-##  famsize                                        0.496  
-##                     2.7 (1.5)     2.6 (1.5)            
-##  sed                                            0.001  
-##                     365.2 (201.1) 392.4 (200.0)        
 ## ────────────────────────────────────────────────────────</code></pre>
 <p>Several other options exist for you to play around with, including obtaining medians and ranges and removing a lot of the white space of the table.</p>
 <p>With three or four short lines of code we can get a good idea about variables that may be related to the grouping variable and any missingness in the factor variables. There’s much more you can do with <code>table1</code> and there are vignettes and tutorials available to learn more.<a href="#fn15" class="footnote-ref" id="fnref15"><sup>15</sup></a></p>
@@ -398,10 +353,10 @@ janitor<span class="op">::</span><span class="kw">tabyl</span>(df)</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qplot</span>(df<span class="op">$</span>sed)          <span class="co">## Makes a simple histogram</span></code></pre>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <pre><code>## Warning: Removed 18 rows containing non-finite values (stat_bin).</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-57-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-60-1.png" width="672" /></p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qplot</span>(df<span class="op">$</span>sed, df<span class="op">$</span>dep)  <span class="co">## Makes a scatterplot</span></code></pre>
 <pre><code>## Warning: Removed 18 rows containing missing values (geom_point).</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-57-2.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-60-2.png" width="672" /></p>
 <p>For a bit more control over the plot, you can use the <code>ggplot</code> function. The first piece is the <code>ggplot</code> piece. From there, we add layers. These layers generally start with <code>geom_</code> then have the type of plot. Below, we start with telling <code>ggplot</code> the basics of the plot and then build a boxplot.</p>
 <p>The key pieces of ggplot:</p>
 <ol style="list-style-type: decimal">
@@ -414,16 +369,16 @@ janitor<span class="op">::</span><span class="kw">tabyl</span>(df)</code></pre>
 <span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">color =</span> sed))</code></pre>
 <pre><code>## Warning: Continuous x aesthetic -- did you forget aes(group=...)?</code></pre>
 <pre><code>## Warning: Removed 18 rows containing missing values (stat_boxplot).</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-58-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-61-1.png" width="672" /></p>
 <p>Here’s a few more examples:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x=</span>sed)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;count&quot;</span>)</code></pre>
 <pre><code>## Warning: Removed 18 rows containing non-finite values (stat_count).</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-59-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-62-1.png" width="672" /></p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x=</span>sed, <span class="dt">y=</span>dep)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> famsize))</code></pre>
 <pre><code>## Warning: Removed 18 rows containing missing values (geom_point).</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-60-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-63-1.png" width="672" /></p>
 <p><em>Note that the warning that says it removed a row is because we had missing values in in these variables.</em></p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x=</span>sed, 
                <span class="dt">y=</span>dep, 
@@ -433,14 +388,14 @@ janitor<span class="op">::</span><span class="kw">tabyl</span>(df)</code></pre>
 <span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>)</code></pre>
 <pre><code>## Warning: Removed 18 rows containing non-finite values (stat_smooth).</code></pre>
 <pre><code>## Warning: Removed 18 rows containing missing values (geom_point).</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-61-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-64-1.png" width="672" /></p>
 <p>We are going to make the first one again but with some aesthetic adjustments. Notice that we just added two extra lines telling <code>ggplot2</code> how we want some things to look.<a href="#fn17" class="footnote-ref" id="fnref17"><sup>17</sup></a></p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x=</span>famsize, <span class="dt">y=</span>dep, <span class="dt">group =</span> famsize)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">color =</span> riagendr)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span>
 <span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;dodgerblue4&quot;</span>, <span class="st">&quot;coral2&quot;</span>))</code></pre>
 <pre><code>## Warning: Removed 178 rows containing missing values (stat_boxplot).</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-62-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-65-1.png" width="672" /></p>
 <p>The <code>theme_bw()</code> makes the background white, the <code>scale_color_manual()</code> allows us to change the colors in the plot. You can get a good idea of how many types of plots you can do by going to <a href="http://docs.ggplot2.org/current/">http://docs.ggplot2.org/current</a>. Almost any informative plot that you need to do as a researcher is possible with <code>ggplot2</code>.</p>
 <p>We will be using <code>ggplot2</code> extensively in the book to help understand our data and our models as well as communicate our results.</p>
 </div>

@@ -5,27 +5,27 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>R for the Health, Behavioral, and Social Sciences</title>
+  <title>R for Researchers: An Introduction</title>
   <meta name="description" content="This book introduces the R statistical language for researchers in the health, behavioral, educational, and psychological sciences. It is designed for those that have little background in statistical programming but would like to use the powerful statistical and visualization tool that R offers at no cost. The light-hearted design of this book allows a researcher to investigate and begin using R relatively stress-free with intuitive and interesting examples.">
   <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="R for the Health, Behavioral, and Social Sciences" />
+  <meta property="og:title" content="R for Researchers: An Introduction" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="Cover.jpg" />
   <meta property="og:description" content="This book introduces the R statistical language for researchers in the health, behavioral, educational, and psychological sciences. It is designed for those that have little background in statistical programming but would like to use the powerful statistical and visualization tool that R offers at no cost. The light-hearted design of this book allows a researcher to investigate and begin using R relatively stress-free with intuitive and interesting examples." />
-  <meta name="github-repo" content="tysonstanley/tysonstanley.github.io" />
+  <meta name="github-repo" content="tysonstanley" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="R for the Health, Behavioral, and Social Sciences" />
+  <meta name="twitter:title" content="R for Researchers: An Introduction" />
   
   <meta name="twitter:description" content="This book introduces the R statistical language for researchers in the health, behavioral, educational, and psychological sciences. It is designed for those that have little background in statistical programming but would like to use the powerful statistical and visualization tool that R offers at no cost. The light-hearted design of this book allows a researcher to investigate and begin using R relatively stress-free with intuitive and interesting examples." />
   <meta name="twitter:image" content="Cover.jpg" />
 
-<meta name="author" content="Tyson S. Barrett">
+<meta name="author" content="Tyson S. Barrett, PhD">
 
 
-<meta name="date" content="2019-02-01">
+<meta name="date" content="2019-03-27">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -68,7 +68,7 @@ a.sourceLine { text-indent: -1em; padding-left: 1em; }
 pre.numberSource a.sourceLine
   { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(title);
+  { content: attr(data-line-number);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
     border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
@@ -283,7 +283,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R for the Health, Behavioral, and Social Sciences</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R for Researchers: An Introduction</a>
           </h1>
         </div>
 
@@ -292,13 +292,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="header">
-<h1 class="title">R for the Health, Behavioral, and Social Sciences</h1>
-<p class="author"><em>Tyson S. Barrett</em></p>
-<p class="date"><em>2019-02-01</em></p>
+<h1 class="title">R for Researchers: An Introduction</h1>
+<p class="author"><em>Tyson S. Barrett, PhD</em></p>
+<p class="date"><em>2019-03-27</em></p>
 </div>
 <div id="preface" class="section level1 unnumbered">
 <h1>Preface</h1>
-<p>Before beginning the book, you will need to download the <code>R</code> software <a href="https://www.r-project.org/">www.r-project.org</a> and then the RStudio software <a href="https://www.rstudio.com/">www.rstudio.com</a>. <code>R</code> is the brains and <code>RStudio</code><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> is an “IDE” (something that helps us work with <code>R</code> much more easily).</p>
+<p>Before beginning the book, you will need to download the <code>R</code> software <a href="https://www.r-project.org/">www.r-project.org</a> and then the RStudio software <a href="https://www.rstudio.com/">www.rstudio.com</a>. <code>R</code> will just need to be on your computer but you won’t interact with it directly. <code>RStudio</code><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> is actually how we will end up using <code>R</code>. You can think of <code>R</code> as the computer processor while <code>RStudio</code> is the keyboard and screen. <code>R</code> actually does the work but you’ll only use it by using <code>RStudio</code>.</p>
+<blockquote>
+<p>In general, I will refer to anything you do in <code>RStudio</code> as using <code>R</code>. So, when I say things like: “To make a plot in <code>R</code>, we are going to …”, I do not mean to open <code>R</code> and start doing stuff there. Instead, I mean to keep using <code>RStudio</code> but will not refer to the things we do as in <code>RStudio</code> but as in <code>R</code>.</p>
+</blockquote>
 <p>Once both are installed (helps on installing the software can be found on <a href="https://www.rstudio.com/">www.rstudio.com</a>, <a href="www.r-bloggers.com">www.r-bloggers.com</a>, and <a href="www.statmethods.net">www.statmethods.net</a>) you are good to go. The remainder of the book will be about actually using it.</p>
 <p>The book is divided into three parts.</p>
 <div id="part-i" class="section level2 unnumbered">
@@ -325,7 +328,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Chapter 9: Advanced plotting</li>
 <li>Chapter 10: Where to go from here</li>
 </ol>
-<p>At the end of the book, you should be able to: 1) use <code>R</code> to perform your data cleaning and data analyses and 2) understand online helps (e.g. <a href="www.stackoverflow.com">www.stackoverflow.com</a>, <a href="www.r-bloggers.com">www.r-bloggers.com</a>) so your potential in <code>R</code> becomes nearly limitless.</p>
+<p>At the end of the book, you should be able to: 1) use <code>R</code> to perform your data cleaning and data analyses and 2) understand online helps (e.g. <a href="www.stackoverflow.com">www.stackoverflow.com</a>, <a href="www.r-bloggers.com">www.r-bloggers.com</a>) so your potential in <code>R</code> becomes nearly limitless.</p>
 <p>Enjoy!<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
 
 </div>

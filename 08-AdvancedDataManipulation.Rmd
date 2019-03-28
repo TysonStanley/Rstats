@@ -54,7 +54,7 @@ These steps can be followed for situations where there are many measures per per
 
 The following figure shows the features of both `long()` and `wide()`.
 
-![](DataCleaning_Handout.png)
+![](DataCleaning_Handout.jpg)
 
 
 

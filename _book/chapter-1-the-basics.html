@@ -5,34 +5,34 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Chapter 1: The Basics | R for the Health, Behavioral, and Social Sciences</title>
+  <title>Chapter 1: The Basics | R for Researchers: An Introduction</title>
   <meta name="description" content="This book introduces the R statistical language for researchers in the health, behavioral, educational, and psychological sciences. It is designed for those that have little background in statistical programming but would like to use the powerful statistical and visualization tool that R offers at no cost. The light-hearted design of this book allows a researcher to investigate and begin using R relatively stress-free with intuitive and interesting examples.">
   <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="Chapter 1: The Basics | R for the Health, Behavioral, and Social Sciences" />
+  <meta property="og:title" content="Chapter 1: The Basics | R for Researchers: An Introduction" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="Cover.jpg" />
   <meta property="og:description" content="This book introduces the R statistical language for researchers in the health, behavioral, educational, and psychological sciences. It is designed for those that have little background in statistical programming but would like to use the powerful statistical and visualization tool that R offers at no cost. The light-hearted design of this book allows a researcher to investigate and begin using R relatively stress-free with intuitive and interesting examples." />
-  <meta name="github-repo" content="tysonstanley/tysonstanley.github.io" />
+  <meta name="github-repo" content="tysonstanley" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 1: The Basics | R for the Health, Behavioral, and Social Sciences" />
+  <meta name="twitter:title" content="Chapter 1: The Basics | R for Researchers: An Introduction" />
   
   <meta name="twitter:description" content="This book introduces the R statistical language for researchers in the health, behavioral, educational, and psychological sciences. It is designed for those that have little background in statistical programming but would like to use the powerful statistical and visualization tool that R offers at no cost. The light-hearted design of this book allows a researcher to investigate and begin using R relatively stress-free with intuitive and interesting examples." />
   <meta name="twitter:image" content="Cover.jpg" />
 
-<meta name="author" content="Tyson S. Barrett">
+<meta name="author" content="Tyson S. Barrett, PhD">
 
 
-<meta name="date" content="2019-02-01">
+<meta name="date" content="2019-03-27">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="index.html">
+<link rel="prev" href="preface.html">
 <link rel="next" href="chapter-2-working-with-and-cleaning-your-data.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -68,7 +68,7 @@ a.sourceLine { text-indent: -1em; padding-left: 1em; }
 pre.numberSource a.sourceLine
   { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(title);
+  { content: attr(data-line-number);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
     border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
@@ -126,10 +126,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#part-i"><i class="fa fa-check"></i>Part I</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#part-ii"><i class="fa fa-check"></i>Part II</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#part-iii"><i class="fa fa-check"></i>Part III</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#part-i"><i class="fa fa-check"></i>Part I</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#part-ii"><i class="fa fa-check"></i>Part II</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#part-iii"><i class="fa fa-check"></i>Part III</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html"><i class="fa fa-check"></i>Chapter 1: The Basics</a><ul>
 <li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html#objects"><i class="fa fa-check"></i>Objects</a></li>
@@ -283,7 +283,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R for the Health, Behavioral, and Social Sciences</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R for Researchers: An Introduction</a>
           </h1>
         </div>
 
@@ -334,7 +334,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 <tr class="even">
 <td align="left">Operator</td>
-<td align="left">A special type of function (e.g. <code>&lt;-</code>)</td>
+<td align="left">A special type of function (e.g. <code>&lt;-</code>)</td>
 </tr>
 </tbody>
 </table>
@@ -371,24 +371,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>When we combine multiple variables into one, we create a <strong>data.frame</strong>. A data frame is like a spreadsheet table, like the ones you have probably seen in Microsoft’s Excel and IBM’s SPSS. Here’s a simple example:</p>
 <pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(x, race)
 df</code></pre>
-<pre><code>##       x     race
-## 1  10.1    white
-## 2   2.1 hispanic
-## 3   4.6    black
-## 4   2.3    white
-## 5   8.9    white
-## 6   4.5    black
-## 7   7.2    white
-## 8   7.9 hispanic
-## 9   3.6    asian
-## 10  2.0    black</code></pre>
 <p>We can do quite a bit with the <code>data.frame</code> that we called <code>df</code><a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a>. Once again, we could have called this data frame anything (e.g., <code>jimmy</code>, <code>susan</code>, <code>rock</code>, <code>scissors</code> all would work), although I recommend short names. If we hadn’t already told <code>R</code> that <code>race</code> was a factor, we could do this once it is inside of <code>df</code> by:</p>
 <pre class="sourceCode r"><code class="sourceCode r">df<span class="op">$</span>race &lt;-<span class="st"> </span><span class="kw">factor</span>(df<span class="op">$</span>race, 
                <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;white&quot;</span>, <span class="st">&quot;black&quot;</span>, <span class="st">&quot;hispanic&quot;</span>, <span class="st">&quot;asian&quot;</span>))</code></pre>
 <p>In the above code, the <code>$</code> reaches into <code>df</code> to grab a variable (or column). There are other ways of doing this as is almost always the case in <code>R</code>. For example, you may see individuals using:</p>
 <pre class="sourceCode r"><code class="sourceCode r">df[[<span class="st">&quot;race&quot;</span>]] &lt;-<span class="st"> </span><span class="kw">factor</span>(df[[<span class="st">&quot;race&quot;</span>]] , 
                        <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;white&quot;</span>, <span class="st">&quot;black&quot;</span>, <span class="st">&quot;hispanic&quot;</span>, <span class="st">&quot;asian&quot;</span>))</code></pre>
-<p><code>df[["race"]]</code> grabs the <code>race</code> variable just like <code>df$race</code>. Although there are many ways of doing this, we are going to focus on the modern and intuitive ways of doing this more often.</p>
+<p><code>df[[&quot;race&quot;]]</code> grabs the <code>race</code> variable just like <code>df$race</code>. Although there are many ways of doing this, we are going to focus on the modern and intuitive ways of doing this more often.</p>
 <p>In my experience, the first element of uncomfort that researchers face is the fact that our data is essentially invisible to us. It is “housed” in <code>df</code> (not totally accurate but can be thought of this way for now) but it is hard to know exactly what is in <code>df</code>. First, we can use:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">View</span>(df)</code></pre>
 <p>which prints out the data in spreadsheet-type form to see the data. We can also get nice summaries using the following functions.</p>
@@ -399,13 +388,13 @@ df</code></pre>
 ##  $ x   : num  10.1 2.1 4.6 2.3 8.9 4.5 7.2 7.9 3.6 2
 ##  $ race: Factor w/ 4 levels &quot;white&quot;,&quot;black&quot;,..: 1 3 2 1 1 2 1 3 4 2</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(df)</code></pre>
-<pre><code>##        x                race  
-##  Min.   : 2.000   white   :4  
-##  1st Qu.: 2.625   black   :3  
-##  Median : 4.550   hispanic:2  
-##  Mean   : 5.320   asian   :1  
-##  3rd Qu.: 7.725               
-##  Max.   :10.100</code></pre>
+<pre><code>##        x               race  
+##  Min.   : 2.00   white   :4  
+##  1st Qu.: 2.62   black   :3  
+##  Median : 4.55   hispanic:2  
+##  Mean   : 5.32   asian   :1  
+##  3rd Qu.: 7.72               
+##  Max.   :10.10</code></pre>
 </div>
 <div id="functions" class="section level2 unnumbered">
 <h2>Functions</h2>
@@ -431,7 +420,7 @@ df</code></pre>
 <p>We will rely on the <code>rio</code> package to do the majority of our data importing. In general, researchers in our fields use <code>.csv</code>, <code>.txt</code>, <code>.sav</code>, and <code>.xlxs</code>. For the most part, importing will be straightforward. Regardless of the file type, we will use <code>rio::import()</code>. This notation means that the package <code>rio</code> has a function called <code>import()</code>.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co">## Import a CSV file located in the same folder as your RMarkdown file</span>
 our_data &lt;-<span class="st"> </span>rio<span class="op">::</span><span class="kw">import</span>(<span class="st">&quot;your_data_file.csv&quot;</span>)</code></pre>
-<p>This will work for <code>.csv</code>, <code>.txt</code>, <code>.sav</code>, <code>.xlsx</code>, and <a href="https://thomasleeper.com/rio/articles/rio.html">many others files</a>. In the example, we assigned our imported file to <code>df</code> using <code>&lt;-</code>. This is necessary to let <code>R</code> remember the data for it to use for other stuff. The object <code>our_data</code> now contains the data saved in the CSV file called <code>"your_data_file.csv"</code>. Note that at the end of the lines you see that I left a <strong>comment</strong> using <code>#</code>. I used two for stylistic purposes but only one is necessary. Anything after a <code>#</code> is not read by the computer; it’s just for us humans.</p>
+<p>This will work for <code>.csv</code>, <code>.txt</code>, <code>.sav</code>, <code>.xlsx</code>, and <a href="https://thomasleeper.com/rio/articles/rio.html">many others files</a>. In the example, we assigned our imported file to <code>df</code> using <code>&lt;-</code>. This is necessary to let <code>R</code> remember the data for it to use for other stuff. The object <code>our_data</code> now contains the data saved in the CSV file called <code>&quot;your_data_file.csv&quot;</code>. Note that at the end of the lines you see that I left a <strong>comment</strong> using <code>#</code>. I used two for stylistic purposes but only one is necessary. Anything after a <code>#</code> is not read by the computer; it’s just for us humans.</p>
 <blockquote>
 <p>Heads up! It is important to know where your data file is located. In my experience, this is where students struggle the most at the very beginning. If the file is in the same folder as the RStudio project, we can use the <code>here::here()</code> function to point to the project’s folder. More will be discussed about RStudio projects after the discussion on saving data.</p>
 </blockquote>
@@ -441,7 +430,7 @@ our_data &lt;-<span class="st"> </span>rio<span class="op">::</span><span class=
 <h2>Saving Data</h2>
 <p>Occassionally you’ll want to save some data that you’ve worked with (usually this is not necessary). When necessary, you can use <code>rio::export()</code>.</p>
 <pre class="sourceCode r"><code class="sourceCode r">rio<span class="op">::</span><span class="kw">export</span>(df, <span class="dt">file=</span><span class="st">&quot;file.csv&quot;</span>)  <span class="co">## to create a CSV data file</span></code></pre>
-<p><code>R</code> automatically saves missing data as <code>NA</code> since that is what it is in <code>R</code>. But often when we write a CSV file, we might want it as blank or some other value. If that’s the case, we can add another argument <code>na = " "</code> after the file argument.</p>
+<p><code>R</code> automatically saves missing data as <code>NA</code> since that is what it is in <code>R</code>. But often when we write a CSV file, we might want it as blank or some other value. If that’s the case, we can add another argument <code>na = &quot; &quot;</code> after the file argument.</p>
 <p>Again, if you ever have questions about the specific arguments that a certain function has, you can simply run <code>?functionname</code>. So, if you were curious about the different arguments in <code>export</code> simply run: <code>?export</code>. In the pane with the files, plots, packages, etc. a document will show up to give you more informaton.</p>
 </div>
 <div id="apply-it" class="section level2 unnumbered">
@@ -453,7 +442,7 @@ our_data &lt;-<span class="st"> </span>rio<span class="op">::</span><span class=
 </div>
 <div id="step-2" class="section level3 unnumbered">
 <h3>Step 2</h3>
-<p>Once RStudio has started, in the panel on the lower-right, there is a <code>Files</code> tab. Click on that to see the project folder. You should see the data files and the <code>Chapter1.Rmd</code> file. Click on the <code>Chapter1.Rmd</code> file to open it. It should open in the upper-left panel. It has words and code already put in it. Starting at the first code chunk (has <code>```{r}</code> right above it), click on the first line and run the code. The code can be run using “Cmd +”Enter" or the Run button at the top of RStudio.</p>
+<p>Once RStudio has started, in the panel on the lower-right, there is a <code>Files</code> tab. Click on that to see the project folder. You should see the data files and the <code>Chapter1.Rmd</code> file. Click on the <code>Chapter1.Rmd</code> file to open it. It should open in the upper-left panel. It has words and code already put in it. Starting at the first code chunk (has <code>```{r}</code> right above it), click on the first line and run the code. The code can be run using “Cmd +”Enter&quot; or the Run button at the top of RStudio.</p>
 </div>
 <div id="step-3" class="section level3 unnumbered">
 <h3>Step 3</h3>
@@ -482,7 +471,7 @@ our_data &lt;-<span class="st"> </span>rio<span class="op">::</span><span class=
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="preface.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="chapter-2-working-with-and-cleaning-your-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

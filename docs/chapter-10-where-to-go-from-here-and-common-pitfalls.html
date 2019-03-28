@@ -5,27 +5,27 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Chapter 10: Where to Go from Here and Common Pitfalls | R for the Health, Behavioral, and Social Sciences</title>
+  <title>Chapter 10: Where to Go from Here and Common Pitfalls | R for Researchers: An Introduction</title>
   <meta name="description" content="This book introduces the R statistical language for researchers in the health, behavioral, educational, and psychological sciences. It is designed for those that have little background in statistical programming but would like to use the powerful statistical and visualization tool that R offers at no cost. The light-hearted design of this book allows a researcher to investigate and begin using R relatively stress-free with intuitive and interesting examples.">
   <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="Chapter 10: Where to Go from Here and Common Pitfalls | R for the Health, Behavioral, and Social Sciences" />
+  <meta property="og:title" content="Chapter 10: Where to Go from Here and Common Pitfalls | R for Researchers: An Introduction" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="Cover.jpg" />
   <meta property="og:description" content="This book introduces the R statistical language for researchers in the health, behavioral, educational, and psychological sciences. It is designed for those that have little background in statistical programming but would like to use the powerful statistical and visualization tool that R offers at no cost. The light-hearted design of this book allows a researcher to investigate and begin using R relatively stress-free with intuitive and interesting examples." />
-  <meta name="github-repo" content="tysonstanley/tysonstanley.github.io" />
+  <meta name="github-repo" content="tysonstanley" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 10: Where to Go from Here and Common Pitfalls | R for the Health, Behavioral, and Social Sciences" />
+  <meta name="twitter:title" content="Chapter 10: Where to Go from Here and Common Pitfalls | R for Researchers: An Introduction" />
   
   <meta name="twitter:description" content="This book introduces the R statistical language for researchers in the health, behavioral, educational, and psychological sciences. It is designed for those that have little background in statistical programming but would like to use the powerful statistical and visualization tool that R offers at no cost. The light-hearted design of this book allows a researcher to investigate and begin using R relatively stress-free with intuitive and interesting examples." />
   <meta name="twitter:image" content="Cover.jpg" />
 
-<meta name="author" content="Tyson S. Barrett">
+<meta name="author" content="Tyson S. Barrett, PhD">
 
 
-<meta name="date" content="2019-02-01">
+<meta name="date" content="2019-03-27">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -68,7 +68,7 @@ a.sourceLine { text-indent: -1em; padding-left: 1em; }
 pre.numberSource a.sourceLine
   { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(title);
+  { content: attr(data-line-number);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
     border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
@@ -126,10 +126,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#part-i"><i class="fa fa-check"></i>Part I</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#part-ii"><i class="fa fa-check"></i>Part II</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#part-iii"><i class="fa fa-check"></i>Part III</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#part-i"><i class="fa fa-check"></i>Part I</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#part-ii"><i class="fa fa-check"></i>Part II</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#part-iii"><i class="fa fa-check"></i>Part III</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html"><i class="fa fa-check"></i>Chapter 1: The Basics</a><ul>
 <li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html#objects"><i class="fa fa-check"></i>Objects</a></li>
@@ -283,7 +283,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R for the Health, Behavioral, and Social Sciences</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R for Researchers: An Introduction</a>
           </h1>
         </div>
 
@@ -387,27 +387,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="question-15" class="section level4 unnumbered">
 <h4>Question 15</h4>
 <p>Is the following data in wide or long form? How do you know?</p>
-<pre><code>##    ID  measures   values
-## 1   1 Var_Time1 -1.20386
-## 2   2 Var_Time1 -0.04284
-## 3   3 Var_Time1  0.95610
-## 4   4 Var_Time1  0.39091
-## 5   5 Var_Time1  1.58691
-## 6   6 Var_Time1 -1.63296
-## 7   7 Var_Time1  0.25357
-## 8   8 Var_Time1  0.06193
-## 9   9 Var_Time1 -0.83242
-## 10 10 Var_Time1  2.06929
-## 11  1 Var_Time2  0.04991
-## 12  2 Var_Time2  0.78854
-## 13  3 Var_Time2  0.94559
-## 14  4 Var_Time2  0.73571
-## 15  5 Var_Time2  0.91050
-## 16  6 Var_Time2  0.92119
-## 17  7 Var_Time2  0.83218
-## 18  8 Var_Time2  0.46329
-## 19  9 Var_Time2  0.09939
-## 20 10 Var_Time2  0.68522</code></pre>
 <p>To make your data long form but it is currently in wide form, what function(s) can you use?</p>
 </div>
 <div id="question-16" class="section level4 unnumbered">

@@ -5,27 +5,27 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Chapter 2: Working with and Cleaning Your Data | R for the Health, Behavioral, and Social Sciences</title>
+  <title>Chapter 2: Working with and Cleaning Your Data | R for Researchers: An Introduction</title>
   <meta name="description" content="This book introduces the R statistical language for researchers in the health, behavioral, educational, and psychological sciences. It is designed for those that have little background in statistical programming but would like to use the powerful statistical and visualization tool that R offers at no cost. The light-hearted design of this book allows a researcher to investigate and begin using R relatively stress-free with intuitive and interesting examples.">
   <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="Chapter 2: Working with and Cleaning Your Data | R for the Health, Behavioral, and Social Sciences" />
+  <meta property="og:title" content="Chapter 2: Working with and Cleaning Your Data | R for Researchers: An Introduction" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="Cover.jpg" />
   <meta property="og:description" content="This book introduces the R statistical language for researchers in the health, behavioral, educational, and psychological sciences. It is designed for those that have little background in statistical programming but would like to use the powerful statistical and visualization tool that R offers at no cost. The light-hearted design of this book allows a researcher to investigate and begin using R relatively stress-free with intuitive and interesting examples." />
-  <meta name="github-repo" content="tysonstanley/tysonstanley.github.io" />
+  <meta name="github-repo" content="tysonstanley" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 2: Working with and Cleaning Your Data | R for the Health, Behavioral, and Social Sciences" />
+  <meta name="twitter:title" content="Chapter 2: Working with and Cleaning Your Data | R for Researchers: An Introduction" />
   
   <meta name="twitter:description" content="This book introduces the R statistical language for researchers in the health, behavioral, educational, and psychological sciences. It is designed for those that have little background in statistical programming but would like to use the powerful statistical and visualization tool that R offers at no cost. The light-hearted design of this book allows a researcher to investigate and begin using R relatively stress-free with intuitive and interesting examples." />
   <meta name="twitter:image" content="Cover.jpg" />
 
-<meta name="author" content="Tyson S. Barrett">
+<meta name="author" content="Tyson S. Barrett, PhD">
 
 
-<meta name="date" content="2019-02-01">
+<meta name="date" content="2019-03-27">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -68,7 +68,7 @@ a.sourceLine { text-indent: -1em; padding-left: 1em; }
 pre.numberSource a.sourceLine
   { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(title);
+  { content: attr(data-line-number);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
     border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
@@ -126,10 +126,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#part-i"><i class="fa fa-check"></i>Part I</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#part-ii"><i class="fa fa-check"></i>Part II</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#part-iii"><i class="fa fa-check"></i>Part III</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#part-i"><i class="fa fa-check"></i>Part I</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#part-ii"><i class="fa fa-check"></i>Part II</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#part-iii"><i class="fa fa-check"></i>Part III</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html"><i class="fa fa-check"></i>Chapter 1: The Basics</a><ul>
 <li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html#objects"><i class="fa fa-check"></i>Objects</a></li>
@@ -283,7 +283,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R for the Health, Behavioral, and Social Sciences</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R for Researchers: An Introduction</a>
           </h1>
         </div>
 
@@ -301,15 +301,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</code></pre>
 <p>After downloading it, to use its functions, simply use:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)</code></pre>
-<pre><code>## ── Attaching packages ───────────────────────── tidyverse 1.2.1.9000 ──</code></pre>
-<pre><code>## ✔ ggplot2 3.1.0     ✔ purrr   0.2.5
-## ✔ tibble  2.0.1     ✔ dplyr   0.7.8
-## ✔ tidyr   0.8.2     ✔ stringr 1.3.1
-## ✔ readr   1.3.1     ✔ forcats 0.3.0</code></pre>
-<pre><code>## Warning: package &#39;tibble&#39; was built under R version 3.5.2</code></pre>
-<pre><code>## ── Conflicts ───────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::filter() masks stats::filter()
-## ✖ dplyr::lag()    masks stats::lag()</code></pre>
 <p>Note that when we loaded tidyverse it loaded several packages and told you of “conflicts”. These conflicts are where two or more functions across different packages have the same name. These functions with the same name will almost invariably differ in what they do. In this situation, the last loaded package is the one that <code>R</code> will use by default. For example, if we loaded two packages—<code>awesome</code> and <code>amazing</code>—and both had the function <code>make_really_cool</code> and we loaded <code>awesome</code> and then <code>amazing</code> as so:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(awesome)
 <span class="kw">library</span>(amazing)</code></pre>
@@ -346,32 +337,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="wide-form" class="section level3 unnumbered">
 <h3>Wide Form</h3>
 <p>Wide form generally has one unit (i.e. individual) per row. This generally looks like:</p>
-<pre><code>##    ID   Var_Time1  Var_Time2
-## 1   1  0.31858644 0.55117601
-## 2   2  0.78456480 0.10261558
-## 3   3 -0.66047809 0.24921132
-## 4   4  1.27753816 0.37560224
-## 5   5  1.33491358 0.11907488
-## 6   6  0.57973803 0.78068717
-## 7   7 -0.42881596 0.50921234
-## 8   8 -0.05042628 0.29344043
-## 9   9  0.14570809 0.78160043
-## 10 10  0.59167851 0.03943084</code></pre>
 <p>Notice that each row has a unique ID, and some of the columns (all in this case) are variables at specific time points. This means that the variable is split up and is not a single column. This is a common way to collect and store data in our fields and so your data likely looks similar to this.</p>
 </div>
 <div id="long-form" class="section level3 unnumbered">
 <h3>Long Form</h3>
 <p>In contrast, long format has the lowest nested unit as a single row. This means that a single ID can span multiple rows, usually with a unique time point for each row as so:</p>
-<pre><code>##   ID Time        Var
-## 1  1    1 0.13613711
-## 2  1    2 0.52643561
-## 3  1    3 0.58868879
-## 4  1    4 0.01196287
-## 5  2    1 0.50325792
-## 6  2    2 0.85648382
-## 7  3    1 0.31025519
-## 8  3    2 0.74451114
-## 9  3    3 0.30889241</code></pre>
 <p>Notice that a single ID spans multiple columns and that each row has only one time point. Here, time is nested within individuals making it the lowest unit. Therefore, each row corresponds to a single time point. Generally, this is the format we want for most modeling techniques and most visualizations.</p>
 <p>This is a very simple example of the differences between wide and long format. Although much more complex examples are probably available to you, we will start with this for now. Chapter 8 will delve into more complex data designs and how to reshape those. Toward the end of this chapter, we show reshaping with more simple data structures.</p>
 </div>
@@ -409,18 +379,8 @@ act_df &lt;-<span class="st"> </span><span class="kw">import</span>(<span class=
 <pre class="sourceCode r"><code class="sourceCode r">dem_df <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">group_by</span>(riagendr) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_age =</span> <span class="kw">mean</span>(ridageyr, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</code></pre>
-<pre><code>## # A tibble: 2 x 2
-##   riagendr mean_age
-##      &lt;dbl&gt;    &lt;dbl&gt;
-## 1        1     31.1
-## 2        2     31.7</code></pre>
 <p>Without using the pipe, we would need to use something like:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summarize</span>(<span class="kw">group_by</span>(dem_df, riagendr), <span class="dt">mean_age =</span> <span class="kw">mean</span>(ridageyr, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</code></pre>
-<pre><code>## # A tibble: 2 x 2
-##   riagendr mean_age
-##      &lt;dbl&gt;    &lt;dbl&gt;
-## 1        1     31.1
-## 2        2     31.7</code></pre>
 <p>Although it is fewer lines, this is notably harder to understand. Instead of reading from left to right, top to bottom, we must read inside out, which is unnatural for English reading individuals.</p>
 </div>
 <div id="select-variables-and-filter-observations" class="section level2 unnumbered">
@@ -470,13 +430,8 @@ dem_df &lt;-<span class="st"> </span>dem_df <span class="op">%&gt;%</span>
 dem_df <span class="op">%&gt;%</span><span class="st">                           </span><span class="co">## 1. Data</span>
 <span class="st">  </span><span class="kw">group_by</span>(citizen) <span class="op">%&gt;%</span><span class="st">              </span><span class="co">## 2. Group by</span>
 <span class="st">  </span><span class="kw">summarize</span>(<span class="dt">N =</span> <span class="kw">n</span>())                 <span class="co">## 3. Summarize</span></code></pre>
-<pre><code>## # A tibble: 4 x 2
-##   citizen     N
-##   &lt;fct&gt;   &lt;int&gt;
-## 1 1        8685
-## 2 2        1040
-## 3 7          26
-## 4 &lt;NA&gt;        5</code></pre>
+<pre><code>## Warning: Factor `citizen` contains implicit NA, consider using
+## `forcats::fct_explicit_na`</code></pre>
 <p>The output is very informative. The first column is the grouping variable and the second is the N (number of individuals) by group. We can quickly see that there are four levels, currently, to the citizen variable. After some reading of the documentation we see that <code>1 = Citizen</code> and <code>2 = Not a Citizen</code>. A value of <code>7</code> it turns out is a placeholder value for missing. And finally we have an NA category. It’s unlikely that we want those to be included in any analyses, unless we are particularly interested in the missingness on this variable. So let’s do some simple cleaning to get this where we want it. To do this, we will use the <code>furniture</code> package.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;furniture&quot;</span>)</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">dem_df &lt;-<span class="st"> </span>dem_df <span class="op">%&gt;%</span>
@@ -487,24 +442,16 @@ dem_df <span class="op">%&gt;%</span><span class="st">                          
 dem_df <span class="op">%&gt;%</span><span class="st">                           </span><span class="co">## 1. Data</span>
 <span class="st">  </span><span class="kw">group_by</span>(citizen) <span class="op">%&gt;%</span><span class="st">              </span><span class="co">## 2. Group by</span>
 <span class="st">  </span><span class="kw">summarize</span>(<span class="dt">N =</span> <span class="kw">n</span>())                 <span class="co">## 3. Summarize</span></code></pre>
-<pre><code>## # A tibble: 3 x 2
-##   citizen     N
-##   &lt;fct&gt;   &lt;int&gt;
-## 1 0        1040
-## 2 1        8685
-## 3 &lt;NA&gt;       31</code></pre>
+<pre><code>## Warning: Factor `citizen` contains implicit NA, consider using
+## `forcats::fct_explicit_na`</code></pre>
 <p>Its clear that the majority of the subjects are citizens. We can also check multiple variables at the same time, just separating them with a comma in the <code>summarize</code> function.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co">## Three step summary:</span>
 dem_df <span class="op">%&gt;%</span><span class="st">                           </span><span class="co">## 1. Data</span>
 <span class="st">  </span><span class="kw">group_by</span>(citizen) <span class="op">%&gt;%</span><span class="st">              </span><span class="co">## 2. Group by</span>
 <span class="st">  </span><span class="kw">summarize</span>(<span class="dt">N =</span> <span class="kw">n</span>(),                 <span class="co">## 3. Summarize</span>
             <span class="dt">Age =</span> <span class="kw">mean</span>(ridageyr, <span class="dt">na.rm=</span><span class="ot">TRUE</span>))                 </code></pre>
-<pre><code>## # A tibble: 3 x 3
-##   citizen     N   Age
-##   &lt;fct&gt;   &lt;int&gt; &lt;dbl&gt;
-## 1 0        1040  37.3
-## 2 1        8685  30.7
-## 3 &lt;NA&gt;       31  40.4</code></pre>
+<pre><code>## Warning: Factor `citizen` contains implicit NA, consider using
+## `forcats::fct_explicit_na`</code></pre>
 <p>We used the <code>n()</code> function (which gives us counts) and the <code>mean()</code> function which, shockingly, gives us the mean. Note that if there are <code>NA</code>’s in the variable, the mean (and most other functions like it) will give the result <code>NA</code>. To have <code>R</code> ignore these, we tell the <code>mean</code> function to remove the <code>NA</code>’s when you compute this using <code>na.rm=TRUE</code>.</p>
 <p>We can also use <code>furniture::table1()</code> to do the three-step summary. By default, <code>table1()</code> will give you the mean and SD of numeric variables and counts and percentages for factors.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co">## Three step summary:</span>
@@ -512,17 +459,12 @@ dem_df <span class="op">%&gt;%</span><span class="st">                          
 <span class="st">  </span><span class="kw">group_by</span>(citizen) <span class="op">%&gt;%</span><span class="st">              </span><span class="co">## 2. Group by</span>
 <span class="st">  </span><span class="kw">table1</span>(<span class="dt">Age =</span> ridageyr,             <span class="co">## 3. Summarize</span>
          <span class="dt">Sex =</span> <span class="kw">factor</span>(riagendr))                 </code></pre>
+<pre><code>## Warning: Factor `citizen` contains implicit NA, consider using
+## `forcats::fct_explicit_na`</code></pre>
 <pre><code>## Using dplyr::group_by() groups: citizen</code></pre>
 <pre><code>## 
 ## ───────────────────────────────
 ##             citizen 
-##       0           1           
-##       n = 1040    n = 8685    
-##  Age                          
-##       37.3 (18.5) 30.7 (25.1) 
-##  Sex                          
-##     1 523 (50.3%) 4315 (49.7%)
-##     2 517 (49.7%) 4370 (50.3%)
 ## ───────────────────────────────</code></pre>
 <p>This pattern of grouping and summarizing is something that will follow us throughout the book. It’s a great way to get to know your data well and to make decisions on what to do next with your data.</p>
 </div>
@@ -539,29 +481,8 @@ df_long &lt;-<span class="st"> </span><span class="kw">long</span>(df_wide,
                 <span class="dt">v.names =</span> <span class="st">&quot;Var&quot;</span>)</code></pre>
 <pre><code>## id = ID</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">df_long</code></pre>
-<pre><code>##      ID time         Var
-## 1.1   1    1 -0.14953725
-## 2.1   2    1  0.59838163
-## 3.1   3    1  0.41138269
-## 4.1   4    1  0.86273095
-## 5.1   5    1 -0.23879125
-## 6.1   6    1 -1.35127300
-## 7.1   7    1 -1.27839307
-## 8.1   8    1  0.78381909
-## 9.1   9    1  1.13562749
-## 10.1 10    1 -1.50774449
-## 1.2   1    2  0.79112463
-## 2.2   2    2  0.63952655
-## 3.2   3    2  0.06628657
-## 4.2   4    2  0.36963199
-## 5.2   5    2  0.81502333
-## 6.2   6    2  0.31143224
-## 7.2   7    2  0.74322995
-## 8.2   8    2  0.44957357
-## 9.2   9    2  0.29203994
-## 10.2 10    2  0.32275296</code></pre>
-<p>We provided the data (<code>df_wide</code>), the time varying variables (<code>c("Var_Time1", "Var_Time2")</code>), and told it what we should name the value variable (<code>v.names = "Var"</code>). Note that the function guessed, based on its name, that the variable <code>ID</code> was the identifying variable.</p>
-<p>This function automatically assumes each observation is a time point, thus the <code>time</code> variable. We can easily change that by adding the argument <code>timevar</code> and giving it a name (e.g., <code>timevar = "cluster"</code>).</p>
+<p>We provided the data (<code>df_wide</code>), the time varying variables (<code>c(&quot;Var_Time1&quot;, &quot;Var_Time2&quot;)</code>), and told it what we should name the value variable (<code>v.names = &quot;Var&quot;</code>). Note that the function guessed, based on its name, that the variable <code>ID</code> was the identifying variable.</p>
+<p>This function automatically assumes each observation is a time point, thus the <code>time</code> variable. We can easily change that by adding the argument <code>timevar</code> and giving it a name (e.g., <code>timevar = &quot;cluster&quot;</code>).</p>
 <p>And now we will go from long to wide using <code>wide()</code> from the same package.</p>
 <pre class="sourceCode r"><code class="sourceCode r">df_long &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="st">&quot;ID&quot;</span>=<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>), 
                       <span class="st">&quot;Time&quot;</span>=<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), 
@@ -571,10 +492,6 @@ df_wide &lt;-<span class="st"> </span><span class="kw">wide</span>(df_long,
                 <span class="dt">timevar =</span> <span class="st">&quot;Time&quot;</span>)</code></pre>
 <pre><code>## id = ID</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">df_wide</code></pre>
-<pre><code>##   ID     Var.1     Var.2     Var.3     Var.4
-## 1  1 0.7828532 0.2029788 0.1951578 0.7414394
-## 5  2 0.4944531 0.3882766        NA        NA
-## 7  3 0.5841529 0.7513195 0.5383519        NA</code></pre>
 <p>Here, we provided the data <code>df_long</code> and the variable name (<code>Var</code>) that had the values and (<code>Time</code>) that contained the time labels (in this case, just numbers). With a little bit of code we can move data around without any copy-pasting that is so error-prone. Again, note that the function guessed, based on its name, that the variable <code>ID</code> was the identifying variable.</p>
 </div>
 <div id="joining-merging" class="section level2 unnumbered">
@@ -644,11 +561,6 @@ df_wide &lt;-<span class="st"> </span><span class="kw">wide</span>(df_long,
 <span class="st">  </span><span class="kw">group_by</span>(riagendr) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">summarize</span>(<span class="dt">asthma =</span> <span class="kw">mean</span>(mcq010, <span class="dt">na.rm=</span><span class="ot">TRUE</span>),
             <span class="dt">depr   =</span> <span class="kw">mean</span>(dep, <span class="dt">na.rm=</span><span class="ot">TRUE</span>))</code></pre>
-<pre><code>## # A tibble: 2 x 3
-##   riagendr asthma  depr
-##      &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
-## 1        1   1.82  2.61
-## 2        2   1.82  3.58</code></pre>
 <p>We can see that males (<code>riagendr = 1</code>) have nearly identical asthma levels but lower depression levels than their female counterparts.</p>
 </div>
 <div id="general-cleaning-of-the-data-set" class="section level2 unnumbered">

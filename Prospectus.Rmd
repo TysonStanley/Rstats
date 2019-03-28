@@ -1,0 +1,144 @@
+---
+title: "The Prospectus"
+author: "R for Researchers: An Introduction"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<!--
+RESEARCH METHODS, STATISTICS & EVALUATION
+
+Helen Salmon
+helen.salmon@sagepub.com
+(805) 410-7342
+Twitter@HelenSSalmon
+
+Helen is senior acquisitions editor for research methods, statistics, and evaluation and works across all areas of the list. Helen has more than 20 years of publishing experience, and has worked in both the U.K. and the U.S.  She previously held senior positions in marketing at SAGE. Helen brings her international experience and marketing know-how to help authors shape their books to best meet the needs of the market.
+
+Leah Fargotstein
+Leah.fargotstein@sagepub.com
+(805) 410-7316
+
+Leah is acquisitions editor for books in research methods and statistics, working with Helen Salmon across all areas of the list. She joined SAGE in 2007 as a member of the editorial acquisitions team in journals, lately responsible for managing and acquiring journals in research methods, political science, urban studies, and social work. In 2015, she joined the College Editorial team as acquisitions editor. Leah is eager to continue SAGE's strong tradition of high-quality, innovative research methods and statistics publishing. Contact Leah to talk with her about ideas that may be a good fit for an interdisciplinary project in research methods or statistics.
+-->
+
+
+### Project Description
+<!--
+Project Description: Describe the text and the topics you will cover. Do you have a special point of view? What approach will the book have, by way of a theme, analytic framework, or theoretical grounding? How will the content be organized? How will your text differ from its major competitors? How will it be similar? Please discuss both the print text and any digital assets—including instructor or student resources—that you feel should accompany the text.
+-->
+
+Given the rise of the R programming language---including its many benefits to reproducible research---many researchers can benefit from adopting its use in their analysis workflow. In this book, R will be introduced to individuals not assumed to have any coding experience, approaching R as a valuable tool that anyone can learn. It will focus on the approaches that provide the most intuitive inputs and outputs, relevant to researchers in Health, Behavioral, Educational, and Psychological Sciences. Although there are many R books, I have seen most of my students are intimidated by three aspects that nearly all R books have:
+
+1. Most R books are lengthy, providing in-depth discussion about the topics ranging a broad range of approaches. If students are trying to understand R while also learning statistics, a 500 page book is overwhelming.
+2. Very few R books are oriented towards the Health, Behavioral, Educational, and Psychological Sciences. This generally means that these others books discuss approaches not relevant to the student and lack discussion on appropriate methods that are relevent to their research.
+3. The most intuitive approaches are of fairly recent development. Thus, many R books are outdated and do not provide this intuition that can reduce the cognitive burden of learning the language. 
+
+This book will address each aspect. First, this book will *not* be a lengthy user's manual. Instead, it will introduce and demonstrate the important concepts in R necessary for the student to start using it right away in the course. Second, this book specifically addresses the use of R in Health, Behavioral, Educational, and Psychological Sciences. Although different in substantive research, the data situations encountered in these fields are very similar.\footnote{I've seen this firsthand as a data science and statistics consultant at Utah State University. Overall, the data collected is very similar across the fields.} Third, this book uses the intuitive grammar of the `tidyverse` group of packages.\footnote{More information at tidyverse.org.} This makes the code more readable, as each line of code has a subject, a verb, and possibly adjectives that make it more like reading regular English.
+
+Each chapter will take on a general topic, demonstrate the use of the approaches relevant to the topic, and will provide a zip file that can be downloaded from an online source that provides practice data and code. 
+
+
+### Unique Value Proposition
+<!--
+Unique Value Proposition: What is your rationale for writing this text? What need or problem does your audience have AND how does your proposed book meet that need? How will your book improve student outcomes in this course? How will this book improve instructors’ teaching in the classroom?
+-->
+
+The R programming environment has become one of the most widely used statistical tools, in both academia and industry. Because it is a programming language, many capable researchers in the Health, Behavioral, Educational, and Psychological Sciences avoid it altogether. However, recent developments in R have made the tool far more intuitive. But this information is not clear to researchers because many of the available resources to learn R come from a computer science, data science, or biological science background. Further, many of these resources are quite broad with several hundreds of pages. Many of the items discussed are unnecessary, and are potentially overwhelming. This book, instead, addresses the up-to-date uses to get started enough to become literate in the R language without discussing all possible uses of R across all quantitative fields. 
+
+This style of book is important as many programs do not specifically teach R as part of their graduate studies. Instead, many classes introduce it as part of other statistical courses. As such, the book will be a great tool to use in conjunction with other statistical texts. It will not be overwhelming but, rather, will provide the background in R necessary to work with their own data and do the analyses needed.
+
+
+### Length
+<!--
+Length: What is the projected length of the book (in word count, as well as manuscript or book pages)?
+-->
+
+The projected length is roughly 45,000 words and 120 book pages; long enough for the information to be taught, but not too much to overwhelm the student.
+
+### Pedagogy
+<!--
+Pedagogy: What illustrations (photos, tables, figures, charts, and maps) will the book employ and for what purpose? How many and to what effect? What plans do you have for special features (boxed inserts, glossaries, appendices, questions, key terms, etc.)? What student or instructor goals will these features address? What
+competitive advantages will they offer?
+-->
+
+Two major approaches to pedagogy will be emphasized: 1) students need to see lots of code examples to become literate in R, and 2) visuals help make the abstract data work more concrete. 
+
+First, this book contains many code input and output examples. It walks through the pieces of the input that lead to the output using real-life examples from one of the NHANES (National Health and Nutrition Examination Survey) data sets.
+
+Second, many visuals are used to demonstrate what various approaches are actually doing to the data. This is essential because many data transformations and manipulations are quite abstract and can otherwise become confusing. I intend on making several more for the published version of the book than is currently in the draft version.
+
+### Market
+<!--
+Market: In which course(s) will your work be adopted? What kind of schools offers this course? What prerequisites, if any, are there? What sort of student takes this course? Are you seeing any meaningful changes in the way this course is offered or taught? Are there any trends in this course in terms of content or approach?
+-->
+
+This book is useful in statistics courses for researchers in the Health, Behavioral, Educational, and Psychological Sciences. The draft version of the book has been used to teach undergraduate, graduate, post-doctoral, and senior researchers. A general introduction to quantitative data (in spreadsheets or other forms) is helpful before beginning the book but is not absolutely essential. Also, a general introduction to statistics (t-tests, ANOVA, regression, etc.) can help make some of the middle chapters more meaningful. 
+
+I've found that the students most commonly in these courses are those that have little or no experience coding, know some statistical approaches at an applied level, have little interest in general data science, and usually want to be more independent and reliable in their quantitative research. These span undergraduates, graduates, post-doctoral fellows, and faculty members.
+
+
+### Competition
+<!--
+Competition: What books are professors who are likely to adopt your book currently assigning? What are the strengths and weaknesses of the books against which yours will compete? Please be specific in your response, and include an assessment of at least 2-3 competing textbooks or other works.
+-->
+
+Several R books exist:
+
+- *Discovering Statistics with R*. This is a full text introduction to statistics while showing R examples. It is a great resource but is not directly tied to teaching how to do data work with R. Rather, its focus is on the statistics. This can be useful if an instructor wants to teach from this specific book but can be problematic otherwise.
+- *R for Data Science*. This book addresses the use of R in data science. It is another great resource but its audience is too broad for it to discuss examples and approaches specific to public health, behavioral and psychological sciences, or education. 
+- *Modern Dive*. Much like *R for Data Science*, this book provides an introduction to working with data in R. It, however, instructs on approaches less commonly used in the public health, behavioral and psychological sciences, and education. Although great approaches, this can be distracting to students. In my experience, very few courses teach using the approaches taught in *Modern Dive*.
+- *R for SPSS and SAS Users*. This manual thoroughly explains R code in reference to SPSS and SAS. It is, in my experience, overwhelming for students to actually use. It can sometimes be a good resource to look up a specific analysis that the student has done in SPSS or SAS. However, it is outdated and not visually appealing.
+
+These four are commonly used in applied statistics courses wherein the instructor wants to either emphasize the use of R or, at the very least, allow its use.
+
+
+### Schedule
+<!--
+Schedule: What is your schedule for writing the book? How much have you already written? What dates do you estimate for completion of a first draft?
+-->
+
+I have a first draft prepared, and is available online at: [tysonbarrett.com/Rstats](http://tysonbarrett.com/Rstats). It still needs some things adjusted and added but the framework is there. I'd like to get it ready for publication in the next year or so.
+
+### Credentials
+<!--
+Credentials: What are your credentials; teaching, writing, research experience; degrees and affiliations; special
+qualifications? Do you teach this course regularly?
+-->
+
+I have a PhD in Quantitative Psychology, do research regarding methodological advancement, develop R-based research tools, and teach statistics courses each semester for graduate students in public health, behavioral and psychological sciences, and education. I also teach an introductory R course each Fall and Spring semester, which currently uses the draft of this book.
+
+
+## Annotated Table of Contents
+<!--
+Please include a table of contents that describes, in as much detail as possible, the contents and approach of each chapter. Please include first- and second-level headings for each chapter. The more information you can provide here, the more substantive the feedback reviewers can provide.
+-->
+
+The book is divided into 3 parts: 1) Introduction to the basics of working and understanding data, 2) Analyses with data, and 3) More advanced data cleaning and understanding. Each chapter ends with a link to practice data and code that walks the reader through using the approaches discussed.
+
+##### Part I
+
+- **Chapter 1: The Basics**. This chapter introduces the core concepts of R. This includes the discussion of the various types of objects in R that will be important early on. Because data import is often difficult at first, the chapter also shows basic ways to read in data from different sources. The importing is shown by using the NHANES data set.
+- **Chapter 2: Working with and Cleaning Your Data**. This chapter introduces the data manipulation verbs that help data cleaning to be more intuitive. These include *selecting* variables, *filtering* observations, *mutating* variables, among others. These are shown on the NHANES data set imported in Chapter 1.
+- **Chapter 3: Understanding Your Data**. This chapter then shows approaches that help the students better understand our cleaned data via summary tables and data visualizations. For the tables, I use the `furniture`, `psych`, and `stargazer` packages. For the visuals, I use `ggplot2` and its extensions.
+
+##### Part II
+
+The chapters in part 2 do not describe any of the analyses in depth. Instead, they show how each method can be done and how assumptions can be checked.
+
+- **Chapter 4: Basic Statistical Analyses**. Linear models are foundational to statistics in the Health, Behavioral, Educational, and Psychological Sciences. I start with t-tests, ANOVAs, and linear regression. This chapter also shows how to use summary tables to present the results of these models.
+- **Chapter 5: Generalized Linear Models**. Another major area of statistics that is used in the fields is Generalized Linear Models, particularly logistic regression. I show how several of these models can be run and checked. Again, I show how the results can be presented reproducibly and succinctly.
+- **Chapter 6: Multilevel Modeling**. This chapter shows how multilevel models can be used in R, showing its use on nested data and generalized to longitudinal data. Both Generalized Estimating Equations and Linear Mixed Effects models are demonstrated.
+- **Chapter 7: Other Modeling Techniques**. The other modeling techniques include mediation analysis, structural equation models, and some basic machine learning techniques. This chapter provides some foundations on which a student can start using R to assess these types of models. 
+
+##### Part III
+
+- **Chapter 8: Advanced data manipulation**. This chapter extends chapter 2 by discussing reshaping data in more depth, using loops to automate data cleaning and communicating (for loops, apply family, `purrr` package), and writing custom functions. 
+- **Chapter 9: Advanced plotting**. This chapter extends chapter 3 by showing the flexibility of `ggplot2` by demonstrating the use of different themes, the ability to control font and colors, and the ability to combine plots.
+- **Chapter 10: Where to go from here**. This chapter discusses additional resources that a student can use to continue their learning of R. Given this book is an introduction, it provides resources that can extend their data cleaning abilities, their `ggplot2` abilities, among others. It also includes a practice test that allows the student to review each chapter of the book. The conclusion of this chapter ends the book.
+
+
+
