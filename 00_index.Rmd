@@ -25,11 +25,15 @@ library(furniture)
 
 # Preface {-}
 
-Before beginning the book, you will need to download the `R` software [www.r-project.org](https://www.r-project.org/) and then the RStudio software [www.rstudio.com](https://www.rstudio.com/). `R` will just need to be on your computer but you won't interact with it directly. `RStudio`[^free] is actually how we will end up using `R`. You can think of `R` as the computer processor while `RStudio` is the keyboard and screen. `R` actually does the work but you'll only use it by using `RStudio`.
+Before beginning the book, you will need to download the `R` software [www.r-project.org](https://www.r-project.org/) and then the RStudio software [www.rstudio.com](https://www.rstudio.com/). `R` will just need to be installed on your computer but you won't interact with it directly (you won't need to open it up). `RStudio`[^free] is actually how we will end up using `R`. You can think of `R` as the computer processor while `RStudio` is the keyboard and screen. `R` actually does the work but you'll only use it by using `RStudio`.
+
+Once they are both installed, when you open up `RStudio` you should see the following three panels:
+
+![](Rstudio_3panel.png)
+
+If you do, then congrats! You are one huge step on the path to using `R` in your research. If it isn't going so smoothly, helps on installing the software can be found on [www.rstudio.com](https://www.rstudio.com/), [www.r-bloggers.com](www.r-bloggers.com), and [www.statmethods.net](www.statmethods.net). Don't give up it if you run into any obstacles here. But once it is installed and you can open `RStudio`, you are good to go. The remainder of the book will be about actually using it (the fun part!).
 
 > In general, I will refer to anything you do in `RStudio` as using `R`. So, when I say things like: "To make a plot in `R`, we are going to ...", I do not mean to open `R` and start doing stuff there. Instead, I mean to keep using `RStudio` but will not refer to the things we do as in `RStudio` but as in `R`.
-
-Once both are installed (helps on installing the software can be found on [www.rstudio.com](https://www.rstudio.com/), [www.r-bloggers.com](www.r-bloggers.com), and [www.statmethods.net](www.statmethods.net)) you are good to go. The remainder of the book will be about actually using it.
 
 The book is divided into three parts.
 
@@ -49,7 +53,7 @@ The book is divided into three parts.
 ## Part III {-}
 
 8. Chapter 8: Advanced data manipulation
-9. Chapter 9: Advanced plotting
+9. Chapter 9: Reproducible Workflow
 10. Chapter 10: Where to go from here
 
 At the end of the book, you should be able to: 1) use `R` to perform your data cleaning and data analyses and 2) understand online helps (e.g. [www.stackoverflow.com](www.stackoverflow.com), [www.r-bloggers.com](www.r-bloggers.com)) so your potential in `R` becomes nearly limitless.

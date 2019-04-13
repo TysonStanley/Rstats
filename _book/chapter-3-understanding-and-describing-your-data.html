@@ -25,7 +25,7 @@
 <meta name="author" content="Tyson S. Barrett, PhD">
 
 
-<meta name="date" content="2019-03-27">
+<meta name="date" content="2019-04-13">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -68,7 +68,7 @@ a.sourceLine { text-indent: -1em; padding-left: 1em; }
 pre.numberSource a.sourceLine
   { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+  { content: attr(title);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
     border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
@@ -175,10 +175,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#visualizations"><i class="fa fa-check"></i>Visualizations</a><ul>
 <li><a href="chapter-3-understanding-and-describing-your-data.html#using-ggplot2">Using <code>ggplot2</code></a></li>
 </ul></li>
+<li><a href="chapter-3-understanding-and-describing-your-data.html#more-advanced-features-of-ggplot2">More Advanced Features of <code>ggplot2</code></a></li>
+<li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#types-of-plots"><i class="fa fa-check"></i>Types of Plots</a><ul>
+<li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#scatterplots"><i class="fa fa-check"></i>Scatterplots</a></li>
+<li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#boxplots"><i class="fa fa-check"></i>Boxplots</a></li>
+<li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#bar-plots"><i class="fa fa-check"></i>Bar Plots</a></li>
+<li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#line-plots"><i class="fa fa-check"></i>Line Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#color-schemes"><i class="fa fa-check"></i>Color Schemes</a></li>
+<li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#themes"><i class="fa fa-check"></i>Themes</a></li>
+<li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#labels-and-titles"><i class="fa fa-check"></i>Labels and Titles</a></li>
+<li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#facetting"><i class="fa fa-check"></i>Facetting</a></li>
 <li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#apply-it-2"><i class="fa fa-check"></i>Apply It</a><ul>
 <li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#step-1-2"><i class="fa fa-check"></i>Step 1</a></li>
 <li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#step-2-2"><i class="fa fa-check"></i>Step 2</a></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#conclusions-1"><i class="fa fa-check"></i>Conclusions</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html"><i class="fa fa-check"></i>Chapter 4: Basic Analyses</a><ul>
 <li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#anova"><i class="fa fa-check"></i>ANOVA</a></li>
@@ -213,7 +225,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="chapter-5-generalized-linear-models.html"><a href="chapter-5-generalized-linear-models.html#step-1-4"><i class="fa fa-check"></i>Step 1</a></li>
 <li class="chapter" data-level="" data-path="chapter-5-generalized-linear-models.html"><a href="chapter-5-generalized-linear-models.html#step-2-4"><i class="fa fa-check"></i>Step 2</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="chapter-5-generalized-linear-models.html"><a href="chapter-5-generalized-linear-models.html#conclusions-1"><i class="fa fa-check"></i>Conclusions</a></li>
+<li class="chapter" data-level="" data-path="chapter-5-generalized-linear-models.html"><a href="chapter-5-generalized-linear-models.html#conclusions-2"><i class="fa fa-check"></i>Conclusions</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-6-multilevel-modeling.html"><a href="chapter-6-multilevel-modeling.html"><i class="fa fa-check"></i>Chapter 6: Multilevel Modeling</a><ul>
 <li class="chapter" data-level="" data-path="chapter-6-multilevel-modeling.html"><a href="chapter-6-multilevel-modeling.html#gee"><i class="fa fa-check"></i>GEE</a></li>
@@ -222,7 +234,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="chapter-6-multilevel-modeling.html"><a href="chapter-6-multilevel-modeling.html#step-1-5"><i class="fa fa-check"></i>Step 1</a></li>
 <li class="chapter" data-level="" data-path="chapter-6-multilevel-modeling.html"><a href="chapter-6-multilevel-modeling.html#step-2-5"><i class="fa fa-check"></i>Step 2</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="chapter-6-multilevel-modeling.html"><a href="chapter-6-multilevel-modeling.html#conclusions-2"><i class="fa fa-check"></i>Conclusions</a></li>
+<li class="chapter" data-level="" data-path="chapter-6-multilevel-modeling.html"><a href="chapter-6-multilevel-modeling.html#conclusions-3"><i class="fa fa-check"></i>Conclusions</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html"><i class="fa fa-check"></i>Chapter 7: Other Modeling Techniques</a><ul>
 <li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#mediation-modeling"><i class="fa fa-check"></i>Mediation Modeling</a></li>
@@ -235,7 +247,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#step-1-6"><i class="fa fa-check"></i>Step 1</a></li>
 <li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#step-2-6"><i class="fa fa-check"></i>Step 2</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#conclusions-3"><i class="fa fa-check"></i>Conclusions</a></li>
+<li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#conclusions-4"><i class="fa fa-check"></i>Conclusions</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html"><i class="fa fa-check"></i>Chapter 8: Advanced Data Manipulation</a><ul>
 <li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#reshaping-your-data"><i class="fa fa-check"></i>Reshaping Your Data</a></li>
@@ -250,24 +262,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#step-1-7"><i class="fa fa-check"></i>Step 1</a></li>
 <li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#step-2-7"><i class="fa fa-check"></i>Step 2</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#conclusions-4"><i class="fa fa-check"></i>Conclusions</a></li>
+<li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#conclusions-5"><i class="fa fa-check"></i>Conclusions</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="chapter-9-advanced-plotting.html"><a href="chapter-9-advanced-plotting.html"><i class="fa fa-check"></i>Chapter 9: Advanced Plotting</a><ul>
-<li class="chapter" data-level="" data-path="chapter-9-advanced-plotting.html"><a href="chapter-9-advanced-plotting.html#types-of-plots"><i class="fa fa-check"></i>Types of Plots</a><ul>
-<li class="chapter" data-level="" data-path="chapter-9-advanced-plotting.html"><a href="chapter-9-advanced-plotting.html#scatterplots"><i class="fa fa-check"></i>Scatterplots</a></li>
-<li class="chapter" data-level="" data-path="chapter-9-advanced-plotting.html"><a href="chapter-9-advanced-plotting.html#boxplots"><i class="fa fa-check"></i>Boxplots</a></li>
-<li class="chapter" data-level="" data-path="chapter-9-advanced-plotting.html"><a href="chapter-9-advanced-plotting.html#bar-plots"><i class="fa fa-check"></i>Bar Plots</a></li>
-<li class="chapter" data-level="" data-path="chapter-9-advanced-plotting.html"><a href="chapter-9-advanced-plotting.html#line-plots"><i class="fa fa-check"></i>Line Plots</a></li>
+<li class="chapter" data-level="" data-path="chapter-9-reproducible-workflow-with-rmarkdown.html"><a href="chapter-9-reproducible-workflow-with-rmarkdown.html"><i class="fa fa-check"></i>Chapter 9: Reproducible Workflow with RMarkdown</a><ul>
+<li class="chapter" data-level="" data-path="chapter-9-reproducible-workflow-with-rmarkdown.html"><a href="chapter-9-reproducible-workflow-with-rmarkdown.html#r-markdown"><i class="fa fa-check"></i>R Markdown</a><ul>
+<li class="chapter" data-level="" data-path="chapter-9-reproducible-workflow-with-rmarkdown.html"><a href="chapter-9-reproducible-workflow-with-rmarkdown.html#in-line-r-code"><i class="fa fa-check"></i>In-Line R Code</a></li>
+<li class="chapter" data-level="" data-path="chapter-9-reproducible-workflow-with-rmarkdown.html"><a href="chapter-9-reproducible-workflow-with-rmarkdown.html#pre-formatted-documents"><i class="fa fa-check"></i>Pre-formatted Documents</a></li>
+<li class="chapter" data-level="" data-path="chapter-9-reproducible-workflow-with-rmarkdown.html"><a href="chapter-9-reproducible-workflow-with-rmarkdown.html#other-tricks"><i class="fa fa-check"></i>Other Tricks</a></li>
+<li class="chapter" data-level="" data-path="chapter-9-reproducible-workflow-with-rmarkdown.html"><a href="chapter-9-reproducible-workflow-with-rmarkdown.html#important-important"><i class="fa fa-check"></i>Important, Important</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="chapter-9-advanced-plotting.html"><a href="chapter-9-advanced-plotting.html#color-schemes"><i class="fa fa-check"></i>Color Schemes</a></li>
-<li class="chapter" data-level="" data-path="chapter-9-advanced-plotting.html"><a href="chapter-9-advanced-plotting.html#themes"><i class="fa fa-check"></i>Themes</a></li>
-<li class="chapter" data-level="" data-path="chapter-9-advanced-plotting.html"><a href="chapter-9-advanced-plotting.html#labels-and-titles"><i class="fa fa-check"></i>Labels and Titles</a></li>
-<li class="chapter" data-level="" data-path="chapter-9-advanced-plotting.html"><a href="chapter-9-advanced-plotting.html#facetting"><i class="fa fa-check"></i>Facetting</a></li>
-<li class="chapter" data-level="" data-path="chapter-9-advanced-plotting.html"><a href="chapter-9-advanced-plotting.html#apply-it-8"><i class="fa fa-check"></i>Apply It</a><ul>
-<li class="chapter" data-level="" data-path="chapter-9-advanced-plotting.html"><a href="chapter-9-advanced-plotting.html#step-1-8"><i class="fa fa-check"></i>Step 1</a></li>
-<li class="chapter" data-level="" data-path="chapter-9-advanced-plotting.html"><a href="chapter-9-advanced-plotting.html#step-2-8"><i class="fa fa-check"></i>Step 2</a></li>
+<li class="chapter" data-level="" data-path="chapter-9-reproducible-workflow-with-rmarkdown.html"><a href="chapter-9-reproducible-workflow-with-rmarkdown.html#apply-it-8"><i class="fa fa-check"></i>Apply It</a><ul>
+<li class="chapter" data-level="" data-path="chapter-9-reproducible-workflow-with-rmarkdown.html"><a href="chapter-9-reproducible-workflow-with-rmarkdown.html#step-1-8"><i class="fa fa-check"></i>Step 1</a></li>
+<li class="chapter" data-level="" data-path="chapter-9-reproducible-workflow-with-rmarkdown.html"><a href="chapter-9-reproducible-workflow-with-rmarkdown.html#step-2-8"><i class="fa fa-check"></i>Step 2</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="chapter-9-advanced-plotting.html"><a href="chapter-9-advanced-plotting.html#conclusions-5"><i class="fa fa-check"></i>Conclusions</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-10-where-to-go-from-here-and-common-pitfalls.html"><a href="chapter-10-where-to-go-from-here-and-common-pitfalls.html"><i class="fa fa-check"></i>Chapter 10: Where to Go from Here and Common Pitfalls</a><ul>
 <li class="chapter" data-level="" data-path="chapter-10-where-to-go-from-here-and-common-pitfalls.html"><a href="chapter-10-where-to-go-from-here-and-common-pitfalls.html#common-pitfalls"><i class="fa fa-check"></i>Common Pitfalls</a></li>
@@ -312,6 +319,23 @@ df <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">table1</span>(asthma, race, dep, famsize, sed)</code></pre>
 <pre><code>## 
 ## ──────────────────────────────────────
+##                     Mean/Count (SD/%)
+##                     n = 4437         
+##  asthma                              
+##     No Asthma       3774 (85.1%)     
+##     Asthma          663 (14.9%)      
+##  race                                
+##     MexicanAmerican 392 (8.8%)       
+##     OtherHispanic   442 (10%)        
+##     White           1733 (39.1%)     
+##     Black           1161 (26.2%)     
+##     Other           709 (16%)        
+##  dep                                 
+##                     3.2 (4.5)        
+##  famsize                             
+##                     2.7 (1.5)        
+##  sed                                 
+##                     369.3 (201.2)    
 ## ──────────────────────────────────────</code></pre>
 <p>This quickly gives you means and standard deviations or counts and percentages.</p>
 <p>The code below shows the means/standard devaitions or counts/percentages by a grouping variable—in this case, <code>C</code>.</p>
@@ -321,6 +345,20 @@ df <span class="op">%&gt;%</span>
 <pre><code>## 
 ## ────────────────────────────────────────────────
 ##                             asthma 
+##                     No Asthma     Asthma       
+##                     n = 3774      n = 663      
+##  race                                          
+##     MexicanAmerican 350 (9.3%)    42 (6.3%)    
+##     OtherHispanic   380 (10.1%)   62 (9.4%)    
+##     White           1453 (38.5%)  280 (42.2%)  
+##     Black           958 (25.4%)   203 (30.6%)  
+##     Other           633 (16.8%)   76 (11.5%)   
+##  dep                                           
+##                     3.0 (4.3)     4.4 (5.2)    
+##  famsize                                       
+##                     2.7 (1.5)     2.6 (1.5)    
+##  sed                                           
+##                     365.2 (201.1) 392.4 (200.0)
 ## ────────────────────────────────────────────────</code></pre>
 <p>We can also test for differences by group as well.</p>
 <pre class="sourceCode r"><code class="sourceCode r">df <span class="op">%&gt;%</span>
@@ -330,6 +368,20 @@ df <span class="op">%&gt;%</span>
 <pre><code>## 
 ## ────────────────────────────────────────────────────────
 ##                             asthma 
+##                     No Asthma     Asthma        P-Value
+##                     n = 3774      n = 663              
+##  race                                           &lt;.001  
+##     MexicanAmerican 350 (9.3%)    42 (6.3%)            
+##     OtherHispanic   380 (10.1%)   62 (9.4%)            
+##     White           1453 (38.5%)  280 (42.2%)          
+##     Black           958 (25.4%)   203 (30.6%)          
+##     Other           633 (16.8%)   76 (11.5%)           
+##  dep                                            &lt;.001  
+##                     3.0 (4.3)     4.4 (5.2)            
+##  famsize                                        0.496  
+##                     2.7 (1.5)     2.6 (1.5)            
+##  sed                                            0.001  
+##                     365.2 (201.1) 392.4 (200.0)        
 ## ────────────────────────────────────────────────────────</code></pre>
 <p>Several other options exist for you to play around with, including obtaining medians and ranges and removing a lot of the white space of the table.</p>
 <p>With three or four short lines of code we can get a good idea about variables that may be related to the grouping variable and any missingness in the factor variables. There’s much more you can do with <code>table1</code> and there are vignettes and tutorials available to learn more.<a href="#fn15" class="footnote-ref" id="fnref15"><sup>15</sup></a></p>
@@ -353,10 +405,10 @@ janitor<span class="op">::</span><span class="kw">tabyl</span>(df)</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qplot</span>(df<span class="op">$</span>sed)          <span class="co">## Makes a simple histogram</span></code></pre>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <pre><code>## Warning: Removed 18 rows containing non-finite values (stat_bin).</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-60-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-58-1.png" width="672" /></p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qplot</span>(df<span class="op">$</span>sed, df<span class="op">$</span>dep)  <span class="co">## Makes a scatterplot</span></code></pre>
 <pre><code>## Warning: Removed 18 rows containing missing values (geom_point).</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-60-2.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-58-2.png" width="672" /></p>
 <p>For a bit more control over the plot, you can use the <code>ggplot</code> function. The first piece is the <code>ggplot</code> piece. From there, we add layers. These layers generally start with <code>geom_</code> then have the type of plot. Below, we start with telling <code>ggplot</code> the basics of the plot and then build a boxplot.</p>
 <p>The key pieces of ggplot:</p>
 <ol style="list-style-type: decimal">
@@ -369,16 +421,16 @@ janitor<span class="op">::</span><span class="kw">tabyl</span>(df)</code></pre>
 <span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">color =</span> sed))</code></pre>
 <pre><code>## Warning: Continuous x aesthetic -- did you forget aes(group=...)?</code></pre>
 <pre><code>## Warning: Removed 18 rows containing missing values (stat_boxplot).</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-61-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-59-1.png" width="672" /></p>
 <p>Here’s a few more examples:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x=</span>sed)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;count&quot;</span>)</code></pre>
 <pre><code>## Warning: Removed 18 rows containing non-finite values (stat_count).</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-62-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-60-1.png" width="672" /></p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x=</span>sed, <span class="dt">y=</span>dep)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> famsize))</code></pre>
 <pre><code>## Warning: Removed 18 rows containing missing values (geom_point).</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-63-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-61-1.png" width="672" /></p>
 <p><em>Note that the warning that says it removed a row is because we had missing values in in these variables.</em></p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x=</span>sed, 
                <span class="dt">y=</span>dep, 
@@ -388,17 +440,259 @@ janitor<span class="op">::</span><span class="kw">tabyl</span>(df)</code></pre>
 <span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>)</code></pre>
 <pre><code>## Warning: Removed 18 rows containing non-finite values (stat_smooth).</code></pre>
 <pre><code>## Warning: Removed 18 rows containing missing values (geom_point).</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-64-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-62-1.png" width="672" /></p>
 <p>We are going to make the first one again but with some aesthetic adjustments. Notice that we just added two extra lines telling <code>ggplot2</code> how we want some things to look.<a href="#fn17" class="footnote-ref" id="fnref17"><sup>17</sup></a></p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x=</span>famsize, <span class="dt">y=</span>dep, <span class="dt">group =</span> famsize)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">color =</span> riagendr)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span>
 <span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;dodgerblue4&quot;</span>, <span class="st">&quot;coral2&quot;</span>))</code></pre>
 <pre><code>## Warning: Removed 178 rows containing missing values (stat_boxplot).</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-65-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-63-1.png" width="672" /></p>
 <p>The <code>theme_bw()</code> makes the background white, the <code>scale_color_manual()</code> allows us to change the colors in the plot. You can get a good idea of how many types of plots you can do by going to <a href="http://docs.ggplot2.org/current/">http://docs.ggplot2.org/current</a>. Almost any informative plot that you need to do as a researcher is possible with <code>ggplot2</code>.</p>
 <p>We will be using <code>ggplot2</code> extensively in the book to help understand our data and our models as well as communicate our results.</p>
 </div>
+</div>
+<div id="more-advanced-features-of-ggplot2" class="section level2 unnumbered">
+<h2>More Advanced Features of <code>ggplot2</code></h2>
+<p>We will go through several aspects of the code that makes plotting in <code>R</code> flexible and beautiful.</p>
+<ol style="list-style-type: decimal">
+<li>Types of plots</li>
+<li>Color schemes</li>
+<li>Themes</li>
+<li>Labels and titles</li>
+<li>Facetting</li>
+</ol>
+<p>To highlight these features we’ll be using our NHANES data again; specifically, sedentary behavior, depression, asthma, family size, and race. As this is only an introduction, refer to <a href="http://docs.ggplot2.org/current/">http://docs.ggplot2.org/current/</a> for more information on <code>ggplot2</code>.</p>
+<p>To begin, it needs to be understood that the first line where we actually use the <code>ggplot</code> function, will then apply to all subsequent laters (e.g., <code>geom_point()</code>). For example,</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> dep, <span class="dt">y =</span> sed, <span class="dt">group =</span> asthma))</code></pre>
+<p>means for the rest of the layers, unless we over-ride it, each will use <code>df</code> with <code>dep</code> as the x variable, <code>sed</code> as the y, and a grouping on <code>asthma</code>. So when many layers are going to use the same command put it in this so you don’t have to write the same argument many times. A common one here could be:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> dep, <span class="dt">y =</span> sed, <span class="dt">group =</span> asthma, <span class="dt">color =</span> asthma))</code></pre>
+<p>since we often want to color by our grouping variable.</p>
+<p>Before going forward, a nice feature of <code>ggplot2</code> allows us to use an “incomplete” plot to add on to. For example, if we have a good idea of the main structure of the plot but want to explore some changes, we can do the following:</p>
+<pre class="sourceCode r"><code class="sourceCode r">p1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> dep, <span class="dt">y =</span> sed, <span class="dt">group =</span> asthma)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>()
+p1</code></pre>
+<pre><code>## Warning: Removed 18 rows containing missing values (geom_point).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-66-1.png" width="672" />
+So now <code>p1</code> has the information for this basic, and honestly fairly uninformative, plot. We’ll use this feature to build on plots that we like.</p>
+<p>Some of our figures will also need summary data so we’ll start that here as well:</p>
+<pre class="sourceCode r"><code class="sourceCode r">summed_data &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(asthma, dep2) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">s_se =</span> <span class="kw">sd</span>(sed, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)<span class="op">/</span><span class="kw">sqrt</span>(<span class="kw">n</span>()),
+            <span class="dt">sed  =</span> <span class="kw">mean</span>(sed, <span class="dt">na.rm=</span><span class="ot">TRUE</span>),
+            <span class="dt">N    =</span> <span class="kw">n</span>())</code></pre>
+<p>As you hopefully recognize a bit, we are summarizing the time spent being sedentary by both asthma and the dichotomous depression variables. If it doesn’t make sense at first, read it line by line to see what I did. This will be useful for several types of plots.</p>
+</div>
+<div id="types-of-plots" class="section level2 unnumbered">
+<h2>Types of Plots</h2>
+<div id="scatterplots" class="section level3 unnumbered">
+<h3>Scatterplots</h3>
+<p>We’ll start with a scatterplot–one of the most simple yet informative plots.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> dep, <span class="dt">y =</span> sed, <span class="dt">group =</span> asthma)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> asthma))</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-68-1.png" width="672" /></p>
+<p>It’s not amazing. There looks to be a lot of overlap of the points. Also, it would be nice to know general trend lines for each group. Below, <code>alpha</code> refers to how transparent the points are, <code>method = "lm"</code> refers to how the line should be fit, and <code>se=FALSE</code> tells it not to include error ribbons.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> dep, <span class="dt">y =</span> sed, <span class="dt">group =</span> asthma)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_jitter</span>(<span class="kw">aes</span>(<span class="dt">color =</span> asthma), <span class="dt">alpha =</span> <span class="fl">.5</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="kw">aes</span>(<span class="dt">color =</span> asthma), <span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se=</span><span class="ot">FALSE</span>)</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-69-1.png" width="672" /></p>
+<p>It’s getting better but we could still use some more features. We’ll come back to this in the next sections.</p>
+</div>
+<div id="boxplots" class="section level3 unnumbered">
+<h3>Boxplots</h3>
+<p>Box plots are great ways to assess the variability in your data. Below, we create a boxplot but change <code>p1</code>’s x variable so that it is the factor version of depression.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span>(dep2), <span class="dt">y =</span> sed)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>()</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-70-1.png" width="672" /></p>
+<p>This plot is, at best, mediocre. But there’s more we can do.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span>(dep2), <span class="dt">y =</span> <span class="kw">jitter</span>(sed, <span class="dv">100</span>))) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">alpha =</span> <span class="fl">.1</span>, <span class="dt">color =</span> <span class="st">&quot;chartreuse4&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">alpha =</span> <span class="fl">.75</span>, <span class="dt">color =</span> <span class="st">&quot;dodgerblue4&quot;</span>) </code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-71-1.png" width="672" /></p>
+<p>This now provides the (jittered) raw data points as well to hightlight the noise and the number of observations in each group.</p>
+</div>
+<div id="bar-plots" class="section level3 unnumbered">
+<h3>Bar Plots</h3>
+<p>Bar plots are great ways to look at means and standard deviations for groups.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(summed_data, <span class="kw">aes</span>(<span class="dt">x =</span> dep2, <span class="dt">y =</span> sed, <span class="dt">group =</span> asthma)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> asthma), <span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>)</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-72-1.png" width="672" /></p>
+<p>We used <code>stat = "identity"</code> to make it based on the mean (default is <code>count</code>), and <code>position = "dodge"</code> makes it so the bars are next to each other as opposed to stacked. Let’s also add error bars.</p>
+<pre class="sourceCode r"><code class="sourceCode r">p =<span class="st"> </span><span class="kw">position_dodge</span>(<span class="dt">width =</span> <span class="fl">.9</span>)
+<span class="kw">ggplot</span>(summed_data, <span class="kw">aes</span>(<span class="dt">x =</span> dep2, <span class="dt">y =</span> sed, <span class="dt">group =</span> asthma)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> asthma), 
+           <span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>, 
+           <span class="dt">position =</span> p,
+           <span class="dt">alpha =</span> <span class="fl">.8</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="kw">aes</span>(<span class="dt">ymin =</span> sed <span class="op">-</span><span class="st"> </span>s_se, <span class="dt">ymax =</span> sed <span class="op">+</span><span class="st"> </span>s_se,
+                    <span class="dt">color =</span> asthma), 
+                <span class="dt">position =</span> p,
+                <span class="dt">width =</span> <span class="fl">.3</span>)</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-73-1.png" width="672" /></p>
+<p>There’s a lot in there but much of it is what you’ve seen before. For example, we use <code>alpha</code> in the <code>geom_bar()</code> to tell it to be slightly transparent so we can see the error bars better. We used the <code>position_dodge()</code> function to specify exactly how much dodge we wanted. In this way, we are able to line up the error bars and the bars. If we just use <code>position = "dodge"</code> we have less flexibility and control.</p>
+<p>Much more can be done to clean this up, which we’ll show in later sections.</p>
+</div>
+<div id="line-plots" class="section level3 unnumbered">
+<h3>Line Plots</h3>
+<p>Line plots are particularly good at showing trends and relationships. Below we we use it to highlight the relationship between depression, sedentary behavior, and asthma.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(summed_data, <span class="kw">aes</span>(<span class="dt">x =</span> dep2, <span class="dt">y =</span> sed, <span class="dt">group =</span> asthma)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">color =</span> asthma))</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-74-1.png" width="672" /></p>
+<p>Good start, but let’s add some features.</p>
+<pre class="sourceCode r"><code class="sourceCode r">pos =<span class="st"> </span><span class="kw">position_dodge</span>(<span class="dt">width =</span> <span class="fl">.1</span>)
+<span class="kw">ggplot</span>(summed_data, <span class="kw">aes</span>(<span class="dt">x =</span> dep2, <span class="dt">y =</span> sed, <span class="dt">group =</span> asthma, <span class="dt">color =</span> asthma)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">position =</span> pos) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">position =</span> pos) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="kw">aes</span>(<span class="dt">ymin =</span> sed <span class="op">-</span><span class="st"> </span>s_se, <span class="dt">ymax =</span> sed <span class="op">+</span><span class="st"> </span>s_se), 
+                <span class="dt">width =</span> <span class="fl">.1</span>, 
+                <span class="dt">position =</span> pos)</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-75-1.png" width="672" /></p>
+<p>That looks a bit better. From here, let’s go on to color schemes to make the plots a bit better.</p>
+</div>
+</div>
+<div id="color-schemes" class="section level2 unnumbered">
+<h2>Color Schemes</h2>
+<p>We’ll start by using the scatterplot we made above but we will change the colors a bit using <code>scale_color_manual()</code>.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> dep, <span class="dt">y =</span> sed, <span class="dt">group =</span> asthma)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_jitter</span>(<span class="kw">aes</span>(<span class="dt">color =</span> asthma), <span class="dt">alpha =</span> <span class="fl">.5</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="kw">aes</span>(<span class="dt">color =</span> asthma), <span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se=</span><span class="ot">FALSE</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;dodgerblue4&quot;</span>, <span class="st">&quot;chartreuse4&quot;</span>))</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-76-1.png" width="672" />
+Depending on your personal taste, you can adjust it with any color. On my blog, I’ve <a href="https:\tysonbarrett.com">posted</a> the colors available in R (there are many).</p>
+<blockquote>
+<p>Advice: Don’t get too lost in selecting colors but it can add a nice touch to any plot. The nuances of plot design can be invigorating but also time consuming to be smart about how long you spend using it.</p>
+</blockquote>
+<p>Next, let’s adjust the bar plot. We will also add some colors here, but we will differentiate between “color” and “fill”.</p>
+<ol style="list-style-type: decimal">
+<li>Fill fills in the object with color. This is useful for things that are more than simply a line or a dot.</li>
+<li>Color colors the object. This outlines those items that can also be filled and colors lines and dots.</li>
+</ol>
+<pre class="sourceCode r"><code class="sourceCode r">p =<span class="st"> </span><span class="kw">position_dodge</span>(<span class="dt">width =</span> <span class="fl">.9</span>)
+<span class="kw">ggplot</span>(summed_data, <span class="kw">aes</span>(<span class="dt">x =</span> dep2, <span class="dt">y =</span> sed, <span class="dt">group =</span> asthma)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> asthma, <span class="dt">color =</span> asthma), 
+           <span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>, 
+           <span class="dt">position =</span> p,
+           <span class="dt">alpha =</span> <span class="fl">.8</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="kw">aes</span>(<span class="dt">ymin =</span> sed <span class="op">-</span><span class="st"> </span>s_se, <span class="dt">ymax =</span> sed <span class="op">+</span><span class="st"> </span>s_se,
+                    <span class="dt">color =</span> asthma), 
+                <span class="dt">position =</span> p,
+                <span class="dt">width =</span> <span class="fl">.3</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;dodgerblue4&quot;</span>, <span class="st">&quot;chartreuse4&quot;</span>)) <span class="op">+</span><span class="st">   </span><span class="co">## controls the color of the error bars</span>
+<span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;aliceblue&quot;</span>, <span class="st">&quot;beige&quot;</span>))</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-77-1.png" width="672" /></p>
+<p>Just so you are aware:</p>
+<ul>
+<li>aliceblue is a lightblue</li>
+<li>beige is a light green</li>
+<li>dodgerblue4 is a dark blue</li>
+<li>chartreuse4 is a dark green</li>
+</ul>
+<p>So the <code>fill</code> colors are light and the <code>color</code> colors are dark in this example. You, of course, can do whatever you want color-wise. I’m a fan of this style though so we will keep it for now.</p>
+<p>These same functions can be used on the other plots as well. Feel free to give them a try. As for the book, we’ll move on to the next section: Themes.</p>
+</div>
+<div id="themes" class="section level2 unnumbered">
+<h2>Themes</h2>
+<p>Using the plot we just made–the bar plot–we will show how theme options work. There are several built in themes that change many aspects of the plot (e.g., <code>theme_bw()</code>, <code>theme_classic()</code>, <code>theme_minimal()</code>). There are many more if you download the <code>ggthemes</code> package. Fairly simply you can create plots similar to those in newspapers and magazines.</p>
+<p>First, we are going to save the plot to simply show the different theming options.</p>
+<pre class="sourceCode r"><code class="sourceCode r">p =<span class="st"> </span><span class="kw">position_dodge</span>(<span class="dt">width =</span> <span class="fl">.9</span>)
+p1 =<span class="st"> </span><span class="kw">ggplot</span>(summed_data, <span class="kw">aes</span>(<span class="dt">x =</span> dep2, <span class="dt">y =</span> sed, <span class="dt">group =</span> asthma)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> asthma, <span class="dt">color =</span> asthma), 
+           <span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>, 
+           <span class="dt">position =</span> p,
+           <span class="dt">alpha =</span> <span class="fl">.8</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="kw">aes</span>(<span class="dt">ymin =</span> sed <span class="op">-</span><span class="st"> </span>s_se, <span class="dt">ymax =</span> sed <span class="op">+</span><span class="st"> </span>s_se,
+                    <span class="dt">color =</span> asthma), 
+                <span class="dt">position =</span> p,
+                <span class="dt">width =</span> <span class="fl">.3</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;dodgerblue4&quot;</span>, <span class="st">&quot;chartreuse4&quot;</span>)) <span class="op">+</span><span class="st">   </span><span class="co">## controls the color of the error bars</span>
+<span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;aliceblue&quot;</span>, <span class="st">&quot;beige&quot;</span>))</code></pre>
+<div id="theme-black-and-white" class="section level4 unnumbered">
+<h4>Theme Black and White</h4>
+<pre class="sourceCode r"><code class="sourceCode r">p1 <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-79-1.png" width="672" /></p>
+</div>
+<div id="theme-classic" class="section level4 unnumbered">
+<h4>Theme Classic</h4>
+<pre class="sourceCode r"><code class="sourceCode r">p1 <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">theme_classic</span>()</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-80-1.png" width="672" /></p>
+</div>
+<div id="theme-minimal" class="section level4 unnumbered">
+<h4>Theme Minimal</h4>
+<pre class="sourceCode r"><code class="sourceCode r">p1 <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">theme_minimal</span>()</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-81-1.png" width="672" /></p>
+</div>
+<div id="theme-economist-from-ggthemes" class="section level4 unnumbered">
+<h4>Theme Economist (from <code>ggthemes</code>)</h4>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggthemes)
+p1 <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">theme_economist</span>()</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-82-1.png" width="672" /></p>
+</div>
+<div id="theme-fivethirtyeight-from-ggthemes" class="section level4 unnumbered">
+<h4>Theme FiveThirtyEight (from <code>ggthemes</code>)</h4>
+<pre class="sourceCode r"><code class="sourceCode r">p1 <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">theme_fivethirtyeight</span>()</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-83-1.png" width="672" /></p>
+</div>
+<div id="theme-tufte-from-ggthemes" class="section level4 unnumbered">
+<h4>Theme Tufte (from <code>ggthemes</code>)</h4>
+<pre class="sourceCode r"><code class="sourceCode r">p1 <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">theme_tufte</span>()</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-84-1.png" width="672" /></p>
+</div>
+<div id="theme-stata-from-ggthemes" class="section level4 unnumbered">
+<h4>Theme Stata (from <code>ggthemes</code>)</h4>
+<pre class="sourceCode r"><code class="sourceCode r">p1 <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">theme_stata</span>()</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-85-1.png" width="672" /></p>
+</div>
+<div id="your-own-theme" class="section level4 unnumbered">
+<h4>Your Own Theme</h4>
+<p>There are many more but you get the idea. In addition to the built in themes, you can use the <code>theme()</code> function and make your own adjustments. There are <em>many</em> options so we will just introduce the idea.</p>
+<pre class="sourceCode r"><code class="sourceCode r">p1 <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>,  <span class="co">## puts legend at the bottom of figure</span>
+        <span class="dt">legend.background =</span> <span class="kw">element_rect</span>(<span class="dt">color =</span> <span class="st">&quot;lightgrey&quot;</span>),  <span class="co">## outlines legend</span>
+        <span class="dt">panel.background =</span> <span class="kw">element_rect</span>(<span class="dt">fill =</span> <span class="st">&quot;grey99&quot;</span>,   <span class="co">## fills the plot with a very light grey</span>
+                                        <span class="dt">color =</span> <span class="st">&quot;grey70&quot;</span>),  <span class="co">## light border around plot</span>
+        <span class="dt">text =</span> <span class="kw">element_text</span>(<span class="dt">family =</span> <span class="st">&quot;Times&quot;</span>))     <span class="co">## all text in plot is now Times</span></code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-86-1.png" width="672" /></p>
+<p>There are many more options but essentially if there is something you want to change, you probably can.</p>
+</div>
+</div>
+<div id="labels-and-titles" class="section level2 unnumbered">
+<h2>Labels and Titles</h2>
+<p>Using our last plot, we will also want to add good labels and/or titles.</p>
+<pre class="sourceCode r"><code class="sourceCode r">p1 <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>,  
+        <span class="dt">legend.background =</span> <span class="kw">element_rect</span>(<span class="dt">color =</span> <span class="st">&quot;lightgrey&quot;</span>),
+        <span class="dt">panel.background =</span> <span class="kw">element_rect</span>(<span class="dt">fill =</span> <span class="st">&quot;grey99&quot;</span>,
+                                        <span class="dt">color =</span> <span class="st">&quot;grey70&quot;</span>),
+        <span class="dt">text =</span> <span class="kw">element_text</span>(<span class="dt">family =</span> <span class="st">&quot;Times&quot;</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="st">&quot;Sedentary Behavior (Minutes)&quot;</span>,
+       <span class="dt">x =</span> <span class="st">&quot;Depression (1 = Depressed)&quot;</span>,
+       <span class="dt">title =</span> <span class="st">&quot;Comparison of Sedentary Behavior&quot;</span>,
+       <span class="dt">subtitle =</span> <span class="st">&quot;across Depression and Asthma&quot;</span>)</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-87-1.png" width="672" /></p>
+</div>
+<div id="facetting" class="section level2 unnumbered">
+<h2>Facetting</h2>
+<p>Facetting is very useful when trying to compare more than three variables at a time or you cannot use color or shading. It is often useful and beautiful. Facetting splits the data based on some grouping variable (e.g., asthma) to highlight differences in the relationship.</p>
+<pre class="sourceCode r"><code class="sourceCode r">p1 <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>,  
+        <span class="dt">legend.background =</span> <span class="kw">element_rect</span>(<span class="dt">color =</span> <span class="st">&quot;lightgrey&quot;</span>),
+        <span class="dt">panel.background =</span> <span class="kw">element_rect</span>(<span class="dt">fill =</span> <span class="st">&quot;grey99&quot;</span>,
+                                        <span class="dt">color =</span> <span class="st">&quot;grey70&quot;</span>),
+        <span class="dt">text =</span> <span class="kw">element_text</span>(<span class="dt">family =</span> <span class="st">&quot;Times&quot;</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="st">&quot;Sedentary Behavior (Minutes)&quot;</span>,
+       <span class="dt">x =</span> <span class="st">&quot;Depression (1 = Depressed)&quot;</span>,
+       <span class="dt">title =</span> <span class="st">&quot;Comparison of Sedentary Behavior&quot;</span>,
+       <span class="dt">subtitle =</span> <span class="st">&quot;across Depression and Asthma&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">facet_grid</span>(<span class="op">~</span>asthma)</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-88-1.png" width="672" /></p>
+<p>You can facet by more than one variable and it will create separate panels for each combination of the facetting variables.</p>
 </div>
 <div id="apply-it-2" class="section level2 unnumbered">
 <h2>Apply It</h2>
@@ -411,8 +705,12 @@ janitor<span class="op">::</span><span class="kw">tabyl</span>(df)</code></pre>
 <h3>Step 2</h3>
 <p>Once RStudio has started, in the panel on the lower-right, there is a <code>Files</code> tab. Click on that to see the project folder. You should see the data files and the <code>Chapter3.Rmd</code> file. Click on the <code>Chapter3.Rmd</code> file to open it. In this file, import the data, create a descriptive table with <code>table1()</code> and three different types of visualizations (e.g., boxplot, histogram, scatterplot).</p>
 <p>Once that code is in the file, click the <code>knit</code> button. This will create an HTML file with the code and output knitted together into one nice document. This can be read into any browser and can be used to show your work in a clean document.</p>
-
 </div>
+</div>
+<div id="conclusions-1" class="section level2 unnumbered">
+<h2>Conclusions</h2>
+<p>This was a quick demonstration of plotting with <code>ggplot2</code>. There is so much more you can do. However, in the end, exploring and communicating the data through plots is simply something you need to practice. With time, you can <em>a priori</em> picture the types of plots that will highlight things in your data, the ways you can adjust it, and how you need to manipulate your data to make it plot ready. Be patient and have fun trying things. In my experience, almost anytime I think, “Can R do this?”, it can, so try to do cool stuff and you’ll probably find that you can.</p>
+
 </div>
 </div>
 <div class="footnotes">

@@ -25,7 +25,7 @@
 <meta name="author" content="Tyson S. Barrett, PhD">
 
 
-<meta name="date" content="2019-03-27">
+<meta name="date" content="2019-04-13">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -68,7 +68,7 @@ a.sourceLine { text-indent: -1em; padding-left: 1em; }
 pre.numberSource a.sourceLine
   { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+  { content: attr(title);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
     border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
@@ -175,10 +175,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#visualizations"><i class="fa fa-check"></i>Visualizations</a><ul>
 <li><a href="chapter-3-understanding-and-describing-your-data.html#using-ggplot2">Using <code>ggplot2</code></a></li>
 </ul></li>
+<li><a href="chapter-3-understanding-and-describing-your-data.html#more-advanced-features-of-ggplot2">More Advanced Features of <code>ggplot2</code></a></li>
+<li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#types-of-plots"><i class="fa fa-check"></i>Types of Plots</a><ul>
+<li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#scatterplots"><i class="fa fa-check"></i>Scatterplots</a></li>
+<li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#boxplots"><i class="fa fa-check"></i>Boxplots</a></li>
+<li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#bar-plots"><i class="fa fa-check"></i>Bar Plots</a></li>
+<li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#line-plots"><i class="fa fa-check"></i>Line Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#color-schemes"><i class="fa fa-check"></i>Color Schemes</a></li>
+<li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#themes"><i class="fa fa-check"></i>Themes</a></li>
+<li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#labels-and-titles"><i class="fa fa-check"></i>Labels and Titles</a></li>
+<li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#facetting"><i class="fa fa-check"></i>Facetting</a></li>
 <li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#apply-it-2"><i class="fa fa-check"></i>Apply It</a><ul>
 <li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#step-1-2"><i class="fa fa-check"></i>Step 1</a></li>
 <li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#step-2-2"><i class="fa fa-check"></i>Step 2</a></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#conclusions-1"><i class="fa fa-check"></i>Conclusions</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html"><i class="fa fa-check"></i>Chapter 4: Basic Analyses</a><ul>
 <li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#anova"><i class="fa fa-check"></i>ANOVA</a></li>
@@ -213,7 +225,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="chapter-5-generalized-linear-models.html"><a href="chapter-5-generalized-linear-models.html#step-1-4"><i class="fa fa-check"></i>Step 1</a></li>
 <li class="chapter" data-level="" data-path="chapter-5-generalized-linear-models.html"><a href="chapter-5-generalized-linear-models.html#step-2-4"><i class="fa fa-check"></i>Step 2</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="chapter-5-generalized-linear-models.html"><a href="chapter-5-generalized-linear-models.html#conclusions-1"><i class="fa fa-check"></i>Conclusions</a></li>
+<li class="chapter" data-level="" data-path="chapter-5-generalized-linear-models.html"><a href="chapter-5-generalized-linear-models.html#conclusions-2"><i class="fa fa-check"></i>Conclusions</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-6-multilevel-modeling.html"><a href="chapter-6-multilevel-modeling.html"><i class="fa fa-check"></i>Chapter 6: Multilevel Modeling</a><ul>
 <li class="chapter" data-level="" data-path="chapter-6-multilevel-modeling.html"><a href="chapter-6-multilevel-modeling.html#gee"><i class="fa fa-check"></i>GEE</a></li>
@@ -222,7 +234,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="chapter-6-multilevel-modeling.html"><a href="chapter-6-multilevel-modeling.html#step-1-5"><i class="fa fa-check"></i>Step 1</a></li>
 <li class="chapter" data-level="" data-path="chapter-6-multilevel-modeling.html"><a href="chapter-6-multilevel-modeling.html#step-2-5"><i class="fa fa-check"></i>Step 2</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="chapter-6-multilevel-modeling.html"><a href="chapter-6-multilevel-modeling.html#conclusions-2"><i class="fa fa-check"></i>Conclusions</a></li>
+<li class="chapter" data-level="" data-path="chapter-6-multilevel-modeling.html"><a href="chapter-6-multilevel-modeling.html#conclusions-3"><i class="fa fa-check"></i>Conclusions</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html"><i class="fa fa-check"></i>Chapter 7: Other Modeling Techniques</a><ul>
 <li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#mediation-modeling"><i class="fa fa-check"></i>Mediation Modeling</a></li>
@@ -235,7 +247,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#step-1-6"><i class="fa fa-check"></i>Step 1</a></li>
 <li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#step-2-6"><i class="fa fa-check"></i>Step 2</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#conclusions-3"><i class="fa fa-check"></i>Conclusions</a></li>
+<li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#conclusions-4"><i class="fa fa-check"></i>Conclusions</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html"><i class="fa fa-check"></i>Chapter 8: Advanced Data Manipulation</a><ul>
 <li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#reshaping-your-data"><i class="fa fa-check"></i>Reshaping Your Data</a></li>
@@ -250,24 +262,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#step-1-7"><i class="fa fa-check"></i>Step 1</a></li>
 <li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#step-2-7"><i class="fa fa-check"></i>Step 2</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#conclusions-4"><i class="fa fa-check"></i>Conclusions</a></li>
+<li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#conclusions-5"><i class="fa fa-check"></i>Conclusions</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="chapter-9-advanced-plotting.html"><a href="chapter-9-advanced-plotting.html"><i class="fa fa-check"></i>Chapter 9: Advanced Plotting</a><ul>
-<li class="chapter" data-level="" data-path="chapter-9-advanced-plotting.html"><a href="chapter-9-advanced-plotting.html#types-of-plots"><i class="fa fa-check"></i>Types of Plots</a><ul>
-<li class="chapter" data-level="" data-path="chapter-9-advanced-plotting.html"><a href="chapter-9-advanced-plotting.html#scatterplots"><i class="fa fa-check"></i>Scatterplots</a></li>
-<li class="chapter" data-level="" data-path="chapter-9-advanced-plotting.html"><a href="chapter-9-advanced-plotting.html#boxplots"><i class="fa fa-check"></i>Boxplots</a></li>
-<li class="chapter" data-level="" data-path="chapter-9-advanced-plotting.html"><a href="chapter-9-advanced-plotting.html#bar-plots"><i class="fa fa-check"></i>Bar Plots</a></li>
-<li class="chapter" data-level="" data-path="chapter-9-advanced-plotting.html"><a href="chapter-9-advanced-plotting.html#line-plots"><i class="fa fa-check"></i>Line Plots</a></li>
+<li class="chapter" data-level="" data-path="chapter-9-reproducible-workflow-with-rmarkdown.html"><a href="chapter-9-reproducible-workflow-with-rmarkdown.html"><i class="fa fa-check"></i>Chapter 9: Reproducible Workflow with RMarkdown</a><ul>
+<li class="chapter" data-level="" data-path="chapter-9-reproducible-workflow-with-rmarkdown.html"><a href="chapter-9-reproducible-workflow-with-rmarkdown.html#r-markdown"><i class="fa fa-check"></i>R Markdown</a><ul>
+<li class="chapter" data-level="" data-path="chapter-9-reproducible-workflow-with-rmarkdown.html"><a href="chapter-9-reproducible-workflow-with-rmarkdown.html#in-line-r-code"><i class="fa fa-check"></i>In-Line R Code</a></li>
+<li class="chapter" data-level="" data-path="chapter-9-reproducible-workflow-with-rmarkdown.html"><a href="chapter-9-reproducible-workflow-with-rmarkdown.html#pre-formatted-documents"><i class="fa fa-check"></i>Pre-formatted Documents</a></li>
+<li class="chapter" data-level="" data-path="chapter-9-reproducible-workflow-with-rmarkdown.html"><a href="chapter-9-reproducible-workflow-with-rmarkdown.html#other-tricks"><i class="fa fa-check"></i>Other Tricks</a></li>
+<li class="chapter" data-level="" data-path="chapter-9-reproducible-workflow-with-rmarkdown.html"><a href="chapter-9-reproducible-workflow-with-rmarkdown.html#important-important"><i class="fa fa-check"></i>Important, Important</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="chapter-9-advanced-plotting.html"><a href="chapter-9-advanced-plotting.html#color-schemes"><i class="fa fa-check"></i>Color Schemes</a></li>
-<li class="chapter" data-level="" data-path="chapter-9-advanced-plotting.html"><a href="chapter-9-advanced-plotting.html#themes"><i class="fa fa-check"></i>Themes</a></li>
-<li class="chapter" data-level="" data-path="chapter-9-advanced-plotting.html"><a href="chapter-9-advanced-plotting.html#labels-and-titles"><i class="fa fa-check"></i>Labels and Titles</a></li>
-<li class="chapter" data-level="" data-path="chapter-9-advanced-plotting.html"><a href="chapter-9-advanced-plotting.html#facetting"><i class="fa fa-check"></i>Facetting</a></li>
-<li class="chapter" data-level="" data-path="chapter-9-advanced-plotting.html"><a href="chapter-9-advanced-plotting.html#apply-it-8"><i class="fa fa-check"></i>Apply It</a><ul>
-<li class="chapter" data-level="" data-path="chapter-9-advanced-plotting.html"><a href="chapter-9-advanced-plotting.html#step-1-8"><i class="fa fa-check"></i>Step 1</a></li>
-<li class="chapter" data-level="" data-path="chapter-9-advanced-plotting.html"><a href="chapter-9-advanced-plotting.html#step-2-8"><i class="fa fa-check"></i>Step 2</a></li>
+<li class="chapter" data-level="" data-path="chapter-9-reproducible-workflow-with-rmarkdown.html"><a href="chapter-9-reproducible-workflow-with-rmarkdown.html#apply-it-8"><i class="fa fa-check"></i>Apply It</a><ul>
+<li class="chapter" data-level="" data-path="chapter-9-reproducible-workflow-with-rmarkdown.html"><a href="chapter-9-reproducible-workflow-with-rmarkdown.html#step-1-8"><i class="fa fa-check"></i>Step 1</a></li>
+<li class="chapter" data-level="" data-path="chapter-9-reproducible-workflow-with-rmarkdown.html"><a href="chapter-9-reproducible-workflow-with-rmarkdown.html#step-2-8"><i class="fa fa-check"></i>Step 2</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="chapter-9-advanced-plotting.html"><a href="chapter-9-advanced-plotting.html#conclusions-5"><i class="fa fa-check"></i>Conclusions</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-10-where-to-go-from-here-and-common-pitfalls.html"><a href="chapter-10-where-to-go-from-here-and-common-pitfalls.html"><i class="fa fa-check"></i>Chapter 10: Where to Go from Here and Common Pitfalls</a><ul>
 <li class="chapter" data-level="" data-path="chapter-10-where-to-go-from-here-and-common-pitfalls.html"><a href="chapter-10-where-to-go-from-here-and-common-pitfalls.html#common-pitfalls"><i class="fa fa-check"></i>Common Pitfalls</a></li>
@@ -334,7 +341,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 <tr class="even">
 <td align="left">Operator</td>
-<td align="left">A special type of function (e.g. <code>&lt;-</code>)</td>
+<td align="left">A special type of function (e.g. <code>&lt;-</code>)</td>
 </tr>
 </tbody>
 </table>
@@ -371,13 +378,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>When we combine multiple variables into one, we create a <strong>data.frame</strong>. A data frame is like a spreadsheet table, like the ones you have probably seen in Microsoft’s Excel and IBM’s SPSS. Here’s a simple example:</p>
 <pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(x, race)
 df</code></pre>
+<pre><code>##       x     race
+## 1  10.1    white
+## 2   2.1 hispanic
+## 3   4.6    black
+## 4   2.3    white
+## 5   8.9    white
+## 6   4.5    black
+## 7   7.2    white
+## 8   7.9 hispanic
+## 9   3.6    asian
+## 10  2.0    black</code></pre>
 <p>We can do quite a bit with the <code>data.frame</code> that we called <code>df</code><a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a>. Once again, we could have called this data frame anything (e.g., <code>jimmy</code>, <code>susan</code>, <code>rock</code>, <code>scissors</code> all would work), although I recommend short names. If we hadn’t already told <code>R</code> that <code>race</code> was a factor, we could do this once it is inside of <code>df</code> by:</p>
 <pre class="sourceCode r"><code class="sourceCode r">df<span class="op">$</span>race &lt;-<span class="st"> </span><span class="kw">factor</span>(df<span class="op">$</span>race, 
                <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;white&quot;</span>, <span class="st">&quot;black&quot;</span>, <span class="st">&quot;hispanic&quot;</span>, <span class="st">&quot;asian&quot;</span>))</code></pre>
 <p>In the above code, the <code>$</code> reaches into <code>df</code> to grab a variable (or column). There are other ways of doing this as is almost always the case in <code>R</code>. For example, you may see individuals using:</p>
 <pre class="sourceCode r"><code class="sourceCode r">df[[<span class="st">&quot;race&quot;</span>]] &lt;-<span class="st"> </span><span class="kw">factor</span>(df[[<span class="st">&quot;race&quot;</span>]] , 
                        <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;white&quot;</span>, <span class="st">&quot;black&quot;</span>, <span class="st">&quot;hispanic&quot;</span>, <span class="st">&quot;asian&quot;</span>))</code></pre>
-<p><code>df[[&quot;race&quot;]]</code> grabs the <code>race</code> variable just like <code>df$race</code>. Although there are many ways of doing this, we are going to focus on the modern and intuitive ways of doing this more often.</p>
+<p><code>df[["race"]]</code> grabs the <code>race</code> variable just like <code>df$race</code>. Although there are many ways of doing this, we are going to focus on the modern and intuitive ways of doing this more often.</p>
 <p>In my experience, the first element of uncomfort that researchers face is the fact that our data is essentially invisible to us. It is “housed” in <code>df</code> (not totally accurate but can be thought of this way for now) but it is hard to know exactly what is in <code>df</code>. First, we can use:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">View</span>(df)</code></pre>
 <p>which prints out the data in spreadsheet-type form to see the data. We can also get nice summaries using the following functions.</p>
@@ -420,7 +438,7 @@ df</code></pre>
 <p>We will rely on the <code>rio</code> package to do the majority of our data importing. In general, researchers in our fields use <code>.csv</code>, <code>.txt</code>, <code>.sav</code>, and <code>.xlxs</code>. For the most part, importing will be straightforward. Regardless of the file type, we will use <code>rio::import()</code>. This notation means that the package <code>rio</code> has a function called <code>import()</code>.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co">## Import a CSV file located in the same folder as your RMarkdown file</span>
 our_data &lt;-<span class="st"> </span>rio<span class="op">::</span><span class="kw">import</span>(<span class="st">&quot;your_data_file.csv&quot;</span>)</code></pre>
-<p>This will work for <code>.csv</code>, <code>.txt</code>, <code>.sav</code>, <code>.xlsx</code>, and <a href="https://thomasleeper.com/rio/articles/rio.html">many others files</a>. In the example, we assigned our imported file to <code>df</code> using <code>&lt;-</code>. This is necessary to let <code>R</code> remember the data for it to use for other stuff. The object <code>our_data</code> now contains the data saved in the CSV file called <code>&quot;your_data_file.csv&quot;</code>. Note that at the end of the lines you see that I left a <strong>comment</strong> using <code>#</code>. I used two for stylistic purposes but only one is necessary. Anything after a <code>#</code> is not read by the computer; it’s just for us humans.</p>
+<p>This will work for <code>.csv</code>, <code>.txt</code>, <code>.sav</code>, <code>.xlsx</code>, and <a href="https://thomasleeper.com/rio/articles/rio.html">many others files</a>. In the example, we assigned our imported file to <code>df</code> using <code>&lt;-</code>. This is necessary to let <code>R</code> remember the data for it to use for other stuff. The object <code>our_data</code> now contains the data saved in the CSV file called <code>"your_data_file.csv"</code>. Note that at the end of the lines you see that I left a <strong>comment</strong> using <code>#</code>. I used two for stylistic purposes but only one is necessary. Anything after a <code>#</code> is not read by the computer; it’s just for us humans.</p>
 <blockquote>
 <p>Heads up! It is important to know where your data file is located. In my experience, this is where students struggle the most at the very beginning. If the file is in the same folder as the RStudio project, we can use the <code>here::here()</code> function to point to the project’s folder. More will be discussed about RStudio projects after the discussion on saving data.</p>
 </blockquote>
@@ -430,7 +448,7 @@ our_data &lt;-<span class="st"> </span>rio<span class="op">::</span><span class=
 <h2>Saving Data</h2>
 <p>Occassionally you’ll want to save some data that you’ve worked with (usually this is not necessary). When necessary, you can use <code>rio::export()</code>.</p>
 <pre class="sourceCode r"><code class="sourceCode r">rio<span class="op">::</span><span class="kw">export</span>(df, <span class="dt">file=</span><span class="st">&quot;file.csv&quot;</span>)  <span class="co">## to create a CSV data file</span></code></pre>
-<p><code>R</code> automatically saves missing data as <code>NA</code> since that is what it is in <code>R</code>. But often when we write a CSV file, we might want it as blank or some other value. If that’s the case, we can add another argument <code>na = &quot; &quot;</code> after the file argument.</p>
+<p><code>R</code> automatically saves missing data as <code>NA</code> since that is what it is in <code>R</code>. But often when we write a CSV file, we might want it as blank or some other value. If that’s the case, we can add another argument <code>na = " "</code> after the file argument.</p>
 <p>Again, if you ever have questions about the specific arguments that a certain function has, you can simply run <code>?functionname</code>. So, if you were curious about the different arguments in <code>export</code> simply run: <code>?export</code>. In the pane with the files, plots, packages, etc. a document will show up to give you more informaton.</p>
 </div>
 <div id="apply-it" class="section level2 unnumbered">
@@ -442,7 +460,7 @@ our_data &lt;-<span class="st"> </span>rio<span class="op">::</span><span class=
 </div>
 <div id="step-2" class="section level3 unnumbered">
 <h3>Step 2</h3>
-<p>Once RStudio has started, in the panel on the lower-right, there is a <code>Files</code> tab. Click on that to see the project folder. You should see the data files and the <code>Chapter1.Rmd</code> file. Click on the <code>Chapter1.Rmd</code> file to open it. It should open in the upper-left panel. It has words and code already put in it. Starting at the first code chunk (has <code>```{r}</code> right above it), click on the first line and run the code. The code can be run using “Cmd +”Enter&quot; or the Run button at the top of RStudio.</p>
+<p>Once RStudio has started, in the panel on the lower-right, there is a <code>Files</code> tab. Click on that to see the project folder. You should see the data files and the <code>Chapter1.Rmd</code> file. Click on the <code>Chapter1.Rmd</code> file to open it. It should open in the upper-left panel. It has words and code already put in it. Starting at the first code chunk (has <code>```{r}</code> right above it), click on the first line and run the code. The code can be run using “Cmd +”Enter" or the Run button at the top of RStudio.</p>
 </div>
 <div id="step-3" class="section level3 unnumbered">
 <h3>Step 3</h3>

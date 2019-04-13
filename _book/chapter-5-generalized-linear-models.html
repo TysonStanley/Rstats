@@ -25,7 +25,7 @@
 <meta name="author" content="Tyson S. Barrett, PhD">
 
 
-<meta name="date" content="2019-03-27">
+<meta name="date" content="2019-04-13">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -68,7 +68,7 @@ a.sourceLine { text-indent: -1em; padding-left: 1em; }
 pre.numberSource a.sourceLine
   { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+  { content: attr(title);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
     border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
@@ -175,10 +175,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#visualizations"><i class="fa fa-check"></i>Visualizations</a><ul>
 <li><a href="chapter-3-understanding-and-describing-your-data.html#using-ggplot2">Using <code>ggplot2</code></a></li>
 </ul></li>
+<li><a href="chapter-3-understanding-and-describing-your-data.html#more-advanced-features-of-ggplot2">More Advanced Features of <code>ggplot2</code></a></li>
+<li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#types-of-plots"><i class="fa fa-check"></i>Types of Plots</a><ul>
+<li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#scatterplots"><i class="fa fa-check"></i>Scatterplots</a></li>
+<li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#boxplots"><i class="fa fa-check"></i>Boxplots</a></li>
+<li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#bar-plots"><i class="fa fa-check"></i>Bar Plots</a></li>
+<li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#line-plots"><i class="fa fa-check"></i>Line Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#color-schemes"><i class="fa fa-check"></i>Color Schemes</a></li>
+<li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#themes"><i class="fa fa-check"></i>Themes</a></li>
+<li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#labels-and-titles"><i class="fa fa-check"></i>Labels and Titles</a></li>
+<li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#facetting"><i class="fa fa-check"></i>Facetting</a></li>
 <li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#apply-it-2"><i class="fa fa-check"></i>Apply It</a><ul>
 <li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#step-1-2"><i class="fa fa-check"></i>Step 1</a></li>
 <li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#step-2-2"><i class="fa fa-check"></i>Step 2</a></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="chapter-3-understanding-and-describing-your-data.html"><a href="chapter-3-understanding-and-describing-your-data.html#conclusions-1"><i class="fa fa-check"></i>Conclusions</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html"><i class="fa fa-check"></i>Chapter 4: Basic Analyses</a><ul>
 <li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#anova"><i class="fa fa-check"></i>ANOVA</a></li>
@@ -213,7 +225,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="chapter-5-generalized-linear-models.html"><a href="chapter-5-generalized-linear-models.html#step-1-4"><i class="fa fa-check"></i>Step 1</a></li>
 <li class="chapter" data-level="" data-path="chapter-5-generalized-linear-models.html"><a href="chapter-5-generalized-linear-models.html#step-2-4"><i class="fa fa-check"></i>Step 2</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="chapter-5-generalized-linear-models.html"><a href="chapter-5-generalized-linear-models.html#conclusions-1"><i class="fa fa-check"></i>Conclusions</a></li>
+<li class="chapter" data-level="" data-path="chapter-5-generalized-linear-models.html"><a href="chapter-5-generalized-linear-models.html#conclusions-2"><i class="fa fa-check"></i>Conclusions</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-6-multilevel-modeling.html"><a href="chapter-6-multilevel-modeling.html"><i class="fa fa-check"></i>Chapter 6: Multilevel Modeling</a><ul>
 <li class="chapter" data-level="" data-path="chapter-6-multilevel-modeling.html"><a href="chapter-6-multilevel-modeling.html#gee"><i class="fa fa-check"></i>GEE</a></li>
@@ -222,7 +234,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="chapter-6-multilevel-modeling.html"><a href="chapter-6-multilevel-modeling.html#step-1-5"><i class="fa fa-check"></i>Step 1</a></li>
 <li class="chapter" data-level="" data-path="chapter-6-multilevel-modeling.html"><a href="chapter-6-multilevel-modeling.html#step-2-5"><i class="fa fa-check"></i>Step 2</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="chapter-6-multilevel-modeling.html"><a href="chapter-6-multilevel-modeling.html#conclusions-2"><i class="fa fa-check"></i>Conclusions</a></li>
+<li class="chapter" data-level="" data-path="chapter-6-multilevel-modeling.html"><a href="chapter-6-multilevel-modeling.html#conclusions-3"><i class="fa fa-check"></i>Conclusions</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html"><i class="fa fa-check"></i>Chapter 7: Other Modeling Techniques</a><ul>
 <li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#mediation-modeling"><i class="fa fa-check"></i>Mediation Modeling</a></li>
@@ -235,7 +247,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#step-1-6"><i class="fa fa-check"></i>Step 1</a></li>
 <li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#step-2-6"><i class="fa fa-check"></i>Step 2</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#conclusions-3"><i class="fa fa-check"></i>Conclusions</a></li>
+<li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#conclusions-4"><i class="fa fa-check"></i>Conclusions</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html"><i class="fa fa-check"></i>Chapter 8: Advanced Data Manipulation</a><ul>
 <li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#reshaping-your-data"><i class="fa fa-check"></i>Reshaping Your Data</a></li>
@@ -250,24 +262,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#step-1-7"><i class="fa fa-check"></i>Step 1</a></li>
 <li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#step-2-7"><i class="fa fa-check"></i>Step 2</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#conclusions-4"><i class="fa fa-check"></i>Conclusions</a></li>
+<li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#conclusions-5"><i class="fa fa-check"></i>Conclusions</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="chapter-9-advanced-plotting.html"><a href="chapter-9-advanced-plotting.html"><i class="fa fa-check"></i>Chapter 9: Advanced Plotting</a><ul>
-<li class="chapter" data-level="" data-path="chapter-9-advanced-plotting.html"><a href="chapter-9-advanced-plotting.html#types-of-plots"><i class="fa fa-check"></i>Types of Plots</a><ul>
-<li class="chapter" data-level="" data-path="chapter-9-advanced-plotting.html"><a href="chapter-9-advanced-plotting.html#scatterplots"><i class="fa fa-check"></i>Scatterplots</a></li>
-<li class="chapter" data-level="" data-path="chapter-9-advanced-plotting.html"><a href="chapter-9-advanced-plotting.html#boxplots"><i class="fa fa-check"></i>Boxplots</a></li>
-<li class="chapter" data-level="" data-path="chapter-9-advanced-plotting.html"><a href="chapter-9-advanced-plotting.html#bar-plots"><i class="fa fa-check"></i>Bar Plots</a></li>
-<li class="chapter" data-level="" data-path="chapter-9-advanced-plotting.html"><a href="chapter-9-advanced-plotting.html#line-plots"><i class="fa fa-check"></i>Line Plots</a></li>
+<li class="chapter" data-level="" data-path="chapter-9-reproducible-workflow-with-rmarkdown.html"><a href="chapter-9-reproducible-workflow-with-rmarkdown.html"><i class="fa fa-check"></i>Chapter 9: Reproducible Workflow with RMarkdown</a><ul>
+<li class="chapter" data-level="" data-path="chapter-9-reproducible-workflow-with-rmarkdown.html"><a href="chapter-9-reproducible-workflow-with-rmarkdown.html#r-markdown"><i class="fa fa-check"></i>R Markdown</a><ul>
+<li class="chapter" data-level="" data-path="chapter-9-reproducible-workflow-with-rmarkdown.html"><a href="chapter-9-reproducible-workflow-with-rmarkdown.html#in-line-r-code"><i class="fa fa-check"></i>In-Line R Code</a></li>
+<li class="chapter" data-level="" data-path="chapter-9-reproducible-workflow-with-rmarkdown.html"><a href="chapter-9-reproducible-workflow-with-rmarkdown.html#pre-formatted-documents"><i class="fa fa-check"></i>Pre-formatted Documents</a></li>
+<li class="chapter" data-level="" data-path="chapter-9-reproducible-workflow-with-rmarkdown.html"><a href="chapter-9-reproducible-workflow-with-rmarkdown.html#other-tricks"><i class="fa fa-check"></i>Other Tricks</a></li>
+<li class="chapter" data-level="" data-path="chapter-9-reproducible-workflow-with-rmarkdown.html"><a href="chapter-9-reproducible-workflow-with-rmarkdown.html#important-important"><i class="fa fa-check"></i>Important, Important</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="chapter-9-advanced-plotting.html"><a href="chapter-9-advanced-plotting.html#color-schemes"><i class="fa fa-check"></i>Color Schemes</a></li>
-<li class="chapter" data-level="" data-path="chapter-9-advanced-plotting.html"><a href="chapter-9-advanced-plotting.html#themes"><i class="fa fa-check"></i>Themes</a></li>
-<li class="chapter" data-level="" data-path="chapter-9-advanced-plotting.html"><a href="chapter-9-advanced-plotting.html#labels-and-titles"><i class="fa fa-check"></i>Labels and Titles</a></li>
-<li class="chapter" data-level="" data-path="chapter-9-advanced-plotting.html"><a href="chapter-9-advanced-plotting.html#facetting"><i class="fa fa-check"></i>Facetting</a></li>
-<li class="chapter" data-level="" data-path="chapter-9-advanced-plotting.html"><a href="chapter-9-advanced-plotting.html#apply-it-8"><i class="fa fa-check"></i>Apply It</a><ul>
-<li class="chapter" data-level="" data-path="chapter-9-advanced-plotting.html"><a href="chapter-9-advanced-plotting.html#step-1-8"><i class="fa fa-check"></i>Step 1</a></li>
-<li class="chapter" data-level="" data-path="chapter-9-advanced-plotting.html"><a href="chapter-9-advanced-plotting.html#step-2-8"><i class="fa fa-check"></i>Step 2</a></li>
+<li class="chapter" data-level="" data-path="chapter-9-reproducible-workflow-with-rmarkdown.html"><a href="chapter-9-reproducible-workflow-with-rmarkdown.html#apply-it-8"><i class="fa fa-check"></i>Apply It</a><ul>
+<li class="chapter" data-level="" data-path="chapter-9-reproducible-workflow-with-rmarkdown.html"><a href="chapter-9-reproducible-workflow-with-rmarkdown.html#step-1-8"><i class="fa fa-check"></i>Step 1</a></li>
+<li class="chapter" data-level="" data-path="chapter-9-reproducible-workflow-with-rmarkdown.html"><a href="chapter-9-reproducible-workflow-with-rmarkdown.html#step-2-8"><i class="fa fa-check"></i>Step 2</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="chapter-9-advanced-plotting.html"><a href="chapter-9-advanced-plotting.html#conclusions-5"><i class="fa fa-check"></i>Conclusions</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-10-where-to-go-from-here-and-common-pitfalls.html"><a href="chapter-10-where-to-go-from-here-and-common-pitfalls.html"><i class="fa fa-check"></i>Chapter 10: Where to Go from Here and Common Pitfalls</a><ul>
 <li class="chapter" data-level="" data-path="chapter-10-where-to-go-from-here-and-common-pitfalls.html"><a href="chapter-10-where-to-go-from-here-and-common-pitfalls.html#common-pitfalls"><i class="fa fa-check"></i>Common Pitfalls</a></li>
@@ -364,7 +371,7 @@ df &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span>
 ## AIC: 2664
 ## 
 ## Number of Fisher Scoring iterations: 5</code></pre>
-<p>We used <code>glm()</code> (stands for generalized linear model). The key to making it logistic, since you can use <code>glm()</code> for a linear model using maximum likelihood instead of <code>lm()</code> with least squares, is <code>family = &quot;binomial&quot;</code>. This tells <code>R</code> to do a logistic regression.</p>
+<p>We used <code>glm()</code> (stands for generalized linear model). The key to making it logistic, since you can use <code>glm()</code> for a linear model using maximum likelihood instead of <code>lm()</code> with least squares, is <code>family = "binomial"</code>. This tells <code>R</code> to do a logistic regression.</p>
 </div>
 <div id="poisson-regression" class="section level2 unnumbered">
 <h2>Poisson Regression</h2>
@@ -403,7 +410,7 @@ df &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span>
 ## 
 ## Number of Fisher Scoring iterations: 5</code></pre>
 <p>Sedentary may be over-dispersed (see plot)
-<img src="_main_files/figure-html/unnamed-chunk-90-1.png" width="672" />
+<img src="_main_files/figure-html/unnamed-chunk-113-1.png" width="672" />
 and so other methods related to poisson may be necessary. For this book, we are not going to be delving into these in depth but we will introduce some below.</p>
 <div id="gamma" class="section level3 unnumbered">
 <h3>Gamma</h3>
@@ -435,7 +442,7 @@ g_fit &lt;-<span class="st"> </span><span class="kw">glm</span>(sed_gamma <span 
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## (Dispersion parameter for Gamma family taken to be 0.293)
+## (Dispersion parameter for Gamma family taken to be 0.2933)
 ## 
 ##     Null deviance: 1664.8  on 4436  degrees of freedom
 ## Residual deviance: 1604.2  on 4430  degrees of freedom
@@ -464,26 +471,26 @@ h_fit =<span class="st"> </span><span class="kw">hurdle</span>(sed_zero <span cl
 ## 
 ## Pearson residuals:
 ##    Min     1Q Median     3Q    Max 
-## -4.184 -1.536 -0.245  1.281 10.542 
+## -3.412 -1.523 -0.218  1.266  9.622 
 ## 
 ## Count model coefficients (truncated poisson with log link):
 ##                    Estimate Std. Error z value Pr(&gt;|z|)    
-## (Intercept)        5.641048   0.003680  1533.0   &lt;2e-16 ***
-## asthma             0.067143   0.002232    30.1   &lt;2e-16 ***
-## raceOtherHispanic  0.144913   0.004259    34.0   &lt;2e-16 ***
-## raceWhite          0.354173   0.003464   102.3   &lt;2e-16 ***
-## raceBlack          0.345159   0.003570    96.7   &lt;2e-16 ***
-## raceOther          0.351945   0.003763    93.5   &lt;2e-16 ***
-## famsize           -0.016794   0.000572   -29.4   &lt;2e-16 ***
+## (Intercept)        5.648160   0.003727  1515.3   &lt;2e-16 ***
+## asthma             0.064888   0.002243    28.9   &lt;2e-16 ***
+## raceOtherHispanic  0.136881   0.004286    31.9   &lt;2e-16 ***
+## raceWhite          0.349276   0.003506    99.6   &lt;2e-16 ***
+## raceBlack          0.349543   0.003611    96.8   &lt;2e-16 ***
+## raceOther          0.365783   0.003814    95.9   &lt;2e-16 ***
+## famsize           -0.019030   0.000577   -33.0   &lt;2e-16 ***
 ## Zero hurdle model coefficients (binomial with logit link):
-##                   Estimate Std. Error z value Pr(&gt;|z|)    
-## (Intercept)         2.8912     0.2413   11.98   &lt;2e-16 ***
-## asthma              0.1004     0.1537    0.65    0.513    
-## raceOtherHispanic  -0.4337     0.2644   -1.64    0.101    
-## raceWhite          -0.4344     0.2256   -1.93    0.054 .  
-## raceBlack          -0.4465     0.2317   -1.93    0.054 .  
-## raceOther          -0.2535     0.2497   -1.02    0.310    
-## famsize            -0.0648     0.0365   -1.77    0.076 .  
+##                    Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept)        2.298348   0.212402   10.82   &lt;2e-16 ***
+## asthma            -0.073497   0.146772   -0.50     0.62    
+## raceOtherHispanic  0.196123   0.250304    0.78     0.43    
+## raceWhite          0.176832   0.198977    0.89     0.37    
+## raceBlack          0.001412   0.203755    0.01     0.99    
+## raceOther         -0.200694   0.212528   -0.94     0.35    
+## famsize            0.000354   0.036678    0.01     0.99    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1 
 ## 
@@ -519,28 +526,28 @@ fit_beta &lt;-<span class="st"> </span><span class="kw">betareg</span>(beta_var 
 ## 
 ## Standardized weighted residuals 2:
 ##    Min     1Q Median     3Q    Max 
-## -2.031 -0.689 -0.036  0.610  2.895 
+## -2.040 -0.693 -0.052  0.643  2.917 
 ## 
 ## Coefficients (mean model with logit link):
-##                   Estimate Std. Error z value Pr(&gt;|z|)
-## (Intercept)        0.03251    0.06326    0.51     0.61
-## asthma             0.02939    0.04373    0.67     0.50
-## raceOtherHispanic  0.02185    0.07202    0.30     0.76
-## raceWhite          0.05379    0.05876    0.92     0.36
-## raceBlack          0.07957    0.06100    1.30     0.19
-## raceOther          0.00743    0.06538    0.11     0.91
-## famsize            0.00989    0.01083    0.91     0.36
+##                   Estimate Std. Error z value Pr(&gt;|z|)  
+## (Intercept)         0.0483     0.0632    0.76    0.445  
+## asthma             -0.0125     0.0437   -0.29    0.775  
+## raceOtherHispanic  -0.0022     0.0720   -0.03    0.976  
+## raceWhite          -0.0123     0.0587   -0.21    0.835  
+## raceBlack          -0.0263     0.0610   -0.43    0.666  
+## raceOther          -0.0244     0.0654   -0.37    0.709  
+## famsize             0.0223     0.0108    2.06    0.039 *
 ## 
 ## Phi coefficients (precision model with identity link):
 ##       Estimate Std. Error z value Pr(&gt;|z|)    
-## (phi)   2.4667     0.0449    54.9   &lt;2e-16 ***
+## (phi)    2.470      0.045    54.9   &lt;2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1 
 ## 
 ## Type of estimator: ML (maximum likelihood)
-## Log-likelihood: 82.6 on 8 Df
-## Pseudo R-squared: 0.00101
-## Number of iterations: 18 (BFGS) + 2 (Fisher scoring)</code></pre>
+## Log-likelihood: 78.1 on 8 Df
+## Pseudo R-squared: 0.00115
+## Number of iterations: 15 (BFGS) + 1 (Fisher scoring)</code></pre>
 <p>The output provides coefficients and the “Phi” coefficients. Both are important parts of using beta regression but we are not going to discuss it here.</p>
 <p>There are many resources available to learn more about beta regression and each of these GLM’s. As for now, we are going to move on to more complex modeling where there are clustering or repeated measures in the data.</p>
 </div>
@@ -557,7 +564,7 @@ fit_beta &lt;-<span class="st"> </span><span class="kw">betareg</span>(beta_var 
 <p>Once that code is in the file, click the <code>knit</code> button. This will create an HTML file with the code and output knitted together into one nice document. This can be read into any browser and can be used to show your work in a clean document.</p>
 </div>
 </div>
-<div id="conclusions-1" class="section level2 unnumbered">
+<div id="conclusions-2" class="section level2 unnumbered">
 <h2>Conclusions</h2>
 <p>One of the great things about <code>R</code> is that most modeling is very similar to the basic <code>lm()</code> function. In all of these GLM’s the arguments are nearly all the same: a formula, the data, and family of model. As you’ll see for Multilevel and Other Models chapters, this does not change much. Having a good start with basic models and GLM’s gets you ready for nearly every other modeling type in <code>R</code>.</p>
 

@@ -14,6 +14,7 @@ Below, we list a few `R` books that we have found to be useful. Most are availab
 2. [Efficient R Programming by Colin gillespie and Robin Lovelace](https://csgillespie.github.io/efficientR/)
 3. [The R Cookbook](http://www.cookbook-r.com/)
 4. [An Introduction to Statistical Learning](http://www-bcf.usc.edu/~gareth/ISL/)
+5. [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/)
 
 There are *many, many* books that talk about `R` in various forms so by no means is this a complete list.
 
