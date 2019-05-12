@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html >
-
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 5: Generalized Linear Models | R for Researchers: An Introduction</title>
-  <meta name="description" content="This book introduces the R statistical language for researchers in the health, behavioral, educational, and psychological sciences. It is designed for those that have little background in statistical programming but would like to use the powerful statistical and visualization tool that R offers at no cost. The light-hearted design of this book allows a researcher to investigate and begin using R relatively stress-free with intuitive and interesting examples.">
-  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+  <meta name="description" content="This book introduces the R statistical language for researchers in the health, behavioral, educational, and psychological sciences. It is designed for those that have little background in statistical programming but would like to use the powerful statistical and visualization tool that R offers at no cost. The light-hearted design of this book allows a researcher to investigate and begin using R relatively stress-free with intuitive and interesting examples." />
+  <meta name="generator" content="bookdown 0.10 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 5: Generalized Linear Models | R for Researchers: An Introduction" />
   <meta property="og:type" content="book" />
@@ -22,14 +21,14 @@
   <meta name="twitter:description" content="This book introduces the R statistical language for researchers in the health, behavioral, educational, and psychological sciences. It is designed for those that have little background in statistical programming but would like to use the powerful statistical and visualization tool that R offers at no cost. The light-hearted design of this book allows a researcher to investigate and begin using R relatively stress-free with intuitive and interesting examples." />
   <meta name="twitter:image" content="Cover.jpg" />
 
-<meta name="author" content="Tyson S. Barrett, PhD">
+<meta name="author" content="Tyson S. Barrett, PhD" />
 
 
-<meta name="date" content="2019-05-12">
+<meta name="date" content="2019-05-12" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
 <link rel="prev" href="chapter-4-basic-analyses.html">
@@ -470,32 +469,32 @@ h_fit =<span class="st"> </span><span class="kw">hurdle</span>(sed_zero <span cl
 ## hurdle(formula = sed_zero ~ asthma + race + famsize, data = df)
 ## 
 ## Pearson residuals:
-##    Min     1Q Median     3Q    Max 
-## -3.414 -1.532 -0.232  1.270 10.341 
+##     Min      1Q  Median      3Q     Max 
+## -3.9598 -1.4768 -0.3283  1.3177  8.8904 
 ## 
 ## Count model coefficients (truncated poisson with log link):
 ##                     Estimate Std. Error z value Pr(&gt;|z|)    
-## (Intercept)        5.6443017  0.0037354 1511.04   &lt;2e-16 ***
-## asthma             0.0719164  0.0022558   31.88   &lt;2e-16 ***
-## raceOtherHispanic  0.1391835  0.0042946   32.41   &lt;2e-16 ***
-## raceWhite          0.3525038  0.0035065  100.53   &lt;2e-16 ***
-## raceBlack          0.3452054  0.0036088   95.66   &lt;2e-16 ***
-## raceOther          0.3675907  0.0038023   96.68   &lt;2e-16 ***
-## famsize           -0.0195829  0.0005782  -33.87   &lt;2e-16 ***
+## (Intercept)        5.6517341  0.0037530 1505.91   &lt;2e-16 ***
+## asthma             0.0678166  0.0022458   30.20   &lt;2e-16 ***
+## raceOtherHispanic  0.1177557  0.0043245   27.23   &lt;2e-16 ***
+## raceWhite          0.3389676  0.0035272   96.10   &lt;2e-16 ***
+## raceBlack          0.3330883  0.0036288   91.79   &lt;2e-16 ***
+## raceOther          0.3450173  0.0038099   90.56   &lt;2e-16 ***
+## famsize           -0.0184812  0.0005768  -32.04   &lt;2e-16 ***
 ## Zero hurdle model coefficients (binomial with logit link):
 ##                   Estimate Std. Error z value Pr(&gt;|z|)    
-## (Intercept)        2.52795    0.22030  11.475   &lt;2e-16 ***
-## asthma            -0.20503    0.13929  -1.472    0.141    
-## raceOtherHispanic -0.08701    0.24976  -0.348    0.728    
-## raceWhite         -0.14457    0.20480  -0.706    0.480    
-## raceBlack         -0.08156    0.21312  -0.383    0.702    
-## raceOther         -0.20226    0.22422  -0.902    0.367    
-## famsize           -0.02561    0.03611  -0.709    0.478    
+## (Intercept)        2.00595    0.20416   9.825   &lt;2e-16 ***
+## asthma             0.03179    0.14933   0.213   0.8314    
+## raceOtherHispanic  0.17467    0.23440   0.745   0.4562    
+## raceWhite          0.16702    0.18743   0.891   0.3729    
+## raceBlack          0.17537    0.19566   0.896   0.3701    
+## raceOther          0.53658    0.22516   2.383   0.0172 *  
+## famsize            0.04286    0.03747   1.144   0.2527    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1 
 ## 
 ## Number of iterations in BFGS optimization: 12 
-## Log-likelihood: -2.322e+05 on 14 Df</code></pre>
+## Log-likelihood: -2.325e+05 on 14 Df</code></pre>
 <p>Notice that the output has two parts: “Count model coefficients (truncated poisson with log link):” and “Zero hurdle model coefficients (binomial with logit link):”. Together they tell us about the relationship between the predictors and a count variable with many zeros.</p>
 </div>
 <div id="negative-binomial" class="section level3 unnumbered">
@@ -526,27 +525,27 @@ fit_beta &lt;-<span class="st"> </span><span class="kw">betareg</span>(beta_var 
 ## 
 ## Standardized weighted residuals 2:
 ##     Min      1Q  Median      3Q     Max 
-## -2.0413 -0.6911 -0.0554  0.6405  2.9217 
+## -2.0384 -0.7005 -0.0444  0.6502  2.9046 
 ## 
 ## Coefficients (mean model with logit link):
-##                    Estimate Std. Error z value Pr(&gt;|z|)
-## (Intercept)        0.055021   0.063225   0.870    0.384
-## asthma            -0.066275   0.043688  -1.517    0.129
-## raceOtherHispanic  0.014470   0.071981   0.201    0.841
-## raceWhite          0.029627   0.058721   0.505    0.614
-## raceBlack         -0.003298   0.060961  -0.054    0.957
-## raceOther          0.044089   0.065345   0.675    0.500
-## famsize            0.014311   0.010819   1.323    0.186
+##                    Estimate Std. Error z value Pr(&gt;|z|)  
+## (Intercept)        0.114446   0.063075   1.814   0.0696 .
+## asthma            -0.029159   0.043578  -0.669   0.5034  
+## raceOtherHispanic -0.050530   0.071801  -0.704   0.4816  
+## raceWhite         -0.036239   0.058578  -0.619   0.5362  
+## raceBlack          0.004402   0.060816   0.072   0.9423  
+## raceOther          0.002857   0.065184   0.044   0.9650  
+## famsize            0.006158   0.010791   0.571   0.5682  
 ## 
 ## Phi coefficients (precision model with identity link):
 ##       Estimate Std. Error z value Pr(&gt;|z|)    
-## (phi)  2.47224    0.04501   54.92   &lt;2e-16 ***
+## (phi)  2.49304    0.04543   54.87   &lt;2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1 
 ## 
 ## Type of estimator: ML (maximum likelihood)
-## Log-likelihood: 82.29 on 8 Df
-## Pseudo R-squared: 0.001258
+## Log-likelihood: 88.22 on 8 Df
+## Pseudo R-squared: 0.0006721
 ## Number of iterations: 17 (BFGS) + 1 (Fisher scoring)</code></pre>
 <p>The output provides coefficients and the “Phi” coefficients. Both are important parts of using beta regression but we are not going to discuss it here.</p>
 <p>There are many resources available to learn more about beta regression and each of these GLM’s. As for now, we are going to move on to more complex modeling where there are clustering or repeated measures in the data.</p>
@@ -619,7 +618,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["_main.pdf", "_main.epub"],
+"download": null,
 "toc": {
 "collapse": "subsection"
 }

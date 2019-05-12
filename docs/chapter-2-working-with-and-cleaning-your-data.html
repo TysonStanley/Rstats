@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html >
-
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 2: Working with and Cleaning Your Data | R for Researchers: An Introduction</title>
-  <meta name="description" content="This book introduces the R statistical language for researchers in the health, behavioral, educational, and psychological sciences. It is designed for those that have little background in statistical programming but would like to use the powerful statistical and visualization tool that R offers at no cost. The light-hearted design of this book allows a researcher to investigate and begin using R relatively stress-free with intuitive and interesting examples.">
-  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+  <meta name="description" content="This book introduces the R statistical language for researchers in the health, behavioral, educational, and psychological sciences. It is designed for those that have little background in statistical programming but would like to use the powerful statistical and visualization tool that R offers at no cost. The light-hearted design of this book allows a researcher to investigate and begin using R relatively stress-free with intuitive and interesting examples." />
+  <meta name="generator" content="bookdown 0.10 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 2: Working with and Cleaning Your Data | R for Researchers: An Introduction" />
   <meta property="og:type" content="book" />
@@ -22,14 +21,14 @@
   <meta name="twitter:description" content="This book introduces the R statistical language for researchers in the health, behavioral, educational, and psychological sciences. It is designed for those that have little background in statistical programming but would like to use the powerful statistical and visualization tool that R offers at no cost. The light-hearted design of this book allows a researcher to investigate and begin using R relatively stress-free with intuitive and interesting examples." />
   <meta name="twitter:image" content="Cover.jpg" />
 
-<meta name="author" content="Tyson S. Barrett, PhD">
+<meta name="author" content="Tyson S. Barrett, PhD" />
 
 
-<meta name="date" content="2019-05-12">
+<meta name="date" content="2019-05-12" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
 <link rel="prev" href="chapter-1-the-basics.html">
@@ -353,31 +352,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3>Wide Form</h3>
 <p>Wide form generally has one unit (i.e. individual) per row. This generally looks like:</p>
 <pre><code>##    ID  Var_Time1 Var_Time2
-## 1   1  0.4695859 0.5562888
-## 2   2 -0.4989153 0.7082337
-## 3   3  1.4243077 0.4857247
-## 4   4  0.4218094 0.8903408
-## 5   5  0.1187833 0.1500519
-## 6   6  1.3453896 0.2387459
-## 7   7 -1.3868804 0.4897817
-## 8   8  1.5204741 0.4937448
-## 9   9 -0.1945302 0.8867986
-## 10 10 -0.2305814 0.9096070</code></pre>
+## 1   1 -1.3757113 0.5589909
+## 2   2  0.3246936 0.9446353
+## 3   3  0.5458689 0.3060740
+## 4   4  1.2231899 0.9095282
+## 5   5 -1.2442354 0.7077552
+## 6   6 -0.6712684 0.2370545
+## 7   7  1.8063072 0.4115180
+## 8   8 -0.3645367 0.3846069
+## 9   9 -1.0808791 0.3689210
+## 10 10 -0.7739994 0.9791406</code></pre>
 <p>Notice that each row has a unique ID, and some of the columns (all in this case) are variables at specific time points. This means that the variable is split up and is not a single column. This is a common way to collect and store data in our fields and so your data likely looks similar to this.</p>
 </div>
 <div id="long-form" class="section level3 unnumbered">
 <h3>Long Form</h3>
 <p>In contrast, long format has the lowest nested unit as a single row. This means that a single ID can span multiple rows, usually with a unique time point for each row as so:</p>
 <pre><code>##   ID Time       Var
-## 1  1    1 0.1643613
-## 2  1    2 0.2579547
-## 3  1    3 0.1620366
-## 4  1    4 0.6079725
-## 5  2    1 0.2745286
-## 6  2    2 0.4800988
-## 7  3    1 0.0372834
-## 8  3    2 0.3552082
-## 9  3    3 0.2990510</code></pre>
+## 1  1    1 0.2826966
+## 2  1    2 0.8314888
+## 3  1    3 0.7224864
+## 4  1    4 0.5824334
+## 5  2    1 0.9295970
+## 6  2    2 0.9624533
+## 7  3    1 0.6714144
+## 8  3    2 0.2572428
+## 9  3    3 0.2525727</code></pre>
 <p>Notice that a single ID spans multiple columns and that each row has only one time point. Here, time is nested within individuals making it the lowest unit. Therefore, each row corresponds to a single time point. Generally, this is the format we want for most modeling techniques and most visualizations.</p>
 <p>This is a very simple example of the differences between wide and long format. Although much more complex examples are probably available to you, we will start with this for now. Chapter 8 will delve into more complex data designs and how to reshape those. Toward the end of this chapter, we show reshaping with more simple data structures.</p>
 </div>
@@ -553,27 +552,27 @@ df_long &lt;-<span class="st"> </span><span class="kw">long</span>(df_wide,
                 <span class="dt">v.names =</span> <span class="st">&quot;Var&quot;</span>)</code></pre>
 <pre><code>## id = ID</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">df_long</code></pre>
-<pre><code>##      ID time          Var
-## 1.1   1    1  0.027531546
-## 2.1   2    1 -0.002072582
-## 3.1   3    1 -1.125101666
-## 4.1   4    1 -0.884931999
-## 5.1   5    1  1.166693860
-## 6.1   6    1  0.305469326
-## 7.1   7    1  0.219901220
-## 8.1   8    1 -1.851461570
-## 9.1   9    1  0.800994599
-## 10.1 10    1  0.054063706
-## 1.2   1    2  0.773000587
-## 2.2   2    2  0.560746894
-## 3.2   3    2  0.578071078
-## 4.2   4    2  0.933356487
-## 5.2   5    2  0.109017864
-## 6.2   6    2  0.649204050
-## 7.2   7    2  0.305301240
-## 8.2   8    2  0.401989749
-## 9.2   9    2  0.742721121
-## 10.2 10    2  0.665961532</code></pre>
+<pre><code>##      ID time         Var
+## 1.1   1    1 -0.59641369
+## 2.1   2    1 -2.33859560
+## 3.1   3    1  1.04841700
+## 4.1   4    1  0.64560143
+## 5.1   5    1 -0.56936268
+## 6.1   6    1 -0.05535576
+## 7.1   7    1 -1.91721558
+## 8.1   8    1 -0.76444955
+## 9.1   9    1 -0.59755697
+## 10.1 10    1 -1.22904309
+## 1.2   1    2  0.19522299
+## 2.2   2    2  0.88078444
+## 3.2   3    2  0.19941254
+## 4.2   4    2  0.45776855
+## 5.2   5    2  0.95357259
+## 6.2   6    2  0.92864420
+## 7.2   7    2  0.34852274
+## 8.2   8    2  0.92553304
+## 9.2   9    2  0.95637897
+## 10.2 10    2  0.43649912</code></pre>
 <p>We provided the data (<code>df_wide</code>), the time varying variables (<code>c("Var_Time1", "Var_Time2")</code>), and told it what we should name the value variable (<code>v.names = "Var"</code>). Note that the function guessed, based on its name, that the variable <code>ID</code> was the identifying variable.</p>
 <p>This function automatically assumes each observation is a time point, thus the <code>time</code> variable. We can easily change that by adding the argument <code>timevar</code> and giving it a name (e.g., <code>timevar = "cluster"</code>).</p>
 <p>And now we will go from long to wide using <code>wide()</code> from the same package.</p>
@@ -585,10 +584,10 @@ df_wide &lt;-<span class="st"> </span><span class="kw">wide</span>(df_long,
                 <span class="dt">timevar =</span> <span class="st">&quot;Time&quot;</span>)</code></pre>
 <pre><code>## id = ID</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">df_wide</code></pre>
-<pre><code>##   ID     Var.1     Var.2     Var.3     Var.4
-## 1  1 0.0470185 0.4614014 0.3181936 0.9199204
-## 5  2 0.2263305 0.5704397        NA        NA
-## 7  3 0.4748498 0.8087340 0.6750903        NA</code></pre>
+<pre><code>##   ID     Var.1      Var.2     Var.3     Var.4
+## 1  1 0.4686136 0.04518889 0.3554711 0.9447898
+## 5  2 0.4915757 0.72654518        NA        NA
+## 7  3 0.6900072 0.80857181 0.8050775        NA</code></pre>
 <p>Here, we provided the data <code>df_long</code> and the variable name (<code>Var</code>) that had the values and (<code>Time</code>) that contained the time labels (in this case, just numbers). With a little bit of code we can move data around without any copy-pasting that is so error-prone. Again, note that the function guessed, based on its name, that the variable <code>ID</code> was the identifying variable.</p>
 </div>
 <div id="joining-merging" class="section level2 unnumbered">
@@ -747,7 +746,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["_main.pdf", "_main.epub"],
+"download": null,
 "toc": {
 "collapse": "subsection"
 }

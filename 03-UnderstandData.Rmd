@@ -34,7 +34,7 @@ df %>%
 ```
 This quickly gives you means and standard deviations or counts and percentages.
 
-The code below shows the means/standard devaitions or counts/percentages by a grouping variable---in this case, `C`.
+The code below shows the means/standard devaitions or counts/percentages by a grouping variable---in this case, `asthma`.
 ```{r, message=FALSE, warning=FALSE}
 df %>%
   group_by(asthma) %>%
