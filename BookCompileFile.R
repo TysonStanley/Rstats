@@ -36,6 +36,6 @@ render_book(input = c("00_index.Rmd",
                       "08-AdvancedDataManipulation.Rmd",
                       "09-ReproducibleWorkflow.Rmd",
                       "10-LearnMore.Rmd"),
-            output_format = c("tufte_book2"))
+            output_format = c("pdf_book"))
 
 

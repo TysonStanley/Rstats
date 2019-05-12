@@ -125,10 +125,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a><ul>
-<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#part-i"><i class="fa fa-check"></i>Part I</a></li>
-<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#part-ii"><i class="fa fa-check"></i>Part II</a></li>
-<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#part-iii"><i class="fa fa-check"></i>Part III</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#part-i"><i class="fa fa-check"></i>Part I</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#part-ii"><i class="fa fa-check"></i>Part II</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#part-iii"><i class="fa fa-check"></i>Part III</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html"><i class="fa fa-check"></i>Chapter 1: The Basics</a><ul>
 <li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html#objects"><i class="fa fa-check"></i>Objects</a></li>
@@ -346,29 +346,29 @@ patha  &lt;-<span class="st"> </span><span class="kw">glm</span>(dep <span class
 ## Regression Models: 
 ## 
 ##      sed_hr ~ 
-##                          Est      SE Est/SE P-Value
-##         (Intercept)  5.88575 0.06262 93.986 0.00000
-##         dep          0.04367 0.01112  3.927 0.00009
-##         asthmaAsthma 0.41230 0.13908  2.965 0.00305
+##                         Est     SE Est/SE P-Value
+##         (Intercept)  5.8857 0.0626  93.99 0.00000
+##         dep          0.0437 0.0111   3.93 0.00009
+##         asthmaAsthma 0.4123 0.1391   2.96 0.00305
 ## 
 ##      dep ~ 
-##                        Est      SE Est/SE P-Value
-##         (Intercept)  2.948 0.07059 41.764       0
-##         asthmaAsthma 1.459 0.18250  7.993       0
+##                       Est     SE Est/SE P-Value
+##         (Intercept)  2.95 0.0706  41.76       0
+##         asthmaAsthma 1.46 0.1825   7.99       0
 ## 
 ## Unstandardized Mediated Effects: 
 ## 
 ##    Indirect Effects: 
 ## 
 ##      sed_hr ~ 
-##                             Indirect  Lower  Upper
-##         asthmaAsthma =&gt; dep   0.0637 0.0281 0.1109
+##                             Indirect  Lower Upper
+##         asthmaAsthma =&gt; dep   0.0637 0.0279 0.107
 ## 
 ##    Direct Effects: 
 ## 
 ##      sed_hr ~ 
-##                      Direct  Lower  Upper
-##         asthmaAsthma 0.4123 0.1212 0.6884
+##                      Direct Lower Upper
+##         asthmaAsthma  0.412 0.129 0.693
 ## 
 ## 
 ## Standardized Mediated Effects: 
@@ -376,14 +376,14 @@ patha  &lt;-<span class="st"> </span><span class="kw">glm</span>(dep <span class
 ##    Indirect Effects: 
 ## 
 ##      sed_hr ~ 
-##                             Indirect   Lower   Upper
-##         asthmaAsthma =&gt; dep    0.019 0.00838 0.03308
+##                             Indirect   Lower  Upper
+##         asthmaAsthma =&gt; dep    0.019 0.00834 0.0318
 ## 
 ##    Direct Effects: 
 ## 
 ##      sed_hr ~ 
-##                      Direct   Lower  Upper
-##         asthmaAsthma  0.123 0.03615 0.2053</code></pre>
+##                      Direct  Lower Upper
+##         asthmaAsthma  0.123 0.0384 0.207</code></pre>
 <p>This gives us the estimates of the individual regression models and the estimates of the indirect and direct effects.</p>
 <p>To do the exact same model with <code>lavaan</code>, we can do the following:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(lavaan)
@@ -677,22 +677,22 @@ fit</code></pre>
 ## 
 ## No pre-processing
 ## Resampling: Cross-Validated (10 fold) 
-## Summary of sample sizes: 3993, 3995, 3994, 3993, 3993, 3993, ... 
+## Summary of sample sizes: 3994, 3993, 3994, 3993, 3992, 3994, ... 
 ## Resampling results across tuning parameters:
 ## 
-##   alpha  lambda     RMSE   Rsquared  MAE  
-##   0.10   0.0008293  3.283  0.04268   2.690
-##   0.10   0.0082933  3.283  0.04238   2.691
-##   0.10   0.0829328  3.284  0.04168   2.694
-##   0.55   0.0008293  3.283  0.04265   2.690
-##   0.55   0.0082933  3.284  0.04180   2.693
-##   0.55   0.0829328  3.287  0.04045   2.701
-##   1.00   0.0008293  3.283  0.04266   2.690
-##   1.00   0.0082933  3.284  0.04171   2.693
-##   1.00   0.0829328  3.293  0.03874   2.707
+##   alpha  lambda    RMSE  Rsquared  MAE 
+##   0.10   0.000829  3.28  0.0440    2.69
+##   0.10   0.008293  3.28  0.0440    2.69
+##   0.10   0.082933  3.28  0.0436    2.69
+##   0.55   0.000829  3.28  0.0440    2.69
+##   0.55   0.008293  3.28  0.0436    2.69
+##   0.55   0.082933  3.29  0.0425    2.70
+##   1.00   0.000829  3.28  0.0441    2.69
+##   1.00   0.008293  3.28  0.0436    2.69
+##   1.00   0.082933  3.29  0.0405    2.71
 ## 
 ## RMSE was used to select the optimal model using the smallest value.
-## The final values used for the model were alpha = 1 and lambda = 0.0008293.</code></pre>
+## The final values used for the model were alpha = 1 and lambda = 0.000829.</code></pre>
 <p>With this model, we can assess the most important predictors of sedentary behavior. We can do that with:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">varImp</span>(fit)</code></pre>
 <pre><code>## glmnet variable importance
@@ -714,18 +714,9 @@ fit</code></pre>
 <h3>Random Forests</h3>
 <p>Random forests is another machine learning method that can do fantastic prediction. It is built in a very different way than the methods we have discussed up to this point. It is not built on a linear modeling scheme; rather, it is built on classification and regression trees (CART). Again, “Introduction to Statistical Learning” is a great resource to learn more.</p>
 <p>Conveniently, we can use the <code>randomForest</code> package. (We can also use the <code>caret</code> package here.) We specify the model by the formula <code>sed_hr ~ .</code> just like before, which means we want <code>sed_hr</code> to be the outcome and all the rest of the variables to be predictors.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(randomForest)</code></pre>
-<pre><code>## randomForest 4.6-14</code></pre>
-<pre><code>## Type rfNews() to see new features/changes/bug fixes.</code></pre>
-<pre><code>## 
-## Attaching package: &#39;randomForest&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
-## 
-##     combine</code></pre>
-<pre><code>## The following object is masked from &#39;package:ggplot2&#39;:
-## 
-##     margin</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">fit_rf &lt;-<span class="st"> </span><span class="kw">randomForest</span>(sed_hr <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> df2)
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(randomForest)
+
+fit_rf &lt;-<span class="st"> </span><span class="kw">randomForest</span>(sed_hr <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> df2)
 fit_rf</code></pre>
 <pre><code>## 
 ## Call:
@@ -734,8 +725,8 @@ fit_rf</code></pre>
 ##                      Number of trees: 500
 ## No. of variables tried at each split: 2
 ## 
-##           Mean of squared residuals: 10.82
-##                     % Var explained: 3.73</code></pre>
+##           Mean of squared residuals: 10.8
+##                     % Var explained: 3.75</code></pre>
 <p>We can find out which variables were important in the model via:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))  <span class="co">## back to one plot per page</span>
 <span class="kw">varImpPlot</span>(fit_rf)</code></pre>

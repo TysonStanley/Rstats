@@ -125,10 +125,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a><ul>
-<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#part-i"><i class="fa fa-check"></i>Part I</a></li>
-<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#part-ii"><i class="fa fa-check"></i>Part II</a></li>
-<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#part-iii"><i class="fa fa-check"></i>Part III</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#part-i"><i class="fa fa-check"></i>Part I</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#part-ii"><i class="fa fa-check"></i>Part II</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#part-iii"><i class="fa fa-check"></i>Part III</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html"><i class="fa fa-check"></i>Chapter 1: The Basics</a><ul>
 <li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html#objects"><i class="fa fa-check"></i>Objects</a></li>
@@ -307,14 +307,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</code></pre>
 <p>After downloading it, to use its functions, simply use:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)</code></pre>
-<pre><code>## ── Attaching packages ─────────────────────────────────────────────────────────────────────── tidyverse 1.2.1.9000 ──</code></pre>
-<pre><code>## ✔ ggplot2 3.1.1       ✔ purrr   0.3.2  
-## ✔ tibble  2.1.1       ✔ dplyr   0.8.0.1
-## ✔ tidyr   0.8.3       ✔ stringr 1.4.0  
-## ✔ readr   1.3.1       ✔ forcats 0.4.0</code></pre>
-<pre><code>## ── Conflicts ─────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::filter() masks stats::filter()
-## ✖ dplyr::lag()    masks stats::lag()</code></pre>
 <p>Note that when we loaded tidyverse it loaded several packages and told you of “conflicts”. These conflicts are where two or more functions across different packages have the same name. These functions with the same name will almost invariably differ in what they do. In this situation, the last loaded package is the one that <code>R</code> will use by default. For example, if we loaded two packages—<code>awesome</code> and <code>amazing</code>—and both had the function <code>make_really_cool</code> and we loaded <code>awesome</code> and then <code>amazing</code> as so:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(awesome)
 <span class="kw">library</span>(amazing)</code></pre>
@@ -351,32 +343,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="wide-form" class="section level3 unnumbered">
 <h3>Wide Form</h3>
 <p>Wide form generally has one unit (i.e. individual) per row. This generally looks like:</p>
-<pre><code>##    ID  Var_Time1 Var_Time2
-## 1   1 -1.3757113 0.5589909
-## 2   2  0.3246936 0.9446353
-## 3   3  0.5458689 0.3060740
-## 4   4  1.2231899 0.9095282
-## 5   5 -1.2442354 0.7077552
-## 6   6 -0.6712684 0.2370545
-## 7   7  1.8063072 0.4115180
-## 8   8 -0.3645367 0.3846069
-## 9   9 -1.0808791 0.3689210
-## 10 10 -0.7739994 0.9791406</code></pre>
+<pre><code>##    ID Var_Time1 Var_Time2
+## 1   1    0.0878     0.424
+## 2   2   -0.4002     0.372
+## 3   3   -1.6560     0.778
+## 4   4   -2.3454     0.742
+## 5   5   -1.9825     0.930
+## 6   6   -0.2816     0.189
+## 7   7    0.5631     0.476
+## 8   8    1.2788     0.626
+## 9   9    0.0715     0.631
+## 10 10    0.5439     0.640</code></pre>
 <p>Notice that each row has a unique ID, and some of the columns (all in this case) are variables at specific time points. This means that the variable is split up and is not a single column. This is a common way to collect and store data in our fields and so your data likely looks similar to this.</p>
 </div>
 <div id="long-form" class="section level3 unnumbered">
 <h3>Long Form</h3>
 <p>In contrast, long format has the lowest nested unit as a single row. This means that a single ID can span multiple rows, usually with a unique time point for each row as so:</p>
-<pre><code>##   ID Time       Var
-## 1  1    1 0.2826966
-## 2  1    2 0.8314888
-## 3  1    3 0.7224864
-## 4  1    4 0.5824334
-## 5  2    1 0.9295970
-## 6  2    2 0.9624533
-## 7  3    1 0.6714144
-## 8  3    2 0.2572428
-## 9  3    3 0.2525727</code></pre>
+<pre><code>##   ID Time   Var
+## 1  1    1 0.916
+## 2  1    2 0.728
+## 3  1    3 0.588
+## 4  1    4 0.538
+## 5  2    1 0.780
+## 6  2    2 0.829
+## 7  3    1 0.904
+## 8  3    2 0.654
+## 9  3    3 0.451</code></pre>
 <p>Notice that a single ID spans multiple columns and that each row has only one time point. Here, time is nested within individuals making it the lowest unit. Therefore, each row corresponds to a single time point. Generally, this is the format we want for most modeling techniques and most visualizations.</p>
 <p>This is a very simple example of the differences between wide and long format. Although much more complex examples are probably available to you, we will start with this for now. Chapter 8 will delve into more complex data designs and how to reshape those. Toward the end of this chapter, we show reshaping with more simple data structures.</p>
 </div>
@@ -552,27 +544,27 @@ df_long &lt;-<span class="st"> </span><span class="kw">long</span>(df_wide,
                 <span class="dt">v.names =</span> <span class="st">&quot;Var&quot;</span>)</code></pre>
 <pre><code>## id = ID</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">df_long</code></pre>
-<pre><code>##      ID time         Var
-## 1.1   1    1 -0.59641369
-## 2.1   2    1 -2.33859560
-## 3.1   3    1  1.04841700
-## 4.1   4    1  0.64560143
-## 5.1   5    1 -0.56936268
-## 6.1   6    1 -0.05535576
-## 7.1   7    1 -1.91721558
-## 8.1   8    1 -0.76444955
-## 9.1   9    1 -0.59755697
-## 10.1 10    1 -1.22904309
-## 1.2   1    2  0.19522299
-## 2.2   2    2  0.88078444
-## 3.2   3    2  0.19941254
-## 4.2   4    2  0.45776855
-## 5.2   5    2  0.95357259
-## 6.2   6    2  0.92864420
-## 7.2   7    2  0.34852274
-## 8.2   8    2  0.92553304
-## 9.2   9    2  0.95637897
-## 10.2 10    2  0.43649912</code></pre>
+<pre><code>##      ID time     Var
+## 1.1   1    1 -0.0333
+## 2.1   2    1 -0.8780
+## 3.1   3    1  1.0825
+## 4.1   4    1  1.3428
+## 5.1   5    1 -1.0647
+## 6.1   6    1  0.1047
+## 7.1   7    1 -0.7869
+## 8.1   8    1  1.4591
+## 9.1   9    1 -0.1474
+## 10.1 10    1  1.2374
+## 1.2   1    2  0.4841
+## 2.2   2    2  0.9274
+## 3.2   3    2  0.2795
+## 4.2   4    2  0.9703
+## 5.2   5    2  0.4505
+## 6.2   6    2  0.7659
+## 7.2   7    2  0.6437
+## 8.2   8    2  0.7914
+## 9.2   9    2  0.1848
+## 10.2 10    2  0.3600</code></pre>
 <p>We provided the data (<code>df_wide</code>), the time varying variables (<code>c("Var_Time1", "Var_Time2")</code>), and told it what we should name the value variable (<code>v.names = "Var"</code>). Note that the function guessed, based on its name, that the variable <code>ID</code> was the identifying variable.</p>
 <p>This function automatically assumes each observation is a time point, thus the <code>time</code> variable. We can easily change that by adding the argument <code>timevar</code> and giving it a name (e.g., <code>timevar = "cluster"</code>).</p>
 <p>And now we will go from long to wide using <code>wide()</code> from the same package.</p>
@@ -584,10 +576,10 @@ df_wide &lt;-<span class="st"> </span><span class="kw">wide</span>(df_long,
                 <span class="dt">timevar =</span> <span class="st">&quot;Time&quot;</span>)</code></pre>
 <pre><code>## id = ID</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">df_wide</code></pre>
-<pre><code>##   ID     Var.1      Var.2     Var.3     Var.4
-## 1  1 0.4686136 0.04518889 0.3554711 0.9447898
-## 5  2 0.4915757 0.72654518        NA        NA
-## 7  3 0.6900072 0.80857181 0.8050775        NA</code></pre>
+<pre><code>##   ID Var.1 Var.2 Var.3 Var.4
+## 1  1 0.746 0.406 0.139 0.273
+## 5  2 0.313 0.956    NA    NA
+## 7  3 0.198 0.195 0.772    NA</code></pre>
 <p>Here, we provided the data <code>df_long</code> and the variable name (<code>Var</code>) that had the values and (<code>Time</code>) that contained the time labels (in this case, just numbers). With a little bit of code we can move data around without any copy-pasting that is so error-prone. Again, note that the function guessed, based on its name, that the variable <code>ID</code> was the identifying variable.</p>
 </div>
 <div id="joining-merging" class="section level2 unnumbered">
