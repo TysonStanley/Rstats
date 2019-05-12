@@ -1,5 +1,5 @@
 ## Compile book
-setwd("~/Box Sync/GitHub/R_Book")
+setwd("~/Dropbox/GitHub/R_Book")
 library(bookdown)
 render_book(input = c("index.Rmd",
                       "01-TheLanguage.Rmd",

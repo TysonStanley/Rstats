@@ -319,16 +319,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We introduced you to wide form and long form of your data in Chapter 2. In reality, data can take on nearly infinite forms but for most data in health, behavioral, and social science, these two forms are sufficient to know.</p>
 <p>In some situations, your data may have multiple variables with multiple time points (known as time-variant variables) and other variables that are not (known as time-invariant variables) as shown:</p>
 <pre><code>##    ID Var_Time1 Var_Time2 Var2_Time1 Var2_Time2     Var3
-## 1   1  1.337482   0.81833     1.0738    2.02816  0.02127
-## 2   2  1.548217   0.92470    -0.1820    0.64617  0.10815
-## 3   3 -0.621358   0.09733    -0.4382   -0.77808 -1.42067
-## 4   4 -0.036009   0.13678    -1.0802    0.92329 -0.27358
-## 5   5  0.009662   0.72278    -0.1301   -0.09163  1.70173
-## 6   6 -0.358720   0.70771    -1.8851   -0.46354 -0.87077
-## 7   7 -0.312419   0.08597    -1.7799    0.28570 -0.74608
-## 8   8  1.572146   0.43255     0.7666   -0.71170 -0.47658
-## 9   9  0.733921   0.82711     0.1775   -0.40432 -1.08545
-## 10 10 -0.410375   0.75627    -0.2058    1.43019 -2.08794</code></pre>
+## 1   1  -0.90123   0.46055    2.09918    -1.5756  0.65169
+## 2   2   0.71924   0.63053    1.62598    -0.1459  1.15137
+## 3   3  -0.02733   0.36067    1.36019    -0.8777 -0.82308
+## 4   4  -1.44213   0.38799    1.50802    -1.6466 -1.38830
+## 5   5   0.47457   0.01369    3.20647    -0.4923  0.40212
+## 6   6   0.13290   0.27394   -1.32747     2.3225  0.28372
+## 7   7  -1.28000   0.96150   -0.05933    -1.6612 -0.06446
+## 8   8   2.16217   0.11387    0.02825    -0.4995  0.68826
+## 9   9  -0.28751   0.97699    0.99118     0.9857 -0.84357
+## 10 10  -0.04721   0.05028    0.01681     0.1549  2.15448</code></pre>
 <p>Notice that this data frame is in wide format (each ID is one row and there are multiple times or measurements per person for two of the variables). To change this to wide format, we’ll use <code>long()</code>. The first argument is the data.frame, followed by two variable names (names that we go into the new long form), and then the numbers of the columns that are the measures (e.g., <code>Var_Time1</code> and <code>Var_Time2</code>).</p>
 <pre class="sourceCode r"><code class="sourceCode r">long_form &lt;-<span class="st"> </span>furniture<span class="op">::</span><span class="kw">long</span>(d1, 
                              <span class="kw">c</span>(<span class="st">&quot;Var_Time1&quot;</span>, <span class="st">&quot;Var_Time2&quot;</span>), 
@@ -336,27 +336,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
                              <span class="dt">v.names =</span> <span class="kw">c</span>(<span class="st">&quot;Var&quot;</span>, <span class="st">&quot;Var2&quot;</span>))</code></pre>
 <pre><code>## id = ID</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">long_form</code></pre>
-<pre><code>##      ID     Var3 time       Var     Var2
-## 1.1   1  0.02127    1  1.337482  1.07381
-## 2.1   2  0.10815    1  1.548217 -0.18203
-## 3.1   3 -1.42067    1 -0.621358 -0.43821
-## 4.1   4 -0.27358    1 -0.036009 -1.08025
-## 5.1   5  1.70173    1  0.009662 -0.13008
-## 6.1   6 -0.87077    1 -0.358720 -1.88506
-## 7.1   7 -0.74608    1 -0.312419 -1.77986
-## 8.1   8 -0.47658    1  1.572146  0.76660
-## 9.1   9 -1.08545    1  0.733921  0.17747
-## 10.1 10 -2.08794    1 -0.410375 -0.20576
-## 1.2   1  0.02127    2  0.818325  2.02816
-## 2.2   2  0.10815    2  0.924699  0.64617
-## 3.2   3 -1.42067    2  0.097335 -0.77808
-## 4.2   4 -0.27358    2  0.136776  0.92329
-## 5.2   5  1.70173    2  0.722784 -0.09163
-## 6.2   6 -0.87077    2  0.707714 -0.46354
-## 7.2   7 -0.74608    2  0.085975  0.28570
-## 8.2   8 -0.47658    2  0.432553 -0.71170
-## 9.2   9 -1.08545    2  0.827108 -0.40432
-## 10.2 10 -2.08794    2  0.756270  1.43019</code></pre>
+<pre><code>##      ID     Var3 time      Var     Var2
+## 1.1   1  0.65169    1 -0.90123  2.09918
+## 2.1   2  1.15137    1  0.71924  1.62598
+## 3.1   3 -0.82308    1 -0.02733  1.36019
+## 4.1   4 -1.38830    1 -1.44213  1.50802
+## 5.1   5  0.40212    1  0.47457  3.20647
+## 6.1   6  0.28372    1  0.13290 -1.32747
+## 7.1   7 -0.06446    1 -1.28000 -0.05933
+## 8.1   8  0.68826    1  2.16217  0.02825
+## 9.1   9 -0.84357    1 -0.28751  0.99118
+## 10.1 10  2.15448    1 -0.04721  0.01681
+## 1.2   1  0.65169    2  0.46055 -1.57555
+## 2.2   2  1.15137    2  0.63053 -0.14588
+## 3.2   3 -0.82308    2  0.36067 -0.87774
+## 4.2   4 -1.38830    2  0.38799 -1.64657
+## 5.2   5  0.40212    2  0.01369 -0.49232
+## 6.2   6  0.28372    2  0.27394  2.32246
+## 7.2   7 -0.06446    2  0.96150 -1.66123
+## 8.2   8  0.68826    2  0.11387 -0.49947
+## 9.2   9 -0.84357    2  0.97699  0.98569
+## 10.2 10  2.15448    2  0.05028  0.15490</code></pre>
 <p>As you can see, it took the variable names and put that in our first variable that we called “measures”. The actual values of the variables are now in the variable we called “values”. Finally, notice that each ID now has two rows (one for each measure).</p>
 <p>To go in the opposite direction (long to wide) we can use the <code>wide()</code> function. All we do is provide the long formed data frame, variables that are time-varying (<code>Var1</code> and <code>Var2</code>) and the variable showing the time points (<code>time</code>).</p>
 <pre class="sourceCode r"><code class="sourceCode r">wide_form &lt;-<span class="st"> </span>furniture<span class="op">::</span><span class="kw">wide</span>(long_form, 
@@ -364,17 +364,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
                              <span class="dt">timevar =</span> <span class="st">&quot;time&quot;</span>)</code></pre>
 <pre><code>## id = ID</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">wide_form</code></pre>
-<pre><code>##      ID     Var3     Var.1  Var2.1   Var.2   Var2.2
-## 1.1   1  0.02127  1.337482  1.0738 0.81833  2.02816
-## 2.1   2  0.10815  1.548217 -0.1820 0.92470  0.64617
-## 3.1   3 -1.42067 -0.621358 -0.4382 0.09733 -0.77808
-## 4.1   4 -0.27358 -0.036009 -1.0802 0.13678  0.92329
-## 5.1   5  1.70173  0.009662 -0.1301 0.72278 -0.09163
-## 6.1   6 -0.87077 -0.358720 -1.8851 0.70771 -0.46354
-## 7.1   7 -0.74608 -0.312419 -1.7799 0.08597  0.28570
-## 8.1   8 -0.47658  1.572146  0.7666 0.43255 -0.71170
-## 9.1   9 -1.08545  0.733921  0.1775 0.82711 -0.40432
-## 10.1 10 -2.08794 -0.410375 -0.2058 0.75627  1.43019</code></pre>
+<pre><code>##      ID     Var3    Var.1   Var2.1   Var.2  Var2.2
+## 1.1   1  0.65169 -0.90123  2.09918 0.46055 -1.5756
+## 2.1   2  1.15137  0.71924  1.62598 0.63053 -0.1459
+## 3.1   3 -0.82308 -0.02733  1.36019 0.36067 -0.8777
+## 4.1   4 -1.38830 -1.44213  1.50802 0.38799 -1.6466
+## 5.1   5  0.40212  0.47457  3.20647 0.01369 -0.4923
+## 6.1   6  0.28372  0.13290 -1.32747 0.27394  2.3225
+## 7.1   7 -0.06446 -1.28000 -0.05933 0.96150 -1.6612
+## 8.1   8  0.68826  2.16217  0.02825 0.11387 -0.4995
+## 9.1   9 -0.84357 -0.28751  0.99118 0.97699  0.9857
+## 10.1 10  2.15448 -0.04721  0.01681 0.05028  0.1549</code></pre>
 <p>And we are back to the wide form.</p>
 <p>These steps can be followed for situations where there are many measures per person, many people per cluster, etc. In most cases, this is the way multilevel data analysis occurs (as we discussed in Chapter 6) and is a nice way to get our data ready for plotting.</p>
 <p>The following figure shows the features of both <code>long()</code> and <code>wide()</code>.</p>
@@ -438,7 +438,7 @@ m</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">v2 &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dt">mean=</span><span class="dv">5</span>, <span class="dt">sd=</span><span class="dv">2</span>)
 add1 &lt;-<span class="st"> </span>v1 <span class="op">+</span><span class="st"> </span>v2
 <span class="kw">round</span>(add1, <span class="dv">3</span>)</code></pre>
-<pre><code>##  [1]  5.828  8.591 10.793  9.987  8.596  5.138  7.563  2.494  7.147  1.061</code></pre>
+<pre><code>##  [1] 7.421 8.592 5.404 7.216 7.917 4.420 7.654 6.420 7.574 3.653</code></pre>
 <p>We will compare the speed of this to other ways of adding two variables together and see it is the simplest and quickest.</p>
 </div>
 <div id="for-loops" class="section level3 unnumbered">
@@ -451,7 +451,7 @@ add1 &lt;-<span class="st"> </span>v1 <span class="op">+</span><span class="st">
   add2[i] &lt;-<span class="st"> </span>v1[i] <span class="op">+</span><span class="st"> </span>v2[i]
 }
 <span class="kw">round</span>(add2, <span class="dv">3</span>)</code></pre>
-<pre><code>##  [1]  5.828  8.591 10.793  9.987  8.596  5.138  7.563  2.494  7.147  1.061</code></pre>
+<pre><code>##  [1] 7.421 8.592 5.404 7.216 7.917 4.420 7.654 6.420 7.574 3.653</code></pre>
 <p>Same results! But, we’ll see later that the speed is much than the vectorized function.</p>
 </div>
 <div id="the-apply-family" class="section level3 unnumbered">
@@ -468,7 +468,7 @@ add1 &lt;-<span class="st"> </span>v1 <span class="op">+</span><span class="st">
 <pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(v1, v2)
 add3 &lt;-<span class="st"> </span><span class="kw">apply</span>(df, <span class="dv">1</span>, sum)
 <span class="kw">round</span>(add3, <span class="dv">3</span>)</code></pre>
-<pre><code>##  [1]  5.828  8.591 10.793  9.987  8.596  5.138  7.563  2.494  7.147  1.061</code></pre>
+<pre><code>##  [1] 7.421 8.592 5.404 7.216 7.917 4.420 7.654 6.420 7.574 3.653</code></pre>
 <p>The function <code>apply()</code> has three main arguments: a) the <code>data.frame</code> or list of data, b) 1 meaning to apply the function for each row or 2 to the columns, and c) the function to use.</p>
 <p>We can also use one of our own functions such as <code>important_statistics2()</code> within the <code>apply</code> family.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lapply</span>(df, important_statistics2)</code></pre>
@@ -477,18 +477,18 @@ add3 &lt;-<span class="st"> </span><span class="kw">apply</span>(df, <span class
 ## 1 10  1.8 1.033
 ## 
 ## $v2
-##    N Mean    SD
-## 1 10 4.92 2.523</code></pre>
+##    N  Mean   SD
+## 1 10 4.827 1.48</code></pre>
 <p>This gives us a list of two elements, one for each variable, with the statistics that our function provides. With a little adjustment, we can make this into a <code>data.frame</code> using the <code>do.call()</code> function with <code>"rbind"</code>.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">do.call</span>(<span class="st">&quot;rbind&quot;</span>, <span class="kw">lapply</span>(df, important_statistics2))</code></pre>
-<pre><code>##     N Mean    SD
-## v1 10 1.80 1.033
-## v2 10 4.92 2.523</code></pre>
+<pre><code>##     N  Mean    SD
+## v1 10 1.800 1.033
+## v2 10 4.827 1.480</code></pre>
 <p><code>tapply()</code> allows us to get information by a grouping factor. We are going to add a factor variable to the data frame we are using <code>df</code> and then get the mean of the variables by group.</p>
 <pre class="sourceCode r"><code class="sourceCode r">group1 &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">sample</span>(<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="dv">10</span>, <span class="dt">replace=</span><span class="ot">TRUE</span>))
 <span class="kw">tapply</span>(df<span class="op">$</span>v1, group1, mean)</code></pre>
-<pre><code>##   0   1 
-## 2.0 1.5</code></pre>
+<pre><code>##     0     1 
+## 1.333 2.000</code></pre>
 <p>We now have the means by each group. This, however, is probably replaced by the 3 step summary that we learned earlier in <code>dplyr</code> using <code>group_by()</code> and <code>summarize()</code>.</p>
 <p>These functions are useful in many situations, especially where there are no vectorized functions. You can always get an idea of whether to use a <code>for</code> loop or an <code>apply</code> function by giving it a try on a small subset of data to see if one is better and/or faster.</p>
 <div id="speed-comparison" class="section level4 unnumbered">
@@ -508,9 +508,9 @@ add3 &lt;-<span class="st"> </span><span class="kw">apply</span>(df, <span class
                <span class="st">`</span><span class="dt">+</span><span class="st">`</span>(v1, v2))</code></pre>
 <pre><code>## Unit: nanoseconds
 ##               expr   min      lq    mean  median      uq     max neval cld
-##    forloop(v1, v2)  1807  2212.0 51630.8  2551.5  2744.0 4918136   100   a
-##  apply(df, 1, sum) 69264 70964.5 74349.1 71810.5 72998.5  160458   100   a
-##            v1 + v2   168   278.5   385.3   372.5   462.5    1920   100   a</code></pre>
+##    forloop(v1, v2)  1688  2151.0 50437.4  2559.0  2806.5 4795923   100   a
+##  apply(df, 1, sum) 69181 71102.5 75688.1 72271.5 73581.5  189867   100   a
+##            v1 + v2   231   306.5   441.3   408.5   513.5    2671   100   a</code></pre>
 <p>Of course, as it says the units are in nanoseconds. Whether a function takes 200 or 200,000 nanoseconds probably won’t change your life. However, if the function is being used repeatedly or on on large data sets, this can make a difference.</p>
 </div>
 </div>
@@ -524,9 +524,9 @@ add3 &lt;-<span class="st"> </span><span class="kw">apply</span>(df, <span class
 ## [2,]  1.8
 ## 
 ## $v2
-##       [,1]
-## [1,] 10.00
-## [2,]  4.92</code></pre>
+##        [,1]
+## [1,] 10.000
+## [2,]  4.827</code></pre>
 <p>So we don’t name the function but we design it like we would a named function, just minus the <code>return()</code>. We take <code>x</code> (which is a column of <code>df</code>) and do <code>length()</code> and <code>mean()</code> and bind them by rows. The first argument in the anonymous function will be the column or variable of the data you provide.</p>
 <p>Here’s another example:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lapply</span>(df, <span class="cf">function</span>(y) y <span class="op">*</span><span class="st"> </span><span class="dv">2</span> <span class="op">/</span><span class="st"> </span><span class="kw">sd</span>(y))</code></pre>
@@ -534,8 +534,7 @@ add3 &lt;-<span class="st"> </span><span class="kw">apply</span>(df, <span class
 ##  [1] 1.936 5.809 3.873 7.746 3.873 1.936 3.873 1.936 1.936 1.936
 ## 
 ## $v2
-##  [1] 3.82772 4.43214 6.97029 4.74627 5.22930 3.28057 4.40995 1.18401
-##  [9] 4.87335 0.04851</code></pre>
+##  [1] 8.674 7.554 4.599 4.345 7.994 4.620 7.639 7.322 8.881 3.585</code></pre>
 <p>We take <code>y</code> (again, the column of <code>df</code>), times it by two and divide by the standard deviation of <code>y</code>. Note that this is gibberish and is not some special formula, but again, we can see how flexible it is.</p>
 <p>The last two examples also show something important regarding the output:</p>
 <ol style="list-style-type: decimal">
@@ -553,29 +552,27 @@ add3 &lt;-<span class="st"> </span><span class="kw">apply</span>(df, <span class
 ##  [1] 1.936 5.809 3.873 7.746 3.873 1.936 3.873 1.936 1.936 1.936
 ## 
 ## $v2
-##  [1] 3.82772 4.43214 6.97029 4.74627 5.22930 3.28057 4.40995 1.18401
-##  [9] 4.87335 0.04851</code></pre>
+##  [1] 8.674 7.554 4.599 4.345 7.994 4.620 7.639 7.322 8.881 3.585</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">purrr<span class="op">::</span><span class="kw">map_df</span>(df, <span class="cf">function</span>(y) y <span class="op">*</span><span class="st"> </span><span class="dv">2</span> <span class="op">/</span><span class="st"> </span><span class="kw">sd</span>(y))</code></pre>
 <pre><code>## # A tibble: 10 x 2
-##       v1     v2
-##    &lt;dbl&gt;  &lt;dbl&gt;
-##  1  1.94 3.83  
-##  2  5.81 4.43  
-##  3  3.87 6.97  
-##  4  7.75 4.75  
-##  5  3.87 5.23  
-##  6  1.94 3.28  
-##  7  3.87 4.41  
-##  8  1.94 1.18  
-##  9  1.94 4.87  
-## 10  1.94 0.0485</code></pre>
+##       v1    v2
+##    &lt;dbl&gt; &lt;dbl&gt;
+##  1  1.94  8.67
+##  2  5.81  7.55
+##  3  3.87  4.60
+##  4  7.75  4.34
+##  5  3.87  7.99
+##  6  1.94  4.62
+##  7  3.87  7.64
+##  8  1.94  7.32
+##  9  1.94  8.88
+## 10  1.94  3.58</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">purrr<span class="op">::</span><span class="kw">map_if</span>(df, is.numeric, <span class="cf">function</span>(y) y <span class="op">*</span><span class="st"> </span><span class="dv">2</span> <span class="op">/</span><span class="st"> </span><span class="kw">sd</span>(y))</code></pre>
 <pre><code>## $v1
 ##  [1] 1.936 5.809 3.873 7.746 3.873 1.936 3.873 1.936 1.936 1.936
 ## 
 ## $v2
-##  [1] 3.82772 4.43214 6.97029 4.74627 5.22930 3.28057 4.40995 1.18401
-##  [9] 4.87335 0.04851</code></pre>
+##  [1] 8.674 7.554 4.599 4.345 7.994 4.620 7.639 7.322 8.881 3.585</code></pre>
 </div>
 </div>
 <div id="apply-it-7" class="section level2 unnumbered">
