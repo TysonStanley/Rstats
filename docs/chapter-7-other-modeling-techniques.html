@@ -308,7 +308,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>So we’ll start with discussing mediation, then we’ll move on to SEM, followed by machine learning techniques.</p>
 <div id="mediation-modeling" class="section level2 unnumbered">
 <h2>Mediation Modeling</h2>
-<p>Mediation modeling can be done via several packages. For now, we recommend using either <code>lavaan</code> (stands for “latent variable analysis”)<a href="#fn20" class="footnote-ref" id="fnref20"><sup>20</sup></a> or <code>MarginalMediation</code> (written by the author of this book). Although both are technically still “beta” versions, they both perform very well especially for more simple models. It makes mediation modeling straightforward.</p>
+<p>Mediation modeling can be done via several packages. For now, we recommend using either <code>lavaan</code> (stands for “latent variable analysis”)<a href="#fn21" class="footnote-ref" id="fnref21"><sup>21</sup></a> or <code>MarginalMediation</code> (written by the author of this book). Although both are technically still “beta” versions, they both perform very well especially for more simple models. It makes mediation modeling straightforward.</p>
 <p>Below, we model the following mediation model:
 <span class="math display">\[
 depression = \beta_0 + \beta_1 asthma + \epsilon_1
@@ -347,29 +347,29 @@ patha  &lt;-<span class="st"> </span><span class="kw">glm</span>(dep <span class
 ## Regression Models: 
 ## 
 ##      sed_hr ~ 
-##                         Est     SE Est/SE P-Value
-##         (Intercept)  5.8857 0.0626  93.99 0.00000
-##         dep          0.0437 0.0111   3.93 0.00009
-##         asthmaAsthma 0.4123 0.1391   2.96 0.00305
+##                          Est      SE Est/SE P-Value
+##         (Intercept)  5.88575 0.06262 93.986 0.00000
+##         dep          0.04367 0.01112  3.927 0.00009
+##         asthmaAsthma 0.41230 0.13908  2.965 0.00305
 ## 
 ##      dep ~ 
-##                       Est     SE Est/SE P-Value
-##         (Intercept)  2.95 0.0706  41.76       0
-##         asthmaAsthma 1.46 0.1825   7.99       0
+##                        Est      SE Est/SE P-Value
+##         (Intercept)  2.948 0.07059 41.764       0
+##         asthmaAsthma 1.459 0.18250  7.993       0
 ## 
 ## Unstandardized Mediated Effects: 
 ## 
 ##    Indirect Effects: 
 ## 
 ##      sed_hr ~ 
-##                             Indirect  Lower Upper
-##         asthmaAsthma =&gt; dep   0.0637 0.0248 0.105
+##                             Indirect   Lower  Upper
+##         asthmaAsthma =&gt; dep   0.0637 0.03181 0.1076
 ## 
 ##    Direct Effects: 
 ## 
 ##      sed_hr ~ 
-##                      Direct Lower Upper
-##         asthmaAsthma  0.412 0.175 0.699
+##                      Direct  Lower  Upper
+##         asthmaAsthma 0.4123 0.1597 0.6644
 ## 
 ## 
 ## Standardized Mediated Effects: 
@@ -377,14 +377,14 @@ patha  &lt;-<span class="st"> </span><span class="kw">glm</span>(dep <span class
 ##    Indirect Effects: 
 ## 
 ##      sed_hr ~ 
-##                             Indirect   Lower  Upper
-##         asthmaAsthma =&gt; dep    0.019 0.00738 0.0313
+##                             Indirect   Lower   Upper
+##         asthmaAsthma =&gt; dep    0.019 0.00949 0.03211
 ## 
 ##    Direct Effects: 
 ## 
 ##      sed_hr ~ 
-##                      Direct  Lower Upper
-##         asthmaAsthma  0.123 0.0522 0.208</code></pre>
+##                      Direct   Lower  Upper
+##         asthmaAsthma  0.123 0.04764 0.1982</code></pre>
 <p>This gives us the estimates of the individual regression models and the estimates of the indirect and direct effects.</p>
 <p>To do the exact same model with <code>lavaan</code>, we can do the following:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(lavaan)
@@ -658,7 +658,7 @@ fit4 &lt;-<span class="st"> </span><span class="kw">cfa</span>(model4, <span cla
 <pre class="sourceCode r"><code class="sourceCode r">df2 &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span>
 <span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(riagendr, ridageyr, ridreth3, race, famsize, dep, asthma, sed_hr) <span class="op">%&gt;%</span>
 <span class="st">  </span>na.omit</code></pre>
-<p>Then we use the <code>train()</code> function to fit the different models. This function, by default, uses cross-validation<a href="#fn21" class="footnote-ref" id="fnref21"><sup>21</sup></a>, which we don’t discuss here, but it an important topic to become familiar with. Below we fit a model that is either a ridge, a lasso, or an elastic net model depending on the <code>alpha</code> level. This is done using the <code>method = "glmnet"</code> argument. We specify the model by the formula <code>sed_hr ~ .</code> which means we want <code>sed_hr</code> to be the outcome and all the rest of the variables to be predictors.</p>
+<p>Then we use the <code>train()</code> function to fit the different models. This function, by default, uses cross-validation<a href="#fn22" class="footnote-ref" id="fnref22"><sup>22</sup></a>, which we don’t discuss here, but it an important topic to become familiar with. Below we fit a model that is either a ridge, a lasso, or an elastic net model depending on the <code>alpha</code> level. This is done using the <code>method = "glmnet"</code> argument. We specify the model by the formula <code>sed_hr ~ .</code> which means we want <code>sed_hr</code> to be the outcome and all the rest of the variables to be predictors.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(caret)
 
 <span class="co">## Use 10-fold cross validation</span>
@@ -678,22 +678,23 @@ fit</code></pre>
 ## 
 ## No pre-processing
 ## Resampling: Cross-Validated (10 fold) 
-## Summary of sample sizes: 3993, 3993, 3994, 3993, 3993, 3993, ... 
+## Summary of sample sizes: 3993, 3993, 3992, 3994, 3994, 3993, ... 
 ## Resampling results across tuning parameters:
 ## 
-##   alpha  lambda    RMSE  Rsquared  MAE 
-##   0.10   0.000829  3.29  0.0430    2.69
-##   0.10   0.008293  3.29  0.0428    2.69
-##   0.10   0.082933  3.29  0.0422    2.70
-##   0.55   0.000829  3.29  0.0430    2.69
-##   0.55   0.008293  3.29  0.0423    2.69
-##   0.55   0.082933  3.29  0.0417    2.70
-##   1.00   0.000829  3.29  0.0430    2.69
-##   1.00   0.008293  3.29  0.0423    2.70
-##   1.00   0.082933  3.29  0.0408    2.71
+##   alpha  lambda     RMSE   Rsquared  MAE  
+##   0.10   0.0008293  3.282  0.04191   2.689
+##   0.10   0.0082933  3.283  0.04165   2.690
+##   0.10   0.0829328  3.284  0.04099   2.693
+##   0.55   0.0008293  3.282  0.04186   2.690
+##   0.55   0.0082933  3.284  0.04108   2.692
+##   0.55   0.0829328  3.286  0.04026   2.700
+##   1.00   0.0008293  3.282  0.04185   2.690
+##   1.00   0.0082933  3.284  0.04099   2.693
+##   1.00   0.0829328  3.291  0.03962   2.706
 ## 
 ## RMSE was used to select the optimal model using the smallest value.
-## The final values used for the model were alpha = 0.1 and lambda = 0.000829.</code></pre>
+## The final values used for the model were alpha = 0.1 and lambda
+##  = 0.0008293.</code></pre>
 <p>With this model, we can assess the most important predictors of sedentary behavior. We can do that with:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">varImp</span>(fit)</code></pre>
 <pre><code>## glmnet variable importance
@@ -715,9 +716,18 @@ fit</code></pre>
 <h3>Random Forests</h3>
 <p>Random forests is another machine learning method that can do fantastic prediction. It is built in a very different way than the methods we have discussed up to this point. It is not built on a linear modeling scheme; rather, it is built on classification and regression trees (CART). Again, “Introduction to Statistical Learning” is a great resource to learn more.</p>
 <p>Conveniently, we can use the <code>randomForest</code> package. (We can also use the <code>caret</code> package here.) We specify the model by the formula <code>sed_hr ~ .</code> just like before, which means we want <code>sed_hr</code> to be the outcome and all the rest of the variables to be predictors.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(randomForest)
-
-fit_rf &lt;-<span class="st"> </span><span class="kw">randomForest</span>(sed_hr <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> df2)
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(randomForest)</code></pre>
+<pre><code>## randomForest 4.6-14</code></pre>
+<pre><code>## Type rfNews() to see new features/changes/bug fixes.</code></pre>
+<pre><code>## 
+## Attaching package: &#39;randomForest&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
+## 
+##     combine</code></pre>
+<pre><code>## The following object is masked from &#39;package:ggplot2&#39;:
+## 
+##     margin</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">fit_rf &lt;-<span class="st"> </span><span class="kw">randomForest</span>(sed_hr <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> df2)
 fit_rf</code></pre>
 <pre><code>## 
 ## Call:
@@ -726,8 +736,8 @@ fit_rf</code></pre>
 ##                      Number of trees: 500
 ## No. of variables tried at each split: 2
 ## 
-##           Mean of squared residuals: 10.8
-##                     % Var explained: 3.57</code></pre>
+##           Mean of squared residuals: 10.83
+##                     % Var explained: 3.61</code></pre>
 <p>We can find out which variables were important in the model via:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))  <span class="co">## back to one plot per page</span>
 <span class="kw">varImpPlot</span>(fit_rf)</code></pre>
@@ -757,9 +767,9 @@ fit_rf</code></pre>
 </div>
 <div class="footnotes">
 <hr />
-<ol start="20">
-<li id="fn20"><p>The <code>lavaan</code> package has some great vignettes at <a href="http://lavaan.ugent.be/">http://lavaan.ugent.be/</a> to help with the other types of models it can handle.<a href="chapter-7-other-modeling-techniques.html#fnref20" class="footnote-back">↩</a></p></li>
-<li id="fn21"><p>Cross-validation is a common way to reduce over-fitting and make sure your model is generalizable. Generally, you split your data into training and testing sets. It is very common in machine learning and is beginning to be practiced in academic fields as well. We recommend using it as often as you can, especially with these methods but also to make sure your other models are accurate on new data as well.<a href="chapter-7-other-modeling-techniques.html#fnref21" class="footnote-back">↩</a></p></li>
+<ol start="21">
+<li id="fn21"><p>The <code>lavaan</code> package has some great vignettes at <a href="http://lavaan.ugent.be/">http://lavaan.ugent.be/</a> to help with the other types of models it can handle.<a href="chapter-7-other-modeling-techniques.html#fnref21" class="footnote-back">↩</a></p></li>
+<li id="fn22"><p>Cross-validation is a common way to reduce over-fitting and make sure your model is generalizable. Generally, you split your data into training and testing sets. It is very common in machine learning and is beginning to be practiced in academic fields as well. We recommend using it as often as you can, especially with these methods but also to make sure your other models are accurate on new data as well.<a href="chapter-7-other-modeling-techniques.html#fnref22" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>
@@ -805,7 +815,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["_main.epub"],
+"download": ["_main.pdf", "_main.epub"],
 "toc": {
 "collapse": "subsection"
 }

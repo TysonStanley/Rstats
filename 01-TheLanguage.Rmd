@@ -5,14 +5,16 @@
 
 `R` is an open source statistical software made by statisticians. This means it generally speaks the language of statistics. This is very helpful when it comes running analyses but can be confusing when starting to understand the code. 
 
-This book was written to help my students begin to use `R` for research across the health, behavioral, educational, and psychological sciences. The best way to begin to learn `R` (in my opinion) is by jumping right into it and using it. To do so, as we learn new concepts, we will go through two main sections: 
+The best way to begin to learn `R` (in my opinion) is by jumping right into it and using it. To do so, as we learn new concepts, we will go through two main sections within each chapter: 
 
 1. Introduction to the concept with examples of its use
-3. Application of the concept through projects provided at [tysonbarrett.com](http://tysonbarrett.com)
+3. Application of the concept through projects provided at [tysonbarrett.com](https://tysonbarrett.com)
 
-As we start working with data in `R`, we will go through several main themes, including importing and cleaning data, reshaping and otherwise wrangling[^wrangle] data, assessing data via visualizations and tables, and running common statistical tests.
+As we start working with data in `R`, we will go through several main themes, including importing and cleaning data, reshaping and otherwise wrangling[^wrangle] data, assessing data via visualizations and tables, and running common statistical tests. We will follow the flow shown in the figure below.
 
-This chapter will provide the background and foundation to start using `R`. This background revolves around data frames and functions---two general types of objects. 
+![](DataCycle.png)
+
+As such, this chapter will provide the background and foundation to start using `R`. This background is important to get us to the first step in the data analysis lifecycle---that of importing data. Without this background, most of the other things we'd discuss would not make much sense. This background revolves around understanding data frames and functions---two general types of objects. 
 
 ## Objects {-}
 
@@ -130,13 +132,13 @@ At any point, by typing:
 ```
 we get information in the "Help" window. It provides information on how to use the function, including arguments, output, and examples.
 
-Sometimes `R` by itself does not have a function that you need. We can download and use functions in **packages**[^packages]. We will be using several functions from several packages. To install them, we can use the `install.packages()` function,
+Sometimes `R` by itself does not have a function that you need. We can download and use functions in **packages**[^packages]. We can think about packages as just that, a box of things. We will be using several functions from some very useful packages. To install them, we can use the `install.packages()` function,
 
 ```{r, eval = FALSE}
 install.packages("rio")
 ```
 
-This puts the package called `rio` on your computer for you but in order to use the functions it provides, we use
+This puts the package called `rio` on your computer for you. But without the next bit of code, the functions stay hidden in the package. To dump out all the functions in the package so we can use them, we use
 
 ```{r, eval = FALSE}
 library(rio)
@@ -154,10 +156,12 @@ A special type of function is called an operator. These take two inputs---a left
 
 Most of the time you'll want to import data into `R` rather than manually entering it line by line, variable by variable.
 
-We will rely on the `rio` package to do the majority of our data importing. In general, researchers in our fields use `.csv`, `.txt`, `.sav`, and `.xlxs`. For the most part, importing will be straightforward. Regardless of the file type, we will use `rio::import()`. This notation means that the package `rio` has a function called `import()`.
+We will rely on the `rio` package to do the majority of our data importing. In general, researchers in our fields use `.csv`, `.txt`, `.sav`, and `.xlxs`. For the most part, importing will be straightforward. Regardless of the file type, we will use `rio::import()`. Using the `rio::` means we are reaching inside of the `rio` package and grabbing just one function, in this case `import()`. This is another way of grabbing a function instead of dumping out all the functions via `library(rio)`.
+
+The following code will read in the file `your_data_file.csv`. For now, it is easiest to work with data that you save in the same folder as your R script file or your RMarkdown file (both of which we will introduce in the *Apply It* section).
 
 ```{r, eval = FALSE}
-## Import a CSV file located in the same folder as your RMarkdown file
+## Import your_data_file.csv
 our_data <- rio::import("your_data_file.csv")
 ```
 
@@ -188,11 +192,11 @@ Again, if you ever have questions about the specific arguments that a certain fu
 
 ### Step 1 {-}
 
-Open the `Chapter1.Rproj` file. This will open up RStudio for you.
+Open the `Chapter1.Rproj` file. This will open up RStudio for you within the "Chapter1" project.^[A project just orients RStudio to that folder and helps you stay organized in your data analysis workflow.] 
 
 ### Step 2 {-}
 
-Once RStudio has started, in the panel on the lower-right, there is a `Files` tab. Click on that to see the project folder. You should see the data files and the `Chapter1.Rmd` file. Click on the `Chapter1.Rmd` file to open it. It should open in the upper-left panel. It has words and code already put in it. Starting at the first code chunk (has <code>```{r}</code> right above it), click on the first line and run the code. The code can be run using "Cmd + "Enter" or the Run button at the top of RStudio.
+Once RStudio has started, in the panel on the lower-right, there is a `Files` tab. Click on that to see the project folder. You should see the data files and the `Chapter1.Rmd` file. Click on the `Chapter1.Rmd` file to open it. It should open in the upper-left panel. The `.Rmd` stands for RMarkdown. It is a type of file where you can write code in code chunks (has <code>```{r}</code> right above it) and write regular text elsewhere. This particular one that I've provided already has words and code put in it for you. Starting at the first code chunk, click on the first line and run the code. The code can be run using "Cmd + "Enter" or the Run button at the top of RStudio.
 
 ### Step 3 {-}
 

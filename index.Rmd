@@ -30,7 +30,7 @@ Welcome to *R for Researchers: An Introduction*! This book is designed to help y
 
 My approach herein does not focus on the theoretical aspects of statistics or data science. Instead, it focuses on the application of the methods necessary for a researcher in the humans sciences to independently work with and analyze human data. 
 
-This book can work as a companion to other statistical texts or can be a standalone text for learning R. As a companion, Part II (explained below) can be particularly helpful getting started using R for statistical analyses. As a standalone, the entire book helps a researcher work with data throughout the "data analysis lifecycle"---from importing, cleaning, and summarizing the data to analyzing and reporting the results (see figure below).
+This book can work as a companion to other statistical texts or can be a standalone text for learning R. As a companion, Part II (explained below) can be particularly helpful getting started using R for statistical analyses. As a standalone, the entire book helps a researcher work with data throughout the "data analysis lifecycle" (see figure below)---from importing, cleaning, and summarizing the data to analyzing and reporting the results. In general, this book will follow the data analysis lifecycle, starting with importing and going through until reporting.
 
 ![](DataCycle.png)
 
@@ -86,7 +86,7 @@ Enjoy![^return]
 
 [^return]: Note that to return to Tyson's blog, you can click [here][blog]
 
-[blog]: https://tysonstanley.github.io
+[blog]: https://tysonbarrett.com
 
 
 

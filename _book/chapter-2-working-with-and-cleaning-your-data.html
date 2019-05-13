@@ -303,18 +303,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <blockquote>
 <p>“Organizing is what you do before you do something, so that when you do it, it is not all mixed up.” — A. A. Milne</p>
 </blockquote>
-<p>In order to work with and clean your data in the most modern and straightforward way, we are going to be using the “tidyverse” group of methods. The tidyverse<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a> is a group of packages<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a> that provide a simple syntax that can do many basic (and complex) data manipulating. They form a sort of “grammar” of data manipulation that simplifies both the coding approach and the way researchers think about working with data.</p>
+<p>In order to work with and clean your data in the most modern and straightforward way, we are going to be using the “tidyverse” group of methods. The tidyverse<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a> is a group of packages<a href="#fn11" class="footnote-ref" id="fnref11"><sup>11</sup></a> that provide a simple syntax that can do many basic (and complex) data manipulating. They form a sort of “grammar” of data manipulation that simplifies both the coding approach and the way researchers think about working with data.</p>
 <p>The group of packages can be downloaded via:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</code></pre>
 <p>After downloading it, to use its functions, simply use:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)</code></pre>
+<pre><code>## ── Attaching packages ─────────────────────────────────────────────────────────────────────── tidyverse 1.2.1.9000 ──</code></pre>
+<pre><code>## ✔ ggplot2 3.1.1       ✔ purrr   0.3.2  
+## ✔ tibble  2.1.1       ✔ dplyr   0.8.0.1
+## ✔ tidyr   0.8.3       ✔ stringr 1.4.0  
+## ✔ readr   1.3.1       ✔ forcats 0.4.0</code></pre>
+<pre><code>## ── Conflicts ─────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()</code></pre>
 <p>Note that when we loaded tidyverse it loaded several packages and told you of “conflicts”. These conflicts are where two or more functions across different packages have the same name. These functions with the same name will almost invariably differ in what they do. In this situation, the last loaded package is the one that <code>R</code> will use by default. For example, if we loaded two packages—<code>awesome</code> and <code>amazing</code>—and both had the function <code>make_really_cool</code> and we loaded <code>awesome</code> and then <code>amazing</code> as so:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(awesome)
 <span class="kw">library</span>(amazing)</code></pre>
 <p><code>R</code> will automatically use the function from <code>amazing</code>. We can still access the <code>awesome</code> version of the function (because, again, even though the name is the same, they won’t necessarily do the same things for you). We can do this by:</p>
 <pre class="sourceCode r"><code class="sourceCode r">awesome<span class="op">::</span><span class="kw">make_really_cool</span>(args)</code></pre>
-<p>In essence, the <code>::</code> grabs the function from inside of the package and let’s you use that.</p>
-<p>That’s a bit of an aside, but know that you can always get at a function even if it is “masked” from your current session.</p>
+<p>We showed this notation in Chapter 1. To review, the <code>::</code> grabs the function from inside of the package and let’s you use just that function. That’s a bit of an aside, but know that you can always get at a function even if it is “masked” from your current session.</p>
 <div id="tidy-methods" class="section level2 unnumbered">
 <h2>Tidy Methods</h2>
 <p>I’m introducing this to you for a couple reasons.</p>
@@ -344,32 +351,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="wide-form" class="section level3 unnumbered">
 <h3>Wide Form</h3>
 <p>Wide form generally has one unit (i.e. individual) per row. This generally looks like:</p>
-<pre><code>##    ID Var_Time1 Var_Time2
-## 1   1    0.3245   0.54791
-## 2   2    0.1639   0.21897
-## 3   3    1.5770   0.88384
-## 4   4    0.2115   0.63997
-## 5   5   -1.8099   0.76438
-## 6   6    1.7629   0.17330
-## 7   7    1.0117   0.38234
-## 8   8   -0.9884   0.09422
-## 9   9    1.2195   0.35997
-## 10 10   -1.8419   0.43440</code></pre>
+<pre><code>##    ID   Var_Time1   Var_Time2
+## 1   1 -1.82665774 0.009128897
+## 2   2  1.68390857 0.933029763
+## 3   3  1.75902687 0.249979359
+## 4   4 -1.10090426 0.622896703
+## 5   5  0.48963051 0.340643380
+## 6   6 -0.87497855 0.379341163
+## 7   7 -0.21235504 0.443984838
+## 8   8  0.87680528 0.074131385
+## 9   9  0.02772986 0.588852892
+## 10 10 -1.91455731 0.486002357</code></pre>
 <p>Notice that each row has a unique ID, and some of the columns (all in this case) are variables at specific time points. This means that the variable is split up and is not a single column. This is a common way to collect and store data in our fields and so your data likely looks similar to this.</p>
 </div>
 <div id="long-form" class="section level3 unnumbered">
 <h3>Long Form</h3>
 <p>In contrast, long format has the lowest nested unit as a single row. This means that a single ID can span multiple rows, usually with a unique time point for each row as so:</p>
-<pre><code>##   ID Time     Var
-## 1  1    1 0.71709
-## 2  1    2 0.04402
-## 3  1    3 0.59544
-## 4  1    4 0.73343
-## 5  2    1 0.60713
-## 6  2    2 0.95338
-## 7  3    1 0.32504
-## 8  3    2 0.44577
-## 9  3    3 0.93779</code></pre>
+<pre><code>##   ID Time        Var
+## 1  1    1 0.66379146
+## 2  1    2 0.58118682
+## 3  1    3 0.43395799
+## 4  1    4 0.84304727
+## 5  2    1 0.26147313
+## 6  2    2 0.52240353
+## 7  3    1 0.90175221
+## 8  3    2 0.03428608
+## 9  3    3 0.06609034</code></pre>
 <p>Notice that a single ID spans multiple columns and that each row has only one time point. Here, time is nested within individuals making it the lowest unit. Therefore, each row corresponds to a single time point. Generally, this is the format we want for most modeling techniques and most visualizations.</p>
 <p>This is a very simple example of the differences between wide and long format. Although much more complex examples are probably available to you, we will start with this for now. Chapter 8 will delve into more complex data designs and how to reshape those. Toward the end of this chapter, we show reshaping with more simple data structures.</p>
 </div>
@@ -394,7 +401,7 @@ act_df &lt;-<span class="st"> </span><span class="kw">import</span>(<span class=
 <span class="kw">names</span>(med_df) &lt;-<span class="st"> </span><span class="kw">tolower</span>(<span class="kw">names</span>(med_df))
 <span class="kw">names</span>(men_df) &lt;-<span class="st"> </span><span class="kw">tolower</span>(<span class="kw">names</span>(men_df))
 <span class="kw">names</span>(act_df) &lt;-<span class="st"> </span><span class="kw">tolower</span>(<span class="kw">names</span>(act_df))</code></pre>
-<p>This takes the names of the data frame (on the right hand side), changes them to lower case and then reassigns them to the names of the data frame.<a href="#fn11" class="footnote-ref" id="fnref11"><sup>11</sup></a></p>
+<p>This takes the names of the data frame (on the right hand side), changes them to lower case and then reassigns them to the names of the data frame.<a href="#fn12" class="footnote-ref" id="fnref12"><sup>12</sup></a></p>
 <p>We will now go through each aspect of the tidy way of working with data using these four data sets.</p>
 </div>
 </div>
@@ -535,7 +542,7 @@ dem_df <span class="op">%&gt;%</span><span class="st">                          
 <div id="reshaping" class="section level2 unnumbered">
 <h2>Reshaping</h2>
 <p>Earlier we described the differences between wide and long (or tidy) form. Now that you have an idea of the differences, we are going to introduce how to change from one to the other. Several functions exist for just this purpose, including <code>gather()</code> from the <code>tidyr</code> package and <code>reshape()</code> in the default <code>stats</code> package. Since these can be limited in certain situations, we are going to teach two functions that can be used in nearly any reshaping situation. For now, though, we will keep in simple.</p>
-<p>First, we will go from wide to long form using <code>long()</code> from the <code>furniture</code> package.<a href="#fn12" class="footnote-ref" id="fnref12"><sup>12</sup></a> We are using the ficticious data for the example of wide format from above.</p>
+<p>First, we will go from wide to long form using <code>long()</code> from the <code>furniture</code> package.<a href="#fn13" class="footnote-ref" id="fnref13"><sup>13</sup></a> We are using the ficticious data for the example of wide format from above.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co">#library(furniture)</span>
 df_wide &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="st">&quot;ID&quot;</span>=<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>), 
                       <span class="st">&quot;Var_Time1&quot;</span>=<span class="kw">rnorm</span>(<span class="dv">10</span>), 
@@ -545,27 +552,27 @@ df_long &lt;-<span class="st"> </span><span class="kw">long</span>(df_wide,
                 <span class="dt">v.names =</span> <span class="st">&quot;Var&quot;</span>)</code></pre>
 <pre><code>## id = ID</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">df_long</code></pre>
-<pre><code>##      ID time      Var
-## 1.1   1    1 -0.21993
-## 2.1   2    1  0.52694
-## 3.1   3    1 -0.03474
-## 4.1   4    1 -0.59175
-## 5.1   5    1  0.08187
-## 6.1   6    1  0.95463
-## 7.1   7    1 -0.51953
-## 8.1   8    1 -1.40878
-## 9.1   9    1  0.20090
-## 10.1 10    1 -1.09868
-## 1.2   1    2  0.95303
-## 2.2   2    2  0.23636
-## 3.2   3    2  0.34237
-## 4.2   4    2  0.51154
-## 5.2   5    2  0.30713
-## 6.2   6    2  0.82924
-## 7.2   7    2  0.19784
-## 8.2   8    2  0.57665
-## 9.2   9    2  0.74427
-## 10.2 10    2  0.05619</code></pre>
+<pre><code>##      ID time          Var
+## 1.1   1    1 -0.333951741
+## 2.1   2    1 -1.426568720
+## 3.1   3    1 -1.636822429
+## 4.1   4    1 -0.103076854
+## 5.1   5    1 -0.863310448
+## 6.1   6    1 -1.174153676
+## 7.1   7    1  0.799312003
+## 8.1   8    1 -0.819714178
+## 9.1   9    1  0.733398183
+## 10.1 10    1 -0.002236534
+## 1.2   1    2  0.818095696
+## 2.2   2    2  0.072766873
+## 3.2   3    2  0.198322854
+## 4.2   4    2  0.602794213
+## 5.2   5    2  0.365043242
+## 6.2   6    2  0.174424975
+## 7.2   7    2  0.251205900
+## 8.2   8    2  0.488671686
+## 9.2   9    2  0.234222258
+## 10.2 10    2  0.936877253</code></pre>
 <p>We provided the data (<code>df_wide</code>), the time varying variables (<code>c("Var_Time1", "Var_Time2")</code>), and told it what we should name the value variable (<code>v.names = "Var"</code>). Note that the function guessed, based on its name, that the variable <code>ID</code> was the identifying variable.</p>
 <p>This function automatically assumes each observation is a time point, thus the <code>time</code> variable. We can easily change that by adding the argument <code>timevar</code> and giving it a name (e.g., <code>timevar = "cluster"</code>).</p>
 <p>And now we will go from long to wide using <code>wide()</code> from the same package.</p>
@@ -577,16 +584,16 @@ df_wide &lt;-<span class="st"> </span><span class="kw">wide</span>(df_long,
                 <span class="dt">timevar =</span> <span class="st">&quot;Time&quot;</span>)</code></pre>
 <pre><code>## id = ID</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">df_wide</code></pre>
-<pre><code>##   ID  Var.1  Var.2  Var.3  Var.4
-## 1  1 0.1444 0.6763 0.7907 0.5043
-## 5  2 0.8213 0.5296     NA     NA
-## 7  3 0.2145 0.8325 0.4209     NA</code></pre>
+<pre><code>##   ID     Var.1     Var.2     Var.3     Var.4
+## 1  1 0.8994227 0.7214949 0.4274312 0.9213086
+## 5  2 0.4962018 0.9713351        NA        NA
+## 7  3 0.8376052 0.3542951 0.8857001        NA</code></pre>
 <p>Here, we provided the data <code>df_long</code> and the variable name (<code>Var</code>) that had the values and (<code>Time</code>) that contained the time labels (in this case, just numbers). With a little bit of code we can move data around without any copy-pasting that is so error-prone. Again, note that the function guessed, based on its name, that the variable <code>ID</code> was the identifying variable.</p>
 </div>
 <div id="joining-merging" class="section level2 unnumbered">
 <h2>Joining (merging)</h2>
 <p>The final topic in the chapter is joining data sets. This is common in many situations including large surveys (e.g., a demographics set, physical activity set, family characteristics set), health records (financial data, doctors notes, diagnosis data), and longitudinal studies (data from wave I, data from wave II).</p>
-<p>We currently have 4 data sets that have mostly the same people in them but with different variables. One tells us about the demographics; another gives us information on mental health. We may have questions that ask whether a demographic characteristics is related to a mental health factor. This means we need to merge, or join, our data sets.<a href="#fn13" class="footnote-ref" id="fnref13"><sup>13</sup></a></p>
+<p>We currently have 4 data sets that have mostly the same people in them but with different variables. One tells us about the demographics; another gives us information on mental health. We may have questions that ask whether a demographic characteristics is related to a mental health factor. This means we need to merge, or join, our data sets.<a href="#fn14" class="footnote-ref" id="fnref14"><sup>14</sup></a></p>
 <p>When we merge a data set, we combine them based on some ID variable(s). Here, this is simple since each individual is given a unique identifier in the variable <code>seqn</code>. Within the <code>dplyr</code> package (part of the tidyverse) there are four main joining functions: <code>inner_join</code>, <code>left_join</code>, <code>right_join</code> and <code>full_join</code>. Each join combines the data in slightly different ways.</p>
 <p>The figure below shows each type of join in Venn Diagram form. Each are discussed below.</p>
 <div class="figure">
@@ -688,12 +695,12 @@ df_wide &lt;-<span class="st"> </span><span class="kw">wide</span>(df_long,
 </div>
 <div class="footnotes">
 <hr />
-<ol start="9">
-<li id="fn9"><p>Hadley Wickham (2016). tidyverse: Easily Install and Load ‘Tidyverse’ Packages. R package version 1.0.0. <a href="https://CRAN.R-project.org/package=tidyverse" class="uri">https://CRAN.R-project.org/package=tidyverse</a><a href="chapter-2-working-with-and-cleaning-your-data.html#fnref9" class="footnote-back">↩</a></p></li>
-<li id="fn10"><p>Remember, a package is an extension to <code>R</code> that gives you more functions that you can easily load into <code>R</code>.<a href="chapter-2-working-with-and-cleaning-your-data.html#fnref10" class="footnote-back">↩</a></p></li>
-<li id="fn11"><p>Note that these are not particularly helpful names, but they are the names provided in the original data source. If you have questions about the data, visit <a href="http://wwwn.cdc.gov/Nchs/Nhanes/Search/Nhanes11_12.aspx">http://wwwn.cdc.gov/Nchs/Nhanes/Search/Nhanes11_12.aspx</a>.<a href="chapter-2-working-with-and-cleaning-your-data.html#fnref11" class="footnote-back">↩</a></p></li>
-<li id="fn12"><p>Although the furniture package isn’t in the <code>tidyverse</code>, it is a valuable package to use with the other <code>tidyverse</code> packages.<a href="chapter-2-working-with-and-cleaning-your-data.html#fnref12" class="footnote-back">↩</a></p></li>
-<li id="fn13"><p>Note that this is different than adding new rows but not new variables. Merging requires that we have at least some overlap of individuals in both data sets.<a href="chapter-2-working-with-and-cleaning-your-data.html#fnref13" class="footnote-back">↩</a></p></li>
+<ol start="10">
+<li id="fn10"><p>Hadley Wickham (2016). tidyverse: Easily Install and Load ‘Tidyverse’ Packages. R package version 1.0.0. <a href="https://CRAN.R-project.org/package=tidyverse" class="uri">https://CRAN.R-project.org/package=tidyverse</a><a href="chapter-2-working-with-and-cleaning-your-data.html#fnref10" class="footnote-back">↩</a></p></li>
+<li id="fn11"><p>Remember, a package is an extension to <code>R</code> that gives you more functions that you can easily load into <code>R</code>.<a href="chapter-2-working-with-and-cleaning-your-data.html#fnref11" class="footnote-back">↩</a></p></li>
+<li id="fn12"><p>Note that these are not particularly helpful names, but they are the names provided in the original data source. If you have questions about the data, visit <a href="http://wwwn.cdc.gov/Nchs/Nhanes/Search/Nhanes11_12.aspx">http://wwwn.cdc.gov/Nchs/Nhanes/Search/Nhanes11_12.aspx</a>.<a href="chapter-2-working-with-and-cleaning-your-data.html#fnref12" class="footnote-back">↩</a></p></li>
+<li id="fn13"><p>Although the furniture package isn’t in the <code>tidyverse</code>, it is a valuable package to use with the other <code>tidyverse</code> packages.<a href="chapter-2-working-with-and-cleaning-your-data.html#fnref13" class="footnote-back">↩</a></p></li>
+<li id="fn14"><p>Note that this is different than adding new rows but not new variables. Merging requires that we have at least some overlap of individuals in both data sets.<a href="chapter-2-working-with-and-cleaning-your-data.html#fnref14" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>
@@ -739,7 +746,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["_main.epub"],
+"download": ["_main.pdf", "_main.epub"],
 "toc": {
 "collapse": "subsection"
 }

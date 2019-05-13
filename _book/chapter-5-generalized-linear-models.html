@@ -315,7 +315,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 <div id="logistic-regression" class="section level2 unnumbered">
 <h2>Logistic Regression</h2>
-<p>For binary outcomes (e.g., yes or no, correct or incorrect, sick or healthy), logistic regression is a fantastic tool that provides useful and interpretable information. Much like simple and multiple linear regression, logistic regression<a href="#fn18" class="footnote-ref" id="fnref18"><sup>18</sup></a> uses dummy coding and provides coefficients that tell us the relationship between the outcome and the independent variables.</p>
+<p>For binary outcomes (e.g., yes or no, correct or incorrect, sick or healthy), logistic regression is a fantastic tool that provides useful and interpretable information. Much like simple and multiple linear regression, logistic regression<a href="#fn19" class="footnote-ref" id="fnref19"><sup>19</sup></a> uses dummy coding and provides coefficients that tell us the relationship between the outcome and the independent variables.</p>
 <p>Since the outcome is binary, we use a statistical transformation to make things work well. This makes it so the outcome is in “log-odds.” A simple exponentiation of the coefficients and we get very useful “odds ratios.” These are very common in many fields using binary data.</p>
 <p>Luckily, running a logistic regression is simple in <code>R</code>. We first create the binary outcome variable called <code>dep</code>. We use a new function called <code>mutate</code> to create a new variable (we could do this a number of ways but this is probably the cleanest way).</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co">## First creating binary depression variable</span>
@@ -347,19 +347,19 @@ df &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span>
 ##     data = df)
 ## 
 ## Deviance Residuals: 
-##    Min      1Q  Median      3Q     Max  
-## -0.783  -0.448  -0.408  -0.364   2.547  
+##     Min       1Q   Median       3Q      Max  
+## -0.7831  -0.4479  -0.4078  -0.3645   2.5471  
 ## 
 ## Coefficients:
-##                    Estimate Std. Error z value Pr(&gt;|z|)    
-## (Intercept)       -2.620355   0.238077  -11.01  &lt; 2e-16 ***
-## asthma             0.568845   0.127633    4.46  8.3e-06 ***
-## sed                0.000564   0.000261    2.16   0.0307 *  
-## raceOtherHispanic  0.716257   0.232867    3.08   0.0021 ** 
-## raceWhite          0.128706   0.211641    0.61   0.5431    
-## raceBlack          0.018921   0.220546    0.09   0.9316    
-## raceOther         -0.490141   0.257012   -1.91   0.0565 .  
-## famsize           -0.031831   0.037322   -0.85   0.3937    
+##                     Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept)       -2.6203555  0.2380770 -11.006  &lt; 2e-16 ***
+## asthma             0.5688452  0.1276326   4.457 8.32e-06 ***
+## sed                0.0005638  0.0002610   2.160   0.0307 *  
+## raceOtherHispanic  0.7162568  0.2328673   3.076   0.0021 ** 
+## raceWhite          0.1287059  0.2116414   0.608   0.5431    
+## raceBlack          0.0189205  0.2205461   0.086   0.9316    
+## raceOther         -0.4901414  0.2570123  -1.907   0.0565 .  
+## famsize           -0.0318309  0.0373218  -0.853   0.3937    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
@@ -368,7 +368,7 @@ df &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span>
 ##     Null deviance: 2706.3  on 4436  degrees of freedom
 ## Residual deviance: 2648.2  on 4429  degrees of freedom
 ##   (195 observations deleted due to missingness)
-## AIC: 2664
+## AIC: 2664.2
 ## 
 ## Number of Fisher Scoring iterations: 5</code></pre>
 <p>We used <code>glm()</code> (stands for generalized linear model). The key to making it logistic, since you can use <code>glm()</code> for a linear model using maximum likelihood instead of <code>lm()</code> with least squares, is <code>family = "binomial"</code>. This tells <code>R</code> to do a logistic regression.</p>
@@ -386,18 +386,18 @@ df &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span>
 ##     data = df)
 ## 
 ## Deviance Residuals: 
-##    Min      1Q  Median      3Q     Max  
-## -27.36   -8.43   -1.48    5.82   34.51  
+##     Min       1Q   Median       3Q      Max  
+## -27.362   -8.430   -1.477    5.823   34.507  
 ## 
 ## Coefficients:
-##                    Estimate Std. Error z value Pr(&gt;|z|)    
-## (Intercept)        5.649987   0.003555  1589.3   &lt;2e-16 ***
-## asthma             0.061496   0.002143    28.7   &lt;2e-16 ***
-## raceOtherHispanic  0.139344   0.004094    34.0   &lt;2e-16 ***
-## raceWhite          0.348462   0.003344   104.2   &lt;2e-16 ***
-## raceBlack          0.340035   0.003443    98.8   &lt;2e-16 ***
-## raceOther          0.355795   0.003627    98.1   &lt;2e-16 ***
-## famsize           -0.018867   0.000549   -34.4   &lt;2e-16 ***
+##                     Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept)        5.6499871  0.0035550 1589.31   &lt;2e-16 ***
+## asthma             0.0614965  0.0021434   28.69   &lt;2e-16 ***
+## raceOtherHispanic  0.1393438  0.0040940   34.04   &lt;2e-16 ***
+## raceWhite          0.3484622  0.0033438  104.21   &lt;2e-16 ***
+## raceBlack          0.3400346  0.0034430   98.76   &lt;2e-16 ***
+## raceOther          0.3557953  0.0036273   98.09   &lt;2e-16 ***
+## famsize           -0.0188673  0.0005488  -34.38   &lt;2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
@@ -427,22 +427,22 @@ g_fit &lt;-<span class="st"> </span><span class="kw">glm</span>(sed_gamma <span 
 ##     data = df)
 ## 
 ## Deviance Residuals: 
-##    Min      1Q  Median      3Q     Max  
-## -4.359  -0.461  -0.084   0.293   1.687  
+##     Min       1Q   Median       3Q      Max  
+## -4.3589  -0.4613  -0.0845   0.2926   1.6868  
 ## 
 ## Coefficients:
-##                    Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)        3.57e-03   1.13e-04   31.51   &lt;2e-16 ***
-## asthma            -1.60e-04   5.86e-05   -2.74   0.0063 ** 
-## raceOtherHispanic -4.87e-04   1.31e-04   -3.72   0.0002 ***
-## raceWhite         -1.09e-03   1.08e-04  -10.11   &lt;2e-16 ***
-## raceBlack         -1.07e-03   1.10e-04   -9.70   &lt;2e-16 ***
-## raceOther         -1.11e-03   1.15e-04   -9.70   &lt;2e-16 ***
-## famsize            5.11e-05   1.55e-05    3.29   0.0010 ** 
+##                     Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)        3.567e-03  1.132e-04  31.515  &lt; 2e-16 ***
+## asthma            -1.604e-04  5.865e-05  -2.735  0.00626 ** 
+## raceOtherHispanic -4.874e-04  1.309e-04  -3.723  0.00020 ***
+## raceWhite         -1.090e-03  1.078e-04 -10.115  &lt; 2e-16 ***
+## raceBlack         -1.068e-03  1.102e-04  -9.697  &lt; 2e-16 ***
+## raceOther         -1.110e-03  1.145e-04  -9.695  &lt; 2e-16 ***
+## famsize            5.107e-05  1.552e-05   3.289  0.00101 ** 
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## (Dispersion parameter for Gamma family taken to be 0.2933)
+## (Dispersion parameter for Gamma family taken to be 0.2932604)
 ## 
 ##     Null deviance: 1664.8  on 4436  degrees of freedom
 ## Residual deviance: 1604.2  on 4430  degrees of freedom
@@ -470,32 +470,32 @@ h_fit =<span class="st"> </span><span class="kw">hurdle</span>(sed_zero <span cl
 ## hurdle(formula = sed_zero ~ asthma + race + famsize, data = df)
 ## 
 ## Pearson residuals:
-##    Min     1Q Median     3Q    Max 
-## -3.749 -1.522 -0.228  1.302  9.561 
+##     Min      1Q  Median      3Q     Max 
+## -3.3818 -1.5071 -0.2363  1.2835  9.6828 
 ## 
 ## Count model coefficients (truncated poisson with log link):
-##                    Estimate Std. Error z value Pr(&gt;|z|)    
-## (Intercept)        5.649291   0.003724  1517.1   &lt;2e-16 ***
-## asthma             0.053098   0.002233    23.8   &lt;2e-16 ***
-## raceOtherHispanic  0.147206   0.004274    34.4   &lt;2e-16 ***
-## raceWhite          0.352461   0.003496   100.8   &lt;2e-16 ***
-## raceBlack          0.336865   0.003597    93.7   &lt;2e-16 ***
-## raceOther          0.345562   0.003789    91.2   &lt;2e-16 ***
-## famsize           -0.016831   0.000575   -29.3   &lt;2e-16 ***
+##                     Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept)        5.6575964  0.0037122 1524.05   &lt;2e-16 ***
+## asthma             0.0633179  0.0022419   28.24   &lt;2e-16 ***
+## raceOtherHispanic  0.1395786  0.0042964   32.49   &lt;2e-16 ***
+## raceWhite          0.3492693  0.0034993   99.81   &lt;2e-16 ***
+## raceBlack          0.3382684  0.0036042   93.85   &lt;2e-16 ***
+## raceOther          0.3576680  0.0037892   94.39   &lt;2e-16 ***
+## famsize           -0.0210298  0.0005733  -36.68   &lt;2e-16 ***
 ## Zero hurdle model coefficients (binomial with logit link):
 ##                    Estimate Std. Error z value Pr(&gt;|z|)    
-## (Intercept)        2.300226   0.215362   10.68   &lt;2e-16 ***
-## asthma             0.205286   0.159489    1.29     0.20    
-## raceOtherHispanic -0.021001   0.243079   -0.09     0.93    
-## raceWhite         -0.046218   0.198343   -0.23     0.82    
-## raceBlack          0.082712   0.208543    0.40     0.69    
-## raceOther          0.173495   0.227182    0.76     0.45    
-## famsize            0.000542   0.037335    0.01     0.99    
+## (Intercept)        2.308817   0.213731  10.802   &lt;2e-16 ***
+## asthma            -0.004980   0.146211  -0.034    0.973    
+## raceOtherHispanic -0.118395   0.238347  -0.497    0.619    
+## raceWhite         -0.052732   0.197888  -0.266    0.790    
+## raceBlack         -0.011050   0.206073  -0.054    0.957    
+## raceOther          0.136929   0.225678   0.607    0.544    
+## famsize            0.004339   0.036529   0.119    0.905    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1 
 ## 
 ## Number of iterations in BFGS optimization: 12 
-## Log-likelihood: -2.34e+05 on 14 Df</code></pre>
+## Log-likelihood: -2.336e+05 on 14 Df</code></pre>
 <p>Notice that the output has two parts: “Count model coefficients (truncated poisson with log link):” and “Zero hurdle model coefficients (binomial with logit link):”. Together they tell us about the relationship between the predictors and a count variable with many zeros.</p>
 </div>
 <div id="negative-binomial" class="section level3 unnumbered">
@@ -525,28 +525,28 @@ fit_beta &lt;-<span class="st"> </span><span class="kw">betareg</span>(beta_var 
 ## betareg(formula = beta_var ~ asthma + race + famsize, data = df)
 ## 
 ## Standardized weighted residuals 2:
-##    Min     1Q Median     3Q    Max 
-## -2.025 -0.682 -0.060  0.597  2.893 
+##     Min      1Q  Median      3Q     Max 
+## -2.0604 -0.6926 -0.0533  0.6292  2.9322 
 ## 
 ## Coefficients (mean model with logit link):
-##                   Estimate Std. Error z value Pr(&gt;|z|)   
-## (Intercept)        0.16926    0.06338    2.67   0.0076 **
-## asthma            -0.03063    0.04378   -0.70   0.4842   
-## raceOtherHispanic -0.09426    0.07214   -1.31   0.1914   
-## raceWhite         -0.04613    0.05886   -0.78   0.4332   
-## raceBlack         -0.03673    0.06110   -0.60   0.5477   
-## raceOther         -0.03901    0.06549   -0.60   0.5514   
-## famsize           -0.00799    0.01084   -0.74   0.4609   
+##                    Estimate Std. Error z value Pr(&gt;|z|)  
+## (Intercept)        0.107216   0.062913   1.704   0.0883 .
+## asthma             0.048626   0.043483   1.118   0.2634  
+## raceOtherHispanic -0.020135   0.071620  -0.281   0.7786  
+## raceWhite          0.012292   0.058430   0.210   0.8334  
+## raceBlack         -0.020624   0.060658  -0.340   0.7338  
+## raceOther         -0.050570   0.065012  -0.778   0.4367  
+## famsize           -0.001598   0.010763  -0.148   0.8820  
 ## 
 ## Phi coefficients (precision model with identity link):
 ##       Estimate Std. Error z value Pr(&gt;|z|)    
-## (phi)   2.4549     0.0447      55   &lt;2e-16 ***
+## (phi)  2.51316    0.04583   54.84   &lt;2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1 
 ## 
 ## Type of estimator: ML (maximum likelihood)
-## Log-likelihood: 76.7 on 8 Df
-## Pseudo R-squared: 0.000645
+## Log-likelihood: 90.26 on 8 Df
+## Pseudo R-squared: 0.0008233
 ## Number of iterations: 17 (BFGS) + 1 (Fisher scoring)</code></pre>
 <p>The output provides coefficients and the “Phi” coefficients. Both are important parts of using beta regression but we are not going to discuss it here.</p>
 <p>There are many resources available to learn more about beta regression and each of these GLM’s. As for now, we are going to move on to more complex modeling where there are clustering or repeated measures in the data.</p>
@@ -572,8 +572,8 @@ fit_beta &lt;-<span class="st"> </span><span class="kw">betareg</span>(beta_var 
 </div>
 <div class="footnotes">
 <hr />
-<ol start="18">
-<li id="fn18"><p>Technically, logistic regression is a linear regression model.<a href="chapter-5-generalized-linear-models.html#fnref18" class="footnote-back">↩</a></p></li>
+<ol start="19">
+<li id="fn19"><p>Technically, logistic regression is a linear regression model.<a href="chapter-5-generalized-linear-models.html#fnref19" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>
@@ -619,7 +619,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["_main.epub"],
+"download": ["_main.pdf", "_main.epub"],
 "toc": {
 "collapse": "subsection"
 }

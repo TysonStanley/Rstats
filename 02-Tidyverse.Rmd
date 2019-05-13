@@ -26,9 +26,7 @@ library(amazing)
 awesome::make_really_cool(args)
 ```
 
-In essence, the `::` grabs the function from inside of the package and let's you use that. 
-
-That's a bit of an aside, but know that you can always get at a function even if it is "masked" from your current session.
+We showed this notation in Chapter 1. To review, the `::` grabs the function from inside of the package and let's you use just that function. That's a bit of an aside, but know that you can always get at a function even if it is "masked" from your current session.
 
 ## Tidy Methods {-}
 

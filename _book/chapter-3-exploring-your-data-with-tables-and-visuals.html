@@ -312,7 +312,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="descriptive-statistics" class="section level2 unnumbered">
 <h2>Descriptive Statistics</h2>
 <p>Several methods of discovering descriptives in a succinct way have been developed for <code>R</code>. My favorite (full disclosure: it is one that I made so I may be biased) is the <code>table1</code> function in the <code>furniture</code> package.</p>
-<p>This function has been designed to be simple and complete. It produces a well-formatted table that you can easily export and use as a table in a report or article.<a href="#fn14" class="footnote-ref" id="fnref14"><sup>14</sup></a> We’ll use the <code>df</code> object we created in Chapter 2.</p>
+<p>This function has been designed to be simple and complete. It produces a well-formatted table that you can easily export and use as a table in a report or article.<a href="#fn15" class="footnote-ref" id="fnref15"><sup>15</sup></a> We’ll use the <code>df</code> object we created in Chapter 2.</p>
 <p>Let’s get descriptive statistics for five of the variables: asthma, race, depression, family size, and sedentary behavior.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co">#library(furniture)</span>
 df <span class="op">%&gt;%</span>
@@ -384,7 +384,7 @@ df <span class="op">%&gt;%</span>
 ##                     365.2 (201.1) 392.4 (200.0)        
 ## ────────────────────────────────────────────────────────</code></pre>
 <p>Several other options exist for you to play around with, including obtaining medians and ranges and removing a lot of the white space of the table.</p>
-<p>With three or four short lines of code we can get a good idea about variables that may be related to the grouping variable and any missingness in the factor variables. There’s much more you can do with <code>table1</code> and there are vignettes and tutorials available to learn more.<a href="#fn15" class="footnote-ref" id="fnref15"><sup>15</sup></a></p>
+<p>With three or four short lines of code we can get a good idea about variables that may be related to the grouping variable and any missingness in the factor variables. There’s much more you can do with <code>table1</code> and there are vignettes and tutorials available to learn more.<a href="#fn16" class="footnote-ref" id="fnref16"><sup>16</sup></a></p>
 <p>Other quick descriptive functions exist; here are a few of them.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co">## install with install.packages(&quot;psych&quot;)</span>
 psych<span class="op">::</span><span class="kw">describe</span>(df)  </code></pre>
@@ -396,7 +396,7 @@ janitor<span class="op">::</span><span class="kw">tabyl</span>(df)</code></pre>
 </div>
 <div id="visualizations" class="section level2 unnumbered">
 <h2>Visualizations</h2>
-<p>Understanding your data, in my experience, almost always requires visualizations<a href="#fn16" class="footnote-ref" id="fnref16"><sup>16</sup></a>. If we are going to use a model of some sort, understanding the distributions and relationships beforehand are very helpful in interpreting the model and catching errors in the data. Also finding any outliers or errors that could be highly influencing the modeling should be understood beforehand.</p>
+<p>Understanding your data, in my experience, almost always requires visualizations<a href="#fn17" class="footnote-ref" id="fnref17"><sup>17</sup></a>. If we are going to use a model of some sort, understanding the distributions and relationships beforehand are very helpful in interpreting the model and catching errors in the data. Also finding any outliers or errors that could be highly influencing the modeling should be understood beforehand.</p>
 <p>For simple but appealing visualizations we are going to be using <code>ggplot2</code>. This package is used to produce professional level plots for many journalism organizations (e.g. five-thrity-eight). These plots are quickly presentation quality and can be used to impress your boss, your advisor, or your friends.</p>
 <div id="using-ggplot2" class="section level3 unnumbered">
 <h3>Using <code>ggplot2</code></h3>
@@ -441,7 +441,7 @@ janitor<span class="op">::</span><span class="kw">tabyl</span>(df)</code></pre>
 <pre><code>## Warning: Removed 18 rows containing non-finite values (stat_smooth).</code></pre>
 <pre><code>## Warning: Removed 18 rows containing missing values (geom_point).</code></pre>
 <p><img src="_main_files/figure-html/unnamed-chunk-62-1.png" width="672" /></p>
-<p>We are going to make the first one again but with some aesthetic adjustments. Notice that we just added two extra lines telling <code>ggplot2</code> how we want some things to look.<a href="#fn17" class="footnote-ref" id="fnref17"><sup>17</sup></a></p>
+<p>We are going to make the first one again but with some aesthetic adjustments. Notice that we just added two extra lines telling <code>ggplot2</code> how we want some things to look.<a href="#fn18" class="footnote-ref" id="fnref18"><sup>18</sup></a></p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x=</span>famsize, <span class="dt">y=</span>dep, <span class="dt">group =</span> famsize)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">color =</span> riagendr)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span>
@@ -715,11 +715,11 @@ p1 <span class="op">+</span><span class="st"> </span>
 </div>
 <div class="footnotes">
 <hr />
-<ol start="14">
-<li id="fn14"><p>It is called “table1” because a nice descriptive table is often found in the first table of many academic papers.<a href="chapter-3-exploring-your-data-with-tables-and-visuals.html#fnref14" class="footnote-back">↩</a></p></li>
-<li id="fn15"><p><a href="tysonstanley.github.io">tysonstanley.github.io</a><a href="chapter-3-exploring-your-data-with-tables-and-visuals.html#fnref15" class="footnote-back">↩</a></p></li>
-<li id="fn16"><p>If you’d like to learn more about data visualization, see Kieran Healy’s <em>Data Visualization: A Practical Introduction</em> at <a href="http://socviz.co">http://socviz.co</a>.<a href="chapter-3-exploring-your-data-with-tables-and-visuals.html#fnref16" class="footnote-back">↩</a></p></li>
-<li id="fn17"><p>This is just scratching the surface of what we can change in the plots.<a href="chapter-3-exploring-your-data-with-tables-and-visuals.html#fnref17" class="footnote-back">↩</a></p></li>
+<ol start="15">
+<li id="fn15"><p>It is called “table1” because a nice descriptive table is often found in the first table of many academic papers.<a href="chapter-3-exploring-your-data-with-tables-and-visuals.html#fnref15" class="footnote-back">↩</a></p></li>
+<li id="fn16"><p><a href="tysonstanley.github.io">tysonstanley.github.io</a><a href="chapter-3-exploring-your-data-with-tables-and-visuals.html#fnref16" class="footnote-back">↩</a></p></li>
+<li id="fn17"><p>If you’d like to learn more about data visualization, see Kieran Healy’s <em>Data Visualization: A Practical Introduction</em> at <a href="http://socviz.co">http://socviz.co</a>.<a href="chapter-3-exploring-your-data-with-tables-and-visuals.html#fnref17" class="footnote-back">↩</a></p></li>
+<li id="fn18"><p>This is just scratching the surface of what we can change in the plots.<a href="chapter-3-exploring-your-data-with-tables-and-visuals.html#fnref18" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>
@@ -765,7 +765,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["_main.epub"],
+"download": ["_main.pdf", "_main.epub"],
 "toc": {
 "collapse": "subsection"
 }
