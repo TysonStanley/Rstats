@@ -24,7 +24,7 @@
 <meta name="author" content="Tyson S. Barrett, PhD" />
 
 
-<meta name="date" content="2019-05-12" />
+<meta name="date" content="2019-05-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -126,6 +126,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <ul class="summary">
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#preparation"><i class="fa fa-check"></i>Preparation</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#part-i"><i class="fa fa-check"></i>Part I</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#part-ii"><i class="fa fa-check"></i>Part II</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#part-iii"><i class="fa fa-check"></i>Part III</a></li>
@@ -362,13 +363,13 @@ patha  &lt;-<span class="st"> </span><span class="kw">glm</span>(dep <span class
 ## 
 ##      sed_hr ~ 
 ##                             Indirect  Lower Upper
-##         asthmaAsthma =&gt; dep   0.0637 0.0279 0.107
+##         asthmaAsthma =&gt; dep   0.0637 0.0248 0.105
 ## 
 ##    Direct Effects: 
 ## 
 ##      sed_hr ~ 
 ##                      Direct Lower Upper
-##         asthmaAsthma  0.412 0.129 0.693
+##         asthmaAsthma  0.412 0.175 0.699
 ## 
 ## 
 ## Standardized Mediated Effects: 
@@ -377,13 +378,13 @@ patha  &lt;-<span class="st"> </span><span class="kw">glm</span>(dep <span class
 ## 
 ##      sed_hr ~ 
 ##                             Indirect   Lower  Upper
-##         asthmaAsthma =&gt; dep    0.019 0.00834 0.0318
+##         asthmaAsthma =&gt; dep    0.019 0.00738 0.0313
 ## 
 ##    Direct Effects: 
 ## 
 ##      sed_hr ~ 
 ##                      Direct  Lower Upper
-##         asthmaAsthma  0.123 0.0384 0.207</code></pre>
+##         asthmaAsthma  0.123 0.0522 0.208</code></pre>
 <p>This gives us the estimates of the individual regression models and the estimates of the indirect and direct effects.</p>
 <p>To do the exact same model with <code>lavaan</code>, we can do the following:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(lavaan)
@@ -677,37 +678,37 @@ fit</code></pre>
 ## 
 ## No pre-processing
 ## Resampling: Cross-Validated (10 fold) 
-## Summary of sample sizes: 3994, 3993, 3994, 3993, 3992, 3994, ... 
+## Summary of sample sizes: 3993, 3993, 3994, 3993, 3993, 3993, ... 
 ## Resampling results across tuning parameters:
 ## 
 ##   alpha  lambda    RMSE  Rsquared  MAE 
-##   0.10   0.000829  3.28  0.0440    2.69
-##   0.10   0.008293  3.28  0.0440    2.69
-##   0.10   0.082933  3.28  0.0436    2.69
-##   0.55   0.000829  3.28  0.0440    2.69
-##   0.55   0.008293  3.28  0.0436    2.69
-##   0.55   0.082933  3.29  0.0425    2.70
-##   1.00   0.000829  3.28  0.0441    2.69
-##   1.00   0.008293  3.28  0.0436    2.69
-##   1.00   0.082933  3.29  0.0405    2.71
+##   0.10   0.000829  3.29  0.0430    2.69
+##   0.10   0.008293  3.29  0.0428    2.69
+##   0.10   0.082933  3.29  0.0422    2.70
+##   0.55   0.000829  3.29  0.0430    2.69
+##   0.55   0.008293  3.29  0.0423    2.69
+##   0.55   0.082933  3.29  0.0417    2.70
+##   1.00   0.000829  3.29  0.0430    2.69
+##   1.00   0.008293  3.29  0.0423    2.70
+##   1.00   0.082933  3.29  0.0408    2.71
 ## 
 ## RMSE was used to select the optimal model using the smallest value.
-## The final values used for the model were alpha = 1 and lambda = 0.000829.</code></pre>
+## The final values used for the model were alpha = 0.1 and lambda = 0.000829.</code></pre>
 <p>With this model, we can assess the most important predictors of sedentary behavior. We can do that with:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">varImp</span>(fit)</code></pre>
 <pre><code>## glmnet variable importance
 ## 
 ##                   Overall
-## raceOther         100.000
-## raceWhite          95.553
-## raceBlack          92.974
-## raceOtherHispanic  30.979
-## asthmaAsthma       14.747
-## riagendr            6.608
-## famsize             6.158
-## dep                 1.858
-## ridreth3            0.414
-## ridageyr            0.000</code></pre>
+## raceOther          100.00
+## raceBlack           83.52
+## raceWhite           80.22
+## raceOtherHispanic   28.12
+## asthmaAsthma        10.87
+## ridreth3             5.47
+## riagendr             4.81
+## famsize              4.54
+## dep                  1.37
+## ridageyr             0.00</code></pre>
 <p>This shows us that, of these variables, <code>race</code> was most important, followed by <code>asthma</code>. Importantly, though, this model did not predict the outcome very well so these are likely not very important predictors overall.</p>
 </div>
 <div id="random-forests" class="section level3 unnumbered">
@@ -726,7 +727,7 @@ fit_rf</code></pre>
 ## No. of variables tried at each split: 2
 ## 
 ##           Mean of squared residuals: 10.8
-##                     % Var explained: 3.75</code></pre>
+##                     % Var explained: 3.57</code></pre>
 <p>We can find out which variables were important in the model via:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))  <span class="co">## back to one plot per page</span>
 <span class="kw">varImpPlot</span>(fit_rf)</code></pre>
@@ -804,7 +805,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": null,
+"download": ["_main.epub"],
 "toc": {
 "collapse": "subsection"
 }

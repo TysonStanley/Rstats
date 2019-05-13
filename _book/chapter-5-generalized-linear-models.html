@@ -24,7 +24,7 @@
 <meta name="author" content="Tyson S. Barrett, PhD" />
 
 
-<meta name="date" content="2019-05-12" />
+<meta name="date" content="2019-05-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -126,6 +126,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <ul class="summary">
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#preparation"><i class="fa fa-check"></i>Preparation</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#part-i"><i class="fa fa-check"></i>Part I</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#part-ii"><i class="fa fa-check"></i>Part II</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#part-iii"><i class="fa fa-check"></i>Part III</a></li>
@@ -441,7 +442,7 @@ g_fit &lt;-<span class="st"> </span><span class="kw">glm</span>(sed_gamma <span 
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## (Dispersion parameter for Gamma family taken to be 0.293)
+## (Dispersion parameter for Gamma family taken to be 0.2933)
 ## 
 ##     Null deviance: 1664.8  on 4436  degrees of freedom
 ## Residual deviance: 1604.2  on 4430  degrees of freedom
@@ -470,26 +471,26 @@ h_fit =<span class="st"> </span><span class="kw">hurdle</span>(sed_zero <span cl
 ## 
 ## Pearson residuals:
 ##    Min     1Q Median     3Q    Max 
-## -3.533 -1.570 -0.169  1.256  9.857 
+## -3.749 -1.522 -0.228  1.302  9.561 
 ## 
 ## Count model coefficients (truncated poisson with log link):
-##                   Estimate Std. Error z value Pr(&gt;|z|)    
-## (Intercept)        5.64791    0.00369  1529.0   &lt;2e-16 ***
-## asthma             0.05805    0.00225    25.8   &lt;2e-16 ***
-## raceOtherHispanic  0.13922    0.00428    32.5   &lt;2e-16 ***
-## raceWhite          0.34270    0.00348    98.4   &lt;2e-16 ***
-## raceBlack          0.33561    0.00358    93.7   &lt;2e-16 ***
-## raceOther          0.35082    0.00378    92.9   &lt;2e-16 ***
-## famsize           -0.01468    0.00057   -25.7   &lt;2e-16 ***
+##                    Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept)        5.649291   0.003724  1517.1   &lt;2e-16 ***
+## asthma             0.053098   0.002233    23.8   &lt;2e-16 ***
+## raceOtherHispanic  0.147206   0.004274    34.4   &lt;2e-16 ***
+## raceWhite          0.352461   0.003496   100.8   &lt;2e-16 ***
+## raceBlack          0.336865   0.003597    93.7   &lt;2e-16 ***
+## raceOther          0.345562   0.003789    91.2   &lt;2e-16 ***
+## famsize           -0.016831   0.000575   -29.3   &lt;2e-16 ***
 ## Zero hurdle model coefficients (binomial with logit link):
-##                   Estimate Std. Error z value Pr(&gt;|z|)    
-## (Intercept)         2.4839     0.2168   11.46   &lt;2e-16 ***
-## asthma             -0.1354     0.1464   -0.92     0.36    
-## raceOtherHispanic  -0.1317     0.2385   -0.55     0.58    
-## raceWhite           0.0262     0.1998    0.13     0.90    
-## raceBlack           0.1023     0.2091    0.49     0.62    
-## raceOther           0.1195     0.2257    0.53     0.60    
-## famsize            -0.0444     0.0371   -1.20     0.23    
+##                    Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept)        2.300226   0.215362   10.68   &lt;2e-16 ***
+## asthma             0.205286   0.159489    1.29     0.20    
+## raceOtherHispanic -0.021001   0.243079   -0.09     0.93    
+## raceWhite         -0.046218   0.198343   -0.23     0.82    
+## raceBlack          0.082712   0.208543    0.40     0.69    
+## raceOther          0.173495   0.227182    0.76     0.45    
+## famsize            0.000542   0.037335    0.01     0.99    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1 
 ## 
@@ -525,27 +526,27 @@ fit_beta &lt;-<span class="st"> </span><span class="kw">betareg</span>(beta_var 
 ## 
 ## Standardized weighted residuals 2:
 ##    Min     1Q Median     3Q    Max 
-## -2.056 -0.700 -0.068  0.642  2.874 
+## -2.025 -0.682 -0.060  0.597  2.893 
 ## 
 ## Coefficients (mean model with logit link):
-##                   Estimate Std. Error z value Pr(&gt;|z|)
-## (Intercept)        0.08520    0.06330    1.35     0.18
-## asthma             0.05061    0.04375    1.16     0.25
-## raceOtherHispanic -0.02659    0.07206   -0.37     0.71
-## raceWhite          0.02801    0.05879    0.48     0.63
-## raceBlack         -0.02956    0.06103   -0.48     0.63
-## raceOther         -0.00563    0.06542   -0.09     0.93
-## famsize            0.01061    0.01083    0.98     0.33
+##                   Estimate Std. Error z value Pr(&gt;|z|)   
+## (Intercept)        0.16926    0.06338    2.67   0.0076 **
+## asthma            -0.03063    0.04378   -0.70   0.4842   
+## raceOtherHispanic -0.09426    0.07214   -1.31   0.1914   
+## raceWhite         -0.04613    0.05886   -0.78   0.4332   
+## raceBlack         -0.03673    0.06110   -0.60   0.5477   
+## raceOther         -0.03901    0.06549   -0.60   0.5514   
+## famsize           -0.00799    0.01084   -0.74   0.4609   
 ## 
 ## Phi coefficients (precision model with identity link):
 ##       Estimate Std. Error z value Pr(&gt;|z|)    
-## (phi)   2.4636     0.0449    54.9   &lt;2e-16 ***
+## (phi)   2.4549     0.0447      55   &lt;2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1 
 ## 
 ## Type of estimator: ML (maximum likelihood)
-## Log-likelihood: 86.2 on 8 Df
-## Pseudo R-squared: 0.00105
+## Log-likelihood: 76.7 on 8 Df
+## Pseudo R-squared: 0.000645
 ## Number of iterations: 17 (BFGS) + 1 (Fisher scoring)</code></pre>
 <p>The output provides coefficients and the “Phi” coefficients. Both are important parts of using beta regression but we are not going to discuss it here.</p>
 <p>There are many resources available to learn more about beta regression and each of these GLM’s. As for now, we are going to move on to more complex modeling where there are clustering or repeated measures in the data.</p>
@@ -618,7 +619,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": null,
+"download": ["_main.epub"],
 "toc": {
 "collapse": "subsection"
 }

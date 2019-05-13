@@ -5,8 +5,7 @@ date: "`r Sys.Date()`"
 output:
   bookdown::pdf_book:
     latex_engine: "xelatex"
-  bookdown::gitbook:
-    download: [epub, pdf]
+  bookdown::gitbook: default
 documentclass: book
 link-citations: yes
 bibliography: [book.bib]
@@ -14,6 +13,8 @@ biblio-style: apalike
 description: "This book introduces the R statistical language for researchers in the health, behavioral, educational, and psychological sciences. It is designed for those that have little background in statistical programming but would like to use the powerful statistical and visualization tool that R offers at no cost. The light-hearted design of this book allows a researcher to investigate and begin using R relatively stress-free with intuitive and interesting examples."
 github-repo: "tysonstanley"
 cover-image: "Cover.jpg"
+editor_options: 
+  chunk_output_type: console
 ---
 
 
@@ -24,6 +25,16 @@ library(furniture)
 
 
 # Preface {-}
+
+Welcome to *R for Researchers: An Introduction*! This book is designed to help you learn to use R and RStudio for working with and analyzing your data. This book is written for researchers in what I'm calling the *human sciences*---the sciences dealing directly with human well-being (e.g. health, behavior, education, psychology, and sociology). Although different in substantive interests, the data situations faced, and analysis approaches used, in these fields are similar. As such, the topics addressed should be useful for researchers working with quantitative data in each of these areas. 
+
+My approach herein does not focus on the theoretical aspects of statistics or data science. Instead, it focuses on the application of the methods necessary for a researcher in the humans sciences to independently work with and analyze human data. 
+
+This book can work as a companion to other statistical texts or can be a standalone text for learning R. As a companion, Part II (explained below) can be particularly helpful getting started using R for statistical analyses. As a standalone, the entire book helps a researcher work with data throughout the "data analysis lifecycle"---from importing, cleaning, and summarizing the data to analyzing and reporting the results (see figure below).
+
+![](DataCycle.png)
+
+## Preparation {-}
 
 Before beginning the book, you will need to download the `R` software [www.r-project.org](https://www.r-project.org/) and then the RStudio software [www.rstudio.com](https://www.rstudio.com/). `R` will just need to be installed on your computer but you won't interact with it directly (you won't need to open it up). `RStudio`[^free] is actually how we will end up using `R`. You can think of `R` as the computer processor while `RStudio` is the keyboard and screen. `R` actually does the work but you'll only use it by using `RStudio`.
 
