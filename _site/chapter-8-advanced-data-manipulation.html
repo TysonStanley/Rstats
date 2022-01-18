@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 8: Advanced Data Manipulation | 08-AdvancedDataManipulation.knit</title>
+  <meta name="description" content="" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 8: Advanced Data Manipulation | 08-AdvancedDataManipulation.knit" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 8: Advanced Data Manipulation | 08-AdvancedDataManipulation.knit" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="site_libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="site_libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="site_libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="site_libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="site_libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="site_libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="site_libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="site_libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="site_libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path=""><a href="#chapter-8-advanced-data-manipulation"><i class="fa fa-check"></i>Chapter 8: Advanced Data Manipulation</a>
+<ul>
+<li class="chapter" data-level="" data-path=""><a href="#reshaping-your-data"><i class="fa fa-check"></i>Reshaping Your Data</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#repeating-actions-looping"><i class="fa fa-check"></i>Repeating Actions (Looping)</a>
+<ul>
+<li class="chapter" data-level="" data-path=""><a href="#your-own-functions"><i class="fa fa-check"></i>Your Own Functions</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#vectorized"><i class="fa fa-check"></i>Vectorized</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#for-loops"><i class="fa fa-check"></i>For Loops</a></li>
+<li><a href="#the-apply-family">The <code>apply</code> family</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#using-anonymous-functions-in-apply"><i class="fa fa-check"></i>Using “Anonymous Functions” in Apply</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path=""><a href="#apply-it"><i class="fa fa-check"></i>Apply It</a>
+<ul>
+<li class="chapter" data-level="" data-path=""><a href="#step-1"><i class="fa fa-check"></i>Step 1</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#step-2"><i class="fa fa-check"></i>Step 2</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path=""><a href="#conclusions"><i class="fa fa-check"></i>Conclusions</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<!--bookdown:title:end-->
+<!--bookdown:title:start-->
+<div id="chapter-8-advanced-data-manipulation" class="section level1 unnumbered">
+<h1>Chapter 8: Advanced Data Manipulation</h1>
+<blockquote>
+<p>“Every new thing creates two new questions and two new opportunities.” — Jeff Bezos</p>
+</blockquote>
+<p>There’s so much more we can do with data in <code>R</code> than what we’ve presented. Two main topics we need to clarify here are:</p>
+<ol style="list-style-type: decimal">
+<li>How do you reshape your data from wide to long form or vice versa in more complex data structures?</li>
+<li>How do can we automate tasks that we need done many times?</li>
+</ol>
+<p>We will introduce both ideas to you in this chapter. To discuss the first, show the use of <code>long()</code> and <code>wide()</code> from the <code>furniture</code> package. For the second, we need to talk about loops. Looping, for our purposes, refers to the ability to repeat something across many variables or data sets. There’s many ways of doing this but some are better than others. For looping, we’ll talk about:</p>
+<ol style="list-style-type: decimal">
+<li>vectorized functions,</li>
+<li><code>for</code> loops, and</li>
+<li>the <code>apply</code> family of functions.</li>
+</ol>
+<div id="reshaping-your-data" class="section level2 unnumbered">
+<h2>Reshaping Your Data</h2>
+<p>We introduced you to wide form and long form of your data in Chapter 2. In reality, data can take on nearly infinite forms but for most data in health, behavioral, and social science, these two forms are sufficient to know.</p>
+<p>In some situations, your data may have multiple variables with multiple time points (known as time-variant variables) and other variables that are not (known as time-invariant variables) as shown:</p>
+<pre><code>##    ID Var_Time1 Var_Time2 Var2_Time1 Var2_Time2     Var3
+## 1   1   1.74481    0.8969    0.67865   0.422125 -0.74925
+## 2   2  -0.07769    0.1269   -1.00309   0.654512  1.00953
+## 3   3  -0.23108    0.5165   -0.79458   1.576518  0.07793
+## 4   4  -0.35479    0.1717    1.32495  -0.334331 -1.02016
+## 5   5   0.72162    0.8171   -0.60252  -1.714189 -0.04330
+## 6   6   0.38485    0.6815   -0.08591   1.819832 -0.55654
+## 7   7   0.79872    0.1802    0.88882  -0.070848  0.97343
+## 8   8  -0.79787    0.9036   -1.52259   0.703370 -0.32459
+## 9   9   1.85280    0.8849   -0.58162  -0.499110 -0.29418
+## 10 10  -0.04740    0.7341    0.91892  -0.004039 -0.05126</code></pre>
+<p>Notice that this data frame is in wide format (each ID is one row and there are multiple times or measurements per person for two of the variables). To change this to wide format, we’ll use <code>long()</code>. The first argument is the data.frame, followed by two variable names (names that we go into the new long form), and then the numbers of the columns that are the measures (e.g., <code>Var_Time1</code> and <code>Var_Time2</code>).</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>long_form <span class="ot">&lt;-</span> furniture<span class="sc">::</span><span class="fu">long</span>(d1, </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>                             <span class="fu">c</span>(<span class="st">&quot;Var_Time1&quot;</span>, <span class="st">&quot;Var_Time2&quot;</span>), </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                             <span class="fu">c</span>(<span class="st">&quot;Var2_Time1&quot;</span>, <span class="st">&quot;Var2_Time2&quot;</span>),</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                             <span class="at">v.names =</span> <span class="fu">c</span>(<span class="st">&quot;Var&quot;</span>, <span class="st">&quot;Var2&quot;</span>))</span></code></pre></div>
+<pre><code>## id = ID</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>long_form</span></code></pre></div>
+<pre><code>##      ID     Var3 time      Var      Var2
+## 1.1   1 -0.74925    1  1.74481  0.678646
+## 2.1   2  1.00953    1 -0.07769 -1.003088
+## 3.1   3  0.07793    1 -0.23108 -0.794582
+## 4.1   4 -1.02016    1 -0.35479  1.324945
+## 5.1   5 -0.04330    1  0.72162 -0.602521
+## 6.1   6 -0.55654    1  0.38485 -0.085912
+## 7.1   7  0.97343    1  0.79872  0.888825
+## 8.1   8 -0.32459    1 -0.79787 -1.522593
+## 9.1   9 -0.29418    1  1.85280 -0.581616
+## 10.1 10 -0.05126    1 -0.04740  0.918922
+## 1.2   1 -0.74925    2  0.89692  0.422125
+## 2.2   2  1.00953    2  0.12692  0.654512
+## 3.2   3  0.07793    2  0.51648  1.576518
+## 4.2   4 -1.02016    2  0.17175 -0.334331
+## 5.2   5 -0.04330    2  0.81709 -1.714189
+## 6.2   6 -0.55654    2  0.68151  1.819832
+## 7.2   7  0.97343    2  0.18024 -0.070848
+## 8.2   8 -0.32459    2  0.90357  0.703370
+## 9.2   9 -0.29418    2  0.88487 -0.499110
+## 10.2 10 -0.05126    2  0.73413 -0.004039</code></pre>
+<p>As you can see, it took the variable names and put that in our first variable that we called “measures”. The actual values of the variables are now in the variable we called “values”. Finally, notice that each ID now has two rows (one for each measure).</p>
+<p>To go in the opposite direction (long to wide) we can use the <code>wide()</code> function. All we do is provide the long formed data frame, variables that are time-varying (<code>Var1</code> and <code>Var2</code>) and the variable showing the time points (<code>time</code>).</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>wide_form <span class="ot">&lt;-</span> furniture<span class="sc">::</span><span class="fu">wide</span>(long_form, </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>                             <span class="at">v.names =</span> <span class="fu">c</span>(<span class="st">&quot;Var&quot;</span>, <span class="st">&quot;Var2&quot;</span>),</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                             <span class="at">timevar =</span> <span class="st">&quot;time&quot;</span>)</span></code></pre></div>
+<pre><code>## id = ID</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>wide_form</span></code></pre></div>
+<pre><code>##      ID     Var3    Var.1   Var2.1  Var.2    Var2.2
+## 1.1   1 -0.74925  1.74481  0.67865 0.8969  0.422125
+## 2.1   2  1.00953 -0.07769 -1.00309 0.1269  0.654512
+## 3.1   3  0.07793 -0.23108 -0.79458 0.5165  1.576518
+## 4.1   4 -1.02016 -0.35479  1.32495 0.1717 -0.334331
+## 5.1   5 -0.04330  0.72162 -0.60252 0.8171 -1.714189
+## 6.1   6 -0.55654  0.38485 -0.08591 0.6815  1.819832
+## 7.1   7  0.97343  0.79872  0.88882 0.1802 -0.070848
+## 8.1   8 -0.32459 -0.79787 -1.52259 0.9036  0.703370
+## 9.1   9 -0.29418  1.85280 -0.58162 0.8849 -0.499110
+## 10.1 10 -0.05126 -0.04740  0.91892 0.7341 -0.004039</code></pre>
+<p>And we are back to the wide form.</p>
+<p>These steps can be followed for situations where there are many measures per person, many people per cluster, etc. In most cases, this is the way multilevel data analysis occurs (as we discussed in Chapter 6) and is a nice way to get our data ready for plotting.</p>
+<p>The following figure shows the features of both <code>long()</code> and <code>wide()</code>.</p>
+<p><img src="DataCleaning_Handout.jpg" /></p>
+</div>
+<div id="repeating-actions-looping" class="section level2 unnumbered">
+<h2>Repeating Actions (Looping)</h2>
+<p>To fully go into looping, understanding how to write your own functions is needed.</p>
+<div id="your-own-functions" class="section level3 unnumbered">
+<h3>Your Own Functions</h3>
+<p>Let’s create a function that estimates the mean (although it is completely unnecessary since there is already a perfectly good <code>mean()</code> function).</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>mean2 <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">length</span>(x)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  m <span class="ot">&lt;-</span> (<span class="dv">1</span><span class="sc">/</span>n) <span class="sc">*</span> <span class="fu">sum</span>(x)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(m)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>We create a function using the <code>function()</code> function.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> Within the <code>function()</code> we put an <code>x</code>. This is the argument that the function will ask for. Here, it is a numeric vector that we want to take the mean of. We then provide the meat of the function between the <code>{}</code>. Here, we did a simple mean calculation using the <code>length(x)</code> which gives us the number of observations, and <code>sum()</code> which sums the numbers in <code>x</code>.</p>
+<p>Let’s give it a try:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>v1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>)   <span class="do">## vector to try</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean2</span>(v1)                      <span class="do">## our function</span></span></code></pre></div>
+<pre><code>## [1] 1.8</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(v1)                       <span class="do">## the base R function</span></span></code></pre></div>
+<pre><code>## [1] 1.8</code></pre>
+<p>Looks good! These functions that you create can do whatever you need them to (within the bounds that <code>R</code> can do). I recommend by starting outside of a function that then put it into a function. For example, we would start with:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">length</span>(v1)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> (<span class="dv">1</span><span class="sc">/</span>n) <span class="sc">*</span> <span class="fu">sum</span>(v1)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>m</span></code></pre></div>
+<pre><code>## [1] 1.8</code></pre>
+<p>and once things look good, we would put it into a function like we had before with <code>mean2</code>. It is an easy way to develop a good function and test it while developing it.</p>
+<p>By creating your own function, you can simplify your workflow and can use them in loops, the <code>apply</code> functions and the <code>purrr</code> package.</p>
+<p>For practice, we will write one more function. Let’s make a function that takes a vector and gives us the N, the mean, and the standard deviation.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>important_statistics <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">na.rm=</span><span class="cn">FALSE</span>){</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  N  <span class="ot">&lt;-</span> <span class="fu">length</span>(x)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  M  <span class="ot">&lt;-</span> <span class="fu">mean</span>(x, <span class="at">na.rm=</span>na.rm)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  SD <span class="ot">&lt;-</span> <span class="fu">sd</span>(x, <span class="at">na.rm=</span>na.rm)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  final <span class="ot">&lt;-</span> <span class="fu">c</span>(N, M, SD)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(final)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>One of the first things you should note is that we included a second argument in the function seen as <code>na.rm=FALSE</code> (you can have as many arguments as you want within reason). This argument has a default that we provide as <code>FALSE</code> as it is in most functions that use the <code>na.rm</code> argument. We take what is provided in the <code>na.rm</code> and give that to both the <code>mean()</code> and <code>sd()</code> functions. Finally, you should notice that we took several pieces of information and combined them into the <code>final</code> object and returned that.</p>
+<p>Let’s try it out with the vector we created earlier.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">important_statistics</span>(v1)</span></code></pre></div>
+<pre><code>## [1] 10.000  1.800  1.033</code></pre>
+<p>Looks good but we may want to change a few aesthetics. In the following code, we adjust it so we have each one labeled.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>important_statistics2 <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">na.rm=</span><span class="cn">FALSE</span>){</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  N  <span class="ot">&lt;-</span> <span class="fu">length</span>(x)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  M  <span class="ot">&lt;-</span> <span class="fu">mean</span>(x, <span class="at">na.rm=</span>na.rm)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  SD <span class="ot">&lt;-</span> <span class="fu">sd</span>(x, <span class="at">na.rm=</span>na.rm)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  final <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(N, <span class="st">&quot;Mean&quot;</span><span class="ot">=</span>M, <span class="st">&quot;SD&quot;</span><span class="ot">=</span>SD)</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(final)</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="fu">important_statistics2</span>(v1)</span></code></pre></div>
+<pre><code>##    N Mean    SD
+## 1 10  1.8 1.033</code></pre>
+<p>We will come back to this function and use it in some loops and see what else we can do with it.</p>
+</div>
+<div id="vectorized" class="section level3 unnumbered">
+<h3>Vectorized</h3>
+<p>By construction, <code>R</code> is the fastest when we use the vectorized form of doing things. For example, when we want to add two variables together, we can use the <code>+</code> operator. Like most functions in <code>R</code>, it is vectorized and so it is fast. Below we create a new vector using the <code>rnorm()</code> function that produces normally distributed random variables. First argument in the function is the length of the vector, followed by the mean and SD.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>v2 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="at">mean=</span><span class="dv">5</span>, <span class="at">sd=</span><span class="dv">2</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>add1 <span class="ot">&lt;-</span> v1 <span class="sc">+</span> v2</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(add1, <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>##  [1]  4.579 10.280  8.405  8.393  9.512  6.433  6.368  3.388  8.289  9.040</code></pre>
+<p>We will compare the speed of this to other ways of adding two variables together and see it is the simplest and quickest.</p>
+</div>
+<div id="for-loops" class="section level3 unnumbered">
+<h3>For Loops</h3>
+<p>For loops have a bad reputation in the <code>R</code> world. This is because, in general, they are slow. It is among the slowest of ways to iterate (i.e., repeat) functions. We start here to show you, in essence, what the <code>apply</code> family of functions are doing, often, in a faster way.</p>
+<p>At times, it is easiest to develop a for loop and then take it and use it within the <code>apply</code> or <code>purrr</code> functions. It can help you think through the pieces that need to be done in order to get your desired result.</p>
+<p>For demonstration, we are using the <code>for</code> loop to add two variables together. The code between the <code>()</code>’s tells <code>R</code> information about how many loops it should do. Here, we are looping through <code>1:10</code> since there are ten observations in each vector. We could also specify this as <code>1:length(v1)</code>. When using <code>for</code> loops, we need to keep in mind that we need to initialize a variable in order to use it within the loop. That’s precisely what we do with the <code>add2</code>, making it a numberic vector with 10 observations.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>add2 <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="st">&quot;numeric&quot;</span>, <span class="dv">10</span>)   <span class="do">## Initialize</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>){</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  add2[i] <span class="ot">&lt;-</span> v1[i] <span class="sc">+</span> v2[i]</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(add2, <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>##  [1]  4.579 10.280  8.405  8.393  9.512  6.433  6.368  3.388  8.289  9.040</code></pre>
+<p>Same results! But, we’ll see later that the speed is much than the vectorized function.</p>
+</div>
+<div id="the-apply-family" class="section level3 unnumbered">
+<h3>The <code>apply</code> family</h3>
+<p>The <code>apply</code> family of functions that we’ll introduce are:</p>
+<ol style="list-style-type: decimal">
+<li><code>apply()</code></li>
+<li><code>lapply()</code></li>
+<li><code>sapply()</code></li>
+<li><code>tapply()</code></li>
+</ol>
+<p>Each essentially do a loop over the data you provide using a function (either one you created or another). The different versions are extremely similar with some minor differences. For <code>apply()</code> you tell it if you want to iterative over the columns or rows; <code>lapply()</code> assumes you want to iterate over the columns and outputs a list (hence the <code>l</code>); <code>sapply()</code> is similar to <code>lapply()</code> but outputs vectors and data frames. <code>tapply()</code> has the most differences because it can iterative over columns by a grouping variable. We’ll show <code>apply()</code>, <code>lapply()</code> and <code>tapply()</code> below.</p>
+<p>For example, we can add two variables together here. We provide it the <code>data.frame</code> that has the variables we want to add together.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(v1, v2)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>add3 <span class="ot">&lt;-</span> <span class="fu">apply</span>(df, <span class="dv">1</span>, sum)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(add3, <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>##  [1]  4.579 10.280  8.405  8.393  9.512  6.433  6.368  3.388  8.289  9.040</code></pre>
+<p>The function <code>apply()</code> has three main arguments: a) the <code>data.frame</code> or list of data, b) 1 meaning to apply the function for each row or 2 to the columns, and c) the function to use.</p>
+<p>We can also use one of our own functions such as <code>important_statistics2()</code> within the <code>apply</code> family.</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(df, important_statistics2)</span></code></pre></div>
+<pre><code>## $v1
+##    N Mean    SD
+## 1 10  1.8 1.033
+## 
+## $v2
+##    N  Mean    SD
+## 1 10 5.669 1.923</code></pre>
+<p>This gives us a list of two elements, one for each variable, with the statistics that our function provides. With a little adjustment, we can make this into a <code>data.frame</code> using the <code>do.call()</code> function with <code>"rbind"</code>.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">do.call</span>(<span class="st">&quot;rbind&quot;</span>, <span class="fu">lapply</span>(df, important_statistics2))</span></code></pre></div>
+<pre><code>##     N  Mean    SD
+## v1 10 1.800 1.033
+## v2 10 5.669 1.923</code></pre>
+<p><code>tapply()</code> allows us to get information by a grouping factor. We are going to add a factor variable to the data frame we are using <code>df</code> and then get the mean of the variables by group.</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>group1 <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">sample</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="dv">10</span>, <span class="at">replace=</span><span class="cn">TRUE</span>))</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tapply</span>(df<span class="sc">$</span>v1, group1, mean)</span></code></pre></div>
+<pre><code>##   0   1 
+## 2.0 1.6</code></pre>
+<p>We now have the means by each group. This, however, is probably replaced by the 3 step summary that we learned earlier in <code>dplyr</code> using <code>group_by()</code> and <code>summarize()</code>.</p>
+<p>These functions are useful in many situations, especially where there are no vectorized functions. You can always get an idea of whether to use a <code>for</code> loop or an <code>apply</code> function by giving it a try on a small subset of data to see if one is better and/or faster.</p>
+<div id="speed-comparison" class="section level4 unnumbered">
+<h4>Speed Comparison</h4>
+<p>We can test to see how fast functions are with the <code>microbenchmark</code> package. Since it wants functions, we will create a function that uses the <code>for</code> looop.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>forloop <span class="ot">&lt;-</span> <span class="cf">function</span>(var1, var2){</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  add2 <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="st">&quot;numeric&quot;</span>, <span class="fu">length</span>(var1))</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>){</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>    add2[i] <span class="ot">&lt;-</span> var1[i] <span class="sc">+</span> var2[i]</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(add2)</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Below, we can see that the vectorized version is nearly 50 times faster than the <code>for</code> loop and 300 times faster than the <code>apply</code>. Although the <code>for</code> loop was faster here, sometimes it can be slower than the <code>apply</code> functions–it just depends on the situation. But, the vectorized functions will almost always be <em>much</em> faster than anything else. It’s important to note that the <code>+</code> is also a function that can be used as we do below, highlighting the fact that anything that does something to an object in <code>R</code> is a function.</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(microbenchmark)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">microbenchmark</span>(<span class="fu">forloop</span>(v1, v2),</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>               <span class="fu">apply</span>(df, <span class="dv">1</span>, sum),</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>               <span class="st">`</span><span class="at">+</span><span class="st">`</span>(v1, v2))</span></code></pre></div>
+<pre><code>## Unit: nanoseconds
+##               expr   min     lq   mean   median     uq      max neval cld
+##    forloop(v1, v2)  2079   2670 123452   3741.5   6476 11770519   100   a
+##  apply(df, 1, sum) 80254 103306 154150 135010.0 178760   760668   100   a
+##            v1 + v2   175    269   1106    509.5   1419    13376   100   a</code></pre>
+<p>Of course, as it says the units are in nanoseconds. Whether a function takes 200 or 200,000 nanoseconds probably won’t change your life. However, if the function is being used repeatedly or on on large data sets, this can make a difference.</p>
+</div>
+</div>
+<div id="using-anonymous-functions-in-apply" class="section level3 unnumbered">
+<h3>Using “Anonymous Functions” in Apply</h3>
+<p>Last thing to know here is that you don’t need to create a named function everytime you want to use <code>apply</code>. We can use what is called “Anonymous” functions. Below, we use one to get at the N and mean of the data.</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(df, <span class="cf">function</span>(x) <span class="fu">rbind</span>(<span class="fu">length</span>(x), <span class="fu">mean</span>(x, <span class="at">na.rm=</span><span class="cn">TRUE</span>)))</span></code></pre></div>
+<pre><code>## $v1
+##      [,1]
+## [1,] 10.0
+## [2,]  1.8
+## 
+## $v2
+##        [,1]
+## [1,] 10.000
+## [2,]  5.669</code></pre>
+<p>So we don’t name the function but we design it like we would a named function, just minus the <code>return()</code>. We take <code>x</code> (which is a column of <code>df</code>) and do <code>length()</code> and <code>mean()</code> and bind them by rows. The first argument in the anonymous function will be the column or variable of the data you provide.</p>
+<p>Here’s another example:</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(df, <span class="cf">function</span>(y) y <span class="sc">*</span> <span class="dv">2</span> <span class="sc">/</span> <span class="fu">sd</span>(y))</span></code></pre></div>
+<pre><code>## $v1
+##  [1] 1.936 5.809 3.873 7.746 3.873 1.936 3.873 1.936 1.936 1.936
+## 
+## $v2
+##  [1] 3.722 7.571 6.661 4.568 7.811 5.650 4.542 2.484 7.580 8.361</code></pre>
+<p>We take <code>y</code> (again, the column of <code>df</code>), times it by two and divide by the standard deviation of <code>y</code>. Note that this is gibberish and is not some special formula, but again, we can see how flexible it is.</p>
+<p>The last two examples also show something important regarding the output:</p>
+<ol style="list-style-type: decimal">
+<li>The output will be at the level of the anonymous function. The first had two numbers per variable because the function produced two summary statistics for each variable. The second we multiplied <code>y</code> by 2 (so it is still at the individual observation level) and then divide by the SD. This keeps it at the observation level so we get ten values for every variable.</li>
+<li>We can name the argument anything we want (as long as it is one word). We used <code>x</code> in the first and <code>y</code> in the second but as long as it is the same within the function, it doesn’t matter what you use.</li>
+</ol>
+<p>Finally, we may not want our variables to be in the list format. We may want to control more tightly what is outputted from the looping. For that, we can thank the <code>purrr</code> package (part of the <code>tidyverse</code>; note the three r’s in purrr). This package provides many valuable functions that you can explore. Of particular mention here, though, are some of the <code>map*()</code> functions that work just like <code>lapply()</code>.</p>
+<ol style="list-style-type: decimal">
+<li><code>map()</code> – outputs a list</li>
+<li><code>map_df()</code> – outputs a data frame</li>
+<li><code>map_if()</code> – outputs a list but only makes any changes to the variables that meet a condition (e.g., <code>is.numeric()</code>).</li>
+</ol>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>purrr<span class="sc">::</span><span class="fu">map</span>(df, <span class="cf">function</span>(y) y <span class="sc">*</span> <span class="dv">2</span> <span class="sc">/</span> <span class="fu">sd</span>(y))</span></code></pre></div>
+<pre><code>## $v1
+##  [1] 1.936 5.809 3.873 7.746 3.873 1.936 3.873 1.936 1.936 1.936
+## 
+## $v2
+##  [1] 3.722 7.571 6.661 4.568 7.811 5.650 4.542 2.484 7.580 8.361</code></pre>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>purrr<span class="sc">::</span><span class="fu">map_df</span>(df, <span class="cf">function</span>(y) y <span class="sc">*</span> <span class="dv">2</span> <span class="sc">/</span> <span class="fu">sd</span>(y))</span></code></pre></div>
+<pre><code>## # A tibble: 10 × 2
+##       v1    v2
+##    &lt;dbl&gt; &lt;dbl&gt;
+##  1  1.94  3.72
+##  2  5.81  7.57
+##  3  3.87  6.66
+##  4  7.75  4.57
+##  5  3.87  7.81
+##  6  1.94  5.65
+##  7  3.87  4.54
+##  8  1.94  2.48
+##  9  1.94  7.58
+## 10  1.94  8.36</code></pre>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>purrr<span class="sc">::</span><span class="fu">map_if</span>(df, is.numeric, <span class="cf">function</span>(y) y <span class="sc">*</span> <span class="dv">2</span> <span class="sc">/</span> <span class="fu">sd</span>(y))</span></code></pre></div>
+<pre><code>## $v1
+##  [1] 1.936 5.809 3.873 7.746 3.873 1.936 3.873 1.936 1.936 1.936
+## 
+## $v2
+##  [1] 3.722 7.571 6.661 4.568 7.811 5.650 4.542 2.484 7.580 8.361</code></pre>
+</div>
+</div>
+<div id="apply-it" class="section level2 unnumbered">
+<h2>Apply It</h2>
+<p><a href="https://tysonbarrett.com/DataR/Chapter8.zip">This link</a> contains a folder complete with an Rstudio project file, an RMarkdown file, and a few data files. Download it and unzip it to do the following steps.</p>
+<div id="step-1" class="section level3 unnumbered">
+<h3>Step 1</h3>
+<p>Open the <code>Chapter8.Rproj</code> file. This will open up RStudio for you.</p>
+</div>
+<div id="step-2" class="section level3 unnumbered">
+<h3>Step 2</h3>
+<p>Once RStudio has started, in the panel on the lower-right, there is a <code>Files</code> tab. Click on that to see the project folder. You should see the data files and the <code>Chapter8.Rmd</code> file. Click on the <code>Chapter8.Rmd</code> file to open it. In this file, import the data, reshape it to long form, create your own function to do something for you, and apply the function in a loop over some of the variables of the data set.</p>
+<p>Once that code is in the file, click the <code>knit</code> button. This will create an HTML file with the code and output knitted together into one nice document. This can be read into any browser and can be used to show your work in a clean document.</p>
+</div>
+</div>
+<div id="conclusions" class="section level2 unnumbered">
+<h2>Conclusions</h2>
+<p>These are useful tools to use in your own data manipulation beyond that what we discussed with <code>dplyr</code>. It takes time to get used to making your own functions so be patient with yourself as you learn how to get <code>R</code> to do exactly what you want in a condensed, replicable format.</p>
+<p>With these new tricks up your sleeve, we can move on to more advanced plotting using <code>ggplot2</code>.</p>
+</div>
+</div>
+
+
+
+
+
+
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>That seemed like excessive use of the word function… It is important though. So, get used to it!<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+<script src="site_libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="site_libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="site_libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="site_libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="site_libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="site_libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="site_libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="site_libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": false,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

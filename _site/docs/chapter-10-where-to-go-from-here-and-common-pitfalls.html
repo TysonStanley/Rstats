@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 10: Where to Go from Here and Common Pitfalls | R for Researchers: An Introduction</title>
+  <meta name="description" content="This book introduces the R statistical language for researchers in the health, behavioral, educational, and psychological sciences. It is designed for those that have little background in statistical programming but would like to use the powerful statistical and visualization tool that R offers at no cost. The light-hearted design of this book allows a researcher to investigate and begin using R relatively stress-free with intuitive and interesting examples." />
+  <meta name="generator" content="bookdown 0.10 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 10: Where to Go from Here and Common Pitfalls | R for Researchers: An Introduction" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="Cover.jpg" />
+  <meta property="og:description" content="This book introduces the R statistical language for researchers in the health, behavioral, educational, and psychological sciences. It is designed for those that have little background in statistical programming but would like to use the powerful statistical and visualization tool that R offers at no cost. The light-hearted design of this book allows a researcher to investigate and begin using R relatively stress-free with intuitive and interesting examples." />
+  <meta name="github-repo" content="tysonstanley" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 10: Where to Go from Here and Common Pitfalls | R for Researchers: An Introduction" />
+  
+  <meta name="twitter:description" content="This book introduces the R statistical language for researchers in the health, behavioral, educational, and psychological sciences. It is designed for those that have little background in statistical programming but would like to use the powerful statistical and visualization tool that R offers at no cost. The light-hearted design of this book allows a researcher to investigate and begin using R relatively stress-free with intuitive and interesting examples." />
+  <meta name="twitter:image" content="Cover.jpg" />
+
+<meta name="author" content="Tyson S. Barrett, PhD" />
+
+
+<meta name="date" content="2019-05-13" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="chapter-9-reproducible-workflow-with-rmarkdown.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#preparation"><i class="fa fa-check"></i>Preparation</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#part-i"><i class="fa fa-check"></i>Part I</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#part-ii"><i class="fa fa-check"></i>Part II</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#part-iii"><i class="fa fa-check"></i>Part III</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html"><i class="fa fa-check"></i>Chapter 1: The Basics</a><ul>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html#objects"><i class="fa fa-check"></i>Objects</a></li>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html#data-types"><i class="fa fa-check"></i>Data Types</a></li>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html#functions"><i class="fa fa-check"></i>Functions</a><ul>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html#operators"><i class="fa fa-check"></i>Operators</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html#importing-data"><i class="fa fa-check"></i>Importing Data</a></li>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html#saving-data"><i class="fa fa-check"></i>Saving Data</a></li>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html#apply-it"><i class="fa fa-check"></i>Apply it</a><ul>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html#step-1"><i class="fa fa-check"></i>Step 1</a></li>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html#step-2"><i class="fa fa-check"></i>Step 2</a></li>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html#step-3"><i class="fa fa-check"></i>Step 3</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html#conclusions"><i class="fa fa-check"></i>Conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html"><i class="fa fa-check"></i>Chapter 2: Working with and Cleaning Your Data</a><ul>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#tidy-methods"><i class="fa fa-check"></i>Tidy Methods</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#tidy-long-form"><i class="fa fa-check"></i>Tidy (Long) Form</a><ul>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#wide-form"><i class="fa fa-check"></i>Wide Form</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#long-form"><i class="fa fa-check"></i>Long Form</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#data-used-for-examples"><i class="fa fa-check"></i>Data Used for Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#piping"><i class="fa fa-check"></i>Piping</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#select-variables-and-filter-observations"><i class="fa fa-check"></i>Select Variables and Filter Observations</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#mutate-variables"><i class="fa fa-check"></i>Mutate Variables</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#grouping-and-summarizing"><i class="fa fa-check"></i>Grouping and Summarizing</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#reshaping"><i class="fa fa-check"></i>Reshaping</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#joining-merging"><i class="fa fa-check"></i>Joining (merging)</a><ul>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#inner-join"><i class="fa fa-check"></i>Inner Join</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#left-or-right-join"><i class="fa fa-check"></i>Left or Right Join</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#full-join"><i class="fa fa-check"></i>Full Join</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#wrap-it-up"><i class="fa fa-check"></i>Wrap it up</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#general-cleaning-of-the-data-set"><i class="fa fa-check"></i>General Cleaning of the Data Set</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#apply-it-1"><i class="fa fa-check"></i>Apply It</a><ul>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#step-1-1"><i class="fa fa-check"></i>Step 1</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#step-2-1"><i class="fa fa-check"></i>Step 2</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-3-exploring-your-data-with-tables-and-visuals.html"><a href="chapter-3-exploring-your-data-with-tables-and-visuals.html"><i class="fa fa-check"></i>Chapter 3: Exploring Your Data with Tables and Visuals</a><ul>
+<li class="chapter" data-level="" data-path="chapter-3-exploring-your-data-with-tables-and-visuals.html"><a href="chapter-3-exploring-your-data-with-tables-and-visuals.html#descriptive-statistics"><i class="fa fa-check"></i>Descriptive Statistics</a></li>
+<li class="chapter" data-level="" data-path="chapter-3-exploring-your-data-with-tables-and-visuals.html"><a href="chapter-3-exploring-your-data-with-tables-and-visuals.html#visualizations"><i class="fa fa-check"></i>Visualizations</a><ul>
+<li><a href="chapter-3-exploring-your-data-with-tables-and-visuals.html#using-ggplot2">Using <code>ggplot2</code></a></li>
+</ul></li>
+<li><a href="chapter-3-exploring-your-data-with-tables-and-visuals.html#more-advanced-features-of-ggplot2">More Advanced Features of <code>ggplot2</code></a></li>
+<li class="chapter" data-level="" data-path="chapter-3-exploring-your-data-with-tables-and-visuals.html"><a href="chapter-3-exploring-your-data-with-tables-and-visuals.html#types-of-plots"><i class="fa fa-check"></i>Types of Plots</a><ul>
+<li class="chapter" data-level="" data-path="chapter-3-exploring-your-data-with-tables-and-visuals.html"><a href="chapter-3-exploring-your-data-with-tables-and-visuals.html#scatterplots"><i class="fa fa-check"></i>Scatterplots</a></li>
+<li class="chapter" data-level="" data-path="chapter-3-exploring-your-data-with-tables-and-visuals.html"><a href="chapter-3-exploring-your-data-with-tables-and-visuals.html#boxplots"><i class="fa fa-check"></i>Boxplots</a></li>
+<li class="chapter" data-level="" data-path="chapter-3-exploring-your-data-with-tables-and-visuals.html"><a href="chapter-3-exploring-your-data-with-tables-and-visuals.html#bar-plots"><i class="fa fa-check"></i>Bar Plots</a></li>
+<li class="chapter" data-level="" data-path="chapter-3-exploring-your-data-with-tables-and-visuals.html"><a href="chapter-3-exploring-your-data-with-tables-and-visuals.html#line-plots"><i class="fa fa-check"></i>Line Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-3-exploring-your-data-with-tables-and-visuals.html"><a href="chapter-3-exploring-your-data-with-tables-and-visuals.html#color-schemes"><i class="fa fa-check"></i>Color Schemes</a></li>
+<li class="chapter" data-level="" data-path="chapter-3-exploring-your-data-with-tables-and-visuals.html"><a href="chapter-3-exploring-your-data-with-tables-and-visuals.html#themes"><i class="fa fa-check"></i>Themes</a></li>
+<li class="chapter" data-level="" data-path="chapter-3-exploring-your-data-with-tables-and-visuals.html"><a href="chapter-3-exploring-your-data-with-tables-and-visuals.html#labels-and-titles"><i class="fa fa-check"></i>Labels and Titles</a></li>
+<li class="chapter" data-level="" data-path="chapter-3-exploring-your-data-with-tables-and-visuals.html"><a href="chapter-3-exploring-your-data-with-tables-and-visuals.html#facetting"><i class="fa fa-check"></i>Facetting</a></li>
+<li class="chapter" data-level="" data-path="chapter-3-exploring-your-data-with-tables-and-visuals.html"><a href="chapter-3-exploring-your-data-with-tables-and-visuals.html#apply-it-2"><i class="fa fa-check"></i>Apply It</a><ul>
+<li class="chapter" data-level="" data-path="chapter-3-exploring-your-data-with-tables-and-visuals.html"><a href="chapter-3-exploring-your-data-with-tables-and-visuals.html#step-1-2"><i class="fa fa-check"></i>Step 1</a></li>
+<li class="chapter" data-level="" data-path="chapter-3-exploring-your-data-with-tables-and-visuals.html"><a href="chapter-3-exploring-your-data-with-tables-and-visuals.html#step-2-2"><i class="fa fa-check"></i>Step 2</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-3-exploring-your-data-with-tables-and-visuals.html"><a href="chapter-3-exploring-your-data-with-tables-and-visuals.html#conclusions-1"><i class="fa fa-check"></i>Conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html"><i class="fa fa-check"></i>Chapter 4: Basic Analyses</a><ul>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#anova"><i class="fa fa-check"></i>ANOVA</a></li>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#assumptions"><i class="fa fa-check"></i>Assumptions</a></li>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#linear-modeling"><i class="fa fa-check"></i>Linear Modeling</a></li>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#assumptions-1"><i class="fa fa-check"></i>Assumptions</a></li>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#comparing-models"><i class="fa fa-check"></i>Comparing Models</a><ul>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#compare-statistically"><i class="fa fa-check"></i>Compare Statistically</a></li>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#compare-in-a-table"><i class="fa fa-check"></i>Compare in a Table</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#when-assumptions-fail"><i class="fa fa-check"></i>When Assumptions Fail</a><ul>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#log-linear-log-log-linear-log-other"><i class="fa fa-check"></i>Log-Linear, Log-Log, Linear-Log, Other</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#interactions"><i class="fa fa-check"></i>Interactions</a><ul>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#interactions-in-anova"><i class="fa fa-check"></i>Interactions in ANOVA</a></li>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#interactions-in-linear-regression"><i class="fa fa-check"></i>Interactions in Linear Regression</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#apply-it-3"><i class="fa fa-check"></i>Apply It</a><ul>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#step-1-3"><i class="fa fa-check"></i>Step 1</a></li>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#step-2-3"><i class="fa fa-check"></i>Step 2</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-5-generalized-linear-models.html"><a href="chapter-5-generalized-linear-models.html"><i class="fa fa-check"></i>Chapter 5: Generalized Linear Models</a><ul>
+<li class="chapter" data-level="" data-path="chapter-5-generalized-linear-models.html"><a href="chapter-5-generalized-linear-models.html#logistic-regression"><i class="fa fa-check"></i>Logistic Regression</a></li>
+<li class="chapter" data-level="" data-path="chapter-5-generalized-linear-models.html"><a href="chapter-5-generalized-linear-models.html#poisson-regression"><i class="fa fa-check"></i>Poisson Regression</a><ul>
+<li class="chapter" data-level="" data-path="chapter-5-generalized-linear-models.html"><a href="chapter-5-generalized-linear-models.html#gamma"><i class="fa fa-check"></i>Gamma</a></li>
+<li class="chapter" data-level="" data-path="chapter-5-generalized-linear-models.html"><a href="chapter-5-generalized-linear-models.html#two-part-or-hurdle-models"><i class="fa fa-check"></i>Two-Part or Hurdle Models</a></li>
+<li class="chapter" data-level="" data-path="chapter-5-generalized-linear-models.html"><a href="chapter-5-generalized-linear-models.html#negative-binomial"><i class="fa fa-check"></i>Negative Binomial</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-5-generalized-linear-models.html"><a href="chapter-5-generalized-linear-models.html#beta-regression"><i class="fa fa-check"></i>Beta Regression</a></li>
+<li class="chapter" data-level="" data-path="chapter-5-generalized-linear-models.html"><a href="chapter-5-generalized-linear-models.html#apply-it-4"><i class="fa fa-check"></i>Apply It</a><ul>
+<li class="chapter" data-level="" data-path="chapter-5-generalized-linear-models.html"><a href="chapter-5-generalized-linear-models.html#step-1-4"><i class="fa fa-check"></i>Step 1</a></li>
+<li class="chapter" data-level="" data-path="chapter-5-generalized-linear-models.html"><a href="chapter-5-generalized-linear-models.html#step-2-4"><i class="fa fa-check"></i>Step 2</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-5-generalized-linear-models.html"><a href="chapter-5-generalized-linear-models.html#conclusions-2"><i class="fa fa-check"></i>Conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-6-multilevel-modeling.html"><a href="chapter-6-multilevel-modeling.html"><i class="fa fa-check"></i>Chapter 6: Multilevel Modeling</a><ul>
+<li class="chapter" data-level="" data-path="chapter-6-multilevel-modeling.html"><a href="chapter-6-multilevel-modeling.html#gee"><i class="fa fa-check"></i>GEE</a></li>
+<li class="chapter" data-level="" data-path="chapter-6-multilevel-modeling.html"><a href="chapter-6-multilevel-modeling.html#mixed-effects"><i class="fa fa-check"></i>Mixed Effects</a></li>
+<li class="chapter" data-level="" data-path="chapter-6-multilevel-modeling.html"><a href="chapter-6-multilevel-modeling.html#apply-it-5"><i class="fa fa-check"></i>Apply It</a><ul>
+<li class="chapter" data-level="" data-path="chapter-6-multilevel-modeling.html"><a href="chapter-6-multilevel-modeling.html#step-1-5"><i class="fa fa-check"></i>Step 1</a></li>
+<li class="chapter" data-level="" data-path="chapter-6-multilevel-modeling.html"><a href="chapter-6-multilevel-modeling.html#step-2-5"><i class="fa fa-check"></i>Step 2</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-6-multilevel-modeling.html"><a href="chapter-6-multilevel-modeling.html#conclusions-3"><i class="fa fa-check"></i>Conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html"><i class="fa fa-check"></i>Chapter 7: Other Modeling Techniques</a><ul>
+<li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#mediation-modeling"><i class="fa fa-check"></i>Mediation Modeling</a></li>
+<li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#structural-equation-modeling"><i class="fa fa-check"></i>Structural Equation Modeling</a></li>
+<li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#machine-learning-techniques"><i class="fa fa-check"></i>Machine Learning Techniques</a><ul>
+<li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#ridge-lasso-and-elastic-net"><i class="fa fa-check"></i>Ridge, Lasso and Elastic Net</a></li>
+<li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#random-forests"><i class="fa fa-check"></i>Random Forests</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#apply-it-6"><i class="fa fa-check"></i>Apply It</a><ul>
+<li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#step-1-6"><i class="fa fa-check"></i>Step 1</a></li>
+<li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#step-2-6"><i class="fa fa-check"></i>Step 2</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#conclusions-4"><i class="fa fa-check"></i>Conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html"><i class="fa fa-check"></i>Chapter 8: Advanced Data Manipulation</a><ul>
+<li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#reshaping-your-data"><i class="fa fa-check"></i>Reshaping Your Data</a></li>
+<li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#repeating-actions-looping"><i class="fa fa-check"></i>Repeating Actions (Looping)</a><ul>
+<li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#your-own-functions"><i class="fa fa-check"></i>Your Own Functions</a></li>
+<li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#vectorized"><i class="fa fa-check"></i>Vectorized</a></li>
+<li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#for-loops"><i class="fa fa-check"></i>For Loops</a></li>
+<li><a href="chapter-8-advanced-data-manipulation.html#the-apply-family">The <code>apply</code> family</a></li>
+<li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#using-anonymous-functions-in-apply"><i class="fa fa-check"></i>Using “Anonymous Functions” in Apply</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#apply-it-7"><i class="fa fa-check"></i>Apply It</a><ul>
+<li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#step-1-7"><i class="fa fa-check"></i>Step 1</a></li>
+<li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#step-2-7"><i class="fa fa-check"></i>Step 2</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#conclusions-5"><i class="fa fa-check"></i>Conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-9-reproducible-workflow-with-rmarkdown.html"><a href="chapter-9-reproducible-workflow-with-rmarkdown.html"><i class="fa fa-check"></i>Chapter 9: Reproducible Workflow with RMarkdown</a><ul>
+<li class="chapter" data-level="" data-path="chapter-9-reproducible-workflow-with-rmarkdown.html"><a href="chapter-9-reproducible-workflow-with-rmarkdown.html#r-markdown"><i class="fa fa-check"></i>R Markdown</a><ul>
+<li class="chapter" data-level="" data-path="chapter-9-reproducible-workflow-with-rmarkdown.html"><a href="chapter-9-reproducible-workflow-with-rmarkdown.html#in-line-r-code"><i class="fa fa-check"></i>In-Line R Code</a></li>
+<li class="chapter" data-level="" data-path="chapter-9-reproducible-workflow-with-rmarkdown.html"><a href="chapter-9-reproducible-workflow-with-rmarkdown.html#pre-formatted-documents"><i class="fa fa-check"></i>Pre-formatted Documents</a></li>
+<li class="chapter" data-level="" data-path="chapter-9-reproducible-workflow-with-rmarkdown.html"><a href="chapter-9-reproducible-workflow-with-rmarkdown.html#other-tricks"><i class="fa fa-check"></i>Other Tricks</a></li>
+<li class="chapter" data-level="" data-path="chapter-9-reproducible-workflow-with-rmarkdown.html"><a href="chapter-9-reproducible-workflow-with-rmarkdown.html#important-important"><i class="fa fa-check"></i>Important, Important</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-9-reproducible-workflow-with-rmarkdown.html"><a href="chapter-9-reproducible-workflow-with-rmarkdown.html#apply-it-8"><i class="fa fa-check"></i>Apply It</a><ul>
+<li class="chapter" data-level="" data-path="chapter-9-reproducible-workflow-with-rmarkdown.html"><a href="chapter-9-reproducible-workflow-with-rmarkdown.html#step-1-8"><i class="fa fa-check"></i>Step 1</a></li>
+<li class="chapter" data-level="" data-path="chapter-9-reproducible-workflow-with-rmarkdown.html"><a href="chapter-9-reproducible-workflow-with-rmarkdown.html#step-2-8"><i class="fa fa-check"></i>Step 2</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-10-where-to-go-from-here-and-common-pitfalls.html"><a href="chapter-10-where-to-go-from-here-and-common-pitfalls.html"><i class="fa fa-check"></i>Chapter 10: Where to Go from Here and Common Pitfalls</a><ul>
+<li class="chapter" data-level="" data-path="chapter-10-where-to-go-from-here-and-common-pitfalls.html"><a href="chapter-10-where-to-go-from-here-and-common-pitfalls.html#common-pitfalls"><i class="fa fa-check"></i>Common Pitfalls</a></li>
+<li class="chapter" data-level="" data-path="chapter-10-where-to-go-from-here-and-common-pitfalls.html"><a href="chapter-10-where-to-go-from-here-and-common-pitfalls.html#quiz"><i class="fa fa-check"></i>Quiz</a></li>
+<li class="chapter" data-level="" data-path="chapter-10-where-to-go-from-here-and-common-pitfalls.html"><a href="chapter-10-where-to-go-from-here-and-common-pitfalls.html#goodbye-and-good-luck"><i class="fa fa-check"></i>Goodbye and Good Luck</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R for Researchers: An Introduction</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="chapter-10-where-to-go-from-here-and-common-pitfalls" class="section level1 unnumbered">
+<h1>Chapter 10: Where to Go from Here and Common Pitfalls</h1>
+<blockquote>
+<p>“The journey of a thousand miles begins with one step.” — Lao Tzu</p>
+</blockquote>
+<p>There are many resources that can aid in developing your <code>R</code> skills from here. We have introduced the basics of <code>R</code>, helping you take a few steps on your journey of understanding <code>R</code>. We have focused on the ones that are most important for researchers in the health, behavioral, and social sciences.</p>
+<p>Since this has been a primer, we hope that you will continue your learning of <code>R</code> via the various sources available at little to no cost. Just like this book, many <code>R</code> books are available online as well as in print. This allows you to explore and learn online at your own pace without having to buy a bunch of books or other resources.</p>
+<p>Below, we list a few <code>R</code> books that we have found to be useful. Most are available free in some form.</p>
+<ol style="list-style-type: decimal">
+<li><a href="http://r4ds.had.co.nz/">R for Data Science by Hadley Wickham and Garrett Grolemund</a></li>
+<li><a href="https://csgillespie.github.io/efficientR/">Efficient R Programming by Colin gillespie and Robin Lovelace</a></li>
+<li><a href="http://www.cookbook-r.com/">The R Cookbook</a></li>
+<li><a href="http://www-bcf.usc.edu/~gareth/ISL/">An Introduction to Statistical Learning</a></li>
+<li><a href="https://bookdown.org/yihui/rmarkdown/">R Markdown: The Definitive Guide</a></li>
+</ol>
+<p>There are <em>many, many</em> books that talk about <code>R</code> in various forms so by no means is this a complete list.</p>
+<div id="common-pitfalls" class="section level2 unnumbered">
+<h2>Common Pitfalls</h2>
+<p>To end, we wanted to highlight some pitfalls that can plague any beginner to <code>R</code>. We list a few that we’ve encountered, although others surely exist.</p>
+<ol style="list-style-type: decimal">
+<li>Document your work.</li>
+<li>Avoid overriding objects unless it is on purpose. Changing objects can be hard to keep track of in bigger projects.</li>
+<li>Ask questions. <code>R</code> is very flexible; this can make it overwhelming to learn since there are many ways to perform the same task. However, there are people who have figured out easy ways to do complex stuff and most are willing to answer an email.</li>
+<li>Plan out the steps of your data manipulation and analyses. A few minutes of planning can help you not get lost in the technology and lose sight of the goal.</li>
+<li>Understand the statistics before throwing data in a model. This can lead to major problems in science. At the very least, understand the assumptions of the modeling type and when it can and should be used.</li>
+<li>Do exploratory data analysis (EDA) to understand your data. <code>R</code> is made for this–so use it. Otherwise, your model may be completely wrong and have many violated assumptions.</li>
+<li>Be transparent in your writing. If you use the <code>R</code> scripts correctly, you can provide your code as part of any publication. This will greatly increase replicability of our important research findings.</li>
+</ol>
+</div>
+<div id="quiz" class="section level2 unnumbered">
+<h2>Quiz</h2>
+<p>As a final note, we thought we would give you a quiz to test your memory of the topics we’ve covered. Don’t worry; no pressure to get them all. We’ve included some tougher ones. Regardless of how well you do, we hope you’ll continue improving in your <code>R</code> programming skills.</p>
+<div id="question-1" class="section level4 unnumbered">
+<h4>Question 1</h4>
+<p>What kind of vector is this?</p>
+<pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">10.1</span>, <span class="fl">2.1</span>, <span class="fl">4.6</span>, <span class="fl">2.3</span>, <span class="fl">8.9</span>)</code></pre>
+</div>
+<div id="question-2" class="section level4 unnumbered">
+<h4>Question 2</h4>
+<p>What does this line of code do?</p>
+<pre class="sourceCode r"><code class="sourceCode r">df[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">5</span>), <span class="kw">c</span>(<span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>)]</code></pre>
+</div>
+<div id="question-3" class="section level4 unnumbered">
+<h4>Question 3</h4>
+<p>In the <code>tidyverse</code> there are four join functions. What are they?</p>
+</div>
+<div id="question-4" class="section level4 unnumbered">
+<h4>Question 4</h4>
+<p>What functions are used in the “three step summary” as described in Chapter 2?</p>
+</div>
+<div id="question-5" class="section level4 unnumbered">
+<h4>Question 5</h4>
+<p>What does the following code do?</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x=</span>C, <span class="dt">y=</span>D)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">color =</span> C)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;dodgerblue4&quot;</span>, <span class="st">&quot;coral2&quot;</span>))</code></pre>
+</div>
+<div id="question-6" class="section level4 unnumbered">
+<h4>Question 6</h4>
+<p>Name three functions you can use to summarize your data in an informative way.</p>
+</div>
+<div id="question-7" class="section level4 unnumbered">
+<h4>Question 7</h4>
+<p>What type of model does <code>aov()</code> perform?</p>
+</div>
+<div id="question-8" class="section level4 unnumbered">
+<h4>Question 8</h4>
+<p>What are the differences between <code>aov()</code> and <code>lm()</code>?</p>
+</div>
+<div id="question-9" class="section level4 unnumbered">
+<h4>Question 9</h4>
+<p>What assumptions of normality and heteroskedasticity fail, what function can be used to fit logistic and poisson regressions?</p>
+</div>
+<div id="question-10" class="section level4 unnumbered">
+<h4>Question 10</h4>
+<p>If you were trying to perform logistic regression, what arguments are necessary?</p>
+</div>
+<div id="question-11" class="section level4 unnumbered">
+<h4>Question 11</h4>
+<p>In multilevel modeling, which functions can be used to fit a Generalized Estimating Equations model?</p>
+</div>
+<div id="question-12" class="section level4 unnumbered">
+<h4>Question 12</h4>
+<p>When comparing mixed effects models, what does <code>anova()</code> do?</p>
+</div>
+<div id="question-13" class="section level4 unnumbered">
+<h4>Question 13</h4>
+<p>Can <code>R</code> do structural equation modeling? If so, what package(s) are useful?</p>
+</div>
+<div id="question-14" class="section level4 unnumbered">
+<h4>Question 14</h4>
+<p>What types of models can <code>glmnet()</code> perform? How can you do a cross-validated “glmnet” model?</p>
+</div>
+<div id="question-15" class="section level4 unnumbered">
+<h4>Question 15</h4>
+<p>Is the following data in wide or long form? How do you know?</p>
+<pre><code>##    ID  measures  values
+## 1   1 Var_Time1 -1.0858
+## 2   2 Var_Time1  1.3165
+## 3   3 Var_Time1 -1.7264
+## 4   4 Var_Time1  0.9188
+## 5   5 Var_Time1  0.3040
+## 6   6 Var_Time1  0.5283
+## 7   7 Var_Time1 -1.2762
+## 8   8 Var_Time1 -0.3861
+## 9   9 Var_Time1 -0.8158
+## 10 10 Var_Time1  0.9094
+## 11  1 Var_Time2  0.6207
+## 12  2 Var_Time2  0.8186
+## 13  3 Var_Time2  0.3182
+## 14  4 Var_Time2  0.3264
+## 15  5 Var_Time2  0.1462
+## 16  6 Var_Time2  0.8154
+## 17  7 Var_Time2  0.5898
+## 18  8 Var_Time2  0.1544
+## 19  9 Var_Time2  0.3458
+## 20 10 Var_Time2  0.9749</code></pre>
+<p>To make your data long form but it is currently in wide form, what function(s) can you use?</p>
+</div>
+<div id="question-16" class="section level4 unnumbered">
+<h4>Question 16</h4>
+<p>What form of looping is the fastest? What does <code>apply()</code> do? Can you do for loops in <code>R</code>?</p>
+</div>
+<div id="question-17" class="section level4 unnumbered">
+<h4>Question 17</h4>
+<p>What is the following code doing?</p>
+<pre class="sourceCode r"><code class="sourceCode r">sandwhich &lt;-<span class="st"> </span><span class="cf">function</span>(pb, jam){
+  s &lt;-<span class="st"> </span>pb <span class="op">+</span><span class="st"> </span>jam
+  <span class="kw">return</span>(s)
+}</code></pre>
+</div>
+<div id="question-18" class="section level4 unnumbered">
+<h4>Question 18</h4>
+<p>What is wrong with this chunk of code?</p>
+<pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span>df <span class="op">+</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">newvar =</span> <span class="kw">ifelse</span>(oldvar <span class="op">==</span><span class="st"> </span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>))</code></pre>
+</div>
+<div id="question-19" class="section level4 unnumbered">
+<h4>Question 19</h4>
+<p>What is your favorite built in theme or how would you make your favorite custom theme?</p>
+</div>
+<div id="question-20" class="section level4 unnumbered">
+<h4>Question 20</h4>
+<p>What kind of plot does the following make?</p>
+<pre class="sourceCode r"><code class="sourceCode r">pos =<span class="st"> </span><span class="kw">position_dodge</span>(<span class="dt">width =</span> <span class="fl">.1</span>)
+<span class="kw">ggplot</span>(summed_data, <span class="kw">aes</span>(<span class="dt">x =</span> dep2, <span class="dt">y =</span> sed, <span class="dt">group =</span> asthma, <span class="dt">color =</span> asthma)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">position =</span> pos) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="kw">aes</span>(<span class="dt">ymin =</span> sed <span class="op">-</span><span class="st"> </span>s_se, <span class="dt">ymax =</span> sed <span class="op">+</span><span class="st"> </span>s_se), 
+                <span class="dt">width =</span> <span class="fl">.1</span>, 
+                <span class="dt">position =</span> pos)</code></pre>
+</div>
+</div>
+<div id="goodbye-and-good-luck" class="section level2 unnumbered">
+<h2>Goodbye and Good Luck</h2>
+<p>I hope this has been a useful primer to get you into <code>R</code>. If you still feel rusty, feel free to go through the book again or look at other online resources. <code>R</code> is very flexible and can ease the data and analysis burden of research. Implement good practices and your work will become easier to track, easier to document, and easier to communicate. Good luck on your journey using <code>R</code> in your research!</p>
+<pre class="sourceCode r"><code class="sourceCode r">Step1 &lt;-<span class="st"> </span><span class="kw">of_a_journey</span>(you) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">has</span>(begun)
+You &lt;-<span class="st"> </span><span class="kw">now_have_seen</span>(aspects, of, R) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">that_can</span>(increase) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">productivity</span>(your)
+GoodLuck &lt;-<span class="st"> </span><span class="kw">journey</span>(on, your)</code></pre>
+
+<div id="refs" class="references">
+<div>
+<p>Begley, C. Glenn, and John P A Ioannidis. 2015. “Reproducibility in science: Improving the standard for basic and preclinical research.” <em>Circulation Research</em> 116 (1): 116–26. <a href="https://doi.org/10.1161/CIRCRESAHA.114.303819">https://doi.org/10.1161/CIRCRESAHA.114.303819</a>.</p>
+</div>
+<div>
+<p>Cumming. 2014. “The new statistics: Why and how.” <em>Psychological Science</em> 25 (1): 7–29. <a href="https://doi.org/10.1177/0956797613504966">https://doi.org/10.1177/0956797613504966</a>.</p>
+</div>
+<div>
+<p>Goodman, Steven N, Daniele Fanelli, and John P A Ioannidis. 2016. “What does research reproducibility mean?” <em>Science Translational Medicine</em> 8 (341): 1–6. <a href="https://doi.org/10.1126/scitranslmed.aaf5027">https://doi.org/10.1126/scitranslmed.aaf5027</a>.</p>
+</div>
+<div>
+<p>Ioannidis, John P A. 2005. “Why most published research findings are false.” <em>PLoS Medicine</em> 2 (8): 0696–701. <a href="https://doi.org/10.1371/journal.pmed.0020124">https://doi.org/10.1371/journal.pmed.0020124</a>.</p>
+</div>
+<div>
+<p>Munafò, Marcus R, Brian A Nosek, Dorothy V M Bishop, Katherine S Button, Christopher D Chambers, Nathalie Percie du Sert, Uri Simonsohn, et al. 2017. “A manifesto for reproducible science.” <em>Nature Human Behaviour</em> 1 (January): 1–9. <a href="https://doi.org/10.1038/s41562-016-0021">https://doi.org/10.1038/s41562-016-0021</a>.</p>
+</div>
+<div>
+<p>Taylor, Jonathan, and Robert J Tibshirani. 2015. “Statistical learning and selective inference.” <em>Proceedings of the National Academy of Sciences of the United States of America</em> 112 (25). <a href="https://doi.org/10.1073/pnas.1507583112">https://doi.org/10.1073/pnas.1507583112</a>.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="chapter-9-reproducible-workflow-with-rmarkdown.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

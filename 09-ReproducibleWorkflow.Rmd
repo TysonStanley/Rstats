@@ -6,7 +6,6 @@
 library(foreign)
 library(furniture)
 library(tidyverse)
-library(anteo)
 load("~/Dropbox/GitHub/blog_rstats/assets/Data/NHANES_2012.rda")
 ```
 
@@ -169,7 +168,7 @@ Going one step further would be to post your R Markdown document in a publically
 
 ## Apply It {-}
 
-[This link](http://tysonbarrett.com/DataR/Chapter9.zip) contains a folder complete with an Rstudio project file, an RMarkdown file, and a few data files. Download it and unzip it to do the following steps.
+[This link](https://tysonbarrett.com/DataR/Chapter9.zip) contains a folder complete with an Rstudio project file, an RMarkdown file, and a few data files. Download it and unzip it to do the following steps.
 
 
 ### Step 1 {-}

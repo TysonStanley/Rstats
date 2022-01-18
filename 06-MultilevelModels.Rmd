@@ -6,7 +6,6 @@
 library(foreign)
 library(furniture)
 library(tidyverse)
-library(anteo)
 load("~/Dropbox/GitHub/blog_rstats/assets/Data/NHANES_2012.rda")
 ```
 
@@ -126,7 +125,7 @@ summary(fit_gme)
 
 ## Apply It {-}
 
-[This link](http://tysonbarrett.com/DataR/Chapter4.zip) contains a folder complete with an Rstudio project file, an RMarkdown file, and a few data files. Download it and unzip it to do the following steps.
+[This link](https://tysonbarrett.com/DataR/Chapter4.zip) contains a folder complete with an Rstudio project file, an RMarkdown file, and a few data files. Download it and unzip it to do the following steps.
 
 
 ### Step 1 {-}

@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 6: Multilevel Modeling | 06-MultilevelModels.knit</title>
+  <meta name="description" content="" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 6: Multilevel Modeling | 06-MultilevelModels.knit" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 6: Multilevel Modeling | 06-MultilevelModels.knit" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="site_libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="site_libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="site_libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="site_libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="site_libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="site_libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="site_libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="site_libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="site_libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path=""><a href="#chapter-6-multilevel-modeling"><i class="fa fa-check"></i>Chapter 6: Multilevel Modeling</a>
+<ul>
+<li class="chapter" data-level="" data-path=""><a href="#gee"><i class="fa fa-check"></i>GEE</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#mixed-effects"><i class="fa fa-check"></i>Mixed Effects</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#apply-it"><i class="fa fa-check"></i>Apply It</a>
+<ul>
+<li class="chapter" data-level="" data-path=""><a href="#step-1"><i class="fa fa-check"></i>Step 1</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#step-2"><i class="fa fa-check"></i>Step 2</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path=""><a href="#conclusions"><i class="fa fa-check"></i>Conclusions</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<!--bookdown:title:end-->
+<!--bookdown:title:start-->
+<div id="chapter-6-multilevel-modeling" class="section level1 unnumbered">
+<h1>Chapter 6: Multilevel Modeling</h1>
+<blockquote>
+<p>“Simplicity does not precede complexity, but follows it.” — Alan Perlis</p>
+</blockquote>
+<p>Multilevel data are more complex and don’t meet the assumptions of regular linear or generalized linear models. But with the right modeling schemes, the results can be very interpretable and actionable. Two powerful forms of multilevel modeling are:</p>
+<ol style="list-style-type: decimal">
+<li>Generalized Estimating Equations (GEE)</li>
+<li>Mixed effects (ME; i.e., hierarchical linear modeling, multilevel modeling)</li>
+</ol>
+<p>Several similarities and differences should be noted briefly. As for similarities, they both attempt to control for the lack of independence within clusters, although they do it in different ways. Also, they are both built on linear regression which makes them flexible and powerful at finding relationships in the data.</p>
+<p>The differences are subtle but important. First, the interpretation is somewhat different between the two. GEE is a population-averaged (e.g., marginal) model whereas ME is subject specific. In other words, <em>GEE is the average effect</em> while <em>ME is the effect found in the average person</em>. In a linear model, these coefficients are the same but when we use different forms such as logistic or poisson, these can be quite different (although in my experience they generally tell a similar story). Second, ME models are much more complex than the GEE models and can struggle with convergence compared to the GEE. This also means that GEE’s are generally fitted much more quickly. Still the choice of the modeling technique should be driven by your hypotheses and not totally dependent on speed of the computation.</p>
+<p>First, if we needed to, we’d reshape our data so that it is ready for the analyses (see Chapter 8 for more on reshaping). For both modeling techniques we want our data in long form<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>. What this implies is that each row is an observation. What this actually means about the data depends on the data. For example, if you have repeated measures, then often data is stored in wide form—a row is an individual. To make this long, we want each time point within a person to be a row—a single individual can have multiple rows but each row is a unique observation.</p>
+<p>Currently, our data is in long form since we are working within community clusters within this data. So, each row is an observation and each cluster has multiple rows. Note that although these analyses will be within community clusters instead of within subjects (i.e. repeated measures), the overall steps will be the exact same.</p>
+<p>This chapter certainly does not cover all of multilevel modeling in <code>R</code>. Entire books are dedicated to that single subject. Rather, we are introducing the methods and the packages that can be used to start using these methods.</p>
+<div id="gee" class="section level2 unnumbered">
+<h2>GEE</h2>
+<p>There are two packages, intimately related, that allow us to perform GEE modeling—<code>gee</code> and <code>geepack</code>. These have some great features and make running a fairly complex model pretty simple. However, as great as they are, there are some annoying shortcomings. We’ll get to a few of them throughout this section.</p>
+<p>GEE’s, in general, want a few pieces of information from you. First, the outcome and predictors. This is just as in linear regression and GLM’s. Second, we need to provide a correlation structure. This tells the model the approximate pattern of correlations between the time points or clusters. It also wants a variable that tells the cluster ID’s. Finally, it also wants the family (i.e. the type of distribution).</p>
+<p>Since this is not longitudinal, but rather clustered within communities, we’ll assume for this analysis an unstructured correlation structure. It is the most flexible and we have enough power for it here.</p>
+<p>For <code>geepack</code> to work, we need to filter out the missing values for the variables that will be in the model.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">complete.cases</span>(dep, famsize, sed, race, asthma))</span></code></pre></div>
+<p>Now, we’ll build the model with both packages (just for demonstration). We predict depression with asthma, family size, minutes of sedentary behavior, and the subject’s race.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gee)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>fit_gee <span class="ot">&lt;-</span> <span class="fu">gee</span>(dep <span class="sc">~</span> asthma <span class="sc">+</span> famsize <span class="sc">+</span> sed <span class="sc">+</span> race,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">data =</span> df2,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">id =</span> df2<span class="sc">$</span>sdmvstra,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">corstr =</span> <span class="st">&quot;unstructured&quot;</span>)</span></code></pre></div>
+<pre><code>##       (Intercept)      asthmaAsthma           famsize               sed 
+##       2.500022059       1.356081567      -0.042132178       0.001362226 
+## raceOtherHispanic         raceWhite         raceBlack         raceOther 
+##       1.184995689       0.113949209       0.100536695      -0.555478773</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit_gee)<span class="sc">$</span>coef</span></code></pre></div>
+<pre><code>##                       Estimate   Naive S.E.    Naive z  Robust S.E.   Robust z
+## (Intercept)        2.495509790 0.2867816215  8.7017773 0.2690426648  9.2755169
+## asthmaAsthma       1.353039007 0.1867101195  7.2467363 0.2137975620  6.3285989
+## famsize           -0.039489294 0.0461945052 -0.8548483 0.0457474654 -0.8632018
+## sed                0.001358042 0.0003362291  4.0390382 0.0003551901  3.8234244
+## raceOtherHispanic  1.192481318 0.3075562837  3.8772783 0.3309608614  3.6030886
+## raceWhite          0.116185743 0.2531554533  0.4589502 0.2279687738  0.5096564
+## raceBlack          0.096800821 0.2625826864  0.3686489 0.2360498473  0.4100864
+## raceOther         -0.555053605 0.2809301544 -1.9757708 0.2406566044 -2.3064133</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(geepack)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>fit_geeglm <span class="ot">&lt;-</span> <span class="fu">geeglm</span>(dep <span class="sc">~</span> asthma <span class="sc">+</span> famsize <span class="sc">+</span> sed <span class="sc">+</span> race,</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">data =</span> df2,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">id =</span> df2<span class="sc">$</span>sdmvstra,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">corstr =</span> <span class="st">&quot;unstructured&quot;</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit_geeglm)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## geeglm(formula = dep ~ asthma + famsize + sed + race, data = df2, 
+##     id = df2$sdmvstra, corstr = &quot;unstructured&quot;)
+## 
+##  Coefficients:
+##                     Estimate    Std.err   Wald Pr(&gt;|W|)    
+## (Intercept)        2.5579361  0.2700717 89.706  &lt; 2e-16 ***
+## asthmaAsthma       1.3492892  0.2156202 39.159 3.91e-10 ***
+## famsize           -0.0446716  0.0457087  0.955 0.328415    
+## sed                0.0013015  0.0003548 13.454 0.000244 ***
+## raceOtherHispanic  1.1750373  0.3318983 12.534 0.000400 ***
+## raceWhite          0.0806377  0.2295661  0.123 0.725392    
+## raceBlack          0.0642028  0.2363255  0.074 0.785875    
+## raceOther         -0.5902049  0.2413379  5.981 0.014463 *  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Correlation structure = unstructured 
+## Estimated Scale Parameters:
+## 
+##             Estimate Std.err
+## (Intercept)    19.49  0.7843
+##   Link = identity 
+## 
+## Estimated Correlation Parameters:
+##           Estimate Std.err
+## alpha.1:2  0.12480 0.01654
+## alpha.1:3  0.42070 0.10339
+## alpha.1:4  2.89640 1.06678
+## alpha.1:5 -1.85447 0.20276
+## alpha.2:3  0.12238 0.06330
+## alpha.2:4 -0.08935 0.20229
+## alpha.2:5  0.20541 0.03720
+## alpha.3:4 -0.49597 0.11227
+## alpha.3:5  0.25045 0.03879
+## alpha.4:5 -0.66939 0.08761
+## Number of clusters:   4109  Maximum cluster size: 5</code></pre>
+<p>The <code>gee</code> package doesn’t directly provide p-values but provides the z-scores, which can be used to find the p-values. The <code>geepack</code> provides the p-values in the way you’ll see in the <code>lm()</code> and <code>glm()</code> functions.</p>
+<p>These models are interpreted just as the regular GLM. It has adjusted for the correlations within the clusters and provides valid standard errors and p-values.</p>
+</div>
+<div id="mixed-effects" class="section level2 unnumbered">
+<h2>Mixed Effects</h2>
+<p>Mixed effects models require a bit more thinking about the effects. It is called “mixed effects” because we include both fixed and random effects into the model simultaneously. The random effects are those that we don’t necessarily care about the specific values but want to control for it and/or estimate the variance. The fixed effects are those we are used to estimating in linear models and GLM’s.</p>
+<p>These are a bit more clear with an example. We will do the same overall model as we did with the GEE but we’ll use ME. To do so, we’ll use the <code>lme4</code> package. In the model below, we predict depression with asthma, family size, minutes of sedentary behavior, and the subject’s race. We have a random intercept (which allows the intercept to vary across clusters).</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lme4)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>fit_me <span class="ot">&lt;-</span> <span class="fu">lmer</span>(dep <span class="sc">~</span> asthma <span class="sc">+</span> famsize <span class="sc">+</span> sed <span class="sc">+</span> race <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> cluster),</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">data =</span> df2,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">REML =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit_me)</span></code></pre></div>
+<pre><code>## Linear mixed model fit by maximum likelihood  [&#39;lmerMod&#39;]
+## Formula: dep ~ asthma + famsize + sed + race + (1 | cluster)
+##    Data: df2
+## 
+##      AIC      BIC   logLik deviance df.resid 
+##    25780    25844   -12880    25760     4427 
+## 
+## Scaled residuals: 
+##    Min     1Q Median     3Q    Max 
+## -1.327 -0.635 -0.355  0.272  5.435 
+## 
+## Random effects:
+##  Groups   Name        Variance Std.Dev.
+##  cluster  (Intercept)  0.105   0.324   
+##  Residual             19.389   4.403   
+## Number of obs: 4437, groups:  cluster, 14
+## 
+## Fixed effects:
+##                    Estimate Std. Error t value
+## (Intercept)        2.491678   0.302768    8.23
+## asthmaAsthma       1.335445   0.186618    7.16
+## famsize           -0.042857   0.046341   -0.92
+## sed                0.001425   0.000337    4.23
+## raceOtherHispanic  1.289890   0.320595    4.02
+## raceWhite          0.008348   0.259449    0.03
+## raceBlack          0.171658   0.273382    0.63
+## raceOther         -0.552746   0.285512   -1.94
+## 
+## Correlation of Fixed Effects:
+##             (Intr) asthmA famsiz sed    rcOthH racWht rcBlck
+## asthmaAsthm -0.042                                          
+## famsize     -0.510 -0.004                                   
+## sed         -0.324 -0.044  0.051                            
+## rcOthrHspnc -0.556 -0.032  0.051 -0.038                     
+## raceWhite   -0.680 -0.038  0.135 -0.148  0.639              
+## raceBlack   -0.643 -0.057  0.094 -0.131  0.624  0.775       
+## raceOther   -0.580  0.000  0.048 -0.135  0.589  0.725  0.693</code></pre>
+<p>You’ll see that there are no p-values provided here. This is because p-values are not well-defined in the ME framework. A good way to test it can be through the <code>anova()</code> function, comparing models. Let’s compare a model with and without <code>asthma</code> to see if the model is significantly better with it in.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>fit_me1 <span class="ot">&lt;-</span> <span class="fu">lmer</span>(dep <span class="sc">~</span> famsize <span class="sc">+</span> sed <span class="sc">+</span> race <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> cluster),</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">data =</span> df2,</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">REML =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(fit_me, fit_me1)</span></code></pre></div>
+<pre><code>## Data: df2
+## Models:
+## fit_me1: dep ~ famsize + sed + race + (1 | cluster)
+## fit_me: dep ~ asthma + famsize + sed + race + (1 | cluster)
+##         npar   AIC   BIC logLik deviance Chisq Df Pr(&gt;Chisq)    
+## fit_me1    9 25829 25886 -12905    25811                        
+## fit_me    10 25780 25844 -12880    25760  50.9  1    9.9e-13 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>This comparison strongly suggests that <code>asthma</code> is a significant predictor (<span class="math inline">\(\chi^2 = 50.5\)</span>, p &lt; .001). We can do this with both fixed and random effects, as below:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>fit_me2 <span class="ot">&lt;-</span> <span class="fu">lmer</span>(dep <span class="sc">~</span> famsize <span class="sc">+</span> sed <span class="sc">+</span> race <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> cluster),</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">data =</span> df2,</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">REML =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>fit_me3 <span class="ot">&lt;-</span> <span class="fu">lmer</span>(dep <span class="sc">~</span> famsize <span class="sc">+</span> sed <span class="sc">+</span> race <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">+</span> asthma <span class="sc">|</span> cluster),</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">data =</span> df2,</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">REML =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(fit_me2, fit_me3, <span class="at">refit =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>## Data: df2
+## Models:
+## fit_me2: dep ~ famsize + sed + race + (1 | cluster)
+## fit_me3: dep ~ famsize + sed + race + (1 + asthma | cluster)
+##         npar   AIC   BIC logLik deviance Chisq Df Pr(&gt;Chisq)    
+## fit_me2    9 25855 25912 -12918    25837                        
+## fit_me3   11 25821 25892 -12900    25799  37.3  2      8e-09 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>Here, including random slopes for asthma appears to be significant (<span class="math inline">\(\chi^2 = 36.9\)</span>, p &lt; .001).</p>
+<p>Linear mixed effects models converge pretty well. You’ll see that the conclusions and estimates are very similar to that of the GEE. For generalized versions of ME, the convergence can be harder and more picky. As we’ll see below, it complains about large eigenvalues and tells us to rescale some of the variables.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lme4)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>fit_gme <span class="ot">&lt;-</span> <span class="fu">glmer</span>(dep2 <span class="sc">~</span> asthma <span class="sc">+</span> famsize <span class="sc">+</span> sed <span class="sc">+</span> race <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> cluster),</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">data =</span> df2,</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">family =</span> <span class="st">&quot;binomial&quot;</span>)</span></code></pre></div>
+<pre><code>## Warning in checkConv(attr(opt, &quot;derivs&quot;), opt$par, ctrl = control$checkConv, :
+## Model failed to converge with max|grad| = 0.00853512 (tol = 0.002, component 1)</code></pre>
+<pre><code>## Warning in checkConv(attr(opt, &quot;derivs&quot;), opt$par, ctrl = control$checkConv, : Model is nearly unidentifiable: very large eigenvalue
+##  - Rescale variables?;Model is nearly unidentifiable: large eigenvalue ratio
+##  - Rescale variables?</code></pre>
+<p>After a quick check, we can see that <code>sed</code> is huge compared to the other variables. If we simply rescale it, using the <code>I()</code> function within the model formula, we can rescale it by 1,000. Here, that is all it needed to converge.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lme4)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>fit_gme <span class="ot">&lt;-</span> <span class="fu">glmer</span>(dep2 <span class="sc">~</span> asthma <span class="sc">+</span> famsize <span class="sc">+</span> <span class="fu">I</span>(sed<span class="sc">/</span><span class="dv">1000</span>) <span class="sc">+</span> race <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> cluster),</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">data =</span> df2,</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">family =</span> <span class="st">&quot;binomial&quot;</span>)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit_gme)</span></code></pre></div>
+<pre><code>## Generalized linear mixed model fit by maximum likelihood (Laplace
+##   Approximation) [glmerMod]
+##  Family: binomial  ( logit )
+## Formula: dep2 ~ asthma + famsize + I(sed/1000) + race + (1 | cluster)
+##    Data: df2
+## 
+##      AIC      BIC   logLik deviance df.resid 
+##     2665     2722    -1323     2647     4428 
+## 
+## Scaled residuals: 
+##    Min     1Q Median     3Q    Max 
+## -0.635 -0.329 -0.295 -0.258  5.032 
+## 
+## Random effects:
+##  Groups  Name        Variance Std.Dev.
+##  cluster (Intercept) 0.0232   0.152   
+## Number of obs: 4437, groups:  cluster, 14
+## 
+## Fixed effects:
+##                   Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept)        -2.6316     0.2434  -10.81  &lt; 2e-16 ***
+## asthmaAsthma        0.5619     0.1281    4.39  1.1e-05 ***
+## famsize            -0.0336     0.0374   -0.90   0.3696    
+## I(sed/1000)         0.5835     0.2617    2.23   0.0258 *  
+## raceOtherHispanic   0.7564     0.2420    3.13   0.0018 ** 
+## raceWhite           0.0955     0.2159    0.44   0.6581    
+## raceBlack           0.0531     0.2277    0.23   0.8155    
+## raceOther          -0.4950     0.2590   -1.91   0.0560 .  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Correlation of Fixed Effects:
+##             (Intr) asthmA famsiz I(/100 rcOthH racWht rcBlck
+## asthmaAsthm -0.057                                          
+## famsize     -0.491 -0.012                                   
+## I(sed/1000) -0.324 -0.042  0.031                            
+## rcOthrHspnc -0.653 -0.031  0.044 -0.029                     
+## raceWhite   -0.715 -0.037  0.132 -0.148  0.709              
+## raceBlack   -0.684 -0.064  0.088 -0.124  0.715  0.781       
+## raceOther   -0.571 -0.003  0.046 -0.122  0.606  0.688  0.653</code></pre>
+</div>
+<div id="apply-it" class="section level2 unnumbered">
+<h2>Apply It</h2>
+<p><a href="https://tysonbarrett.com/DataR/Chapter4.zip">This link</a> contains a folder complete with an Rstudio project file, an RMarkdown file, and a few data files. Download it and unzip it to do the following steps.</p>
+<div id="step-1" class="section level3 unnumbered">
+<h3>Step 1</h3>
+<p>Open the <code>Chapter4.Rproj</code> file. This will open up RStudio for you.</p>
+</div>
+<div id="step-2" class="section level3 unnumbered">
+<h3>Step 2</h3>
+<p>Once RStudio has started, in the panel on the lower-right, there is a <code>Files</code> tab. Click on that to see the project folder. You should see the data files and the <code>Chapter4.Rmd</code> file. Click on the <code>Chapter4.Rmd</code> file to open it. In this file, import the data and run each type of statistical analysis presented in this chapter (there are others that are presented in Chapters 4 and 5 that you may have done already and methods from Chapter 7 that you have not done yet).</p>
+<p>Once that code is in the file, click the <code>knit</code> button. This will create an HTML file with the code and output knitted together into one nice document. This can be read into any browser and can be used to show your work in a clean document.</p>
+</div>
+</div>
+<div id="conclusions" class="section level2 unnumbered">
+<h2>Conclusions</h2>
+<p>This has been a really brief introduction into a thriving, large field of statistical analyses. These are the general methods for using <code>R</code> to analyze multilevel data. Our next chapter will discuss more modeling techniques in <code>R</code>, including mediation, mixture, and structural equation modeling.</p>
+</div>
+</div>
+
+
+
+
+
+
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>We discuss what this means in much more depth and demonstrate reshaping of data in Chapter 8. It is an important tool to understand if you are working with data in various forms. Although many reshape their data by copying-and-pasting in a spreadsheet, what we present in Chapter 8 is much more efficient, cleaner, less error-prone, and replicatable.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+<script src="site_libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="site_libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="site_libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="site_libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="site_libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="site_libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="site_libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="site_libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": false,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

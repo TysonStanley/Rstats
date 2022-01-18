@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>R for Researchers: An Introduction</title>
+  <meta name="description" content="This book introduces the R statistical language for researchers in the health, behavioral, educational, and psychological sciences. It is designed for those that have little background in statistical programming but would like to use the powerful statistical and visualization tool that R offers at no cost. The light-hearted design of this book allows a researcher to investigate and begin using R relatively stress-free with intuitive and interesting examples." />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="R for Researchers: An Introduction" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="/Cover.jpg" />
+  <meta property="og:description" content="This book introduces the R statistical language for researchers in the health, behavioral, educational, and psychological sciences. It is designed for those that have little background in statistical programming but would like to use the powerful statistical and visualization tool that R offers at no cost. The light-hearted design of this book allows a researcher to investigate and begin using R relatively stress-free with intuitive and interesting examples." />
+  <meta name="github-repo" content="tysonstanley" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="R for Researchers: An Introduction" />
+  
+  <meta name="twitter:description" content="This book introduces the R statistical language for researchers in the health, behavioral, educational, and psychological sciences. It is designed for those that have little background in statistical programming but would like to use the powerful statistical and visualization tool that R offers at no cost. The light-hearted design of this book allows a researcher to investigate and begin using R relatively stress-free with intuitive and interesting examples." />
+  <meta name="twitter:image" content="/Cover.jpg" />
+
+<meta name="author" content="Tyson S. Barrett, PhD" />
+
+
+<meta name="date" content="2022-01-18" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="site_libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="site_libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="site_libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="site_libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="site_libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="site_libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="site_libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="site_libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="site_libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path=""><a href="#preface"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path=""><a href="#preparation"><i class="fa fa-check"></i>Preparation</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#part-i"><i class="fa fa-check"></i>Part I</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#part-ii"><i class="fa fa-check"></i>Part II</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#part-iii"><i class="fa fa-check"></i>Part III</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R for Researchers: An Introduction</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">R for Researchers: An Introduction</h1>
+<p class="author"><em>Tyson S. Barrett, PhD</em></p>
+<p class="date"><em>2022-01-18</em></p>
+</div>
+<div id="preface" class="section level1 unnumbered">
+<h1>Preface</h1>
+<p>Welcome to <em>R for Researchers: An Introduction</em>! This book is designed to help you learn to use R and RStudio for working with and analyzing your data. This book is written for researchers in what I’m calling the <em>human sciences</em>—the sciences dealing directly with human well-being (e.g. health, behavior, education, psychology, and sociology). Although different in substantive interests, the data situations faced, and analysis approaches used, in these fields are similar. As such, the topics addressed should be useful for researchers working with quantitative data in each of these areas.</p>
+<p>My approach herein does not focus on the theoretical aspects of statistics or data science. Instead, it focuses on the application of the methods necessary for a researcher in the humans sciences to independently work with and analyze human data.</p>
+<p>This book can work as a companion to other statistical texts or can be a standalone text for learning R. As a companion, Part II (explained below) can be particularly helpful getting started using R for statistical analyses. As a standalone, the entire book helps a researcher work with data throughout the “data analysis lifecycle” (see figure below)—from importing, cleaning, and summarizing the data to analyzing and reporting the results. In general, this book will follow the data analysis lifecycle, starting with importing and going through until reporting.</p>
+<p><img src="DataCycle.png" /></p>
+<div id="preparation" class="section level2 unnumbered">
+<h2>Preparation</h2>
+<p>Before beginning the book, you will need to download the <code>R</code> software <a href="https://www.r-project.org/">www.r-project.org</a> and then the RStudio software <a href="https://www.rstudio.com/">www.rstudio.com</a>. <code>R</code> will just need to be installed on your computer but you won’t interact with it directly (you won’t need to open it up). <code>RStudio</code><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> is actually how we will end up using <code>R</code>. You can think of <code>R</code> as the computer processor while <code>RStudio</code> is the keyboard and screen. <code>R</code> actually does the work but you’ll only use it by using <code>RStudio</code>.</p>
+<p>Once they are both installed, when you open up <code>RStudio</code> you should see the following three panels:</p>
+<p><img src="Rstudio_3panel.png" /></p>
+<p>If you do, then congrats! You are one huge step on the path to using <code>R</code> in your research. If it isn’t going so smoothly, helps on installing the software can be found on <a href="https://www.rstudio.com/">www.rstudio.com</a>, <a href="www.r-bloggers.com">www.r-bloggers.com</a>, and <a href="www.statmethods.net">www.statmethods.net</a>. Don’t give up it if you run into any obstacles here. But once it is installed and you can open <code>RStudio</code>, you are good to go. The remainder of the book will be about actually using it (the fun part!).</p>
+<blockquote>
+<p>In general, I will refer to anything you do in <code>RStudio</code> as using <code>R</code>. So, when I say things like: “To make a plot in <code>R</code>, we are going to …,” I do not mean to open <code>R</code> and start doing stuff there. Instead, I mean to keep using <code>RStudio</code> but will not refer to the things we do as in <code>RStudio</code> but as in <code>R</code>.</p>
+</blockquote>
+<p>The book is divided into three parts.</p>
+</div>
+<div id="part-i" class="section level2 unnumbered">
+<h2>Part I</h2>
+<ol style="list-style-type: decimal">
+<li>Chapter 1: The Basics</li>
+<li>Chapter 2: Working with and Cleaning Your Data</li>
+<li>Chapter 3: Understanding Your Data (summary statistics, ggplot2)</li>
+</ol>
+</div>
+<div id="part-ii" class="section level2 unnumbered">
+<h2>Part II</h2>
+<ol start="4" style="list-style-type: decimal">
+<li>Chapter 4: Basic Statistical Analyses (T-tests, ANOVA, Linear Regression)</li>
+<li>Chapter 5: Generalized Linear Models</li>
+<li>Chapter 6: Multilevel Modeling</li>
+<li>Chapter 7: Other Modeling Techniques</li>
+</ol>
+</div>
+<div id="part-iii" class="section level2 unnumbered">
+<h2>Part III</h2>
+<ol start="8" style="list-style-type: decimal">
+<li>Chapter 8: Advanced data manipulation</li>
+<li>Chapter 9: Reproducible Workflow</li>
+<li>Chapter 10: Where to go from here</li>
+</ol>
+<p>At the end of the book, you should be able to: 1) use <code>R</code> to perform your data cleaning and data analyses and 2) understand online helps (e.g. <a href="www.stackoverflow.com">www.stackoverflow.com</a>, <a href="www.r-bloggers.com">www.r-bloggers.com</a>) so your potential in <code>R</code> becomes nearly limitless.</p>
+<p>Enjoy!<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
+</div>
+</div>
+
+
+
+
+
+
+
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>Get the free version of <code>Rstudio</code>. Believe me, it doesn’t feel like it should be free software.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>Note that to return to Tyson’s blog, you can click <a href="https://tysonbarrett.com">here</a><a href="#fnref2" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+<script src="site_libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="site_libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="site_libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="site_libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="site_libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="site_libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="site_libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="site_libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": false,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

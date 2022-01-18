@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 7: Other Modeling Techniques | R for Researchers: An Introduction</title>
+  <meta name="description" content="This book introduces the R statistical language for researchers in the health, behavioral, educational, and psychological sciences. It is designed for those that have little background in statistical programming but would like to use the powerful statistical and visualization tool that R offers at no cost. The light-hearted design of this book allows a researcher to investigate and begin using R relatively stress-free with intuitive and interesting examples." />
+  <meta name="generator" content="bookdown 0.10 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 7: Other Modeling Techniques | R for Researchers: An Introduction" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="Cover.jpg" />
+  <meta property="og:description" content="This book introduces the R statistical language for researchers in the health, behavioral, educational, and psychological sciences. It is designed for those that have little background in statistical programming but would like to use the powerful statistical and visualization tool that R offers at no cost. The light-hearted design of this book allows a researcher to investigate and begin using R relatively stress-free with intuitive and interesting examples." />
+  <meta name="github-repo" content="tysonstanley" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 7: Other Modeling Techniques | R for Researchers: An Introduction" />
+  
+  <meta name="twitter:description" content="This book introduces the R statistical language for researchers in the health, behavioral, educational, and psychological sciences. It is designed for those that have little background in statistical programming but would like to use the powerful statistical and visualization tool that R offers at no cost. The light-hearted design of this book allows a researcher to investigate and begin using R relatively stress-free with intuitive and interesting examples." />
+  <meta name="twitter:image" content="Cover.jpg" />
+
+<meta name="author" content="Tyson S. Barrett, PhD" />
+
+
+<meta name="date" content="2019-05-13" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="chapter-6-multilevel-modeling.html">
+<link rel="next" href="chapter-8-advanced-data-manipulation.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#preparation"><i class="fa fa-check"></i>Preparation</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#part-i"><i class="fa fa-check"></i>Part I</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#part-ii"><i class="fa fa-check"></i>Part II</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#part-iii"><i class="fa fa-check"></i>Part III</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html"><i class="fa fa-check"></i>Chapter 1: The Basics</a><ul>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html#objects"><i class="fa fa-check"></i>Objects</a></li>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html#data-types"><i class="fa fa-check"></i>Data Types</a></li>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html#functions"><i class="fa fa-check"></i>Functions</a><ul>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html#operators"><i class="fa fa-check"></i>Operators</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html#importing-data"><i class="fa fa-check"></i>Importing Data</a></li>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html#saving-data"><i class="fa fa-check"></i>Saving Data</a></li>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html#apply-it"><i class="fa fa-check"></i>Apply it</a><ul>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html#step-1"><i class="fa fa-check"></i>Step 1</a></li>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html#step-2"><i class="fa fa-check"></i>Step 2</a></li>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html#step-3"><i class="fa fa-check"></i>Step 3</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html#conclusions"><i class="fa fa-check"></i>Conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html"><i class="fa fa-check"></i>Chapter 2: Working with and Cleaning Your Data</a><ul>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#tidy-methods"><i class="fa fa-check"></i>Tidy Methods</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#tidy-long-form"><i class="fa fa-check"></i>Tidy (Long) Form</a><ul>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#wide-form"><i class="fa fa-check"></i>Wide Form</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#long-form"><i class="fa fa-check"></i>Long Form</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#data-used-for-examples"><i class="fa fa-check"></i>Data Used for Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#piping"><i class="fa fa-check"></i>Piping</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#select-variables-and-filter-observations"><i class="fa fa-check"></i>Select Variables and Filter Observations</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#mutate-variables"><i class="fa fa-check"></i>Mutate Variables</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#grouping-and-summarizing"><i class="fa fa-check"></i>Grouping and Summarizing</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#reshaping"><i class="fa fa-check"></i>Reshaping</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#joining-merging"><i class="fa fa-check"></i>Joining (merging)</a><ul>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#inner-join"><i class="fa fa-check"></i>Inner Join</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#left-or-right-join"><i class="fa fa-check"></i>Left or Right Join</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#full-join"><i class="fa fa-check"></i>Full Join</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#wrap-it-up"><i class="fa fa-check"></i>Wrap it up</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#general-cleaning-of-the-data-set"><i class="fa fa-check"></i>General Cleaning of the Data Set</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#apply-it-1"><i class="fa fa-check"></i>Apply It</a><ul>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#step-1-1"><i class="fa fa-check"></i>Step 1</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#step-2-1"><i class="fa fa-check"></i>Step 2</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-3-exploring-your-data-with-tables-and-visuals.html"><a href="chapter-3-exploring-your-data-with-tables-and-visuals.html"><i class="fa fa-check"></i>Chapter 3: Exploring Your Data with Tables and Visuals</a><ul>
+<li class="chapter" data-level="" data-path="chapter-3-exploring-your-data-with-tables-and-visuals.html"><a href="chapter-3-exploring-your-data-with-tables-and-visuals.html#descriptive-statistics"><i class="fa fa-check"></i>Descriptive Statistics</a></li>
+<li class="chapter" data-level="" data-path="chapter-3-exploring-your-data-with-tables-and-visuals.html"><a href="chapter-3-exploring-your-data-with-tables-and-visuals.html#visualizations"><i class="fa fa-check"></i>Visualizations</a><ul>
+<li><a href="chapter-3-exploring-your-data-with-tables-and-visuals.html#using-ggplot2">Using <code>ggplot2</code></a></li>
+</ul></li>
+<li><a href="chapter-3-exploring-your-data-with-tables-and-visuals.html#more-advanced-features-of-ggplot2">More Advanced Features of <code>ggplot2</code></a></li>
+<li class="chapter" data-level="" data-path="chapter-3-exploring-your-data-with-tables-and-visuals.html"><a href="chapter-3-exploring-your-data-with-tables-and-visuals.html#types-of-plots"><i class="fa fa-check"></i>Types of Plots</a><ul>
+<li class="chapter" data-level="" data-path="chapter-3-exploring-your-data-with-tables-and-visuals.html"><a href="chapter-3-exploring-your-data-with-tables-and-visuals.html#scatterplots"><i class="fa fa-check"></i>Scatterplots</a></li>
+<li class="chapter" data-level="" data-path="chapter-3-exploring-your-data-with-tables-and-visuals.html"><a href="chapter-3-exploring-your-data-with-tables-and-visuals.html#boxplots"><i class="fa fa-check"></i>Boxplots</a></li>
+<li class="chapter" data-level="" data-path="chapter-3-exploring-your-data-with-tables-and-visuals.html"><a href="chapter-3-exploring-your-data-with-tables-and-visuals.html#bar-plots"><i class="fa fa-check"></i>Bar Plots</a></li>
+<li class="chapter" data-level="" data-path="chapter-3-exploring-your-data-with-tables-and-visuals.html"><a href="chapter-3-exploring-your-data-with-tables-and-visuals.html#line-plots"><i class="fa fa-check"></i>Line Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-3-exploring-your-data-with-tables-and-visuals.html"><a href="chapter-3-exploring-your-data-with-tables-and-visuals.html#color-schemes"><i class="fa fa-check"></i>Color Schemes</a></li>
+<li class="chapter" data-level="" data-path="chapter-3-exploring-your-data-with-tables-and-visuals.html"><a href="chapter-3-exploring-your-data-with-tables-and-visuals.html#themes"><i class="fa fa-check"></i>Themes</a></li>
+<li class="chapter" data-level="" data-path="chapter-3-exploring-your-data-with-tables-and-visuals.html"><a href="chapter-3-exploring-your-data-with-tables-and-visuals.html#labels-and-titles"><i class="fa fa-check"></i>Labels and Titles</a></li>
+<li class="chapter" data-level="" data-path="chapter-3-exploring-your-data-with-tables-and-visuals.html"><a href="chapter-3-exploring-your-data-with-tables-and-visuals.html#facetting"><i class="fa fa-check"></i>Facetting</a></li>
+<li class="chapter" data-level="" data-path="chapter-3-exploring-your-data-with-tables-and-visuals.html"><a href="chapter-3-exploring-your-data-with-tables-and-visuals.html#apply-it-2"><i class="fa fa-check"></i>Apply It</a><ul>
+<li class="chapter" data-level="" data-path="chapter-3-exploring-your-data-with-tables-and-visuals.html"><a href="chapter-3-exploring-your-data-with-tables-and-visuals.html#step-1-2"><i class="fa fa-check"></i>Step 1</a></li>
+<li class="chapter" data-level="" data-path="chapter-3-exploring-your-data-with-tables-and-visuals.html"><a href="chapter-3-exploring-your-data-with-tables-and-visuals.html#step-2-2"><i class="fa fa-check"></i>Step 2</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-3-exploring-your-data-with-tables-and-visuals.html"><a href="chapter-3-exploring-your-data-with-tables-and-visuals.html#conclusions-1"><i class="fa fa-check"></i>Conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html"><i class="fa fa-check"></i>Chapter 4: Basic Analyses</a><ul>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#anova"><i class="fa fa-check"></i>ANOVA</a></li>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#assumptions"><i class="fa fa-check"></i>Assumptions</a></li>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#linear-modeling"><i class="fa fa-check"></i>Linear Modeling</a></li>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#assumptions-1"><i class="fa fa-check"></i>Assumptions</a></li>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#comparing-models"><i class="fa fa-check"></i>Comparing Models</a><ul>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#compare-statistically"><i class="fa fa-check"></i>Compare Statistically</a></li>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#compare-in-a-table"><i class="fa fa-check"></i>Compare in a Table</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#when-assumptions-fail"><i class="fa fa-check"></i>When Assumptions Fail</a><ul>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#log-linear-log-log-linear-log-other"><i class="fa fa-check"></i>Log-Linear, Log-Log, Linear-Log, Other</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#interactions"><i class="fa fa-check"></i>Interactions</a><ul>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#interactions-in-anova"><i class="fa fa-check"></i>Interactions in ANOVA</a></li>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#interactions-in-linear-regression"><i class="fa fa-check"></i>Interactions in Linear Regression</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#apply-it-3"><i class="fa fa-check"></i>Apply It</a><ul>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#step-1-3"><i class="fa fa-check"></i>Step 1</a></li>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#step-2-3"><i class="fa fa-check"></i>Step 2</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-5-generalized-linear-models.html"><a href="chapter-5-generalized-linear-models.html"><i class="fa fa-check"></i>Chapter 5: Generalized Linear Models</a><ul>
+<li class="chapter" data-level="" data-path="chapter-5-generalized-linear-models.html"><a href="chapter-5-generalized-linear-models.html#logistic-regression"><i class="fa fa-check"></i>Logistic Regression</a></li>
+<li class="chapter" data-level="" data-path="chapter-5-generalized-linear-models.html"><a href="chapter-5-generalized-linear-models.html#poisson-regression"><i class="fa fa-check"></i>Poisson Regression</a><ul>
+<li class="chapter" data-level="" data-path="chapter-5-generalized-linear-models.html"><a href="chapter-5-generalized-linear-models.html#gamma"><i class="fa fa-check"></i>Gamma</a></li>
+<li class="chapter" data-level="" data-path="chapter-5-generalized-linear-models.html"><a href="chapter-5-generalized-linear-models.html#two-part-or-hurdle-models"><i class="fa fa-check"></i>Two-Part or Hurdle Models</a></li>
+<li class="chapter" data-level="" data-path="chapter-5-generalized-linear-models.html"><a href="chapter-5-generalized-linear-models.html#negative-binomial"><i class="fa fa-check"></i>Negative Binomial</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-5-generalized-linear-models.html"><a href="chapter-5-generalized-linear-models.html#beta-regression"><i class="fa fa-check"></i>Beta Regression</a></li>
+<li class="chapter" data-level="" data-path="chapter-5-generalized-linear-models.html"><a href="chapter-5-generalized-linear-models.html#apply-it-4"><i class="fa fa-check"></i>Apply It</a><ul>
+<li class="chapter" data-level="" data-path="chapter-5-generalized-linear-models.html"><a href="chapter-5-generalized-linear-models.html#step-1-4"><i class="fa fa-check"></i>Step 1</a></li>
+<li class="chapter" data-level="" data-path="chapter-5-generalized-linear-models.html"><a href="chapter-5-generalized-linear-models.html#step-2-4"><i class="fa fa-check"></i>Step 2</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-5-generalized-linear-models.html"><a href="chapter-5-generalized-linear-models.html#conclusions-2"><i class="fa fa-check"></i>Conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-6-multilevel-modeling.html"><a href="chapter-6-multilevel-modeling.html"><i class="fa fa-check"></i>Chapter 6: Multilevel Modeling</a><ul>
+<li class="chapter" data-level="" data-path="chapter-6-multilevel-modeling.html"><a href="chapter-6-multilevel-modeling.html#gee"><i class="fa fa-check"></i>GEE</a></li>
+<li class="chapter" data-level="" data-path="chapter-6-multilevel-modeling.html"><a href="chapter-6-multilevel-modeling.html#mixed-effects"><i class="fa fa-check"></i>Mixed Effects</a></li>
+<li class="chapter" data-level="" data-path="chapter-6-multilevel-modeling.html"><a href="chapter-6-multilevel-modeling.html#apply-it-5"><i class="fa fa-check"></i>Apply It</a><ul>
+<li class="chapter" data-level="" data-path="chapter-6-multilevel-modeling.html"><a href="chapter-6-multilevel-modeling.html#step-1-5"><i class="fa fa-check"></i>Step 1</a></li>
+<li class="chapter" data-level="" data-path="chapter-6-multilevel-modeling.html"><a href="chapter-6-multilevel-modeling.html#step-2-5"><i class="fa fa-check"></i>Step 2</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-6-multilevel-modeling.html"><a href="chapter-6-multilevel-modeling.html#conclusions-3"><i class="fa fa-check"></i>Conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html"><i class="fa fa-check"></i>Chapter 7: Other Modeling Techniques</a><ul>
+<li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#mediation-modeling"><i class="fa fa-check"></i>Mediation Modeling</a></li>
+<li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#structural-equation-modeling"><i class="fa fa-check"></i>Structural Equation Modeling</a></li>
+<li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#machine-learning-techniques"><i class="fa fa-check"></i>Machine Learning Techniques</a><ul>
+<li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#ridge-lasso-and-elastic-net"><i class="fa fa-check"></i>Ridge, Lasso and Elastic Net</a></li>
+<li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#random-forests"><i class="fa fa-check"></i>Random Forests</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#apply-it-6"><i class="fa fa-check"></i>Apply It</a><ul>
+<li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#step-1-6"><i class="fa fa-check"></i>Step 1</a></li>
+<li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#step-2-6"><i class="fa fa-check"></i>Step 2</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#conclusions-4"><i class="fa fa-check"></i>Conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html"><i class="fa fa-check"></i>Chapter 8: Advanced Data Manipulation</a><ul>
+<li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#reshaping-your-data"><i class="fa fa-check"></i>Reshaping Your Data</a></li>
+<li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#repeating-actions-looping"><i class="fa fa-check"></i>Repeating Actions (Looping)</a><ul>
+<li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#your-own-functions"><i class="fa fa-check"></i>Your Own Functions</a></li>
+<li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#vectorized"><i class="fa fa-check"></i>Vectorized</a></li>
+<li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#for-loops"><i class="fa fa-check"></i>For Loops</a></li>
+<li><a href="chapter-8-advanced-data-manipulation.html#the-apply-family">The <code>apply</code> family</a></li>
+<li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#using-anonymous-functions-in-apply"><i class="fa fa-check"></i>Using “Anonymous Functions” in Apply</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#apply-it-7"><i class="fa fa-check"></i>Apply It</a><ul>
+<li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#step-1-7"><i class="fa fa-check"></i>Step 1</a></li>
+<li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#step-2-7"><i class="fa fa-check"></i>Step 2</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#conclusions-5"><i class="fa fa-check"></i>Conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-9-reproducible-workflow-with-rmarkdown.html"><a href="chapter-9-reproducible-workflow-with-rmarkdown.html"><i class="fa fa-check"></i>Chapter 9: Reproducible Workflow with RMarkdown</a><ul>
+<li class="chapter" data-level="" data-path="chapter-9-reproducible-workflow-with-rmarkdown.html"><a href="chapter-9-reproducible-workflow-with-rmarkdown.html#r-markdown"><i class="fa fa-check"></i>R Markdown</a><ul>
+<li class="chapter" data-level="" data-path="chapter-9-reproducible-workflow-with-rmarkdown.html"><a href="chapter-9-reproducible-workflow-with-rmarkdown.html#in-line-r-code"><i class="fa fa-check"></i>In-Line R Code</a></li>
+<li class="chapter" data-level="" data-path="chapter-9-reproducible-workflow-with-rmarkdown.html"><a href="chapter-9-reproducible-workflow-with-rmarkdown.html#pre-formatted-documents"><i class="fa fa-check"></i>Pre-formatted Documents</a></li>
+<li class="chapter" data-level="" data-path="chapter-9-reproducible-workflow-with-rmarkdown.html"><a href="chapter-9-reproducible-workflow-with-rmarkdown.html#other-tricks"><i class="fa fa-check"></i>Other Tricks</a></li>
+<li class="chapter" data-level="" data-path="chapter-9-reproducible-workflow-with-rmarkdown.html"><a href="chapter-9-reproducible-workflow-with-rmarkdown.html#important-important"><i class="fa fa-check"></i>Important, Important</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-9-reproducible-workflow-with-rmarkdown.html"><a href="chapter-9-reproducible-workflow-with-rmarkdown.html#apply-it-8"><i class="fa fa-check"></i>Apply It</a><ul>
+<li class="chapter" data-level="" data-path="chapter-9-reproducible-workflow-with-rmarkdown.html"><a href="chapter-9-reproducible-workflow-with-rmarkdown.html#step-1-8"><i class="fa fa-check"></i>Step 1</a></li>
+<li class="chapter" data-level="" data-path="chapter-9-reproducible-workflow-with-rmarkdown.html"><a href="chapter-9-reproducible-workflow-with-rmarkdown.html#step-2-8"><i class="fa fa-check"></i>Step 2</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-10-where-to-go-from-here-and-common-pitfalls.html"><a href="chapter-10-where-to-go-from-here-and-common-pitfalls.html"><i class="fa fa-check"></i>Chapter 10: Where to Go from Here and Common Pitfalls</a><ul>
+<li class="chapter" data-level="" data-path="chapter-10-where-to-go-from-here-and-common-pitfalls.html"><a href="chapter-10-where-to-go-from-here-and-common-pitfalls.html#common-pitfalls"><i class="fa fa-check"></i>Common Pitfalls</a></li>
+<li class="chapter" data-level="" data-path="chapter-10-where-to-go-from-here-and-common-pitfalls.html"><a href="chapter-10-where-to-go-from-here-and-common-pitfalls.html#quiz"><i class="fa fa-check"></i>Quiz</a></li>
+<li class="chapter" data-level="" data-path="chapter-10-where-to-go-from-here-and-common-pitfalls.html"><a href="chapter-10-where-to-go-from-here-and-common-pitfalls.html#goodbye-and-good-luck"><i class="fa fa-check"></i>Goodbye and Good Luck</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R for Researchers: An Introduction</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="chapter-7-other-modeling-techniques" class="section level1 unnumbered">
+<h1>Chapter 7: Other Modeling Techniques</h1>
+<blockquote>
+<p>“Simplicity is the ultimate sophistication.” — Leonardo da Vinci</p>
+</blockquote>
+<p>In this chapter we cover, however briefly, modeling techniques that are especially useful to make complex relationships easier to interpret. We will focus on mediation and moderation modeling, methods relating to structural equation modeling (SEM), and methods applicable to our field from machine learning. Although these machine learning may appear very different than mediation and SEM, they each have advantages that can help in different situations. For example, SEM is useful when we know there is a high degree of measurement error or our data has multiple indicators for each construct. On the other hand, regularized regression and random forests–two popular forms of machine learning–are great to explore patterns and relationships there are hundreds or thousands of variables that may predict an outcome.</p>
+<p>Mediation modeling, although often used within SEM, can help us understand pathways of effect from one variable to another. It is especially useful with moderating variables (i.e., variables that interact with another).</p>
+<p>So we’ll start with discussing mediation, then we’ll move on to SEM, followed by machine learning techniques.</p>
+<div id="mediation-modeling" class="section level2 unnumbered">
+<h2>Mediation Modeling</h2>
+<p>Mediation modeling can be done via several packages. For now, we recommend using either <code>lavaan</code> (stands for “latent variable analysis”)<a href="#fn21" class="footnote-ref" id="fnref21"><sup>21</sup></a> or <code>MarginalMediation</code> (written by the author of this book). Although both are technically still “beta” versions, they both perform very well especially for more simple models. It makes mediation modeling straightforward.</p>
+<p>Below, we model the following mediation model:
+<span class="math display">\[
+depression = \beta_0 + \beta_1 asthma + \epsilon_1
+\]</span></p>
+<p><span class="math display">\[
+time_{Sedentary} = \lambda_0 + \lambda_1 asthma + \lambda_2 depression + \epsilon_2
+\]</span></p>
+<p>In essence, we believe that asthma increases depression which in turn increases the amount of time spent being sedentary. To run this with <code>MarginalMediation</code>, we will use two distinct regression models (see Chapter 4) and combine them with <code>mma()</code>. The object <code>pathbc</code> is the model with sedentary behavior as the outcome and <code>patha</code> is the path leading to the mediator.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(MarginalMediation)
+
+df<span class="op">$</span>sed_hr =<span class="st"> </span>df<span class="op">$</span>sed<span class="op">/</span><span class="dv">60</span>  <span class="co">## in hours instead of minutes</span>
+
+pathbc &lt;-<span class="st"> </span><span class="kw">glm</span>(sed_hr <span class="op">~</span><span class="st"> </span>dep <span class="op">+</span><span class="st"> </span>asthma, <span class="dt">data =</span> df)
+patha  &lt;-<span class="st"> </span><span class="kw">glm</span>(dep <span class="op">~</span><span class="st"> </span>asthma, <span class="dt">data =</span> df)
+
+<span class="kw">mma</span>(pathbc, patha,
+    <span class="dt">ind_effects =</span> <span class="kw">c</span>(<span class="st">&quot;asthmaAsthma-dep&quot;</span>))</code></pre>
+<pre><code>## 
+## calculating a paths... b and c paths... Done.
+                                                                                 </code></pre>
+<pre><code>## ┌───────────────────────────────┐
+## │  Marginal Mediation Analysis  │
+## └───────────────────────────────┘
+## A marginal mediation model with:
+##    1 mediators
+##    1 indirect effects
+##    1 direct effects
+##    500 bootstrapped samples
+##    95% confidence interval
+##    n = 4632 
+## 
+## Formulas:
+##    ◌ sed_hr ~ dep + asthma
+##    ◌ dep ~ asthma 
+## 
+## Regression Models: 
+## 
+##      sed_hr ~ 
+##                          Est      SE Est/SE P-Value
+##         (Intercept)  5.88575 0.06262 93.986 0.00000
+##         dep          0.04367 0.01112  3.927 0.00009
+##         asthmaAsthma 0.41230 0.13908  2.965 0.00305
+## 
+##      dep ~ 
+##                        Est      SE Est/SE P-Value
+##         (Intercept)  2.948 0.07059 41.764       0
+##         asthmaAsthma 1.459 0.18250  7.993       0
+## 
+## Unstandardized Mediated Effects: 
+## 
+##    Indirect Effects: 
+## 
+##      sed_hr ~ 
+##                             Indirect   Lower  Upper
+##         asthmaAsthma =&gt; dep   0.0637 0.03181 0.1076
+## 
+##    Direct Effects: 
+## 
+##      sed_hr ~ 
+##                      Direct  Lower  Upper
+##         asthmaAsthma 0.4123 0.1597 0.6644
+## 
+## 
+## Standardized Mediated Effects: 
+## 
+##    Indirect Effects: 
+## 
+##      sed_hr ~ 
+##                             Indirect   Lower   Upper
+##         asthmaAsthma =&gt; dep    0.019 0.00949 0.03211
+## 
+##    Direct Effects: 
+## 
+##      sed_hr ~ 
+##                      Direct   Lower  Upper
+##         asthmaAsthma  0.123 0.04764 0.1982</code></pre>
+<p>This gives us the estimates of the individual regression models and the estimates of the indirect and direct effects.</p>
+<p>To do the exact same model with <code>lavaan</code>, we can do the following:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(lavaan)
+
+<span class="co">## Our model</span>
+model1 &lt;-<span class="st"> &#39;</span>
+<span class="st">  dep ~ asthma</span>
+<span class="st">  sed_hr ~ dep + asthma</span>
+<span class="st">&#39;</span>
+<span class="co">## sem function to run the model</span>
+fit &lt;-<span class="st"> </span><span class="kw">sem</span>(model1, <span class="dt">data =</span> df)
+<span class="kw">summary</span>(fit)</code></pre>
+<pre><code>## lavaan 0.6-3 ended normally after 30 iterations
+## 
+##   Optimization method                           NLMINB
+##   Number of free parameters                          5
+## 
+##                                                   Used       Total
+##   Number of observations                          4614        4632
+## 
+##   Estimator                                         ML
+##   Model Fit Test Statistic                       0.000
+##   Degrees of freedom                                 0
+## 
+## Parameter Estimates:
+## 
+##   Information                                 Expected
+##   Information saturated (h1) model          Structured
+##   Standard Errors                             Standard
+## 
+## Regressions:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##   dep ~                                               
+##     asthma            1.478    0.183    8.084    0.000
+##   sed_hr ~                                            
+##     dep               0.044    0.011    3.929    0.000
+##     asthma            0.412    0.139    2.965    0.003
+## 
+## Variances:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##    .dep              19.597    0.408   48.031    0.000
+##    .sed_hr           11.171    0.233   48.031    0.000</code></pre>
+<p>From the output we see asthma does predict depression and depression does predict time being sedentary. There is also a direct effect of asthma on sedentary behavior even after controlling for depression. We can further specify the model to have it give us the indirect effect and direct effects tested.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">## Our model</span>
+model2 &lt;-<span class="st"> &#39;</span>
+<span class="st">  dep ~ a*asthma</span>
+<span class="st">  sed_hr ~ b*dep + c*asthma</span>
+<span class="st"> </span>
+<span class="st">  indirect := a*b</span>
+<span class="st">  total := c + a*b</span>
+<span class="st">&#39;</span>
+<span class="co">## sem function to run the model</span>
+fit2 &lt;-<span class="st"> </span><span class="kw">sem</span>(model2, <span class="dt">data =</span> df)
+<span class="kw">summary</span>(fit2)</code></pre>
+<pre><code>## lavaan 0.6-3 ended normally after 30 iterations
+## 
+##   Optimization method                           NLMINB
+##   Number of free parameters                          5
+## 
+##                                                   Used       Total
+##   Number of observations                          4614        4632
+## 
+##   Estimator                                         ML
+##   Model Fit Test Statistic                       0.000
+##   Degrees of freedom                                 0
+## 
+## Parameter Estimates:
+## 
+##   Information                                 Expected
+##   Information saturated (h1) model          Structured
+##   Standard Errors                             Standard
+## 
+## Regressions:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##   dep ~                                               
+##     asthma     (a)    1.478    0.183    8.084    0.000
+##   sed_hr ~                                            
+##     dep        (b)    0.044    0.011    3.929    0.000
+##     asthma     (c)    0.412    0.139    2.965    0.003
+## 
+## Variances:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##    .dep              19.597    0.408   48.031    0.000
+##    .sed_hr           11.171    0.233   48.031    0.000
+## 
+## Defined Parameters:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##     indirect          0.065    0.018    3.534    0.000
+##     total             0.477    0.138    3.448    0.001</code></pre>
+<p>We defined a few things in the model. First, we gave the coefficients labels of <code>a</code>, <code>b</code>, and <code>c</code>. Doing so allows us to define the <code>indirect</code> and <code>total</code> effects. Here we see the indirect effect, although small, is significant at <span class="math inline">\(p &lt; .001\)</span>. The total effect is larger (not surprising) and is also significant.</p>
+<p>Also note that we can make the regression equations have other covariates as well if we needed to (i.e. control for age or gender) just as we do in regular regression.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">## Our model</span>
+model2<span class="fl">.1</span> &lt;-<span class="st"> &#39;</span>
+<span class="st">  dep ~ asthma + ridageyr</span>
+<span class="st">  sed_hr ~ dep + asthma + ridageyr</span>
+<span class="st">&#39;</span>
+<span class="co">## sem function to run the model</span>
+fit2<span class="fl">.1</span> &lt;-<span class="st"> </span><span class="kw">sem</span>(model2<span class="fl">.1</span>, <span class="dt">data =</span> df)
+<span class="kw">summary</span>(fit2<span class="fl">.1</span>)</code></pre>
+<pre><code>## lavaan 0.6-3 ended normally after 33 iterations
+## 
+##   Optimization method                           NLMINB
+##   Number of free parameters                          7
+## 
+##                                                   Used       Total
+##   Number of observations                          4614        4632
+## 
+##   Estimator                                         ML
+##   Model Fit Test Statistic                       0.000
+##   Degrees of freedom                                 0
+##   Minimum Function Value               0.0000000000000
+## 
+## Parameter Estimates:
+## 
+##   Information                                 Expected
+##   Information saturated (h1) model          Structured
+##   Standard Errors                             Standard
+## 
+## Regressions:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##   dep ~                                               
+##     asthma            1.462    0.183    7.980    0.000
+##     ridageyr         -0.005    0.004   -1.330    0.183
+##   sed_hr ~                                            
+##     dep               0.044    0.011    3.927    0.000
+##     asthma            0.412    0.139    2.956    0.003
+##     ridageyr         -0.000    0.003   -0.063    0.950
+## 
+## Variances:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##    .dep              19.590    0.408   48.031    0.000
+##    .sed_hr           11.171    0.233   48.031    0.000</code></pre>
+<p>Although we don’t show it here, we can also do moderation (“interactions”) as part of the mediation model (especially using the <code>MarginalMediation</code> package).</p>
+</div>
+<div id="structural-equation-modeling" class="section level2 unnumbered">
+<h2>Structural Equation Modeling</h2>
+<p>Instead of summing our depression variable, we can use SEM to run the mediation model from above but use the latent variable of depression instead.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">## Our model</span>
+model3 &lt;-<span class="st"> &#39;</span>
+<span class="st">  dep1 =~ dpq010 + dpq020 + dpq030 + dpq040 + dpq050 + dpq060 + dpq070 + dpq080 + dpq090</span>
+<span class="st">  dep1 ~ a*asthma</span>
+<span class="st">  sed_hr ~ b*dep1 + c*asthma</span>
+
+<span class="st">  indirect := a*b</span>
+<span class="st">  total := c + a*b</span>
+<span class="st">&#39;</span>
+<span class="co">## sem function to run the model</span>
+fit3 &lt;-<span class="st"> </span><span class="kw">sem</span>(model3, <span class="dt">data =</span> df)
+<span class="kw">summary</span>(fit3)</code></pre>
+<pre><code>## lavaan 0.6-3 ended normally after 47 iterations
+## 
+##   Optimization method                           NLMINB
+##   Number of free parameters                         22
+## 
+##                                                   Used       Total
+##   Number of observations                          4614        4632
+## 
+##   Estimator                                         ML
+##   Model Fit Test Statistic                    1065.848
+##   Degrees of freedom                                43
+##   P-value (Chi-square)                           0.000
+## 
+## Parameter Estimates:
+## 
+##   Information                                 Expected
+##   Information saturated (h1) model          Structured
+##   Standard Errors                             Standard
+## 
+## Latent Variables:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##   dep1 =~                                             
+##     dpq010            1.000                           
+##     dpq020            1.096    0.024   45.136    0.000
+##     dpq030            1.133    0.031   36.908    0.000
+##     dpq040            1.149    0.030   38.066    0.000
+##     dpq050            0.933    0.025   36.773    0.000
+##     dpq060            0.929    0.022   42.107    0.000
+##     dpq070            0.871    0.022   39.760    0.000
+##     dpq080            0.686    0.019   36.325    0.000
+##     dpq090            0.308    0.011   28.544    0.000
+## 
+## Regressions:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##   dep1 ~                                              
+##     asthma     (a)    0.173    0.023    7.656    0.000
+##   sed_hr ~                                            
+##     dep1       (b)    0.342    0.105    3.275    0.001
+##     asthma     (c)    0.418    0.139    2.998    0.003
+## 
+## Variances:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##    .dpq010            0.306    0.007   42.008    0.000
+##    .dpq020            0.212    0.006   37.549    0.000
+##    .dpq030            0.559    0.013   43.807    0.000
+##    .dpq040            0.514    0.012   43.302    0.000
+##    .dpq050            0.384    0.009   43.862    0.000
+##    .dpq060            0.221    0.005   40.808    0.000
+##    .dpq070            0.249    0.006   42.420    0.000
+##    .dpq080            0.217    0.005   44.038    0.000
+##    .dpq090            0.090    0.002   46.106    0.000
+##    .sed_hr           11.179    0.233   48.012    0.000
+##    .dep1              0.256    0.010   24.657    0.000
+## 
+## Defined Parameters:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##     indirect          0.059    0.020    3.019    0.003
+##     total             0.477    0.138    3.448    0.001</code></pre>
+<p>We defined <code>dep1</code> as a latent variable using <code>=~</code>. Although the model does not fit the data well–“<code>P-value (Chi-square) = 0.000</code>”–it is informative for demonstration. We would likely need to find out how the measurement model (<code>dep1 =~ dpq010 + dpq020 + dpq030 +</code>) actually fits before throwing it into a mediation model. We can do that via:</p>
+<pre class="sourceCode r"><code class="sourceCode r">model4 &lt;-<span class="st"> &#39;</span>
+<span class="st">  dep1 =~ dpq010 + dpq020 + dpq030 + dpq040 + dpq050 + dpq060 + dpq070 + dpq080 + dpq090</span>
+<span class="st">&#39;</span>
+fit4 &lt;-<span class="st"> </span><span class="kw">cfa</span>(model4, <span class="dt">data=</span>df)
+<span class="kw">summary</span>(fit4)</code></pre>
+<pre><code>## lavaan 0.6-3 ended normally after 29 iterations
+## 
+##   Optimization method                           NLMINB
+##   Number of free parameters                         18
+## 
+##   Number of observations                          4632
+## 
+##   Estimator                                         ML
+##   Model Fit Test Statistic                     985.831
+##   Degrees of freedom                                27
+##   P-value (Chi-square)                           0.000
+## 
+## Parameter Estimates:
+## 
+##   Information                                 Expected
+##   Information saturated (h1) model          Structured
+##   Standard Errors                             Standard
+## 
+## Latent Variables:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##   dep1 =~                                             
+##     dpq010            1.000                           
+##     dpq020            1.097    0.024   45.383    0.000
+##     dpq030            1.128    0.031   36.962    0.000
+##     dpq040            1.145    0.030   38.136    0.000
+##     dpq050            0.927    0.025   36.630    0.000
+##     dpq060            0.930    0.022   42.294    0.000
+##     dpq070            0.870    0.022   39.941    0.000
+##     dpq080            0.681    0.019   36.350    0.000
+##     dpq090            0.307    0.011   28.609    0.000
+## 
+## Variances:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##    .dpq010            0.306    0.007   42.051    0.000
+##    .dpq020            0.211    0.006   37.470    0.000
+##    .dpq030            0.560    0.013   43.909    0.000
+##    .dpq040            0.515    0.012   43.400    0.000
+##    .dpq050            0.390    0.009   44.041    0.000
+##    .dpq060            0.221    0.005   40.835    0.000
+##    .dpq070            0.249    0.006   42.461    0.000
+##    .dpq080            0.216    0.005   44.149    0.000
+##    .dpq090            0.090    0.002   46.195    0.000
+##     dep1              0.261    0.011   24.765    0.000</code></pre>
+<p>As we can see, there is a lack of fit in the measurement model. It is possible that these depression questions could be measuring more than one factor. We could explore this using exploratory factor analysis. We don’t demonstrate that here, but know that it is possible to do in <code>R</code> with a few other packages.</p>
+</div>
+<div id="machine-learning-techniques" class="section level2 unnumbered">
+<h2>Machine Learning Techniques</h2>
+<p>We are briefly going to introduce some machine learning techniques that may be of interest to researchers. We will quickly introduce and demonstrate:</p>
+<ol style="list-style-type: decimal">
+<li>Ridge, Lasso and Elastic Net</li>
+<li>Random Forests</li>
+</ol>
+<p>In order to use these methods, we can use the fantastic <code>caret</code> package. It allows us to do nearly any type of machine learning technique. It is a type of package that takes many other packages and gives us a simple syntax across all the methods.</p>
+<div id="ridge-lasso-and-elastic-net" class="section level3 unnumbered">
+<h3>Ridge, Lasso and Elastic Net</h3>
+<p>Lasso and elastic net can do variable selection in addition to estimation. Ridge is great at handling correlated predictors. Each of them are better than conventional methods at prediction and each of them can handle large numbers of predictors. To learn more see “Introduction to Statistical Learning” by Daniela Witten, Gareth James, Robert Tibshirani, and Trevor Hastie. A free PDF is available on their website.</p>
+<p>To use the package, it wants the data in a very specific form. First, we need to remove any missingness. We use <code>na.omit()</code> to do this. We take all the predictors (without the outcome) and put it in a data matrix object. We only include a few for the demonstration but you can include <em>many</em> predictors. We name ours <code>X</code>. <code>Y</code> is our outcome.</p>
+<pre class="sourceCode r"><code class="sourceCode r">df2 &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(riagendr, ridageyr, ridreth3, race, famsize, dep, asthma, sed_hr) <span class="op">%&gt;%</span>
+<span class="st">  </span>na.omit</code></pre>
+<p>Then we use the <code>train()</code> function to fit the different models. This function, by default, uses cross-validation<a href="#fn22" class="footnote-ref" id="fnref22"><sup>22</sup></a>, which we don’t discuss here, but it an important topic to become familiar with. Below we fit a model that is either a ridge, a lasso, or an elastic net model depending on the <code>alpha</code> level. This is done using the <code>method = "glmnet"</code> argument. We specify the model by the formula <code>sed_hr ~ .</code> which means we want <code>sed_hr</code> to be the outcome and all the rest of the variables to be predictors.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(caret)
+
+<span class="co">## Use 10-fold cross validation</span>
+fitControl &lt;-<span class="st"> </span><span class="kw">trainControl</span>(<span class="dt">method =</span> <span class="st">&quot;cv&quot;</span>,
+                           <span class="dt">number =</span> <span class="dv">10</span>)
+
+<span class="co">## Run the model</span>
+fit &lt;-<span class="st"> </span><span class="kw">train</span>(sed_hr <span class="op">~</span><span class="st"> </span>., 
+             <span class="dt">method =</span> <span class="st">&quot;glmnet&quot;</span>,
+             <span class="dt">data =</span> df2,
+             <span class="dt">trControl =</span> fitControl)
+fit</code></pre>
+<pre><code>## glmnet 
+## 
+## 4437 samples
+##    7 predictor
+## 
+## No pre-processing
+## Resampling: Cross-Validated (10 fold) 
+## Summary of sample sizes: 3993, 3993, 3992, 3994, 3994, 3993, ... 
+## Resampling results across tuning parameters:
+## 
+##   alpha  lambda     RMSE   Rsquared  MAE  
+##   0.10   0.0008293  3.282  0.04191   2.689
+##   0.10   0.0082933  3.283  0.04165   2.690
+##   0.10   0.0829328  3.284  0.04099   2.693
+##   0.55   0.0008293  3.282  0.04186   2.690
+##   0.55   0.0082933  3.284  0.04108   2.692
+##   0.55   0.0829328  3.286  0.04026   2.700
+##   1.00   0.0008293  3.282  0.04185   2.690
+##   1.00   0.0082933  3.284  0.04099   2.693
+##   1.00   0.0829328  3.291  0.03962   2.706
+## 
+## RMSE was used to select the optimal model using the smallest value.
+## The final values used for the model were alpha = 0.1 and lambda
+##  = 0.0008293.</code></pre>
+<p>With this model, we can assess the most important predictors of sedentary behavior. We can do that with:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">varImp</span>(fit)</code></pre>
+<pre><code>## glmnet variable importance
+## 
+##                   Overall
+## raceOther          100.00
+## raceBlack           83.52
+## raceWhite           80.22
+## raceOtherHispanic   28.12
+## asthmaAsthma        10.87
+## ridreth3             5.47
+## riagendr             4.81
+## famsize              4.54
+## dep                  1.37
+## ridageyr             0.00</code></pre>
+<p>This shows us that, of these variables, <code>race</code> was most important, followed by <code>asthma</code>. Importantly, though, this model did not predict the outcome very well so these are likely not very important predictors overall.</p>
+</div>
+<div id="random-forests" class="section level3 unnumbered">
+<h3>Random Forests</h3>
+<p>Random forests is another machine learning method that can do fantastic prediction. It is built in a very different way than the methods we have discussed up to this point. It is not built on a linear modeling scheme; rather, it is built on classification and regression trees (CART). Again, “Introduction to Statistical Learning” is a great resource to learn more.</p>
+<p>Conveniently, we can use the <code>randomForest</code> package. (We can also use the <code>caret</code> package here.) We specify the model by the formula <code>sed_hr ~ .</code> just like before, which means we want <code>sed_hr</code> to be the outcome and all the rest of the variables to be predictors.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(randomForest)</code></pre>
+<pre><code>## randomForest 4.6-14</code></pre>
+<pre><code>## Type rfNews() to see new features/changes/bug fixes.</code></pre>
+<pre><code>## 
+## Attaching package: &#39;randomForest&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
+## 
+##     combine</code></pre>
+<pre><code>## The following object is masked from &#39;package:ggplot2&#39;:
+## 
+##     margin</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">fit_rf &lt;-<span class="st"> </span><span class="kw">randomForest</span>(sed_hr <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> df2)
+fit_rf</code></pre>
+<pre><code>## 
+## Call:
+##  randomForest(formula = sed_hr ~ ., data = df2) 
+##                Type of random forest: regression
+##                      Number of trees: 500
+## No. of variables tried at each split: 2
+## 
+##           Mean of squared residuals: 10.83
+##                     % Var explained: 3.61</code></pre>
+<p>We can find out which variables were important in the model via:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))  <span class="co">## back to one plot per page</span>
+<span class="kw">varImpPlot</span>(fit_rf)</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-137-1.png" width="672" /></p>
+<p>We can see that age (<code>ridageyr</code>) is the most important variable, depression (<code>dep</code>) follows, with the family size (<code>famsize</code>) the third most important in the random forests model.</p>
+</div>
+</div>
+<div id="apply-it-6" class="section level2 unnumbered">
+<h2>Apply It</h2>
+<p><a href="http://tysonbarrett.com/DataR/Chapter4.zip">This link</a> contains a folder complete with an Rstudio project file, an RMarkdown file, and a few data files. Download it and unzip it to do the following steps.</p>
+<div id="step-1-6" class="section level3 unnumbered">
+<h3>Step 1</h3>
+<p>Open the <code>Chapter4.Rproj</code> file. This will open up RStudio for you.</p>
+</div>
+<div id="step-2-6" class="section level3 unnumbered">
+<h3>Step 2</h3>
+<p>Once RStudio has started, in the panel on the lower-right, there is a <code>Files</code> tab. Click on that to see the project folder. You should see the data files and the <code>Chapter4.Rmd</code> file. Click on the <code>Chapter4.Rmd</code> file to open it. In this file, import the data and run each type of statistical analysis presented in this chapter (there are others that are presented in Chapters 4, 5, and 6 that you may have done already).</p>
+<p>Once that code is in the file, click the <code>knit</code> button. This will create an HTML file with the code and output knitted together into one nice document. This can be read into any browser and can be used to show your work in a clean document.</p>
+</div>
+</div>
+<div id="conclusions-4" class="section level2 unnumbered">
+<h2>Conclusions</h2>
+<p>Although we only discussed these methods briefly, that does not mean they are less important. On the contrary, they are essential upper level statistical methods. This brief introduction hopefully helped you know what <code>R</code> is capable of across a wide range of methods.</p>
+<p>The next chapter begins our “advanced” topics, starting with “Advanced Data Manipulation”.</p>
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="21">
+<li id="fn21"><p>The <code>lavaan</code> package has some great vignettes at <a href="http://lavaan.ugent.be/">http://lavaan.ugent.be/</a> to help with the other types of models it can handle.<a href="chapter-7-other-modeling-techniques.html#fnref21" class="footnote-back">↩</a></p></li>
+<li id="fn22"><p>Cross-validation is a common way to reduce over-fitting and make sure your model is generalizable. Generally, you split your data into training and testing sets. It is very common in machine learning and is beginning to be practiced in academic fields as well. We recommend using it as often as you can, especially with these methods but also to make sure your other models are accurate on new data as well.<a href="chapter-7-other-modeling-techniques.html#fnref22" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="chapter-6-multilevel-modeling.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="chapter-8-advanced-data-manipulation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -251,7 +251,7 @@ purrr::map_if(df, is.numeric, function(y) y * 2 / sd(y))
 
 ## Apply It {-}
 
-[This link](http://tysonbarrett.com/DataR/Chapter8.zip) contains a folder complete with an Rstudio project file, an RMarkdown file, and a few data files. Download it and unzip it to do the following steps.
+[This link](https://tysonbarrett.com/DataR/Chapter8.zip) contains a folder complete with an Rstudio project file, an RMarkdown file, and a few data files. Download it and unzip it to do the following steps.
 
 
 ### Step 1 {-}

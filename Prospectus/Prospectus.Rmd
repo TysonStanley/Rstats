@@ -13,7 +13,10 @@ Leah Fargotstein
 Leah.fargotstein@sagepub.com
 (805) 410-7316
 
-A note on features like boxes or lists of command, if you’d like to include any, would be good, too.
+Notes from call:
+  - Chapter 2 - as example chapter (introduction)
+    - Add outline and introduction
+  - 
 -->
 
 
@@ -67,9 +70,11 @@ Second, each chapter ends with an *Apply It* section. These sections provide cha
 
 Third, several visuals will be used to demonstrate the use of various functions and what those functions are actually doing to the data. This is essential because many data transformations and manipulations are quite abstract and can otherwise become confusing. It also tends to help researchers understand how different aspects of the functions control the data manipulations. I intend on making several more for the published version of the book than is currently in the draft version. Beyond the specifics taught by the visuals, it also helps break up the text of the book to keep readers more engaged.
 
+Fourth, review questions are included at the end of the chapters. The review questions include straightforward recall of definitions, meanings, and concepts; other questions are designed to create critical thinking, using the information from the chapter to solve a novel problem. 
+
 In addition to these main approaches, the book also uses text boxes (although not fully implemented in the draft) to highlight common errors or areas of confusion relating to the topic. For example, when it comes to importing data, confusion regarding when to use quotes is common. A box would highlight where to use quotes and why. Only a few of these per chapter is planned.
 
-Although not currently implemented, I also want to include practice questions for each chapter as review and understanding checks. These review questions would be included throughout the chapter, not just at the end of the chapter.
+
 
 ## Market
 <!--

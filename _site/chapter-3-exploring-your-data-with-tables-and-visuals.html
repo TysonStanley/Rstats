@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3: Exploring Your Data with Tables and Visuals | 03-UnderstandData.knit</title>
+  <meta name="description" content="" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3: Exploring Your Data with Tables and Visuals | 03-UnderstandData.knit" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3: Exploring Your Data with Tables and Visuals | 03-UnderstandData.knit" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="site_libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="site_libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="site_libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="site_libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="site_libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="site_libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="site_libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="site_libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="site_libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path=""><a href="#chapter-3-exploring-your-data-with-tables-and-visuals"><i class="fa fa-check"></i>Chapter 3: Exploring Your Data with Tables and Visuals</a>
+<ul>
+<li class="chapter" data-level="" data-path=""><a href="#descriptive-statistics"><i class="fa fa-check"></i>Descriptive Statistics</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#visualizations"><i class="fa fa-check"></i>Visualizations</a>
+<ul>
+<li><a href="#using-ggplot2">Using <code>ggplot2</code></a></li>
+</ul></li>
+<li><a href="#more-advanced-features-of-ggplot2">More Advanced Features of <code>ggplot2</code></a></li>
+<li class="chapter" data-level="" data-path=""><a href="#types-of-plots"><i class="fa fa-check"></i>Types of Plots</a>
+<ul>
+<li class="chapter" data-level="" data-path=""><a href="#scatterplots"><i class="fa fa-check"></i>Scatterplots</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#boxplots"><i class="fa fa-check"></i>Boxplots</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#bar-plots"><i class="fa fa-check"></i>Bar Plots</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#line-plots"><i class="fa fa-check"></i>Line Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path=""><a href="#color-schemes"><i class="fa fa-check"></i>Color Schemes</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#themes"><i class="fa fa-check"></i>Themes</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#labels-and-titles"><i class="fa fa-check"></i>Labels and Titles</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#facetting"><i class="fa fa-check"></i>Facetting</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#apply-it"><i class="fa fa-check"></i>Apply It</a>
+<ul>
+<li class="chapter" data-level="" data-path=""><a href="#step-1"><i class="fa fa-check"></i>Step 1</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#step-2"><i class="fa fa-check"></i>Step 2</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path=""><a href="#conclusions"><i class="fa fa-check"></i>Conclusions</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<!--bookdown:title:end-->
+<!--bookdown:title:start-->
+<div id="chapter-3-exploring-your-data-with-tables-and-visuals" class="section level1 unnumbered">
+<h1>Chapter 3: Exploring Your Data with Tables and Visuals</h1>
+<blockquote>
+<p>“If you can’t explain it simply, you don’t understand it well enough.” — Albert Einstein</p>
+</blockquote>
+<p>We are going to take what we’ve learned from the previous two chapters and use them together to have simple but powerful ways to understand your data. This chapter will be split into two sections:</p>
+<ol style="list-style-type: decimal">
+<li>Descriptive Statistics</li>
+<li>Visualizations</li>
+</ol>
+<p>The two go hand-in-hand in understanding what is happening in your data before you attempt any modeling procedures. We are often most interested in three things when exploring our data: <em>understanding distributions</em>, <em>understanding relationships</em>, and <em>looking for outliers or errors</em>.</p>
+<div id="descriptive-statistics" class="section level2 unnumbered">
+<h2>Descriptive Statistics</h2>
+<p>Several methods of discovering descriptives in a succinct way have been developed for <code>R</code>. My favorite (full disclosure: it is one that I made so I may be biased) is the <code>table1</code> function in the <code>furniture</code> package.</p>
+<p>This function has been designed to be simple and complete. It produces a well-formatted table that you can easily export and use as a table in a report or article.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> We’ll use the <code>df</code> object we created in Chapter 2.</p>
+<p>Let’s get descriptive statistics for five of the variables: asthma, race, depression, family size, and sedentary behavior.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#library(furniture)</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">table1</span>(asthma, race, dep, famsize, sed)</span></code></pre></div>
+<pre><code>## 
+## ──────────────────────────────────────
+##                     Mean/Count (SD/%)
+##                     n = 4437         
+##  asthma                              
+##     No Asthma       3774 (85.1%)     
+##     Asthma          663 (14.9%)      
+##  race                                
+##     MexicanAmerican 392 (8.8%)       
+##     OtherHispanic   442 (10%)        
+##     White           1733 (39.1%)     
+##     Black           1161 (26.2%)     
+##     Other           709 (16%)        
+##  dep                                 
+##                     3.2 (4.5)        
+##  famsize                             
+##                     2.7 (1.5)        
+##  sed                                 
+##                     369.3 (201.2)    
+## ──────────────────────────────────────</code></pre>
+<p>This quickly gives you means and standard deviations or counts and percentages.</p>
+<p>The code below shows the means/standard devaitions or counts/percentages by a grouping variable—in this case, <code>asthma</code>.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(asthma) <span class="sc">%&gt;%</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">table1</span>(race, dep, famsize, sed)</span></code></pre></div>
+<pre><code>## 
+## ────────────────────────────────────────────────
+##                             asthma 
+##                     No Asthma     Asthma       
+##                     n = 3774      n = 663      
+##  race                                          
+##     MexicanAmerican 350 (9.3%)    42 (6.3%)    
+##     OtherHispanic   380 (10.1%)   62 (9.4%)    
+##     White           1453 (38.5%)  280 (42.2%)  
+##     Black           958 (25.4%)   203 (30.6%)  
+##     Other           633 (16.8%)   76 (11.5%)   
+##  dep                                           
+##                     3.0 (4.3)     4.4 (5.2)    
+##  famsize                                       
+##                     2.7 (1.5)     2.6 (1.5)    
+##  sed                                           
+##                     365.2 (201.1) 392.4 (200.0)
+## ────────────────────────────────────────────────</code></pre>
+<p>We can also test for differences by group as well.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(asthma) <span class="sc">%&gt;%</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">table1</span>(race, dep, famsize, sed,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">test =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## 
+## ────────────────────────────────────────────────────────
+##                             asthma 
+##                     No Asthma     Asthma        P-Value
+##                     n = 3774      n = 663              
+##  race                                           &lt;.001  
+##     MexicanAmerican 350 (9.3%)    42 (6.3%)            
+##     OtherHispanic   380 (10.1%)   62 (9.4%)            
+##     White           1453 (38.5%)  280 (42.2%)          
+##     Black           958 (25.4%)   203 (30.6%)          
+##     Other           633 (16.8%)   76 (11.5%)           
+##  dep                                            &lt;.001  
+##                     3.0 (4.3)     4.4 (5.2)            
+##  famsize                                        0.496  
+##                     2.7 (1.5)     2.6 (1.5)            
+##  sed                                            0.001  
+##                     365.2 (201.1) 392.4 (200.0)        
+## ────────────────────────────────────────────────────────</code></pre>
+<p>Several other options exist for you to play around with, including obtaining medians and ranges and removing a lot of the white space of the table.</p>
+<p>With three or four short lines of code we can get a good idea about variables that may be related to the grouping variable and any missingness in the factor variables. There’s much more you can do with <code>table1</code> and there are vignettes and tutorials available to learn more.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
+<p>Other quick descriptive functions exist; here are a few of them.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="do">## install with install.packages(&quot;psych&quot;)</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(df)  </span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="do">## install with install.packages(&quot;Hmisc&quot;)</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>Hmisc<span class="sc">::</span><span class="fu">describe</span>(df) </span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="do">## install with install.packages(&quot;janitor&quot;)</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>janitor<span class="sc">::</span><span class="fu">tabyl</span>(df)</span></code></pre></div>
+<p>There is truly no shortage of descriptive information that you can obtain within <code>R</code>.</p>
+</div>
+<div id="visualizations" class="section level2 unnumbered">
+<h2>Visualizations</h2>
+<p>Understanding your data, in my experience, almost always requires visualizations<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>. If we are going to use a model of some sort, understanding the distributions and relationships beforehand are very helpful in interpreting the model and catching errors in the data. Also finding any outliers or errors that could be highly influencing the modeling should be understood beforehand.</p>
+<p>For simple but appealing visualizations we are going to be using <code>ggplot2</code>. This package is used to produce professional level plots for many journalism organizations (e.g. five-thrity-eight). These plots are quickly presentation quality and can be used to impress your boss, your advisor, or your friends.</p>
+<div id="using-ggplot2" class="section level3 unnumbered">
+<h3>Using <code>ggplot2</code></h3>
+<p>This package is included in the <code>tidyverse</code> and is built on the “Grammar of Graphics” principles of data visualization. In essence, it is built on adding layers to a plot. Below, we walk through quick ways to start to visualize our data.</p>
+<p>First, we have a nice <code>qplot</code> function that is short for “quick plot.” It quickly decides what kind of plot is useful given the data and variables you provide.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(df<span class="sc">$</span>sed)          <span class="do">## Makes a simple histogram</span></span></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<pre><code>## Warning: Removed 18 rows containing non-finite values (stat_bin).</code></pre>
+<p><img src="03-UnderstandData_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(df<span class="sc">$</span>sed, df<span class="sc">$</span>dep)  <span class="do">## Makes a scatterplot</span></span></code></pre></div>
+<pre><code>## Warning: Removed 18 rows containing missing values (geom_point).</code></pre>
+<p><img src="03-UnderstandData_files/figure-html/unnamed-chunk-8-2.png" width="672" /></p>
+<p>For a bit more control over the plot, you can use the <code>ggplot</code> function. The first piece is the <code>ggplot</code> piece. From there, we add layers. These layers generally start with <code>geom_</code> then have the type of plot. Below, we start with telling <code>ggplot</code> the basics of the plot and then build a boxplot.</p>
+<p>The key pieces of ggplot:</p>
+<ol style="list-style-type: decimal">
+<li><code>aes()</code> is how we tell <code>ggplot()</code> to look at the variables in the data frame.</li>
+<li>Within <code>aes()</code> we told it that the x-axis is the variable “C” and the y-axis is the variable “D” and then we color it by variable “C” as well (which we told specifically to the boxplot).</li>
+<li><code>geom_</code> functions are how we tell <code>ggplot</code> what to plot—in this case, a boxplot.</li>
+</ol>
+<p>These same pieces will be found throughout <code>ggplot</code> plotting. In later chapters we will introduce much more in relation to these plots.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x=</span>sed, <span class="at">y=</span>dep)) <span class="sc">+</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">color =</span> sed))</span></code></pre></div>
+<pre><code>## Warning: Continuous x aesthetic -- did you forget aes(group=...)?</code></pre>
+<pre><code>## Warning: Removed 18 rows containing missing values (stat_boxplot).</code></pre>
+<p><img src="03-UnderstandData_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>Here’s a few more examples:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x=</span>sed)) <span class="sc">+</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">&quot;count&quot;</span>)</span></code></pre></div>
+<pre><code>## Warning: Removed 18 rows containing non-finite values (stat_count).</code></pre>
+<p><img src="03-UnderstandData_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x=</span>sed, <span class="at">y=</span>dep)) <span class="sc">+</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> famsize))</span></code></pre></div>
+<pre><code>## Warning: Removed 18 rows containing missing values (geom_point).</code></pre>
+<p><img src="03-UnderstandData_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p><em>Note that the warning that says it removed a row is because we had missing values in in these variables.</em></p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x=</span>sed, </span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">y=</span>dep, </span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">group =</span> race,</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">color =</span> race)) <span class="sc">+</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>)</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<pre><code>## Warning: Removed 18 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 18 rows containing missing values (geom_point).</code></pre>
+<p><img src="03-UnderstandData_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p>We are going to make the first one again but with some aesthetic adjustments. Notice that we just added two extra lines telling <code>ggplot2</code> how we want some things to look.<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a></p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x=</span>famsize, <span class="at">y=</span>dep, <span class="at">group =</span> famsize)) <span class="sc">+</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">color =</span> riagendr)) <span class="sc">+</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;dodgerblue4&quot;</span>, <span class="st">&quot;coral2&quot;</span>))</span></code></pre></div>
+<pre><code>## Warning: Removed 178 rows containing missing values (stat_boxplot).</code></pre>
+<p><img src="03-UnderstandData_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p>The <code>theme_bw()</code> makes the background white, the <code>scale_color_manual()</code> allows us to change the colors in the plot. You can get a good idea of how many types of plots you can do by going to <a href="http://docs.ggplot2.org/current/">http://docs.ggplot2.org/current</a>. Almost any informative plot that you need to do as a researcher is possible with <code>ggplot2</code>.</p>
+<p>We will be using <code>ggplot2</code> extensively in the book to help understand our data and our models as well as communicate our results.</p>
+</div>
+</div>
+<div id="more-advanced-features-of-ggplot2" class="section level2 unnumbered">
+<h2>More Advanced Features of <code>ggplot2</code></h2>
+<p>We will go through several aspects of the code that makes plotting in <code>R</code> flexible and beautiful.</p>
+<ol style="list-style-type: decimal">
+<li>Types of plots</li>
+<li>Color schemes</li>
+<li>Themes</li>
+<li>Labels and titles</li>
+<li>Facetting</li>
+</ol>
+<p>To highlight these features we’ll be using our NHANES data again; specifically, sedentary behavior, depression, asthma, family size, and race. As this is only an introduction, refer to <a href="http://docs.ggplot2.org/current/">http://docs.ggplot2.org/current/</a> for more information on <code>ggplot2</code>.</p>
+<p>To begin, it needs to be understood that the first line where we actually use the <code>ggplot</code> function, will then apply to all subsequent laters (e.g., <code>geom_point()</code>). For example,</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> dep, <span class="at">y =</span> sed, <span class="at">group =</span> asthma))</span></code></pre></div>
+<p>means for the rest of the layers, unless we over-ride it, each will use <code>df</code> with <code>dep</code> as the x variable, <code>sed</code> as the y, and a grouping on <code>asthma</code>. So when many layers are going to use the same command put it in this so you don’t have to write the same argument many times. A common one here could be:</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> dep, <span class="at">y =</span> sed, <span class="at">group =</span> asthma, <span class="at">color =</span> asthma))</span></code></pre></div>
+<p>since we often want to color by our grouping variable.</p>
+<p>Before going forward, a nice feature of <code>ggplot2</code> allows us to use an “incomplete” plot to add on to. For example, if we have a good idea of the main structure of the plot but want to explore some changes, we can do the following:</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> dep, <span class="at">y =</span> sed, <span class="at">group =</span> asthma)) <span class="sc">+</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>p1</span></code></pre></div>
+<pre><code>## Warning: Removed 18 rows containing missing values (geom_point).</code></pre>
+<p><img src="03-UnderstandData_files/figure-html/unnamed-chunk-16-1.png" width="672" />
+So now <code>p1</code> has the information for this basic, and honestly fairly uninformative, plot. We’ll use this feature to build on plots that we like.</p>
+<p>Some of our figures will also need summary data so we’ll start that here as well:</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>summed_data <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(asthma, dep2) <span class="sc">%&gt;%</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">s_se =</span> <span class="fu">sd</span>(sed, <span class="at">na.rm=</span><span class="cn">TRUE</span>)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">n</span>()),</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">sed  =</span> <span class="fu">mean</span>(sed, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">N    =</span> <span class="fu">n</span>())</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;asthma&#39;. You can override using the `.groups` argument.</code></pre>
+<p>As you hopefully recognize a bit, we are summarizing the time spent being sedentary by both asthma and the dichotomous depression variables. If it doesn’t make sense at first, read it line by line to see what I did. This will be useful for several types of plots.</p>
+</div>
+<div id="types-of-plots" class="section level2 unnumbered">
+<h2>Types of Plots</h2>
+<div id="scatterplots" class="section level3 unnumbered">
+<h3>Scatterplots</h3>
+<p>We’ll start with a scatterplot–one of the most simple yet informative plots.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> dep, <span class="at">y =</span> sed, <span class="at">group =</span> asthma)) <span class="sc">+</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> asthma))</span></code></pre></div>
+<p><img src="03-UnderstandData_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<p>It’s not amazing. There looks to be a lot of overlap of the points. Also, it would be nice to know general trend lines for each group. Below, <code>alpha</code> refers to how transparent the points are, <code>method = "lm"</code> refers to how the line should be fit, and <code>se=FALSE</code> tells it not to include error ribbons.</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> dep, <span class="at">y =</span> sed, <span class="at">group =</span> asthma)) <span class="sc">+</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">color =</span> asthma), <span class="at">alpha =</span> .<span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">color =</span> asthma), <span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se=</span><span class="cn">FALSE</span>)</span></code></pre></div>
+<p><img src="03-UnderstandData_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p>It’s getting better but we could still use some more features. We’ll come back to this in the next sections.</p>
+</div>
+<div id="boxplots" class="section level3 unnumbered">
+<h3>Boxplots</h3>
+<p>Box plots are great ways to assess the variability in your data. Below, we create a boxplot but change <code>p1</code>’s x variable so that it is the factor version of depression.</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(dep2), <span class="at">y =</span> sed)) <span class="sc">+</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div>
+<p><img src="03-UnderstandData_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<p>This plot is, at best, mediocre. But there’s more we can do.</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(dep2), <span class="at">y =</span> <span class="fu">jitter</span>(sed, <span class="dv">100</span>))) <span class="sc">+</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">alpha =</span> .<span class="dv">1</span>, <span class="at">color =</span> <span class="st">&quot;chartreuse4&quot;</span>) <span class="sc">+</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">alpha =</span> .<span class="dv">75</span>, <span class="at">color =</span> <span class="st">&quot;dodgerblue4&quot;</span>) </span></code></pre></div>
+<p><img src="03-UnderstandData_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<p>This now provides the (jittered) raw data points as well to hightlight the noise and the number of observations in each group.</p>
+</div>
+<div id="bar-plots" class="section level3 unnumbered">
+<h3>Bar Plots</h3>
+<p>Bar plots are great ways to look at means and standard deviations for groups.</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(summed_data, <span class="fu">aes</span>(<span class="at">x =</span> dep2, <span class="at">y =</span> sed, <span class="at">group =</span> asthma)) <span class="sc">+</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">fill =</span> asthma), <span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>)</span></code></pre></div>
+<p><img src="03-UnderstandData_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<p>We used <code>stat = "identity"</code> to make it based on the mean (default is <code>count</code>), and <code>position = "dodge"</code> makes it so the bars are next to each other as opposed to stacked. Let’s also add error bars.</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">=</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> .<span class="dv">9</span>)</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(summed_data, <span class="fu">aes</span>(<span class="at">x =</span> dep2, <span class="at">y =</span> sed, <span class="at">group =</span> asthma)) <span class="sc">+</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">fill =</span> asthma), </span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>, </span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">position =</span> p,</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">alpha =</span> .<span class="dv">8</span>) <span class="sc">+</span></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> sed <span class="sc">-</span> s_se, <span class="at">ymax =</span> sed <span class="sc">+</span> s_se,</span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>                    <span class="at">color =</span> asthma), </span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>                <span class="at">position =</span> p,</span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>                <span class="at">width =</span> .<span class="dv">3</span>)</span></code></pre></div>
+<p><img src="03-UnderstandData_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<p>There’s a lot in there but much of it is what you’ve seen before. For example, we use <code>alpha</code> in the <code>geom_bar()</code> to tell it to be slightly transparent so we can see the error bars better. We used the <code>position_dodge()</code> function to specify exactly how much dodge we wanted. In this way, we are able to line up the error bars and the bars. If we just use <code>position = "dodge"</code> we have less flexibility and control.</p>
+<p>Much more can be done to clean this up, which we’ll show in later sections.</p>
+</div>
+<div id="line-plots" class="section level3 unnumbered">
+<h3>Line Plots</h3>
+<p>Line plots are particularly good at showing trends and relationships. Below we we use it to highlight the relationship between depression, sedentary behavior, and asthma.</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(summed_data, <span class="fu">aes</span>(<span class="at">x =</span> dep2, <span class="at">y =</span> sed, <span class="at">group =</span> asthma)) <span class="sc">+</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">color =</span> asthma))</span></code></pre></div>
+<p><img src="03-UnderstandData_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<p>Good start, but let’s add some features.</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>pos <span class="ot">=</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> .<span class="dv">1</span>)</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(summed_data, <span class="fu">aes</span>(<span class="at">x =</span> dep2, <span class="at">y =</span> sed, <span class="at">group =</span> asthma, <span class="at">color =</span> asthma)) <span class="sc">+</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">position =</span> pos) <span class="sc">+</span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">position =</span> pos) <span class="sc">+</span></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> sed <span class="sc">-</span> s_se, <span class="at">ymax =</span> sed <span class="sc">+</span> s_se), </span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">width =</span> .<span class="dv">1</span>, </span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>                <span class="at">position =</span> pos)</span></code></pre></div>
+<p><img src="03-UnderstandData_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<p>That looks a bit better. From here, let’s go on to color schemes to make the plots a bit better.</p>
+</div>
+</div>
+<div id="color-schemes" class="section level2 unnumbered">
+<h2>Color Schemes</h2>
+<p>We’ll start by using the scatterplot we made above but we will change the colors a bit using <code>scale_color_manual()</code>.</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> dep, <span class="at">y =</span> sed, <span class="at">group =</span> asthma)) <span class="sc">+</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">color =</span> asthma), <span class="at">alpha =</span> .<span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">color =</span> asthma), <span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se=</span><span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;dodgerblue4&quot;</span>, <span class="st">&quot;chartreuse4&quot;</span>))</span></code></pre></div>
+<p><img src="03-UnderstandData_files/figure-html/unnamed-chunk-26-1.png" width="672" />
+Depending on your personal taste, you can adjust it with any color. On my blog, I’ve <a href="https:\tysonbarrett.com">posted</a> the colors available in R (there are many).</p>
+<blockquote>
+<p>Advice: Don’t get too lost in selecting colors but it can add a nice touch to any plot. The nuances of plot design can be invigorating but also time consuming to be smart about how long you spend using it.</p>
+</blockquote>
+<p>Next, let’s adjust the bar plot. We will also add some colors here, but we will differentiate between “color” and “fill”.</p>
+<ol style="list-style-type: decimal">
+<li>Fill fills in the object with color. This is useful for things that are more than simply a line or a dot.</li>
+<li>Color colors the object. This outlines those items that can also be filled and colors lines and dots.</li>
+</ol>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">=</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> .<span class="dv">9</span>)</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(summed_data, <span class="fu">aes</span>(<span class="at">x =</span> dep2, <span class="at">y =</span> sed, <span class="at">group =</span> asthma)) <span class="sc">+</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">fill =</span> asthma, <span class="at">color =</span> asthma), </span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>, </span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">position =</span> p,</span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">alpha =</span> .<span class="dv">8</span>) <span class="sc">+</span></span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> sed <span class="sc">-</span> s_se, <span class="at">ymax =</span> sed <span class="sc">+</span> s_se,</span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>                    <span class="at">color =</span> asthma), </span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>                <span class="at">position =</span> p,</span>
+<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a>                <span class="at">width =</span> .<span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;dodgerblue4&quot;</span>, <span class="st">&quot;chartreuse4&quot;</span>)) <span class="sc">+</span>   <span class="do">## controls the color of the error bars</span></span>
+<span id="cb43-12"><a href="#cb43-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;aliceblue&quot;</span>, <span class="st">&quot;beige&quot;</span>))</span></code></pre></div>
+<p><img src="03-UnderstandData_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+<p>Just so you are aware:</p>
+<ul>
+<li>aliceblue is a lightblue</li>
+<li>beige is a light green</li>
+<li>dodgerblue4 is a dark blue</li>
+<li>chartreuse4 is a dark green</li>
+</ul>
+<p>So the <code>fill</code> colors are light and the <code>color</code> colors are dark in this example. You, of course, can do whatever you want color-wise. I’m a fan of this style though so we will keep it for now.</p>
+<p>These same functions can be used on the other plots as well. Feel free to give them a try. As for the book, we’ll move on to the next section: Themes.</p>
+</div>
+<div id="themes" class="section level2 unnumbered">
+<h2>Themes</h2>
+<p>Using the plot we just made–the bar plot–we will show how theme options work. There are several built in themes that change many aspects of the plot (e.g., <code>theme_bw()</code>, <code>theme_classic()</code>, <code>theme_minimal()</code>). There are many more if you download the <code>ggthemes</code> package. Fairly simply you can create plots similar to those in newspapers and magazines.</p>
+<p>First, we are going to save the plot to simply show the different theming options.</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">=</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> .<span class="dv">9</span>)</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">=</span> <span class="fu">ggplot</span>(summed_data, <span class="fu">aes</span>(<span class="at">x =</span> dep2, <span class="at">y =</span> sed, <span class="at">group =</span> asthma)) <span class="sc">+</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">fill =</span> asthma, <span class="at">color =</span> asthma), </span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>, </span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">position =</span> p,</span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">alpha =</span> .<span class="dv">8</span>) <span class="sc">+</span></span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> sed <span class="sc">-</span> s_se, <span class="at">ymax =</span> sed <span class="sc">+</span> s_se,</span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>                    <span class="at">color =</span> asthma), </span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>                <span class="at">position =</span> p,</span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a>                <span class="at">width =</span> .<span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;dodgerblue4&quot;</span>, <span class="st">&quot;chartreuse4&quot;</span>)) <span class="sc">+</span>   <span class="do">## controls the color of the error bars</span></span>
+<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;aliceblue&quot;</span>, <span class="st">&quot;beige&quot;</span>))</span></code></pre></div>
+<div id="theme-black-and-white" class="section level4 unnumbered">
+<h4>Theme Black and White</h4>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> </span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="03-UnderstandData_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
+</div>
+<div id="theme-classic" class="section level4 unnumbered">
+<h4>Theme Classic</h4>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> </span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<p><img src="03-UnderstandData_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
+</div>
+<div id="theme-minimal" class="section level4 unnumbered">
+<h4>Theme Minimal</h4>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> </span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="03-UnderstandData_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+</div>
+<div id="theme-economist-from-ggthemes" class="section level4 unnumbered">
+<h4>Theme Economist (from <code>ggthemes</code>)</h4>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggthemes)</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> </span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_economist</span>()</span></code></pre></div>
+<p><img src="03-UnderstandData_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
+</div>
+<div id="theme-fivethirtyeight-from-ggthemes" class="section level4 unnumbered">
+<h4>Theme FiveThirtyEight (from <code>ggthemes</code>)</h4>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> </span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_fivethirtyeight</span>()</span></code></pre></div>
+<p><img src="03-UnderstandData_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
+</div>
+<div id="theme-tufte-from-ggthemes" class="section level4 unnumbered">
+<h4>Theme Tufte (from <code>ggthemes</code>)</h4>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> </span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_tufte</span>()</span></code></pre></div>
+<p><img src="03-UnderstandData_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
+</div>
+<div id="theme-stata-from-ggthemes" class="section level4 unnumbered">
+<h4>Theme Stata (from <code>ggthemes</code>)</h4>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> </span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_stata</span>()</span></code></pre></div>
+<p><img src="03-UnderstandData_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
+</div>
+<div id="your-own-theme" class="section level4 unnumbered">
+<h4>Your Own Theme</h4>
+<p>There are many more but you get the idea. In addition to the built in themes, you can use the <code>theme()</code> function and make your own adjustments. There are <em>many</em> options so we will just introduce the idea.</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> </span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>,  <span class="do">## puts legend at the bottom of figure</span></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.background =</span> <span class="fu">element_rect</span>(<span class="at">color =</span> <span class="st">&quot;lightgrey&quot;</span>),  <span class="do">## outlines legend</span></span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;grey99&quot;</span>,   <span class="do">## fills the plot with a very light grey</span></span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">color =</span> <span class="st">&quot;grey70&quot;</span>),  <span class="do">## light border around plot</span></span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">&quot;Times&quot;</span>))     <span class="do">## all text in plot is now Times</span></span></code></pre></div>
+<p><img src="03-UnderstandData_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
+<p>There are many more options but essentially if there is something you want to change, you probably can.</p>
+</div>
+</div>
+<div id="labels-and-titles" class="section level2 unnumbered">
+<h2>Labels and Titles</h2>
+<p>Using our last plot, we will also want to add good labels and/or titles.</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> </span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>,  </span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.background =</span> <span class="fu">element_rect</span>(<span class="at">color =</span> <span class="st">&quot;lightgrey&quot;</span>),</span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;grey99&quot;</span>,</span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">color =</span> <span class="st">&quot;grey70&quot;</span>),</span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">&quot;Times&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Sedentary Behavior (Minutes)&quot;</span>,</span>
+<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Depression (1 = Depressed)&quot;</span>,</span>
+<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">&quot;Comparison of Sedentary Behavior&quot;</span>,</span>
+<span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;across Depression and Asthma&quot;</span>)</span></code></pre></div>
+<p><img src="03-UnderstandData_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
+</div>
+<div id="facetting" class="section level2 unnumbered">
+<h2>Facetting</h2>
+<p>Facetting is very useful when trying to compare more than three variables at a time or you cannot use color or shading. It is often useful and beautiful. Facetting splits the data based on some grouping variable (e.g., asthma) to highlight differences in the relationship.</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> </span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>,  </span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.background =</span> <span class="fu">element_rect</span>(<span class="at">color =</span> <span class="st">&quot;lightgrey&quot;</span>),</span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;grey99&quot;</span>,</span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">color =</span> <span class="st">&quot;grey70&quot;</span>),</span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">&quot;Times&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Sedentary Behavior (Minutes)&quot;</span>,</span>
+<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Depression (1 = Depressed)&quot;</span>,</span>
+<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">&quot;Comparison of Sedentary Behavior&quot;</span>,</span>
+<span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;across Depression and Asthma&quot;</span>) <span class="sc">+</span></span>
+<span id="cb54-11"><a href="#cb54-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="sc">~</span>asthma)</span></code></pre></div>
+<p><img src="03-UnderstandData_files/figure-html/unnamed-chunk-38-1.png" width="672" /></p>
+<p>You can facet by more than one variable and it will create separate panels for each combination of the facetting variables.</p>
+</div>
+<div id="apply-it" class="section level2 unnumbered">
+<h2>Apply It</h2>
+<p><a href="https://tysonbarrett.com/DataR/Chapter3.zip">This link</a> contains a folder complete with an Rstudio project file, an RMarkdown file, and a few data files. Download it and unzip it to do the following steps.</p>
+<div id="step-1" class="section level3 unnumbered">
+<h3>Step 1</h3>
+<p>Open the <code>Chapter3.Rproj</code> file. This will open up RStudio for you.</p>
+</div>
+<div id="step-2" class="section level3 unnumbered">
+<h3>Step 2</h3>
+<p>Once RStudio has started, in the panel on the lower-right, there is a <code>Files</code> tab. Click on that to see the project folder. You should see the data files and the <code>Chapter3.Rmd</code> file. Click on the <code>Chapter3.Rmd</code> file to open it. In this file, import the data, create a descriptive table with <code>table1()</code> and three different types of visualizations (e.g., boxplot, histogram, scatterplot).</p>
+<p>Once that code is in the file, click the <code>knit</code> button. This will create an HTML file with the code and output knitted together into one nice document. This can be read into any browser and can be used to show your work in a clean document.</p>
+</div>
+</div>
+<div id="conclusions" class="section level2 unnumbered">
+<h2>Conclusions</h2>
+<p>This was a quick demonstration of plotting with <code>ggplot2</code>. There is so much more you can do. However, in the end, exploring and communicating the data through plots is simply something you need to practice. With time, you can <em>a priori</em> picture the types of plots that will highlight things in your data, the ways you can adjust it, and how you need to manipulate your data to make it plot ready. Be patient and have fun trying things. In my experience, almost anytime I think, “Can R do this?”, it can, so try to do cool stuff and you’ll probably find that you can.</p>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>It is called “table1” because a nice descriptive table is often found in the first table of many academic papers.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p><a href="tysonstanley.github.io">tysonstanley.github.io</a><a href="#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn3"><p>If you’d like to learn more about data visualization, see Kieran Healy’s <em>Data Visualization: A Practical Introduction</em> at <a href="http://socviz.co">http://socviz.co</a>.<a href="#fnref3" class="footnote-back">↩︎</a></p></li>
+<li id="fn4"><p>This is just scratching the surface of what we can change in the plots.<a href="#fnref4" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+<script src="site_libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="site_libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="site_libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="site_libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="site_libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="site_libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="site_libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="site_libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": false,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

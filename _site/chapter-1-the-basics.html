@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 1: The Basics | 01-TheLanguage.knit</title>
+  <meta name="description" content="" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 1: The Basics | 01-TheLanguage.knit" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 1: The Basics | 01-TheLanguage.knit" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="site_libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="site_libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="site_libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="site_libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="site_libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="site_libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="site_libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="site_libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="site_libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path=""><a href="#chapter-1-the-basics"><i class="fa fa-check"></i>Chapter 1: The Basics</a>
+<ul>
+<li class="chapter" data-level="" data-path=""><a href="#objects"><i class="fa fa-check"></i>Objects</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#data-types"><i class="fa fa-check"></i>Data Types</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#functions"><i class="fa fa-check"></i>Functions</a>
+<ul>
+<li class="chapter" data-level="" data-path=""><a href="#operators"><i class="fa fa-check"></i>Operators</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path=""><a href="#importing-data"><i class="fa fa-check"></i>Importing Data</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#saving-data"><i class="fa fa-check"></i>Saving Data</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#apply-it"><i class="fa fa-check"></i>Apply it</a>
+<ul>
+<li class="chapter" data-level="" data-path=""><a href="#step-1"><i class="fa fa-check"></i>Step 1</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#step-2"><i class="fa fa-check"></i>Step 2</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#step-3"><i class="fa fa-check"></i>Step 3</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path=""><a href="#conclusions"><i class="fa fa-check"></i>Conclusions</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<!--bookdown:title:end-->
+<!--bookdown:title:start-->
+<div id="chapter-1-the-basics" class="section level1 unnumbered">
+<h1>Chapter 1: The Basics</h1>
+<blockquote>
+<p>“Success is neither magical nor mysterious. Success is the natural consequence of consistently applying the basic fundamentals.” — Jim Rohn</p>
+</blockquote>
+<p><code>R</code> is an open source statistical software made by statisticians. This means it generally speaks the language of statistics. This is very helpful when it comes running analyses but can be confusing when starting to understand the code.</p>
+<p>The best way to begin to learn <code>R</code> (in my opinion) is by jumping right into it and using it. To do so, as we learn new concepts, we will go through two main sections within each chapter:</p>
+<ol style="list-style-type: decimal">
+<li>Introduction to the concept with examples of its use</li>
+<li>Application of the concept through projects provided at <a href="https://tysonbarrett.com">tysonbarrett.com</a></li>
+</ol>
+<p>As we start working with data in <code>R</code>, we will go through several main themes, including importing and cleaning data, reshaping and otherwise wrangling<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> data, assessing data via visualizations and tables, and running common statistical tests. We will follow the flow shown in the figure below.</p>
+<p><img src="DataCycle.png" /></p>
+<p>As such, this chapter will provide the background and foundation to start using <code>R</code>. This background is important to get us to the first step in the data analysis lifecycle—that of importing data. Without this background, most of the other things we’d discuss would not make much sense. This background revolves around understanding data frames and functions—two general types of objects.</p>
+<div id="objects" class="section level2 unnumbered">
+<h2>Objects</h2>
+<p><code>R</code> is built on a few different types of virtual objects. An object, just like in the physical world, is something you can do things with. In the real world, we have objects that we use regularly. For example, we have chairs. Chairs are great for some things (sitting on, sleeping on, enjoying the beach) and horrible at others (playing basketball, flying, floating in the ocean). Similarly, in <code>R</code> each type of object is useful for certain things. The data types that we will discuss below are certain types of objects.</p>
+<div class="figure">
+<img src="chair.jpg" alt="" />
+<p class="caption">Chair</p>
+</div>
+<p>Because this is so analogous to the real world, it becomes quite natural to work with. You can have many objects in the computer’s memory, which allows flexbility in analyzing many different things simply within a single <code>R</code> session.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> The main object types that you’ll work with are presented in the following table (others exist that will come up here and there).</p>
+<table>
+<colgroup>
+<col width="7%" />
+<col width="92%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Object</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Vector</td>
+<td align="left">A single column of data (‘a variable’)</td>
+</tr>
+<tr class="even">
+<td align="left">Data Frame</td>
+<td align="left">Multiple vectors put together with observations as rows and variables as columns (much like a Spreadsheet that you have probably used before)</td>
+</tr>
+<tr class="odd">
+<td align="left">Function</td>
+<td align="left">Takes input and produces output—the workhorse of R</td>
+</tr>
+<tr class="even">
+<td align="left">Operator</td>
+<td align="left">A special type of function (e.g. <code>&lt;-</code>)</td>
+</tr>
+</tbody>
+</table>
+<p>Each of these objects will be introduced in this chapter, highlighting their definition and use. For your work, the first objects you work with will be data in various forms. Below, we explain the different data types and how they can combine into what is known as a <code>data.frame</code>.</p>
+<blockquote>
+<p>Early Advice: Don’t get overwhelmed. It may feel like there is a lot to learn, but taking things one at a time will work surprisingly quickly. I’ve designed this book to discuss what you need to know from the beginning. Other topics that are not discussed are things you can learn later and do not need to be of your immediate concern.</p>
+</blockquote>
+</div>
+<div id="data-types" class="section level2 unnumbered">
+<h2>Data Types</h2>
+<p>To begin understanding data in <code>R</code>, you must know about vectors. Vectors are, in essence, a single column of data—a variable. In <code>R</code> there are three main vector data types (variable types) that you’ll work with in research:</p>
+<ul>
+<li>numeric</li>
+<li>factor</li>
+<li>character</li>
+</ul>
+<p>The first, <strong>numeric</strong>, is just that: numbers. In <code>R</code>, you can make a numeric variable with the code below:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">10.1</span>, <span class="fl">2.1</span>, <span class="fl">4.6</span>, <span class="fl">2.3</span>, <span class="fl">8.9</span>, <span class="fl">4.5</span>, <span class="fl">7.2</span>, <span class="fl">7.9</span>, <span class="fl">3.6</span>, <span class="fl">2.0</span>)</span></code></pre></div>
+<p>The <code>c()</code> is a <strong>function</strong> <a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> that stands for “concatenate” which basically glues the values inside the paratheses together into one. We use <code>&lt;-</code> to put it into <code>x</code>. So in this case, <code>x</code> (which we could have named anything) is saving those values so we can work with them<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>. If we ran this code, the <code>x</code> object would be in the working memory of <code>R</code> and will stay there unless we remove it or until the end of the <code>R</code> session (i.e., we close <code>R</code>).</p>
+<p>A <strong>factor</strong> variable is a categorical variable (i.e., only a limited number of options exist). For example, race/ethnicity is a factor variable.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>race <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">2</span>)</span></code></pre></div>
+<p>The code above actually produces a numeric vector (since it was only provided numbers). We can quickly tell <code>R</code> that it is indeed supposed to be a factor.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>race <span class="ot">&lt;-</span> <span class="fu">factor</span>(race, </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;white&quot;</span>, <span class="st">&quot;black&quot;</span>, <span class="st">&quot;hispanic&quot;</span>, <span class="st">&quot;asian&quot;</span>))</span></code></pre></div>
+<p>The <code>factor()</code> function tells <code>R</code> that the first thing—<code>race</code>—is actually a factor. The additional argument <code>labels</code> tells <code>R</code> what each of the values means. If we print out <code>race</code> we see that <code>R</code> has replaced the numeric values with the labels.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>race</span></code></pre></div>
+<pre><code>##  [1] white    hispanic black    white    white    black    white    hispanic
+##  [9] asian    black   
+## Levels: white black hispanic asian</code></pre>
+<p>Finally, and maybe less relevantly, there are character variables. These are words (known as strings). In research this is often where subjects give open responses to a question. These can be used somewhat like factors in a lot of situations.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ch <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;I think this is great.&quot;</span>, </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;I would suggest you learn R.&quot;</span>, </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;You seem quite smart.&quot;</span>)</span></code></pre></div>
+<p>When we combine multiple variables into one, we create a <strong>data.frame</strong>. A data frame is like a spreadsheet table, like the ones you have probably seen in Microsoft’s Excel and IBM’s SPSS. Here’s a simple example:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(x, race)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
+<pre><code>##       x     race
+## 1  10.1    white
+## 2   2.1 hispanic
+## 3   4.6    black
+## 4   2.3    white
+## 5   8.9    white
+## 6   4.5    black
+## 7   7.2    white
+## 8   7.9 hispanic
+## 9   3.6    asian
+## 10  2.0    black</code></pre>
+<p>We can do quite a bit with the <code>data.frame</code> that we called <code>df</code><a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a>. Once again, we could have called this data frame anything (e.g., <code>jimmy</code>, <code>susan</code>, <code>rock</code>, <code>scissors</code> all would work), although I recommend short names. If we hadn’t already told <code>R</code> that <code>race</code> was a factor, we could do this once it is inside of <code>df</code> by:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>race <span class="ot">&lt;-</span> <span class="fu">factor</span>(df<span class="sc">$</span>race, </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;white&quot;</span>, <span class="st">&quot;black&quot;</span>, <span class="st">&quot;hispanic&quot;</span>, <span class="st">&quot;asian&quot;</span>))</span></code></pre></div>
+<p>In the above code, the <code>$</code> reaches into <code>df</code> to grab a variable (or column). There are other ways of doing this as is almost always the case in <code>R</code>. For example, you may see individuals using:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>df[[<span class="st">&quot;race&quot;</span>]] <span class="ot">&lt;-</span> <span class="fu">factor</span>(df[[<span class="st">&quot;race&quot;</span>]] , </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;white&quot;</span>, <span class="st">&quot;black&quot;</span>, <span class="st">&quot;hispanic&quot;</span>, <span class="st">&quot;asian&quot;</span>))</span></code></pre></div>
+<p><code>df[["race"]]</code> grabs the <code>race</code> variable just like <code>df$race</code>. Although there are many ways of doing this, we are going to focus on the modern and intuitive ways of doing this more often.</p>
+<p>In my experience, the first element of uncomfort that researchers face is the fact that our data is essentially invisible to us. It is “housed” in <code>df</code> (not totally accurate but can be thought of this way for now) but it is hard to know exactly what is in <code>df</code>. First, we can use:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(df)</span></code></pre></div>
+<p>which prints out the data in spreadsheet-type form to see the data. We can also get nice summaries using the following functions.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(df)</span></code></pre></div>
+<pre><code>## [1] &quot;x&quot;    &quot;race&quot;</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df)</span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    10 obs. of  2 variables:
+##  $ x   : num  10.1 2.1 4.6 2.3 8.9 4.5 7.2 7.9 3.6 2
+##  $ race: Factor w/ 4 levels &quot;white&quot;,&quot;black&quot;,..: 1 3 2 1 1 2 1 3 4 2</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(df)</span></code></pre></div>
+<pre><code>##        x                race  
+##  Min.   : 2.000   white   :4  
+##  1st Qu.: 2.625   black   :3  
+##  Median : 4.550   hispanic:2  
+##  Mean   : 5.320   asian   :1  
+##  3rd Qu.: 7.725               
+##  Max.   :10.100</code></pre>
+</div>
+<div id="functions" class="section level2 unnumbered">
+<h2>Functions</h2>
+<p>Earlier we mentioned that <code>c()</code> was a “function.” Functions are how we do things with our data. There are probably hundreds of thousands of functions at your reach. In fact, you can create your own! We’ll discuss that more in later chapters.</p>
+<p>For now, know that each named function has a name (the function name of <code>c()</code> is “c”), arguments, and output of some sort. Arguments are the information that you provide the function between the parenthases (e.g. we gave <code>c()</code> a bunch of numbers; we gave <code>factor()</code> two arguments—the variable and the labels for the variable’s levels). Output from a function varies to a massive degree but, in general, the output is what you are using the function for (e.g., for <code>c()</code> we wanted to create a vector—a variable—of data where the arguments we gave it are glued together into a variable).</p>
+<p>At any point, by typing:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>?functionname</span></code></pre></div>
+<p>we get information in the “Help” window. It provides information on how to use the function, including arguments, output, and examples.</p>
+<p>Sometimes <code>R</code> by itself does not have a function that you need. We can download and use functions in <strong>packages</strong><a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a>. We can think about packages as just that, a box of things. We will be using several functions from some very useful packages. To install them, we can use the <code>install.packages()</code> function,</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;rio&quot;</span>)</span></code></pre></div>
+<p>This puts the package called <code>rio</code> on your computer for you. But without the next bit of code, the functions stay hidden in the package. To dump out all the functions in the package so we can use them, we use</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rio)</span></code></pre></div>
+<p>We now can use the functions from <code>rio</code> in this <code>R</code> session (i.e. from when you open <code>R</code> to when you close it).</p>
+<p>After a quick note about operators, you will be shown several functions for both importing and saving data. Note that each have a name, arguments, and output of each.</p>
+<div id="operators" class="section level3 unnumbered">
+<h3>Operators</h3>
+<p>A special type of function is called an operator. These take two inputs—a left hand side and a right hand side—and output some value. A very common operator is <code>&lt;-</code>, known as the assignment operator. It takes what is on the right hand side and assigns it to the left hand side. We saw this earlier with vectors and data frames. Other operators exist, a few of which we will introduce in the following chapter. But again, an operator is just a special function.</p>
+</div>
+</div>
+<div id="importing-data" class="section level2 unnumbered">
+<h2>Importing Data</h2>
+<p>Most of the time you’ll want to import data into <code>R</code> rather than manually entering it line by line, variable by variable.</p>
+<p>We will rely on the <code>rio</code> package to do the majority of our data importing. In general, researchers in our fields use <code>.csv</code>, <code>.txt</code>, <code>.sav</code>, and <code>.xlxs</code>. For the most part, importing will be straightforward. Regardless of the file type, we will use <code>rio::import()</code>. Using the <code>rio::</code> means we are reaching inside of the <code>rio</code> package and grabbing just one function, in this case <code>import()</code>. This is another way of grabbing a function instead of dumping out all the functions via <code>library(rio)</code>.</p>
+<p>The following code will read in the file <code>your_data_file.csv</code>. For now, it is easiest to work with data that you save in the same folder as your R script file or your RMarkdown file (both of which we will introduce in the <em>Apply It</em> section).</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Import your_data_file.csv</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>our_data <span class="ot">&lt;-</span> rio<span class="sc">::</span><span class="fu">import</span>(<span class="st">&quot;your_data_file.csv&quot;</span>)</span></code></pre></div>
+<p>This will work for <code>.csv</code>, <code>.txt</code>, <code>.sav</code>, <code>.xlsx</code>, and <a href="https://thomasleeper.com/rio/articles/rio.html">many others files</a>. In the example, we assigned our imported file to <code>df</code> using <code>&lt;-</code>. This is necessary to let <code>R</code> remember the data for it to use for other stuff. The object <code>our_data</code> now contains the data saved in the CSV file called <code>"your_data_file.csv"</code>. Note that at the end of the lines you see that I left a <strong>comment</strong> using <code>#</code>. I used two for stylistic purposes but only one is necessary. Anything after a <code>#</code> is not read by the computer; it’s just for us humans.</p>
+<blockquote>
+<p>Heads up! It is important to know where your data file is located. In my experience, this is where students struggle the most at the very beginning. If the file is in the same folder as the RStudio project, we can use the <code>here::here()</code> function to point to the project’s folder. More will be discussed about RStudio projects after the discussion on saving data.</p>
+</blockquote>
+<p>If you have another type of data file to import that <code>rio::import()</code> doesn’t work well with, online helps found on sites like <a href="www.stackoverflow.com">www.stackoverflow.com</a> and <a href="www.r-bloggers.com">www.r-bloggers.com</a> often have the solution.</p>
+</div>
+<div id="saving-data" class="section level2 unnumbered">
+<h2>Saving Data</h2>
+<p>Occassionally you’ll want to save some data that you’ve worked with (usually this is not necessary). When necessary, you can use <code>rio::export()</code>.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>rio<span class="sc">::</span><span class="fu">export</span>(df, <span class="at">file=</span><span class="st">&quot;file.csv&quot;</span>)  <span class="do">## to create a CSV data file</span></span></code></pre></div>
+<p><code>R</code> automatically saves missing data as <code>NA</code> since that is what it is in <code>R</code>. But often when we write a CSV file, we might want it as blank or some other value. If that’s the case, we can add another argument <code>na = " "</code> after the file argument.</p>
+<p>Again, if you ever have questions about the specific arguments that a certain function has, you can simply run <code>?functionname</code>. So, if you were curious about the different arguments in <code>export</code> simply run: <code>?export</code>. In the pane with the files, plots, packages, etc. a document will show up to give you more informaton.</p>
+</div>
+<div id="apply-it" class="section level2 unnumbered">
+<h2>Apply it</h2>
+<p><a href="https://tysonbarrett.com/DataR/Chapter1.zip">This link</a> contains a folder complete with an Rstudio project file, an RMarkdown file, and a few data files. Download it and unzip it to do the following steps.</p>
+<div id="step-1" class="section level3 unnumbered">
+<h3>Step 1</h3>
+<p>Open the <code>Chapter1.Rproj</code> file. This will open up RStudio for you within the “Chapter1” project.<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a></p>
+</div>
+<div id="step-2" class="section level3 unnumbered">
+<h3>Step 2</h3>
+<p>Once RStudio has started, in the panel on the lower-right, there is a <code>Files</code> tab. Click on that to see the project folder. You should see the data files and the <code>Chapter1.Rmd</code> file. Click on the <code>Chapter1.Rmd</code> file to open it. It should open in the upper-left panel. The <code>.Rmd</code> stands for RMarkdown. It is a type of file where you can write code in code chunks (has <code>```{r}</code> right above it) and write regular text elsewhere. This particular one that I’ve provided already has words and code put in it for you. Starting at the first code chunk, click on the first line and run the code. The code can be run using “Cmd +”Enter" or the Run button at the top of RStudio.</p>
+</div>
+<div id="step-3" class="section level3 unnumbered">
+<h3>Step 3</h3>
+<p>Run the code to import the CSV file. At the end of that code chunk there is a link that is simply <code>df</code>. Run that line. It should print out some of the data in <code>df</code>. If you see the data printed out, you have done these steps correctly. Feel free to play around with this file and import the other data file types and run other code we’ve shown in this chapter.</p>
+</div>
+</div>
+<div id="conclusions" class="section level2 unnumbered">
+<h2>Conclusions</h2>
+<p><code>R</code> is designed to be flexible and do just about anything with data that you’ll need to do as a researcher. With this chapter under your belt, you can now read basic <code>R</code> code, import and save your data. The next chapter will introduce the “tidyverse” of methods that can help you join, reshape, summarize, group, and much more.</p>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>The hip term for working with data including selecting variables, filtering observations, creating new variables, etc.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>An <code>R</code> session is any time you open <code>R</code> do work and then close <code>R</code>. Unless you are saving your workspace (which, in general you shouldn’t do), it starts the slate clean–no objects are in memory and no packages are loaded. This is why we use scripts. Also, it makes your workflow extra transparent and replicable.<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn3"><p><code>R</code> is all about functions. Functions tell <code>R</code> what to do with the data. You’ll see many more examples throughout the book.<a href="#fnref3" class="footnote-back">↩︎</a></p></li>
+<li id="fn4"><p>This is a great feature of <code>R</code>. It is called “object oriented” which basically means <code>R</code> creates objects to work with. I discuss this more in 1.2. Also, the fact that I said <code>x</code> “saves” the information is not entirely true but is useful to think this way.<a href="#fnref4" class="footnote-back">↩︎</a></p></li>
+<li id="fn5"><p>I used this name since <code>df</code> is common in online helps and other resources.<a href="#fnref5" class="footnote-back">↩︎</a></p></li>
+<li id="fn6"><p>A package is an extension to <code>R</code> that gives you more functions–abilities–to work with data. Anyone can write a package, although to get it on the Comprehensive R Archive Network (CRAN) it needs to be vetted to a large degree. In fact, after some practice, you could write a package to help you more easily do your work.<a href="#fnref6" class="footnote-back">↩︎</a></p></li>
+<li id="fn7"><p>A project just orients RStudio to that folder and helps you stay organized in your data analysis workflow.<a href="#fnref7" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+<script src="site_libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="site_libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="site_libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="site_libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="site_libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="site_libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="site_libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="site_libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": false,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

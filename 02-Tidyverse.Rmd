@@ -1,21 +1,34 @@
 
-# Chapter 2: Working with and Cleaning Your Data {-}
+# Chapter 2: Cleaning and Shaping Your Data {-}
 
 > "Organizing is what you do before you do something, so that when you do it, it is not all mixed up." --- A. A. Milne
 
-In order to work with and clean your data in the most modern and straightforward way, we are going to be using the "tidyverse" group of methods. The tidyverse[^hadley] is a group of packages[^pack] that provide a simple syntax that can do many basic (and complex) data manipulating. They form a sort of "grammar" of data manipulation that simplifies both the coding approach and the way researchers think about working with data. 
+In order gain insight from data, we must first learn to clean and reshape data. In this chapter, we will learn how to do this in the most modern and straightforward way. This approach relies on the `tidyverse`[^hadley]---a group of packages[^pack] that provide a simple syntax that can do many basic (and complex) data manipulating. Together, they form a sort of "grammar" of data manipulation that simplifies both the coding approach and the way researchers think about working with data. 
 
-The group of packages can be downloaded via:
+The goal of this chapter is to help you be able to take a messy data set (often how data are stored) and turn it into "tidy" data (the way they can best be analyzed). As such, the learning objectives of this chapter to help you:
+
+- Understand what "tidy" data means and apply the concept to real-world data
+- Recognize the "pipe" operator and examine its benefits
+- Apply the `janitor` functions to clean up data
+- Identify the `tidyverse` verbs and apply them
+
+By the end of this chapter, you will be given the tools to take a messy data set (say, from Excel) and clean it up so that it can be analyzed. We start with more straightforward data situations and will get into the more complex aspects of data cleaning and reshaping in a later chapter.
+
+## Installing the Tidyverse and Janitor {-}
+
+The group of packages from both the `tidyverse` and `janitor` can be downloaded via:
 ```{r, eval=FALSE}
 install.packages("tidyverse")
+install.packages("janitor")
 ```
 
 After downloading it, to use its functions, simply use:
 ```{r}
 library(tidyverse)
+library(janitor)
 ```
 
-Note that when we loaded tidyverse it loaded several packages and told you of "conflicts". These conflicts are where two or more functions across different packages have the same name. These functions with the same name will almost invariably differ in what they do. In this situation, the last loaded package is the one that `R` will use by default. For example, if we loaded two packages---`awesome` and `amazing`---and both had the function `make_really_cool` and we loaded `awesome` and then `amazing` as so:
+Note that when we loaded the tidyverse, it loaded several packages and told you of "conflicts". These conflicts are where two or more functions across different packages have the same name. These functions with the same name will almost invariably differ in what they do. In this situation, the last loaded package is the one that `R` will use by default. For example, if we loaded two packages---`awesome` and `amazing`---and both had the function `make_really_cool()` and we loaded `awesome` and then `amazing` as so:
 ```{r, eval=FALSE}
 library(awesome)
 library(amazing)
@@ -26,16 +39,47 @@ library(amazing)
 awesome::make_really_cool(args)
 ```
 
-We showed this notation in Chapter 1. To review, the `::` grabs the function from inside of the package and let's you use just that function. That's a bit of an aside, but know that you can always get at a function even if it is "masked" from your current session.
+We saw this notation in Chapter 1. To review, the `::` notation grabs the function from inside of the package and let's you use just that function. That's a bit of an aside, but know that you can always get at a function even if it is "masked" in your current session.
 
 ## Tidy Methods {-}
 
-I'm introducing this to you for a couple reasons.
+Why introduce this to you? Well, three of my main reasons are:
 
-1. It simplifies the code and makes the code more readable. It is often worthwhile to make sure the code is readable for, as the saying goes, there are always at least two collaborators on any project: you and future you.
-2. It is the cutting edge of all things `R`. The most influential individuals in the `R` world, including the makers and maintainers of `RStudio`, use these methods and syntax.
+1. Data analysis is much more straightforward when the data set is tidy. Messy data can complicate even simple analyses.
+2. Tidy methods simplifies the code and makes the code more readable. It is often worthwhile to make sure the code is readable for, as the saying goes, there are always at least two collaborators on any project: you and future you. So, let's be kind to our future selves by making our code more readable.
+3. Tidy methods are the cutting edge of all things `R`. The most influential individuals in the `R` world, including the makers and maintainers of `RStudio`, use these methods and syntax.
+4. The majority of what you'll need to do with data as a researcher will be covered by these functions. 
 
-The majority of what you'll need to do with data as a researcher will be covered by these functions. The goal of these packages is to help tidy up your data. *Tidy data* is based on columns being variables and rows being observations. This depends largely on your data and research design but the definition is still the same---columns are variables and rows are observations. It is the form that data needs to be in to analyze it, whether that analysis is by graphing, modeling, or other means.
+The end goal tidy methods is to produce a tidy data set. **Tidy data** is a concept based on columns being variables and rows being observations. What this actually means depends largely on your data and research design but the definition is always the same---columns are variables and rows are observations. Generally speaking, it is the form that allows us to analyze it, whether that analysis is by graphing, modeling, or other means.
+
+Before diving in, though, its important for you to see some examples of tidy data (also sometimes referred to as "long form") and how they are different from another form, often called "wide form." This distinction is particularly important in data with multiple measurement periods per individual (longitudinal design), or there are multiple individuals per cluster (clustered design). When the data is cross-sectional and each individual is a row, the data may already be in tidy form.
+
+### Wide Form {-}
+
+Wide form generally has one unit (i.e. individual) per row. This generally looks like:
+
+```{r, echo=FALSE}
+data.frame("ID"=c(1:10), "Var_Time1"=rnorm(10), "Var_Time2"=runif(10))
+```
+
+Notice that each row has a unique ID, and some of the columns (all in this case) are variables at specific time points. This means that the variable is split up and is not a single column. This is a common way to collect and store data in our fields and so your data may look similar to this.
+
+### Long Form {-}
+
+In contrast, long format has the lowest nested unit as a single row. This means that a single ID can span multiple rows, usually with a unique time point or cluster for each row as so:
+
+```{r, echo=FALSE}
+data.frame("ID"=c(1,1,1,1,2,2,3,3,3), 
+           "Time"=c(1,2,3,4,1,2,1,2,3), 
+           "Var"=runif(9))
+```
+
+Notice that a single ID spans multiple columns and that each row has only one time point. Here, time is nested within individuals making it the lowest unit. Therefore, each row corresponds to a single time point. Generally, this is the format we want for most modeling techniques and most visualizations.
+
+This is a very simple example of the differences between wide and long format. Although much more complex examples may be available to you, we will start with this for now. Chapter 8 will delve into more complex data designs and how to reshape those. Toward the end of this chapter, we show reshaping with more simple data structures.
+
+
+> Goals: During the course of this chapter, part of the goal is to help you understand what is actually happening to the data. In my experience, this is the most difficult part to learn, so be patient with yourself as you learn not only the functions in R but also learn what is happening to the data when using these functions.
 
 There are several methods that help create tidy data:
 
@@ -47,44 +91,14 @@ There are several methods that help create tidy data:
 6. Joining (merging)
 
 
-> Heads up! Understanding these tools requires an understanding of what ways data can be moved around. For example, reshaping can refer to moving data into a more wide-format or long-format, can refer to summarizing or aggregating, and can refer to joining or binding. All of these are necessary to work with data flexibly. Because of this, we suggest taking your time to fully understand what each function is doing with the data.
+> Heads up! Understanding these tools requires an understanding of what ways data can be moved around. For example, reshaping can refer to moving data into a more wide-format or a more long-format, can refer to summarizing or aggregating, and can refer to joining or binding. All of these are necessary to work with data flexibly. Because of this, we suggest taking your time to fully understand what each function is doing with the data.
 
 Much of these may be things you have done in other tools such as spreadsheets. The copy-and-paste approach is seriously error prone and is not reproducible. Taking your time to learn these methods will be well worth it.
-
-## Tidy (Long) Form {-}
-
-Before diving in, I want to provide some examples of tidy data (also known as "long form") and how they are different from another form, often called "wide form."
-
-Only when the data is cross-sectional and each individual is a row does this distinction not matter much. Otherwise, if there are multiple measurement periods per individual (longitudinal design), or there are multiple individuals per cluster (clustered design), the distinction between wide and long is very important for modeling and visualization.
-
-### Wide Form {-}
-
-Wide form generally has one unit (i.e. individual) per row. This generally looks like:
-
-```{r, echo=FALSE}
-data.frame("ID"=c(1:10), "Var_Time1"=rnorm(10), "Var_Time2"=runif(10))
-```
-
-Notice that each row has a unique ID, and some of the columns (all in this case) are variables at specific time points. This means that the variable is split up and is not a single column. This is a common way to collect and store data in our fields and so your data likely looks similar to this.
-
-### Long Form {-}
-
-In contrast, long format has the lowest nested unit as a single row. This means that a single ID can span multiple rows, usually with a unique time point for each row as so:
-
-```{r, echo=FALSE}
-data.frame("ID"=c(1,1,1,1,2,2,3,3,3), 
-           "Time"=c(1,2,3,4,1,2,1,2,3), 
-           "Var"=runif(9))
-```
-
-Notice that a single ID spans multiple columns and that each row has only one time point. Here, time is nested within individuals making it the lowest unit. Therefore, each row corresponds to a single time point. Generally, this is the format we want for most modeling techniques and most visualizations.
-
-This is a very simple example of the differences between wide and long format. Although much more complex examples are probably available to you, we will start with this for now. Chapter 8 will delve into more complex data designs and how to reshape those. Toward the end of this chapter, we show reshaping with more simple data structures.
 
 
 ### Data Used for Examples {-}
 
-To help illustrate each aspect of working with and cleaning your data, we are going to use real data from the National Health and Nutrition Examiniation Survey (NHANES). I've provided this data at [https://tysonstanley.github.io/assets/Data/NHANES.zip](https://tysonstanley.github.io/assets/Data/NHANES.zip). I've cleaned it up somewhat already.
+To help illustrate each aspect of cleaning and shaping your data, we are going to use real data from the National Health and Nutrition Examiniation Survey (NHANES). I've provided this data at [tysonbarrett.com/assets/Data/NHANES.zip](https://tysonbarrett.com/assets/Data/NHANES.zip). I've cleaned it up somewhat already to make our examples clearer.
 
 Let's quickly read that data in so we can use it throughout the remainder of this chapter.
 
@@ -134,23 +148,40 @@ dem_df %>% head()
 
 So the above code takes the data frame `dem_df` and puts it into the `head` function. This does the same thing as `head(df)`. 
 
-To illustrate its strength, consider the following example. We take `dem_df`, group it by gender, and then count.
+To illustrate its strength, consider the following example. We take `dem_df`, group it by gender, and then summarize.
 
 ```{r}
 dem_df %>%
   group_by(riagendr) %>%
-  summarize(mean_age = mean(ridageyr, na.rm = TRUE))
+  summarize(mean_age = mean(ridageyr, na.rm = TRUE),
+            sd_age = sd(ridageyr, na.rm = TRUE))
 ```
 
 Without using the pipe, we would need to use something like:
 
 ```{r}
-summarize(group_by(dem_df, riagendr), mean_age = mean(ridageyr, na.rm = TRUE))
+summarize(group_by(dem_df, riagendr), 
+          mean_age = mean(ridageyr, na.rm = TRUE), sd_age = sd(ridageyr, na.rm = TRUE))
 ```
 
 Although it is fewer lines, this is notably harder to understand. Instead of reading from left to right, top to bottom, we must read inside out, which is unnatural for English reading individuals.
 
+We will use the pipe throughout the book to build data manipulation and analysis pipelines. Often, we will assign the results of our pipeline to a new object name, like so:
 
+```{r}
+summarized_df <- dem_df %>%
+  group_by(riagendr) %>%
+  summarize(mean_age = mean(ridageyr, na.rm = TRUE),
+            sd_age = sd(ridageyr, na.rm = TRUE))
+```
+
+This takes our pipeline and saves it as `summarized_df`. Our pipeline takes `dem_df`, groups by gender (`riagendr`), and then gives us the mean and sd of age by the grouping factor of gender. We can see that it was assigned by just printing out the object:
+
+```{r}
+summarized_df
+```
+
+Now that you've seen the pipe and understand what it is doing, we will use it with all of the other tidy methods.
 
 ## Select Variables and Filter Observations {-}
 
@@ -186,7 +217,7 @@ filtered_dem <- dem_df %>%
 ```
 By using `|` we are saying we want males **or** individuals older than 16. In other words, if either are met, that observation will be kept.
 
-Finally, we can do all of these in one step:
+Finally, we can do both selecting and filtering in one step:
 ```{r, eval = FALSE}
 filtered_selected_dem <- dem_df %>%
   select(riagendr, ridageyr, ridreth1) %>%
@@ -194,16 +225,24 @@ filtered_selected_dem <- dem_df %>%
 ```
 where we use two `%>%` operators to grab `dem_df`, select the three variables, and then filter the rows that we want.
 
-## Mutate Variables {-}
+## Mutate and Transmute Variables {-}
 
-Earlier we showed how to create a new variable or clean an existing one. We used the base `R` way for these. However, a great way to add and change variables is using `mutate()`. We grab `df`, and create a variable called `citizen` using the factored version of `dmdcitzn` and assign it back into `df`.
+Earlier we showed how to create a new variable or clean an existing one. We used the base `R` way for these. However, a great way to add and change variables is using `mutate()`. We grab `dem_df`, and create a variable called `citizen` using the factored version of `dmdcitzn` and assign it back into `dem_df`.
 
 ```{r}
-## Our Grouping Variable as a factor
 dem_df <- dem_df %>%
   mutate(citizen = factor(dmdcitzn))
 ```
-The benefit is in the readability of the code. We repeat things like the name of the data frame much less. I highly recommend working this way.
+The reason we will use this way of creating a new variable or cleaning and existing one is because it is easier to read and has far fewer redundancies than the base `R` way we saw before.
+
+If we want to only keep the variable we create, we can use `transmute()`.
+
+```{r}
+dem_df2 <- dem_df %>%
+  transmute(citizen = factor(dmdcitzn))
+dem_df2
+```
+
 
 
 ## Grouping and Summarizing {-}
@@ -228,6 +267,7 @@ install.packages("furniture")
 ```
 
 ```{r, message=FALSE, warning=FALSE}
+library(furniture)
 dem_df <- dem_df %>%
   mutate(citizen = washer(citizen, 7),                ## Changes all 7's to NA's
          citizen = washer(citizen, 2, value = 0))     ## Changes all 2's to 0's
@@ -349,7 +389,7 @@ df <- dem_df %>%
 
 So now `df` is the the joined data set of all four. We started with `dem_df` joined it with `med_df` by `seqn` then joined that joined data set with `men_df` by `seqn`, and so on.
 
-For many analyses in later chapters, we will use this new `df` object that is the combination of all the data sets that we had before. Whenever this is the case, this data will be explicitly referenced. Note, that in addition to what was shown in this chapter, a few other cleaning tasks were done on the data. This final version of `df` can be found at [tysonstanley.github.io/R](http://www.tysonstanley.github.io/R).
+For many analyses in later chapters, we will use this new `df` object that is the combination of all the data sets that we had before. Whenever this is the case, this data will be explicitly referenced. Note, that in addition to what was shown in this chapter, a few other cleaning tasks were done on the data. This final version of `df` can be found at [tysonbarrett.com/R](http://tysonbarrett.com/R).
 
 
 
@@ -417,7 +457,7 @@ Ultimately, I hope you see the benefit to using these methods. With these method
 
 ## Apply It {-}
 
-[This link](http://tysonbarrett.com/DataR/Chapter2.zip) contains a folder complete with an Rstudio project file, an RMarkdown file, and a few data files. Download it and unzip it to do the following steps.
+[This link](https://tysonbarrett.com/DataR/Chapter2.zip) contains a folder complete with an Rstudio project file, an RMarkdown file, and a few data files. Download it and unzip it to do the following steps.
 
 
 ### Step 1 {-}

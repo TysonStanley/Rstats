@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2: Working with and Cleaning Your Data | R for Researchers: An Introduction</title>
+  <meta name="description" content="This book introduces the R statistical language for researchers in the health, behavioral, educational, and psychological sciences. It is designed for those that have little background in statistical programming but would like to use the powerful statistical and visualization tool that R offers at no cost. The light-hearted design of this book allows a researcher to investigate and begin using R relatively stress-free with intuitive and interesting examples." />
+  <meta name="generator" content="bookdown 0.10 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2: Working with and Cleaning Your Data | R for Researchers: An Introduction" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="Cover.jpg" />
+  <meta property="og:description" content="This book introduces the R statistical language for researchers in the health, behavioral, educational, and psychological sciences. It is designed for those that have little background in statistical programming but would like to use the powerful statistical and visualization tool that R offers at no cost. The light-hearted design of this book allows a researcher to investigate and begin using R relatively stress-free with intuitive and interesting examples." />
+  <meta name="github-repo" content="tysonstanley" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2: Working with and Cleaning Your Data | R for Researchers: An Introduction" />
+  
+  <meta name="twitter:description" content="This book introduces the R statistical language for researchers in the health, behavioral, educational, and psychological sciences. It is designed for those that have little background in statistical programming but would like to use the powerful statistical and visualization tool that R offers at no cost. The light-hearted design of this book allows a researcher to investigate and begin using R relatively stress-free with intuitive and interesting examples." />
+  <meta name="twitter:image" content="Cover.jpg" />
+
+<meta name="author" content="Tyson S. Barrett, PhD" />
+
+
+<meta name="date" content="2019-05-13" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="chapter-1-the-basics.html">
+<link rel="next" href="chapter-3-exploring-your-data-with-tables-and-visuals.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#preparation"><i class="fa fa-check"></i>Preparation</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#part-i"><i class="fa fa-check"></i>Part I</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#part-ii"><i class="fa fa-check"></i>Part II</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#part-iii"><i class="fa fa-check"></i>Part III</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html"><i class="fa fa-check"></i>Chapter 1: The Basics</a><ul>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html#objects"><i class="fa fa-check"></i>Objects</a></li>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html#data-types"><i class="fa fa-check"></i>Data Types</a></li>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html#functions"><i class="fa fa-check"></i>Functions</a><ul>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html#operators"><i class="fa fa-check"></i>Operators</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html#importing-data"><i class="fa fa-check"></i>Importing Data</a></li>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html#saving-data"><i class="fa fa-check"></i>Saving Data</a></li>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html#apply-it"><i class="fa fa-check"></i>Apply it</a><ul>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html#step-1"><i class="fa fa-check"></i>Step 1</a></li>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html#step-2"><i class="fa fa-check"></i>Step 2</a></li>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html#step-3"><i class="fa fa-check"></i>Step 3</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-1-the-basics.html"><a href="chapter-1-the-basics.html#conclusions"><i class="fa fa-check"></i>Conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html"><i class="fa fa-check"></i>Chapter 2: Working with and Cleaning Your Data</a><ul>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#tidy-methods"><i class="fa fa-check"></i>Tidy Methods</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#tidy-long-form"><i class="fa fa-check"></i>Tidy (Long) Form</a><ul>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#wide-form"><i class="fa fa-check"></i>Wide Form</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#long-form"><i class="fa fa-check"></i>Long Form</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#data-used-for-examples"><i class="fa fa-check"></i>Data Used for Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#piping"><i class="fa fa-check"></i>Piping</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#select-variables-and-filter-observations"><i class="fa fa-check"></i>Select Variables and Filter Observations</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#mutate-variables"><i class="fa fa-check"></i>Mutate Variables</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#grouping-and-summarizing"><i class="fa fa-check"></i>Grouping and Summarizing</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#reshaping"><i class="fa fa-check"></i>Reshaping</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#joining-merging"><i class="fa fa-check"></i>Joining (merging)</a><ul>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#inner-join"><i class="fa fa-check"></i>Inner Join</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#left-or-right-join"><i class="fa fa-check"></i>Left or Right Join</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#full-join"><i class="fa fa-check"></i>Full Join</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#wrap-it-up"><i class="fa fa-check"></i>Wrap it up</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#general-cleaning-of-the-data-set"><i class="fa fa-check"></i>General Cleaning of the Data Set</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#apply-it-1"><i class="fa fa-check"></i>Apply It</a><ul>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#step-1-1"><i class="fa fa-check"></i>Step 1</a></li>
+<li class="chapter" data-level="" data-path="chapter-2-working-with-and-cleaning-your-data.html"><a href="chapter-2-working-with-and-cleaning-your-data.html#step-2-1"><i class="fa fa-check"></i>Step 2</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-3-exploring-your-data-with-tables-and-visuals.html"><a href="chapter-3-exploring-your-data-with-tables-and-visuals.html"><i class="fa fa-check"></i>Chapter 3: Exploring Your Data with Tables and Visuals</a><ul>
+<li class="chapter" data-level="" data-path="chapter-3-exploring-your-data-with-tables-and-visuals.html"><a href="chapter-3-exploring-your-data-with-tables-and-visuals.html#descriptive-statistics"><i class="fa fa-check"></i>Descriptive Statistics</a></li>
+<li class="chapter" data-level="" data-path="chapter-3-exploring-your-data-with-tables-and-visuals.html"><a href="chapter-3-exploring-your-data-with-tables-and-visuals.html#visualizations"><i class="fa fa-check"></i>Visualizations</a><ul>
+<li><a href="chapter-3-exploring-your-data-with-tables-and-visuals.html#using-ggplot2">Using <code>ggplot2</code></a></li>
+</ul></li>
+<li><a href="chapter-3-exploring-your-data-with-tables-and-visuals.html#more-advanced-features-of-ggplot2">More Advanced Features of <code>ggplot2</code></a></li>
+<li class="chapter" data-level="" data-path="chapter-3-exploring-your-data-with-tables-and-visuals.html"><a href="chapter-3-exploring-your-data-with-tables-and-visuals.html#types-of-plots"><i class="fa fa-check"></i>Types of Plots</a><ul>
+<li class="chapter" data-level="" data-path="chapter-3-exploring-your-data-with-tables-and-visuals.html"><a href="chapter-3-exploring-your-data-with-tables-and-visuals.html#scatterplots"><i class="fa fa-check"></i>Scatterplots</a></li>
+<li class="chapter" data-level="" data-path="chapter-3-exploring-your-data-with-tables-and-visuals.html"><a href="chapter-3-exploring-your-data-with-tables-and-visuals.html#boxplots"><i class="fa fa-check"></i>Boxplots</a></li>
+<li class="chapter" data-level="" data-path="chapter-3-exploring-your-data-with-tables-and-visuals.html"><a href="chapter-3-exploring-your-data-with-tables-and-visuals.html#bar-plots"><i class="fa fa-check"></i>Bar Plots</a></li>
+<li class="chapter" data-level="" data-path="chapter-3-exploring-your-data-with-tables-and-visuals.html"><a href="chapter-3-exploring-your-data-with-tables-and-visuals.html#line-plots"><i class="fa fa-check"></i>Line Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-3-exploring-your-data-with-tables-and-visuals.html"><a href="chapter-3-exploring-your-data-with-tables-and-visuals.html#color-schemes"><i class="fa fa-check"></i>Color Schemes</a></li>
+<li class="chapter" data-level="" data-path="chapter-3-exploring-your-data-with-tables-and-visuals.html"><a href="chapter-3-exploring-your-data-with-tables-and-visuals.html#themes"><i class="fa fa-check"></i>Themes</a></li>
+<li class="chapter" data-level="" data-path="chapter-3-exploring-your-data-with-tables-and-visuals.html"><a href="chapter-3-exploring-your-data-with-tables-and-visuals.html#labels-and-titles"><i class="fa fa-check"></i>Labels and Titles</a></li>
+<li class="chapter" data-level="" data-path="chapter-3-exploring-your-data-with-tables-and-visuals.html"><a href="chapter-3-exploring-your-data-with-tables-and-visuals.html#facetting"><i class="fa fa-check"></i>Facetting</a></li>
+<li class="chapter" data-level="" data-path="chapter-3-exploring-your-data-with-tables-and-visuals.html"><a href="chapter-3-exploring-your-data-with-tables-and-visuals.html#apply-it-2"><i class="fa fa-check"></i>Apply It</a><ul>
+<li class="chapter" data-level="" data-path="chapter-3-exploring-your-data-with-tables-and-visuals.html"><a href="chapter-3-exploring-your-data-with-tables-and-visuals.html#step-1-2"><i class="fa fa-check"></i>Step 1</a></li>
+<li class="chapter" data-level="" data-path="chapter-3-exploring-your-data-with-tables-and-visuals.html"><a href="chapter-3-exploring-your-data-with-tables-and-visuals.html#step-2-2"><i class="fa fa-check"></i>Step 2</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-3-exploring-your-data-with-tables-and-visuals.html"><a href="chapter-3-exploring-your-data-with-tables-and-visuals.html#conclusions-1"><i class="fa fa-check"></i>Conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html"><i class="fa fa-check"></i>Chapter 4: Basic Analyses</a><ul>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#anova"><i class="fa fa-check"></i>ANOVA</a></li>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#assumptions"><i class="fa fa-check"></i>Assumptions</a></li>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#linear-modeling"><i class="fa fa-check"></i>Linear Modeling</a></li>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#assumptions-1"><i class="fa fa-check"></i>Assumptions</a></li>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#comparing-models"><i class="fa fa-check"></i>Comparing Models</a><ul>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#compare-statistically"><i class="fa fa-check"></i>Compare Statistically</a></li>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#compare-in-a-table"><i class="fa fa-check"></i>Compare in a Table</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#when-assumptions-fail"><i class="fa fa-check"></i>When Assumptions Fail</a><ul>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#log-linear-log-log-linear-log-other"><i class="fa fa-check"></i>Log-Linear, Log-Log, Linear-Log, Other</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#interactions"><i class="fa fa-check"></i>Interactions</a><ul>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#interactions-in-anova"><i class="fa fa-check"></i>Interactions in ANOVA</a></li>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#interactions-in-linear-regression"><i class="fa fa-check"></i>Interactions in Linear Regression</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#apply-it-3"><i class="fa fa-check"></i>Apply It</a><ul>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#step-1-3"><i class="fa fa-check"></i>Step 1</a></li>
+<li class="chapter" data-level="" data-path="chapter-4-basic-analyses.html"><a href="chapter-4-basic-analyses.html#step-2-3"><i class="fa fa-check"></i>Step 2</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-5-generalized-linear-models.html"><a href="chapter-5-generalized-linear-models.html"><i class="fa fa-check"></i>Chapter 5: Generalized Linear Models</a><ul>
+<li class="chapter" data-level="" data-path="chapter-5-generalized-linear-models.html"><a href="chapter-5-generalized-linear-models.html#logistic-regression"><i class="fa fa-check"></i>Logistic Regression</a></li>
+<li class="chapter" data-level="" data-path="chapter-5-generalized-linear-models.html"><a href="chapter-5-generalized-linear-models.html#poisson-regression"><i class="fa fa-check"></i>Poisson Regression</a><ul>
+<li class="chapter" data-level="" data-path="chapter-5-generalized-linear-models.html"><a href="chapter-5-generalized-linear-models.html#gamma"><i class="fa fa-check"></i>Gamma</a></li>
+<li class="chapter" data-level="" data-path="chapter-5-generalized-linear-models.html"><a href="chapter-5-generalized-linear-models.html#two-part-or-hurdle-models"><i class="fa fa-check"></i>Two-Part or Hurdle Models</a></li>
+<li class="chapter" data-level="" data-path="chapter-5-generalized-linear-models.html"><a href="chapter-5-generalized-linear-models.html#negative-binomial"><i class="fa fa-check"></i>Negative Binomial</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-5-generalized-linear-models.html"><a href="chapter-5-generalized-linear-models.html#beta-regression"><i class="fa fa-check"></i>Beta Regression</a></li>
+<li class="chapter" data-level="" data-path="chapter-5-generalized-linear-models.html"><a href="chapter-5-generalized-linear-models.html#apply-it-4"><i class="fa fa-check"></i>Apply It</a><ul>
+<li class="chapter" data-level="" data-path="chapter-5-generalized-linear-models.html"><a href="chapter-5-generalized-linear-models.html#step-1-4"><i class="fa fa-check"></i>Step 1</a></li>
+<li class="chapter" data-level="" data-path="chapter-5-generalized-linear-models.html"><a href="chapter-5-generalized-linear-models.html#step-2-4"><i class="fa fa-check"></i>Step 2</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-5-generalized-linear-models.html"><a href="chapter-5-generalized-linear-models.html#conclusions-2"><i class="fa fa-check"></i>Conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-6-multilevel-modeling.html"><a href="chapter-6-multilevel-modeling.html"><i class="fa fa-check"></i>Chapter 6: Multilevel Modeling</a><ul>
+<li class="chapter" data-level="" data-path="chapter-6-multilevel-modeling.html"><a href="chapter-6-multilevel-modeling.html#gee"><i class="fa fa-check"></i>GEE</a></li>
+<li class="chapter" data-level="" data-path="chapter-6-multilevel-modeling.html"><a href="chapter-6-multilevel-modeling.html#mixed-effects"><i class="fa fa-check"></i>Mixed Effects</a></li>
+<li class="chapter" data-level="" data-path="chapter-6-multilevel-modeling.html"><a href="chapter-6-multilevel-modeling.html#apply-it-5"><i class="fa fa-check"></i>Apply It</a><ul>
+<li class="chapter" data-level="" data-path="chapter-6-multilevel-modeling.html"><a href="chapter-6-multilevel-modeling.html#step-1-5"><i class="fa fa-check"></i>Step 1</a></li>
+<li class="chapter" data-level="" data-path="chapter-6-multilevel-modeling.html"><a href="chapter-6-multilevel-modeling.html#step-2-5"><i class="fa fa-check"></i>Step 2</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-6-multilevel-modeling.html"><a href="chapter-6-multilevel-modeling.html#conclusions-3"><i class="fa fa-check"></i>Conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html"><i class="fa fa-check"></i>Chapter 7: Other Modeling Techniques</a><ul>
+<li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#mediation-modeling"><i class="fa fa-check"></i>Mediation Modeling</a></li>
+<li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#structural-equation-modeling"><i class="fa fa-check"></i>Structural Equation Modeling</a></li>
+<li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#machine-learning-techniques"><i class="fa fa-check"></i>Machine Learning Techniques</a><ul>
+<li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#ridge-lasso-and-elastic-net"><i class="fa fa-check"></i>Ridge, Lasso and Elastic Net</a></li>
+<li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#random-forests"><i class="fa fa-check"></i>Random Forests</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#apply-it-6"><i class="fa fa-check"></i>Apply It</a><ul>
+<li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#step-1-6"><i class="fa fa-check"></i>Step 1</a></li>
+<li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#step-2-6"><i class="fa fa-check"></i>Step 2</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-7-other-modeling-techniques.html"><a href="chapter-7-other-modeling-techniques.html#conclusions-4"><i class="fa fa-check"></i>Conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html"><i class="fa fa-check"></i>Chapter 8: Advanced Data Manipulation</a><ul>
+<li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#reshaping-your-data"><i class="fa fa-check"></i>Reshaping Your Data</a></li>
+<li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#repeating-actions-looping"><i class="fa fa-check"></i>Repeating Actions (Looping)</a><ul>
+<li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#your-own-functions"><i class="fa fa-check"></i>Your Own Functions</a></li>
+<li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#vectorized"><i class="fa fa-check"></i>Vectorized</a></li>
+<li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#for-loops"><i class="fa fa-check"></i>For Loops</a></li>
+<li><a href="chapter-8-advanced-data-manipulation.html#the-apply-family">The <code>apply</code> family</a></li>
+<li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#using-anonymous-functions-in-apply"><i class="fa fa-check"></i>Using “Anonymous Functions” in Apply</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#apply-it-7"><i class="fa fa-check"></i>Apply It</a><ul>
+<li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#step-1-7"><i class="fa fa-check"></i>Step 1</a></li>
+<li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#step-2-7"><i class="fa fa-check"></i>Step 2</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-8-advanced-data-manipulation.html"><a href="chapter-8-advanced-data-manipulation.html#conclusions-5"><i class="fa fa-check"></i>Conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-9-reproducible-workflow-with-rmarkdown.html"><a href="chapter-9-reproducible-workflow-with-rmarkdown.html"><i class="fa fa-check"></i>Chapter 9: Reproducible Workflow with RMarkdown</a><ul>
+<li class="chapter" data-level="" data-path="chapter-9-reproducible-workflow-with-rmarkdown.html"><a href="chapter-9-reproducible-workflow-with-rmarkdown.html#r-markdown"><i class="fa fa-check"></i>R Markdown</a><ul>
+<li class="chapter" data-level="" data-path="chapter-9-reproducible-workflow-with-rmarkdown.html"><a href="chapter-9-reproducible-workflow-with-rmarkdown.html#in-line-r-code"><i class="fa fa-check"></i>In-Line R Code</a></li>
+<li class="chapter" data-level="" data-path="chapter-9-reproducible-workflow-with-rmarkdown.html"><a href="chapter-9-reproducible-workflow-with-rmarkdown.html#pre-formatted-documents"><i class="fa fa-check"></i>Pre-formatted Documents</a></li>
+<li class="chapter" data-level="" data-path="chapter-9-reproducible-workflow-with-rmarkdown.html"><a href="chapter-9-reproducible-workflow-with-rmarkdown.html#other-tricks"><i class="fa fa-check"></i>Other Tricks</a></li>
+<li class="chapter" data-level="" data-path="chapter-9-reproducible-workflow-with-rmarkdown.html"><a href="chapter-9-reproducible-workflow-with-rmarkdown.html#important-important"><i class="fa fa-check"></i>Important, Important</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-9-reproducible-workflow-with-rmarkdown.html"><a href="chapter-9-reproducible-workflow-with-rmarkdown.html#apply-it-8"><i class="fa fa-check"></i>Apply It</a><ul>
+<li class="chapter" data-level="" data-path="chapter-9-reproducible-workflow-with-rmarkdown.html"><a href="chapter-9-reproducible-workflow-with-rmarkdown.html#step-1-8"><i class="fa fa-check"></i>Step 1</a></li>
+<li class="chapter" data-level="" data-path="chapter-9-reproducible-workflow-with-rmarkdown.html"><a href="chapter-9-reproducible-workflow-with-rmarkdown.html#step-2-8"><i class="fa fa-check"></i>Step 2</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chapter-10-where-to-go-from-here-and-common-pitfalls.html"><a href="chapter-10-where-to-go-from-here-and-common-pitfalls.html"><i class="fa fa-check"></i>Chapter 10: Where to Go from Here and Common Pitfalls</a><ul>
+<li class="chapter" data-level="" data-path="chapter-10-where-to-go-from-here-and-common-pitfalls.html"><a href="chapter-10-where-to-go-from-here-and-common-pitfalls.html#common-pitfalls"><i class="fa fa-check"></i>Common Pitfalls</a></li>
+<li class="chapter" data-level="" data-path="chapter-10-where-to-go-from-here-and-common-pitfalls.html"><a href="chapter-10-where-to-go-from-here-and-common-pitfalls.html#quiz"><i class="fa fa-check"></i>Quiz</a></li>
+<li class="chapter" data-level="" data-path="chapter-10-where-to-go-from-here-and-common-pitfalls.html"><a href="chapter-10-where-to-go-from-here-and-common-pitfalls.html#goodbye-and-good-luck"><i class="fa fa-check"></i>Goodbye and Good Luck</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R for Researchers: An Introduction</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="chapter-2-working-with-and-cleaning-your-data" class="section level1 unnumbered">
+<h1>Chapter 2: Working with and Cleaning Your Data</h1>
+<blockquote>
+<p>“Organizing is what you do before you do something, so that when you do it, it is not all mixed up.” — A. A. Milne</p>
+</blockquote>
+<p>In order to work with and clean your data in the most modern and straightforward way, we are going to be using the “tidyverse” group of methods. The tidyverse<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a> is a group of packages<a href="#fn11" class="footnote-ref" id="fnref11"><sup>11</sup></a> that provide a simple syntax that can do many basic (and complex) data manipulating. They form a sort of “grammar” of data manipulation that simplifies both the coding approach and the way researchers think about working with data.</p>
+<p>The group of packages can be downloaded via:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</code></pre>
+<p>After downloading it, to use its functions, simply use:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)</code></pre>
+<pre><code>## ── Attaching packages ─────────────────────────────────────────────────────────────────────── tidyverse 1.2.1.9000 ──</code></pre>
+<pre><code>## ✔ ggplot2 3.1.1       ✔ purrr   0.3.2  
+## ✔ tibble  2.1.1       ✔ dplyr   0.8.0.1
+## ✔ tidyr   0.8.3       ✔ stringr 1.4.0  
+## ✔ readr   1.3.1       ✔ forcats 0.4.0</code></pre>
+<pre><code>## ── Conflicts ─────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()</code></pre>
+<p>Note that when we loaded tidyverse it loaded several packages and told you of “conflicts”. These conflicts are where two or more functions across different packages have the same name. These functions with the same name will almost invariably differ in what they do. In this situation, the last loaded package is the one that <code>R</code> will use by default. For example, if we loaded two packages—<code>awesome</code> and <code>amazing</code>—and both had the function <code>make_really_cool</code> and we loaded <code>awesome</code> and then <code>amazing</code> as so:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(awesome)
+<span class="kw">library</span>(amazing)</code></pre>
+<p><code>R</code> will automatically use the function from <code>amazing</code>. We can still access the <code>awesome</code> version of the function (because, again, even though the name is the same, they won’t necessarily do the same things for you). We can do this by:</p>
+<pre class="sourceCode r"><code class="sourceCode r">awesome<span class="op">::</span><span class="kw">make_really_cool</span>(args)</code></pre>
+<p>We showed this notation in Chapter 1. To review, the <code>::</code> grabs the function from inside of the package and let’s you use just that function. That’s a bit of an aside, but know that you can always get at a function even if it is “masked” from your current session.</p>
+<div id="tidy-methods" class="section level2 unnumbered">
+<h2>Tidy Methods</h2>
+<p>I’m introducing this to you for a couple reasons.</p>
+<ol style="list-style-type: decimal">
+<li>It simplifies the code and makes the code more readable. It is often worthwhile to make sure the code is readable for, as the saying goes, there are always at least two collaborators on any project: you and future you.</li>
+<li>It is the cutting edge of all things <code>R</code>. The most influential individuals in the <code>R</code> world, including the makers and maintainers of <code>RStudio</code>, use these methods and syntax.</li>
+</ol>
+<p>The majority of what you’ll need to do with data as a researcher will be covered by these functions. The goal of these packages is to help tidy up your data. <em>Tidy data</em> is based on columns being variables and rows being observations. This depends largely on your data and research design but the definition is still the same—columns are variables and rows are observations. It is the form that data needs to be in to analyze it, whether that analysis is by graphing, modeling, or other means.</p>
+<p>There are several methods that help create tidy data:</p>
+<ol style="list-style-type: decimal">
+<li>Piping</li>
+<li>Selecting and Filtering</li>
+<li>Mutate and Transmute</li>
+<li>Grouping and Summarizing</li>
+<li>Reshaping</li>
+<li>Joining (merging)</li>
+</ol>
+<blockquote>
+<p>Heads up! Understanding these tools requires an understanding of what ways data can be moved around. For example, reshaping can refer to moving data into a more wide-format or long-format, can refer to summarizing or aggregating, and can refer to joining or binding. All of these are necessary to work with data flexibly. Because of this, we suggest taking your time to fully understand what each function is doing with the data.</p>
+</blockquote>
+<p>Much of these may be things you have done in other tools such as spreadsheets. The copy-and-paste approach is seriously error prone and is not reproducible. Taking your time to learn these methods will be well worth it.</p>
+</div>
+<div id="tidy-long-form" class="section level2 unnumbered">
+<h2>Tidy (Long) Form</h2>
+<p>Before diving in, I want to provide some examples of tidy data (also known as “long form”) and how they are different from another form, often called “wide form.”</p>
+<p>Only when the data is cross-sectional and each individual is a row does this distinction not matter much. Otherwise, if there are multiple measurement periods per individual (longitudinal design), or there are multiple individuals per cluster (clustered design), the distinction between wide and long is very important for modeling and visualization.</p>
+<div id="wide-form" class="section level3 unnumbered">
+<h3>Wide Form</h3>
+<p>Wide form generally has one unit (i.e. individual) per row. This generally looks like:</p>
+<pre><code>##    ID   Var_Time1   Var_Time2
+## 1   1 -1.82665774 0.009128897
+## 2   2  1.68390857 0.933029763
+## 3   3  1.75902687 0.249979359
+## 4   4 -1.10090426 0.622896703
+## 5   5  0.48963051 0.340643380
+## 6   6 -0.87497855 0.379341163
+## 7   7 -0.21235504 0.443984838
+## 8   8  0.87680528 0.074131385
+## 9   9  0.02772986 0.588852892
+## 10 10 -1.91455731 0.486002357</code></pre>
+<p>Notice that each row has a unique ID, and some of the columns (all in this case) are variables at specific time points. This means that the variable is split up and is not a single column. This is a common way to collect and store data in our fields and so your data likely looks similar to this.</p>
+</div>
+<div id="long-form" class="section level3 unnumbered">
+<h3>Long Form</h3>
+<p>In contrast, long format has the lowest nested unit as a single row. This means that a single ID can span multiple rows, usually with a unique time point for each row as so:</p>
+<pre><code>##   ID Time        Var
+## 1  1    1 0.66379146
+## 2  1    2 0.58118682
+## 3  1    3 0.43395799
+## 4  1    4 0.84304727
+## 5  2    1 0.26147313
+## 6  2    2 0.52240353
+## 7  3    1 0.90175221
+## 8  3    2 0.03428608
+## 9  3    3 0.06609034</code></pre>
+<p>Notice that a single ID spans multiple columns and that each row has only one time point. Here, time is nested within individuals making it the lowest unit. Therefore, each row corresponds to a single time point. Generally, this is the format we want for most modeling techniques and most visualizations.</p>
+<p>This is a very simple example of the differences between wide and long format. Although much more complex examples are probably available to you, we will start with this for now. Chapter 8 will delve into more complex data designs and how to reshape those. Toward the end of this chapter, we show reshaping with more simple data structures.</p>
+</div>
+<div id="data-used-for-examples" class="section level3 unnumbered">
+<h3>Data Used for Examples</h3>
+<p>To help illustrate each aspect of working with and cleaning your data, we are going to use real data from the National Health and Nutrition Examiniation Survey (NHANES). I’ve provided this data at <a href="https://tysonstanley.github.io/assets/Data/NHANES.zip">https://tysonstanley.github.io/assets/Data/NHANES.zip</a>. I’ve cleaned it up somewhat already.</p>
+<p>Let’s quickly read that data in so we can use it throughout the remainder of this chapter.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rio)
+dem_df &lt;-<span class="st"> </span><span class="kw">import</span>(<span class="st">&quot;NHANES_demographics_11.xpt&quot;</span>)
+med_df &lt;-<span class="st"> </span><span class="kw">import</span>(<span class="st">&quot;NHANES_MedHeath_11.xpt&quot;</span>)
+men_df &lt;-<span class="st"> </span><span class="kw">import</span>(<span class="st">&quot;NHANES_MentHealth_11.xpt&quot;</span>)
+act_df &lt;-<span class="st"> </span><span class="kw">import</span>(<span class="st">&quot;NHANES_PhysActivity_11.xpt&quot;</span>)</code></pre>
+<p>Now we have four separate, but related, data sets in memory:</p>
+<ol style="list-style-type: decimal">
+<li><code>dem_df</code> containing demographic information</li>
+<li><code>med_df</code> containing medical health information</li>
+<li><code>men_df</code> containing mental health information</li>
+<li><code>act_df</code> containing activity level information</li>
+</ol>
+<p>Since all of them have all-cap variable names, we are going to quickly change this with a little trick:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(dem_df) &lt;-<span class="st"> </span><span class="kw">tolower</span>(<span class="kw">names</span>(dem_df))
+<span class="kw">names</span>(med_df) &lt;-<span class="st"> </span><span class="kw">tolower</span>(<span class="kw">names</span>(med_df))
+<span class="kw">names</span>(men_df) &lt;-<span class="st"> </span><span class="kw">tolower</span>(<span class="kw">names</span>(men_df))
+<span class="kw">names</span>(act_df) &lt;-<span class="st"> </span><span class="kw">tolower</span>(<span class="kw">names</span>(act_df))</code></pre>
+<p>This takes the names of the data frame (on the right hand side), changes them to lower case and then reassigns them to the names of the data frame.<a href="#fn12" class="footnote-ref" id="fnref12"><sup>12</sup></a></p>
+<p>We will now go through each aspect of the tidy way of working with data using these four data sets.</p>
+</div>
+</div>
+<div id="piping" class="section level2 unnumbered">
+<h2>Piping</h2>
+<p>Let’s introduce a few major themes in this tidyverse. First, the pipe operator – <code>%&gt;%</code>. It helps simplify the code and makes things more readable. It takes what is on the left hand side and puts it in the right hand side’s function.</p>
+<pre class="sourceCode r"><code class="sourceCode r">dem_df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>()</code></pre>
+<p>So the above code takes the data frame <code>dem_df</code> and puts it into the <code>head</code> function. This does the same thing as <code>head(df)</code>.</p>
+<p>To illustrate its strength, consider the following example. We take <code>dem_df</code>, group it by gender, and then count.</p>
+<pre class="sourceCode r"><code class="sourceCode r">dem_df <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(riagendr) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_age =</span> <span class="kw">mean</span>(ridageyr, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</code></pre>
+<pre><code>## # A tibble: 2 x 2
+##   riagendr mean_age
+##      &lt;dbl&gt;    &lt;dbl&gt;
+## 1        1     31.1
+## 2        2     31.7</code></pre>
+<p>Without using the pipe, we would need to use something like:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summarize</span>(<span class="kw">group_by</span>(dem_df, riagendr), <span class="dt">mean_age =</span> <span class="kw">mean</span>(ridageyr, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</code></pre>
+<pre><code>## # A tibble: 2 x 2
+##   riagendr mean_age
+##      &lt;dbl&gt;    &lt;dbl&gt;
+## 1        1     31.1
+## 2        2     31.7</code></pre>
+<p>Although it is fewer lines, this is notably harder to understand. Instead of reading from left to right, top to bottom, we must read inside out, which is unnatural for English reading individuals.</p>
+</div>
+<div id="select-variables-and-filter-observations" class="section level2 unnumbered">
+<h2>Select Variables and Filter Observations</h2>
+<p>We often want to subset our data in some way before we do many of our analyses. We may want to do this for a number of reasons (e.g., easier cognitively to think about the data, the analyses depend on the subsetting). The code below show the two main ways to subset your data:</p>
+<ol style="list-style-type: decimal">
+<li><em>selecting</em> variables and</li>
+<li><em>filtering</em> observations.</li>
+</ol>
+<p>To select three variables (i.e. gender [“riagendr”], age [“ridageyr”], and ethnicity [“ridreth1”]) we:</p>
+<pre class="sourceCode r"><code class="sourceCode r">selected_dem &lt;-<span class="st"> </span>dem_df <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(riagendr, ridageyr, ridreth1)</code></pre>
+<p>Now, <code>selected_dem</code> has three variables and all the observations.</p>
+<p>We can also filter (i.e. take out observations we don’t want):</p>
+<pre class="sourceCode r"><code class="sourceCode r">filtered_dem &lt;-<span class="st"> </span>dem_df <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(riagendr <span class="op">==</span><span class="st"> </span><span class="dv">1</span>)</code></pre>
+<p>Since when <code>riagendr == 1</code> the individual is male, <code>filtered_dem</code> only has male participants. We can add multiple filtering options as well:</p>
+<pre class="sourceCode r"><code class="sourceCode r">filtered_dem &lt;-<span class="st"> </span>dem_df <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(riagendr <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">&amp;</span><span class="st"> </span>ridageyr <span class="op">&gt;</span><span class="st"> </span><span class="dv">16</span>)</code></pre>
+<p>We now have only males that are older than 16 years old. We used <code>&amp;</code> to say we want <strong>both</strong> conditions to be met. Alternatively, we could use:</p>
+<pre class="sourceCode r"><code class="sourceCode r">filtered_dem &lt;-<span class="st"> </span>dem_df <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(riagendr <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">|</span><span class="st"> </span>ridageyr <span class="op">&gt;</span><span class="st"> </span><span class="dv">16</span>)</code></pre>
+<p>By using <code>|</code> we are saying we want males <strong>or</strong> individuals older than 16. In other words, if either are met, that observation will be kept.</p>
+<p>Finally, we can do all of these in one step:</p>
+<pre class="sourceCode r"><code class="sourceCode r">filtered_selected_dem &lt;-<span class="st"> </span>dem_df <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(riagendr, ridageyr, ridreth1) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(riagendr <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">&amp;</span><span class="st"> </span>ridageyr <span class="op">&gt;</span><span class="st"> </span><span class="dv">16</span>)</code></pre>
+<p>where we use two <code>%&gt;%</code> operators to grab <code>dem_df</code>, select the three variables, and then filter the rows that we want.</p>
+</div>
+<div id="mutate-variables" class="section level2 unnumbered">
+<h2>Mutate Variables</h2>
+<p>Earlier we showed how to create a new variable or clean an existing one. We used the base <code>R</code> way for these. However, a great way to add and change variables is using <code>mutate()</code>. We grab <code>df</code>, and create a variable called <code>citizen</code> using the factored version of <code>dmdcitzn</code> and assign it back into <code>df</code>.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">## Our Grouping Variable as a factor</span>
+dem_df &lt;-<span class="st"> </span>dem_df <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">citizen =</span> <span class="kw">factor</span>(dmdcitzn))</code></pre>
+<p>The benefit is in the readability of the code. We repeat things like the name of the data frame much less. I highly recommend working this way.</p>
+</div>
+<div id="grouping-and-summarizing" class="section level2 unnumbered">
+<h2>Grouping and Summarizing</h2>
+<p>A major aspect of analysis is comparing groups. Lucky for us, this is very simple in <code>R</code>. I call it the three step summary:</p>
+<ol style="list-style-type: decimal">
+<li>Data</li>
+<li>Group by</li>
+<li>Summarize</li>
+</ol>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">## Three step summary:</span>
+dem_df <span class="op">%&gt;%</span><span class="st">                           </span><span class="co">## 1. Data</span>
+<span class="st">  </span><span class="kw">group_by</span>(citizen) <span class="op">%&gt;%</span><span class="st">              </span><span class="co">## 2. Group by</span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">N =</span> <span class="kw">n</span>())                 <span class="co">## 3. Summarize</span></code></pre>
+<pre><code>## Warning: Factor `citizen` contains implicit NA, consider using
+## `forcats::fct_explicit_na`</code></pre>
+<pre><code>## # A tibble: 4 x 2
+##   citizen     N
+##   &lt;fct&gt;   &lt;int&gt;
+## 1 1        8685
+## 2 2        1040
+## 3 7          26
+## 4 &lt;NA&gt;        5</code></pre>
+<p>The output is very informative. The first column is the grouping variable and the second is the N (number of individuals) by group. We can quickly see that there are four levels, currently, to the citizen variable. After some reading of the documentation we see that <code>1 = Citizen</code> and <code>2 = Not a Citizen</code>. A value of <code>7</code> it turns out is a placeholder value for missing. And finally we have an NA category. It’s unlikely that we want those to be included in any analyses, unless we are particularly interested in the missingness on this variable. So let’s do some simple cleaning to get this where we want it. To do this, we will use the <code>furniture</code> package.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;furniture&quot;</span>)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">dem_df &lt;-<span class="st"> </span>dem_df <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">citizen =</span> <span class="kw">washer</span>(citizen, <span class="dv">7</span>),                <span class="co">## Changes all 7&#39;s to NA&#39;s</span>
+         <span class="dt">citizen =</span> <span class="kw">washer</span>(citizen, <span class="dv">2</span>, <span class="dt">value =</span> <span class="dv">0</span>))     <span class="co">## Changes all 2&#39;s to 0&#39;s</span></code></pre>
+<p>Now, our citizen variable is cleaned, with <code>0</code> meaning not a citizen and <code>1</code> meaning citizen. Let’s rerun the code from above with the three step summary:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">## Three step summary:</span>
+dem_df <span class="op">%&gt;%</span><span class="st">                           </span><span class="co">## 1. Data</span>
+<span class="st">  </span><span class="kw">group_by</span>(citizen) <span class="op">%&gt;%</span><span class="st">              </span><span class="co">## 2. Group by</span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">N =</span> <span class="kw">n</span>())                 <span class="co">## 3. Summarize</span></code></pre>
+<pre><code>## Warning: Factor `citizen` contains implicit NA, consider using
+## `forcats::fct_explicit_na`</code></pre>
+<pre><code>## # A tibble: 3 x 2
+##   citizen     N
+##   &lt;fct&gt;   &lt;int&gt;
+## 1 0        1040
+## 2 1        8685
+## 3 &lt;NA&gt;       31</code></pre>
+<p>Its clear that the majority of the subjects are citizens. We can also check multiple variables at the same time, just separating them with a comma in the <code>summarize</code> function.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">## Three step summary:</span>
+dem_df <span class="op">%&gt;%</span><span class="st">                           </span><span class="co">## 1. Data</span>
+<span class="st">  </span><span class="kw">group_by</span>(citizen) <span class="op">%&gt;%</span><span class="st">              </span><span class="co">## 2. Group by</span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">N =</span> <span class="kw">n</span>(),                 <span class="co">## 3. Summarize</span>
+            <span class="dt">Age =</span> <span class="kw">mean</span>(ridageyr, <span class="dt">na.rm=</span><span class="ot">TRUE</span>))                 </code></pre>
+<pre><code>## Warning: Factor `citizen` contains implicit NA, consider using
+## `forcats::fct_explicit_na`</code></pre>
+<pre><code>## # A tibble: 3 x 3
+##   citizen     N   Age
+##   &lt;fct&gt;   &lt;int&gt; &lt;dbl&gt;
+## 1 0        1040  37.3
+## 2 1        8685  30.7
+## 3 &lt;NA&gt;       31  40.4</code></pre>
+<p>We used the <code>n()</code> function (which gives us counts) and the <code>mean()</code> function which, shockingly, gives us the mean. Note that if there are <code>NA</code>’s in the variable, the mean (and most other functions like it) will give the result <code>NA</code>. To have <code>R</code> ignore these, we tell the <code>mean</code> function to remove the <code>NA</code>’s when you compute this using <code>na.rm=TRUE</code>.</p>
+<p>We can also use <code>furniture::table1()</code> to do the three-step summary. By default, <code>table1()</code> will give you the mean and SD of numeric variables and counts and percentages for factors.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">## Three step summary:</span>
+dem_df <span class="op">%&gt;%</span><span class="st">                           </span><span class="co">## 1. Data</span>
+<span class="st">  </span><span class="kw">group_by</span>(citizen) <span class="op">%&gt;%</span><span class="st">              </span><span class="co">## 2. Group by</span>
+<span class="st">  </span><span class="kw">table1</span>(<span class="dt">Age =</span> ridageyr,             <span class="co">## 3. Summarize</span>
+         <span class="dt">Sex =</span> <span class="kw">factor</span>(riagendr))                 </code></pre>
+<pre><code>## Warning: Factor `citizen` contains implicit NA, consider using
+## `forcats::fct_explicit_na`</code></pre>
+<pre><code>## Using dplyr::group_by() groups: citizen</code></pre>
+<pre><code>## 
+## ───────────────────────────────
+##             citizen 
+##       0           1           
+##       n = 1040    n = 8685    
+##  Age                          
+##       37.3 (18.5) 30.7 (25.1) 
+##  Sex                          
+##     1 523 (50.3%) 4315 (49.7%)
+##     2 517 (49.7%) 4370 (50.3%)
+## ───────────────────────────────</code></pre>
+<p>This pattern of grouping and summarizing is something that will follow us throughout the book. It’s a great way to get to know your data well and to make decisions on what to do next with your data.</p>
+</div>
+<div id="reshaping" class="section level2 unnumbered">
+<h2>Reshaping</h2>
+<p>Earlier we described the differences between wide and long (or tidy) form. Now that you have an idea of the differences, we are going to introduce how to change from one to the other. Several functions exist for just this purpose, including <code>gather()</code> from the <code>tidyr</code> package and <code>reshape()</code> in the default <code>stats</code> package. Since these can be limited in certain situations, we are going to teach two functions that can be used in nearly any reshaping situation. For now, though, we will keep in simple.</p>
+<p>First, we will go from wide to long form using <code>long()</code> from the <code>furniture</code> package.<a href="#fn13" class="footnote-ref" id="fnref13"><sup>13</sup></a> We are using the ficticious data for the example of wide format from above.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#library(furniture)</span>
+df_wide &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="st">&quot;ID&quot;</span>=<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>), 
+                      <span class="st">&quot;Var_Time1&quot;</span>=<span class="kw">rnorm</span>(<span class="dv">10</span>), 
+                      <span class="st">&quot;Var_Time2&quot;</span>=<span class="kw">runif</span>(<span class="dv">10</span>))
+df_long &lt;-<span class="st"> </span><span class="kw">long</span>(df_wide, 
+                <span class="kw">c</span>(<span class="st">&quot;Var_Time1&quot;</span>, <span class="st">&quot;Var_Time2&quot;</span>),
+                <span class="dt">v.names =</span> <span class="st">&quot;Var&quot;</span>)</code></pre>
+<pre><code>## id = ID</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">df_long</code></pre>
+<pre><code>##      ID time          Var
+## 1.1   1    1 -0.333951741
+## 2.1   2    1 -1.426568720
+## 3.1   3    1 -1.636822429
+## 4.1   4    1 -0.103076854
+## 5.1   5    1 -0.863310448
+## 6.1   6    1 -1.174153676
+## 7.1   7    1  0.799312003
+## 8.1   8    1 -0.819714178
+## 9.1   9    1  0.733398183
+## 10.1 10    1 -0.002236534
+## 1.2   1    2  0.818095696
+## 2.2   2    2  0.072766873
+## 3.2   3    2  0.198322854
+## 4.2   4    2  0.602794213
+## 5.2   5    2  0.365043242
+## 6.2   6    2  0.174424975
+## 7.2   7    2  0.251205900
+## 8.2   8    2  0.488671686
+## 9.2   9    2  0.234222258
+## 10.2 10    2  0.936877253</code></pre>
+<p>We provided the data (<code>df_wide</code>), the time varying variables (<code>c("Var_Time1", "Var_Time2")</code>), and told it what we should name the value variable (<code>v.names = "Var"</code>). Note that the function guessed, based on its name, that the variable <code>ID</code> was the identifying variable.</p>
+<p>This function automatically assumes each observation is a time point, thus the <code>time</code> variable. We can easily change that by adding the argument <code>timevar</code> and giving it a name (e.g., <code>timevar = "cluster"</code>).</p>
+<p>And now we will go from long to wide using <code>wide()</code> from the same package.</p>
+<pre class="sourceCode r"><code class="sourceCode r">df_long &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="st">&quot;ID&quot;</span>=<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>), 
+                      <span class="st">&quot;Time&quot;</span>=<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), 
+                      <span class="st">&quot;Var&quot;</span>=<span class="kw">runif</span>(<span class="dv">9</span>))
+df_wide &lt;-<span class="st"> </span><span class="kw">wide</span>(df_long, 
+                <span class="dt">v.names =</span> <span class="kw">c</span>(<span class="st">&quot;Var&quot;</span>),
+                <span class="dt">timevar =</span> <span class="st">&quot;Time&quot;</span>)</code></pre>
+<pre><code>## id = ID</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">df_wide</code></pre>
+<pre><code>##   ID     Var.1     Var.2     Var.3     Var.4
+## 1  1 0.8994227 0.7214949 0.4274312 0.9213086
+## 5  2 0.4962018 0.9713351        NA        NA
+## 7  3 0.8376052 0.3542951 0.8857001        NA</code></pre>
+<p>Here, we provided the data <code>df_long</code> and the variable name (<code>Var</code>) that had the values and (<code>Time</code>) that contained the time labels (in this case, just numbers). With a little bit of code we can move data around without any copy-pasting that is so error-prone. Again, note that the function guessed, based on its name, that the variable <code>ID</code> was the identifying variable.</p>
+</div>
+<div id="joining-merging" class="section level2 unnumbered">
+<h2>Joining (merging)</h2>
+<p>The final topic in the chapter is joining data sets. This is common in many situations including large surveys (e.g., a demographics set, physical activity set, family characteristics set), health records (financial data, doctors notes, diagnosis data), and longitudinal studies (data from wave I, data from wave II).</p>
+<p>We currently have 4 data sets that have mostly the same people in them but with different variables. One tells us about the demographics; another gives us information on mental health. We may have questions that ask whether a demographic characteristics is related to a mental health factor. This means we need to merge, or join, our data sets.<a href="#fn14" class="footnote-ref" id="fnref14"><sup>14</sup></a></p>
+<p>When we merge a data set, we combine them based on some ID variable(s). Here, this is simple since each individual is given a unique identifier in the variable <code>seqn</code>. Within the <code>dplyr</code> package (part of the tidyverse) there are four main joining functions: <code>inner_join</code>, <code>left_join</code>, <code>right_join</code> and <code>full_join</code>. Each join combines the data in slightly different ways.</p>
+<p>The figure below shows each type of join in Venn Diagram form. Each are discussed below.</p>
+<div class="figure">
+<img src="Joining.jpg" alt="Joining" />
+<p class="caption">Joining</p>
+</div>
+<div id="inner-join" class="section level3 unnumbered">
+<h3>Inner Join</h3>
+<p>Here, only those individuals that are in both data sets that you are combining will remain. So if person “A” is in data set 1 and not in data set 2 then he/she will not be included.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">inner_join</span>(df1, df2, <span class="dt">by=</span><span class="st">&quot;IDvariable&quot;</span>)</code></pre>
+</div>
+<div id="left-or-right-join" class="section level3 unnumbered">
+<h3>Left or Right Join</h3>
+<p>This is similar to inner join but now if the individual is in data set 1 then <code>left_join</code> will keep them even if they aren’t in data set 2. <code>right_join</code> means if they are in data set 2 then they will be kept whether or not they are in data set 1.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">left_join</span>(df1, df2, <span class="dt">by=</span><span class="st">&quot;IDvariable&quot;</span>)   <span class="co">## keeps all in df1</span>
+<span class="kw">right_join</span>(df1, df2, <span class="dt">by=</span><span class="st">&quot;IDvariable&quot;</span>)  <span class="co">## keeps all in df2</span></code></pre>
+</div>
+<div id="full-join" class="section level3 unnumbered">
+<h3>Full Join</h3>
+<p>This one simply keeps all individuals that are in either data set 1 or data set 2.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">full_join</span>(df1, df2, <span class="dt">by=</span><span class="st">&quot;IDvariable&quot;</span>)</code></pre>
+<p>Each of the left, right and full joins will have missing values placed in the variables where that individual wasn’t found. For example, if person “A” was not in df2, then in a full join they would have missing values in the df1 variables.</p>
+<p>For our NHANES example, we will use <code>full_join</code> to get all the data sets together. Note that in the code below we do all the joining in the same overall step.</p>
+<pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span>dem_df <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">full_join</span>(med_df, <span class="dt">by=</span><span class="st">&quot;seqn&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">full_join</span>(men_df, <span class="dt">by=</span><span class="st">&quot;seqn&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">full_join</span>(act_df, <span class="dt">by=</span><span class="st">&quot;seqn&quot;</span>)</code></pre>
+<p>So now <code>df</code> is the the joined data set of all four. We started with <code>dem_df</code> joined it with <code>med_df</code> by <code>seqn</code> then joined that joined data set with <code>men_df</code> by <code>seqn</code>, and so on.</p>
+<p>For many analyses in later chapters, we will use this new <code>df</code> object that is the combination of all the data sets that we had before. Whenever this is the case, this data will be explicitly referenced. Note, that in addition to what was shown in this chapter, a few other cleaning tasks were done on the data. This final version of <code>df</code> can be found at <a href="http://www.tysonstanley.github.io/R">tysonstanley.github.io/R</a>.</p>
+</div>
+</div>
+<div id="wrap-it-up" class="section level2 unnumbered">
+<h2>Wrap it up</h2>
+<p>Let’s put all the pieces together that we’ve learned in the chapter together on this new <code>df</code> data frame we just created. Below, we using piping, selecting, filtering, grouping, and summarizing.</p>
+<p>First, let’s create an overall depression variable that is the sum of all the depression items (we could do IRT or some other way of combining them but that is not the point here). Below, we do three things:</p>
+<ol style="list-style-type: decimal">
+<li>We clean up each depression item using <code>furniture::washer()</code> since both “7” and “9” are placeholders for missing values. We take override the original variable with the cleaned one.</li>
+<li>Next, we sum all the items into a new variable called <code>dep</code>.</li>
+<li>Finally, we create a dichotomized variable called <code>dep2</code> using nested <code>ifelse()</code> functions. The <code>ifelse()</code> statements read: if condition holds (<code>dep</code> is greater than or equal to <code>10</code>), then <code>1</code>, else if condition holds (<code>dep</code> is less than <code>10</code>), then <code>0</code>, else <code>NA</code>. The basic build of the function is: <code>ifelse(condition, value if true, value if false)</code>.</li>
+</ol>
+<p>In the end, we are creating a new data frame called <code>df2</code> with the new and improved <code>df</code> with the items cleaned and depression summed and dichotomized.</p>
+<pre class="sourceCode r"><code class="sourceCode r">df2 &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">dpq010 =</span> <span class="kw">washer</span>(dpq010, <span class="dv">7</span>,<span class="dv">9</span>),
+         <span class="dt">dpq020 =</span> <span class="kw">washer</span>(dpq020, <span class="dv">7</span>,<span class="dv">9</span>),
+         <span class="dt">dpq030 =</span> <span class="kw">washer</span>(dpq030, <span class="dv">7</span>,<span class="dv">9</span>),
+         <span class="dt">dpq040 =</span> <span class="kw">washer</span>(dpq040, <span class="dv">7</span>,<span class="dv">9</span>),
+         <span class="dt">dpq050 =</span> <span class="kw">washer</span>(dpq050, <span class="dv">7</span>,<span class="dv">9</span>),
+         <span class="dt">dpq060 =</span> <span class="kw">washer</span>(dpq060, <span class="dv">7</span>,<span class="dv">9</span>),
+         <span class="dt">dpq070 =</span> <span class="kw">washer</span>(dpq070, <span class="dv">7</span>,<span class="dv">9</span>),
+         <span class="dt">dpq080 =</span> <span class="kw">washer</span>(dpq080, <span class="dv">7</span>,<span class="dv">9</span>),
+         <span class="dt">dpq090 =</span> <span class="kw">washer</span>(dpq090, <span class="dv">7</span>,<span class="dv">9</span>),
+         <span class="dt">dpq100 =</span> <span class="kw">washer</span>(dpq100, <span class="dv">7</span>,<span class="dv">9</span>)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">dep =</span> dpq010 <span class="op">+</span><span class="st"> </span>dpq020 <span class="op">+</span><span class="st"> </span>dpq030 <span class="op">+</span><span class="st"> </span>dpq040 <span class="op">+</span><span class="st"> </span>dpq050 <span class="op">+</span>
+<span class="st">               </span>dpq060 <span class="op">+</span><span class="st"> </span>dpq070 <span class="op">+</span><span class="st"> </span>dpq080 <span class="op">+</span><span class="st"> </span>dpq090) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">dep2 =</span> <span class="kw">factor</span>(<span class="kw">ifelse</span>(dep <span class="op">&gt;=</span><span class="st"> </span><span class="dv">10</span>, <span class="dv">1</span>,
+                       <span class="kw">ifelse</span>(dep <span class="op">&lt;</span><span class="st"> </span><span class="dv">10</span>, <span class="dv">0</span>, <span class="ot">NA</span>))))</code></pre>
+<p>After these adjustments, let’s select, filter, group by, and summarize.</p>
+<pre class="sourceCode r"><code class="sourceCode r">df2 <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(ridageyr, riagendr, mcq010, dep) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(ridageyr <span class="op">&gt;</span><span class="st"> </span><span class="dv">10</span> <span class="op">&amp;</span><span class="st"> </span>ridageyr <span class="op">&lt;</span><span class="st"> </span><span class="dv">40</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(riagendr) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">asthma =</span> <span class="kw">mean</span>(mcq010, <span class="dt">na.rm=</span><span class="ot">TRUE</span>),
+            <span class="dt">depr   =</span> <span class="kw">mean</span>(dep, <span class="dt">na.rm=</span><span class="ot">TRUE</span>))</code></pre>
+<pre><code>## # A tibble: 2 x 3
+##   riagendr asthma  depr
+##      &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+## 1        1   1.82  2.61
+## 2        2   1.82  3.58</code></pre>
+<p>We can see that males (<code>riagendr = 1</code>) have nearly identical asthma levels but lower depression levels than their female counterparts.</p>
+</div>
+<div id="general-cleaning-of-the-data-set" class="section level2 unnumbered">
+<h2>General Cleaning of the Data Set</h2>
+<p>A package known as <code>janitor</code> provides some nice functions that add to the ideas presented in this chapter. Specifically, two functions are of note:</p>
+<ol style="list-style-type: decimal">
+<li><code>clean_names()</code> – cleans up the names of the data frame to make them easier to type and make sure it works well with <code>R</code>.</li>
+<li><code>remove_empty()</code> – removes either empty columns or empty rows (columns or rows that have only missing values).</li>
+</ol>
+<p>These can be used in tandem, like so:</p>
+<pre class="sourceCode r"><code class="sourceCode r">df3 &lt;-<span class="st"> </span>df2 <span class="op">%&gt;%</span>
+<span class="st">  </span>janitor<span class="op">::</span><span class="kw">clean_names</span>() <span class="op">%&gt;%</span>
+<span class="st">  </span>janitor<span class="op">::</span><span class="kw">remove_empty</span>(<span class="st">&quot;cols&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span>janitor<span class="op">::</span><span class="kw">remove_empty</span>(<span class="st">&quot;rows&quot;</span>)</code></pre>
+<p>Ultimately, I hope you see the benefit to using these methods. With these methods, you can clean, reshape, and summarize your data. Because these are foundational, we will apply these methods throughout the book.</p>
+</div>
+<div id="apply-it-1" class="section level2 unnumbered">
+<h2>Apply It</h2>
+<p><a href="http://tysonbarrett.com/DataR/Chapter2.zip">This link</a> contains a folder complete with an Rstudio project file, an RMarkdown file, and a few data files. Download it and unzip it to do the following steps.</p>
+<div id="step-1-1" class="section level3 unnumbered">
+<h3>Step 1</h3>
+<p>Open the <code>Chapter2.Rproj</code> file. This will open up RStudio for you.</p>
+</div>
+<div id="step-2-1" class="section level3 unnumbered">
+<h3>Step 2</h3>
+<p>Once RStudio has started, in the panel on the lower-right, there is a <code>Files</code> tab. Click on that to see the project folder. You should see the data files and the <code>Chapter2.Rmd</code> file. Click on the <code>Chapter2.Rmd</code> file to open it. In this file, import the data, create a new variable, select three varaibles, and summarize a variable using the three step summary.</p>
+<p>Once that code is in the file, click the <code>knit</code> button. This will create an HTML file with the code and output knitted together into one nice document. This can be read into any browser and can be used to show your work in a clean document.</p>
+
+</div>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="10">
+<li id="fn10"><p>Hadley Wickham (2016). tidyverse: Easily Install and Load ‘Tidyverse’ Packages. R package version 1.0.0. <a href="https://CRAN.R-project.org/package=tidyverse" class="uri">https://CRAN.R-project.org/package=tidyverse</a><a href="chapter-2-working-with-and-cleaning-your-data.html#fnref10" class="footnote-back">↩</a></p></li>
+<li id="fn11"><p>Remember, a package is an extension to <code>R</code> that gives you more functions that you can easily load into <code>R</code>.<a href="chapter-2-working-with-and-cleaning-your-data.html#fnref11" class="footnote-back">↩</a></p></li>
+<li id="fn12"><p>Note that these are not particularly helpful names, but they are the names provided in the original data source. If you have questions about the data, visit <a href="http://wwwn.cdc.gov/Nchs/Nhanes/Search/Nhanes11_12.aspx">http://wwwn.cdc.gov/Nchs/Nhanes/Search/Nhanes11_12.aspx</a>.<a href="chapter-2-working-with-and-cleaning-your-data.html#fnref12" class="footnote-back">↩</a></p></li>
+<li id="fn13"><p>Although the furniture package isn’t in the <code>tidyverse</code>, it is a valuable package to use with the other <code>tidyverse</code> packages.<a href="chapter-2-working-with-and-cleaning-your-data.html#fnref13" class="footnote-back">↩</a></p></li>
+<li id="fn14"><p>Note that this is different than adding new rows but not new variables. Merging requires that we have at least some overlap of individuals in both data sets.<a href="chapter-2-working-with-and-cleaning-your-data.html#fnref14" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="chapter-1-the-basics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="chapter-3-exploring-your-data-with-tables-and-visuals.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

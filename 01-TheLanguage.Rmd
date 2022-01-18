@@ -187,7 +187,7 @@ Again, if you ever have questions about the specific arguments that a certain fu
 
 ## Apply it {-}
 
-[This link](http://tysonbarrett.com/DataR/Chapter1.zip) contains a folder complete with an Rstudio project file, an RMarkdown file, and a few data files. Download it and unzip it to do the following steps.
+[This link](https://tysonbarrett.com/DataR/Chapter1.zip) contains a folder complete with an Rstudio project file, an RMarkdown file, and a few data files. Download it and unzip it to do the following steps.
 
 
 ### Step 1 {-}

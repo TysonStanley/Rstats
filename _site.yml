@@ -1,0 +1,14 @@
+title: "R for the Health, Behavioral, and Social Sciences"
+author: "Tyson S. Barrett"
+date: "`r Sys.Date()`"
+site: "bookdown::bookdown_site"
+output:
+  bookdown::gitbook:
+    download: [epub, pdf]
+documentclass: book
+link-citations: yes
+bibliography: [book.bib]
+biblio-style: apalike
+description: "This book introduces the R statistical language for researchers in the health, behavioral, educational, and psychological sciences. It is designed for those that have little background in statistical programming but would like to use the powerful statistical and visualization tool that R offers at no cost. The light-hearted design of this book allows a researcher to investigate and begin using R relatively stress-free with intuitive and interesting examples."
+github-repo: "tysonstanley/tysonstanley.github.io"
+cover-image: "Cover.jpg"
