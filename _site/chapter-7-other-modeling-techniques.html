@@ -231,13 +231,13 @@ time_{Sedentary} = \lambda_0 + \lambda_1 asthma + \lambda_2 depression + \epsilo
 ## 
 ##      sed_hr ~ 
 ##                             Indirect   Lower  Upper
-##         asthmaAsthma =&gt; dep   0.0637 0.02938 0.1054
+##         asthmaAsthma =&gt; dep   0.0637 0.03015 0.1067
 ## 
 ##    Direct Effects: 
 ## 
 ##      sed_hr ~ 
 ##                      Direct  Lower  Upper
-##         asthmaAsthma 0.4123 0.1542 0.6841
+##         asthmaAsthma 0.4123 0.1636 0.7033
 ## 
 ## 
 ## Standardized Mediated Effects: 
@@ -246,13 +246,13 @@ time_{Sedentary} = \lambda_0 + \lambda_1 asthma + \lambda_2 depression + \epsilo
 ## 
 ##      sed_hr ~ 
 ##                             Indirect   Lower   Upper
-##         asthmaAsthma =&gt; dep    0.019 0.00876 0.03143
+##         asthmaAsthma =&gt; dep    0.019 0.00899 0.03184
 ## 
 ##    Direct Effects: 
 ## 
 ##      sed_hr ~ 
 ##                      Direct   Lower  Upper
-##         asthmaAsthma  0.123 0.04601 0.2041</code></pre>
+##         asthmaAsthma  0.123 0.04879 0.2098</code></pre>
 <p>This gives us the estimates of the individual regression models and the estimates of the indirect and direct effects.</p>
 <p>To do the exact same model with <code>lavaan</code>, we can do the following:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span>
@@ -555,19 +555,19 @@ time_{Sedentary} = \lambda_0 + \lambda_1 asthma + \lambda_2 depression + \epsilo
 ## 
 ## No pre-processing
 ## Resampling: Cross-Validated (10 fold) 
-## Summary of sample sizes: 3992, 3993, 3994, 3995, 3993, 3993, ... 
+## Summary of sample sizes: 3992, 3993, 3994, 3993, 3993, 3994, ... 
 ## Resampling results across tuning parameters:
 ## 
 ##   alpha  lambda     RMSE   Rsquared  MAE  
-##   0.10   0.0008293  3.285  0.04165   2.691
-##   0.10   0.0082933  3.285  0.04152   2.692
-##   0.10   0.0829328  3.286  0.04112   2.695
-##   0.55   0.0008293  3.285  0.04165   2.691
-##   0.55   0.0082933  3.286  0.04103   2.693
-##   0.55   0.0829328  3.288  0.04016   2.701
-##   1.00   0.0008293  3.285  0.04165   2.691
-##   1.00   0.0082933  3.286  0.04106   2.694
-##   1.00   0.0829328  3.293  0.03871   2.707
+##   0.10   0.0008293  3.283  0.04153   2.691
+##   0.10   0.0082933  3.284  0.04129   2.692
+##   0.10   0.0829328  3.285  0.04065   2.695
+##   0.55   0.0008293  3.283  0.04152   2.691
+##   0.55   0.0082933  3.285  0.04075   2.693
+##   0.55   0.0829328  3.288  0.03957   2.701
+##   1.00   0.0008293  3.283  0.04153   2.691
+##   1.00   0.0082933  3.285  0.04072   2.694
+##   1.00   0.0829328  3.293  0.03813   2.707
 ## 
 ## RMSE was used to select the optimal model using the smallest value.
 ## The final values used for the model were alpha = 1 and lambda = 0.0008293.</code></pre>
@@ -613,7 +613,7 @@ time_{Sedentary} = \lambda_0 + \lambda_1 asthma + \lambda_2 depression + \epsilo
 ## No. of variables tried at each split: 2
 ## 
 ##           Mean of squared residuals: 10.82
-##                     % Var explained: 3.76</code></pre>
+##                     % Var explained: 3.74</code></pre>
 <p>We can find out which variables were important in the model via:</p>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))  <span class="do">## back to one plot per page</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">varImpPlot</span>(fit_rf)</span></code></pre></div>

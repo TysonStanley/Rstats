@@ -43,7 +43,7 @@ We saw this notation in Chapter 1. To review, the `::` notation grabs the functi
 
 ## Tidy Methods {-}
 
-Why introduce this to you? Well, three of my main reasons are:
+Why introduce this to you? Well, four of my main reasons are:
 
 1. Data analysis is much more straightforward when the data set is tidy. Messy data can complicate even simple analyses.
 2. Tidy methods simplifies the code and makes the code more readable. It is often worthwhile to make sure the code is readable for, as the saying goes, there are always at least two collaborators on any project: you and future you. So, let's be kind to our future selves by making our code more readable.
@@ -62,7 +62,7 @@ Wide form generally has one unit (i.e. individual) per row. This generally looks
 data.frame("ID"=c(1:10), "Var_Time1"=rnorm(10), "Var_Time2"=runif(10))
 ```
 
-Notice that each row has a unique ID, and some of the columns (all in this case) are variables at specific time points. This means that the variable is split up and is not a single column. This is a common way to collect and store data in our fields and so your data may look similar to this.
+Notice that each row has a unique ID, and some of the columns (all in this case) are variables at specific time points. This means that what could be a "time" variable is split up and is not a single column. This is a common way to collect and store data in our fields and so your data may look similar to this.
 
 ### Long Form {-}
 
@@ -129,10 +129,10 @@ Now we have four separate, but related, data sets in memory:
 Since all of them have all-cap variable names, we are going to quickly change this with a little trick:
 
 ```{r}
-names(dem_df) <- tolower(names(dem_df))
-names(med_df) <- tolower(names(med_df))
-names(men_df) <- tolower(names(men_df))
-names(act_df) <- tolower(names(act_df))
+dem_df <- clean_names(dem_df)
+med_df <- clean_names(med_df)
+men_df <- clean_names(men_df)
+act_df <- clean_names(act_df)
 ```
 This takes the names of the data frame (on the right hand side), changes them to lower case and then reassigns them to the names of the data frame.[^names]
 
@@ -310,7 +310,8 @@ This pattern of grouping and summarizing is something that will follow us throug
 
 Earlier we described the differences between wide and long (or tidy) form. Now that you have an idea of the differences, we are going to introduce how to change from one to the other. Several functions exist for just this purpose, including `gather()` from the `tidyr` package and `reshape()` in the default `stats` package. Since these can be limited in certain situations, we are going to teach two functions that can be used in nearly any reshaping situation. For now, though, we will keep in simple.
 
-First, we will go from wide to long form using `long()` from the `furniture` package.[^furniture1] We are using the ficticious data for the example of wide format from above.
+First, we will go from wide to long form using `long()` from the `furniture` package.[^furniture1] We are using the fictitious data for the example of wide format from above.
+
 ```{r}
 #library(furniture)
 df_wide <- data.frame("ID"=c(1:10), 
@@ -321,11 +322,13 @@ df_long <- long(df_wide,
                 v.names = "Var")
 df_long
 ```
+
 We provided the data (`df_wide`), the time varying variables (`c("Var_Time1", "Var_Time2")`), and told it what we should name the value variable (`v.names = "Var"`). Note that the function guessed, based on its name, that the variable `ID` was the identifying variable.
 
 This function automatically assumes each observation is a time point, thus the `time` variable. We can easily change that by adding the argument `timevar` and giving it a name (e.g., `timevar = "cluster"`).
 
 And now we will go from long to wide using `wide()` from the same package.
+
 ```{r}
 df_long <- data.frame("ID"=c(1,1,1,1,2,2,3,3,3), 
                       "Time"=c(1,2,3,4,1,2,1,2,3), 
@@ -335,6 +338,7 @@ df_wide <- wide(df_long,
                 timevar = "Time")
 df_wide
 ```
+
 Here, we provided the data `df_long` and the variable name (`Var`) that had the values and (`Time`) that contained the time labels (in this case, just numbers). With a little bit of code we can move data around without any copy-pasting that is so error-prone. Again, note that the function guessed, based on its name, that the variable `ID` was the identifying variable.
 
 
